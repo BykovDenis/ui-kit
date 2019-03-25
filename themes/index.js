@@ -1,12 +1,14 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
 import red from '@material-ui/core/colors/red';
 import black from '@material-ui/core/colors/common';
 import grey from '@material-ui/core/colors/grey';
 import { getLuminance } from '@material-ui/core/styles/colorManipulator';
+import hexToRGB from '../helpers/hex-to-rgb';
 
-const primaryColor = blue[400];
-const lightPrimaryColor = blue[300];
+const primaryColor = '#569627';
+const lightPrimaryColor = '#63ad2d'; // blue[300];
+const lighterPrimaryColor = '#ccff99';
+const mostLighterPrimaryColor = '#7bd938';
 const darkPrimaryColor = black[300];
 const secondaryColor = red['A400'];
 const lightSecondaryColor = red['A200'];
@@ -47,11 +49,17 @@ const muiTheme = createMuiTheme({
     alignItems: 'center',
     textAlign: 'center',
   },
-  /* Стили для справочников */
+  checkboxGroup: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  inputCheckbox: {
+    color: primaryColor,
+  },
   directoryContainer: {
     marginLeft: '24px',
     marginRight: '24px',
-    overflow: 'auto',
   },
   directoryPageTitle: {
     fontSize: '24px',
@@ -60,18 +68,31 @@ const muiTheme = createMuiTheme({
     marginTop: '20px',
     marginRight: '20px',
   },
-  /* */
+  directorySearchContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    flexGrow: 1,
+    marginLeft: '40px',
+  },
+  directorySearchInput: {
+    width: '70%',
+    marginLeft: '20px',
+    marginTop: '0 !important',
+  },
   errorMessage: {
     color: secondaryColor,
     fontWeight: '900',
     fontSize: '12px',
-    lineHeight: 1.33,
-    minHeight: '60px',
   },
+
   inputItem: {
     marginBottom: 0,
     paddingTop: '5px',
-    marginTop: '25px',
+    paddingBottom: '5px',
+    '& label': {
+      fontWeight: 900,
+    },
     '&:focus label': {
       color: primaryColor,
     },
@@ -81,13 +102,61 @@ const muiTheme = createMuiTheme({
     '&:hover label': {
       color: primaryColor,
     },
-    '& div::after': {
+    '& div:after': {
       backgroundColor: primaryColor,
+      borderColor: primaryColor,
+    },
+    '& div:hover:after': {
+      backgroundColor: primaryColor,
+      borderColor: primaryColor,
+    },
+    '& div:active:after': {
+      backgroundColor: primaryColor,
+      borderColor: primaryColor,
+    },
+    '&:hover div::before': {
+      borderColor: primaryColor,
+    },
+    '& div:hover:before': {
+      borderColor: `${primaryColor} !important`,
     },
     '& p': {
       position: 'absolute',
       top: '50px',
     },
+    '& input:hover': {
+      borderBottom: primaryColor,
+    },
+  },
+  formContainer: {
+    margin: '0 auto',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    padding: '15px 30px',
+    '@media (max-width: 768px)': {
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+    },
+  },
+  formControl: {
+    paddingRight: '15px',
+    width: '100%',
+    '@media (min-width: 768px) and (max-width: 992px)': {
+      width: '50%',
+    },
+    '@media (min-width: 992px)': {
+      width: '30%',
+    },
+  },
+  formLabel: {
+    color: darkPrimaryColor,
+    fontWeight: 900,
+  },
+  headerButton: {
+    color: 'white',
   },
   headerRowContainer: {
     display: 'flex',
@@ -116,7 +185,9 @@ const muiTheme = createMuiTheme({
     },
     primary: {
       light: lightPrimaryColor,
+      lighter: lighterPrimaryColor,
       main: primaryColor,
+      mostLighter: mostLighterPrimaryColor,
       dark: darkPrimaryColor,
       contrastText: 'rgba(0, 0, 0, .87)',
     },
@@ -129,13 +200,12 @@ const muiTheme = createMuiTheme({
   },
   pageTitle: {
     fontSize: '24px',
-    margin: '10px 20px 10px',
+    margin: '20px 20px 0',
   },
   pagePartTitleH1: {
     margin: '20px',
-    marginLeft: 0,
     marginTop: '10px',
-    fontSize: '28px',
+    fontSize: '32px',
     fontWeight: 700,
   },
   pagePartTitleH2: {
@@ -149,21 +219,21 @@ const muiTheme = createMuiTheme({
     fontWeight: 700,
   },
   paper: {
-    display: 'flex',
-    top: '10px',
+    backgroundColor: '#eeeeee',
+    borderRadius: 0,
     bottom: '10px',
-    right: '10px',
+    boxSizing: 'border-box',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
     left: '10px',
     minHeight: '85vh',
-    minWidth: '1120px',
-    borderRadius: 0,
-    boxSizing: 'border-box',
     padding: '5px 0 5px',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+    right: '10px',
+    top: '10px',
     overflowX: 'auto',
   },
-  paperTradeVersionDetails: {
+  paperTradeDetails: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -176,7 +246,6 @@ const muiTheme = createMuiTheme({
     borderRadius: 0,
     boxSizing: 'border-box',
     padding: '5px 0 5px',
-    marginTop: 0,
   },
   tableContainer: {
     overflow: 'auto',
@@ -185,10 +254,10 @@ const muiTheme = createMuiTheme({
     bottom: '20px',
   },
   table: {
-    minWidth: '1120px',
+    position: 'relative',
     backgroundColor: '#ffffff',
     borderCollapse: 'collapse',
-    fontSize: '12px',
+    fontSize: '14px',
   },
   tableHead: {
     height: 'auto',
@@ -202,13 +271,16 @@ const muiTheme = createMuiTheme({
     fontSize: 'inherit',
     '&:hover > td': {
       transition: 'background-color 0.2s ease-in-out',
-      backgroundColor: blue[50],
+      backgroundColor: hexToRGB(mostLighterPrimaryColor, 0.3),
     },
     '&:nth-of-type(even)': {
-      backgroundColor: blue[100],
+      backgroundColor: hexToRGB(lighterPrimaryColor, 0.5),
     },
   },
   tableRowHeader: {
+    backgroundColor: lightPrimaryColor,
+  },
+  tableRowFooter: {
     backgroundColor: lightPrimaryColor,
   },
   tableCellHeader: {
@@ -218,15 +290,17 @@ const muiTheme = createMuiTheme({
     position: 'sticky',
     top: 0,
     backgroundColor: lightPrimaryColor,
+    fontSize: 'inherit',
     textAlign: 'center',
     paddingTop: '2px',
     paddingBottom: '2px',
-    paddingLeft: '10px',
-    paddingRight: '10px',
+    paddingLeft: '24px',
+    paddingRight: '24px',
     fontWeight: '900',
     color: '#ffffff',
     wordBreak: 'initial',
     wordWrap: 'break-word',
+    zIndex: '10000',
   },
   tableCellFooter: {
     position: 'sticky',
@@ -235,37 +309,28 @@ const muiTheme = createMuiTheme({
     textAlign: 'left',
     paddingTop: '2px',
     paddingBottom: '2px',
-    paddingLeft: '10px',
-    paddingRight: '10px',
+    paddingLeft: '24px',
+    paddingRight: '24px',
     fontWeight: '900',
     whiteSpace: 'nowrap',
   },
   tableCell: {
-    color: '#333333',
-    fontSize: 'inherit',
-    paddingLeft: '10px',
-    paddingRight: '10px',
     textAlign: 'center',
     whiteSpace: 'nowrap',
-  },
-  tableCellNoStyled: {
-    border: 'none',
-    padding: 0,
-    margin: 0,
-    '&:last-child': {
-      padding: 0,
-      margin: 0,
-    },
+    color: '#333333',
+    fontSize: 'inherit',
+    paddingLeft: '24px',
+    paddingRight: '24px',
   },
   tabsContainer: {
     /* TODO как будет доступ из API поменять доступ к контейнеру через него */
     /*
-		'& > div > div > div': {
-			display: 'flex',
-			flexWrap: 'wrap',
-			flexDirection: 'row',
-		}
-		*/
+    '& > div > div > div': {
+      display: 'flex',
+      flexWrap: 'wrap',
+      flexDirection: 'row',
+    }
+    */
   },
   title: {
     flex: 1,
@@ -281,7 +346,7 @@ const muiTheme = createMuiTheme({
   tabContainer: {
     padding: 0,
   },
-  tradeVersionEditRow: {
+  tradeEditRow: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -291,6 +356,9 @@ const muiTheme = createMuiTheme({
     paddingBottom: '30px',
     minWidth: '550px',
     marginBottom: '30px',
+  },
+  usersCreateButton: {
+    color: 'white',
   },
   /* directories */
   directoryFormBody: {
@@ -307,21 +375,14 @@ const muiTheme = createMuiTheme({
   },
   directoryFormInput: {
     textAlign: 'right',
-    '& input': {
-      textAlign: 'right',
-    },
   },
   directoryFormItem: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'baseline',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
   directoryFormSelect: {
-    textAlign: 'right',
-    marginTop: '20px',
-  },
-  directoryFormDate: {
     textAlign: 'right',
     marginTop: '20px',
   },
@@ -342,16 +403,23 @@ const muiTheme = createMuiTheme({
       alignItems: 'baseline',
     },
   },
-  noDataContainer: {
-    display: 'block',
-    textAlign: 'center',
-    fontWeight: 900,
+  link: {
+    color: primaryColor,
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline',
+    },
   },
   typography: {
     useNextVariants: true,
   },
-  list: {
-    fontSize: '12px',
+  formSelect: {
+    '& input': {
+      textAlign: 'right',
+    },
+    '& div': {
+      textAlign: 'right',
+    },
   },
 });
 
