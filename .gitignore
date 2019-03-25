@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+git push
 # production
 /build
 
@@ -21,4 +21,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.idea
+/.idea
