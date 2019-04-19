@@ -1,5 +1,9 @@
 import { getLuminance } from '@material-ui/core/styles/colorManipulator';
 
+const whiteColor = '#ffffff';
+const blackColor = '#333333';
+const lightGrayColor = '#eeeeee';
+
 function getContrastText(color, dark, light) {
   return getLuminance(color) <= 0.5 ? dark : light;
 }
@@ -222,7 +226,7 @@ function riskiCommonUITheme(
       },
     },
     headerButton: {
-      color: 'white',
+      color: whiteColor,
     },
     headerRowContainer: {
       display: 'flex',
@@ -271,6 +275,9 @@ function riskiCommonUITheme(
         mostLighter: mostLighterPrimaryColor,
         dark: darkPrimaryColor,
         contrastText: 'rgba(0, 0, 0, .87)',
+        blackColor,
+        lightGrayColor,
+        whiteColor,
       },
       secondary: {
         light: lightSecondaryColor,
@@ -313,7 +320,7 @@ function riskiCommonUITheme(
     },
     table: {
       position: 'relative',
-      backgroundColor: '#ffffff',
+      backgroundColor: whiteColor,
       borderCollapse: 'collapse',
     },
     tableHead: {
@@ -347,7 +354,7 @@ function riskiCommonUITheme(
     },
     tableCellHeader: {
       '& span': {
-        color: '#ffffff',
+        color: whiteColor,
       },
       position: 'sticky',
       top: 0,
@@ -356,14 +363,14 @@ function riskiCommonUITheme(
       paddingTop: '2px',
       paddingBottom: '2px',
       fontWeight: '900',
-      color: '#ffffff',
+      color: whiteColor,
       wordBreak: 'initial',
       wordWrap: 'break-word',
     },
     tableCellFooter: {
       position: 'sticky',
       bottom: 0,
-      backgroundColor: 'white',
+      color: whiteColor,
       textAlign: 'left',
       paddingTop: '2px',
       paddingBottom: '2px',
