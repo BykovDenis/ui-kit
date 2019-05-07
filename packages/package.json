@@ -1,12 +1,12 @@
 {
   "name": "riski-react-ui-components",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A simple button component",
   "main": "dist/index.js",
   "module": "src/index.js",
   "author": "Denis Bykov",
   "dependencies": {
-    "riski-react-ui-components/custom-button": "^1.0.4"
+    "riski-react-ui-components/custom-button": "^1.0.5"
   },
   "scripts": {
     "transpile": "babel src -d dist --ignore '**/*.spec.js,**/*.stories.js'",
