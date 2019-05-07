@@ -1,7 +1,4 @@
-0 silly argv { _: [ 'run' ],
-0 silly argv   lernaVersion: '3.13.3',
-0 silly argv   '$0': 'lerna',
-0 silly argv   script: 'transpile' }
+0 silly argv { _: [ 'bootstrap' ], lernaVersion: '3.13.3', '$0': 'lerna' }
 1 notice cli v3.13.3
 2 verbose rootPath /Users/bykovdenis/www/sberbank/react-ui-components
 3 error Error: Invalid package name "riski-react-ui-components/custom-button": name can only contain URL-friendly characters
