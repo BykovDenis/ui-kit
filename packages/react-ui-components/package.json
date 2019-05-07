@@ -1,5 +1,5 @@
 {
-  "name": "react-ui-components",
+  "name": "riski-react-ui-components",
   "version": "1.0.2",
   "dependencies": {
     "@riski-react-ui-components/custom-button": "^1.0.2",
@@ -23,5 +23,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "gitHead": "7e1200478ac3ca482b4998fd3bf16b49253407ba"
+  "gitHead": "f9e6fb50c45bd8024cd9e483ba6eb487c4e0b44a"
 }
