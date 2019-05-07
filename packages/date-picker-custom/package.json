@@ -1,0 +1,39 @@
+{
+  "name": "@riski-react-ui-components/date-picker-custom",
+  "version": "1.0.6",
+  "description": "A simple button component",
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "author": "Denis Bykov",
+  "scripts": {
+    "transpile": "babel src -d dist --ignore '**/*.spec.js,**/*.stories.js'",
+    "jest": "jest --coverage --verbose --color"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "transform-es2015-modules-commonjs"
+        ]
+      }
+    }
+  },
+  "jest": {
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "gitHead": "fe1030e439c311fa8e856138165207d674f43f9d",
+  "dependencies": {
+    "@date-io/moment": "1.3.5",
+    "@material-ui/core": "3.9.3",
+    "@material-ui/icons": "3.0.2",
+    "material-ui-pickers": "2.2.4",
+    "moment": "2.24.0",
+    "prop-types": "15.7.2"
+  }
+}
