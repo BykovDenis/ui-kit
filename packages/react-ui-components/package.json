@@ -1,6 +1,6 @@
 {
   "name": "react-ui-components",
-  "version": "1.0.1",
+  "version": "0.1.4",
   "dependencies": {
     "@riski-react-ui-components/custom-button": "^1.0.1",
     "react": "^16.8.6",
