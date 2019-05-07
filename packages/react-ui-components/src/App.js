@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CustomButton from '@react-ui-components/custom-button';
+import CustomButton from '@riski-react-ui-components/custom-button';
 import logo from './logo.svg';
 import './App.css';
 
