@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CustomButton from 'riski-react-ui-components/packages/custom-button';
+import CustomButton from '@riski-react-ui-components/custom-button';
 import './App.css';
 
 class App extends Component {
