@@ -1,7 +1,7 @@
 {
-  "name": "@riski-react-ui/react-select-custom",
+  "name": "@riski-react-ui/not-data-available",
   "version": "1.1.1",
-  "description": "Select component",
+  "description": "Not data available",
   "main": "dist/index.js",
   "module": "src/index.js",
   "author": "Denis Bykov",

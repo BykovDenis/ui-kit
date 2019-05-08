@@ -113,7 +113,6 @@ function ReactSelectCustom(props) {
     },
     input: function input(styles) {
       return _objectSpread({}, styles, {
-        fontSize: '12px',
         height: '20px'
       }, dot());
     },
