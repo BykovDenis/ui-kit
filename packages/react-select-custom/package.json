@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "module": "src/index.js",
   "author": "Denis Bykov",
+  "license": "MIT",
   "scripts": {
     "transpile": "babel src -d dist --ignore '**/*.spec.js,**/*.stories.js'",
     "jest": "jest --coverage --verbose --color"
@@ -27,5 +28,5 @@
       "../../setupTests"
     ]
   },
-  "gitHead": "66414c9a9cca74bb20d374763885295dd7e5bf8b"
+  "gitHead": "7e1a76cff88ed892f7fa324ee79b444e31b76154"
 }
