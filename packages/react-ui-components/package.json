@@ -8,12 +8,13 @@
     "@riski-react-ui/date-picker-custom": "^1.2.0",
     "@riski-react-ui/not-data-available": "^1.2.0",
     "@riski-react-ui/react-select-custom": "^1.2.0",
+    "@riski-react-ui/error": "^1.2.0",
     "chroma-js": "2.0.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.0",
     "react-select": "2.4.3",
-    "riski-react-ui": "^1.1.1"
+    "riski-react-ui": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

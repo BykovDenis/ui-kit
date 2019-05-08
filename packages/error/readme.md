@@ -1,1 +1,1 @@
-Custom button
+Error component

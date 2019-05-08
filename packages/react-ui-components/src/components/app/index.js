@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import CustomButton from 'riski-react-ui/custom-button';
 import DatePickerCustom from 'riski-react-ui/date-picker-custom';
 import ReactSelectCustom from 'riski-react-ui/react-select-custom';
+import NotDataAvailable from 'riski-react-ui/not-data-available';
 import CustomButtonInternal from '@riski-react-ui/custom-button';
 import DatePickerCustomInternal from '@riski-react-ui/date-picker-custom';
 import ReactSelectCustomInternal from '@riski-react-ui/react-select-custom';
 import NotDataAvailableInternal from '@riski-react-ui/not-data-available';
+import ErrorInternal from '@riski-react-ui/error';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
@@ -70,6 +72,12 @@ class App extends Component {
                     />
                   </TableCell>
                 </TableRow>
+                <TableRow>
+                  <TableCell>Not data available</TableCell>
+                  <TableCell>
+                    <NotDataAvailable />
+                  </TableCell>
+                </TableRow>
               </TableBody>
             </Table>
           </div>
@@ -109,6 +117,12 @@ class App extends Component {
                   <TableCell>Not data available</TableCell>
                   <TableCell>
                     <NotDataAvailableInternal />
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Error</TableCell>
+                  <TableCell>
+                    <ErrorInternal />
                   </TableCell>
                 </TableRow>
               </TableBody>

@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { ErrorTitle } from '../formatted-messages';
 
 const styles = theme => ({
   container: {
     margin: 'auto',
+    textAlign: 'center',
   },
   shapeError: {
     position: 'relative',
     margin: '20px auto',
-    width: '150px',
-    height: '150px',
+    width: '60px',
+    height: '60px',
     backgroundColor: theme.palette.secondary.main,
     borderRadius: '50%',
     filter: 'drop-shadow(0 2px 5px #000000)',
@@ -44,9 +44,10 @@ const styles = theme => ({
 
 function ErrorComponent(props) {
   const { classes } = props;
+
   return (
     <div className={classes.container}>
-      <ErrorTitle /> {props.message}
+      Error {props.message}
       <div className={classes.shapeError} />
     </div>
   );
@@ -54,6 +55,8 @@ function ErrorComponent(props) {
 
 ErrorComponent.propTypes = {
   message: PropTypes.string,
+  width: PropTypes.number,
+  height: PropTypes.number,
 };
 
 export default withStyles(styles)(ErrorComponent);
