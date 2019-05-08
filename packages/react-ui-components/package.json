@@ -1,6 +1,6 @@
 {
   "name": "@riski-react-ui-components/react-ui-components",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Denis Bykov",
   "dependencies": {
     "@riski-react-ui-components/custom-button": "^1.0.8",
