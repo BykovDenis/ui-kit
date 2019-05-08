@@ -3,6 +3,7 @@ import CustomButton from 'riski-react-ui/custom-button';
 import DatePickerCustom from 'riski-react-ui/date-picker-custom';
 import ReactSelectCustom from 'riski-react-ui/react-select-custom';
 import NotDataAvailable from 'riski-react-ui/not-data-available';
+import Error from 'riski-react-ui/error';
 import CustomButtonInternal from '@riski-react-ui/custom-button';
 import DatePickerCustomInternal from '@riski-react-ui/date-picker-custom';
 import ReactSelectCustomInternal from '@riski-react-ui/react-select-custom';
@@ -76,6 +77,12 @@ class App extends Component {
                   <TableCell>Not data available</TableCell>
                   <TableCell>
                     <NotDataAvailable />
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Error</TableCell>
+                  <TableCell>
+                    <Error />
                   </TableCell>
                 </TableRow>
               </TableBody>
