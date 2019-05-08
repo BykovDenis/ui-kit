@@ -1,13 +1,13 @@
 {
   "name": "@riski-react-ui/react-ui-components",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "author": "Denis Bykov",
   "license": "MIT",
   "dependencies": {
-    "@riski-react-ui/custom-button": "*",
-    "@riski-react-ui/date-picker-custom": "*",
-    "@riski-react-ui/react-select-custom": "*",
-    "@riski-react-ui/not-data-available": "*",
+    "@riski-react-ui/custom-button": "^1.2.0",
+    "@riski-react-ui/date-picker-custom": "^1.2.0",
+    "@riski-react-ui/not-data-available": "^1.2.0",
+    "@riski-react-ui/react-select-custom": "^1.2.0",
     "chroma-js": "2.0.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
