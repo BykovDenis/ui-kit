@@ -1,0 +1,32 @@
+{
+  "name": "@riski-react-ui/error",
+  "version": "1.2.0",
+  "description": "A simple button component",
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "author": "Denis Bykov",
+  "license": "MIT",
+  "scripts": {
+    "transpile": "babel src -d dist --ignore '**/*.spec.js,**/*.stories.js'",
+    "jest": "jest --coverage --verbose --color"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "transform-es2015-modules-commonjs"
+        ]
+      }
+    }
+  },
+  "jest": {
+    "setupFiles": [
+      "../../setupTests"
+    ]
+  },
+  "gitHead": "9a661b119511f9e1e46272df5f376c7b75c37f78"
+}
