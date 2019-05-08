@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CustomButton from 'riski-react-ui/custom-button';
 import DatePickerCustom from 'riski-react-ui/date-picker-custom';
+import ReactSelectCustom from 'riski-react-ui/react-select-custom';
 import CustomButtonInternal from '@riski-react-ui/custom-button';
 import DatePickerCustomInternal from '@riski-react-ui/date-picker-custom';
 import ReactSelectCustomInternal from '@riski-react-ui/react-select-custom';
@@ -38,8 +39,38 @@ class App extends Component {
         <main className={classes.container}>
           <div>
             <h2>External components </h2>
-            <CustomButton>First custom component</CustomButton>
-            <DatePickerCustom value={'2019.04.20'} intl={{ locale: 'en' }} />
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Component name</TableCell>
+                  <TableCell>Component</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell>Custom Button</TableCell>
+                  <TableCell>
+                    <CustomButton>First custom component</CustomButton>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Date picker</TableCell>
+                  <TableCell>
+                    <DatePickerCustom value={'2019.04.20'} intl={{ locale: 'en' }} />
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Select</TableCell>
+                  <TableCell>
+                    <ReactSelectCustom
+                      className={classes.formSelect}
+                      activeElement="one"
+                      elements={['one', 'two', 'three']}
+                    />
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
           </div>
           <div>
             <h2>Internal components </h2>
