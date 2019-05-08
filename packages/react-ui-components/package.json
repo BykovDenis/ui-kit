@@ -1,5 +1,5 @@
 {
-  "name": "react-ui-components",
+  "name": "@riski-react-ui-components/react-ui-components",
   "version": "1.0.8",
   "author": "Denis Bykov",
   "dependencies": {
