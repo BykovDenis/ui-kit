@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import CustomButton from 'riski-react-ui-components/custom-button';
-import DatePickerCustom from 'riski-react-ui-components/date-picker-custom';
-import CustomButtonInternal from '@riski-react-ui-components/custom-button';
-import DatePickerCustomInternal from '@riski-react-ui-components/date-picker-custom';
+import CustomButton from 'riski-react-ui/custom-button';
+import DatePickerCustom from 'riski-react-ui/date-picker-custom';
+import CustomButtonInternal from '@riski-react-ui/custom-button';
+import DatePickerCustomInternal from '@riski-react-ui/date-picker-custom';
 import './App.css';
 
 class App extends Component {

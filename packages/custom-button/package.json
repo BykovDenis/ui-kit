@@ -1,5 +1,5 @@
 {
-  "name": "@riski-react-ui-components/custom-button",
+  "name": "@riski-react-ui/custom-button",
   "version": "1.0.8",
   "description": "A simple button component",
   "main": "dist/index.js",

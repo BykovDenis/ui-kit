@@ -1,5 +1,5 @@
 {
-  "name": "@riski-react-ui-components/date-picker-custom",
+  "name": "@riski-react-ui/date-picker-custom",
   "version": "1.0.8",
   "description": "A simple button component",
   "main": "dist/index.js",

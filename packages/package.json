@@ -1,5 +1,5 @@
 {
-  "name": "riski-react-ui-components",
+  "name": "riski-react-ui",
   "version": "1.0.9",
   "description": "A simple button component",
   "main": "dist/index.js",
