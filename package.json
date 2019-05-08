@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Library of components\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Dui-\u001b[2~ components\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[\u001b[3~\u001b[2~\u001b[3~\u001b[6~\u001b[F\u001b[6~\u001b[F\u001b[B\u001b[B\u001b[F\u001b[B\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001bui components\u001b[D\u001b[C\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[3~\u001b[3~\u001b[F\u001b[B\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b ui components",
   "main": "index.js",
-  "author": "Denis Bykov",
+  "author": "Bykov Denis Stanislavovich",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
@@ -23,7 +23,6 @@
     "jss",
     "html5"
   ],
-  "author": "Bykov Denis Stanislavovich",
   "license": "ISC",
   "dependencies": {
     "@material-ui/core": "^3.9.2",
@@ -36,27 +35,35 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
-    "prettier": "^1.16.4"
+    "material-ui-pickers": "^2.2.4",
+    "moment-timezone": "^0.5.25",
+    "prettier": "^1.16.4",
+    "prop-types": "^15.7.2",
+    "storybook-addon-material-ui": "^0.9.0-alpha.18"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^24.7.1",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.12.1",
-    "jest": "^24.7.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-test-renderer": "^16.8.6",
-    "@storybook/react": "^5.0.10",
+    "@material-ui/icons": "3.0.2",
     "@storybook/addon-actions": "^5.0.10",
     "@storybook/addon-links": "^5.0.10",
     "@storybook/addons": "^5.0.10",
+    "@storybook/react": "^5.0.10",
+    "@svgr/webpack": "4.2.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
-    "lerna": "^3.13.3"
+    "babel-plugin-named-asset-import": "0.3.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-react-app": "8.0.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "jest": "^24.7.1",
+    "lerna": "^3.13.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-test-renderer": "^16.8.6"
   }
 }
