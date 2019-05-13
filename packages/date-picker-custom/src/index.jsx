@@ -8,10 +8,7 @@ import { DatePicker, MuiPickersUtilsProvider } from 'material-ui-pickers';
 import moment from 'moment';
 import 'moment/locale/ru';
 import MomentUtils from '@date-io/moment';
-import dateTime from '../../common/datetime';
 import { withStyles } from '@material-ui/core/styles';
-
-// moment.locale('ru');
 
 const styles = () => ({
   container: {
@@ -45,6 +42,9 @@ const styles = () => ({
   },
 });
 
+const fromDateUtc = date => (date ? moment.parseZone(date).utc(true) : '');
+const strFormatForDatePicker = (date = '2019-01-01') => date.replace(/\./gi, '-');
+
 function DatePickerCustom(props) {
   const localeMap = {
     en: 'en',
@@ -52,12 +52,12 @@ function DatePickerCustom(props) {
   };
 
   const datePickerChangeHandler = (name, newDate) => {
-    const newDateValue = newDate ? dateTime.fromDateUtc(newDate) : '';
+    const newDateValue = newDate ? fromDateUtc(newDate) : '';
     props.datePickerChangeHandler(name, newDateValue);
   };
 
   const datePickerInputChangeHandler = (name, newDate) => {
-    props.datePickerInputChangeHandler(name, dateTime.strFormatForDatePicker(newDate || '2019-01-01'));
+    props.datePickerInputChangeHandler(name, strFormatForDatePicker(newDate));
   };
 
   const { name, label, value, classes, disabled } = props;

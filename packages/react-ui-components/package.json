@@ -1,20 +1,20 @@
 {
   "name": "@riski-react-ui/react-ui-components",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "author": "Denis Bykov",
   "license": "MIT",
   "dependencies": {
-    "@riski-react-ui/custom-button": "^1.4.0",
-    "@riski-react-ui/date-picker-custom": "^1.4.0",
-    "@riski-react-ui/error": "^1.4.0",
-    "@riski-react-ui/not-data-available": "^1.4.0",
-    "@riski-react-ui/react-select-custom": "^1.4.0",
+    "@riski-react-ui/custom-button": "^1.4.1",
+    "@riski-react-ui/date-picker-custom": "^1.4.1",
+    "@riski-react-ui/error": "^1.4.1",
+    "@riski-react-ui/not-data-available": "^1.4.1",
+    "@riski-react-ui/react-select-custom": "^1.4.1",
     "chroma-js": "2.0.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.0",
     "react-select": "2.4.3",
-    "riski-react-ui": "^1.3.0"
+    "riski-react-ui": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,5 +31,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "gitHead": "19d9f0fe0e9caa865725ba112467cf3da00d7f48"
+  "gitHead": "c4ef44f98ad60de55d81910026954d0a89d6e1df"
 }
