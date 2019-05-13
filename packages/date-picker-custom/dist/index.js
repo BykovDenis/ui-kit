@@ -25,18 +25,15 @@ require("moment/locale/ru");
 
 var _moment2 = _interopRequireDefault(require("@date-io/moment"));
 
+var _datetime = _interopRequireDefault(require("../../common/datetime"));
+
 var _styles = require("@material-ui/core/styles");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
-_moment["default"].locale('en');
-
-var fromDateUtc = function fromDateUtc(date) {
-  return date ? _moment["default"].parseZone(date).utc(true) : '';
-};
-
+// moment.locale('ru');
 var styles = function styles() {
   return {
     container: {
@@ -77,8 +74,17 @@ function DatePickerCustom(props) {
     en: 'en',
     ru: 'ru'
   };
-  var datePickerChangeHandler = props.datePickerChangeHandler,
-      name = props.name,
+
+  var datePickerChangeHandler = function datePickerChangeHandler(name, newDate) {
+    var newDateValue = newDate ? _datetime["default"].fromDateUtc(newDate) : '';
+    props.datePickerChangeHandler(name, newDateValue);
+  };
+
+  var datePickerInputChangeHandler = function datePickerInputChangeHandler(name, newDate) {
+    props.datePickerInputChangeHandler(name, _datetime["default"].strFormatForDatePicker(newDate || '2019-01-01'));
+  };
+
+  var name = props.name,
       label = props.label,
       value = props.value,
       classes = props.classes,
@@ -94,15 +100,19 @@ function DatePickerCustom(props) {
     keyboard: true,
     keyboardIcon: _react["default"].createElement(_Today["default"], null),
     className: classes.container,
-    label: label,
+    mask: function mask(value) {
+      return value ? [/\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, '.', /\d/, /\d/] : [];
+    },
     format: "YYYY.MM.DD",
-    placeholder: "2018.10.10" // mask={value => (value ? [/\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, '.', /\d/, /\d/] : [])}
-    ,
+    placeholder: "YYYY.MM.DD",
+    label: label,
     value: value,
     onChange: function onChange(newDate) {
-      return datePickerChangeHandler(name, fromDateUtc(newDate));
+      return datePickerChangeHandler(name, newDate);
     },
-    disableOpenOnEnter: true,
+    disableOpenOnEnter: disabled,
+    disablePast: disabled,
+    disableFuture: disabled,
     animateYearScrolling: false,
     leftArrowIcon: _react["default"].createElement(_ChevronLeft["default"], null),
     rightArrowIcon: _react["default"].createElement(_ChevronRight["default"], null),
@@ -110,15 +120,26 @@ function DatePickerCustom(props) {
     minDate: props.minDate,
     minDateMessage: props.minDateMessage,
     maxDateMessage: props.maxDateMessage,
-    error: props.error
+    error: props.error,
+    invalidDateMessage: props.invalidDateMessage,
+    invalidLabel: '',
+    onInputChange: function onInputChange(e) {
+      return datePickerInputChangeHandler(name, e.target.value);
+    },
+    InputProps: {
+      readOnly: disabled,
+      disabled: disabled
+    }
   }))));
 }
 
 DatePickerCustom.defaultProps = {
   datePickerChangeHandler: function datePickerChangeHandler() {},
+  datePickerInputChangeHandler: function datePickerInputChangeHandler() {},
   disabled: false,
   error: false,
-  label: '',
+  invalidDateMessage: '  ',
+  label: {},
   maxDate: '2099-12-31',
   minDate: '1900-01-01',
   minDateMessage: '',
@@ -127,17 +148,19 @@ DatePickerCustom.defaultProps = {
 DatePickerCustom.propTypes = {
   className: _propTypes["default"].string,
   classes: _propTypes["default"].object,
-  error: _propTypes["default"].bool,
-  intl: _propTypes["default"].object,
   datePickerChangeHandler: _propTypes["default"].func,
+  datePickerInputChangeHandler: _propTypes["default"].func,
+  error: _propTypes["default"].bool,
   disabled: _propTypes["default"].bool,
+  intl: _propTypes["default"].object,
   label: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].string]),
-  value: _propTypes["default"].string,
+  invalidDateMessage: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].string]),
   maxDate: _propTypes["default"].string,
   minDate: _propTypes["default"].string,
   minDateMessage: _propTypes["default"].string,
   maxDateMessage: _propTypes["default"].string,
-  name: _propTypes["default"].string
+  name: _propTypes["default"].string,
+  value: _propTypes["default"].string
 };
 
 var _default = (0, _styles.withStyles)(styles)(DatePickerCustom);
