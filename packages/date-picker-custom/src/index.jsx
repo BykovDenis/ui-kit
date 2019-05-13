@@ -4,16 +4,14 @@ import CalendarTodayIcon from '@material-ui/icons/Today';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import FormControl from '@material-ui/core/FormControl';
-import { DatePicker } from 'material-ui-pickers';
+import { DatePicker, MuiPickersUtilsProvider } from 'material-ui-pickers';
 import moment from 'moment';
 import 'moment/locale/ru';
 import MomentUtils from '@date-io/moment';
-import { MuiPickersUtilsProvider } from 'material-ui-pickers';
+import dateTime from '../../common/datetime';
 import { withStyles } from '@material-ui/core/styles';
 
-moment.locale('en');
-
-const fromDateUtc = date => (date ? moment.parseZone(date).utc(true) : '');
+// moment.locale('ru');
 
 const styles = () => ({
   container: {
@@ -52,7 +50,17 @@ function DatePickerCustom(props) {
     en: 'en',
     ru: 'ru',
   };
-  const { datePickerChangeHandler, name, label, value, classes, disabled } = props;
+
+  const datePickerChangeHandler = (name, newDate) => {
+    const newDateValue = newDate ? dateTime.fromDateUtc(newDate) : '';
+    props.datePickerChangeHandler(name, newDateValue);
+  };
+
+  const datePickerInputChangeHandler = (name, newDate) => {
+    props.datePickerInputChangeHandler(name, dateTime.strFormatForDatePicker(newDate || '2019-01-01'));
+  };
+
+  const { name, label, value, classes, disabled } = props;
   return (
     <Fragment>
       <FormControl className={props.className} disabled={disabled}>
@@ -61,13 +69,15 @@ function DatePickerCustom(props) {
             keyboard
             keyboardIcon={<CalendarTodayIcon />}
             className={classes.container}
-            label={label}
+            mask={value => (value ? [/\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, '.', /\d/, /\d/] : [])}
             format="YYYY.MM.DD"
-            placeholder="2018.10.10"
-            // mask={value => (value ? [/\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, '.', /\d/, /\d/] : [])}
+            placeholder="YYYY.MM.DD"
+            label={label}
             value={value}
-            onChange={newDate => datePickerChangeHandler(name, fromDateUtc(newDate))}
-            disableOpenOnEnter
+            onChange={newDate => datePickerChangeHandler(name, newDate)}
+            disableOpenOnEnter={disabled}
+            disablePast={disabled}
+            disableFuture={disabled}
             animateYearScrolling={false}
             leftArrowIcon={<ChevronLeftIcon />}
             rightArrowIcon={<ChevronRightIcon />}
@@ -76,6 +86,13 @@ function DatePickerCustom(props) {
             minDateMessage={props.minDateMessage}
             maxDateMessage={props.maxDateMessage}
             error={props.error}
+            invalidDateMessage={props.invalidDateMessage}
+            invalidLabel={''}
+            onInputChange={e => datePickerInputChangeHandler(name, e.target.value)}
+            InputProps={{
+              readOnly: disabled,
+              disabled: disabled,
+            }}
           />
         </MuiPickersUtilsProvider>
       </FormControl>
@@ -85,9 +102,11 @@ function DatePickerCustom(props) {
 
 DatePickerCustom.defaultProps = {
   datePickerChangeHandler: () => {},
+  datePickerInputChangeHandler: () => {},
   disabled: false,
   error: false,
-  label: '',
+  invalidDateMessage: '  ',
+  label: {},
   maxDate: '2099-12-31',
   minDate: '1900-01-01',
   minDateMessage: '',
@@ -97,17 +116,19 @@ DatePickerCustom.defaultProps = {
 DatePickerCustom.propTypes = {
   className: PropTypes.string,
   classes: PropTypes.object,
-  error: PropTypes.bool,
-  intl: PropTypes.object,
   datePickerChangeHandler: PropTypes.func,
+  datePickerInputChangeHandler: PropTypes.func,
+  error: PropTypes.bool,
   disabled: PropTypes.bool,
+  intl: PropTypes.object,
   label: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  value: PropTypes.string,
+  invalidDateMessage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   maxDate: PropTypes.string,
   minDate: PropTypes.string,
   minDateMessage: PropTypes.string,
   maxDateMessage: PropTypes.string,
   name: PropTypes.string,
+  value: PropTypes.string,
 };
 
 export default withStyles(styles)(DatePickerCustom);
