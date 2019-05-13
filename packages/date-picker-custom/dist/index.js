@@ -25,15 +25,12 @@ require("moment/locale/ru");
 
 var _moment2 = _interopRequireDefault(require("@date-io/moment"));
 
-var _datetime = _interopRequireDefault(require("../../common/datetime"));
-
 var _styles = require("@material-ui/core/styles");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
-// moment.locale('ru');
 var styles = function styles() {
   return {
     container: {
@@ -69,6 +66,15 @@ var styles = function styles() {
   };
 };
 
+var fromDateUtc = function fromDateUtc(date) {
+  return date ? _moment["default"].parseZone(date).utc(true) : '';
+};
+
+var strFormatForDatePicker = function strFormatForDatePicker() {
+  var date = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '2019-01-01';
+  return date.replace(/\./gi, '-');
+};
+
 function DatePickerCustom(props) {
   var localeMap = {
     en: 'en',
@@ -76,12 +82,12 @@ function DatePickerCustom(props) {
   };
 
   var datePickerChangeHandler = function datePickerChangeHandler(name, newDate) {
-    var newDateValue = newDate ? _datetime["default"].fromDateUtc(newDate) : '';
+    var newDateValue = newDate ? fromDateUtc(newDate) : '';
     props.datePickerChangeHandler(name, newDateValue);
   };
 
   var datePickerInputChangeHandler = function datePickerInputChangeHandler(name, newDate) {
-    props.datePickerInputChangeHandler(name, _datetime["default"].strFormatForDatePicker(newDate || '2019-01-01'));
+    props.datePickerInputChangeHandler(name, strFormatForDatePicker(newDate));
   };
 
   var name = props.name,
