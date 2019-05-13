@@ -68,7 +68,7 @@ function ReactSelectCustom(props) {
     }
   }
 
-  var dataColor = '#569627';
+  var dataColor = props.fontColor;
 
   var dot = function dot() {
     var color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '#ccc';
@@ -141,7 +141,8 @@ ReactSelectCustom.defaultProps = {
   error: false,
   inputDataChangeHandler: function inputDataChangeHandler() {},
   name: '',
-  readOnly: false
+  readOnly: false,
+  fontColor: '#666666'
 };
 ReactSelectCustom.propTypes = {
   error: _propTypes["default"].bool,
@@ -152,7 +153,8 @@ ReactSelectCustom.propTypes = {
   inputDataChangeHandler: _propTypes["default"].func,
   label: _propTypes["default"].object,
   name: _propTypes["default"].string,
-  readOnly: _propTypes["default"].bool
+  readOnly: _propTypes["default"].bool,
+  fontColor: _propTypes["default"].string
 };
 var _default = ReactSelectCustom;
 exports["default"] = _default;
