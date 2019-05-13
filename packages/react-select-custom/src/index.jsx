@@ -30,7 +30,7 @@ function ReactSelectCustom(props) {
       activeElement = arrActiveElement[0];
     }
   }
-  const dataColor = '#569627';
+  const dataColor = props.fontColor;
   const dot = (color = '#ccc') => ({
     alignItems: 'center',
     display: 'flex',
@@ -85,6 +85,7 @@ ReactSelectCustom.defaultProps = {
   inputDataChangeHandler: () => {},
   name: '',
   readOnly: false,
+  fontColor: '#666666',
 };
 
 ReactSelectCustom.propTypes = {
@@ -97,6 +98,7 @@ ReactSelectCustom.propTypes = {
   label: PropTypes.object,
   name: PropTypes.string,
   readOnly: PropTypes.bool,
+  fontColor: PropTypes.string,
 };
 
 export default ReactSelectCustom;
