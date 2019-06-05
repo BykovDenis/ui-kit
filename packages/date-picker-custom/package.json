@@ -28,7 +28,7 @@
       "../../setupTests"
     ]
   },
-  "gitHead": "f2badf03bbb523873e4de7db66c8b8581837c205",
+  "gitHead": "4754e0757f73d827637d82e738d0b2f3f4046751",
   "dependencies": {
     "@date-io/moment": "1.3.5",
     "@material-ui/core": "3.9.3",
