@@ -366,6 +366,7 @@ function riskiCommonUITheme(
       color: whiteColor,
       wordBreak: 'initial',
       wordWrap: 'break-word',
+      zIndex: 1,
     },
     tableCellFooter: {
       position: 'sticky',
