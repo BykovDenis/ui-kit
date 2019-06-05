@@ -1,6 +1,6 @@
 {
   "name": "@riski-react-ui/not-data-available",
-  "version": "1.5.3",
+  "version": "1.6.0",
   "description": "Not data available",
   "main": "dist/index.js",
   "module": "src/index.js",

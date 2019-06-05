@@ -1,6 +1,6 @@
 {
   "name": "@riski-react-ui/react-select-custom",
-  "version": "1.5.3",
+  "version": "1.6.0",
   "description": "Select component",
   "main": "dist/index.js",
   "module": "src/index.js",
