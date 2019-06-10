@@ -5,7 +5,7 @@ import { MomentUtils, MuiPickersUtilsProvider } from 'material-ui-pickers'  // '
 import moment from 'moment-timezone';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 
-import themeCustom from '../packages/themes';
+import themeCustom from '../packages/themes/src';
 
 const theme = createMuiTheme(themeCustom);
 

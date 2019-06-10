@@ -1,6 +1,6 @@
 {
   "name": "@riski-react-ui/not-data-available",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Not data available",
   "main": "dist/index.js",
   "module": "src/index.js",
@@ -28,5 +28,5 @@
       "../../setupTests"
     ]
   },
-  "gitHead": "e0e18d64dcef4ededc87536077fc349ea4f12af4"
+  "gitHead": "e7cef0021d6d33b8c35cf8f242f0c63e3d1f6728"
 }
