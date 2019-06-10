@@ -1,7 +1,7 @@
 {
   "name": "@riski-react-ui/date-picker-custom",
   "version": "1.6.0",
-  "description": "A simple button component",
+  "description": "Date picker",
   "main": "dist/index.js",
   "module": "src/index.js",
   "author": "Denis Bykov",
