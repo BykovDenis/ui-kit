@@ -4,11 +4,6 @@ import DatePickerCustom from 'riski-react-ui/date-picker-custom';
 import ReactSelectCustom from 'riski-react-ui/react-select-custom';
 import NotDataAvailable from 'riski-react-ui/not-data-available';
 import Error from 'riski-react-ui/error';
-import CustomButtonInternal from '@riski-react-ui/custom-button';
-import DatePickerCustomInternal from '@riski-react-ui/date-picker-custom';
-import ReactSelectCustomInternal from '@riski-react-ui/react-select-custom';
-import NotDataAvailableInternal from '@riski-react-ui/not-data-available';
-import ErrorInternal from '@riski-react-ui/error';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
@@ -83,53 +78,6 @@ class App extends Component {
                   <TableCell>Error</TableCell>
                   <TableCell>
                     <Error />
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </div>
-          <div>
-            <h2>Internal components </h2>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Component name</TableCell>
-                  <TableCell>Component</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell>Custom Button</TableCell>
-                  <TableCell>
-                    <CustomButtonInternal>First custom component</CustomButtonInternal>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Date picker</TableCell>
-                  <TableCell>
-                    <DatePickerCustomInternal value={'2019.04.20'} intl={{ locale: 'en' }} />
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Select</TableCell>
-                  <TableCell>
-                    <ReactSelectCustomInternal
-                      className={classes.formSelect}
-                      activeElement="one"
-                      elements={['one', 'two', 'three']}
-                    />
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Not data available</TableCell>
-                  <TableCell>
-                    <NotDataAvailableInternal />
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Error</TableCell>
-                  <TableCell>
-                    <ErrorInternal />
                   </TableCell>
                 </TableRow>
               </TableBody>
