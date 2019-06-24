@@ -1,6 +1,6 @@
 {
   "name": "@riski-react-ui/custom-button",
-  "version": "1.5.3",
+  "version": "1.6.1",
   "description": "A simple button component",
   "main": "dist/index.js",
   "module": "src/index.js",
@@ -28,5 +28,5 @@
       "../../setupTests"
     ]
   },
-  "gitHead": "f2badf03bbb523873e4de7db66c8b8581837c205"
+  "gitHead": "e7cef0021d6d33b8c35cf8f242f0c63e3d1f6728"
 }

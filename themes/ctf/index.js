@@ -3,7 +3,7 @@ import red from '@material-ui/core/colors/red';
 import black from '@material-ui/core/colors/common';
 import grey from '@material-ui/core/colors/grey';
 import { getLuminance } from '@material-ui/core/styles/colorManipulator';
-import hexToRGB from '../helpers/hex-to-rgb';
+import hexToRGB from '../../packages/helpers/hex-to-rgb';
 
 const primaryColor = '#569627';
 const lightPrimaryColor = '#63ad2d'; // blue[300];
