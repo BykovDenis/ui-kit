@@ -1,6 +1,6 @@
 {
   "name": "riski-react-ui",
-  "version": "1.6.1",
+  "version": "1.7.1",
   "description": "Riski react UI",
   "main": "dist/index.js",
   "module": "src/index.js",
