@@ -28,5 +28,8 @@
       "../../setupTests"
     ]
   },
+  "dependencies": {
+    "@material-ui/core": "4.0.1"
+  },
   "gitHead": "e7cef0021d6d33b8c35cf8f242f0c63e3d1f6728"
 }
