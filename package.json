@@ -31,7 +31,7 @@
     "babel-eslint": "^10.0.1",
     "chroma-js": "2.0.3",
     "date-fns": "^2.9.0",
-    "eslint": "^5.15.3",
+    "eslint": "^6.8.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-config-react-app": "^3.0.8",
     "eslint-plugin-flowtype": "^3.4.2",
@@ -39,7 +39,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
-    "material-ui-pickers": "^2.2.4",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
     "prettier": "^1.16.4",
@@ -57,17 +56,18 @@
     "@storybook/addons": "^5.3.1",
     "@storybook/react": "^5.3.1",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
-    "jest": "^23.6.0",
+    "jest": "^24.9.0",
     "lerna": "^3.4.3",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-test-renderer": "^16.6.0"
   },
+  "private": "true",
   "workspaces": [
     "packages"
   ]
