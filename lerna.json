@@ -1,6 +1,11 @@
 {
   "packages": [
-    "packages/*"
+    "packages"
   ],
-  "version": "1.7.2"
+  "bootstrap": {
+    "hoist": "true"
+  },
+  "npmClient": "yarn",
+  "version": "1.7.2",
+  "useWorkspaces": true
 }

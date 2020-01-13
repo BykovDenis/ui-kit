@@ -1,13 +1,12 @@
 {
-  "name": "@riski-react-ui/custom-button",
-  "version": "1.7.2",
+  "name": "@storybook-material-ui/mui-button",
+  "version": "0.1.1",
   "description": "A simple button component",
   "main": "dist/index.js",
   "module": "src/index.js",
   "author": "Denis Bykov",
-  "license": "MIT",
   "scripts": {
-    "transpile1": "babel src -d dist --ignore '**/*.spec.js,**/*.stories.js'",
+    "transpile": "babel src -d dist --ignore '**/*.spec.js,**/*.stories.js'",
     "jest": "jest --coverage --verbose --color"
   },
   "babel": {
@@ -28,5 +27,5 @@
       "../../setupTests"
     ]
   },
-  "gitHead": "3e0d65c3f4c57a0bdd30e0ad094e35040f5e8c5a"
+  "gitHead": "94a5b0cdb832c02f1b54049390316ddd2b160702"
 }

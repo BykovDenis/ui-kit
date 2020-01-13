@@ -1,16 +1,15 @@
-15 error Error: Command failed: git remote update
-15 error ssh_exchange_identification: read: Operation timed out
-15 error fatal: Could not read from remote repository.
-15 error
-15 error Please make sure you have the correct access rights
-15 error and the repository exists.
-15 error error: Could not fetch origin
-15 error
-15 error Fetching origin
-15 error
-15 error     at makeError (/Users/bykovdenis/www/sberbank/react-ui-components/node_modules/execa/index.js:174:9)
-15 error     at Function.module.exports.sync (/Users/bykovdenis/www/sberbank/react-ui-components/node_modules/execa/index.js:338:15)
-15 error     at Object.execSync (/Users/bykovdenis/www/sberbank/react-ui-components/node_modules/@lerna/child-process/index.js:23:16)
-15 error     at updateRemote (/Users/bykovdenis/www/sberbank/react-ui-components/node_modules/@lerna/version/lib/is-behind-upstream.js:26:16)
-15 error     at isBehindUpstream (/Users/bykovdenis/www/sberbank/react-ui-components/node_modules/@lerna/version/lib/is-behind-upstream.js:11:3)
-15 error     at VersionCommand.initialize (/Users/bykovdenis/www/sberbank/react-ui-components/node_modules/@lerna/version/index.js:149:9)
+0 silly argv { _: [ 'bootstrap' ],
+0 silly argv   lernaVersion: '3.13.4',
+0 silly argv   '$0': 'node_modules/.bin/lerna' }
+1 notice cli v3.13.4
+2 verbose rootPath /Users/bykovdenis/www/sberbank/react-ui-components
+3 error Error: Invalid package name "@riski-react-ui": name can only contain URL-friendly characters
+3 error     at invalidPackageName (/Users/bykovdenis/www/sberbank/react-ui-components/node_modules/npm-package-arg/npa.js:82:15)
+3 error     at Result.setName (/Users/bykovdenis/www/sberbank/react-ui-components/node_modules/npm-package-arg/npa.js:118:11)
+3 error     at new Result (/Users/bykovdenis/www/sberbank/react-ui-components/node_modules/npm-package-arg/npa.js:107:23)
+3 error     at Function.resolve (/Users/bykovdenis/www/sberbank/react-ui-components/node_modules/npm-package-arg/npa.js:54:15)
+3 error     at Object.keys.forEach.depName (/Users/bykovdenis/www/sberbank/react-ui-components/node_modules/@lerna/package-graph/index.js:109:30)
+3 error     at Array.forEach (<anonymous>)
+3 error     at PackageGraph.forEach (/Users/bykovdenis/www/sberbank/react-ui-components/node_modules/@lerna/package-graph/index.js:103:38)
+3 error     at Map.forEach (<anonymous>)
+3 error     at new PackageGraph (/Users/bykovdenis/www/sberbank/react-ui-components/node_modules/@lerna/package-graph/index.js:92:10)
