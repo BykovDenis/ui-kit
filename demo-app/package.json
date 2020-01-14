@@ -18,7 +18,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
-    "riski-react-ui": "^2.0.3"
+    "riski-react-ui": "^2.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

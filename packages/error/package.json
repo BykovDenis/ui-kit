@@ -7,7 +7,7 @@
   "author": "Denis Bykov",
   "license": "MIT",
   "scripts": {
-    "transpile": "babel src -d dist --ignore '**/*.spec.js,**/*.stories.js'",
+    "transpile": "babel src -d dist --minified --ignore '**/*.spec.js,**/*.stories.js'",
     "jest": "jest --coverage --verbose --color"
   },
   "babel": {
