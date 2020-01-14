@@ -47,7 +47,7 @@ function ErrorComponent(props) {
 
   return (
     <div className={classes.container}>
-      Error {props.message}
+      Error &nbsp;{props.message}
       <div className={classes.shapeError} />
     </div>
   );
