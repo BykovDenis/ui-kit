@@ -1,6 +1,6 @@
 {
   "name": "@storybook-material-ui/mui-button",
-  "version": "0.1.1",
+  "version": "2.0.1",
   "description": "A simple button component",
   "main": "dist/index.js",
   "module": "src/index.js",
