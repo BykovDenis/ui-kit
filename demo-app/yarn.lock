@@ -9131,10 +9131,10 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-riski-react-ui@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/riski-react-ui/-/riski-react-ui-2.0.2.tgz#934081b03a082b814d418e5997611c125e7fd110"
-  integrity sha512-cmDevMO+fPh8R3SSWwv42NLFeyf6B4zAnJ4sFgJ1pr7FR5jHLcJFu+zrb9f9ql8ttq/T/Q9W/B13e2nhiG6PBg==
+riski-react-ui@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/riski-react-ui/-/riski-react-ui-2.0.3.tgz#66d129cb68df636233cbf01b362d9696ceed23e8"
+  integrity sha512-Mt6qMT0C4NEIVND6VsES2O8nT19KHWbDf+ijE2AD9I71edTGd26qlJYyNSEK2YrvxWcyxwk7vFjKZ02zL5hbqA==
   dependencies:
     prop-types "15.7.2"
 
