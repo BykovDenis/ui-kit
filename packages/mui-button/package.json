@@ -1,5 +1,5 @@
 {
-  "name": "@storybook-material-ui/mui-button",
+  "name": "@riski-react-ui/mui-button",
   "version": "2.0.1",
   "description": "A simple button component",
   "main": "dist/index.js",
@@ -27,5 +27,5 @@
       "../../setupTests"
     ]
   },
-  "gitHead": "94a5b0cdb832c02f1b54049390316ddd2b160702"
+  "gitHead": "34a40ca3bc91cf25844efdaba39a6c271ce8665f"
 }
