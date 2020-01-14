@@ -8,6 +8,7 @@ import ReactSelectCustom from 'riski-react-ui/react-select-custom';
 import ErrorComponent from 'riski-react-ui/error';
 import NoDataAvailableComponent from 'riski-react-ui/not-data-available';
 import MuiButton from 'riski-react-ui/mui-button';
+import DatePickerCustom from 'riski-react-ui/date-picker-custom';
 import './index.css';
 
 function Index() {
@@ -17,6 +18,9 @@ function Index() {
       <Table>
         <TableBody>
           <TableRow>
+            <TableCell>
+              <DatePickerCustom value="14.01.2019" />
+            </TableCell>
             <TableCell>
               <ReactSelectCustom activeElement="one" elements={['one', 'two', 'three']} />
             </TableCell>

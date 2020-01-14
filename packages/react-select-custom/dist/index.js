@@ -15,9 +15,13 @@ var _reactSelect = _interopRequireDefault(require("react-select"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -53,11 +57,30 @@ function ReactSelectCustom(props) {
     };
   });
 
+  if (props.activeElement && _typeof(props.activeElement) === 'object' && props.activeElement.length && props.activeElement.length > 0) {
+    isSimplefilter = false;
+  }
+
   if (isSimplefilter) {
-    activeElement = {
-      label: props.activeElement,
-      value: props.activeElement
-    };
+    if (props.isMulti) {
+      activeElement = [{
+        label: props.activeElement,
+        value: props.activeElement,
+        name: props.name
+      }];
+    } else {
+      activeElement = {
+        label: props.activeElement,
+        value: props.activeElement,
+        name: props.name
+      };
+    }
+  } else if (_typeof(props.activeElement) === 'object') {
+    activeElement = options.filter(function (option) {
+      return props.activeElement.find(function (activeElement) {
+        return activeElement === option.value;
+      });
+    });
   } else {
     var arrActiveElement = options.filter(function (option) {
       return option.value === props.activeElement;
@@ -94,7 +117,6 @@ function ReactSelectCustom(props) {
   var colourStyles = {
     control: function control(styles) {
       return _objectSpread({}, styles, {
-        height: '35px',
         minHeight: '35px',
         backgroundColor: 'white'
       });
@@ -117,32 +139,76 @@ function ReactSelectCustom(props) {
       }, dot());
     },
     placeholder: function placeholder(styles) {
-      return _objectSpread({}, styles, dot());
+      return _objectSpread({}, styles, {}, dot());
     },
     singleValue: function singleValue(styles, _ref2) {
       var data = _ref2.data;
-      return _objectSpread({}, styles, dot(props.activeElement ? dataColor : 'red'));
+      return _objectSpread({}, styles, {}, dot(props.activeElement && props.activeElement.length && props.activeElement.length > 0 || props.activeElement ? dataColor : 'red'));
     }
   };
+
+  var selectChangeHandler = function selectChangeHandler(data) {
+    var dataValues;
+
+    if (data) {
+      if (data.length) {
+        if (data.length > 0) {
+          dataValues = {
+            name: props.name,
+            value: data && data.length && data.map(function (dataElement) {
+              return dataElement.value;
+            })
+          };
+        } else {
+          dataValues = {
+            name: props.name,
+            value: []
+          };
+        }
+      } else {
+        dataValues = {
+          name: props.name,
+          value: data.value
+        };
+      }
+    } else {
+      dataValues = props.isMulti ? {
+        name: props.name,
+        value: []
+      } : {
+        name: props.name,
+        value: null
+      };
+    }
+
+    props.inputDataChangeHandler(dataValues);
+  };
+
   return _react["default"].createElement(_react.Fragment, null, _react["default"].createElement(_reactSelect["default"], {
     className: props.className,
+    dafaultValue: activeElement,
     value: activeElement,
     options: options,
-    onChange: props.inputDataChangeHandler,
+    onChange: selectChangeHandler,
     styles: colourStyles,
-    isDisabled: props.disabled
+    isDisabled: props.disabled,
+    isClearable: true,
+    isMulti: props.isMulti,
+    closeMenuOnSelect: props.closeMenuOnSelect
   }));
 }
 
 ReactSelectCustom.defaultProps = {
   activeElement: '',
+  closeMenuOnSelect: true,
   disabled: false,
   elements: [],
   error: false,
   inputDataChangeHandler: function inputDataChangeHandler() {},
   name: '',
   readOnly: false,
-  fontColor: '#666666'
+  fontColor: '#666666',
+  isMulti: false
 };
 ReactSelectCustom.propTypes = {
   error: _propTypes["default"].bool,
@@ -154,7 +220,9 @@ ReactSelectCustom.propTypes = {
   label: _propTypes["default"].object,
   name: _propTypes["default"].string,
   readOnly: _propTypes["default"].bool,
-  fontColor: _propTypes["default"].string
+  fontColor: _propTypes["default"].string,
+  isMulti: _propTypes["default"].bool,
+  closeMenuOnSelect: _propTypes["default"].bool
 };
 var _default = ReactSelectCustom;
 exports["default"] = _default;

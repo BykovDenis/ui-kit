@@ -1,5 +1,7 @@
 "use strict";
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -9,30 +11,57 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _Today = _interopRequireDefault(require("@material-ui/icons/Today"));
-
-var _ChevronLeft = _interopRequireDefault(require("@material-ui/icons/ChevronLeft"));
-
-var _ChevronRight = _interopRequireDefault(require("@material-ui/icons/ChevronRight"));
+var _classnames = _interopRequireDefault(require("classnames"));
 
 var _FormControl = _interopRequireDefault(require("@material-ui/core/FormControl"));
 
-var _materialUiPickers = require("material-ui-pickers");
+var _pickers = require("@material-ui/pickers");
+
+var _IconButton = _interopRequireDefault(require("@material-ui/core/IconButton"));
 
 var _moment = _interopRequireDefault(require("moment"));
 
-require("moment/locale/ru");
+var _enUS = _interopRequireDefault(require("date-fns/locale/en-US"));
 
-var _moment2 = _interopRequireDefault(require("@date-io/moment"));
+var _ru = _interopRequireDefault(require("date-fns/locale/ru"));
+
+var _dateFns = _interopRequireDefault(require("@date-io/date-fns"));
 
 var _styles = require("@material-ui/core/styles");
 
+var _Clear = _interopRequireDefault(require("@material-ui/icons/Clear"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var IconButton = (0, _styles.withStyles)(function () {
+  return {
+    root: {
+      margin: 0,
+      padding: '0 !important',
+      width: '34px',
+      height: '34px'
+    }
+  };
+})(_IconButton["default"]);
+var FormControl = (0, _styles.withStyles)({
+  root: {
+    flexDirection: 'row !important'
+  }
+})(_FormControl["default"]);
 
 var styles = function styles() {
   return {
+    datePickerContainer: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'flex-end'
+    },
     container: {
       '& input': {
         width: '145px'
@@ -47,13 +76,6 @@ var styles = function styles() {
         height: 'auto',
         width: 'auto',
         position: 'relative'
-        /* TODO IE 11
-        top: '-7px',
-        '&:hover': {
-        top: '-7px',
-        },
-        */
-
       },
       '& label': {
         paddingBottom: '5px'
@@ -70,73 +92,72 @@ var fromDateUtc = function fromDateUtc(date) {
   return date ? _moment["default"].parseZone(date).utc(true) : '';
 };
 
-var strFormatForDatePicker = function strFormatForDatePicker() {
-  var date = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '2019-01-01';
-  return date.replace(/\./gi, '-');
-};
-
 function DatePickerCustom(props) {
+  var _cn;
+
   var localeMap = {
-    en: 'en',
-    ru: 'ru'
+    en: _enUS["default"],
+    ru: _ru["default"]
   };
-
-  var datePickerChangeHandler = function datePickerChangeHandler(name, newDate) {
-    var newDateValue = newDate ? fromDateUtc(newDate) : '';
-    props.datePickerChangeHandler(name, newDateValue);
-  };
-
-  var datePickerInputChangeHandler = function datePickerInputChangeHandler(name, newDate) {
-    props.datePickerInputChangeHandler(name, strFormatForDatePicker(newDate));
-  };
-
-  var name = props.name,
-      label = props.label,
+  var datePickerRef = (0, _react.useRef)();
+  var label = props.label,
       value = props.value,
       classes = props.classes,
       disabled = props.disabled;
-  return _react["default"].createElement(_react.Fragment, null, _react["default"].createElement(_FormControl["default"], {
-    className: props.className,
+
+  var datePickerChangeHandler = function datePickerChangeHandler(newDate) {
+    var newDateValue = newDate ? fromDateUtc(newDate).format('DD.MM.YYYY') : null;
+    props.datePickerChangeHandler(props.name, newDateValue);
+  };
+
+  var datePickerCleanHandler = function datePickerCleanHandler() {
+    setTimeout(function () {
+      datePickerRef.current.querySelector('input').value = null;
+    }, 0);
+    datePickerChangeHandler(null);
+  };
+
+  var containerStyles = (0, _classnames["default"])((_cn = {}, _defineProperty(_cn, classes.datePickerContainer, true), _defineProperty(_cn, props.className, true), _cn));
+  return _react["default"].createElement(_react.Fragment, null, _react["default"].createElement(FormControl, {
+    className: containerStyles,
     disabled: disabled
-  }, _react["default"].createElement(_materialUiPickers.MuiPickersUtilsProvider, {
-    utils: _moment2["default"],
-    moment: _moment["default"],
-    locale: localeMap[props.intl.locale]
-  }, _react["default"].createElement(_materialUiPickers.DatePicker, {
-    keyboard: true,
-    keyboardIcon: _react["default"].createElement(_Today["default"], null),
+  }, _react["default"].createElement(_pickers.MuiPickersUtilsProvider, {
+    utils: _dateFns["default"],
+    locale: localeMap[props.locale]
+  }, _react["default"].createElement(_pickers.KeyboardDatePicker, {
+    clearable: props.clearable,
+    animateYearScrolling: true,
+    allowKeyboardControl: true,
+    error: props.error,
+    autoOk: true,
+    ampm: false,
     className: classes.container,
-    mask: function mask(value) {
-      return value ? [/\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, '.', /\d/, /\d/] : [];
-    },
-    format: "YYYY.MM.DD",
-    placeholder: "YYYY.MM.DD",
-    label: label,
-    value: value,
-    onChange: function onChange(newDate) {
-      return datePickerChangeHandler(name, newDate);
-    },
-    disableOpenOnEnter: disabled,
+    disableopenonenter: disabled.toString(),
     disablePast: disabled,
     disableFuture: disabled,
-    animateYearScrolling: false,
-    leftArrowIcon: _react["default"].createElement(_ChevronLeft["default"], null),
-    rightArrowIcon: _react["default"].createElement(_ChevronRight["default"], null),
+    format: "dd.MM.yyyy",
+    placeholder: props.locale === 'en' ? 'DD.MM.YYYY' : 'ДД.ММ.ГГГГ',
+    invalidDateMessage: props.invalidDateMessage,
+    InputProps: {
+      readOnly: disabled,
+      disabled: disabled,
+      ref: datePickerRef
+    },
+    label: label,
+    value: value,
     maxDate: props.maxDate,
     minDate: props.minDate,
     minDateMessage: props.minDateMessage,
     maxDateMessage: props.maxDateMessage,
-    error: props.error,
-    invalidDateMessage: props.invalidDateMessage,
-    invalidLabel: '',
-    onInputChange: function onInputChange(e) {
-      return datePickerInputChangeHandler(name, e.target.value);
+    onChange: function onChange(newDate) {
+      return datePickerChangeHandler(newDate);
     },
-    InputProps: {
-      readOnly: disabled,
-      disabled: disabled
-    }
-  }))));
+    variant: "inline"
+  })), _react["default"].createElement(IconButton, {
+    color: "primary",
+    onClick: datePickerCleanHandler,
+    disabled: !value
+  }, _react["default"].createElement(_Clear["default"], null))));
 }
 
 DatePickerCustom.defaultProps = {
@@ -144,22 +165,23 @@ DatePickerCustom.defaultProps = {
   datePickerInputChangeHandler: function datePickerInputChangeHandler() {},
   disabled: false,
   error: false,
-  invalidDateMessage: '  ',
-  label: {},
   maxDate: '2099-12-31',
   minDate: '1900-01-01',
   minDateMessage: '',
-  maxDateMessage: ''
+  maxDateMessage: '',
+  locale: 'ru',
+  clearable: 'true'
 };
 DatePickerCustom.propTypes = {
   className: _propTypes["default"].string,
   classes: _propTypes["default"].object,
+  clearable: _propTypes["default"].string,
   datePickerChangeHandler: _propTypes["default"].func,
   datePickerInputChangeHandler: _propTypes["default"].func,
   error: _propTypes["default"].bool,
   disabled: _propTypes["default"].bool,
   intl: _propTypes["default"].object,
-  label: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].string]),
+  label: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].string]).isRequired,
   invalidDateMessage: _propTypes["default"].oneOfType([_propTypes["default"].object, _propTypes["default"].string]),
   maxDate: _propTypes["default"].string,
   minDate: _propTypes["default"].string,
