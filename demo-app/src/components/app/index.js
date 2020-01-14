@@ -8,7 +8,7 @@ import ReactSelectCustom from 'riski-react-ui/react-select-custom';
 import ErrorComponent from 'riski-react-ui/error';
 import NoDataAvailableComponent from 'riski-react-ui/not-data-available';
 import MuiButton from 'riski-react-ui/mui-button';
-import DatePickerCustom from 'riski-react-ui/date-picker-custom';
+import DatePickerCustom from '../dist/index'; //'riski-react-ui/date-picker-custom';
 import './index.css';
 
 function Index() {
