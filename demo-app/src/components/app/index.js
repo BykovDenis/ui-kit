@@ -19,7 +19,7 @@ function Index() {
         <TableBody>
           <TableRow>
             <TableCell>
-              <DatePickerCustom value="14.01.2019" />
+              <DatePickerCustom value="14.01.2019" label="Some date" />
             </TableCell>
             <TableCell>
               <ReactSelectCustom activeElement="one" elements={['one', 'two', 'three']} />
