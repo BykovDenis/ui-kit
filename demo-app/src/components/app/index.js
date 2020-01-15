@@ -14,7 +14,7 @@ import './index.css';
 function Index() {
   return (
     <div className="App">
-      <Typography variant="h1">Demo of the common components</Typography>
+      <Typography variant="h1" style={{ fontSize: '48px' }}>Demo of the common components</Typography>
       <Table>
         <TableBody>
           <TableRow>
