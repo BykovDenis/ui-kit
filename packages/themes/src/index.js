@@ -4,6 +4,7 @@ const whiteColor = '#ffffff';
 const blackColor = '#333333';
 const lightGrayColor = '#eeeeee';
 
+
 function getContrastText(color, dark, light) {
   return getLuminance(color) <= 0.5 ? dark : light;
 }
@@ -33,12 +34,14 @@ function riskiCommonUITheme(
   disabledBackgroundColor
 ) {
   return {
+    spacing: 1,
     blockTitle: {
       marginTop: '20px',
       marginBottom: '20px',
       marginRight: '20px',
     },
     button: {
+      cursor: 'pointer',
       color: primaryFontColor,
       backgroundColor: primaryColor,
       '&:hover': {
@@ -68,6 +71,7 @@ function riskiCommonUITheme(
     },
     inputCheckbox: {
       color: primaryColor,
+      borderColor: primaryColor,
     },
     /* directories */
     directoryFormBody: {
@@ -190,6 +194,56 @@ function riskiCommonUITheme(
         borderBottom: primaryColor,
       },
     },
+    getInputItemWithColor: color => ({
+      marginBottom: 0,
+      paddingTop: '5px',
+      paddingBottom: '5px',
+      '& label': {
+        fontWeight: 900,
+        color: color,
+      },
+      '&:focus label': {
+        color: color,
+      },
+      '&:active label': {
+        color: color,
+      },
+      '&:hover label': {
+        color: color,
+      },
+      '& div:after': {
+        backgroundColor: color,
+        borderColor: color,
+      },
+      '& div:hover:after': {
+        backgroundColor: color,
+        borderColor: color,
+      },
+      '& div:active:after': {
+        backgroundColor: color,
+        borderColor: color,
+      },
+      '&:hover div::before': {
+        borderColor: color,
+      },
+      '& div:before': {
+        borderColor: `${color} !important`,
+      },
+      '& div:hover:before': {
+        borderColor: `${color} !important`,
+      },
+      '& p': {
+        position: 'absolute',
+        top: '50px',
+      },
+      '& input': {
+        color: color,
+        borderBottom: color,
+      },
+      '& input:hover': {
+        borderBottom: color,
+      },
+    }),
     formContainer: {
       margin: '0 auto',
       position: 'relative',
@@ -331,6 +385,7 @@ function riskiCommonUITheme(
       fontSize: 'inherit',
     },
     tableRow: {
+      height: '56px',
       cursor: 'pointer',
       fontSize: 'inherit',
       '&:hover > td': {
@@ -342,6 +397,7 @@ function riskiCommonUITheme(
       },
     },
     tableRowHeader: {
+      height: '56px',
       backgroundColor: lightPrimaryColor,
     },
     tableRowFooter: {
@@ -351,6 +407,9 @@ function riskiCommonUITheme(
       textAlign: 'center',
       whiteSpace: 'nowrap',
       fontSize: 'inherit',
+      paddingTop: '4px',
+      paddingBottom: '4px',
+      wordBreak: 'normal',
     },
     tableCellHeader: {
       '& span': {
@@ -366,7 +425,7 @@ function riskiCommonUITheme(
       color: whiteColor,
       wordBreak: 'initial',
       wordWrap: 'break-word',
-      zIndex: 1,
+      zIndex: 1000,
     },
     tableCellFooter: {
       position: 'sticky',

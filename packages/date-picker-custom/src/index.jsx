@@ -1,16 +1,37 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef } from 'react';
 import PropTypes from 'prop-types';
-import CalendarTodayIcon from '@material-ui/icons/Today';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import FormControl from '@material-ui/core/FormControl';
-import { DatePicker, MuiPickersUtilsProvider } from 'material-ui-pickers';
+import cn from 'classnames';
+import MuiFormControl from '@material-ui/core/FormControl';
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MuiIconButton from '@material-ui/core/IconButton';
 import moment from 'moment';
-import 'moment/locale/ru';
-import MomentUtils from '@date-io/moment';
+import enLocale from 'date-fns/locale/en-US';
+import ruLocale from 'date-fns/locale/ru';
+import DateFnsUtils from '@date-io/date-fns';
 import { withStyles } from '@material-ui/core/styles';
+import IconClear from '@material-ui/icons/Clear';
+
+const IconButton = withStyles(() => ({
+  root: {
+    margin: 0,
+    padding: '0 !important',
+    width: '34px',
+    height: '34px',
+  },
+}))(MuiIconButton);
+
+const FormControl = withStyles({
+  root: {
+    flexDirection: 'row !important',
+  },
+})(MuiFormControl);
 
 const styles = () => ({
+  datePickerContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+  },
   container: {
     '& input': {
       width: '145px',
@@ -25,12 +46,6 @@ const styles = () => ({
       height: 'auto',
       width: 'auto',
       position: 'relative',
-      /* TODO IE 11
-			top: '-7px',
-			'&:hover': {
-				top: '-7px',
-			},
-			*/
     },
     '& label': {
       paddingBottom: '5px',
@@ -43,58 +58,69 @@ const styles = () => ({
 });
 
 const fromDateUtc = date => (date ? moment.parseZone(date).utc(true) : '');
-const strFormatForDatePicker = (date = '2019-01-01') => date.replace(/\./gi, '-');
 
 function DatePickerCustom(props) {
   const localeMap = {
-    en: 'en',
-    ru: 'ru',
+    en: enLocale,
+    ru: ruLocale,
   };
 
-  const datePickerChangeHandler = (name, newDate) => {
-    const newDateValue = newDate ? fromDateUtc(newDate) : '';
-    props.datePickerChangeHandler(name, newDateValue);
+  let datePickerRef = useRef();
+  const { label, value, classes, disabled } = props;
+
+  const datePickerChangeHandler = newDate => {
+    const newDateValue = newDate ? fromDateUtc(newDate).format('DD.MM.YYYY') : null;
+    props.datePickerChangeHandler(props.name, newDateValue);
   };
 
-  const datePickerInputChangeHandler = (name, newDate) => {
-    props.datePickerInputChangeHandler(name, strFormatForDatePicker(newDate));
+  const datePickerCleanHandler = () => {
+    setTimeout(() => {
+      datePickerRef.current.querySelector('input').value = null;
+    }, 0);
+    datePickerChangeHandler(null);
   };
 
-  const { name, label, value, classes, disabled } = props;
+  const containerStyles = cn({
+    [classes.datePickerContainer]: true,
+    [props.className]: true,
+  });
+
   return (
     <Fragment>
-      <FormControl className={props.className} disabled={disabled}>
-        <MuiPickersUtilsProvider utils={MomentUtils} moment={moment} locale={localeMap[props.intl.locale]}>
-          <DatePicker
-            keyboard
-            keyboardIcon={<CalendarTodayIcon />}
+      <FormControl className={containerStyles} disabled={disabled}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[props.locale]}>
+          <KeyboardDatePicker
+            clearable={props.clearable}
+            animateYearScrolling={true}
+            allowKeyboardControl={true}
+            error={props.error}
+            autoOk={true}
+            ampm={false}
             className={classes.container}
-            mask={value => (value ? [/\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, '.', /\d/, /\d/] : [])}
-            format="YYYY.MM.DD"
-            placeholder="YYYY.MM.DD"
-            label={label}
-            value={value}
-            onChange={newDate => datePickerChangeHandler(name, newDate)}
-            disableOpenOnEnter={disabled}
+            disableopenonenter={disabled.toString()}
             disablePast={disabled}
             disableFuture={disabled}
-            animateYearScrolling={false}
-            leftArrowIcon={<ChevronLeftIcon />}
-            rightArrowIcon={<ChevronRightIcon />}
+            format="dd.MM.yyyy"
+            placeholder={props.locale === 'en' ? 'DD.MM.YYYY' : 'ДД.ММ.ГГГГ'}
+            invalidDateMessage={props.invalidDateMessage}
+            InputProps={{
+              readOnly: disabled,
+              disabled: disabled,
+              ref: datePickerRef,
+            }}
+            label={label}
+            value={value}
             maxDate={props.maxDate}
             minDate={props.minDate}
             minDateMessage={props.minDateMessage}
             maxDateMessage={props.maxDateMessage}
-            error={props.error}
-            invalidDateMessage={props.invalidDateMessage}
-            invalidLabel={''}
-            onInputChange={e => datePickerInputChangeHandler(name, e.target.value)}
-            InputProps={{
-              readOnly: disabled,
-              disabled: disabled,
-            }}
+            onChange={newDate => datePickerChangeHandler(newDate)}
+            variant="inline"
           />
         </MuiPickersUtilsProvider>
+        <IconButton color="primary" onClick={datePickerCleanHandler} disabled={!value}>
+          <IconClear />
+        </IconButton>
       </FormControl>
     </Fragment>
   );
@@ -105,23 +131,24 @@ DatePickerCustom.defaultProps = {
   datePickerInputChangeHandler: () => {},
   disabled: false,
   error: false,
-  invalidDateMessage: '  ',
-  label: {},
   maxDate: '2099-12-31',
   minDate: '1900-01-01',
   minDateMessage: '',
   maxDateMessage: '',
+  locale: 'ru',
+  clearable: 'true',
 };
 
 DatePickerCustom.propTypes = {
   className: PropTypes.string,
   classes: PropTypes.object,
+  clearable: PropTypes.string,
   datePickerChangeHandler: PropTypes.func,
   datePickerInputChangeHandler: PropTypes.func,
   error: PropTypes.bool,
   disabled: PropTypes.bool,
   intl: PropTypes.object,
-  label: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  label: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
   invalidDateMessage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   maxDate: PropTypes.string,
   minDate: PropTypes.string,

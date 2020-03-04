@@ -1,13 +1,13 @@
 {
   "name": "@riski-react-ui/error",
-  "version": "1.7.2",
+  "version": "2.0.10",
   "description": "Error component",
   "main": "dist/index.js",
   "module": "src/index.js",
   "author": "Denis Bykov",
   "license": "MIT",
   "scripts": {
-    "transpile": "babel src -d dist --ignore '**/*.spec.js,**/*.stories.js'",
+    "transpile": "babel src -d dist --minified --ignore '**/*.spec.js,**/*.stories.js'",
     "jest": "jest --coverage --verbose --color"
   },
   "babel": {
@@ -28,5 +28,5 @@
       "../../setupTests"
     ]
   },
-  "gitHead": "3e0d65c3f4c57a0bdd30e0ad094e35040f5e8c5a"
+  "gitHead": "2cdee669ac6f0ccb5e777357ad7208e40db1a0f5"
 }

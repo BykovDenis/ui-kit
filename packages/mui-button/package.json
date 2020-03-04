@@ -1,11 +1,10 @@
 {
-  "name": "@riski-react-ui/themes",
-  "version": "2.0.10",
-  "description": "Main theme",
+  "name": "@riski-react-ui/mui-button",
+  "version": "2.0.7",
+  "description": "A simple button component",
   "main": "dist/index.js",
   "module": "src/index.js",
   "author": "Denis Bykov",
-  "license": "MIT",
   "scripts": {
     "transpile": "babel src -d dist --minified --ignore '**/*.spec.js,**/*.stories.js'",
     "jest": "jest --coverage --verbose --color"
@@ -28,5 +27,5 @@
       "../../setupTests"
     ]
   },
-  "gitHead": "2cdee669ac6f0ccb5e777357ad7208e40db1a0f5"
+  "gitHead": "37efb441e32c0ab99cf756a3942abb674b297da3"
 }
