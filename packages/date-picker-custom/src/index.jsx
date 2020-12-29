@@ -86,7 +86,7 @@ function DatePickerCustom(props) {
   });
 
   return (
-    <Fragment>  
+    <Fragment>
       <FormControl className={containerStyles} disabled={disabled}>
         <MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[props.locale]}>
           <KeyboardDatePicker
