@@ -5,7 +5,7 @@
   "version": "2.0.16",
   "command": {
     "publish": {
-      "registry": "//registry.npmjs.org/:_authToken=5863f8fb-5bc4-4df5-b391-2a1677ee74f2"
+      "registry": "//registry.npmjs.org/:_authToken=b16d5649-db2b-4fc5-8b41-c2fe562ce58b"
     }
   }
 }
