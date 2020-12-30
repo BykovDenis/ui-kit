@@ -6,7 +6,7 @@
   "npmClient": "yarn",
   "command": {
     "publish": {
-      "registry": "//registry.npmjs.org/:_authToken=7d570dd7-3351-4d2a-ab9f-7e0416c3583b"
+      "registry": "//registry.npmjs.org/:_authToken=6499da94-17ed-4cdf-b9e0-1946d5f75c5d"
     }
   },
   "useWorkspaces": true
