@@ -9,5 +9,6 @@
       "registry": "//registry.npmjs.org/:_authToken=4afb6509-c3be-49bc-9847-3a79af2463c3"
     }
   },
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "workspaces": ["packages/*"]
 }
