@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Library of components ui components",
   "author": "Bykov Denis Stanislavovich",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/BykovDenis/riski-react-ui.git",
