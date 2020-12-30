@@ -1,5 +1,5 @@
 {
-  "name": "@react-riski-ui",
+  "name": "@react-riski-ui/monorepo",
   "version": "0.0.1",
   "description": "Library of components ui components",
   "main": "index.js",
