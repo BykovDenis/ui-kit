@@ -2,7 +2,6 @@
   "name": "root",
   "version": "0.0.1",
   "description": "Library of components ui components",
-  "main": "index.js",
   "author": "Bykov Denis Stanislavovich",
   "license": "ISC",
   "repository": {
