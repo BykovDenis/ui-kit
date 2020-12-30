@@ -1,5 +1,5 @@
 {
-  "name": "@react-riski-ui/monorepo",
+  "name": "root",
   "version": "0.0.1",
   "description": "Library of components ui components",
   "main": "index.js",
@@ -16,5 +16,9 @@
   },
   "devDependencies": {
     "lerna": "^3.22.1"
-  }
+  },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
 }

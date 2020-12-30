@@ -10,5 +10,4 @@
     }
   },
   "useWorkspaces": true,
-  "workspaces": ["packages/*"]
 }
