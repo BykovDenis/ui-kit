@@ -10,6 +10,10 @@
     "transpile1": "babel src -d dist  --minified --ignore '**/*.spec.js,**/*.stories.js'",
     "jest": "jest --coverage --verbose --color"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BykovDenis/riski-react-ui.git"
+  },
   "babel": {
     "presets": [
       "@babel/preset-env",
@@ -28,5 +32,5 @@
       "../../setupTests"
     ]
   },
-  "gitHead": "988864fc69abd0500ee54e6d487b6ad19d71afac"
+  "gitHead": "3768ccdbe8e9bbdc8a4cfb06c0094e15da60e568"
 }
