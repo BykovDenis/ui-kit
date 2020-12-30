@@ -2,7 +2,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "2.0.20",
+  "version": "2.0.21",
   "command": {
     "publish": {
       "registry": "//registry.npmjs.org/:_authToken=b2aafd3c-24c9-4ee7-a05a-e6321abab096",
