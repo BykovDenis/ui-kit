@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Fragment, useState, useRef } from 'react';
+import * as React, { ChangeEvent, Fragment, useState, useRef } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import MuiFormControl from '@material-ui/core/FormControl';
 import MuiIconButton from '@material-ui/core/IconButton';

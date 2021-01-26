@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import chroma from 'chroma-js';
+import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
 import Select from 'react-select';
 
 function ReactSelectCustom(props) {
@@ -20,7 +20,7 @@ function ReactSelectCustom(props) {
     }
     return { label: element, value: element, name: props.name };
   });
-  
+
   if (
     props.activeElement &&
     typeof props.activeElement === 'object' &&
@@ -43,12 +43,12 @@ function ReactSelectCustom(props) {
       activeElement = arrActiveElement[0];
     }
   }
-  
+
   const dataColor = props.fontColor;
   const dot = (color = '#ccc') => ({
     alignItems: 'center',
     display: 'flex',
-    
+
     ':before': {
       backgroundColor: color,
       borderRadius: 10,
@@ -59,7 +59,7 @@ function ReactSelectCustom(props) {
       width: 10,
     },
   });
-  
+
   const calculateColor = (isDisabled, isSelected, color) =>
     isDisabled ? '#ccc' : isSelected ? (chroma.contrast(color, 'white') > 2 ? 'white' : 'black') : dataColor;
   const colourStyles = {
@@ -84,7 +84,7 @@ function ReactSelectCustom(props) {
       ),
     }),
   };
-  
+
   const selectChangeHandler = data => {
     let dataValues;
     if (data) {
@@ -108,20 +108,23 @@ function ReactSelectCustom(props) {
     }
     props.inputDataChangeHandler(dataValues);
   };
-  
+
   return (
     <Fragment>
       <Select
+        id={props.id}
         className={props.className}
         dafaultValue={activeElement}
         value={activeElement}
         options={options}
         onChange={selectChangeHandler}
+        onInputChange={props.onInputChange}
         styles={colourStyles}
         isDisabled={props.disabled}
-        isClearable={true}
+        isClearable={props.isClearable}
         isMulti={props.isMulti}
         closeMenuOnSelect={props.closeMenuOnSelect}
+        menuPosition="fixed"
       />
     </Fragment>
   );
@@ -138,9 +141,11 @@ ReactSelectCustom.defaultProps = {
   readOnly: false,
   fontColor: '#666666',
   isMulti: false,
+  isClearable: true,
 };
 
 ReactSelectCustom.propTypes = {
+  id: PropTypes.string,
   error: PropTypes.bool,
   className: PropTypes.string,
   classes: PropTypes.object,
@@ -153,6 +158,8 @@ ReactSelectCustom.propTypes = {
   fontColor: PropTypes.string,
   isMulti: PropTypes.bool,
   closeMenuOnSelect: PropTypes.bool,
+  onInputChange: PropTypes.func,
+  isClearable: PropTypes.bool,
 };
 
 export default ReactSelectCustom;
