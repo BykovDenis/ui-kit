@@ -1,6 +1,6 @@
 {
   "name": "@riski-react-ui/error",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Error component",
   "main": "dist/index.js",
   "directories": {
