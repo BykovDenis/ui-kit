@@ -69,7 +69,7 @@
     "react-test-renderer": "^16.6.0"
   },
   "todo": "TODO for publish comments this lines 71,72,73 for publish npm registry",
-  "private": "true",
+  "private": "false",
   "workspaces": [
     "packages/*"
   ]
