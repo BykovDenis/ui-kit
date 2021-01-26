@@ -1,6 +1,6 @@
 0 silly argv { _: [ 'bootstrap' ], lernaVersion: '3.20.2', '$0': 'lerna' }
 1 notice cli v3.20.2
 2 verbose rootPath /Users/a16783656/www/riski-react-ui
-3 error JSONError: Unexpected token } in JSON at position 1095 while parsing near '...: [    "dist"  ],}' in packages/custom-button/package.json
+3 error JSONError: Unexpected token } in JSON at position 711 while parsing near '...0b6129cf0b78e0c82",}' in packages/react-select-custom/package.json
 3 error     at module.exports (/Users/a16783656/www/riski-react-ui/node_modules/parse-json/index.js:26:19)
 3 error     at parse (/Users/a16783656/www/riski-react-ui/node_modules/load-json-file/index.js:15:9)

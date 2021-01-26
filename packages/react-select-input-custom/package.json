@@ -1,5 +1,5 @@
 {
-  "name": "@riski-react-ui/custom-button",
+  "name": "@riski-react-ui/react-select-input-custom",
   "version": "2.1.1",
   "description": "A simple button component",
   "main": "dist/index.js",
