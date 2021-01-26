@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import { action } from '@storybook/addon-actions';
-import {muiTheme} from 'storybook-addon-material-ui';
-import { storiesOf  } from '@storybook/react';
+import { muiTheme } from 'storybook-addon-material-ui';
+import { storiesOf } from '@storybook/react';
 import MuiButton from './src/index';
 
-const newTheme = {
+const newTheme: any = {
   themeName: 'Grey Theme',
   palette: {
     primary1Color: '#00bcd4',
@@ -18,12 +18,10 @@ const newTheme = {
 };
 
 storiesOf('Material-UI', module)
-// Add the `muiTheme` decorator to provide material-ui support to your stories.
-// If you do not specify any arguments it starts with two default themes
-// You can also configure `muiTheme` as a global decorator.
+  // Add the `muiTheme` decorator to provide material-ui support to your stories.
+  // If you do not specify any arguments it starts with two default themes
+  // You can also configure `muiTheme` as a global decorator.
   .addDecorator(muiTheme([newTheme]))
-  .add('The Button of component', () => (
-    <MuiButton onClick={action('clicked')}>Click me</MuiButton>
-  ));
+  .add('The Button of component', () => <MuiButton onClick={action('clicked')}>Click me</MuiButton>);
 
 // export const DecorateButton = muiTheme([newTheme])(CustomButton);

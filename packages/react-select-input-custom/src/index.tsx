@@ -1,32 +1,52 @@
-import chroma from 'chroma-js';
-import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+﻿import chroma from 'chroma-js';
+import * as React from 'react';
 import Select from 'react-select';
 
-function ReactSelectCustom(props) {
-  let activeElement = {};
-  let isSimplefilter = true;
-  const options = props.elements.map(element => {
+interface IOption {
+  label?: string;
+  name?: string;
+  value?: string;
+}
+
+interface Props {
+  activeElement: any;
+  id?: string;
+  error?: boolean;
+  className?: string;
+  classes?: any;
+  disabled?: boolean;
+  elements: string[];
+  inputDataChangeHandler?: (option: any) => void;
+  label?: object;
+  name: string;
+  readOnly?: boolean;
+  fontColor?: string;
+  isMulti?: boolean;
+  closeMenuOnSelect?: boolean;
+  onInputChange?: (option: any) => void;
+  isClearable?: boolean;
+}
+
+const ReactSelectInputCustom: React.FunctionComponent<Props> = (props: Props) => {
+  const [customInputValue, setCustomInputValue] = React.useState(null);
+  let activeElement: any = {};
+  let isSimplefilter: boolean = true;
+  const options = props.elements.map((element) => {
     if (typeof element === 'object') {
       isSimplefilter = false;
-      const arrElementMapped = Object.entries(element).map(subElement => ({
+      const arrElementMapped = Object.entries(element).map((subElement) => ({
         label: subElement[1],
         value: subElement[0],
       }));
       if (arrElementMapped && arrElementMapped.length > 0) {
-        const elementMapped = arrElementMapped[0];
+        const elementMapped: any = arrElementMapped[0];
         return { label: elementMapped.label, value: elementMapped.value, name: props.name };
       }
     }
     return { label: element, value: element, name: props.name };
   });
 
-  if (
-    props.activeElement &&
-    typeof props.activeElement === 'object' &&
-    props.activeElement.length &&
-    props.activeElement.length > 0
-  ) {
+  if (props?.activeElement?.length && typeof props.activeElement === 'object' && props?.activeElement?.length > 0) {
     isSimplefilter = false;
   }
   if (isSimplefilter) {
@@ -36,15 +56,17 @@ function ReactSelectCustom(props) {
       activeElement = { label: props.activeElement, value: props.activeElement, name: props.name };
     }
   } else if (typeof props.activeElement === 'object') {
-    activeElement = options.filter(option => props.activeElement.find(activeElement => activeElement === option.value));
+    activeElement = options.filter((option: IOption) =>
+      props.activeElement.find((activeElement: string) => activeElement === option.value)
+    );
   } else {
-    const arrActiveElement = options.filter(option => option.value === props.activeElement);
+    const arrActiveElement: any = options.filter((option: IOption) => option.value === props.activeElement);
     if (arrActiveElement && arrActiveElement.length > 0) {
       activeElement = arrActiveElement[0];
     }
   }
 
-  const dataColor = props.fontColor;
+  const dataColor: any = props.fontColor;
   const dot = (color = '#ccc') => ({
     alignItems: 'center',
     display: 'flex',
@@ -60,12 +82,19 @@ function ReactSelectCustom(props) {
     },
   });
 
-  const calculateColor = (isDisabled, isSelected, color) =>
+  const calculateColor = (isDisabled: boolean, isSelected: boolean, color: string) =>
     isDisabled ? '#ccc' : isSelected ? (chroma.contrast(color, 'white') > 2 ? 'white' : 'black') : dataColor;
   const colourStyles = {
-    control: styles => ({ ...styles, minHeight: '35px', backgroundColor: 'white' }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-      const color = chroma(dataColor);
+    control: (styles: any) => ({ ...styles, minHeight: '35px', backgroundColor: 'white' }),
+    option: (
+      styles: any,
+      {
+        isDisabled,
+        isFocused,
+        isSelected,
+      }: { isDisabled: boolean, isFocused: boolean, isSelected: boolean }
+    ) => {
+      const color: any = chroma(dataColor);
       return {
         ...styles,
         backgroundColor: isDisabled ? null : isSelected ? dataColor : isFocused ? color.alpha(0.1).css() : null,
@@ -73,9 +102,9 @@ function ReactSelectCustom(props) {
         cursor: isDisabled ? 'not-allowed' : 'default',
       };
     },
-    input: styles => ({ ...styles, height: '20px', ...dot() }),
-    placeholder: styles => ({ ...styles, ...dot() }),
-    singleValue: (styles, { data }) => ({
+    input: (styles: any) => ({ ...styles, height: '20px', ...dot() }),
+    placeholder: (styles: any) => ({ ...styles, ...dot() }),
+    singleValue: (styles: any,) => ({
       ...styles,
       ...dot(
         (props.activeElement && props.activeElement.length && props.activeElement.length > 0) || props.activeElement
@@ -85,14 +114,14 @@ function ReactSelectCustom(props) {
     }),
   };
 
-  const selectChangeHandler = data => {
+  const selectChangeHandler = (data: any) => {
     let dataValues;
     if (data) {
       if (data.length) {
         if (data.length > 0) {
           dataValues = {
             name: props.name,
-            value: data && data.length && data.map(dataElement => dataElement.value),
+            value: data && data.length && data.map((dataElement: any) => dataElement.value),
           };
         } else {
           dataValues = {
@@ -106,31 +135,39 @@ function ReactSelectCustom(props) {
     } else {
       dataValues = props.isMulti ? { name: props.name, value: [] } : { name: props.name, value: null };
     }
+    // @ts-ignore
     props.inputDataChangeHandler(dataValues);
   };
 
+  const onInputChange = (element: any) => {
+    // @ts-ignore
+    setCustomInputValue({ label: `${element} (new)`, name: props.name, value: element });
+  };
+
+  // @ts-ignore
+  const optionsParsed = customInputValue?.value > '' ? [...options, customInputValue] : options;
+
   return (
-    <Fragment>
+    <React.Fragment>
       <Select
         id={props.id}
         className={props.className}
         dafaultValue={activeElement}
         value={activeElement}
-        options={options}
+        options={optionsParsed}
         onChange={selectChangeHandler}
-        onInputChange={props.onInputChange}
+        onInputChange={onInputChange}
         styles={colourStyles}
         isDisabled={props.disabled}
         isClearable={props.isClearable}
         isMulti={props.isMulti}
         closeMenuOnSelect={props.closeMenuOnSelect}
-        menuPosition="fixed"
       />
-    </Fragment>
+    </React.Fragment>
   );
-}
+};
 
-ReactSelectCustom.defaultProps = {
+ReactSelectInputCustom.defaultProps = {
   activeElement: '',
   closeMenuOnSelect: true,
   disabled: false,
@@ -144,22 +181,4 @@ ReactSelectCustom.defaultProps = {
   isClearable: true,
 };
 
-ReactSelectCustom.propTypes = {
-  id: PropTypes.string,
-  error: PropTypes.bool,
-  className: PropTypes.string,
-  classes: PropTypes.object,
-  disabled: PropTypes.bool,
-  elements: PropTypes.array,
-  inputDataChangeHandler: PropTypes.func,
-  label: PropTypes.object,
-  name: PropTypes.string,
-  readOnly: PropTypes.bool,
-  fontColor: PropTypes.string,
-  isMulti: PropTypes.bool,
-  closeMenuOnSelect: PropTypes.bool,
-  onInputChange: PropTypes.func,
-  isClearable: PropTypes.bool,
-};
-
-export default ReactSelectCustom;
+export default ReactSelectInputCustom;

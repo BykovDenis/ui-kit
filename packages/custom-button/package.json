@@ -1,32 +1,48 @@
 {
   "name": "@riski-react-ui/custom-button",
-  "version": "2.0.7",
+  "version": "2.1.2",
   "description": "A simple button component",
   "main": "dist/index.js",
-  "module": "src/index.js",
-  "author": "Denis Bykov",
-  "license": "MIT",
+  "directories": {
+    "example": "example"
+  },
   "scripts": {
-    "transpile1": "babel src -d dist  --minified --ignore '**/*.spec.js,**/*.stories.js'",
-    "jest": "jest --coverage --verbose --color"
+    "build": "rollup -c",
+    "start": "rollup -c -w"
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          "transform-es2015-modules-commonjs"
-        ]
-      }
-    }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BykovDenis/date-picker-material-ui.git"
   },
-  "jest": {
-    "setupFiles": [
-      "../../setupTests"
-    ]
+  "keywords": [
+    "react",
+    "react-component",
+    "date picker",
+    "date-picker"
+  ],
+  "author": "DenisBykov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BykovDenis/date-picker-material-ui/issues"
   },
-  "gitHead": "37efb441e32c0ab99cf756a3942abb674b297da3"
+  "homepage": "https://github.com/BykovDenis/date-picker-material-ui/",
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "rollup": "^2.34.2",
+    "rollup-plugin-typescript2": "^0.29.0",
+    "typescript": "^4.1.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "gitHead": "420efcda882522fc5d82e0a738feec1c767724b5"
 }

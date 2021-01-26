@@ -1,11 +1,6 @@
-0 silly argv { _: [ 'add' ],
-0 silly argv   scope: 'date-picker-custom',
-0 silly argv   globs: [],
-0 silly argv   lernaVersion: '3.20.2',
-0 silly argv   '$0': 'lerna',
-0 silly argv   pkg: '@material/icons' }
+0 silly argv { _: [ 'bootstrap' ], lernaVersion: '3.20.2', '$0': 'lerna' }
 1 notice cli v3.20.2
-2 verbose rootPath /Users/bykovdenis/www/sberbank/react-ui-components
-3 error Error: 404 Not Found - GET https://registry.npmjs.org/@material%2ficons - Not found
-3 error     at res.buffer.catch.then.body (/Users/bykovdenis/www/sberbank/react-ui-components/node_modules/@evocateur/npm-registry-fetch/check-response.js:104:15)
-3 error     at <anonymous>
+2 verbose rootPath /Users/a16783656/www/riski-react-ui
+3 error JSONError: Unexpected token } in JSON at position 711 while parsing near '...0b6129cf0b78e0c82",}' in packages/react-select-custom/package.json
+3 error     at module.exports (/Users/a16783656/www/riski-react-ui/node_modules/parse-json/index.js:26:19)
+3 error     at parse (/Users/a16783656/www/riski-react-ui/node_modules/load-json-file/index.js:15:9)

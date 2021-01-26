@@ -1,8 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {createStyles, Theme, withStyles} from '@material-ui/core/styles';
 
-const styles = theme => ({
+interface Props {
+  classes: any;
+  message: string;
+}
+
+const ErrorComponent: React.FunctionComponent<Props> = (props: Props) => {
+  const { classes } = props;
+
+  return (
+    <div className={classes.container}>
+      Error &nbsp;{props.message}
+      <div className={classes.shapeError} />
+    </div>
+  );
+}
+
+
+const styles = (theme: Theme) => createStyles({
   container: {
     margin: 'auto',
     textAlign: 'center',
@@ -41,22 +57,5 @@ const styles = theme => ({
     },
   },
 });
-
-function ErrorComponent(props) {
-  const { classes } = props;
-
-  return (
-    <div className={classes.container}>
-      Error &nbsp;{props.message}
-      <div className={classes.shapeError} />
-    </div>
-  );
-}
-
-ErrorComponent.propTypes = {
-  message: PropTypes.string,
-  width: PropTypes.number,
-  height: PropTypes.number,
-};
 
 export default withStyles(styles)(ErrorComponent);

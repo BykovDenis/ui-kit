@@ -1,7 +1,7 @@
 {
-  "name": "@riski-react-ui/error",
+  "name": "@riski-react-ui/react-select-input-custom",
   "version": "2.1.2",
-  "description": "Error component",
+  "description": "A simple button component",
   "main": "dist/index.js",
   "directories": {
     "example": "example"
@@ -31,8 +31,10 @@
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
+    "@types/chroma-js": "^2.1.3",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/react-select": "^4.0.3",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
     "react": "^17.0.1",
@@ -44,5 +46,9 @@
   "files": [
     "dist"
   ],
-  "gitHead": "420efcda882522fc5d82e0a738feec1c767724b5"
+  "gitHead": "420efcda882522fc5d82e0a738feec1c767724b5",
+  "dependencies": {
+    "chroma-js": "^2.1.0",
+    "react-select": "2.4.4"
+  }
 }
