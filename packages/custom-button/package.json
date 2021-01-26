@@ -1,6 +1,6 @@
 {
   "name": "@riski-react-ui/custom-button",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A simple button component",
   "main": "dist/index.js",
   "directories": {
@@ -45,4 +45,3 @@
     "dist"
   ]
 }
-
