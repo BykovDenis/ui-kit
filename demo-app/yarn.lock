@@ -9163,10 +9163,10 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-riski-react-ui@^2.0.9:
-  version "2.0.9"
-  resolved "https://registry.yarnpkg.com/riski-react-ui/-/riski-react-ui-2.0.9.tgz#bdc86062557384efaba1f98307fc15a8c7f73925"
-  integrity sha512-9c/aFy1Y1fy+E9AqywnzBYfY/RhoKW0zwlp132iFh9jEFM5ti6CGnRQqOnpsbrunCk/oUtTMHeCCiElwDy19DQ==
+riski-react-ui@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/riski-react-ui/-/riski-react-ui-2.1.1.tgz#fcbcef19d40c265827916f1e98606ca2343ed8b3"
+  integrity sha512-DSBHlRB+MVBwFGvTOghF3DO4traA3dM+xUHpPpx8IQ5YtyyI0COA5qfyDr5hsAFPHNLxMfFDOPrrOBATddkjHg==
   dependencies:
     "@material-ui/core" "4.8.3"
     "@material-ui/icons" "4.5.1"
