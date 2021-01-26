@@ -5,6 +5,7 @@ import TableBody from '@material-ui/core/Tablebody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import ReactSelectCustom from 'riski-react-ui/react-select-custom';
+import ReactSelectInputCustom from "riski-react-ui/react-select-input-custom";
 import ErrorComponent from 'riski-react-ui/error';
 import NoDataAvailableComponent from 'riski-react-ui/not-data-available';
 import MuiButton from 'riski-react-ui/mui-button';
@@ -20,6 +21,9 @@ function Index() {
           <TableRow>
             <TableCell>
               <DatePickerCustom value={'2019-01-01'} label="Some date" />
+            </TableCell>
+            <TableCell>
+              <ReactSelectInputCustom activeElement="one" elements={['one', 'two', 'three']} />
             </TableCell>
             <TableCell>
               <ReactSelectCustom activeElement="one" elements={['one', 'two', 'three']} />
