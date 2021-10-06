@@ -1,15 +1,100 @@
 0 silly argv {
 0 silly argv   _: [ 'publish' ],
+0 silly argv   registry: 'https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/',
 0 silly argv   composed: 'publish',
 0 silly argv   lernaVersion: '4.0.0',
-0 silly argv   '$0': '/Users/a16783656/www/riski-react-ui/node_modules/.bin/lerna'
+0 silly argv   '$0': 'lerna'
 0 silly argv }
 1 notice cli v4.0.0
 2 verbose rootPath /Users/a16783656/www/riski-react-ui
-3 error Error: Invalid package name "@sber-riski-cib-ui/core/custom-button": name can only contain URL-friendly characters
-3 error     at invalidPackageName (/Users/a16783656/www/riski-react-ui/node_modules/npm-package-arg/npa.js:84:15)
-3 error     at Result.setName (/Users/a16783656/www/riski-react-ui/node_modules/npm-package-arg/npa.js:119:11)
-3 error     at new Result (/Users/a16783656/www/riski-react-ui/node_modules/npm-package-arg/npa.js:110:10)
-3 error     at Function.resolve (/Users/a16783656/www/riski-react-ui/node_modules/npm-package-arg/npa.js:54:15)
-3 error     at new Package (/Users/a16783656/www/riski-react-ui/node_modules/@lerna/package/index.js:95:26)
-3 error     at /Users/a16783656/www/riski-react-ui/node_modules/@lerna/project/index.js:207:26
+3 verbose session 67ac367a7a69f906
+4 verbose user-agent lerna/4.0.0/node@v16.3.0+x64 (darwin)
+5 silly argv {
+5 silly argv   _: [ 'publish' ],
+5 silly argv   registry: 'https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/',
+5 silly argv   composed: 'publish',
+5 silly argv   lernaVersion: '4.0.0'
+5 silly argv }
+6 verbose rootPath /Users/a16783656/www/riski-react-ui
+7 info current version 0.0.4
+8 silly isAnythingCommitted
+9 verbose isAnythingCommitted 1
+10 silly getCurrentBranch
+11 verbose currentBranch library_public
+12 silly remoteBranchExists
+13 silly isBehindUpstream
+14 silly isBehindUpstream library_public is behind origin/library_public by 0 commit(s) and ahead by 0
+15 silly hasTags
+16 verbose hasTags true
+17 silly git-describe.sync "v0.0.4-3-g77d84d1" => {"lastTagName":"v0.0.4","lastVersion":"v0.0.4","refCount":"3","sha":"77d84d1","isDirty":false}
+18 info Looking for changed packages since v0.0.4
+19 silly checking diff packages/custom-button
+20 silly found diff in packages/custom-button/package.json
+21 verbose filtered diff [ 'packages/custom-button/package.json' ]
+22 verbose updated @sber-riski-cib-ui/custom-button
+23 verbose git-describe undefined => "v0.0.4-3-g77d84d1"
+24 silly git-describe parsed => {"lastTagName":"v0.0.4","lastVersion":"v0.0.4","refCount":"3","sha":"77d84d1","isDirty":false}
+25 info execute Skipping releases
+26 silly lifecycle No script for "preversion" in "root", continuing
+27 silly lifecycle No script for "preversion" in "@sber-riski-cib-ui/custom-button", continuing
+28 silly lifecycle No script for "version" in "@sber-riski-cib-ui/custom-button", continuing
+29 silly lifecycle No script for "version" in "root", continuing
+30 silly gitAdd [
+30 silly gitAdd   'packages/custom-button/package.json',
+30 silly gitAdd   'packages/custom-button/package-lock.json',
+30 silly gitAdd   'lerna.json'
+30 silly gitAdd ]
+31 silly gitCommit v0.0.5
+32 verbose git [ 'commit', '-m', 'v0.0.5' ]
+33 silly gitTag v0.0.5
+34 verbose git [ 'tag', 'v0.0.5', '-m', 'v0.0.5' ]
+35 silly lifecycle No script for "postversion" in "@sber-riski-cib-ui/custom-button", continuing
+36 silly lifecycle No script for "postversion" in "root", continuing
+37 info git Pushing tags...
+38 silly gitPush origin library_public
+39 info publish Publishing packages to npm...
+40 notice Skipping all user and access validation due to third-party registry
+41 notice Make sure you're authenticated properly ¯\_(ツ)_/¯
+42 silly getCurrentSHA
+43 verbose getCurrentSHA 9a98516eb126533620860532f1ef5bf0d8e72e90
+44 silly lifecycle No script for "prepublish" in "root", continuing
+45 silly lifecycle No script for "prepare" in "root", continuing
+46 silly lifecycle No script for "prepublishOnly" in "root", continuing
+47 silly lifecycle No script for "prepack" in "root", continuing
+48 verbose pack-directory packages/custom-button
+49 silly lifecycle No script for "prepublish" in "@sber-riski-cib-ui/custom-button", continuing
+50 silly lifecycle No script for "prepare" in "@sber-riski-cib-ui/custom-button", continuing
+51 silly lifecycle No script for "prepublishOnly" in "@sber-riski-cib-ui/custom-button", continuing
+52 silly lifecycle No script for "prepack" in "@sber-riski-cib-ui/custom-button", continuing
+53 silly lifecycle No script for "postpack" in "@sber-riski-cib-ui/custom-button", continuing
+54 verbose packed packages/custom-button
+55 silly lifecycle No script for "postpack" in "root", continuing
+56 verbose publish @sber-riski-cib-ui/custom-button
+57 silly FetchError: request to https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/@sber-riski-cib-ui%2fcustom-button failed, reason: unable to verify the first certificate
+57 silly     at ClientRequest.<anonymous> (/Users/a16783656/www/riski-react-ui/node_modules/minipass-fetch/lib/index.js:110:14)
+57 silly     at ClientRequest.emit (node:events:394:28)
+57 silly     at TLSSocket.socketErrorListener (node:_http_client:447:9)
+57 silly     at TLSSocket.emit (node:events:406:35)
+57 silly     at emitErrorNT (node:internal/streams/destroy:193:8)
+57 silly     at emitErrorCloseNT (node:internal/streams/destroy:158:3)
+57 silly     at processTicksAndRejections (node:internal/process/task_queues:83:21)
+57 silly  FetchError: request to https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/@sber-riski-cib-ui%2fcustom-button failed, reason: unable to verify the first certificate
+57 silly     at ClientRequest.<anonymous> (/Users/a16783656/www/riski-react-ui/node_modules/minipass-fetch/lib/index.js:110:14)
+57 silly     at ClientRequest.emit (node:events:394:28)
+57 silly     at TLSSocket.socketErrorListener (node:_http_client:447:9)
+57 silly     at TLSSocket.emit (node:events:406:35)
+57 silly     at emitErrorNT (node:internal/streams/destroy:193:8)
+57 silly     at emitErrorCloseNT (node:internal/streams/destroy:158:3)
+57 silly     at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+57 silly   code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE',
+57 silly   errno: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE',
+57 silly   type: 'system'
+57 silly }
+58 error UNABLE_TO_VERIFY_LEAF_SIGNATURE request to https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/@sber-riski-cib-ui%2fcustom-button failed, reason: unable to verify the first certificate
+59 error FetchError: request to https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/@sber-riski-cib-ui%2fcustom-button failed, reason: unable to verify the first certificate
+59 error     at ClientRequest.<anonymous> (/Users/a16783656/www/riski-react-ui/node_modules/minipass-fetch/lib/index.js:110:14)
+59 error     at ClientRequest.emit (node:events:394:28)
+59 error     at TLSSocket.socketErrorListener (node:_http_client:447:9)
+59 error     at TLSSocket.emit (node:events:406:35)
+59 error     at emitErrorNT (node:internal/streams/destroy:193:8)
+59 error     at emitErrorCloseNT (node:internal/streams/destroy:158:3)
