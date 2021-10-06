@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "module": "src/index.js",
   "author": "Denis Bykov",
-  "private": true,
   "license": "MIT",
   "babel": {
     "presets": [
