@@ -1,7 +1,6 @@
 {
   "name": "root",
   "version": "0.0.1",
-  "private": true,
   "description": "Library of components ui components",
   "main": "index.js",
   "author": "Bykov Denis Stanislavovich",
