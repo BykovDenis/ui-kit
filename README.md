@@ -3,6 +3,5 @@
 <ol>
     <li>В консоли lerna bootstrap</li>
     <li>Закоммитить все изменения</li>
-    <li>Запустить команду lerna publish @sber-riski-cib-ui:registry = https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/
-</li>
+    <li>npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/ </li>
 </ol>
