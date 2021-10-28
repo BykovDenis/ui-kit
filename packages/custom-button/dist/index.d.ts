@@ -1,8 +1,8 @@
-import * as React from 'react';
-interface Props {
+import React from 'react';
+interface IButton {
     type?: 'submit' | 'reset' | 'button';
     children: any;
-    onClick: () => void;
+    onClick?: () => void;
 }
-declare const Button: React.FunctionComponent<Props>;
+declare const Button: React.FunctionComponent<IButton>;
 export default Button;

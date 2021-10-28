@@ -1,18 +1,23 @@
-import * as React from 'react';
+import React, { Fragment } from 'react';
 
-interface Props {
+interface IButton {
   type?: 'submit' | 'reset' | 'button';
   children: any;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
-const Button: React.FunctionComponent<Props> = (props: Props) => (
-  <div>
-    <button type={props.type} className="button" onClick={props.onClick}>
-      {props.children}
-    </button>
-  </div>
-);
+const Button: React.FunctionComponent<IButton> = (props: IButton) => {
+
+  const onButtonClick = () => {
+    props?.onClick && props?.onClick();
+  }
+  return (<Fragment>
+      <button type={props.type} className="button" onClick={onButtonClick}>
+        {props.children}
+      </button>
+    </Fragment>
+  );
+}
 
 Button.defaultProps = {
   type: 'button',
