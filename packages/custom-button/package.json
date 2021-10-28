@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BykovDenis/date-picker-material-ui.git"
+    "url": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"
   },
   "keywords": [
     "react",
@@ -23,14 +23,16 @@
   "author": "DenisBykov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BykovDenis/date-picker-material-ui/issues"
+    "url": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/issues"
   },
-  "homepage": "https://github.com/BykovDenis/date-picker-material-ui/",
+  "homepage": "/",
   "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "babel-core": "^6.26.3",

@@ -6,25 +6,25 @@
   "module": "src/index.js",
   "author": "Denis Bykov",
   "license": "MIT",
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          "transform-es2015-modules-commonjs"
-        ]
-      }
-    }
-  },
   "jest": {
     "setupFiles": [
-      "../../setupTests"
+      "./setupTests.js"
     ]
   },
-  "publishConfig" : {
+  "publishConfig": {
     "registry": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
+    "@types/enzyme": "^3.10.10",
+    "@types/jest": "^27.0.2",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.5",
+    "enzyme": "^3.11.0"
+  },
+  "dependencies": {
+    "@sber-riski-cib-ui/core": "0.0.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }
