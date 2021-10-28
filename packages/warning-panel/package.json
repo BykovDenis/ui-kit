@@ -48,7 +48,7 @@
   "files": [
     "dist"
   ],
-  "gitHead": "19c5be9d23908961b0cbf1b7fd88266c33e66777",
+  "gitHead": "d3dead5404f70dc35242074a4a973c56c1f82b58",
   "dependencies": {
     "styled-components": "^5.3.3"
   }
