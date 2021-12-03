@@ -1,4 +1,4 @@
-import './index.css';
+import './index.scss';
 
 import React, { Fragment } from 'react';
 
@@ -14,9 +14,17 @@ const Button: React.FunctionComponent<IButton> = (props: IButton) => {
   };
   return (
     <Fragment>
-      <button type={props.type} className="button" onClick={onButtonClick}>
-        {props.children}
-      </button>
+      <div>
+        <button type={props.type} className="button" onClick={onButtonClick}>
+          {props.children}
+        </button>
+      </div>
+      <br />
+      <div>
+        <button type={props.type} className="button" onClick={onButtonClick} disabled>
+          {props.children}
+        </button>
+      </div>
     </Fragment>
   );
 };
