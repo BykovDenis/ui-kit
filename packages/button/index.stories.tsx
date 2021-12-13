@@ -1,6 +1,6 @@
-import React from 'react';
-import {ComponentMeta, ComponentStory } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import {ComponentMeta, ComponentStory } from '@storybook/react';
+import React from 'react';
 
 import Button from  './src/index';
 
@@ -17,4 +17,5 @@ export default {
 //   .add('with a theme provider', () => <Button onClick={action('clicked')}>Button</Button>);
 
 const Template: ComponentStory<typeof Button> = () => <Button onClick={action('clicked')}>Button</Button>;
+const Template: ComponentStory<typeof Button> = () => <Button onClick={action('clicked')} disabled={true}>Button</Button>;
 export const Primary = Template.bind({});

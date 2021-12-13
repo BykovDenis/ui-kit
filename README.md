@@ -9,3 +9,11 @@
     <li>Перейти в папку cd packages </li>
     <li>npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/ </li>
 </ol>
+
+<h2> Работа с Lerna</h2>
+
+<ul>
+    <li> 
+        <b>lerna add <package>[@version] [--dev] [--exact] [--peer]</b>
+    </li>
+</ul>

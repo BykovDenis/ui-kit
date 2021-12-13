@@ -1,9 +1,10 @@
-import './index.scss';
-
 import React, { Fragment } from 'react';
+
+import styles from './index.scss';
 
 interface IButton {
   children: any;
+  disabled?: boolean;
   onClick?: () => void;
   type?: 'submit' | 'reset' | 'button';
 }
@@ -14,23 +15,16 @@ const Button: React.FunctionComponent<IButton> = (props: IButton) => {
   };
   return (
     <Fragment>
-      <div>
-        <button type={props.type} className="button" onClick={onButtonClick}>
-          {props.children}
-        </button>
-      </div>
-      <br />
-      <div>
-        <button type={props.type} className="button" onClick={onButtonClick} disabled>
-          {props.children}
-        </button>
-      </div>
+      <button type={props.type} className={styles.button} onClick={onButtonClick} disabled={props?.disabled}>
+        {props.children}
+      </button>
     </Fragment>
   );
 };
 
 Button.defaultProps = {
   type: 'button',
+  disabled: false,
 };
 
 export default Button;
