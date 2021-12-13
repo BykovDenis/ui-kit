@@ -52,7 +52,7 @@
   "files": [
     "dist"
   ],
-  "gitHead": "3fe58a2218e9b2718fbfc121360d38bb9139ef4e",
+  "gitHead": "3fac04a25f475c38a4b998fdee56167fcdd4e9b1",
   "dependencies": {
     "postcss": "8.4.4"
   }
