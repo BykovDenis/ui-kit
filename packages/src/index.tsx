@@ -4,8 +4,8 @@ interface IRiskiReactUIProvider {
   children: React.ReactNode;
 }
 
-const RiskiReactUiProvider: FunctionComponent<IRiskiReactUIProvider> = (props: IRiskiReactUIProvider) => {
+const SberRiskiReactUiProvider: FunctionComponent<IRiskiReactUIProvider> = (props: IRiskiReactUIProvider) => {
   return <Fragment>{props.children}</Fragment>;
 };
 
-export default React.memo(RiskiReactUiProvider);
+export default React.memo(SberRiskiReactUiProvider);

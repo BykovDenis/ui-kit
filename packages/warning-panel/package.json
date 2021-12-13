@@ -7,8 +7,8 @@
     "example": "example"
   },
   "scripts": {
-    "build": "rollup -c",
-    "start": "rollup -c -w"
+    "build": "rollup -c rollup.config.prod.js",
+    "build-dev": "rollup -w -c rollup.config.dev.js"
   },
   "repository": {
     "type": "git",
@@ -24,38 +24,8 @@
     "url": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/issues"
   },
   "homepage": "/",
-  "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
-  "devDependencies": {
-    "@babel/plugin-syntax-jsx": "^7.14.5",
-    "@babel/preset-react": "^7.14.5",
-    "@rollup/plugin-replace": "^3.0.0",
-    "@types/enzyme": "^3.10.10",
-    "@types/jest": "^27.0.3",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@types/styled-components": "^5.1.15",
-    "autoprefixer": "^10.4.0",
-    "babel-core": "^6.26.3",
-    "babel-runtime": "^6.26.0",
-    "jest": "^27.4.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "rollup": "^2.34.2",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-serve": "^1.1.0",
-    "rollup-plugin-svg": "^2.0.0",
-    "rollup-plugin-terser": "7.0.2",
-    "rollup-plugin-typescript2": "^0.29.0",
-    "typescript": "^4.4.4"
-  },
   "files": [
     "dist"
   ],
-  "gitHead": "846e7ca70762df2658a3ae4a41d9332114bb8936",
-  "dependencies": {
-    "styled-components": "^5.3.3"
-  }
+  "gitHead": "846e7ca70762df2658a3ae4a41d9332114bb8936"
 }
