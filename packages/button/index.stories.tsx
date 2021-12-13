@@ -17,5 +17,6 @@ export default {
 //   .add('with a theme provider', () => <Button onClick={action('clicked')}>Button</Button>);
 
 const Template: ComponentStory<typeof Button> = () => <Button onClick={action('clicked')}>Button</Button>;
-const Template: ComponentStory<typeof Button> = () => <Button onClick={action('clicked')} disabled={true}>Button</Button>;
+const Template1: ComponentStory<typeof Button> = () => <Button onClick={action('clicked')} disabled={true}>Button</Button>;
 export const Primary = Template.bind({});
+export const Primary1 = Template1.bind({});

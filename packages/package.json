@@ -23,7 +23,7 @@
     "enzyme": "^3.11.0"
   },
   "dependencies": {
-    "@sber-riski-cib-ui/core": "0.0.7",
+    "@sber-riski-cib-ui/core": "0.0.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }

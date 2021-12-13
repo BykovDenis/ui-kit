@@ -23,7 +23,6 @@ module.exports = {
     'typescript-sort-keys',
     'react-hooks',
     '@typescript-eslint',
-    'typescript-enum',
   ],
   rules: {
     indent: ['error', 2],
@@ -37,6 +36,5 @@ module.exports = {
     '@typescript-eslint/no-inferrable-types': 0,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/prefer-readonly': 'error',
-    'enum-style': ['error', 'no-const'],
   },
 };
