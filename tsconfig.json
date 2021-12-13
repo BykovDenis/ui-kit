@@ -18,7 +18,7 @@
     "esModuleInterop": true
   },
   "files": [
-    "./packages/index.tsx"
+    "./packages/src/index.tsx"
   ],
   "exclude": [
     "node_modules",

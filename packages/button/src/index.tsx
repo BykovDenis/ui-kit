@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import styles from './index.module.scss';
+import styles from './index.module.css';
 
 interface IButton {
   children: any;
