@@ -6,6 +6,7 @@
   "author": "Bykov Denis Stanislavovich",
   "license": "MIT",
   "scripts": {
+    "install-packages": "npm install --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/ && exit 1",
     "build": "webpack --config webpack.prod.config.js",
     "start": "webpack serve --open --config webpack.dev.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"

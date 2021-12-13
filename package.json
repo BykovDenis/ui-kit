@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --config webpack.prod.config.js",
+    "start-demo": "webpack serve --open --config webpack.dev.config.js",
     "start": "webpack serve --open --config webpack.dev.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
@@ -27,6 +28,7 @@
     "html5"
   ],
   "dependencies": {
+    "@sber-riski-cib-ui/core": "^0.0.8",
     "babel-eslint": "^10.0.1",
     "chroma-js": "2.0.3",
     "date-fns": "^2.9.0",
