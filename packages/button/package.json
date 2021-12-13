@@ -3,12 +3,9 @@
   "version": "0.0.9",
   "description": "A simple button component",
   "main": "dist/index.js",
-  "directories": {
-    "example": "example"
-  },
   "scripts": {
-    "build": "webpack --config webpack.prod.config.js",
-    "start": "webpack --config webpack.dev.config.js"
+    "build": "rollup -c rollup.config.prod.js",
+    "build-dev": "rollup -w -c rollup.config.dev.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +14,7 @@
   "keywords": [
     "react",
     "react-component",
-    "date picker",
-    "date-picker"
+    "button"
   ],
   "author": "DenisBykov",
   "license": "MIT",
@@ -27,33 +23,34 @@
   },
   "homepage": "/",
   "peerDependencies": {
-    "react": "^17.0.2"
+    "react": ">=17.0.2",
+    "react-dom": ">=17.0.2"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
+    "@lopatnov/rollup-plugin-uglify": "^2.1.2",
     "@types/enzyme": "^3.10.10",
     "@types/jest": "^27.0.3",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "autoprefixer": "10.4.0",
+    "autoprefixer": "^10.4.0",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
-    "clean-webpack-plugin": "^4.0.0",
-    "fork-ts-checker-webpack-plugin": "^6.5.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.3",
-    "mini-css-extract-plugin": "^2.4.5",
+    "postcss": "8.4.4",
     "react": "^17.0.2",
-    "terser-webpack-plugin": "^5.2.5",
+    "rollup": "^2.61.1",
+    "rollup-plugin-cleaner": "^1.0.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-scss": "^3.0.0",
+    "rollup-plugin-svg": "^2.0.0",
     "typescript": "^4.4.4",
     "webpack": "5.65"
   },
   "files": [
     "dist"
   ],
-  "gitHead": "3fac04a25f475c38a4b998fdee56167fcdd4e9b1",
-  "dependencies": {
-    "postcss": "8.4.4"
-  }
+  "gitHead": "3fac04a25f475c38a4b998fdee56167fcdd4e9b1"
 }

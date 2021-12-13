@@ -16,4 +16,7 @@
     <li> 
         <b>lerna add <package>[@version] [--dev] [--exact] [--peer]</b>
     </li>
+    <li>
+        lerna clean - почистить все node_modules
+    </li>
 </ul>
