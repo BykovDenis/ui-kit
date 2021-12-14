@@ -3,7 +3,7 @@
   "version": "0.0.11",
   "description": "Riski react UI",
   "main": "dist/index.js",
-  "module": "src/index.js",
+  "module": "styles/src/index.js",
   "author": "Denis Bykov",
   "license": "MIT",
   "jest": {
@@ -43,6 +43,7 @@
     "rollup-plugin-scss": "^3.0.0",
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-typescript2": "^0.31.1",
+    "rollup-pluginutils": "^2.8.2",
     "styled-components": "^5.3.3",
     "typescript": "^4.4.4",
     "webpack": "5.65"
