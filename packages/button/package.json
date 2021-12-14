@@ -27,6 +27,7 @@
   ],
   "devDependencies": {
     "@lopatnov/rollup-plugin-uglify": "^2.1.2",
+    "@types/styled-components": "^5.1.18",
     "rollup": "^2.61.1"
   },
   "gitHead": "f0b271e2e671df0a2db48ea4f19c7e6a09187039"
