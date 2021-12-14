@@ -7,6 +7,7 @@
     <li>lerna publish (указать новую версию) </li>
     <li>Закоммитить новые версии пакетов </li>
     <li>Перейти в папку cd packages </li>
+    <li>lerna clean (почистить все пакеты node_modules) - для уменьшения размера пакета </li>
     <li>npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/ </li>
 </ol>
 
