@@ -52,5 +52,5 @@ const Button =
 `;
 
 export default (props: IButton) => props.ReactThemeContext
-  ? <props.ReactThemeContext.Consumer>{(theme: any) => <Button onClick={props.onClick} disabled={props?.disabled} color={theme?.palette?.baseButtonFontColor} backgroundColor={theme?.palette?.primary?.main} theme={theme} >{props.children}</Button>}</props.ReactThemeContext.Consumer>
-  : <ThemeContext.Consumer>{(theme: any) => <Button color={theme?.palette?.baseButtonFontColor} backgroundColor={theme?.palette?.primary?.main} theme={theme} >{props.children}</Button>}</ThemeContext.Consumer>;
+  ? <props.ReactThemeContext.Consumer>{(theme: any) => <Button onClick={props?.onClick} disabled={props?.disabled} color={theme?.palette?.baseButtonFontColor} backgroundColor={theme?.palette?.primary?.main} theme={theme} >{props.children}</Button>}</props.ReactThemeContext.Consumer>
+  : <ThemeContext.Consumer>{(theme: any) => <Button color={theme?.palette?.baseButtonFontColor} backgroundColor={theme?.palette?.primary?.main} theme={theme} onClick={props?.onClick} disabled={props?.disabled} >{props.children}</Button>}</ThemeContext.Consumer>;

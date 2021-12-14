@@ -7,7 +7,11 @@ import {themes} from "../styles/themes";
 
 const App: React.FunctionComponent = () => {
 
-  const ThemeContext = React.createContext(themes.dark);
+  const ThemeContext = React.createContext(themes.light);
+
+  const onBtnClick = () => {
+    console.log('Clicked');
+  }
 
   return (
     <Fragment>
@@ -24,10 +28,10 @@ const App: React.FunctionComponent = () => {
           <tr><td col-span="2">Base button</td></tr>
           <tr>
             <td>
-              <SberRiskiReactUiProvider ><Button>Click me!</Button></SberRiskiReactUiProvider>
+              <SberRiskiReactUiProvider ><Button ReactThemeContext={ThemeContext}>Click me!</Button></SberRiskiReactUiProvider>
             </td>
             <td>
-                <ButtonLocal disabled={true}>Click me !!!</ButtonLocal>
+                <ButtonLocal onClick={onBtnClick} >Click me !!!</ButtonLocal>
             </td>
         </tr>
         </tbody>
