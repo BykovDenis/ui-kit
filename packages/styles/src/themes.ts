@@ -1,6 +1,8 @@
 import React from 'react';
 
-export const themes = {
+import IThemes from '../types/ithemes';
+
+export const themes: IThemes = {
   light: {
     palette: {
       primary: {
