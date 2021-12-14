@@ -1,4 +1,3 @@
-import uglify from '@lopatnov/rollup-plugin-uglify';
 import cleaner from 'rollup-plugin-cleaner';
 import postcss from 'rollup-plugin-postcss';
 import svg from 'rollup-plugin-svg';
@@ -13,26 +12,22 @@ export default {
       file: pkg.main,
       format: 'cjs',
       exports: 'named',
-      sourcemap: false,
+      sourcemap: true,
       strict: false,
     },
   ],
   plugins: [
     cleaner({
-      targets: ['./styles/dest'],
+      targets: ['./dist'],
     }),
-    typescript({ objectHashIgnoreUnknownHack: false }),
+    typescript({ objectHashIgnoreUnknownHack: false, inlineSourceMap: true }),
     svg(),
     postcss({
       autoModules: true,
       modules: {
         generateScopedName: '[hash:base64:8]',
       },
-      options: {
-        autoprefixer: true,
-      },
     }),
-    uglify(),
   ],
   external: ['react', 'react-dom'],
 };

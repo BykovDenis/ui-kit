@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@sber-riski-cib-ui/core/button';
+import SberRiskiReactUiProvider from  '@sber-riski-cib-ui/core';
 // @ts-ignore
 import ButtonLocal from '../button';
 
@@ -17,10 +18,10 @@ function App() {
       <tr><td col-span="2">Base button</td></tr>
       <tr>
         <td>
-          <Button>Click me!</Button>
+          <SberRiskiReactUiProvider><Button>Click me!</Button></SberRiskiReactUiProvider>
         </td>
         <td>
-          <ButtonLocal>Click me!</ButtonLocal>
+          <SberRiskiReactUiProvider><ButtonLocal>Click me!</ButtonLocal></SberRiskiReactUiProvider>
         </td>
       </tr>
       </tbody>

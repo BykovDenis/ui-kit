@@ -25,5 +25,8 @@
   "files": [
     "dist"
   ],
-  "gitHead": "f8370eaceb76b2d04d151343afc6e4c0353ea7fa"
+  "devDependencies": {
+    "@lopatnov/rollup-plugin-uglify": "^2.1.2",
+    "rollup": "^2.61.1"
+  }
 }
