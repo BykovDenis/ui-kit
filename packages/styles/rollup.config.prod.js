@@ -19,7 +19,7 @@ export default {
   ],
   plugins: [
     cleaner({
-      targets: ['./styles/dest'],
+      targets: ['./dist'],
     }),
     typescript({ objectHashIgnoreUnknownHack: false }),
     svg(),

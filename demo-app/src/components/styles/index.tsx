@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
-
-import ThemeContext, { themes } from './themes';
+import ThemeContext, { themes } from "../styles/themes";
 
 interface IRiskiReactUIProvider {
   children?: React.ReactNode;
