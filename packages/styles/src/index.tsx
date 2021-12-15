@@ -13,4 +13,5 @@ SberRiskiReactUiProvider.defaultProps = {
   value: themes.dark,
 };
 
+export { ThemeContext, themes };
 export default React.memo(SberRiskiReactUiProvider);
