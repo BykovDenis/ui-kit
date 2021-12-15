@@ -30,8 +30,8 @@ const Button =
       letter-spacing: 0.39998px;
       text-transform: uppercase;
       color: ${(props: IButton) => props.color};
-      padding-top: 9px;
-      padding-bottom: 9px;
+      padding-top: 11px;
+      padding-bottom: 11px;
       background-color: ${(props: IButton) => props.backgroundColor};
       cursor: pointer;    
 
@@ -49,6 +49,7 @@ const Button =
 
       &:disabled {
         background-color: #bdbdbd;
+        filter: none;
         border-radius: 4px;
       }
     `;
