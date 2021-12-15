@@ -27,7 +27,7 @@
   "files": [
     "dist"
   ],
-  "gitHead": "0f562c5721bec96c02347ab43dfdae4571bbe570",
+  "gitHead": "ae292691e204e269f7cc15f78eb8f4c1a81b4c85",
   "devDependencies": {
     "@types/styled-components": "^5.1.18"
   }
