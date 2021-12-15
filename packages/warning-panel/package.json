@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/warning-panel",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "A warning panel component",
   "main": "dist/index.js",
   "directories": {
@@ -27,7 +27,7 @@
   "files": [
     "dist"
   ],
-  "gitHead": "0209eb413c72118ff15f79f44087e4c8385aad3a",
+  "gitHead": "a623ffb08bc6eecd885f257c5046df5070b0d8ac",
   "devDependencies": {
     "@types/styled-components": "^5.1.18"
   }

@@ -3,6 +3,7 @@ import Button from '@sber-riski-cib-ui/core/button';
 import SberRiskiReactUiProvider from '@sber-riski-cib-ui/core';
 import ButtonLocal from '../button';
 import {themes} from "../styles/themes";
+import './index.css';
 
 
 const App: React.FunctionComponent = () => {
@@ -31,7 +32,7 @@ const App: React.FunctionComponent = () => {
               <SberRiskiReactUiProvider ><Button ReactThemeContext={ThemeContext}>Click me!</Button></SberRiskiReactUiProvider>
             </td>
             <td>
-                <ButtonLocal onClick={onBtnClick} >Click me !!!</ButtonLocal>
+                <ButtonLocal onClick={onBtnClick} backgroundColor="#ff0000" color="green" className="button-pink">Click me !!!</ButtonLocal>
             </td>
         </tr>
         </tbody>
