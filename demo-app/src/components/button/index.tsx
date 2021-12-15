@@ -10,6 +10,7 @@ interface IButton {
   ReactThemeContext?: any;
   disabled?: boolean;
   onClick?: (evt: any) => void;
+  className?: any;
 }
 
 const Button =
@@ -31,6 +32,7 @@ const Button =
   filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
   width: 190px;
   background-color: ${(props: IButton) => props.backgroundColor};
+  cursor: pointer;
 
   &:hover {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -53,4 +55,4 @@ const Button =
 
 export default (props: IButton) => props.ReactThemeContext
   ? <props.ReactThemeContext.Consumer>{(theme: any) => <Button onClick={props?.onClick} disabled={props?.disabled} color={theme?.palette?.baseButtonFontColor} backgroundColor={theme?.palette?.primary?.main} theme={theme} >{props.children}</Button>}</props.ReactThemeContext.Consumer>
-  : <ThemeContext.Consumer>{(theme: any) => <Button color={theme?.palette?.baseButtonFontColor} backgroundColor={theme?.palette?.primary?.main} theme={theme} onClick={props?.onClick} disabled={props?.disabled} >{props.children}</Button>}</ThemeContext.Consumer>;
+  : <ThemeContext.Consumer>{(theme: any) => <Button color={props?.color || theme?.palette?.baseButtonFontColor} backgroundColor={props?.backgroundColor || theme?.palette?.primary?.main} theme={theme} onClick={props?.onClick} disabled={props?.disabled}  >{props.children}</Button>}</ThemeContext.Consumer>;
