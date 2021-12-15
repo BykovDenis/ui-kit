@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import hexToRgb from '../../helpers/hex-to-rgb';
 import ThemeContext from '../../styles/src/themes';
 
 interface IButton {
@@ -11,6 +12,7 @@ interface IButton {
   disabled?: boolean;
   onClick?: (evt: any) => void;
   theme?: any;
+  type?: string;
 }
 
 const Button =
@@ -23,41 +25,40 @@ const Button =
       font-style: normal;
       font-weight: normal;
       font-size: 14px;
-      line-height: 18px;
+      line-height: 1;
       text-align: center;
       letter-spacing: 0.39998px;
       text-transform: uppercase;
       color: ${(props: IButton) => props.color};
-      padding-top: 8px;
-      padding-bottom: 8px;
-      filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+      padding-top: 9px;
+      padding-bottom: 9px;
       background-color: ${(props: IButton) => props.backgroundColor};
-      cursor: pointer;
+      cursor: pointer;    
 
       &:hover {
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-        background-color: rgba(66, 165, 245, 0.85);
+        filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+        background-color: ${(props: IButton) => hexToRgb(props.backgroundColor, 0.85)};
         border-radius: 4px;
       }
 
       &:active {
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-        background-color: rgba(66, 165, 245, 0.5);
+        filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+        background-color: ${(props: IButton) => hexToRgb(props.backgroundColor, 0.5)};
         border-radius: 4px;
       }
 
       &:disabled {
-        filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
         background-color: #bdbdbd;
         border-radius: 4px;
       }
     `;
 
-export default (props: IButton) =>
+export default React.memo((props: IButton) =>
   props.ReactThemeContext ? (
     <props.ReactThemeContext.Consumer>
       {(theme: any) => (
         <Button
+          type={props.type}
           onClick={props?.onClick}
           disabled={props?.disabled}
           color={theme?.palette?.baseButtonFontColor}
@@ -72,6 +73,7 @@ export default (props: IButton) =>
     <ThemeContext.Consumer>
       {(theme: any) => (
         <Button
+          type={props.type}
           color={props?.color || theme?.palette?.baseButtonFontColor}
           backgroundColor={props?.backgroundColor || theme?.palette?.primary?.main}
           theme={theme}
@@ -82,4 +84,5 @@ export default (props: IButton) =>
         </Button>
       )}
     </ThemeContext.Consumer>
-  );
+  )
+);
