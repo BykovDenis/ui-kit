@@ -1,32 +1,51 @@
 {
-  "name": "riski-react-ui",
-  "version": "2.1.2",
+  "name": "@sber-riski-cib-ui/core",
+  "version": "0.1.2",
   "description": "Riski react UI",
   "main": "dist/index.js",
-  "module": "src/index.js",
+  "module": "styles/src/index.js",
   "author": "Denis Bykov",
   "license": "MIT",
-  "dependencies": {
-    "@material-ui/core": "4.8.3",
-    "@material-ui/icons": "4.5.1",
-    "@material-ui/pickers": "3.2.8"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          "transform-es2015-modules-commonjs"
-        ]
-      }
-    }
-  },
   "jest": {
     "setupFiles": [
-      "../../setupTests"
+      "./setupTests.js"
     ]
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.prod.js",
+    "build-dev": "rollup -w -c rollup.config.dev.js"
+  },
+  "publishConfig": {
+    "registry": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.2",
+    "react-dom": ">=17.0.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
+    "@lopatnov/rollup-plugin-uglify": "^2.1.2",
+    "@types/enzyme": "^3.10.10",
+    "@types/jest": "^27.0.3",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "autoprefixer": "^10.4.0",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.4.3",
+    "postcss": "8.4.4",
+    "react": "^17.0.2",
+    "rollup": "^2.61.1",
+    "rollup-plugin-cleaner": "^1.0.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-scss": "^3.0.0",
+    "rollup-plugin-svg": "^2.0.0",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "rollup-pluginutils": "^2.8.2",
+    "styled-components": "^5.3.3",
+    "typescript": "^4.4.4",
+    "webpack": "5.65"
   }
 }
