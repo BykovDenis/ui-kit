@@ -13,6 +13,7 @@ const LabelSwitcher = styled.label`
   display: block;
   padding: 10px;
   min-width: 50px;
+  width: 50%;
   cursor: pointer;
 `;
 
