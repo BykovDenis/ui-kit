@@ -14,12 +14,10 @@ const InputSwitcher =
   `
   display: none;
   & + label {
-    transition: all 0.2s ease-out 0.1s;
     background-color: transparent;
     border-radius: ${(props: IInputSwitcher) => (props.position === 'left' ? '3px 0 0 3px' : '0 3px 3px 0')}
   }
   &:checked + label {
-    transition: all 0.2s ease-out 0.1s;
     background-color: ${(props: IInputSwitcher) => props.backgroundColor ?? '#42a5f5'};
     color: ${(props: IInputSwitcher) => props.color ?? '#ffffff'};;
     &:hover {
