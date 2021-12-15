@@ -1,13 +1,37 @@
 {
   "name": "demo-app",
-  "version": "0.1.0",
-  "private": true,
-  "homepage": ".",
+  "version": "0.0.1",
+  "description": "Library of components ui components",
+  "main": "index.js",
+  "author": "Bykov Denis Stanislavovich",
+  "license": "MIT",
+  "scripts": {
+    "install-packages": "npm install --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/",
+    "update-ui-kit": "npm install @sber-riski-cib-ui/core@latest --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/",
+    "build": "webpack --config webpack.prod.config.js",
+    "start": "webpack serve --open --config webpack.dev.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://sbtatlas.sigma.sbrf.ru/stash/scm/rp/react-ui-components.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "storebook",
+    "javascript",
+    "es6",
+    "css3",
+    "jss",
+    "html5"
+  ],
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "eslint": "^6.8.0",
+    "@sber-riski-cib-ui/core": "^0.0.14",
+    "babel-eslint": "^10.0.1",
+    "chroma-js": "2.0.3",
+    "date-fns": "^2.9.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-config-react-app": "^3.0.8",
     "eslint-plugin-flowtype": "^3.4.2",
@@ -15,30 +39,65 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.0.1",
-    "riski-react-ui": "^2.1.2"
+    "html-loader": "^3.0.0",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.25",
+    "prettier": "^1.16.4",
+    "prop-types": "^15.7.2",
+    "react-select": "2.4.3",
+    "sass": "^1.43.3",
+    "styled-components": "^5.3.3",
+    "typescript": "^4.4.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.15.6",
+    "@babel/plugin-syntax-jsx": "^7.14.5",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@types/react-dom": "^17.0.10",
+    "@types/styled-components": "^5.1.18",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-typescript-enum": "^2.0.11",
+    "eslint-plugin-typescript-sort-keys": "^2.0.0",
+    "fork-ts-checker-webpack-plugin": "^6.3.2",
+    "html-webpack-plugin": "^5.3.0",
+    "inspectpack": "^4.0.1",
+    "jest": "^24.9.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-test-renderer": "^16.6.0",
+    "sass-loader": "^12.3.0",
+    "source-map-loader": "^3.0.0",
+    "svg-react-loader": "^0.4.6",
+    "terser-webpack-plugin": "^5.2.4",
+    "ts-loader": "^9.2.5",
+    "webpack": "^5.60.0",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dashboard": "^3.3.5",
+    "webpack-deadcode-plugin": "^0.1.15",
+    "webpack-dev-middleware": "^5.0.0",
+    "webpack-dev-server": "^4.3.1",
+    "webpackbar": "^5.0.0-3"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "todo": "TODO for publish comments this lines 71,72,73 for publish npm registry",
+  "private": "false",
+  "publishConfig": {
+    "registry": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "workspaces": [
+    "src/*"
+  ]
 }

@@ -1,4 +1,14 @@
 module.exports = {
-  stories: ['../packages/**/*.stories.js', '../packages/**/*.stories.tsx'],
-  addons: ['@storybook/preset-create-react-app', '@storybook/addon-actions', '@storybook/addon-links'],
-};
+  "stories": [
+    "../packages/**/*.stories.mdx",
+    "../packages/**/*.stories.@(js|jsx|ts|tsx)"
+  ],
+  "addons": [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/preset-scss"
+  ],
+  "core": {
+    "builder": "webpack5"
+  }
+}
