@@ -3,18 +3,23 @@ import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
 import Button from  './src/index';
+import IButton from './types/ibutton'
 
 export default {
   title: 'Components/Button',
   component: Button,
-  argTypes: { onClick: { action: 'clicked' } },
+  argTypes: {
+    variant: { control: { type: 'select', options: ['text', 'outlined', 'contained']}},
+    disabled: { control: { type: 'radio', options: [ true, false ], checked: false }  }
+  },
+  args: {
+    disabled: false
+  },
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = () => <Button onClick={action('clicked')}>Button</Button>;
-const Template1: ComponentStory<typeof Button> = () => <Button onClick={action('clicked')} disabled={true}>Button</Button>;
-const ButtonTextTemplate: ComponentStory<typeof Button> = () => <Button variant="text" onClick={action('clicked')}>Button</Button>;
-const ButtonOutlinedTemplate: ComponentStory<typeof Button> = () => <Button variant="outlined" onClick={action('clicked')}>Button</Button>;
+const Template: ComponentStory<typeof Button> = (args: IButton) => {
+  return <Button {...args} onClick={() => action('clicked')} >Button</Button>;
+}
+
 export const NormalButton = Template.bind({});
-export const DisabledButton = Template1.bind({});
-export const ButtonText = ButtonTextTemplate.bind({});
-export const ButtonOutlined = ButtonOutlinedTemplate.bind({});
+
