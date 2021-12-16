@@ -14,7 +14,8 @@
   "scripts": {
     "build": "rollup -c rollup.config.prod.js",
     "build-dev": "rollup -w -c rollup.config.dev.js",
-    "publish-ui-kit": "npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/"
+    "prepublish-ui-kit": "lerna bootstrap && lerna run build",
+    "publish-ui-kit": "lerna clean && npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/"
   },
   "publishConfig": {
     "registry": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"
