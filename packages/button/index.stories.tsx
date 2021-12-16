@@ -13,12 +13,13 @@ export default {
     disabled: { control: { type: 'radio', options: [ true, false ], checked: false }  }
   },
   args: {
-    disabled: false
+    disabled: false,
+    children: 'Click me'
   },
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args: IButton) => {
-  return <Button {...args} onClick={() => action('clicked')} >Button</Button>;
+  return <Button {...args} onClick={() => action('clicked')} >{args.children}</Button>;
 }
 
 export const NormalButton = Template.bind({});
