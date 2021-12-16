@@ -3,30 +3,10 @@ import styled from 'styled-components';
 
 import hexToRgb from '../../helpers/hex-to-rgb';
 import ThemeContext from '../../styles/src/themes';
+import IButton from '../types/ibutton';
 
 const CONTAINED: string = 'contained';
 const OUTLINED: string = 'outlined';
-
-interface IButtonVariants {
-  contained?: string;
-  outlined?: string;
-  text?: string;
-}
-
-interface IButton {
-  ReactThemeContext?: any;
-  backgroundColor?: string;
-  children?: any;
-  color?: string;
-  disabled?: boolean;
-  fontSize: string;
-  height: string;
-  onClick?: (evt: any) => void;
-  theme?: any;
-  type?: string;
-  variant?: IButtonVariants;
-  width: string;
-}
 
 const Button =
   styled('button') <
@@ -70,8 +50,10 @@ const Button =
 
       &:disabled {
         background-color: #bdbdbd;
-        filter: none;
+        box-shadow: none;
         border-radius: 4px;
+        color: #ffffff;
+        border: 1px solid #bdbdbd;
       }
     `;
 
