@@ -61,11 +61,12 @@ const Button =
     }
   `;
 
-export default React.memo((props: IButton) =>
+export default React.memo((props: any) =>
   props.ReactThemeContext ? (
     <props.ReactThemeContext.Consumer>
       {(theme: any) => (
         <Button
+          {...props}
           width={props.width}
           height={props.height}
           type={props.type}
@@ -86,6 +87,7 @@ export default React.memo((props: IButton) =>
     <ThemeContext.Consumer>
       {(theme: any) => (
         <Button
+          {...props}
           variant={props?.variant ?? CONTAINED}
           width={props?.width}
           height={props?.height}
@@ -98,7 +100,6 @@ export default React.memo((props: IButton) =>
           disabled={props?.disabled}
           fontSize={props?.fontSize}
           className={props?.className}
-          dataset={props?.dataset}
         >
           {props?.children}
         </Button>
