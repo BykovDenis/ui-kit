@@ -76,6 +76,7 @@ export default React.memo((props: IButton) =>
           backgroundImage={props?.backgroundImage}
           className={props?.className}
           theme={theme}
+          dataset={props?.dataset}
         >
           {props.children}
         </Button>
@@ -97,6 +98,7 @@ export default React.memo((props: IButton) =>
           disabled={props?.disabled}
           fontSize={props?.fontSize}
           className={props?.className}
+          dataset={props?.dataset}
         >
           {props?.children}
         </Button>
