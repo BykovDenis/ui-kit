@@ -7,6 +7,7 @@ interface IButton {
   children?: any;
   className?: any;
   color?: string;
+  dataset?: any;
   disabled?: boolean;
   fontSize: string;
   height: string;
