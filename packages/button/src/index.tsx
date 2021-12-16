@@ -29,6 +29,7 @@ const Button =
     color: ${(props: IButton) => (props?.variant === CONTAINED ? props.color : props.backgroundColor)};
     padding: 10px 15px;    
     background-color: ${(props: IButton) => (props?.variant === CONTAINED ? props.backgroundColor : props.color)};
+    background-image: ${(props: IButton) => props?.backgroundImage ?? 'none'};
     cursor: pointer;    
     border: ${(props: IButton) =>
       props?.variant === OUTLINED ? `1px solid ${props.backgroundColor}` : '1px solid transparent'};
@@ -72,6 +73,8 @@ export default React.memo((props: IButton) =>
           disabled={props?.disabled}
           color={theme?.palette?.baseButtonFontColor}
           backgroundColor={theme?.palette?.primary?.main}
+          backgroundImage={props?.backgroundImage}
+          className={props?.className}
           theme={theme}
         >
           {props.children}
@@ -88,12 +91,14 @@ export default React.memo((props: IButton) =>
           type={props.type}
           color={props?.color || theme?.palette?.baseButtonFontColor}
           backgroundColor={props?.backgroundColor || theme?.palette?.primary?.main}
+          backgroundImage={props?.backgroundImage}
           theme={theme}
           onClick={props?.onClick}
           disabled={props?.disabled}
           fontSize={props?.fontSize}
+          className={props?.className}
         >
-          {props.children}
+          {props?.children}
         </Button>
       )}
     </ThemeContext.Consumer>
