@@ -19,12 +19,13 @@ interface IButton {
   children?: any;
   color?: string;
   disabled?: boolean;
-  height: number;
+  fontSize: string;
+  height: string;
   onClick?: (evt: any) => void;
   theme?: any;
   type?: string;
   variant?: IButtonVariants;
-  width: number;
+  width: string;
 }
 
 const Button =
@@ -36,7 +37,7 @@ const Button =
       border-radius: 4px;
       font-style: normal;
       font-weight: normal;
-      font-size: 14px;
+      font-size:  ${(props: IButton) => props?.fontSize ?? '14px'};
       line-height: 1;
       text-align: center;
       letter-spacing: 0.39998px;
@@ -48,6 +49,8 @@ const Button =
       cursor: pointer;    
       border: ${(props: IButton) =>
         props?.variant === OUTLINED ? `1px solid ${props.backgroundColor}` : '1px solid transparent'};
+      width: ${(props: IButton) => props?.width ?? 'initial'};
+      height: ${(props: IButton) => props?.height ?? 'initial'};
 
       &:hover {
         box-shadow: ${(props: IButton) =>
@@ -103,6 +106,7 @@ export default React.memo((props: IButton) =>
           theme={theme}
           onClick={props?.onClick}
           disabled={props?.disabled}
+          fontSize={props?.fontSize}
         >
           {props.children}
         </Button>
