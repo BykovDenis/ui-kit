@@ -3,6 +3,8 @@ interface ICheckbox {
   backgroundColor?: string;
   color?: string;
   disabled?: boolean;
+  fontFamily?: string;
+  fontSize?: string;
   id?: string;
   label?: string;
   name?: string;

@@ -3,12 +3,14 @@ import styled from 'styled-components';
 
 import hexToRgb from '../../helpers/hex-to-rgb';
 import ThemeContext from '../../styles/src/themes';
+import ITheme from '../../styles/types/itheme';
+import Itheme from '../../styles/types/itheme';
 import IButton from '../types/ibutton';
 
 const CONTAINED: string = 'contained';
 const OUTLINED: string = 'outlined';
 
-const Button =
+const ButtonStyled =
   styled('button') <
   IButton >
   `
@@ -16,12 +18,12 @@ const Button =
     align-items: center;
     flex-direction: row;
     justify-content: center;
-    font-family: Roboto, Arial, sans-serif;
+    font-family: ${(props: IButton) => props?.fontFamily};
     border: none;
     border-radius: 4px;
     font-style: normal;
     font-weight: normal;
-    font-size:  ${(props: IButton) => props?.fontSize ?? '14px'};
+    font-size:  ${(props: IButton) => props?.fontSize};
     line-height: 1;
     text-align: center;
     letter-spacing: 0.39998px;
@@ -61,49 +63,35 @@ const Button =
     }
   `;
 
-export default React.memo((props: any) =>
-  props.ReactThemeContext ? (
+const Button: React.FunctionComponent = (props: any) => {
+  const Component = ({ theme }: { theme: Itheme }) => (
+    <ButtonStyled
+      {...props}
+      width={props.width}
+      height={props.height}
+      type={props.type}
+      onClick={props?.onClick}
+      disabled={props?.disabled}
+      color={theme?.palette?.baseButtonFontColor}
+      backgroundColor={theme?.palette?.primary?.main}
+      backgroundImage={props?.backgroundImage}
+      fontSize={props?.fontSize ?? theme?.baseFontSize}
+      className={props?.className}
+      fontFamily={theme?.fontFamily}
+      theme={theme}
+      dataset={props?.dataset}
+    >
+      {props.children}
+    </ButtonStyled>
+  );
+
+  return props.ReactThemeContext ? (
     <props.ReactThemeContext.Consumer>
-      {(theme: any) => (
-        <Button
-          {...props}
-          width={props.width}
-          height={props.height}
-          type={props.type}
-          onClick={props?.onClick}
-          disabled={props?.disabled}
-          color={theme?.palette?.baseButtonFontColor}
-          backgroundColor={theme?.palette?.primary?.main}
-          backgroundImage={props?.backgroundImage}
-          className={props?.className}
-          theme={theme}
-          dataset={props?.dataset}
-        >
-          {props.children}
-        </Button>
-      )}
+      {(theme: ITheme) => <Component theme={theme} />}
     </props.ReactThemeContext.Consumer>
   ) : (
-    <ThemeContext.Consumer>
-      {(theme: any) => (
-        <Button
-          {...props}
-          variant={props?.variant ?? CONTAINED}
-          width={props?.width}
-          height={props?.height}
-          type={props.type}
-          color={props?.color || theme?.palette?.baseButtonFontColor}
-          backgroundColor={props?.backgroundColor || theme?.palette?.primary?.main}
-          backgroundImage={props?.backgroundImage}
-          theme={theme}
-          onClick={props?.onClick}
-          disabled={props?.disabled}
-          fontSize={props?.fontSize}
-          className={props?.className}
-        >
-          {props?.children}
-        </Button>
-      )}
-    </ThemeContext.Consumer>
-  )
-);
+    <ThemeContext.Consumer>{(theme: ITheme) => <Component theme={theme} />}</ThemeContext.Consumer>
+  );
+};
+
+export default React.memo(Button);

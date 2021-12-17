@@ -1,9 +1,7 @@
-import IPalette from './ipalette';
+import ITheme from './itheme';
 
 interface IThemes {
-  [key: string]: {
-    palette: IPalette,
-  };
+  [key: string]: ITheme;
 }
 
 export default IThemes;
