@@ -1,0 +1,34 @@
+{
+  "name": "@sber-riski-cib-ui/checkbox",
+  "version": "0.2.6",
+  "description": "A simple button component",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup -c rollup.config.prod.js",
+    "build-dev": "rollup -w -c rollup.config.dev.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "button"
+  ],
+  "author": "DenisBykov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/issues"
+  },
+  "homepage": "/",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@lopatnov/rollup-plugin-uglify": "^2.1.2",
+    "@types/styled-components": "^5.1.18",
+    "rollup": "^2.61.1"
+  },
+  "gitHead": "c16c71d4b821a069b5824874b6887233cf5b1f85"
+}
