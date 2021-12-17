@@ -10,9 +10,10 @@ const Label =
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  font-family: Roboto, Arial, sans-serif;
+  font-family: ${(props: ICheckbox) => props.fontFamily};
   cursor: pointer;
-  color: ${(props: ICheckbox) => props.color}  
+  color: ${(props: ICheckbox) => props.color};  
+  font-size: ${(props: ICheckbox) => props.fontSize};  
 `;
 
 export default Label;

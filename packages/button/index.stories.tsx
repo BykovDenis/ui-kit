@@ -10,7 +10,8 @@ export default {
   component: Button,
   argTypes: {
     variant: { control: { type: 'select', options: ['text', 'outlined', 'contained']}},
-    disabled: { control: { type: 'radio', options: [ true, false ] }  }
+    disabled: { control: { type: 'radio', options: [ true, false ] }  },
+    fontSize: { control: { type: 'select', options: [ '10px', '12px', '14px', '16px' ] }  }
   },
   args: {
     disabled: false,

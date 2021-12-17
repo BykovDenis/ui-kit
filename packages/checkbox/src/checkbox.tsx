@@ -14,10 +14,7 @@ const CheckboxStyled =
     content: '';
     height: 16px;
     width: 16px;
-    border: 2px solid ${(props: ICheckbox) => {
-      console.log(props.theme.color);
-      return hexToRgb(props.theme.color, 0.85);
-    }};
+    border: 2px solid ${(props: ICheckbox) => hexToRgb(props.color, 0.85)};
     box-sizing: border-box;
     border-radius: 3px;
     margin-right: 5px;
@@ -36,7 +33,7 @@ const CheckboxStyled =
     content: '';
     height: 16px;
     width: 16px;
-    background-color: ${(props: ICheckbox) => props.theme.backgroundColor};
+    background-color: ${(props: ICheckbox) => props.backgroundColor};
     background-image: url('${CheckIcon}');
     background-repeat: no-repeat;
     background-position: center center;
