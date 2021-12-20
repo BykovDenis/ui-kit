@@ -1,3 +1,4 @@
+import url from 'postcss-url';
 import cleaner from 'rollup-plugin-cleaner';
 import postcss from 'rollup-plugin-postcss';
 import svg from 'rollup-plugin-svg';
@@ -21,13 +22,20 @@ export default {
       targets: ['./dist'],
     }),
     typescript({ objectHashIgnoreUnknownHack: false, inlineSourceMap: true }),
-    svg(),
     postcss({
       autoModules: true,
       modules: {
         generateScopedName: '[hash:base64:8]',
       },
+      plugins: [
+        url({
+          url: 'inline', // enable inline assets using base64 encoding
+          maxSize: 1000000, // maximum file size to inline (in kilobytes)
+          fallback: 'copy', // fallback method to use if max size is exceeded
+        }),
+      ],
     }),
+    svg(),
   ],
   external: ['react', 'react-dom', 'styled-components'],
 };
