@@ -1,85 +1,97 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import hexToRgb from '../../helpers/hex-to-rgb';
 import ThemeContext from '../../styles/src/themes';
+import ITheme from '../../styles/types/itheme';
+import Itheme from '../../styles/types/itheme';
+import IButton from '../types/ibutton';
 
-interface IButton {
-  ReactThemeContext?: any;
-  backgroundColor?: string;
-  children?: any;
-  color?: string;
-  disabled?: boolean;
-  onClick?: (evt: any) => void;
-  theme?: any;
-}
+const CONTAINED: string = 'contained';
+const OUTLINED: string = 'outlined';
 
-const Button =
+const ButtonStyled =
   styled('button') <
   IButton >
   `
-      font-family: Roboto, Arial, sans-serif;
-      border: none;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    font-family: ${(props: IButton) => props?.fontFamily};
+    border: none;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: normal;
+    font-size:  ${(props: IButton) => props?.fontSize};
+    line-height: 1;
+    text-align: center;
+    letter-spacing: 0.39998px;
+    text-transform: uppercase;
+    color: ${(props: IButton) => (props?.variant === CONTAINED ? props.color : props.backgroundColor)};
+    padding: 10px 15px;    
+    background-color: ${(props: IButton) => (props?.variant === CONTAINED ? props.backgroundColor : props.color)};
+    background-image: ${(props: IButton) => props?.backgroundImage ?? 'none'};
+    cursor: pointer;    
+    border: ${(props: IButton) =>
+      props?.variant === OUTLINED ? `1px solid ${props.backgroundColor}` : '1px solid transparent'};
+    width: ${(props: IButton) => props?.width ?? 'initial'};
+    height: ${(props: IButton) => props?.height ?? 'initial'};
+
+    &:hover {
+      box-shadow: ${(props: IButton) =>
+        props?.variant === CONTAINED ? '0 2px 2px 0 rgba(0, 0, 0, 0.25)' : '0 1px 1px rgba(0, 0, 0, 0.15)'}; 
+      background-color: ${(props: IButton) =>
+        props?.variant === CONTAINED ? hexToRgb(props.backgroundColor, 0.85) : hexToRgb(props.backgroundColor, 0.05)};
       border-radius: 4px;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 14px;
-      line-height: 18px;
-      text-align: center;
-      letter-spacing: 0.39998px;
-      text-transform: uppercase;
-      color: ${(props: IButton) => props.color};
-      padding-top: 8px;
-      padding-bottom: 8px;
-      filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
-      background-color: ${(props: IButton) => props.backgroundColor};
-      cursor: pointer;
+    }
 
-      &:hover {
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-        background-color: rgba(66, 165, 245, 0.85);
-        border-radius: 4px;
-      }
+    &:active {
+      box-shadow: : ${(props: IButton) =>
+        props?.variant === CONTAINED ? '0 2px 2px 0 rgba(0, 0, 0, 0.25)' : '0 1px 1px 0 rgba(0, 0, 0, 0.15)'};
+      background-color: ${(props: IButton) =>
+        props?.variant === CONTAINED ? hexToRgb(props.backgroundColor, 0.5) : hexToRgb(props.backgroundColor, 0.25)};
+      border-radius: 4px;
+    }
 
-      &:active {
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-        background-color: rgba(66, 165, 245, 0.5);
-        border-radius: 4px;
-      }
+    &:disabled {
+      background-color: #bdbdbd;
+      box-shadow: none;
+      border-radius: 4px;
+      color: #ffffff;
+      border: 1px solid #bdbdbd;
+    }
+  `;
 
-      &:disabled {
-        filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
-        background-color: #bdbdbd;
-        border-radius: 4px;
-      }
-    `;
+const Button: React.FunctionComponent = (props: any) => {
+  const Component = ({ theme }: { theme: Itheme }) => (
+    <ButtonStyled
+      {...props}
+      width={props.width}
+      height={props.height}
+      type={props.type}
+      onClick={props?.onClick}
+      disabled={props?.disabled}
+      color={theme?.palette?.baseButtonFontColor}
+      backgroundColor={theme?.palette?.primary?.main}
+      backgroundImage={props?.backgroundImage}
+      fontSize={props?.fontSize ?? theme?.baseFontSize}
+      className={props?.className}
+      fontFamily={theme?.fontFamily}
+      theme={theme}
+      dataset={props?.dataset}
+    >
+      {props.children}
+    </ButtonStyled>
+  );
 
-export default (props: IButton) =>
-  props.ReactThemeContext ? (
+  return props.ReactThemeContext ? (
     <props.ReactThemeContext.Consumer>
-      {(theme: any) => (
-        <Button
-          onClick={props?.onClick}
-          disabled={props?.disabled}
-          color={theme?.palette?.baseButtonFontColor}
-          backgroundColor={theme?.palette?.primary?.main}
-          theme={theme}
-        >
-          {props.children}
-        </Button>
-      )}
+      {(theme: ITheme) => <Component theme={theme} />}
     </props.ReactThemeContext.Consumer>
   ) : (
-    <ThemeContext.Consumer>
-      {(theme: any) => (
-        <Button
-          color={props?.color || theme?.palette?.baseButtonFontColor}
-          backgroundColor={props?.backgroundColor || theme?.palette?.primary?.main}
-          theme={theme}
-          onClick={props?.onClick}
-          disabled={props?.disabled}
-        >
-          {props.children}
-        </Button>
-      )}
-    </ThemeContext.Consumer>
+    <ThemeContext.Consumer>{(theme: ITheme) => <Component theme={theme} />}</ThemeContext.Consumer>
   );
+};
+
+export default React.memo(Button);
