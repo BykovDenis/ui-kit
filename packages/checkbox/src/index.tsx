@@ -12,15 +12,16 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
     <FormControl>
       <CheckboxStyled
         {...props}
+        name={props.name}
         id={props.id}
         disabled={props?.disabled}
         color={theme?.palette?.baseFontColor}
         backgroundColor={theme?.palette?.secondary?.main}
         checked={props.checked}
+        onClick={props.onClick}
       />
       {props?.label && (
         <Label
-          {...props}
           htmlFor={props.id}
           color={theme?.palette?.baseFontColor}
           fontSize={props.fontSize ?? theme?.baseFontSize}

@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
@@ -19,7 +20,7 @@ export default {
 } as ComponentMeta<typeof Checkbox>;
 
 const Template: ComponentStory<typeof Checkbox> = (args: ICheckbox) => {
-  return <Checkbox {...args} />
+  return <Checkbox {...args} onClick={() => action('clicked')}  />
 }
 
 export const NormalCheckbox = Template.bind({});
