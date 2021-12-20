@@ -9,7 +9,7 @@ interface ICheckbox {
   id?: string;
   label?: string;
   name?: string;
-  onClick: (evt: any) => void;
+  onChange: (evt: any) => void;
   theme?: any;
 }
 
