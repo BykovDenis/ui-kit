@@ -19,8 +19,12 @@ export default {
   }
 } as ComponentMeta<typeof Checkbox>;
 
+const onCheckboxCheck = (evt: any) => {
+  action('checked');
+}
+
 const Template: ComponentStory<typeof Checkbox> = (args: ICheckbox) => {
-  return <Checkbox {...args} onClick={() => action('clicked')}  />
+  return <Checkbox {...args} onChange={onCheckboxCheck}  />
 }
 
 export const NormalCheckbox = Template.bind({});

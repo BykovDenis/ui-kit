@@ -18,7 +18,7 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
         color={theme?.palette?.baseFontColor}
         backgroundColor={theme?.palette?.secondary?.main}
         checked={props.checked}
-        onClick={props.onClick}
+        onChange={props.onChange}
       />
       {props?.label && (
         <Label
