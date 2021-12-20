@@ -10,6 +10,7 @@ interface IButton {
   color?: string;
   dataset?: any;
   disabled?: boolean;
+  fontFamily: string;
   fontSize: string;
   height: string;
   onClick?: (evt: any) => void;
