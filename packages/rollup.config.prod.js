@@ -1,7 +1,8 @@
 import uglify from '@lopatnov/rollup-plugin-uglify';
+import url from 'postcss-url';
 import cleaner from 'rollup-plugin-cleaner';
+import svg from 'rollup-plugin-image-base64';
 import postcss from 'rollup-plugin-postcss';
-import svg from 'rollup-plugin-svg';
 import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json';
@@ -31,6 +32,13 @@ export default {
       options: {
         autoprefixer: true,
       },
+      plugins: [
+        url({
+          url: 'inline', // enable inline assets using base64 encoding
+          maxSize: 1000, // maximum file size to inline (in kilobytes)
+          fallback: 'copy', // fallback method to use if max size is exceeded
+        }),
+      ],
     }),
     uglify(),
   ],
