@@ -1,6 +1,6 @@
+import uglify from '@lopatnov/rollup-plugin-uglify';
 import url from 'postcss-url';
 import cleaner from 'rollup-plugin-cleaner';
-import svg from 'rollup-plugin-image-base64';
 import postcss from 'rollup-plugin-postcss';
 import typescript from 'rollup-plugin-typescript2';
 
@@ -13,7 +13,7 @@ export default {
       file: pkg.main,
       format: 'cjs',
       exports: 'named',
-      sourcemap: true,
+      sourcemap: false,
       strict: false,
     },
   ],
@@ -21,21 +21,24 @@ export default {
     cleaner({
       targets: ['./dist'],
     }),
-    typescript({ objectHashIgnoreUnknownHack: false, inlineSourceMap: true }),
-    svg(),
+    typescript({ objectHashIgnoreUnknownHack: false }),
     postcss({
       autoModules: true,
       modules: {
         generateScopedName: '[hash:base64:8]',
       },
+      options: {
+        autoprefixer: true,
+      },
       plugins: [
         url({
           url: 'inline', // enable inline assets using base64 encoding
-          maxSize: 1000, // maximum file size to inline (in kilobytes)
+          maxSize: 1000000, // maximum file size to inline (in kilobytes)
           fallback: 'copy', // fallback method to use if max size is exceeded
         }),
       ],
     }),
+    uglify(),
   ],
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom', 'styled-components'],
 };

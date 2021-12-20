@@ -14,6 +14,8 @@ export const themes: IThemes = {
       baseButtonFontColor: '#ffffff',
       baseFontColor: '#333333',
     },
+    fontFamily: 'Roboto, Arial, sans-serif',
+    baseFontSize: '14px',
   },
   dark: {
     palette: {
@@ -26,6 +28,8 @@ export const themes: IThemes = {
       baseButtonFontColor: '#333333',
       baseFontColor: '#ffffff',
     },
+    fontFamily: 'Roboto, Arial, sans-serif',
+    baseFontSize: '14px',
   },
 };
 

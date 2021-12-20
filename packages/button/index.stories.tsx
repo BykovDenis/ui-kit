@@ -3,20 +3,25 @@ import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
 import Button from  './src/index';
+import IButton from './types/ibutton'
 
 export default {
   title: 'Components/Button',
   component: Button,
+  argTypes: {
+    variant: { control: { type: 'select', options: ['text', 'outlined', 'contained']}},
+    disabled: { control: { type: 'radio', options: [ true, false ] }  },
+    fontSize: { control: { type: 'select', options: [ '10px', '12px', '14px', '16px' ] }  }
+  },
+  args: {
+    disabled: false,
+    children: 'Click me'
+  },
 } as ComponentMeta<typeof Button>;
 
-//export const Primary: React.VFC = <Button onClick={action('clicked')}>Button</Button>;
+const Template: ComponentStory<typeof Button> = (args: IButton) => {
+  return <Button {...args} onClick={action('clicked')} >{args.children}</Button>;
+}
 
-// storiesOf('Button', module)
-//   .add('with text', () => <Button onClick={action('clicked')}>Button</Button>)
-//   .add('with some emoji', () => <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>)
-//   .add('with a theme provider', () => <Button onClick={action('clicked')}>Button</Button>);
+export const NormalButton = Template.bind({});
 
-const Template: ComponentStory<typeof Button> = () => <Button type="submit" onClick={action('clicked')}>Button</Button>;
-const Template1: ComponentStory<typeof Button> = () => <Button onClick={action('clicked')} disabled={true}>Button</Button>;
-export const Primary = Template.bind({});
-export const Primary1 = Template1.bind({});

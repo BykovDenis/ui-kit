@@ -1,14 +1,11 @@
 {
-  "name": "@sber-riski-cib-ui/warning-panel",
+  "name": "@sber-riski-cib-ui/checkbox",
   "version": "0.2.12",
-  "description": "A warning panel component",
+  "description": "A simple button component",
   "main": "dist/index.js",
-  "directories": {
-    "example": "example"
-  },
   "scripts": {
     "build": "rollup -c rollup.config.prod.js",
-    "build-dev": "rollup -w -c rollup.config.dev.js"
+    "build-dev": "rollup -c rollup.config.dev.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +13,8 @@
   },
   "keywords": [
     "react",
-    "react-component"
+    "react-component",
+    "button"
   ],
   "author": "DenisBykov",
   "license": "MIT",
@@ -27,8 +25,10 @@
   "files": [
     "dist"
   ],
-  "gitHead": "606d9a492569dbb6c0c761783d17979e7bb56bfb",
   "devDependencies": {
-    "@types/styled-components": "^5.1.18"
-  }
+    "@lopatnov/rollup-plugin-uglify": "^2.1.2",
+    "@types/styled-components": "^5.1.18",
+    "rollup": "^2.61.1"
+  },
+  "gitHead": "606d9a492569dbb6c0c761783d17979e7bb56bfb"
 }
