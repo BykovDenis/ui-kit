@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import hexToRgb from '../../helpers/hex-to-rgb';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
-import Itheme from '../../styles/types/itheme';
 import IButton from '../types/ibutton';
 
 const CONTAINED: string = 'contained';
@@ -28,9 +27,11 @@ const ButtonStyled =
     text-align: center;
     letter-spacing: 0.39998px;
     text-transform: uppercase;
-    color: ${(props: IButton) => (props?.variant === CONTAINED ? props.color : props.backgroundColor)};
+    color: ${(props: IButton) =>
+      props?.variant === CONTAINED || !props?.variant ? props.color : props.backgroundColor};
     padding: 10px 15px;    
-    background-color: ${(props: IButton) => (props?.variant === CONTAINED ? props.backgroundColor : props.color)};
+    background-color: ${(props: IButton) =>
+      props?.variant === CONTAINED || !props?.variant ? props.backgroundColor : props.color};
     background-image: ${(props: IButton) => props?.backgroundImage ?? 'none'};
     cursor: pointer;    
     border: ${(props: IButton) =>
@@ -40,17 +41,25 @@ const ButtonStyled =
 
     &:hover {
       box-shadow: ${(props: IButton) =>
-        props?.variant === CONTAINED ? '0 2px 2px 0 rgba(0, 0, 0, 0.25)' : '0 1px 1px rgba(0, 0, 0, 0.15)'}; 
+        props?.variant === CONTAINED || !props?.variant
+          ? '0 2px 2px 0 rgba(0, 0, 0, 0.25)'
+          : '0 1px 1px rgba(0, 0, 0, 0.15)'}; 
       background-color: ${(props: IButton) =>
-        props?.variant === CONTAINED ? hexToRgb(props.backgroundColor, 0.85) : hexToRgb(props.backgroundColor, 0.05)};
+        props?.variant === CONTAINED || !props?.variant
+          ? hexToRgb(props.backgroundColor, 0.85)
+          : hexToRgb(props.backgroundColor, 0.05)};
       border-radius: 4px;
     }
 
     &:active {
-      box-shadow: : ${(props: IButton) =>
-        props?.variant === CONTAINED ? '0 2px 2px 0 rgba(0, 0, 0, 0.25)' : '0 1px 1px 0 rgba(0, 0, 0, 0.15)'};
+      box-shadow: ${(props: IButton) =>
+        props?.variant === CONTAINED || !props?.variant
+          ? '0 2px 2px 0 rgba(0, 0, 0, 0.25)'
+          : '0 1px 1px 0 rgba(0, 0, 0, 0.15)'};
       background-color: ${(props: IButton) =>
-        props?.variant === CONTAINED ? hexToRgb(props.backgroundColor, 0.5) : hexToRgb(props.backgroundColor, 0.25)};
+        props?.variant === CONTAINED || !props?.variant
+          ? hexToRgb(props.backgroundColor, 0.5)
+          : hexToRgb(props.backgroundColor, 0.25)};
       border-radius: 4px;
     }
 
@@ -64,26 +73,32 @@ const ButtonStyled =
   `;
 
 const Button: React.FunctionComponent = (props: any) => {
-  const Component = ({ theme }: { theme: Itheme }) => (
-    <ButtonStyled
-      {...props}
-      width={props.width}
-      height={props.height}
-      type={props.type}
-      onClick={props?.onClick}
-      disabled={props?.disabled}
-      color={theme?.palette?.baseButtonFontColor}
-      backgroundColor={theme?.palette?.primary?.main}
-      backgroundImage={props?.backgroundImage}
-      fontSize={props?.fontSize ?? theme?.baseFontSize}
-      className={props?.className}
-      fontFamily={theme?.fontFamily}
-      theme={theme}
-      dataset={props?.dataset}
-    >
-      {props.children}
-    </ButtonStyled>
-  );
+  const Component = ({ theme }: { theme: ITheme }) => {
+    const backgroundColor: string =
+      props?.colorTheme === 'normal' || !props.colorTheme
+        ? theme?.palette?.primary?.main
+        : theme?.palette?.secondary?.main;
+    return (
+      <ButtonStyled
+        {...props}
+        width={props.width}
+        height={props.height}
+        type={props.type}
+        onClick={props?.onClick}
+        disabled={props?.disabled}
+        color={theme?.palette?.baseButtonFontColor}
+        backgroundColor={backgroundColor}
+        backgroundImage={props?.backgroundImage}
+        fontSize={props?.fontSize ?? theme?.baseFontSize}
+        className={props?.className}
+        fontFamily={theme?.fontFamily}
+        theme={theme}
+        dataset={props?.dataset}
+      >
+        {props.children}
+      </ButtonStyled>
+    );
+  };
 
   return props.ReactThemeContext ? (
     <props.ReactThemeContext.Consumer>
