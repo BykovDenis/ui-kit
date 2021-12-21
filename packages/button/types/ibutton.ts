@@ -8,6 +8,7 @@ interface IButton {
   children?: any;
   className?: any;
   color?: string;
+  colorTheme?: string;
   dataset?: any;
   disabled?: boolean;
   fontFamily: string;
