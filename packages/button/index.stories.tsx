@@ -9,9 +9,10 @@ export default {
   title: 'Components/Button',
   component: Button,
   argTypes: {
-    variant: { control: { type: 'select', options: ['text', 'outlined', 'contained']}},
+    variant: { control: { type: 'select', options: [null, 'text', 'outlined', 'contained']}},
     disabled: { control: { type: 'radio', options: [ true, false ] }  },
-    fontSize: { control: { type: 'select', options: [ '10px', '12px', '14px', '16px' ] }  }
+    fontSize: { control: { type: 'select', options: [ '10px', '12px', '14px', '16px' ] }  },
+    colorTheme: { control: { type: 'select', options: [null, 'normal', 'warning'] }  }
   },
   args: {
     disabled: false,
