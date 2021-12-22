@@ -83,7 +83,7 @@ const Button: React.FunctionComponent = (props: any) => {
         {...props}
         width={props.width}
         height={props.height}
-        type={props.type}
+        type={props.type ?? 'button'}
         onClick={props?.onClick}
         disabled={props?.disabled}
         color={theme?.palette?.baseButtonFontColor}
