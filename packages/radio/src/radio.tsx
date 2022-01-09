@@ -39,7 +39,7 @@ const RadioStyled =
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    left: 8px;
+    left: 6px;
     background-color: ${(props: IRadio) => props.backgroundColor};
 `;
 export default RadioStyled;
