@@ -1,7 +1,7 @@
 {
-  "name": "@sber-riski-cib-ui/checkbox",
+  "name": "@sber-riski-cib-ui/radio",
   "version": "0.2.14",
-  "description": "A simple checkbox component",
+  "description": "A simple radio component",
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c rollup.config.prod.js",
