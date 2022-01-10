@@ -2,6 +2,7 @@ interface ICheckbox {
   ReactThemeContext?: any;
   backgroundColor?: string;
   checked?: boolean;
+  className?: any;
   color?: string;
   disabled?: boolean;
   fontFamily?: string;

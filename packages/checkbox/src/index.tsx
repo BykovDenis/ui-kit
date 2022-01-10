@@ -27,6 +27,7 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
         fontSize={props.fontSize ?? theme?.baseFontSize}
         focusColor={theme?.palette?.primary?.main}
         fontFamily={theme?.fontFamily}
+        className={props?.className}
       >
         {props?.label}
       </Label>
