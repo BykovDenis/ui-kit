@@ -27,6 +27,7 @@ const Radio: React.FunctionComponent<IRadio> = (props: any) => {
         fontFamily={theme?.fontFamily}
         tabIndex={props?.tabIndex}
         focusColor={theme?.palette?.primary?.main}
+        className={props?.className}
       >
         {props?.label}
       </Label>

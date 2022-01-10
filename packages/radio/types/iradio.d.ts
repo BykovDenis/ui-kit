@@ -2,6 +2,7 @@
   ReactThemeContext?: any;
   backgroundColor?: string;
   checked?: boolean;
+  className?: string;
   color?: string;
   disabled?: boolean;
   focusColor?: string;
