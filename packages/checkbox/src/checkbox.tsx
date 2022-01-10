@@ -42,6 +42,21 @@ const CheckboxStyled =
     background-position: center center;
     background-size: cover;    
   }
+  &:not(:checked) + label:before {
+    background-color: ${(props: ICheckbox) => (props.undeterminate ? props.backgroundColor : '')};
+  }
+  &:not(:checked) + label:after {
+    position: absolute;
+    display: block;
+    content: '';
+    height: 2px;
+    width: 16px;
+    background-color: #ffffff;
+    left: 2px;
+  }
+  &:disabled:not(:checked) + label:before {
+    background-color: #bdbdbd;
+  }
   &:disabled:checked + label:before {
     display: block;
     content: '';

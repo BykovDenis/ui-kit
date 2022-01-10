@@ -13,6 +13,7 @@ interface ICheckbox {
   onChange: (evt: any) => void;
   tabIndex?: string;
   theme?: any;
+  undeterminate?: boolean;
 }
 
 export default ICheckbox;
