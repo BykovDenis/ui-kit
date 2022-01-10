@@ -19,6 +19,7 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
         backgroundColor={theme?.palette?.secondary?.main}
         checked={props.checked}
         onChange={props.onChange}
+        undeterminate={props.undeterminate}
       />
       <Label
         htmlFor={props.id}
@@ -33,6 +34,10 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
       </Label>
     </FormControl>
   );
+
+  Component.defaultProps = {
+    undeterminate: false,
+  };
 
   return props.ReactThemeContext ? (
     <props.ReactThemeContext.Consumer>
