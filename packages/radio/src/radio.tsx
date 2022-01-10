@@ -14,6 +14,8 @@ const RadioStyled =
     content: '';
     height: 20px;
     width: 20px;
+    min-width: 20px;
+    min-height: 20px;
     border: 2px solid ${(props: Iradio) => hexToRgb(props.color, 0.85)};    
     border-radius: 50%;
     margin-right: 5px;
