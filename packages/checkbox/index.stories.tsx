@@ -10,7 +10,8 @@ export default {
   component: Checkbox,
   argTypes: {
     disabled: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
-    fontSize: { control: { type: 'select', options: [ '10px', '12px', '14px', '16px' ] }  }
+    fontSize: { control: { type: 'select', options: [ '10px', '12px', '14px', '16px' ] }  },
+    checked: { control: { type: 'select', options: [ true, false ] }, defaultValue: false  },
   },
   args: {
     id: 'label1',

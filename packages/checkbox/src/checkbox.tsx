@@ -28,7 +28,6 @@ const CheckboxStyled =
     height: 20px;
     width: 20px;
     background-color: #bdbdbd;
-    border: 2px solid #bdbdbd;
   }
   &:checked + label:before {
     display: block;
@@ -40,6 +39,17 @@ const CheckboxStyled =
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;    
+  }
+  &:disabled:checked + label:before {
+    display: block;
+    content: '';
+    height: 20px;
+    width: 20px;
+    background-color: #bdbdbd;
+    background-image: url('${CheckIcon}');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
   }
 `;
 export default CheckboxStyled;
