@@ -20,16 +20,14 @@ const Radio: React.FunctionComponent<IRadio> = (props: any) => {
         checked={props.checked}
         onChange={props.onChange}
       />
-      {props?.label && (
-        <Label
-          htmlFor={props.id}
-          color={theme?.palette?.baseFontColor}
-          fontSize={props.fontSize ?? theme?.baseFontSize}
-          fontFamily={theme?.fontFamily}
-        >
-          {props?.label}
-        </Label>
-      )}
+      <Label
+        htmlFor={props.id}
+        color={theme?.palette?.baseFontColor}
+        fontSize={props.fontSize ?? theme?.baseFontSize}
+        fontFamily={theme?.fontFamily}
+      >
+        {props?.label}
+      </Label>
     </FormControl>
   );
 
