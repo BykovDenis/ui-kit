@@ -51,7 +51,7 @@ const CheckboxStyled =
     content: '';
     height: 2px;
     width: 16px;
-    background-color: #ffffff;
+    background-color: ${(props: ICheckbox) => (props.undeterminate ? '#ffffff' : '')};
     left: 2px;
   }
   &:disabled:not(:checked) + label:before {
@@ -69,4 +69,5 @@ const CheckboxStyled =
     background-size: cover;
   }
 `;
+
 export default CheckboxStyled;
