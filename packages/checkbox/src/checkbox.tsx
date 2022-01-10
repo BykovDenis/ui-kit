@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import hexToRgb from '../../helpers/hex-to-rgb';
-// import CheckIcon from './check-icon.svg';
 import ICheckbox from '../types/icheckbox';
 
 const CheckIcon: string =
@@ -16,8 +15,8 @@ const CheckboxStyled =
     box-sizing: border-box;
     display: block;
     content: '';
-    height: 18px;
-    width: 18px;
+    height: 20px;
+    width: 20px;
     border: 2px solid ${(props: ICheckbox) => hexToRgb(props.color, 0.85)};    
     border-radius: 3px;
     margin-right: 5px;
@@ -26,16 +25,16 @@ const CheckboxStyled =
   &:disabled + label:before {
     display: block;
     content: '';
-    height: 18px;
-    width: 18px;
+    height: 20px;
+    width: 20px;
     background-color: #bdbdbd;
     border: 2px solid #bdbdbd;
   }
   &:checked + label:before {
     display: block;
     content: '';
-    height: 18px;
-    width: 18px;
+    height: 20px;
+    width: 20px;
     background-color: ${(props: ICheckbox) => props.backgroundColor};
     background-image: url('${CheckIcon}');
     background-repeat: no-repeat;
