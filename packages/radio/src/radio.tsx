@@ -23,7 +23,6 @@ const RadioStyled =
     display: block;
     content: '';
     background-color: #bdbdbd;
-    border: 2px solid #bdbdbd;
   }
   &:checked + label:before {
     display: block;
@@ -41,5 +40,16 @@ const RadioStyled =
     border-radius: 50%;
     left: 6px;
     background-color: ${(props: IRadio) => props.backgroundColor};
+  }
+    &:disabled:checked + label:after {
+      position: absolute;
+      display: block;
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      left: 6px;
+      background-color: #ffffff;
+    }
 `;
 export default RadioStyled;
