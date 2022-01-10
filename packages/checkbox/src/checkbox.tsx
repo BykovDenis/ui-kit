@@ -17,6 +17,8 @@ const CheckboxStyled =
     content: '';
     height: 20px;
     width: 20px;
+    min-width: 20px;
+    min-height: 20px;
     border: 2px solid ${(props: ICheckbox) => hexToRgb(props.color, 0.85)};    
     border-radius: 3px;
     margin-right: 5px;
