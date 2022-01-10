@@ -1,4 +1,4 @@
-﻿interface IRadio {
+﻿interface Iradio {
   ReactThemeContext?: any;
   backgroundColor?: string;
   checked?: boolean;
@@ -6,11 +6,11 @@
   disabled?: boolean;
   fontFamily?: string;
   fontSize?: string;
-  id?: string;
+  id: string;
   label?: string;
   name?: string;
   onChange?: (evt: any) => void;
   theme?: any;
 }
 
-export default IRadio;
+export default Iradio;

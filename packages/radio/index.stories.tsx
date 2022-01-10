@@ -3,7 +3,7 @@ import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {Fragment, useState} from 'react';
 
 import Radio from  './src/index';
-import IRadio from "./types/iradio";
+import Iradio from "./types/iradio";
 
 export default {
   title: 'Components/Radio',
@@ -19,7 +19,7 @@ export default {
   }
 } as ComponentMeta<typeof Radio>;
 
-const Template: ComponentStory<typeof Radio> = (args: IRadio) => {
+const Template: ComponentStory<typeof Radio> = (args: Iradio) => {
 
   const onCheckboxCheck = (evt: any) => {
     action('checked');
