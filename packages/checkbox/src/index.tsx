@@ -20,18 +20,16 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
         checked={props.checked}
         onChange={props.onChange}
       />
-      {props?.label && (
-        <Label
-          htmlFor={props.id}
-          color={theme?.palette?.baseFontColor}
-          tabIndex={props?.tabIndex}
-          fontSize={props.fontSize ?? theme?.baseFontSize}
-          focusColor={theme?.palette?.primary?.main}
-          fontFamily={theme?.fontFamily}
-        >
-          {props?.label}
-        </Label>
-      )}
+      <Label
+        htmlFor={props.id}
+        color={theme?.palette?.baseFontColor}
+        tabIndex={props?.tabIndex}
+        fontSize={props.fontSize ?? theme?.baseFontSize}
+        focusColor={theme?.palette?.primary?.main}
+        fontFamily={theme?.fontFamily}
+      >
+        {props?.label}
+      </Label>
     </FormControl>
   );
 
