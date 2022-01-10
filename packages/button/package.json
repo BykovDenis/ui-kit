@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/button",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "description": "A simple button component",
   "main": "dist/index.js",
   "scripts": {
