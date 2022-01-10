@@ -1,16 +1,16 @@
-import React from 'react';
+﻿import React from 'react';
 
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
-import ICheckbox from '../types/icheckbox';
-import CheckboxStyled from './checkbox';
+import IRadio from '../types/iradio';
 import FormControl from './form-control';
 import Label from './label';
+import RadioStyled from './radio';
 
-const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
+const Radio: React.FunctionComponent<IRadio> = (props: any) => {
   const Component = ({ theme }: { theme: ITheme }) => (
     <FormControl>
-      <CheckboxStyled
+      <RadioStyled
         {...props}
         name={props.name}
         id={props.id}
@@ -20,16 +20,14 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
         checked={props.checked}
         onChange={props.onChange}
       />
-      {props?.label && (
-        <Label
-          htmlFor={props.id}
-          color={theme?.palette?.baseFontColor}
-          fontSize={props.fontSize ?? theme?.baseFontSize}
-          fontFamily={theme?.fontFamily}
-        >
-          {props?.label}
-        </Label>
-      )}
+      <Label
+        htmlFor={props.id}
+        color={theme?.palette?.baseFontColor}
+        fontSize={props.fontSize ?? theme?.baseFontSize}
+        fontFamily={theme?.fontFamily}
+      >
+        {props?.label}
+      </Label>
     </FormControl>
   );
 
@@ -42,4 +40,4 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
   );
 };
 
-export default Checkbox;
+export default Radio;

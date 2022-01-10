@@ -2,8 +2,8 @@ import { action } from '@storybook/addon-actions';
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import ICheckbox from "./src/icheckbox";
 import Checkbox from  './src/index';
+import ICheckbox from "./types/icheckbox";
 
 export default {
   title: 'Components/Checkbox',

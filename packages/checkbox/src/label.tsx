@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import ICheckbox from './icheckbox';
+import ICheckbox from '../types/icheckbox';
 
 const Label =
   styled.label <
