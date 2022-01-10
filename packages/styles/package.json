@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/styles",
-  "version": "0.2.14",
+  "version": "0.2.17",
   "description": "Riski react UI",
   "main": "dist/index.js",
   "module": "styles/src/index.js",
@@ -18,5 +18,5 @@
   "publishConfig": {
     "registry": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"
   },
-  "gitHead": "e797256d8e0380f98b310a44a7840cd39fb3767a"
+  "gitHead": "351c8f374adba31e77ca0ffb943d7990526bf40b"
 }
