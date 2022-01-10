@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import {ComponentMeta, ComponentStory } from '@storybook/react';
-import React, {Fragment, useState} from 'react';
+import React, {Fragment } from 'react';
 
 import Radio from  './src/index';
 import Iradio from "./types/iradio";
@@ -21,15 +21,15 @@ export default {
 
 const Template: ComponentStory<typeof Radio> = (args: Iradio) => {
 
-  const onCheckboxCheck = (evt: any) => {
+  const onCheckboxCheck = () => {
     action('checked');
   }
 
   return (<Fragment>
-    <Radio {...args} id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} />
-    <Radio {...args} id="radio2" name="radio1" onChange={onCheckboxCheck} />
+    <Radio {...args} id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} tabIndex="0" />
+    <Radio {...args} id="radio2" name="radio1" onChange={onCheckboxCheck}  tabIndex="1" />
   </Fragment>)
 }
 
-export const NormalCheckbox = Template.bind({});
+export const NormalRadio = Template.bind({});
 

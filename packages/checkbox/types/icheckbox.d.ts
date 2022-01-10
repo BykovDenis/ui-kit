@@ -10,6 +10,7 @@ interface ICheckbox {
   label?: string;
   name?: string;
   onChange: (evt: any) => void;
+  tabIndex?: string;
   theme?: any;
 }
 
