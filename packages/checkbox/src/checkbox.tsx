@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import hexToRgb from '../../helpers/hex-to-rgb';
+import hexToRgb from '../../helpers/hex-to-rgba';
 import ICheckbox from '../types/icheckbox';
 
 const CheckIcon: string =
