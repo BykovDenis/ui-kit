@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import hexToRgb from '../../helpers/hex-to-rgb';
+import hexToRgb from '../../helpers/hex-to-rgba';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
-import IButton from '../types/ibutton';
+import IButton from '../types/IButton';
 
 const CONTAINED: string = 'contained';
 const OUTLINED: string = 'outlined';

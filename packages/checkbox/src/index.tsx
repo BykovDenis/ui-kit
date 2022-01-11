@@ -1,11 +1,11 @@
 import React from 'react';
 
+import Label from '../../label/src';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
 import ICheckbox from '../types/icheckbox';
 import CheckboxStyled from './checkbox';
 import FormControl from './form-control';
-import Label from './label';
 
 const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
   const Component = ({ theme }: { theme: ITheme }) => (
@@ -19,19 +19,25 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
         backgroundColor={theme?.palette?.secondary?.main}
         checked={props.checked}
         onChange={props.onChange}
+        undeterminate={props.undeterminate}
       />
-      {props?.label && (
-        <Label
-          htmlFor={props.id}
-          color={theme?.palette?.baseFontColor}
-          fontSize={props.fontSize ?? theme?.baseFontSize}
-          fontFamily={theme?.fontFamily}
-        >
-          {props?.label}
-        </Label>
-      )}
+      <Label
+        htmlFor={props.id}
+        color={theme?.palette?.baseFontColor}
+        tabIndex={props?.tabIndex}
+        fontSize={props.fontSize ?? theme?.baseFontSize}
+        focusColor={theme?.palette?.primary?.main}
+        fontFamily={theme?.fontFamily}
+        className={props?.className}
+      >
+        {props?.label}
+      </Label>
     </FormControl>
   );
+
+  Component.defaultProps = {
+    undeterminate: false,
+  };
 
   return props.ReactThemeContext ? (
     <props.ReactThemeContext.Consumer>

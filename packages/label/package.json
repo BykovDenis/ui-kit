@@ -1,5 +1,5 @@
 {
-  "name": "@sber-riski-cib-ui/styles",
+  "name": "@sber-riski-cib-ui/label",
   "version": "0.2.26",
   "description": "Riski react UI",
   "main": "dist/index.js",

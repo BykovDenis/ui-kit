@@ -1,10 +1,10 @@
 ﻿import React from 'react';
 
+import Label from '../../label/src';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
 import IRadio from '../types/iradio';
 import FormControl from './form-control';
-import Label from './label';
 import RadioStyled from './radio';
 
 const Radio: React.FunctionComponent<IRadio> = (props: any) => {
@@ -25,6 +25,9 @@ const Radio: React.FunctionComponent<IRadio> = (props: any) => {
         color={theme?.palette?.baseFontColor}
         fontSize={props.fontSize ?? theme?.baseFontSize}
         fontFamily={theme?.fontFamily}
+        tabIndex={props?.tabIndex}
+        focusColor={theme?.palette?.primary?.main}
+        className={props?.className}
       >
         {props?.label}
       </Label>

@@ -10,7 +10,9 @@ export default {
   component: Checkbox,
   argTypes: {
     disabled: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
-    fontSize: { control: { type: 'select', options: [ '10px', '12px', '14px', '16px' ] }  }
+    fontSize: { control: { type: 'select', options: [ '10px', '12px', '14px', '16px' ] }  },
+    checked: { control: { type: 'select', options: [ true, false ] }, defaultValue: false  },
+    undeterminate: { control: { type: 'select', options: [ true, false ] }, defaultValue: false  },
   },
   args: {
     id: 'label1',
@@ -19,12 +21,12 @@ export default {
   }
 } as ComponentMeta<typeof Checkbox>;
 
-const onCheckboxCheck = (evt: any) => {
+const onCheckboxCheck = () => {
   action('checked');
 }
 
 const Template: ComponentStory<typeof Checkbox> = (args: ICheckbox) => {
-  return <Checkbox {...args} onChange={onCheckboxCheck}  />
+  return <Checkbox {...args} onChange={onCheckboxCheck} tabIndex="1"  />
 }
 
 export const NormalCheckbox = Template.bind({});

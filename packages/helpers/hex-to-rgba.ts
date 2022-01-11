@@ -1,4 +1,4 @@
-function hexToRgb(hex: string, alpha: number): string {
+function hexToRgba(hex: string, alpha: number): string {
   if (hex) {
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
@@ -12,4 +12,4 @@ function hexToRgb(hex: string, alpha: number): string {
   return '#ff0000';
 }
 
-export default hexToRgb;
+export default hexToRgba;
