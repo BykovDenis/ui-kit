@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import hexToRgb from '../../helpers/hex-to-rgb';
+import hexToRgb from '../../helpers/hex-to-rgba';
 import ICheckbox from '../types/icheckbox';
 
 const CheckIcon: string =
@@ -17,6 +17,8 @@ const CheckboxStyled =
     content: '';
     height: 20px;
     width: 20px;
+    min-width: 20px;
+    min-height: 20px;
     border: 2px solid ${(props: ICheckbox) => hexToRgb(props.color, 0.85)};    
     border-radius: 3px;
     margin-right: 5px;
@@ -28,7 +30,6 @@ const CheckboxStyled =
     height: 20px;
     width: 20px;
     background-color: #bdbdbd;
-    border: 2px solid #bdbdbd;
   }
   &:checked + label:before {
     display: block;
@@ -41,5 +42,32 @@ const CheckboxStyled =
     background-position: center center;
     background-size: cover;    
   }
+  &:not(:checked) + label:before {
+    background-color: ${(props: ICheckbox) => (props.undeterminate ? props.backgroundColor : '')};
+  }
+  &:not(:checked) + label:after {
+    position: absolute;
+    display: block;
+    content: '';
+    height: 2px;
+    width: 16px;
+    background-color: ${(props: ICheckbox) => (props.undeterminate ? '#ffffff' : '')};
+    left: 2px;
+  }
+  &:disabled:not(:checked) + label:before {
+    background-color: #bdbdbd;
+  }
+  &:disabled:checked + label:before {
+    display: block;
+    content: '';
+    height: 20px;
+    width: 20px;
+    background-color: #bdbdbd;
+    background-image: url('${CheckIcon}');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
 `;
+
 export default CheckboxStyled;

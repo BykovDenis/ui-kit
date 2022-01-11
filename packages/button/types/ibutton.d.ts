@@ -1,6 +1,6 @@
 import IButtonVariants from './ibutton-variants';
 
-interface IButton {
+interface Ibutton {
   ReactThemeContext?: any;
   backgroundColor?: string;
   backgroundImage?: string;
@@ -21,4 +21,4 @@ interface IButton {
   width: string;
 }
 
-export default IButton;
+export default Ibutton;
