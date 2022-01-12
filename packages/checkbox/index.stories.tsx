@@ -26,7 +26,7 @@ const onCheckboxCheck = () => {
 }
 
 const Template: ComponentStory<typeof Checkbox> = (args: ICheckbox) => {
-  return <Checkbox {...args} onChange={onCheckboxCheck} tabIndex="1"  />
+  return <Checkbox {...args} onChange={onCheckboxCheck} tabIndex="1" checked={false} undeterminate={true}  />
 }
 
 export const NormalCheckbox = Template.bind({});

@@ -42,17 +42,19 @@ const CheckboxStyled =
     background-position: center center;
     background-size: cover;    
   }
-  &:not(:checked) + label:before {
-    background-color: ${(props: ICheckbox) => (props.undeterminate ? props.backgroundColor : '')};
-  }
-  &:not(:checked) + label:after {
-    position: absolute;
-    display: block;
-    content: '';
-    height: 2px;
-    width: 16px;
-    background-color: ${(props: ICheckbox) => (props.undeterminate ? '#ffffff' : '')};
-    left: 2px;
+  &:not(:checked) {
+    & + label:before {
+      background-color: ${(props: ICheckbox) => (props.undeterminate ? props.backgroundColor : '')};
+    }
+    & + label:after {
+      position: absolute;
+      display: block;
+      content: '';
+      height: 2px;
+      width: 16px;
+      background-color: ${(props: ICheckbox) => (props.undeterminate ? '#ffffff' : '')};
+      left: 2px;
+    }
   }
   &:disabled:not(:checked) + label:before {
     background-color: #bdbdbd;
