@@ -19,7 +19,7 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
         backgroundColor={theme?.palette?.secondary?.main}
         checked={props.checked}
         onChange={props.onChange}
-        undeterminate={props.undeterminate}
+        indeterminate={props.indeterminate}
       />
       <Label
         htmlFor={props.id}
@@ -36,7 +36,7 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
   );
 
   Component.defaultProps = {
-    undeterminate: false,
+    indeterminate: false,
   };
 
   return props.ReactThemeContext ? (

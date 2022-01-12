@@ -44,7 +44,7 @@ const CheckboxStyled =
   }
   &:not(:checked) {
     & + label:before {
-      background-color: ${(props: ICheckbox) => (props.undeterminate ? props.backgroundColor : '')};
+      background-color: ${(props: ICheckbox) => (props.indeterminate ? props.backgroundColor : '')};
     }
     & + label:after {
       position: absolute;
@@ -52,7 +52,7 @@ const CheckboxStyled =
       content: '';
       height: 2px;
       width: 16px;
-      background-color: ${(props: ICheckbox) => (props.undeterminate ? '#ffffff' : '')};
+      background-color: ${(props: ICheckbox) => (props.indeterminate ? '#ffffff' : '')};
       left: 2px;
     }
   }
