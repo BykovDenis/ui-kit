@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import hexToRgb from '../../helpers/hex-to-rgba';
+import hexToRgba from '../../helpers/hex-to-rgba';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
 import IButton from '../types/IButton';
@@ -9,10 +9,11 @@ import IButton from '../types/IButton';
 const CONTAINED: string = 'contained';
 const OUTLINED: string = 'outlined';
 
-const ButtonStyled =
-  styled('button') <
-  IButton >
-  `
+const Button: React.FunctionComponent = (props: any) => {
+  const ButtonStyled =
+    styled('button') <
+    IButton >
+    `
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -39,6 +40,11 @@ const ButtonStyled =
     width: ${(props: IButton) => props?.width ?? 'initial'};
     height: ${(props: IButton) => props?.height ?? 'initial'};
 
+    &:focus {
+      outline: 1px solid ${(props: IButton) => hexToRgba(props?.focusColor, 0.3)};
+      box-shadow: 1px 1px 5px 3px ${(props: IButton) => hexToRgba(props?.focusColor, 0.3)};
+    }
+
     &:hover {
       box-shadow: ${(props: IButton) =>
         props?.variant === CONTAINED || !props?.variant
@@ -46,8 +52,8 @@ const ButtonStyled =
           : '0 1px 1px rgba(0, 0, 0, 0.15)'}; 
       background-color: ${(props: IButton) =>
         props?.variant === CONTAINED || !props?.variant
-          ? hexToRgb(props.backgroundColor, 0.85)
-          : hexToRgb(props.backgroundColor, 0.05)};
+          ? hexToRgba(props.backgroundColor, 0.85)
+          : hexToRgba(props.backgroundColor, 0.05)};
       border-radius: 4px;
     }
 
@@ -58,21 +64,20 @@ const ButtonStyled =
           : '0 1px 1px 0 rgba(0, 0, 0, 0.15)'};
       background-color: ${(props: IButton) =>
         props?.variant === CONTAINED || !props?.variant
-          ? hexToRgb(props.backgroundColor, 0.5)
-          : hexToRgb(props.backgroundColor, 0.25)};
+          ? hexToRgba(props.backgroundColor, 0.5)
+          : hexToRgba(props.backgroundColor, 0.25)};
       border-radius: 4px;
     }
 
     &:disabled {
       background-color: #bdbdbd;
-      box-shadow: none;
+      box-shadow: none; 
       border-radius: 4px;
       color: #ffffff;
       border: 1px solid #bdbdbd;
     }
   `;
 
-const Button: React.FunctionComponent = (props: any) => {
   const Component = ({ theme }: { theme: ITheme }) => {
     const backgroundColor: string =
       props?.colorTheme === 'normal' || !props.colorTheme
@@ -94,6 +99,7 @@ const Button: React.FunctionComponent = (props: any) => {
         fontFamily={theme?.fontFamily}
         theme={theme}
         dataset={props?.dataset}
+        focusColor={theme?.palette?.primary?.main}
       >
         {props.children}
       </ButtonStyled>
