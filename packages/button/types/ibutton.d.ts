@@ -11,6 +11,7 @@ interface Ibutton {
   colorTheme?: string;
   dataset?: any;
   disabled?: boolean;
+  focusColor?: string;
   fontFamily: string;
   fontSize: string;
   height: string;

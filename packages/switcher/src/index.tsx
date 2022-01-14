@@ -31,7 +31,7 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
     }
   };
 
-  return (
+  const SwitcherComponent = (props: ISwitcher) => (
     <FormSwitcher method="get">
       <InputSwitcher
         name="custom-switcher"
@@ -57,17 +57,11 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
       <LabelSwitcher htmlFor={`custom-switcher-element2-${props.element2}`}>{props.element2}</LabelSwitcher>
     </FormSwitcher>
   );
-};
 
-Switcher.defaultProps = {
-  disabled: false,
-};
-
-export default React.memo((props: ISwitcher) =>
-  props.ReactThemeContext ? (
+  return props.ReactThemeContext ? (
     <props.ReactThemeContext.Consumer>
       {(theme: any) => (
-        <Switcher
+        <SwitcherComponent
           {...props}
           color={theme?.palette?.baseButtonFontColor}
           backgroundColor={theme?.palette?.primary?.main}
@@ -77,12 +71,18 @@ export default React.memo((props: ISwitcher) =>
   ) : (
     <ThemeContext.Consumer>
       {(theme: any) => (
-        <Switcher
+        <SwitcherComponent
           {...props}
           color={theme?.palette?.baseButtonFontColor}
           backgroundColor={theme?.palette?.primary?.main}
         />
       )}
     </ThemeContext.Consumer>
-  )
-);
+  );
+};
+
+Switcher.defaultProps = {
+  disabled: false,
+};
+
+export default React.memo(Switcher);
