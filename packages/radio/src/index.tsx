@@ -4,8 +4,8 @@ import Label from '../../label/src';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
 import IRadio from '../types/iradio';
-import FormControl from './form-control';
-import RadioStyled from './radio';
+import FormControl from './form-control.styled';
+import RadioStyled from './radio.styled';
 
 const Radio: React.FunctionComponent<IRadio> = (props: any) => {
   const Component = ({ theme }: { theme: ITheme }) => (
