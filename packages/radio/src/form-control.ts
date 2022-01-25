@@ -5,6 +5,8 @@ const FormControl = styled.p`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  margin: 0;
+  padding: 0;
 `;
 
 export default FormControl;
