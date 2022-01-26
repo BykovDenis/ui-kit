@@ -59,11 +59,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     const focusColor: string = backgroundColor;
 
     return (
-      <InputContainer
-        backgroundImage={props?.backgroundImage}
-        height={props?.height}
-        width={props?.width || DEFAULT_WIDTH}
-      >
+      <InputContainer backgroundImage={props?.backgroundImage} height={props?.height} width={props?.width}>
         <InputStyled
           value={inputValue}
           disabled={props?.disabled}
@@ -92,7 +88,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           variant={props?.variant}
           color={underlineColor}
           disabled={props?.disabled}
-          width={props.width || DEFAULT_WIDTH}
+          width={props.width}
         />
         {props?.textMessage && (
           <TextMessage

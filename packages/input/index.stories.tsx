@@ -31,7 +31,7 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
     console.log(element?.value);
   }
 
-  return <Input {...args} value={value} onChange={onInputChange} />
+  return <div style={{ width: '190px' }}><Input {...args} value={value} onChange={onInputChange} /></div>
 }
 
 export const NormalInput = Template.bind({});
