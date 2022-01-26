@@ -9,7 +9,8 @@ export default {
   component: Label,
   argTypes: {
     disabled: { control: { type: 'radio', options: [ true, false ] }  },
-    fontSize: { control: { type: 'select', options: [ '10px', '12px', '14px', '16px' ] }  },
+    fontSize: { control: { type: 'select', options: [ 10, 12, 14, 16] }  },
+    error: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
   },
   args: {
     children: 'Label'

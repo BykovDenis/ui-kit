@@ -5,7 +5,7 @@ import ITheme from '../../styles/types/itheme';
 import ButtonStyled from './button.styled';
 
 const Button: React.FunctionComponent = (props: any) => {
-  const Component = ({ theme }: { theme: ITheme }) => {
+  const Component: React.FunctionComponent<{ theme: ITheme }> = ({ theme }: { theme: ITheme }) => {
     const backgroundColor: string =
       props?.colorTheme === 'normal' || !props.colorTheme
         ? theme?.palette?.primary?.main
