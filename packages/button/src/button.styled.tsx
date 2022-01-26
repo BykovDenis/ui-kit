@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import hexToRgba from '../../helpers/hex-to-rgba';
+import rgbToRgba from '../../helpers/rgb-to-rgba';
 import IButton from '../types/ibutton';
 
 const CONTAINED: string = 'contained';
@@ -19,7 +19,7 @@ const ButtonStyled =
     border-radius: 4px;
     font-style: normal;
     font-weight: normal;
-    font-size:  ${(props: IButton) => props?.fontSize};
+    font-size:  ${(props: IButton) => props?.fontSize}px;
     line-height: 1;
     text-align: center;
     letter-spacing: 0.39998px;
@@ -37,8 +37,8 @@ const ButtonStyled =
     height: ${(props: IButton) => props?.height ?? 'initial'};
 
     &:focus {
-      outline: 1px solid ${(props: IButton) => hexToRgba(props?.focusColor, 0.3)};
-      box-shadow: 1px 1px 5px 3px ${(props: IButton) => hexToRgba(props?.focusColor, 0.3)};
+      outline: 1px solid ${(props: IButton) => rgbToRgba(props?.focusColor, 0.3)};
+      box-shadow: 1px 1px 5px 3px ${(props: IButton) => rgbToRgba(props?.focusColor, 0.3)};
     }
 
     &:hover {
@@ -48,8 +48,8 @@ const ButtonStyled =
           : '0 1px 1px rgba(0, 0, 0, 0.15)'}; 
       background-color: ${(props: IButton) =>
         props?.variant === CONTAINED || !props?.variant
-          ? hexToRgba(props.backgroundColor, 0.85)
-          : hexToRgba(props.backgroundColor, 0.05)};
+          ? rgbToRgba(props.backgroundColor, 0.85)
+          : rgbToRgba(props.backgroundColor, 0.05)};
       border-radius: 4px;
     }
 
@@ -60,8 +60,8 @@ const ButtonStyled =
           : '0 1px 1px 0 rgba(0, 0, 0, 0.15)'};
       background-color: ${(props: IButton) =>
         props?.variant === CONTAINED || !props?.variant
-          ? hexToRgba(props.backgroundColor, 0.5)
-          : hexToRgba(props.backgroundColor, 0.25)};
+          ? rgbToRgba(props.backgroundColor, 0.5)
+          : rgbToRgba(props.backgroundColor, 0.25)};
       border-radius: 4px;
     }
 
