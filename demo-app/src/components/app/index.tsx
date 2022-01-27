@@ -4,7 +4,7 @@ import SberRiskiReactUiProvider from '@sber-riski-cib-ui/core';
 import ButtonLocal from '../button';
 import { themes } from '../styles/src/themes';
 import './index.css';
-import Input from '../input/src';
+import Input from '../input1/dist';
 
 const App: React.FunctionComponent = () => {
   const [value, setValue] = useState('2');
@@ -48,7 +48,7 @@ const App: React.FunctionComponent = () => {
               </tr>
               <tr>
                 <td colSpan={2}>
-                  <Input value={value} />
+                  <Input name="input1" />
                 </td>
               </tr>
             </tbody>
