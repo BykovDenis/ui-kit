@@ -9,7 +9,6 @@ import InputContainer from './input-container.styled';
 import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
 
-const DEFAULT_WIDTH = '190';
 const DEFAULT_HEIGHT = '30';
 const TEXT_ALIGN = 'right';
 const TIMEOUT = 1000;
@@ -40,7 +39,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
   };
 
-  const componentThemed = (theme: ITheme) => {
+  const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string =
       (props?.colorTheme === 'normal' || !props.colorTheme) && !props?.error
         ? theme?.palette?.primary?.main
@@ -82,6 +81,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           variant={props?.variant}
           borderColor={theme?.mainBlackColor}
           error={props?.error}
+          id={props?.id}
+          name={props?.name}
         />
         <InputUnderline
           className="underline"
