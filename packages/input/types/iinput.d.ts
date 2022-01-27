@@ -1,3 +1,5 @@
+import React from 'react';
+
 import IInputVariants from './iinput-variants';
 
 interface IInput {
@@ -24,7 +26,7 @@ interface IInput {
   id?: string;
   name: string;
   onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  onRemove?: () => void;
+  onRemove?: (evt: React.MouseEvent<HTMLElement>) => void;
   textAlign: string;
   textMessage?: string;
   theme?: any;

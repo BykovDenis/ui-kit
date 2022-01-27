@@ -42,10 +42,10 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
   };
 
-  const onInputDelete = () => {
+  const onInputDelete = (evt: React.MouseEvent<HTMLElement>) => {
     setInputValue('');
     setEvtObject(null);
-    props.onRemove();
+    props?.onRemove(evt);
     cb();
   };
 
@@ -96,6 +96,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             name={props?.name}
           />
           <InputUnderline
+            name={props?.name}
             className="underline"
             variant={props?.variant}
             color={underlineColor}
