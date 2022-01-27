@@ -1,10 +1,8 @@
 <h1>Публикация UI-Kit</h1>
 
 <ol>
-    <li>Перейти в каталог packages</li>
-    <li>В консоли npm run prepublish-ui-kit </li>
     <li>Закоммитить все изменения</li>
-    <li>lerna publish (указать новую версию) - при публикации возникнет ошибка, публикацию в нексус делать через npm </li>
+    <li>В консоли npm run prepublish-ui-kit </li>    
     <li>В package.json корне packages указать новую версию пакета </li>
     <li>Закоммитить новые версии пакетов </li>
     <li>В консоли npm run publish-ui-kit</li>
