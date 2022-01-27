@@ -1,3 +1,4 @@
+import svgr from '@svgr/rollup';
 import cleaner from 'rollup-plugin-cleaner';
 import postcss from 'rollup-plugin-postcss';
 import svg from 'rollup-plugin-svg';
@@ -21,7 +22,7 @@ export default {
       targets: ['./dist'],
     }),
     typescript({ objectHashIgnoreUnknownHack: false, inlineSourceMap: true }),
-    svg(),
+    svgr(),
     postcss({
       autoModules: true,
       modules: {
