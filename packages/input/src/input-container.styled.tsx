@@ -6,6 +6,7 @@ const InputContainer =
   styled('div') <
   IInput >
   `
+  position: relative;  
   display: flex;
   flex-direction: column;
   align-items: flex-start;
