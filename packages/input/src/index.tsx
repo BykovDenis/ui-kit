@@ -45,6 +45,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const onInputDelete = () => {
     setInputValue('');
     setEvtObject(null);
+    props.onRemove();
     cb();
   };
 
