@@ -26,7 +26,7 @@ interface IInput {
   id?: string;
   name: string;
   onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  onRemove?: (evt: React.MouseEvent<HTMLElement>) => void;
+  onRemove?: (name: string, value: string) => void;
   textAlign: string;
   textMessage?: string;
   theme?: any;

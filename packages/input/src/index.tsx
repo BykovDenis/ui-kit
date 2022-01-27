@@ -42,10 +42,10 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
   };
 
-  const onInputDelete = (evt: React.MouseEvent<HTMLElement>) => {
+  const onInputDelete = () => {
     setInputValue('');
     setEvtObject(null);
-    props?.onRemove(evt);
+    props?.onRemove(props?.name, '');
     cb();
   };
 
