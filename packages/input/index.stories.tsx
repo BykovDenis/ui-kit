@@ -23,7 +23,7 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args: IInput) => {
 
-  const [ value, setValue ] = useState('2');
+  const [ value, setValue ] = useState(null);
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
@@ -31,7 +31,7 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
     console.log(element?.value);
   }
 
-  return <div style={{ width: '190px' }}><Input {...args} value={value} onChange={onInputChange} /></div>
+  return <div style={{ width: '190px' }}><Input {...args} name="input" value={value} onChange={onInputChange} /></div>
 }
 
 export const NormalInput = Template.bind({});

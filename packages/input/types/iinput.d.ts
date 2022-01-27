@@ -21,6 +21,8 @@ interface IInput {
   height: number;
   hoverBackgroundColor?: string;
   hoverColor?: string;
+  id?: string;
+  name: string;
   onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   textAlign: string;
   textMessage?: string;
