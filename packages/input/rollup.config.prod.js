@@ -1,4 +1,5 @@
 import uglify from '@lopatnov/rollup-plugin-uglify';
+import svgr from '@svgr/rollup';
 import cleaner from 'rollup-plugin-cleaner';
 import postcss from 'rollup-plugin-postcss';
 import svg from 'rollup-plugin-svg';
@@ -22,7 +23,8 @@ export default {
       targets: ['./dist'],
     }),
     typescript({ objectHashIgnoreUnknownHack: false }),
-    svg(),
+    //svg(),
+    svgr(),
     postcss({
       autoModules: true,
       modules: {

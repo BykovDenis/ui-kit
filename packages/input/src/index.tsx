@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
-import DeleteIcon from '../img/delete.svg';
 import IInput from '../types/iinput';
 import ButtonDelete from './button-delete.styled';
+import DeleteIcon from './delete-icon';
 import InputStyled from './input.styled';
 import InputContainer from './input-container.styled';
 import InputElementContainer from './input-element-container.styled';
