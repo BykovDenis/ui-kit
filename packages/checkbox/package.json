@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/checkbox",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "A simple checkbox component",
   "main": "dist/index.js",
   "scripts": {
