@@ -3,9 +3,12 @@ import React, { useEffect, useState } from 'react';
 
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
+import DeleteIcon from '../img/delete.svg';
 import IInput from '../types/iinput';
+import ButtonDelete from './button-delete.styled';
 import InputStyled from './input.styled';
 import InputContainer from './input-container.styled';
+import InputElementContainer from './input-element-container.styled';
 import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
 
@@ -39,6 +42,12 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
   };
 
+  const onInputDelete = () => {
+    setInputValue('');
+    setEvtObject(null);
+    cb();
+  };
+
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string =
       (props?.colorTheme === 'normal' || !props.colorTheme) && !props?.error
@@ -59,38 +68,48 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     return (
       <InputContainer backgroundImage={props?.backgroundImage} height={props?.height} width={props?.width}>
-        <InputStyled
-          value={inputValue}
-          disabled={props?.disabled}
-          width={props.width}
-          height={props.height || DEFAULT_HEIGHT}
-          color={color}
-          hoverColor={hoverColor}
-          focusColor={focusColor}
-          disabledBackgroundColor={theme?.mainGrayColor}
-          hoverBackgroundColor={hoverBackgroundColor}
-          disabledColor={theme?.mainBlackColor}
-          backgroundColor={backgroundColor}
-          backgroundImage={props?.backgroundImage}
-          fontSize={props?.fontSize ?? theme?.baseFontSize}
-          className={props?.className}
-          fontFamily={theme?.fontFamily}
-          dataset={props?.dataset}
-          textAlign={props?.textAlign || TEXT_ALIGN}
-          onChange={onInputChange}
-          variant={props?.variant}
-          borderColor={theme?.mainBlackColor}
-          error={props?.error}
-          id={props?.id}
-          name={props?.name}
-        />
-        <InputUnderline
-          className="underline"
-          variant={props?.variant}
-          color={underlineColor}
-          disabled={props?.disabled}
-          width={props.width}
-        />
+        <InputElementContainer>
+          <InputStyled
+            value={inputValue}
+            disabled={props?.disabled}
+            width={props.width}
+            height={props.height || DEFAULT_HEIGHT}
+            color={color}
+            hoverColor={hoverColor}
+            focusColor={focusColor}
+            disabledBackgroundColor={theme?.mainGrayColor}
+            hoverBackgroundColor={hoverBackgroundColor}
+            disabledColor={theme?.mainBlackColor}
+            backgroundColor={backgroundColor}
+            backgroundImage={props?.backgroundImage}
+            fontSize={props?.fontSize ?? theme?.baseFontSize}
+            className={props?.className}
+            fontFamily={theme?.fontFamily}
+            dataset={props?.dataset}
+            textAlign={props?.textAlign || TEXT_ALIGN}
+            onChange={onInputChange}
+            variant={props?.variant}
+            borderColor={theme?.mainBlackColor}
+            error={props?.error}
+            id={props?.id}
+            name={props?.name}
+          />
+          <InputUnderline
+            className="underline"
+            variant={props?.variant}
+            color={underlineColor}
+            disabled={props?.disabled}
+            width={props.width}
+          />
+          <ButtonDelete
+            onClick={onInputDelete}
+            className="delete-button"
+            hoverColor={hoverColor}
+            focusColor={focusColor}
+          >
+            <DeleteIcon className="delete-icon" />
+          </ButtonDelete>
+        </InputElementContainer>
         {props?.textMessage && (
           <TextMessage
             className="text-message"
