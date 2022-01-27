@@ -101,14 +101,16 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             disabled={props?.disabled}
             width={props.width}
           />
-          <ButtonDelete
-            onClick={onInputDelete}
-            className="delete-button"
-            hoverColor={hoverColor}
-            focusColor={focusColor}
-          >
-            <DeleteIcon className="delete-icon" />
-          </ButtonDelete>
+          {inputValue && inputValue > '' && (
+            <ButtonDelete
+              onClick={onInputDelete}
+              className="delete-button"
+              hoverColor={hoverColor}
+              focusColor={focusColor}
+            >
+              <DeleteIcon className="delete-icon" />
+            </ButtonDelete>
+          )}
         </InputElementContainer>
         {props?.textMessage && (
           <TextMessage
