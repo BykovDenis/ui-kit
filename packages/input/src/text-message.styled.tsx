@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
-import IInput from '../types/iinput';
+import Iinput from '../types/iinput';
 
 const TextMessage =
   styled('p') <
-  IInput >
+  Iinput >
   `
   display: block;
   margin: 0;
   padding: 0;
-  font-family: ${(props: IInput) => props.fontFamily};
-  font-size: ${(props: IInput) => props.fontSize - 2}px; 
+  font-family: ${(props: Iinput) => props.fontFamily};
+  font-size: ${(props: Iinput) => props.fontSize - 2}px; 
   text-align: left;  
-  color: ${(props: IInput) => props?.color};
+  color: ${(props: Iinput) => props?.color};
 `;
 
 export default TextMessage;

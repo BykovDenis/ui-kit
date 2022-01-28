@@ -1,7 +1,7 @@
-import IInput from '../../input/types/iinput';
+import Iinput from '../../input/types/iinput';
 import ILabel from '../../label/types/ilabel';
 
-interface ITextField extends IInput, ILabel {
+interface ITextField extends Iinput, ILabel {
   baseFontSize?: number;
   fontFamily?: string;
   fontSize?: number;

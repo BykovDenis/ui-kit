@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
-import IInput from '../types/iinput';
+import Iinput from '../types/iinput';
 import ButtonDelete from './button-delete.styled';
 import DeleteIcon from './delete-icon';
 import InputStyled from './input.styled';
@@ -16,7 +16,7 @@ const DEFAULT_HEIGHT = 30;
 const TEXT_ALIGN = 'right';
 const TIMEOUT = 1000;
 
-const Input: React.FunctionComponent<IInput> = (props: IInput) => {
+const Input: React.FunctionComponent<Iinput> = (props: Iinput) => {
   const [inputValue, setInputValue] = useState(props.value);
   const [evtObj, setEvtObject] = useState(null);
   const [isNotRunDebounce, setIsRunDebounce] = useState(false);
@@ -86,6 +86,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     const focusColor: string = backgroundColor;
 
+    const ReactInput: React.FunctionComponent = (props: any) => <input {...props} />;
+
     return (
       <InputContainer backgroundImage={props?.backgroundImage} height={props?.height} width={props?.width}>
         <InputElementContainer>
@@ -115,6 +117,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             error={props?.error}
             id={props?.id}
             name={props?.name}
+            inputComponent={ReactInput}
+            isSeparateNumberFormat={props?.isSeparateNumberFormat}
           />
           <InputUnderline
             name={props?.name}
