@@ -56,13 +56,13 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   };
 
   const onInputFocus = () => {
-    props?.onFocus();
     setIsFocus(true);
+    props?.onFocus();
   };
 
   const onInputBlur = () => {
-    props?.onBlur();
     setIsFocus(false);
+    props?.onBlur();
   };
 
   const componentThemed: any = (theme: ITheme) => {
