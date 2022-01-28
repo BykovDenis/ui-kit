@@ -6,7 +6,7 @@ interface IInput {
   ReactThemeContext?: any;
   backgroundColor?: string;
   backgroundImage?: string;
-  baseFontSize: string;
+  baseFontSize: number;
   borderColor?: string;
   className?: any;
   color?: string;
@@ -25,14 +25,17 @@ interface IInput {
   hoverColor?: string;
   id?: string;
   name: string;
+  onBlur: () => void;
   onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: () => void;
+  onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onRemove?: (name: string, value: string) => void;
   textAlign: string;
   textMessage?: string;
   theme?: any;
   type?: string;
   value: number | string;
-  variant: IInputVariants;
+  variant?: IInputVariants;
   width: number;
 }
 
