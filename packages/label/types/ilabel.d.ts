@@ -7,8 +7,9 @@ interface ILabel {
   error?: any;
   focusColor?: string;
   fontFamily?: string;
-  fontSize?: string;
+  fontSize?: number;
   htmlFor?: string;
+  isFocus?: boolean;
   tabIndex?: string;
   theme?: any;
 }

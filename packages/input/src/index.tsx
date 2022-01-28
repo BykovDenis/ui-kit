@@ -12,7 +12,7 @@ import InputElementContainer from './input-element-container.styled';
 import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
 
-const DEFAULT_HEIGHT = '30';
+const DEFAULT_HEIGHT = 30;
 const TEXT_ALIGN = 'right';
 const TIMEOUT = 1000;
 
@@ -20,6 +20,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(props.value);
   const [evtObj, setEvtObject] = useState(null);
   const [isNotRunDebounce, setIsRunDebounce] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
 
   const cb = () => {
     props?.onChange(evtObj);
@@ -33,10 +34,15 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
   }, [isNotRunDebounce]);
 
+  const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setEvtObject(evt);
+    props.onInput(evt);
+  };
+
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt?.target;
     setInputValue(element.value);
-    setEvtObject(evt);
+    onInput(evt);
     if (!isNotRunDebounce) {
       setIsRunDebounce(true);
     }
@@ -47,6 +53,16 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     setEvtObject(null);
     props?.onRemove(props?.name, '');
     cb();
+  };
+
+  const onInputFocus = () => {
+    props?.onFocus();
+    setIsFocus(true);
+  };
+
+  const onInputBlur = () => {
+    props?.onBlur();
+    setIsFocus(false);
   };
 
   const componentThemed: any = (theme: ITheme) => {
@@ -62,7 +78,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     const color: string =
       (props?.colorTheme === 'normal' || !props.colorTheme) && !props?.error
-        ? theme?.palette?.baseFontColor
+        ? isFocus
+          ? theme?.palette?.primary?.main
+          : theme?.palette?.baseFontColor
         : theme?.palette?.secondary?.main;
 
     const focusColor: string = backgroundColor;
@@ -89,6 +107,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             dataset={props?.dataset}
             textAlign={props?.textAlign || TEXT_ALIGN}
             onChange={onInputChange}
+            onFocus={onInputFocus}
+            onBlur={onInputBlur}
             variant={props?.variant}
             borderColor={theme?.mainBlackColor}
             error={props?.error}
