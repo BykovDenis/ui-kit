@@ -35,14 +35,16 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   }, [isNotRunDebounce]);
 
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setEvtObject(evt);
-    props.onInput(evt);
+    props?.onInput(evt);
   };
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt?.target;
     setInputValue(element.value);
-    onInput(evt);
+    setEvtObject(evt);
+    if (props?.onInput) {
+      onInput(evt);
+    }
     if (!isNotRunDebounce) {
       setIsRunDebounce(true);
     }
@@ -52,7 +54,6 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     setInputValue('');
     setEvtObject(null);
     props?.onRemove(props?.name, '');
-    cb();
   };
 
   const onInputFocus = () => {
