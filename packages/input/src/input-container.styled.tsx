@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import IInput from '../types/iinput';
+import Iinput from '../types/iinput';
 
 const InputContainer =
   styled('div') <
-  IInput >
+  Iinput >
   `
   position: relative;  
   display: flex;
@@ -12,8 +12,8 @@ const InputContainer =
   align-items: flex-start;
   margin: 0;
   padding: 0;
-  width: ${(props: IInput) => (props?.width ? `${props?.width}px` : `100%`)};
-  height: ${(props: IInput) => props?.height + 5}px;
+  width: ${(props: Iinput) => (props?.width ? `${props?.width}px` : `100%`)};
+  height: ${(props: Iinput) => props?.height + 5}px;
 `;
 
 export default InputContainer;

@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 import Variants from '../../enums/variants';
-import IInput from '../types/iinput';
+import Iinput from '../types/iinput';
 
 const InputUnderline =
   styled('div') <
-  IInput >
+  Iinput >
   `
-  display: ${(props: IInput) => (props?.variant === Variants.Outlined ? 'none' : 'block')} ;
-  width: ${(props: IInput) => (props?.width ? `${props?.width}px` : `100%`)};
+  display: ${(props: Iinput) => (props?.variant === Variants.Outlined ? 'none' : 'block')} ;
+  width: ${(props: Iinput) => (props?.width ? `${props?.width}px` : `100%`)};
   height: 1px;
-  background-color: ${(props: IInput) => props.color};
+  background-color: ${(props: Iinput) => props.color};
 `;
 
 export default InputUnderline;
