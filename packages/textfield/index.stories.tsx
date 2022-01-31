@@ -2,7 +2,7 @@ import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
 import TextField from  './src/index';
-import ITextField from './types/itext-field';
+import ItextField from './types/itext-field';
 
 export default {
   title: 'Components/TextField',
@@ -21,7 +21,7 @@ export default {
   },
 } as ComponentMeta<typeof TextField>;
 
-const Template: ComponentStory<typeof TextField> = (args: ITextField) => {
+const Template: ComponentStory<typeof TextField> = (args: ItextField) => {
 
   const [ value, setValue ] = useState('323');
 
