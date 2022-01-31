@@ -128,12 +128,13 @@ const Input: React.FunctionComponent<Iinput> = (props: Iinput) => {
             disabled={props?.disabled}
             width={props.width}
           />
-          {inputValue && inputValue > '' && (
+          {inputValue && inputValue > '' && !props?.disabled && (
             <ButtonDelete
               onClick={onInputDelete}
               className="delete-button"
               hoverColor={hoverColor}
               focusColor={focusColor}
+              disabled={props?.disabled}
             >
               <DeleteIcon className="delete-icon" />
             </ButtonDelete>
