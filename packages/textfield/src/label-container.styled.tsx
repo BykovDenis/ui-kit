@@ -11,7 +11,7 @@ const LabelContainer =
   padding-right: 4px;
   display: block;
   position: absolute;
-  top: ${(props: ItextField) => (props.isExistValue ? '-10px' : '34%')};
+  top: ${(props: ItextField) => (props.isExistValue ? '-10px' : '35%')};
   left: 5px;
   z-index: 1;
   transform: translateY(${(props: ItextField) => (props.isExistValue ? 0 : '-50%')}) rotate(360deg);
