@@ -2,7 +2,7 @@ import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
 import Input from  './src/index';
-import Iinput from './types/iinput';
+import IInput from './types/iinput';
 
 export default {
   title: 'Components/Input',
@@ -11,6 +11,7 @@ export default {
     isSeparateNumberFormat: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
     disabled: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
     error: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
+    type: { control: { type: 'select', options: [ 'number', 'text', 'date', 'file' ] }, defaultValue: 'text'  },
     fontSize: { control: { type: 'select', options: [ 10,12,14,16 ] }  },
     textAlign: { control: { type: 'select', options: [ 'right', 'left', 'center' ] }  },
     variant: { control: { type: 'select', options: [ 'normal', 'outlined' ] }  },
@@ -22,7 +23,7 @@ export default {
   },
 } as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof Input> = (args: Iinput) => {
+const Template: ComponentStory<typeof Input> = (args: IInput) => {
 
   const [ value, setValue ] = useState(null);
 

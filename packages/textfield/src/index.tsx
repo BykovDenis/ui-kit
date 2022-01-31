@@ -74,6 +74,11 @@ const TextField: React.FunctionComponent<ItextField> = (props: ItextField) => {
           onFocus={onInputFocus}
           onBlur={onInputBlur}
           disabled={props?.disabled}
+          required={props?.required}
+          step={props?.step}
+          min={props?.min}
+          max={props?.max}
+          type={props?.type}
         />
       </TextFieldContainer>
     );
