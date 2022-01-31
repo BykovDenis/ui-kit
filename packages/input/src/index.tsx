@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
-import Iinput from '../types/iinput';
+import IInput from '../types/IInput';
 import ButtonDelete from './button-delete.styled';
 import DeleteIcon from './delete-icon';
 import InputStyled from './input.styled';
@@ -15,8 +15,9 @@ import TextMessage from './text-message.styled';
 const DEFAULT_HEIGHT = 30;
 const TEXT_ALIGN = 'right';
 const TIMEOUT = 1000;
+const TYPE_TEXT = 'text';
 
-const Input: React.FunctionComponent<Iinput> = (props: Iinput) => {
+const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(props.value);
   const [evtObj, setEvtObject] = useState(null);
   const [isNotRunDebounce, setIsRunDebounce] = useState(false);
@@ -119,6 +120,9 @@ const Input: React.FunctionComponent<Iinput> = (props: Iinput) => {
             name={props?.name}
             inputComponent={ReactInput}
             isSeparateNumberFormat={props?.isSeparateNumberFormat}
+            required={props?.required}
+            step={props?.step}
+            type={props?.type || TYPE_TEXT}
           />
           <InputUnderline
             name={props?.name}

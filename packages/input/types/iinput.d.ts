@@ -2,7 +2,7 @@ import React from 'react';
 
 import IInputVariants from './iinput-variants';
 
-interface Iinput {
+interface IInput {
   ReactThemeContext?: any;
   backgroundColor?: string;
   backgroundImage?: string;
@@ -25,12 +25,16 @@ interface Iinput {
   hoverColor?: string;
   id?: string;
   isSeparateNumberFormat?: boolean;
+  max?: number;
+  min?: number;
   name: string;
   onBlur: () => void;
   onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onRemove?: (name: string, value: string) => void;
+  required?: boolean;
+  step?: number;
   textAlign: string;
   textMessage?: string;
   theme?: any;
@@ -40,4 +44,4 @@ interface Iinput {
   width: number;
 }
 
-export default Iinput;
+export default IInput;
