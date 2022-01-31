@@ -26,6 +26,7 @@ const Input =
   border-radius: ${(props: Iinput) => (props?.variant === Variants.Outlined ? '3px' : 0)};  
   border-color: ${(props: Iinput) => (props?.variant === Variants.Outlined ? props?.borderColor : 'transparent')};
   color: ${(props: Iinput) => props?.color};
+  background-color: transparent;  
   &:hover {
     border-color: ${(props: Iinput) => (props?.variant === Variants.Outlined ? props?.hoverColor : 'transparent')};
     background-color: ${(props: Iinput) => props?.hoverBackgroundColor};
