@@ -50,7 +50,7 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
 
     return (
-      <TextFieldContainer backgroundImage={props?.backgroundImage} width={props?.width}>
+      <TextFieldContainer backgroundImage={props?.backgroundImage} width={props?.width} height={props?.height}>
         <LabelContainer isExistValue={isExistValue || isFocus}>
           <Label htmlFor={props.id} fontSize={labelFontSize} isFocus={isFocus}>
             {props?.label}

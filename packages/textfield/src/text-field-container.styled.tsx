@@ -8,7 +8,7 @@ const TextFieldContainerStyled = styled('div')`
   margin: 0;
   padding: 0;
   width: ${(props: ITextField) => (props?.width ? `${props?.width}px` : `100%`)};
-  height: ${(props: ITextField) => props?.height + 5}px;
+  height: ${(props: ITextField) => (props?.height ? `${props?.height + 5}px` : 'calc(100% + 5px)')};
 `;
 
 export default TextFieldContainerStyled;
