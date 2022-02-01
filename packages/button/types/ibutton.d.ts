@@ -19,7 +19,7 @@ interface Ibutton {
   theme?: any;
   type?: string;
   variant?: IButtonVariants;
-  width?: number;
+  width?: number | string;
 }
 
 export default Ibutton;
