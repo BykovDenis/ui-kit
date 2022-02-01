@@ -79,6 +79,7 @@ const TextField: React.FunctionComponent<ItextField> = (props: ItextField) => {
           min={props?.min}
           max={props?.max}
           type={props?.type}
+          fontWeight={props?.fontWeight}
         />
       </TextFieldContainer>
     );

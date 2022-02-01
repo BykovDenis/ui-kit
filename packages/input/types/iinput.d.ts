@@ -20,6 +20,7 @@ interface IInput {
   focusColor?: string;
   fontFamily: string;
   fontSize: number;
+  fontWeight?: number;
   height: number;
   hoverBackgroundColor?: string;
   hoverColor?: string;
@@ -39,9 +40,9 @@ interface IInput {
   textMessage?: string;
   theme?: any;
   type?: string;
-  value: number | string;
   variant?: IInputVariants;
   width: number;
+  value: number | string;
 }
 
 export default IInput;
