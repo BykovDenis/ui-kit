@@ -5,6 +5,8 @@ import ITheme from '../../styles/types/itheme';
 import ILabel from '../types/ilabel';
 import LabelStyled from './label.styled';
 
+const FONT_WEIGHT_REGULAR = 400;
+
 const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
   const componentThemed: any = (theme: ITheme) => {
     const color: string =
@@ -22,6 +24,7 @@ const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
         color={color}
         fontSize={props?.fontSize ?? theme?.baseFontSize}
         htmlFor={props?.htmlFor}
+        fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
       >
         {props.children}
       </LabelStyled>
