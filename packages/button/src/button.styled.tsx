@@ -33,8 +33,8 @@ const ButtonStyled =
     cursor: pointer;    
     border: ${(props: IButton) =>
       props?.variant === OUTLINED ? `1px solid ${props.backgroundColor}` : '1px solid transparent'};
-    width: ${(props: IButton) => props?.width ?? 'initial'};
-    height: ${(props: IButton) => props?.height ?? 'initial'};
+    width: ${(props: IButton) => props?.width ?? 'initial'}px;
+    height: ${(props: IButton) => props?.height ?? 'initial'}px;
 
     &:focus {
       outline: 1px solid ${(props: IButton) => rgbToRgba(props?.focusColor, 0.3)};

@@ -4,6 +4,8 @@ import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
 import ButtonStyled from './button.styled';
 
+const WIDTH_DEFAULT = 190;
+
 const Button: React.FunctionComponent = (props: any) => {
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string =
@@ -13,7 +15,7 @@ const Button: React.FunctionComponent = (props: any) => {
     return (
       <ButtonStyled
         {...props}
-        width={props.width}
+        width={props.width || WIDTH_DEFAULT}
         height={props.height}
         type={props.type ?? 'button'}
         onClick={props?.onClick}

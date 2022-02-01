@@ -14,12 +14,12 @@ interface Ibutton {
   focusColor?: string;
   fontFamily: string;
   fontSize: string;
-  height: string;
+  height?: number;
   onClick?: (evt: any) => void;
   theme?: any;
   type?: string;
   variant?: IButtonVariants;
-  width: string;
+  width?: number;
 }
 
 export default Ibutton;
