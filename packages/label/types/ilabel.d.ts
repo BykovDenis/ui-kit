@@ -8,6 +8,7 @@ interface ILabel {
   focusColor?: string;
   fontFamily?: string;
   fontSize?: number;
+  fontWeight?: number;
   htmlFor?: string;
   isFocus?: boolean;
   tabIndex?: string;
