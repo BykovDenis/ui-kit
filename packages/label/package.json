@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/label",
-  "version": "0.4.10",
+  "version": "0.4.11",
   "description": "Riski react UI",
   "main": "dist/index.js",
   "module": "styles/src/index.js",
