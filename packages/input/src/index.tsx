@@ -16,6 +16,7 @@ const DEFAULT_HEIGHT = 30;
 const TEXT_ALIGN = 'right';
 const TIMEOUT = 1000;
 const TYPE_TEXT = 'text';
+const FONT_WEIGHT_REGULAR = 400;
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(props.value);
@@ -123,6 +124,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             required={props?.required}
             step={props?.step}
             type={props?.type || TYPE_TEXT}
+            fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
           />
           <InputUnderline
             name={props?.name}

@@ -13,6 +13,7 @@ export default {
     error: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
     type: { control: { type: 'select', options: [ 'number', 'text', 'date', 'file' ] }, defaultValue: 'text'  },
     fontSize: { control: { type: 'select', options: [ 10,12,14,16 ] }  },
+    fontWeight: { control: { type: 'select', options: [ 100, 400, 600, 900 ], defaultValue: 400 }  },
     textAlign: { control: { type: 'select', options: [ 'right', 'left', 'center' ] }  },
     variant: { control: { type: 'select', options: [ 'normal', 'outlined' ] }  },
     onChange: { action: 'changed' }
