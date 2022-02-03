@@ -25,6 +25,7 @@ interface IInput {
   hoverColor?: string;
   id?: string;
   isNotClearable?: boolean;
+  isReadOnly?: boolean;
   isSeparateNumberFormat?: boolean;
   max?: number;
   min?: number;
@@ -34,7 +35,6 @@ interface IInput {
   onFocus?: () => void;
   onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onRemove?: (name: string, value: string, evt?: React.ChangeEvent<HTMLInputElement>) => void;
-  ref?: any;
   required?: boolean;
   step?: number;
   textAlign: string;
@@ -44,6 +44,7 @@ interface IInput {
   value: number | string;
   variant?: IInputVariants;
   width: number;
+  ref?: any;
 }
 
 export default IInput;

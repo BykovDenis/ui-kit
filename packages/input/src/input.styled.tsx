@@ -15,7 +15,7 @@ const Input =
   height: ${(props: IInput) => (props?.variant === Variants.Outlined ? props.height : props.height - 1)}px;
   text-align: ${(props: IInput) => props?.textAlign};   
   padding: 8px 10px;
-  padding-right: ${(props: IInput) => (props.isNotClearable ? '10px' : '25px')};
+  padding-right: ${(props: IInput) => (props.isNotClearable || props?.isReadOnly || props.disabled ? '10px' : '25px')};
   border-width: 1px;
   border-style: solid;
   border-radius: ${(props: IInput) => (props?.variant === Variants.Outlined ? '3px' : 0)};  
@@ -49,9 +49,6 @@ const Input =
     & + .underline {
       background-color: ${(props: IInput) => props?.focusColor};
     }
-    & ~ .text-message {
-      color: ${(props: IInput) => props?.focusColor};
-    }
   }
   &:disabled:focus {
     border-color: ${(props: IInput) => (props?.variant === Variants.Outlined ? props?.borderColor : 'transparent')};
@@ -69,6 +66,23 @@ const Input =
     color: ${(props: IInput) => props?.disabledColor};
   }
   &:disabled:hover {
+    border-color: ${(props: IInput) => (props?.variant === Variants.Outlined ? props?.disabledColor : 'transparent')};
+  }
+  &:read-only:focus {
+    border-color: ${(props: IInput) => (props?.variant === Variants.Outlined ? props?.borderColor : 'transparent')};
+    box-shadow: none;
+    color: ${(props: IInput) => props?.disabledColor};
+    & + .underline {
+      background-color: ${(props: IInput) => props?.disabledColor};
+    }
+  }
+  &:read-only:hover + .underline {
+    background-color: ${(props: IInput) => props?.disabledColor};
+  }
+  &:read-only:hover ~ .text-message {
+    color: ${(props: IInput) => props?.disabledColor};
+  }
+  &:read-only:hover {
     border-color: ${(props: IInput) => (props?.variant === Variants.Outlined ? props?.disabledColor : 'transparent')};
   }
 `;
