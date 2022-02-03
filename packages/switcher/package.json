@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/switcher",
-  "version": "0.4.12",
+  "version": "0.4.13",
   "description": "A simple switcher component",
   "main": "dist/index.js",
   "scripts": {
