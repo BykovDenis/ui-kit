@@ -56,7 +56,6 @@
     "webpack": "5.65"
   },
   "dependencies": {
-    "debounce": "^1.2.1",
-    "react-number-format": "^4.9.1"
+    "debounce": "^1.2.1"
   }
 }

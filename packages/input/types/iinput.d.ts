@@ -34,15 +34,16 @@ interface IInput {
   onFocus?: () => void;
   onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onRemove?: (name: string, value: string) => void;
+  ref?: any;
   required?: boolean;
   step?: number;
   textAlign: string;
   textMessage?: string;
   theme?: any;
   type?: string;
+  value: number | string;
   variant?: IInputVariants;
   width: number;
-  value: number | string;
 }
 
 export default IInput;

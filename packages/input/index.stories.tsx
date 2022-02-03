@@ -30,8 +30,9 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
-    setValue(element?.value);
-    console.log(element?.value);
+    const value: string = element?.value;
+    setValue(value);
+    console.log(value);
   }
 
   const onInputRemove = () => {
