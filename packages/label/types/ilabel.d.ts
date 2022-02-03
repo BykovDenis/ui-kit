@@ -10,7 +10,9 @@ interface ILabel {
   fontSize?: number;
   fontWeight?: number;
   htmlFor?: string;
+  isDisabled?: boolean;
   isFocus?: boolean;
+  isReadOnly?: boolean;
   tabIndex?: string;
   theme?: any;
 }

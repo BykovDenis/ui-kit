@@ -11,7 +11,8 @@ export default {
     isSeparateNumberFormat: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
     disabled: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
     error: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
-    // isNotClearable: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
+    isReadOnly: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false },
+    isNotClearable: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
     type: { control: { type: 'select', options: [ 'number', 'text', 'date', 'file' ] }, defaultValue: 'text'   },
     fontSize: { control: { type: 'select', options: [ 10,12,14,16 ] }, defaultValue: 14  },
     fontWeight: { control: { type: 'select', options: [ 100, 400, 600, 900 ] }, defaultValue: 400  },
@@ -41,7 +42,7 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
     console.log('');
   }
 
-  return <div style={{ width: '190px' }}><Input {...args} isNotClearable={true} type="text" name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} /></div>
+  return <div style={{ width: '190px' }}><Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} /></div>
 }
 
 export const NormalInput = Template.bind({});

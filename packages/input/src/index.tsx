@@ -113,7 +113,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     const color: string =
       (props?.colorTheme === 'normal' || !props.colorTheme) && !props?.error
-        ? isFocus
+        ? isFocus && !props?.isReadOnly
           ? theme?.palette?.primary?.main
           : theme?.palette?.baseFontColor
         : theme?.palette?.secondary?.main;
@@ -160,6 +160,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             ref={inputRef}
             min={props?.min}
             max={props?.max}
+            readOnly={props?.isReadOnly}
           />
           <InputUnderline
             name={props?.name}
@@ -169,7 +170,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             disabled={props?.disabled}
             width={props.width}
           />
-          {!props.isNotClearable && inputValue && inputValue > '' && !props?.disabled && (
+          {!props?.isReadOnly && !props.isNotClearable && inputValue && inputValue > '' && !props?.disabled && (
             <ButtonDelete
               onClick={onInputDelete}
               className="delete-button"

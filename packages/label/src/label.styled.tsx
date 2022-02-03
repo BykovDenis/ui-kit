@@ -14,7 +14,7 @@ const Label =
       align-items: center;
       justify-content: flex-start;
       font-family: ${(props: ILabel) => props.fontFamily};
-      cursor: pointer;
+      cursor: ${(props: ILabel) => (!props.isReadOnly && !props.isDisabled ? 'pointer' : 'default')};
       color: ${(props: ILabel) => props.color};
       font-size: ${(props: ILabel) => props.fontSize}px;
       line-height: 0.7;

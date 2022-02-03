@@ -11,6 +11,7 @@ export default {
     isSeparateNumberFormat: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
     disabled: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
     error: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
+    isReadOnly: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false },
     isNotClearable: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
     type: { control: { type: 'select', options: [ 'number', 'text', 'date', 'file' ] }, defaultValue: 'text'   },
     fontSize: { control: { type: 'select', options: [ 10,12,14,16 ] }, defaultValue: 14  },

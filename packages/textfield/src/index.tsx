@@ -52,7 +52,14 @@ const TextField: React.FunctionComponent<ItextField> = (props: ItextField) => {
     return (
       <TextFieldContainer backgroundImage={props?.backgroundImage} width={props?.width} height={props?.height}>
         <LabelContainer isExistValue={isExistValue || isFocus}>
-          <Label htmlFor={props.id} fontSize={labelFontSize} isFocus={isFocus} fontWeight={props?.fontWeight}>
+          <Label
+            htmlFor={props.id}
+            fontSize={labelFontSize}
+            isFocus={isFocus}
+            isReadOnly={props.isReadOnly}
+            fontWeight={props?.fontWeight}
+            isDisabled={props.disabled}
+          >
             {props?.label}
           </Label>
         </LabelContainer>
@@ -81,6 +88,7 @@ const TextField: React.FunctionComponent<ItextField> = (props: ItextField) => {
           max={props?.max}
           type={props?.type}
           fontWeight={props?.fontWeight}
+          isReadOnly={props?.isReadOnly}
         />
       </TextFieldContainer>
     );

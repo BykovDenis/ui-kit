@@ -11,7 +11,7 @@ const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
   const componentThemed: any = (theme: ITheme) => {
     const color: string =
       (props?.colorTheme === 'normal' || !props.colorTheme) && !props?.error
-        ? props?.isFocus
+        ? props?.isFocus && !props.isReadOnly && !props.isDisabled
           ? theme?.palette?.primary?.main
           : theme?.palette?.baseFontColor
         : theme?.palette?.secondary?.main;
