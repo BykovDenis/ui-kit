@@ -126,6 +126,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
       <InputContainer backgroundImage={props?.backgroundImage} height={props?.height} width={props?.width}>
         <InputElementContainer>
           <InputStyled
+            {...props}
             value={inputValue}
             disabled={props?.disabled}
             width={props.width}
@@ -141,7 +142,6 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             fontSize={props?.fontSize ?? theme?.baseFontSize}
             className={props?.className}
             fontFamily={theme?.fontFamily}
-            dataset={props?.dataset}
             textAlign={props?.textAlign || TEXT_ALIGN}
             onChange={onInputChange}
             onFocus={onInputFocus}
@@ -149,7 +149,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             variant={props?.variant}
             borderColor={theme?.mainBlackColor}
             error={props?.error}
-            id={props?.id}
+            id={props?.id}r
             name={props?.name}
             inputComponent={ReactInput}
             isSeparateNumberFormat={props?.isSeparateNumberFormat}

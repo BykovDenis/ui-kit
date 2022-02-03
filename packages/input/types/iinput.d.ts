@@ -11,7 +11,6 @@ interface IInput {
   className?: any;
   color?: string;
   colorTheme?: string;
-  dataset?: any;
   disabled?: boolean;
   disabledBackgroundColor?: string;
   disabledColor?: string;
