@@ -1,5 +1,5 @@
 import debounce from 'debounce';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
@@ -23,9 +23,23 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [evtObj, setEvtObject] = useState(null);
   const [isNotRunDebounce, setIsRunDebounce] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
+  const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const cb = () => {
-    props?.onChange(evtObj);
+    let value: number | string = evtObj.target.value;
+    const evtObjNew = {...evtObj};
+    if (props?.min !== undefined && props?.min !== null) {
+      if (parseFloat(value as string) < props?.min) {
+        value = props?.min;
+      }
+    }
+    if (props?.max !== undefined && props?.max !== null) {
+      if (parseFloat(value as string) > props?.max) {
+        value = props?.max;
+      }
+    }
+    evtObjNew.target.value = value;
+    props?.onChange(evtObjNew);
     setIsRunDebounce(false);
   };
 
@@ -33,6 +47,14 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     if (isNotRunDebounce) {
       const executeDebounce = debounce(cb, TIMEOUT);
       executeDebounce();
+    } else {
+      if (inputRef?.current) {
+        const inputElement = inputRef?.current;
+        if (inputElement) {
+          inputElement.value = props?.value;
+          setInputValue(props?.value);
+        }
+      }
     }
   }, [isNotRunDebounce]);
 
@@ -60,11 +82,21 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
   const onInputFocus = () => {
     setIsFocus(true);
+    if (inputRef?.current && props?.value !== null && props?.isSeparateNumberFormat) {
+      const inputElement = inputRef?.current;
+      if (inputElement) {
+        inputElement.value = props?.value;
+        setInputValue(props?.value);
+      }
+    }
     props?.onFocus();
   };
 
   const onInputBlur = () => {
     setIsFocus(false);
+    if (props?.isSeparateNumberFormat && props?.value !== null) {
+      setInputValue(parseFloat(props.value as string).toLocaleString('ru-RU').replace(',', '.'))
+    }
     props?.onBlur();
   };
 
@@ -125,6 +157,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             step={props?.step}
             type={props?.type || TYPE_TEXT}
             fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
+            ref={inputRef}
+            min={props?.min}
+            max={props?.max}
           />
           <InputUnderline
             name={props?.name}

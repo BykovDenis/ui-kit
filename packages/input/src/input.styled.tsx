@@ -4,14 +4,9 @@ import styled from 'styled-components';
 import Variants from '../../enums/variants';
 import rgbToRgba from '../../helpers/rgb-to-rgba';
 import IInput from '../types/iinput';
-import NumberFormatCustom from './number-format-custom';
-
-const NativeInput: React.FunctionComponent<IInput> = (props: IInput) => <input {...props} />;
 
 const Input =
-  styled((props: IInput) =>
-    props.isSeparateNumberFormat ? <NumberFormatCustom {...props} name={props.name} /> : <NativeInput {...props} />
-  ) <
+  styled.input <
   IInput >
   `
   box-sizing: border-box;
