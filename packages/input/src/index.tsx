@@ -74,10 +74,10 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
   };
 
-  const onInputDelete = () => {
+  const onInputDelete = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue('');
     setEvtObject(null);
-    props?.onRemove(props?.name, '');
+    props?.onRemove(props?.name, '', evt);
   };
 
   const onInputFocus = () => {
@@ -169,7 +169,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             disabled={props?.disabled}
             width={props.width}
           />
-          {inputValue && inputValue > '' && !props?.disabled && (
+          {!props.isNotClearable && inputValue && inputValue > '' && !props?.disabled && (
             <ButtonDelete
               onClick={onInputDelete}
               className="delete-button"

@@ -8,11 +8,15 @@ export default {
   title: 'Components/TextField',
   component: TextField,
   argTypes: {
+    isSeparateNumberFormat: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
     disabled: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
     error: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
-    fontSize: { control: { type: 'select', options: [ 10,12,14,16 ] }  },
+    isNotClearable: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
+    type: { control: { type: 'select', options: [ 'number', 'text', 'date', 'file' ] }, defaultValue: 'text'   },
+    fontSize: { control: { type: 'select', options: [ 10,12,14,16 ] }, defaultValue: 14  },
+    fontWeight: { control: { type: 'select', options: [ 100, 400, 600, 900 ] }, defaultValue: 400  },
     textAlign: { control: { type: 'select', options: [ 'right', 'left', 'center' ] }  },
-    variant: { control: { type: 'select', options: [ 'normal', 'outlined' ] }  },
+    variant: { control: { type: 'select', options: [ 'normal', 'outlined' ]}, defaultValue: 'outline'   },
     onChange: { action: 'changed' }
   },
   args: {

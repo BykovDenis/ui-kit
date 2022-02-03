@@ -57,6 +57,7 @@ const TextField: React.FunctionComponent<ItextField> = (props: ItextField) => {
           </Label>
         </LabelContainer>
         <Input
+          {...props}
           id={props.id}
           name={props.name}
           height={props?.height}

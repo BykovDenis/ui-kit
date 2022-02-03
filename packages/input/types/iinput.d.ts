@@ -24,6 +24,7 @@ interface IInput {
   hoverBackgroundColor?: string;
   hoverColor?: string;
   id?: string;
+  isNotClearable?: boolean;
   isSeparateNumberFormat?: boolean;
   max?: number;
   min?: number;
@@ -32,7 +33,7 @@ interface IInput {
   onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void;
   onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  onRemove?: (name: string, value: string) => void;
+  onRemove?: (name: string, value: string, evt?: React.ChangeEvent<HTMLInputElement>) => void;
   ref?: any;
   required?: boolean;
   step?: number;

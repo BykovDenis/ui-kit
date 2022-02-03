@@ -15,7 +15,7 @@ const Input =
   height: ${(props: IInput) => (props?.variant === Variants.Outlined ? props.height : props.height - 1)}px;
   text-align: ${(props: IInput) => props?.textAlign};   
   padding: 8px 10px;
-  padding-right: 25px;
+  padding-right: ${(props: IInput) => (props.isNotClearable ? '10px' : '25px')};
   border-width: 1px;
   border-style: solid;
   border-radius: ${(props: IInput) => (props?.variant === Variants.Outlined ? '3px' : 0)};  
