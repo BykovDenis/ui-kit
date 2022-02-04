@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/radio",
-  "version": "0.4.17",
+  "version": "0.4.18",
   "description": "A simple radio component",
   "main": "dist/index.js",
   "scripts": {
