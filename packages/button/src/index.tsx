@@ -14,7 +14,7 @@ const Button: React.FunctionComponent = (props: any) => {
       <ButtonStyled
         {...props}
         width={props?.width}
-        height={props.height}
+        height={props?.height}
         type={props.type ?? 'button'}
         onClick={props?.onClick}
         disabled={props?.disabled}
