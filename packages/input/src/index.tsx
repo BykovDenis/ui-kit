@@ -149,7 +149,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             variant={props?.variant}
             borderColor={theme?.mainBlackColor}
             error={props?.error}
-            id={props?.id}r
+            id={props?.id}
             name={props?.name}
             inputComponent={ReactInput}
             isSeparateNumberFormat={props?.isSeparateNumberFormat}
