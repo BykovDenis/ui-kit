@@ -129,7 +129,7 @@ module.exports = {
       //   },
       // },
       {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.icon$/, /\.ico$/],
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.icon$/, /\.ico$/, /\.svg$/],
         loader: require.resolve('url-loader'),
         options: {
           name: 'static/media/[name].[ext]',

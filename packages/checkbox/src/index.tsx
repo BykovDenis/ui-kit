@@ -8,7 +8,7 @@ import CheckboxStyled from './checkbox.styled';
 import FormControl from './form-control.styled';
 
 const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
-  const Component = ({ theme }: { theme: ITheme }) => (
+  const componentThemed: any = (theme: ITheme) => (
     <FormControl>
       <CheckboxStyled
         {...props}
@@ -35,17 +35,9 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
     </FormControl>
   );
 
-  Component.defaultProps = {
-    indeterminate: false,
-  };
+  const Consumer: any = props.ReactThemeContext ? props.ReactThemeContext.Consumer : ThemeContext.Consumer;
 
-  return props.ReactThemeContext ? (
-    <props.ReactThemeContext.Consumer>
-      {(theme: ITheme) => <Component theme={theme} />}
-    </props.ReactThemeContext.Consumer>
-  ) : (
-    <ThemeContext.Consumer>{(theme: ITheme) => <Component theme={theme} />}</ThemeContext.Consumer>
-  );
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default Checkbox;

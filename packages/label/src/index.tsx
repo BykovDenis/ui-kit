@@ -1,30 +1,39 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import hexToRgba from '../../helpers/hex-to-rgba';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
 import ILabel from '../types/ilabel';
 import LabelStyled from './label.styled';
 
+const FONT_WEIGHT_REGULAR = 400;
+
 const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
-  return props.ReactThemeContext ? (
-    <props.ReactThemeContext.Consumer>
-      {(theme: ITheme) => (
-        <LabelStyled theme={theme} className={props?.className} fontFamily={theme?.fontFamily}>
-          {props.children}
-        </LabelStyled>
-      )}
-    </props.ReactThemeContext.Consumer>
-  ) : (
-    <ThemeContext.Consumer>
-      {(theme: ITheme) => (
-        <LabelStyled {...props} theme={theme} className={props?.className} fontFamily={theme?.fontFamily}>
-          {props.children}
-        </LabelStyled>
-      )}
-    </ThemeContext.Consumer>
-  );
+  const componentThemed: any = (theme: ITheme) => {
+    const color: string =
+      (props?.colorTheme === 'normal' || !props.colorTheme) && !props?.error
+        ? props?.isFocus && !props.isReadOnly && !props.isDisabled
+          ? theme?.palette?.primary?.main
+          : theme?.palette?.baseFontColor
+        : theme?.palette?.secondary?.main;
+
+    return (
+      <LabelStyled
+        className={props?.className}
+        fontFamily={theme?.fontFamily}
+        focusColor={color}
+        color={color}
+        fontSize={props?.fontSize ?? theme?.baseFontSize}
+        htmlFor={props?.htmlFor}
+        fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
+      >
+        {props.children}
+      </LabelStyled>
+    );
+  };
+
+  const Consumer: any = props.ReactThemeContext ? props.ReactThemeContext.Consumer : ThemeContext.Consumer;
+
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default Label;

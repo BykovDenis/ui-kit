@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ThemeContext from "../styles/themes";
+import ThemeContext from '../styles/src/themes';
 
 interface IButton {
   backgroundColor?: string;
@@ -14,7 +14,8 @@ interface IButton {
 }
 
 const Button =
-  styled('button')<IButton>
+  styled('button') <
+  IButton >
   `
   font-family: Roboto, Arial, sans-serif;
   border: none;
@@ -53,6 +54,33 @@ const Button =
   }
 `;
 
-export default (props: IButton) => props.ReactThemeContext
-  ? <props.ReactThemeContext.Consumer>{(theme: any) => <Button onClick={props?.onClick} disabled={props?.disabled} color={theme?.palette?.baseButtonFontColor} backgroundColor={theme?.palette?.primary?.main} theme={theme} >{props.children}</Button>}</props.ReactThemeContext.Consumer>
-  : <ThemeContext.Consumer>{(theme: any) => <Button color={props?.color || theme?.palette?.baseButtonFontColor} backgroundColor={props?.backgroundColor || theme?.palette?.primary?.main} theme={theme} onClick={props?.onClick} disabled={props?.disabled}  >{props.children}</Button>}</ThemeContext.Consumer>;
+export default (props: IButton) =>
+  props.ReactThemeContext ? (
+    <props.ReactThemeContext.Consumer>
+      {(theme: any) => (
+        <Button
+          onClick={props?.onClick}
+          disabled={props?.disabled}
+          color={theme?.palette?.baseButtonFontColor}
+          backgroundColor={theme?.palette?.primary?.main}
+          theme={theme}
+        >
+          {props.children}
+        </Button>
+      )}
+    </props.ReactThemeContext.Consumer>
+  ) : (
+    <ThemeContext.Consumer>
+      {(theme: any) => (
+        <Button
+          color={props?.color || theme?.palette?.baseButtonFontColor}
+          backgroundColor={props?.backgroundColor || theme?.palette?.primary?.main}
+          theme={theme}
+          onClick={props?.onClick}
+          disabled={props?.disabled}
+        >
+          {props.children}
+        </Button>
+      )}
+    </ThemeContext.Consumer>
+  );
