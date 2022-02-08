@@ -11,7 +11,7 @@ export default {
   argTypes: {
     variant: { control: { type: 'select', options: [null, 'text', 'outlined', 'contained']}},
     disabled: { control: { type: 'radio', options: [ true, false ] }  },
-    fontSize: { control: { type: 'select', options: [ '10px', '12px', '14px', '16px' ] }  },
+    fontSize: { control: { type: 'select', options: [ 10, 12, 14, 16] }  },
     colorTheme: { control: { type: 'select', options: [null, 'normal', 'warning'] }  }
   },
   args: {

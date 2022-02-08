@@ -3,11 +3,18 @@ interface ILabel {
   children?: any;
   className?: any;
   color?: string;
+  colorTheme?: string;
+  error?: any;
   focusColor?: string;
   fontFamily?: string;
-  fontSize?: string;
+  fontSize?: number;
+  fontWeight?: number;
   htmlFor?: string;
+  isDisabled?: boolean;
+  isFocus?: boolean;
+  isReadOnly?: boolean;
   tabIndex?: string;
+  theme?: any;
 }
 
 export default ILabel;

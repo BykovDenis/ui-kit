@@ -8,7 +8,7 @@ import FormControl from './form-control.styled';
 import RadioStyled from './radio.styled';
 
 const Radio: React.FunctionComponent<IRadio> = (props: any) => {
-  const Component = ({ theme }: { theme: ITheme }) => (
+  const componentThemed = (theme: ITheme) => (
     <FormControl>
       <RadioStyled
         {...props}
@@ -34,13 +34,9 @@ const Radio: React.FunctionComponent<IRadio> = (props: any) => {
     </FormControl>
   );
 
-  return props.ReactThemeContext ? (
-    <props.ReactThemeContext.Consumer>
-      {(theme: ITheme) => <Component theme={theme} />}
-    </props.ReactThemeContext.Consumer>
-  ) : (
-    <ThemeContext.Consumer>{(theme: ITheme) => <Component theme={theme} />}</ThemeContext.Consumer>
-  );
+  const Consumer: any = props.ReactThemeContext ? props.ReactThemeContext.Consumer : ThemeContext.Consumer;
+
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default Radio;

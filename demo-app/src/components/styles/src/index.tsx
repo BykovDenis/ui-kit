@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import ThemeContext, { themes } from "../styles/themes";
+
+import ThemeContext, { themes } from './themes';
 
 interface IRiskiReactUIProvider {
   children?: React.ReactNode;
@@ -12,4 +13,5 @@ SberRiskiReactUiProvider.defaultProps = {
   value: themes.dark,
 };
 
+export { ThemeContext, themes };
 export default React.memo(SberRiskiReactUiProvider);

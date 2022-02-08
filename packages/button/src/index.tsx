@@ -5,7 +5,7 @@ import ITheme from '../../styles/types/itheme';
 import ButtonStyled from './button.styled';
 
 const Button: React.FunctionComponent = (props: any) => {
-  const Component = ({ theme }: { theme: ITheme }) => {
+  const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string =
       props?.colorTheme === 'normal' || !props.colorTheme
         ? theme?.palette?.primary?.main
@@ -13,8 +13,8 @@ const Button: React.FunctionComponent = (props: any) => {
     return (
       <ButtonStyled
         {...props}
-        width={props.width}
-        height={props.height}
+        width={props?.width}
+        height={props?.height}
         type={props.type ?? 'button'}
         onClick={props?.onClick}
         disabled={props?.disabled}
@@ -33,13 +33,9 @@ const Button: React.FunctionComponent = (props: any) => {
     );
   };
 
-  return props.ReactThemeContext ? (
-    <props.ReactThemeContext.Consumer>
-      {(theme: ITheme) => <Component theme={theme} />}
-    </props.ReactThemeContext.Consumer>
-  ) : (
-    <ThemeContext.Consumer>{(theme: ITheme) => <Component theme={theme} />}</ThemeContext.Consumer>
-  );
+  const Consumer: any = props.ReactThemeContext ? props.ReactThemeContext.Consumer : ThemeContext.Consumer;
+
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(Button);
