@@ -89,6 +89,7 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
           type={props?.type}
           fontWeight={props?.fontWeight}
           isReadOnly={props?.isReadOnly}
+          getIsChangingState={props.getIsChangingState}
         />
       </TextFieldContainer>
     );
