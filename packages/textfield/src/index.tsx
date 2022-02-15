@@ -4,11 +4,11 @@ import Input from '../../input/src';
 import Label from '../../label/src';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
-import ItextField from '../types/itext-field';
+import ITextField from '../types/itext-field';
 import LabelContainer from './label-container.styled';
 import TextFieldContainer from './text-field-container.styled';
 
-const TextField: React.FunctionComponent<ItextField> = (props: ItextField) => {
+const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
 

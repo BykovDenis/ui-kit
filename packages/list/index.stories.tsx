@@ -1,12 +1,12 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
-import TextField from  './src/index';
-import ItextField from './types/itext-field';
+import List from  './src';
+import IList from './types/ilist';
 
 export default {
-  title: 'Components/TextField',
-  component: TextField,
+  title: 'Components/List',
+  component: List,
   argTypes: {
     isSeparateNumberFormat: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
     disabled: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
@@ -24,9 +24,9 @@ export default {
     textMessage: 'text message',
     label: 'label'
   },
-} as ComponentMeta<typeof TextField>;
+} as ComponentMeta<typeof List>;
 
-const Template: ComponentStory<typeof TextField> = (args: ItextField) => {
+const Template: ComponentStory<typeof List> = (args: IList) => {
 
   const [ value, setValue ] = useState('323');
 
@@ -41,17 +41,9 @@ const Template: ComponentStory<typeof TextField> = (args: ItextField) => {
   }
 
   return <div style={{ width: '190px' }}>
-    <TextField
-      {...args}
-      textMessage="Some text message"
-      id="textfield1"
-      name="textfield1"
-      value={value}
-      onChange={onInputChange}
-      onRemove={onInputDelete}
-    />
+    <List elements={[1, 2, 3, 4, 5, 6]} />
   </div>
 }
 
-export const NormalTextField = Template.bind({});
+export const NormalList = Template.bind({});
 
