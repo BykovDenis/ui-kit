@@ -1,7 +1,6 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
-import Button from '../button/src';
 import Input from  './src/index';
 import IInput from './types/iinput';
 
@@ -29,8 +28,7 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args: IInput) => {
 
-  const [ value, setValue ] = useState('15');
-  const [isChanging, setIsChanging] = useState(false);
+  const [ value, setValue ] = useState(0);
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
@@ -41,17 +39,11 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
 
   const onInputRemove = () => {
     setValue('');
-    console.log('');
   }
 
-  const onGetChangingState = (isChanging: boolean) => {
-    setIsChanging(isChanging);
-    console.log(isChanging);
-  }
 
   return (<div style={{ width: '190px' }}>
-    <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} getIsChangingState={onGetChangingState} />
-    <Button disabled={isChanging}>{value}</Button>
+    <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove}  />
   </div>)
 }
 
