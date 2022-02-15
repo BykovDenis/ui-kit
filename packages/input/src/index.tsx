@@ -23,6 +23,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [evtObj, setEvtObject] = useState(null);
   const [isNotRunDebounce, setIsRunDebounce] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
+  const [isChanging, setIsChanging] = useState(false);
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const cb = () => {
@@ -40,6 +41,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
     evtObjNew.target.value = value;
     props?.onChange(evtObjNew);
+    setIsChanging(false);
     setIsRunDebounce(false);
   };
 
@@ -58,6 +60,12 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
   }, [isNotRunDebounce]);
 
+  useEffect(() => {
+    if (props.getIsChangingState) {
+      props.getIsChangingState(isChanging);
+    }
+  }, [isChanging])
+
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     props?.onInput(evt);
   };
@@ -66,6 +74,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     const element: any = evt?.target;
     setInputValue(element.value);
     setEvtObject(evt);
+    setIsChanging(true);
     if (props?.onInput) {
       onInput(evt);
     }
@@ -77,6 +86,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const onInputDelete = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue('');
     setEvtObject(null);
+    setIsChanging(false);
     props?.onRemove(props?.name, '', evt);
   };
 
@@ -122,12 +132,14 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     const ReactInput: React.FunctionComponent = (props: any) => <input {...props} />;
 
+    const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
+
     return (
       <InputContainer backgroundImage={props?.backgroundImage} height={props?.height} width={props?.width}>
         <InputElementContainer>
           <InputStyled
             {...props}
-            value={inputValue}
+            value={value}
             disabled={props?.disabled}
             width={props.width}
             height={props.height || DEFAULT_HEIGHT}
@@ -162,14 +174,14 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             max={props?.max}
             readOnly={props?.isReadOnly}
           />
-          <InputUnderline
+          {props?.variant !== TYPE_TEXT &&<InputUnderline
             name={props?.name}
             className="underline"
             variant={props?.variant}
             color={underlineColor}
             disabled={props?.disabled}
             width={props.width}
-          />
+          />}
           {!props?.isReadOnly && !props.isNotClearable && inputValue && inputValue > '' && !props?.disabled && (
             <ButtonDelete
               onClick={onInputDelete}

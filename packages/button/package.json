@@ -1,5 +1,5 @@
 {
-  "name": "@sber-riski-cib-ui/button",
+  "name": "@sber-riski-cib-ui/Button",
   "version": "0.4.19",
   "description": "A simple button component",
   "main": "dist/index.js",

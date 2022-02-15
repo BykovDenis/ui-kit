@@ -20,6 +20,7 @@ interface IInput {
   fontFamily: string;
   fontSize: number;
   fontWeight?: number;
+  getIsChangingState?: (isChanging: boolean) => void;
   height: number;
   hoverBackgroundColor?: string;
   hoverColor?: string;
@@ -35,16 +36,16 @@ interface IInput {
   onFocus?: () => void;
   onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onRemove?: (name: string, value: string, evt?: React.ChangeEvent<HTMLInputElement>) => void;
+  ref?: any;
   required?: boolean;
   step?: number;
   textAlign: string;
-  textMessage?: string;
-  theme?: any;
   type?: string;
   value: number | string;
   variant?: IInputVariants;
   width: number;
-  ref?: any;
+  textMessage?: string;
+  theme?: any;
 }
 
 export default IInput;
