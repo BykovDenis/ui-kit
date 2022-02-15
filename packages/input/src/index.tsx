@@ -72,7 +72,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt?.target;
-    setInputValue(element.value);
+    const value: string | number = props.mask ? element.value?.replaceAll(props.mask, '') : element.value;
+    setInputValue(value);
     setEvtObject(evt);
     setIsChanging(true);
     if (props?.onInput) {
