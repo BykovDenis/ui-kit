@@ -28,6 +28,7 @@ interface IInput {
   isNotClearable?: boolean;
   isReadOnly?: boolean;
   isSeparateNumberFormat?: boolean;
+  mask?: RegExp;
   max?: number;
   min?: number;
   name: string;
@@ -37,7 +38,6 @@ interface IInput {
   onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onRemove?: (name: string, value: string, evt?: React.ChangeEvent<HTMLInputElement>) => void;
   ref?: any;
-  required?: boolean;
   step?: number;
   textAlign: string;
   type?: string;
@@ -46,6 +46,7 @@ interface IInput {
   width: number;
   textMessage?: string;
   theme?: any;
+  required?: boolean;
 }
 
 export default IInput;

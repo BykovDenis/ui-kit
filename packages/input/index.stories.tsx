@@ -43,7 +43,7 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
 
 
   return (<div style={{ width: '190px' }}>
-    <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove}  />
+    <Input {...args} name="input" value={value} mask={new RegExp('[а-яa-zëӣё]', 'gui')} onChange={onInputChange} onRemove={onInputRemove}  />
   </div>)
 }
 
