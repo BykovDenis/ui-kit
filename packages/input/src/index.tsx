@@ -182,7 +182,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             disabled={props?.disabled}
             width={props.width}
           />}
-          {!props?.isReadOnly && !props.isNotClearable && inputValue && inputValue > '' && !props?.disabled && (
+          {!props?.isReadOnly && !props.isNotClearable && inputValue !== null && inputValue !== '' && !props?.disabled ? (
             <ButtonDelete
               onClick={onInputDelete}
               className="delete-button"
@@ -192,9 +192,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             >
               <DeleteIcon className="delete-icon" />
             </ButtonDelete>
-          )}
+          ) : null}
         </InputElementContainer>
-        {props?.textMessage && (
+        {props?.textMessage ? (
           <TextMessage
             className="text-message"
             fontSize={props?.fontSize ?? theme?.baseFontSize}
@@ -203,7 +203,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           >
             {props.textMessage}
           </TextMessage>
-        )}
+        ) : null}
       </InputContainer>
     );
   };
