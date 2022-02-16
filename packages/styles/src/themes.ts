@@ -8,12 +8,16 @@ export const themes: IThemes = {
       primary: {
         main: 'rgb(66, 165, 245)',
         light: 'rgba(66, 165, 245, 0.6)',
-        lighter: 'rgba(66, 165, 245, 0.6)',
+        lighter: 'rgba(66, 165, 245, 0.3)',
+        moreLighter: 'rgba(66, 165, 245, 0.15)',
+        bestLighter: 'rgba(66, 165, 245, 0.05)',
       },
       secondary: {
         main: 'rgb(255, 23, 68)',
         light: 'rgba(255, 23, 68, 0.6)',
         lighter: 'rgba(255, 23, 68, 0.3)',
+        moreLighter: 'rgba(255, 23, 68, 0.15)',
+        bestLighter: 'rgba(255, 23, 68, 0.05)',
       },
       baseButtonFontColor: '#ffffff',
       baseFontColor: '#333333',
@@ -22,6 +26,7 @@ export const themes: IThemes = {
     baseFontSize: 14,
     mainBlackColor: 'rgba(0,0,0,0.85)',
     mainGrayColor: '#bdbdbd',
+    mainWhiteColor: '#ffffff',
   },
   dark: {
     palette: {
@@ -29,11 +34,15 @@ export const themes: IThemes = {
         main: '#42a5f5',
         light: '',
         lighter: '',
+        moreLighter: '',
+        bestLighter: '',
       },
       secondary: {
         main: '#ff1744',
         light: '',
         lighter: '',
+        moreLighter: '',
+        bestLighter: '',
       },
       baseButtonFontColor: '#333333',
       baseFontColor: '#ffffff',
@@ -42,6 +51,7 @@ export const themes: IThemes = {
     baseFontSize: 14,
     mainBlackColor: 'rgba(0,0,0,0.85)',
     mainGrayColor: '#bdbdbd',
+    mainWhiteColor: '#ffffff',
   },
 };
 

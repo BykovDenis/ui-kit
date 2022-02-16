@@ -4,6 +4,7 @@ import ILabel from '../../label/types/ilabel';
 interface ISelect extends IInput, ILabel {
   baseFontSize: number;
   children?: any;
+  elements?: any;
   error?: boolean;
   fontFamily: string;
   fontSize: number;

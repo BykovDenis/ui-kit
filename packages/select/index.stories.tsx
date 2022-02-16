@@ -33,7 +33,9 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
     console.log('');
   }
 
-  return <div style={{ width: '220px' }}><Select {...args} onChange={onInputChange} onRemove={onInputRemove} label="My select" id="select" variant="text" value={value}>{args.children}</Select></div>;
+  const elements: Array<string> = ['List item 1', 'List item 2', 'List item 3', 'List item 4', 'List item 5'];
+
+  return <div style={{ width: '220px' }}><Select {...args} onChange={onInputChange} onRemove={onInputRemove} label="My select" id="select" variant="text" value={value} elements={elements}>{args.children}</Select></div>;
 }
 
 export const NormalSelect = Template.bind({});
