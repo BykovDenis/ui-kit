@@ -100,11 +100,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             isReadOnly={props?.isReadOnly}
           />
         </SelectHeader>
-        <List>
-          {props.elements.map((element: string) => (
-            <ListItem>{element}</ListItem>
-          ))}
-        </List>
       </SelectContainer>
     );
   };
