@@ -5,6 +5,7 @@ interface ITheme {
   fontFamily: string;
   mainBlackColor: string;
   mainGrayColor: string;
+  mainWhiteColor: string;
   palette: IPalette;
 }
 

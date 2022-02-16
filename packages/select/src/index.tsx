@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import Input from '../../input/src';
 import Label from '../../label/src';
+import List from '../../list/src';
+import ListItem from '../../list-item/src';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
 import ISelect from '../types/iselect';
@@ -98,6 +100,11 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             isReadOnly={props?.isReadOnly}
           />
         </SelectHeader>
+        <List>
+          {props.elements.map((element: string) => (
+            <ListItem>{element}</ListItem>
+          ))}
+        </List>
       </SelectContainer>
     );
   };

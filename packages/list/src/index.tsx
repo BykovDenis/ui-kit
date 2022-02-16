@@ -1,19 +1,40 @@
 import React from 'react';
 
+import ListItemType from '../../list-item/enums/list-item-type';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
+import ListType from '../enum/list-type';
 import IList from '../types/ilist';
-import IListElement from '../types/ilist-element';
-import ListItem from './list-item';
+import ListStyled from './list.styled';
+import ListDivStyled from './list-div.styled';
 
 const List: React.FunctionComponent<IList> = (props: IList) => {
+  const listType: string = ListType.List;
+
   const componentThemed: any = (theme: ITheme) => {
-    return (
-      <ul>
-        {props?.elements?.map((element: IListElement, index: number) => (
-          <ListItem key={index} element={element} />
-        ))}
-      </ul>
+    const backgroundColor: string =
+      props?.colorTheme === 'normal' || !props.colorTheme
+        ? theme?.palette?.primary?.main
+        : theme?.palette?.secondary?.main;
+
+    const hoverBackgroundColor: string = theme?.palette?.secondary?.lighter;
+
+    const underlineColor: string = theme?.palette?.secondary?.main;
+    const hoverColor: string = theme?.palette?.secondary?.main;
+
+    const color: string =
+      props?.colorTheme === 'normal' || !props.colorTheme
+        ? theme?.palette?.baseFontColor
+        : theme?.palette?.secondary?.main;
+
+    return props?.type === ListType.Buttons ? (
+      <ListDivStyled fontFamily={theme?.fontFamily} className={props.className}>
+        {props.children}
+      </ListDivStyled>
+    ) : (
+      <ListStyled fontFamily={theme?.fontFamily} className={props.className}>
+        {props.children}
+      </ListStyled>
     );
   };
 
