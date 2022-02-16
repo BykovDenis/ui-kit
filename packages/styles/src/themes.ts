@@ -3,6 +3,31 @@ import React from 'react';
 import IThemes from '../types/ithemes';
 
 export const themes: IThemes = {
+  loanPricing: {
+    palette: {
+      primary: {
+        main: 'rgb(8, 166, 82)',
+        light: 'rgba(8, 166, 82, 0.6)',
+        lighter: 'rgba(8, 166, 82, 0.3)',
+        moreLighter: 'rgba(8, 166, 82, 0.15)',
+        bestLighter: 'rgba(8, 166, 82, 0.05)',
+      },
+      secondary: {
+        main: 'rgb(246, 101, 10)',
+        light: 'rgba(246 ,101, 10, 0.6)',
+        lighter: 'rgba(246, 101, 10, 0.3)',
+        moreLighter: 'rgba(246, 101, 10, 0.15)',
+        bestLighter: 'rgba(246, 101, 10, 0.05)',
+      },
+      baseButtonFontColor: '#ffffff',
+      baseFontColor: '#333333',
+    },
+    fontFamily: 'Roboto, Arial, sans-serif',
+    baseFontSize: 14,
+    mainBlackColor: 'rgba(0,0,0,0.85)',
+    mainGrayColor: '#bdbdbd',
+    mainWhiteColor: '#ffffff',
+  },
   light: {
     palette: {
       primary: {
@@ -55,6 +80,6 @@ export const themes: IThemes = {
   },
 };
 
-const ThemeContext = React.createContext(themes.light);
+const ThemeContext = React.createContext(themes.loanPricing);
 
 export default ThemeContext;
