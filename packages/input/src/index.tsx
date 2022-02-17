@@ -170,7 +170,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             step={props?.step}
             type={props?.type || TYPE_TEXT}
             fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
-            ref={inputRef}
+            ref={props?.ref || inputRef}
             min={props?.min}
             max={props?.max}
             readOnly={props?.isReadOnly}
