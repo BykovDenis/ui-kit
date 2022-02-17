@@ -20,6 +20,7 @@ interface IInput {
   fontFamily: string;
   fontSize: number;
   fontWeight?: number;
+  gerRefInput: (ref: any) => void;
   getIsChangingState?: (isChanging: boolean) => void;
   height: number;
   hoverBackgroundColor?: string;
@@ -29,7 +30,6 @@ interface IInput {
   isReadOnly?: boolean;
   isSeparateNumberFormat?: boolean;
   mask?: RegExp;
-  max?: number;
   min?: number;
   name: string;
   onBlur: () => void;
@@ -47,6 +47,7 @@ interface IInput {
   textMessage?: string;
   theme?: any;
   required?: boolean;
+  max?: number;
 }
 
 export default IInput;

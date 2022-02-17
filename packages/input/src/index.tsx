@@ -135,6 +135,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
 
+    const gerRefInput = () => inputRef;
+
     return (
       <InputContainer backgroundImage={props?.backgroundImage} height={props?.height} width={props?.width}>
         <InputElementContainer>
@@ -170,7 +172,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             step={props?.step}
             type={props?.type || TYPE_TEXT}
             fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
-            ref={props?.ref || inputRef}
+            ref={inputRef}
+            gerRefInput={gerRefInput}
             min={props?.min}
             max={props?.max}
             readOnly={props?.isReadOnly}
