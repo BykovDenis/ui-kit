@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ThemeContext from '../../styles/src/themes';
+import ITheme from '../../styles/types/itheme';
 import FormSwitcher from './form-switcher';
 import InputSwitcher from './input-switcher';
 import LabelSwitcher from './label-switcher';
@@ -31,54 +32,52 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
     }
   };
 
-  const SwitcherComponent = (props: ISwitcher) => (
-    <FormSwitcher method="get">
-      <InputSwitcher
-        name="custom-switcher"
-        data-name={props.element1}
-        id={`custom-switcher-element1-${props.element1}`}
-        type="radio"
-        checked={isActiveFirstElement}
-        onChange={checkboxChangeHandler}
-        disabled={disabled}
-        position="left"
-      />
-      <LabelSwitcher htmlFor={`custom-switcher-element1-${props.element1}`}>{props.element1}</LabelSwitcher>
-      <InputSwitcher
-        name="custom-switcher"
-        data-name={props.element2}
-        id={`custom-switcher-element2-${props.element2}`}
-        type="radio"
-        checked={isActiveSecondElement}
-        onChange={checkboxChangeHandler}
-        disabled={disabled}
-        position="right"
-      />
-      <LabelSwitcher htmlFor={`custom-switcher-element2-${props.element2}`}>{props.element2}</LabelSwitcher>
-    </FormSwitcher>
-  );
+  const componentThemed = (theme: ITheme) => {
+    const color: string = theme?.palette?.baseButtonFontColor;
+    const backgroundColor: string = theme?.palette?.primary?.main;
 
-  return props.ReactThemeContext ? (
-    <props.ReactThemeContext.Consumer>
-      {(theme: any) => (
-        <SwitcherComponent
-          {...props}
-          color={theme?.palette?.baseButtonFontColor}
-          backgroundColor={theme?.palette?.primary?.main}
+    return (
+      <FormSwitcher method="get">
+        <InputSwitcher
+          name="custom-switcher"
+          data-name={props.element1}
+          id={`custom-switcher-element1-${props.element1}`}
+          type="radio"
+          checked={isActiveFirstElement}
+          onChange={checkboxChangeHandler}
+          disabled={disabled}
+          position="left"
+          color={color}
+          backgroundColor={backgroundColor}
         />
-      )}
-    </props.ReactThemeContext.Consumer>
-  ) : (
-    <ThemeContext.Consumer>
-      {(theme: any) => (
-        <SwitcherComponent
-          {...props}
-          color={theme?.palette?.baseButtonFontColor}
-          backgroundColor={theme?.palette?.primary?.main}
+        <LabelSwitcher htmlFor={`custom-switcher-element1-${props.element1}`}>{props.element1}</LabelSwitcher>
+        <InputSwitcher
+          name="custom-switcher"
+          data-name={props.element2}
+          id={`custom-switcher-element2-${props.element2}`}
+          type="radio"
+          checked={isActiveSecondElement}
+          onChange={checkboxChangeHandler}
+          disabled={disabled}
+          position="right"
+          color={color}
+          backgroundColor={backgroundColor}
         />
-      )}
-    </ThemeContext.Consumer>
-  );
+        <LabelSwitcher htmlFor={`custom-switcher-element2-${props.element2}`}>{props.element2}</LabelSwitcher>
+      </FormSwitcher>
+    );
+  };
+  //
+  // <SwitcherComponent
+  //   {...props}
+  //   color={theme?.palette?.baseButtonFontColor}
+  //   backgroundColor={theme?.palette?.primary?.main}
+  // />
+  // )}
+
+  const Consumer: any = props.ReactThemeContext ? props.ReactThemeContext.Consumer : ThemeContext.Consumer;
+
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 Switcher.defaultProps = {
