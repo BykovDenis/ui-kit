@@ -46,6 +46,10 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   };
 
   useEffect(() => {
+    props.getRefInput(inputRef);
+  }, [])
+
+  useEffect(() => {
     if (isNotRunDebounce) {
       const executeDebounce = debounce(cb, TIMEOUT);
       executeDebounce();
@@ -135,10 +139,6 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
 
-    const getRefInput = () => {
-      props.getRefInput(inputRef);
-    };
-
     return (
       <InputContainer backgroundImage={props?.backgroundImage} height={props?.height} width={props?.width}>
         <InputElementContainer>
@@ -175,7 +175,6 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             type={props?.type || TYPE_TEXT}
             fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
             ref={inputRef}
-            getRefInput={getRefInput}
             min={props?.min}
             max={props?.max}
             readOnly={props?.isReadOnly}
