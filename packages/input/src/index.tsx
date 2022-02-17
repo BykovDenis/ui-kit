@@ -135,7 +135,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
 
-    const gerRefInput = () => inputRef;
+    const gerRefInput = () => {
+      props.gerRefInput(inputRef);
+    };
 
     return (
       <InputContainer backgroundImage={props?.backgroundImage} height={props?.height} width={props?.width}>
