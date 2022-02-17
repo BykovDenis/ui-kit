@@ -135,8 +135,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
 
-    const gerRefInput = () => {
-      props.gerRefInput(inputRef);
+    const getRefInput = () => {
+      props.getRefInput(inputRef);
     };
 
     return (
@@ -175,7 +175,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             type={props?.type || TYPE_TEXT}
             fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
             ref={inputRef}
-            gerRefInput={gerRefInput}
+            getRefInput={getRefInput}
             min={props?.min}
             max={props?.max}
             readOnly={props?.isReadOnly}
