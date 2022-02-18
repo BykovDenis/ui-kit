@@ -28,7 +28,7 @@ export default {
 
 const Template: ComponentStory<typeof TextField> = (args: ItextField) => {
 
-  const [ value, setValue ] = useState('323');
+  const [ value, setValue ] = useState('');
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
@@ -49,6 +49,15 @@ const Template: ComponentStory<typeof TextField> = (args: ItextField) => {
       value={value}
       onChange={onInputChange}
       onRemove={onInputDelete}
+    />
+    <br/>
+    <TextField
+      variant="outlined"
+      id="crm-id"
+      name="crmId"
+      label="counterparty"
+      value={undefined}
+      disabled={true}
     />
   </div>
 }
