@@ -41,19 +41,9 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
     setValue('');
   }
 
-  const getRefInput = (ref: any) => {
-    console.log(ref);
-    if (ref?.current) {
-      const inputElement = ref?.current;
-      if (inputElement) {
-        inputElement.value = 'euqiowueiowqeui';
-      }
-    }
-  }
-
-
   return (<div style={{ width: '190px' }}>
-    <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} getRefInput={getRefInput}  />
+    <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove}  />
+    <button onClick={onInputRemove}>change</button>
   </div>)
 }
 

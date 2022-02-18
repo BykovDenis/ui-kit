@@ -21,7 +21,6 @@ interface IInput {
   fontSize: number;
   fontWeight?: number;
   getIsChangingState?: (isChanging: boolean) => void;
-  getRefInput?: (ref: any) => void;
   height: number;
   hoverBackgroundColor?: string;
   hoverColor?: string;
@@ -40,14 +39,14 @@ interface IInput {
   onRemove?: (name: string, value: string, evt?: React.ChangeEvent<HTMLInputElement>) => void;
   ref?: any;
   required?: boolean;
+  step?: number;
+  textAlign: string;
+  textMessage?: string;
+  theme?: any;
   type?: string;
   value: number | string;
   variant?: IInputVariants;
   width: number;
-  textMessage?: string;
-  theme?: any;
-  textAlign: string;
-  step?: number;
 }
 
 export default IInput;

@@ -46,8 +46,10 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   };
 
   useEffect(() => {
-    props.getRefInput(inputRef);
-  }, [])
+    if (inputValue !== props.value) {
+      setInputValue(props.value)
+    }
+  }, [props.value]);
 
   useEffect(() => {
     if (isNotRunDebounce) {
