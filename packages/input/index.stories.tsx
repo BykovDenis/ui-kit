@@ -43,7 +43,6 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
 
   return (<div style={{ width: '190px' }}>
     <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove}  />
-    <button onClick={onInputRemove}>change</button>
   </div>)
 }
 

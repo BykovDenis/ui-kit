@@ -19,7 +19,7 @@ const TYPE_TEXT = 'text';
 const FONT_WEIGHT_REGULAR = 400;
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
-  const [inputValue, setInputValue] = useState(props.value);
+  const [inputValue, setInputValue] = useState(props.value !== undefined && props?.value !== null ? props.value : '');
   const [evtObj, setEvtObject] = useState(null);
   const [isNotRunDebounce, setIsRunDebounce] = useState(false);
   const [isFocus, setIsFocus] = useState(false);

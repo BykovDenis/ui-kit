@@ -51,7 +51,7 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
 
     return (
       <TextFieldContainer backgroundImage={props?.backgroundImage} width={props?.width} height={props?.height}>
-        <LabelContainer isExistValue={isExistValue || isFocus}>
+        <LabelContainer isExistValue={isExistValue || isFocus} isExistTextMessageHelper={props?.textMessage > ''}>
           <Label
             htmlFor={props.id}
             fontSize={labelFontSize}
