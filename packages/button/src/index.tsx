@@ -19,7 +19,7 @@ const Button: React.FunctionComponent = (props: any) => {
         onClick={props?.onClick}
         disabled={props?.disabled}
         color={theme?.palette?.baseButtonFontColor}
-        backgroundColor={backgroundColor}
+        backgroundColor={props?.backgroundColor || backgroundColor}
         backgroundImage={props?.backgroundImage}
         fontSize={props?.fontSize ?? theme?.baseFontSize}
         className={props?.className}
