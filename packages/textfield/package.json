@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/Textfield",
-  "version": "0.5.11",
+  "version": "0.5.12",
   "description": "Riski react UI",
   "main": "dist/index.js",
   "module": "styles/src/index.js",
