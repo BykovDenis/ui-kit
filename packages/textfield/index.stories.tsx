@@ -43,21 +43,13 @@ const Template: ComponentStory<typeof TextField> = (args: ItextField) => {
   return <div style={{ width: '190px' }}>
     <TextField
       {...args}
+      height={56}
       textMessage="Some text message"
       id="textfield1"
       name="textfield1"
       value={value}
       onChange={onInputChange}
       onRemove={onInputDelete}
-    />
-    <br/>
-    <TextField
-      variant="outlined"
-      id="crm-id"
-      name="crmId"
-      label="counterparty"
-      value={undefined}
-      disabled={true}
     />
   </div>
 }

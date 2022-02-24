@@ -21,7 +21,7 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args: Ibutton) => {
-  return <Button {...args} onClick={action('clicked')} >{args.children}</Button>;
+  return <Button  {...args} onClick={action('clicked')} >{args.children}</Button>;
 }
 
 export const NormalButton = Template.bind({});
