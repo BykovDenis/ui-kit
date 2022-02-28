@@ -5,6 +5,8 @@ import IButton from '../types/ibutton';
 
 const CONTAINED: string = 'contained';
 const OUTLINED: string = 'outlined';
+const TEXT: string = 'text';
+const TRANSPARENT_COLOR = 'transparent';
 
 const ButtonStyled =
   styled('button') <
@@ -28,7 +30,11 @@ const ButtonStyled =
       props?.variant === CONTAINED || !props?.variant ? props.color : props.backgroundColor};
     padding: 10px 15px;    
     background-color: ${(props: IButton) =>
-      props?.variant === CONTAINED || !props?.variant ? props.backgroundColor : props.color};
+      props?.variant === CONTAINED || !props?.variant
+        ? props.backgroundColor
+        : props?.variant === TEXT || props?.variant === OUTLINED
+        ? TRANSPARENT_COLOR
+        : props.color};
     background-image: ${(props: IButton) => props?.backgroundImage ?? 'none'};
     cursor: pointer;    
     border: ${(props: IButton) =>
