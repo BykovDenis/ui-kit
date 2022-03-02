@@ -25,7 +25,6 @@ const ButtonStyled =
     line-height: 1;
     text-align: center;
     letter-spacing: 0.39998px;
-    text-transform: uppercase;
     color: ${(props: IButton) =>
       props?.variant === CONTAINED || !props?.variant ? props.color : props.backgroundColor};
     padding: 10px 15px;    
