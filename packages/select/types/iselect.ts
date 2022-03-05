@@ -2,6 +2,7 @@ import IInput from '../../input/types/iinput';
 import ILabel from '../../label/types/ilabel';
 
 interface ISelect extends IInput, ILabel {
+  activeElement: string | number;
   baseFontSize: number;
   children?: any;
   elements?: any;
@@ -12,8 +13,8 @@ interface ISelect extends IInput, ILabel {
   id: string;
   isExistValue?: boolean;
   label?: string;
+  onChange: (params: { label: string, value: string | number }) => void;
   textAlign: string;
-  value: string | number;
   width: number;
 }
 

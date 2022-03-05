@@ -1,5 +1,6 @@
 interface IListElement {
   ReactThemeContext?: any;
+  activeBackgroundColor?: string;
   backgroundColor?: string;
   children: any;
   className?: string;
@@ -12,8 +13,8 @@ interface IListElement {
   onClick?: (evt: React.ChangeEvent<HTMLButtonElement>) => void;
   textAlign?: string;
   type?: string;
-  width?: number;
   underLineColor?: string;
+  width?: number;
 }
 
 export default IListElement;
