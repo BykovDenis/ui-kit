@@ -6,6 +6,7 @@ const ListItem =
   styled('button') <
   IListElement >
   `  
+  box-sizing: border-box;  
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -17,14 +18,16 @@ const ListItem =
   font-size: inherit;
   line-height: 1;  
   text-align: ${(props: IListElement) => props.textAlign};
-  border: none;  
-  border-bottom: 1px solid ${(props: IListElement) => props.underLineColor};  
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
   background-color: ${(props: IListElement) => props.backgroundColor || 'transparent'};
   &:hover {
-    border-bottom: 1px solid ${(props: IListElement) => props.hoverColor};
     background-color: ${(props: IListElement) => props.hoverBackgroundColor};
-  }  
-`;
+  }
+  &:active {
+    background-color: ${(props: IListElement) => props.activeBackgroundColor};
+  }
+  `;
 
 export default ListItem;

@@ -13,17 +13,17 @@ export default {
     error: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
   },
   args: {
-    children: 'Label'
+    children: 'Label',
+    elements: ['List item 111', 'List item 112', 'List item 113', 'List item 114', 'List item 115']
   },
 } as ComponentMeta<typeof Select>;
 
 const Template: ComponentStory<typeof Select> = (args: ISelect) => {
 
-  const [ value, setValue ] = useState('15');
+  const [ value, setValue ] = useState('List item 3');
 
-  const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    const element = evt?.target;
-    const value: string = element?.value;
+  const onInputChange = (params: {label: string, value: string | number}) => {
+    const value: string = params.value.toString();
     setValue(value);
     console.log(value);
   }
@@ -33,9 +33,10 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
     console.log('');
   }
 
-  const elements: Array<string> = ['List item 1', 'List item 2', 'List item 3', 'List item 4', 'List item 5'];
-
-  return <div style={{ width: '220px' }}><Select {...args} onChange={onInputChange} onRemove={onInputRemove} label="My select" id="select" variant="text" value={value} elements={elements}>{args.children}</Select></div>;
+  return <div style={{ width: '220px' }}>
+    <Select {...args} onChange={onInputChange} onRemove={onInputRemove} label="My select" id="select" activeElement={value} >{args.children}</Select>
+    <p>wwewewe</p>
+  </div>;
 }
 
 export const NormalSelect = Template.bind({});

@@ -5,7 +5,7 @@ interface IList {
   children?: any;
   className?: string;
   colorTheme?: string;
-  elements: Array<IListElement>;
+  elements?: Array<IListElement>;
   fontFamily?: string;
   type?: string;
 }

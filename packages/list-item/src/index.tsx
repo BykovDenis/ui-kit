@@ -6,6 +6,7 @@ import ListItemType from '../enums/list-item-type';
 import IListElement from '../types/ilist-element';
 import ListItemStyled from './list-item.styled';
 import ListItemButtonStyled from './list-item-button.styled';
+import ListItemContainer from './list-item-container.styled';
 
 const HEIGHT: number = 30;
 const TEXT_ALIGN = 'center';
@@ -18,8 +19,9 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
       props?.colorTheme === 'normal' || !props.colorTheme ? theme?.mainWhiteColor : theme?.palette?.secondary?.main;
 
     const hoverBackgroundColor: string = theme?.palette?.primary?.lighter;
+    const activeBackgroundColor: string = theme?.palette?.primary?.light;
 
-    const underlineColor: string = theme?.mainGrayColor;
+    const underLineColor: string = theme?.mainGrayColor;
     const hoverColor: string = theme?.palette?.primary?.main;
 
     const color: string =
@@ -28,30 +30,35 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
         : theme?.palette?.secondary?.main;
 
     return props.type === ListItemType.Button ? (
-      <ListItemButtonStyled
-        color={color}
-        height={props?.height || HEIGHT}
-        textAlign={props?.textAlign || TEXT_ALIGN}
-        underlineColor={underlineColor}
-        hoverColor={hoverColor}
-        hoverBackgroundColor={hoverBackgroundColor}
-        type={props?.type || listItemType}
-        backgroundColor={backgroundColor}
-        onClick={props?.onClick}
-        className={props?.className}
-      >
-        {props.children}
-      </ListItemButtonStyled>
+      <ListItemContainer underLineColor={underLineColor} hoverColor={hoverColor}>
+        <ListItemButtonStyled
+          {...props}
+          color={props?.color || color}
+          height={props?.height || HEIGHT}
+          textAlign={props?.textAlign || TEXT_ALIGN}
+          underLineColor={underLineColor}
+          hoverColor={hoverColor}
+          hoverBackgroundColor={props.hoverBackgroundColor || hoverBackgroundColor}
+          activeBackgroundColor={activeBackgroundColor}
+          type={props?.type || listItemType}
+          backgroundColor={props?.backgroundColor || backgroundColor}
+          onClick={props?.onClick}
+          className={props?.className}
+        >
+          {props.children}
+        </ListItemButtonStyled>
+      </ListItemContainer>
     ) : (
       <ListItemStyled
         color={color}
         height={props?.height || HEIGHT}
         textAlign={props?.textAlign || TEXT_ALIGN}
-        underlineColor={underlineColor}
+        underLineColor={underLineColor}
         hoverColor={hoverColor}
         hoverBackgroundColor={hoverBackgroundColor}
+        activeBackgroundColor={activeBackgroundColor}
         type={props?.type || listItemType}
-        backgroundColor={backgroundColor}
+        backgroundColor={props?.backgroundColor || backgroundColor}
         className={props?.className}
       >
         {props.children}

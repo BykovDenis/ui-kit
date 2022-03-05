@@ -52,7 +52,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   }, [props.value]);
 
   useEffect(() => {
-    if (isNotRunDebounce) {
+    if (isNotRunDebounce && !props.isNotUseDebounce) {
       const executeDebounce = debounce(cb, TIMEOUT);
       executeDebounce();
     } else {
@@ -85,8 +85,11 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     if (props?.onInput) {
       onInput(evt);
     }
-    if (!isNotRunDebounce) {
+    if (!isNotRunDebounce && !props.isNotUseDebounce) {
       setIsRunDebounce(true);
+    }
+    if (props.isNotUseDebounce) {
+      props?.onChange(evt);
     }
   };
 
@@ -97,7 +100,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     props?.onRemove(props?.name, '', evt);
   };
 
-  const onInputFocus = () => {
+  const onInputFocus = (evt?: React.ChangeEvent<HTMLInputElement>) => {
     setIsFocus(true);
     if (inputRef?.current && props?.value !== null && props?.isSeparateNumberFormat) {
       const inputElement = inputRef?.current;
@@ -106,15 +109,15 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
         setInputValue(props?.value);
       }
     }
-    props?.onFocus();
+    props?.onFocus(evt);
   };
 
-  const onInputBlur = () => {
+  const onInputBlur = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setIsFocus(false);
     if (props?.isSeparateNumberFormat && props?.value !== null) {
       setInputValue(parseFloat(props.value as string).toLocaleString('ru-RU').replace(',', '.'))
     }
-    props?.onBlur();
+    props?.onBlur(evt);
   };
 
   const componentThemed: any = (theme: ITheme) => {
@@ -180,6 +183,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             min={props?.min}
             max={props?.max}
             readOnly={props?.isReadOnly}
+            autoComplete="off"
           />
           {props?.variant !== TYPE_TEXT &&<InputUnderline
             name={props?.name}
