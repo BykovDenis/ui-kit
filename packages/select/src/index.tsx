@@ -1,4 +1,3 @@
-import { action } from '@storybook/addon-actions';
 import React, { useEffect, useState } from 'react';
 
 import Variants from '../../enums/variants';
@@ -16,9 +15,9 @@ import SelectListContainer from './select-list-container.styled';
 
 const DEFAULT_HEIGHT = 30;
 const TEXT_ALIGN = 'right';
-const TIMEOUT_DELAY: number = 300;
 const TYPE_TEXT = 'text';
 const FONT_WEIGHT_REGULAR = 400;
+const INPUT_TAG: string = 'INPUT';
 
 const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [isExistValue, setIsExistValue] = useState(false);
@@ -53,16 +52,29 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setElements(elements);
   }, [value]);
 
-  const onInputDelete = (name: string, value: string) => {
-    props?.onRemove(name, value);
+  useEffect(
+    () => () => {
+      setIsExistValue(false);
+      setIsVisibleList(false);
+      setIsFocus(false);
+    },
+    []
+  );
+
+  const onInputDelete = (name: string) => {
+    props?.onRemove(name, null);
     setIsExistValue(false);
     setIsVisibleList(false);
   };
 
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt.target;
-    if (element?.value > '') {
+    const elementParsed: string = element.value.trim();
+    if (elementParsed > '') {
       setIsExistValue(true);
+    } else {
+      setIsExistValue(false);
+      setIsVisibleList(true);
     }
   };
 
@@ -71,16 +83,16 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsVisibleList(true);
   };
 
-  const onInputBlur = () => {
-    setTimeout(() => {
-      setIsFocus(false);
-    }, TIMEOUT_DELAY);
-    if (props?.value) {
-      setIsExistValue(true);
-    } else {
-      setIsExistValue(false);
-    }
-  };
+  // const onInputBlur = () => {
+  //   setTimeout(() => {
+  //     setIsFocus(false);
+  //   }, TIMEOUT_DELAY);
+  //   if (props?.value) {
+  //     setIsExistValue(true);
+  //   } else {
+  //     setIsExistValue(false);
+  //   }
+  // };
 
   const componentThemed: any = (theme: ITheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
@@ -91,12 +103,31 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       setValue(element.value);
     };
 
-    const onInputBlur = (evt: React.ChangeEvent<HTMLInputElement>) => {
-      const element: any = evt.target;
+    const onInputBlur = () => {
+      setIsFocus(false);
+    };
+
+    const onListItemsClose = (isSearchResult: boolean, evt?: React.ChangeEvent<HTMLElement>) => {
+      const element = evt.target;
+      if (element?.tagName !== INPUT_TAG) {
+        if (!isSearchResult) {
+          setIsFocus(false);
+          setIsVisibleList(false);
+        }
+      }
+    };
+
+    const onListItemsCloseByKey = () => {
+      setIsFocus(false);
+      setIsVisibleList(false);
     };
 
     return (
-      <SelectContainer backgroundImage={props?.backgroundImage} width={props?.width} height={props?.height}>
+      <SelectContainer
+        backgroundImage={props?.backgroundImage}
+        width={props?.width}
+        height={props?.height || DEFAULT_HEIGHT}
+      >
         <SelectHeader>
           <LabelContainer isExistValue={isExistValue || isFocus} textMessage={props?.textMessage}>
             <Label
@@ -113,34 +144,35 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
           <Input
             id={props.id}
             name={props.name}
-            height={props?.height}
+            height={props?.height || DEFAULT_HEIGHT}
             width={props?.width}
             onChange={onInputChange}
             onRemove={onInputDelete}
             onInput={onInput}
             variant={Variants.Outlined}
             value={value}
-            textAlign={props?.textAlign}
+            textAlign={props?.textAlign || TEXT_ALIGN}
             fontSize={fontSize}
             baseFontSize={props?.baseFontSize}
             fontFamily={props?.fontFamily}
             textMessage={props?.textMessage}
             onFocus={onInputFocus}
+            onClick={onInputFocus}
             onBlur={onInputBlur}
             disabled={props?.disabled}
             required={props?.required}
             step={props?.step}
             min={props?.min}
             max={props?.max}
-            type={props?.type}
-            fontWeight={props?.fontWeight}
+            type={props?.type || TYPE_TEXT}
+            fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
             isReadOnly={props?.isReadOnly}
             isNotUseDebounce={true}
           />
         </SelectHeader>
         {isVisibleList && (
           <SelectListContainer>
-            <List type="list-buttons">
+            <List type="list-buttons" onListItemsClose={onListItemsClose} onKeyUp={onListItemsCloseByKey}>
               {elements?.map((element: string, index: number) => {
                 const backgroundColor: string = element === props.activeElement ? theme.palette.primary.light : null;
                 const hoverBackgroundColor: string =
@@ -163,6 +195,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                     color={color}
                     onClick={onSelectChange}
                     data-value={element}
+                    textAlign={props?.textAlign || TEXT_ALIGN}
+                    fontSize={fontSize}
+                    fontFamily={props?.fontFamily}
+                    height={props?.height || DEFAULT_HEIGHT / 2}
                   >
                     {element}
                   </ListItem>

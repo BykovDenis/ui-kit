@@ -43,7 +43,6 @@ const Template: ComponentStory<typeof TextField> = (args: ItextField) => {
   return <div style={{ width: '190px' }}>
     <TextField
       {...args}
-      textMessage="Some text message"
       id="textfield1"
       name="textfield1"
       value={value}

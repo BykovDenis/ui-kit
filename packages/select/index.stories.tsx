@@ -34,7 +34,7 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
   }
 
   return <div style={{ width: '220px' }}>
-    <Select {...args} onChange={onInputChange} onRemove={onInputRemove} label="My select" id="select" activeElement={value} >{args.children}</Select>
+    <Select {...args} onChange={onInputChange} onRemove={onInputRemove} textMessage="Hello world" height={40} label="My select" id="select" activeElement={value} >{args.children}</Select>
     <p>wwewewe</p>
   </div>;
 }
