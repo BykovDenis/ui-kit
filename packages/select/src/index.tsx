@@ -107,15 +107,15 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       setIsFocus(false);
     };
 
-    const onListItemsClose = (isSearchResult: boolean, evt?: React.ChangeEvent<HTMLElement>) => {
-      const element = evt.target;
-      if (element?.tagName !== INPUT_TAG) {
-        if (!isSearchResult) {
-          setIsFocus(false);
-          setIsVisibleList(false);
-        }
-      }
-    };
+    // const onListItemsClose = (isSearchResult: boolean, evt?: React.ChangeEvent<HTMLElement>) => {
+    //   const element = evt.target;
+    //   if (element?.tagName !== INPUT_TAG) {
+    //     if (!isSearchResult) {
+    //       setIsFocus(false);
+    //       setIsVisibleList(false);
+    //     }
+    //   }
+    // };
 
     const onListItemsCloseByKey = () => {
       setIsFocus(false);
@@ -172,7 +172,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         </SelectHeader>
         {isVisibleList && (
           <SelectListContainer>
-            <List type="list-buttons" onListItemsClose={onListItemsClose} onKeyUp={onListItemsCloseByKey}>
+            <List type="list-buttons" onKeyUp={onListItemsCloseByKey}>
               {elements?.map((element: string, index: number) => {
                 const backgroundColor: string = element === props.activeElement ? theme.palette.primary.light : null;
                 const hoverBackgroundColor: string =
