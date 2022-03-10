@@ -12,7 +12,7 @@ import InputElementContainer from './input-element-container.styled';
 import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
 
-const DEFAULT_HEIGHT = 30;
+const DEFAULT_HEIGHT = 40;
 const TEXT_ALIGN = 'right';
 const TIMEOUT = 1000;
 const TYPE_TEXT = 'text';
