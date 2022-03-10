@@ -13,7 +13,7 @@ const KEY_ESCAPE: string = 'ESCAPE';
 const List: React.FunctionComponent<IList> = (props: IList) => {
   const listRef = useRef();
 
-  const onMouseUp = (evt: React.ChangeEvent<HTMLElement>) => {
+  const onMouseUp = (evt: any) => {
     const element: any = evt.target;
     if (listRef) {
       const listElement: any = listRef?.current;
@@ -23,7 +23,7 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
     }
   };
 
-  const onKeyUp = (evt: React.KeyboardEvent<HTMLElement>) => {
+  const onKeyUp = (evt: any) => {
     if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
       props?.onKeyUp(evt);
     }
