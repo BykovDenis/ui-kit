@@ -11,7 +11,7 @@ const LabelContainer =
   padding-right: 4px;
   display: block;
   position: absolute;
-  top: ${(props: ISelect) => (props.isExistValue ? '-10px' : props?.textMessage ? 'calc(50% - 6px)' : '50%')};
+  top: ${(props: ISelect) => (props.isExistValue ? '-10px' : 'calc(50% - 3px)')};
   left: 5px;
   z-index: 1;
   transform: translateY(${(props: ISelect) => (props.isExistValue ? 0 : '-50%')}) rotate(360deg);

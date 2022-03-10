@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
-import ListItemType from '../../list-item/enums/list-item-type';
+import searchDomChildElement from '../../helpers/search-dom-child-element';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
 import ListType from '../enum/list-type';
@@ -8,8 +8,35 @@ import IList from '../types/ilist';
 import ListStyled from './list.styled';
 import ListDivStyled from './list-div.styled';
 
+const KEY_ESCAPE: string = 'ESCAPE';
+
 const List: React.FunctionComponent<IList> = (props: IList) => {
-  const listType: string = ListType.List;
+  const listRef = useRef();
+
+  const onMouseUp = (evt: React.ChangeEvent<HTMLElement>) => {
+    const element: any = evt.target;
+    if (listRef) {
+      const listElement: any = listRef?.current;
+      if (listElement) {
+        props?.onMouseOutUp(searchDomChildElement(listElement, element), evt);
+      }
+    }
+  };
+
+  const onKeyUp = (evt: React.KeyboardEvent<HTMLElement>) => {
+    if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
+      props?.onKeyUp(evt);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('keyup', onKeyUp);
+    return () => {
+      document.removeEventListener('mouseup', onMouseUp);
+      document.addEventListener('keyup', onKeyUp);
+    };
+  }, []);
 
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string =
@@ -28,7 +55,16 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
         : theme?.palette?.secondary?.main;
 
     return props?.type === ListType.Buttons ? (
-      <ListDivStyled fontFamily={theme?.fontFamily} className={props.className}>
+      <ListDivStyled
+        fontFamily={theme?.fontFamily}
+        className={props.className}
+        backgroundColor={backgroundColor}
+        hoverBackgroundColor={hoverBackgroundColor}
+        color={color}
+        hoverColor={hoverColor}
+        underlineColor={underlineColor}
+        ref={listRef}
+      >
         {props.children}
       </ListDivStyled>
     ) : (

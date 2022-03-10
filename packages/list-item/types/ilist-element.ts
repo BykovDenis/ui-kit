@@ -6,6 +6,8 @@ interface IListElement {
   className?: string;
   color?: string;
   colorTheme?: string;
+  fontFamily?: string;
+  fontSize?: number;
   height?: number;
   hoverBackgroundColor?: string;
   hoverColor?: string;
