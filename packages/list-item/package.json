@@ -18,6 +18,6 @@
   "publishConfig": {
     "registry": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"
   },
-  "gitHead": "add7e141dee0de8cc0c75f85f9197a61561a3201",
+  "gitHead": "622faee48c87b2e358c24d02b7be2b04cfb501dc",
   "types": "./types/itext-field.d.ts"
 }
