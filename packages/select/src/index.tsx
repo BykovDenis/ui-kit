@@ -181,7 +181,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
                 const onSelectChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
                   const element: any = evt.currentTarget;
-                  const elementValue: string | number = element?.dataset?.value;
+                  const elementValue: string = element?.dataset?.value;
                   props.onChange({ label: element.value, value: elementValue });
                   setIsVisibleList(!isVisibleList);
                 };
