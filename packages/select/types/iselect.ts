@@ -1,6 +1,7 @@
 import Variants from '../../enums/variants';
 import IInput from '../../input/types/iinput';
 import ILabel from '../../label/types/ilabel';
+import IOption from './ioption';
 
 interface ISelect extends IInput, ILabel {
   activeElement: string;
@@ -15,7 +16,7 @@ interface ISelect extends IInput, ILabel {
   isCreatable?: boolean;
   isExistValue?: boolean;
   label?: string;
-  onChange: (params: { label: string, value: string }) => void;
+  onChange: (option: IOption) => void;
   textAlign: string;
   variant?: Variants;
 }
