@@ -9,7 +9,7 @@ const SelectListContainer = styled('div')`
   margin-top: 5px;
   position: absolute;
   width: 100%;
-  z-index: 1;
+  z-index: 10001;
   box-sizing: border-box;
 `;
 
