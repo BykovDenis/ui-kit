@@ -153,7 +153,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             onChange={onInputChange}
             onRemove={onInputDelete}
             onInput={onInput}
-            variant={Variants.Outlined}
+            variant={props?.variant}
             value={value}
             textAlign={props?.textAlign || TEXT_ALIGN}
             fontSize={fontSize}

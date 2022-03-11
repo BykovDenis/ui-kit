@@ -11,6 +11,7 @@ export default {
     disabled: { control: { type: 'radio', options: [ true, false ] }  },
     fontSize: { control: { type: 'select', options: [ 10, 12, 14, 16] }  },
     error: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
+    variant: { control: { type: 'select', options: [ 'normal', 'outlined', 'text' ]}, defaultValue: 'outline'   },
   },
   args: {
     children: 'Label',

@@ -1,3 +1,4 @@
+import Variants from '../../enums/variants';
 import IInput from '../../input/types/iinput';
 import ILabel from '../../label/types/ilabel';
 
@@ -16,7 +17,7 @@ interface ISelect extends IInput, ILabel {
   label?: string;
   onChange: (params: { label: string, value: string }) => void;
   textAlign: string;
-  width: number;
+  variant?: Variants;
 }
 
 export default ISelect;
