@@ -9,6 +9,7 @@ import ListStyled from './list.styled';
 import ListDivStyled from './list-div.styled';
 
 const KEY_ESCAPE: string = 'ESCAPE';
+const COLOR_THEME: string = 'normal';
 
 const List: React.FunctionComponent<IList> = (props: IList) => {
   const listRef = useRef();
@@ -40,7 +41,7 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
 
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string =
-      props?.colorTheme === 'normal' || !props.colorTheme
+      props?.colorTheme === COLOR_THEME || !props.colorTheme
         ? theme?.palette?.primary?.main
         : theme?.palette?.secondary?.main;
 
@@ -50,7 +51,7 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
     const hoverColor: string = theme?.palette?.secondary?.main;
 
     const color: string =
-      props?.colorTheme === 'normal' || !props.colorTheme
+      props?.colorTheme === COLOR_THEME || !props.colorTheme
         ? theme?.palette?.baseFontColor
         : theme?.palette?.secondary?.main;
 

@@ -25,6 +25,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [value, setValue] = useState(props.activeElement);
   const [elements, setElements] = useState(props.elements);
   const [isVisibleList, setIsVisibleList] = useState(false);
+  const [isFoundValue, setIsFoundValue] = useState(true);
+  const [isNewElement, setIsNewElement] = useState(false);
 
   useEffect(() => {
     if (props?.activeElement > '') {
@@ -50,13 +52,21 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         ? props.elements.filter((element: string) => element.indexOf(value) > -1)
         : props.elements;
     setElements(elements);
+    setIsFoundValue(elements.length > 0);
+    setIsNewElement(elements?.filter((element: string) => element.indexOf(value) > -1)?.length === 0);
   }, [value]);
+
+  useEffect(() => {
+    setIsNewElement(elements?.filter((element: string) => element.indexOf(value) > -1)?.length === 0);
+    setIsFoundValue(true);
+  }, [elements]);
 
   useEffect(
     () => () => {
       setIsExistValue(false);
       setIsVisibleList(false);
       setIsFocus(false);
+      setIsFoundValue(false);
     },
     []
   );
@@ -65,6 +75,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     props?.onRemove(name, null);
     setIsExistValue(false);
     setIsVisibleList(false);
+    setValue('');
   };
 
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,17 +93,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsFocus(true);
     setIsVisibleList(true);
   };
-
-  // const onInputBlur = () => {
-  //   setTimeout(() => {
-  //     setIsFocus(false);
-  //   }, TIMEOUT_DELAY);
-  //   if (props?.value) {
-  //     setIsExistValue(true);
-  //   } else {
-  //     setIsExistValue(false);
-  //   }
-  // };
 
   const componentThemed: any = (theme: ITheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
@@ -120,6 +120,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     const onListItemsCloseByKey = () => {
       setIsFocus(false);
       setIsVisibleList(false);
+    };
+
+    const onElementAppend = () => {
+      setElements([...props.elements, value]);
     };
 
     return (
@@ -173,37 +177,52 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         {isVisibleList && (
           <SelectListContainer>
             <List type="list-buttons" onMouseOutUp={onListItemsClose} onKeyUp={onListItemsCloseByKey}>
-              {elements?.map((element: string, index: number) => {
-                const backgroundColor: string = element === props.activeElement ? theme.palette.primary.light : null;
-                const hoverBackgroundColor: string =
-                  element === props.activeElement ? theme.palette.primary.light : null;
-                const color: string = element === props.activeElement ? theme.mainWhiteColor : null;
+              {isFoundValue &&
+                elements?.map((element: string, index: number) => {
+                  const backgroundColor: string = element === props.activeElement ? theme.palette.primary.light : null;
+                  const hoverBackgroundColor: string =
+                    element === props.activeElement ? theme.palette.primary.light : null;
+                  const color: string = element === props.activeElement ? theme.mainWhiteColor : null;
 
-                const onSelectChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-                  const element: any = evt.currentTarget;
-                  const elementValue: string = element?.dataset?.value;
-                  props.onChange({ label: element.value, value: elementValue });
-                  setIsVisibleList(!isVisibleList);
-                };
+                  const onSelectChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+                    const element: any = evt.currentTarget;
+                    const elementValue: string = element?.dataset?.value;
+                    props.onChange({ label: element.value, value: elementValue });
+                    setIsVisibleList(!isVisibleList);
+                  };
 
-                return (
-                  <ListItem
-                    type="button"
-                    key={index}
-                    backgroundColor={backgroundColor}
-                    hoverBackgroundColor={hoverBackgroundColor}
-                    color={color}
-                    onClick={onSelectChange}
-                    data-value={element}
-                    textAlign={props?.textAlign || TEXT_ALIGN}
-                    fontSize={fontSize}
-                    fontFamily={props?.fontFamily}
-                    height={props?.height || DEFAULT_HEIGHT / 2}
-                  >
-                    {element}
-                  </ListItem>
-                );
-              })}
+                  return (
+                    <ListItem
+                      type="button"
+                      key={`list-item-${index}`}
+                      backgroundColor={backgroundColor}
+                      hoverBackgroundColor={hoverBackgroundColor}
+                      color={color}
+                      onClick={onSelectChange}
+                      data-value={element}
+                      textAlign={props?.textAlign || TEXT_ALIGN}
+                      fontSize={fontSize}
+                      fontFamily={props?.fontFamily}
+                      height={props?.height || DEFAULT_HEIGHT / 2}
+                    >
+                      {element}
+                    </ListItem>
+                  );
+                })}
+              {isNewElement && props?.isCreatable && (
+                <ListItem
+                  type="button"
+                  key={`list-item-new`}
+                  data-value={'Create'}
+                  textAlign={props?.textAlign || TEXT_ALIGN}
+                  fontSize={fontSize}
+                  fontFamily={props?.fontFamily}
+                  height={props?.height || DEFAULT_HEIGHT / 2}
+                  onClick={onElementAppend}
+                >
+                  Create new {value}
+                </ListItem>
+              )}
             </List>
           </SelectListContainer>
         )}

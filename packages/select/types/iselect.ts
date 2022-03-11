@@ -11,6 +11,7 @@ interface ISelect extends IInput, ILabel {
   fontSize: number;
   height: number;
   id: string;
+  isCreatable?: boolean;
   isExistValue?: boolean;
   label?: string;
   onChange: (params: { label: string, value: string }) => void;
