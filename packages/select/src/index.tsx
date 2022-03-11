@@ -13,7 +13,7 @@ import SelectContainer from './select-container.styled';
 import SelectHeader from './select-header.styled';
 import SelectListContainer from './select-list-container.styled';
 
-const DEFAULT_HEIGHT = 30;
+const DEFAULT_HEIGHT = 40;
 const TEXT_ALIGN = 'right';
 const TYPE_TEXT = 'text';
 const FONT_WEIGHT_REGULAR = 400;
@@ -141,6 +141,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
               isReadOnly={props.isReadOnly}
               fontWeight={props?.fontWeight}
               isDisabled={props.disabled}
+              fontFamily={props?.fontFamily || theme?.fontFamily}
             >
               {props?.label}
             </Label>
@@ -158,7 +159,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             textAlign={props?.textAlign || TEXT_ALIGN}
             fontSize={fontSize}
             baseFontSize={props?.baseFontSize}
-            fontFamily={props?.fontFamily}
+            fontFamily={props?.fontFamily || theme?.fontFamily}
             textMessage={props?.textMessage}
             onFocus={onInputFocus}
             onClick={onInputFocus}
@@ -202,8 +203,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                       data-value={element}
                       textAlign={props?.textAlign || TEXT_ALIGN}
                       fontSize={fontSize}
-                      fontFamily={props?.fontFamily}
-                      height={props?.height || DEFAULT_HEIGHT / 2}
+                      height={props?.height || DEFAULT_HEIGHT}
+                      fontFamily={props?.fontFamily || theme?.fontFamily}
                     >
                       {element}
                     </ListItem>
@@ -216,7 +217,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                   data-value={'Create'}
                   textAlign={props?.textAlign || TEXT_ALIGN}
                   fontSize={fontSize}
-                  fontFamily={props?.fontFamily}
+                  fontFamily={props?.fontFamily || theme?.fontFamily}
                   height={props?.height || DEFAULT_HEIGHT / 2}
                   onClick={onElementAppend}
                 >
