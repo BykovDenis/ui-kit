@@ -133,19 +133,21 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         height={props?.height || DEFAULT_HEIGHT}
       >
         <SelectHeader>
-          <LabelContainer isExistValue={isExistValue || isFocus} textMessage={props?.textMessage}>
-            <Label
-              htmlFor={props.id}
-              fontSize={labelFontSize}
-              isFocus={isFocus}
-              isReadOnly={props.isReadOnly}
-              fontWeight={props?.fontWeight}
-              isDisabled={props.disabled}
-              fontFamily={props?.fontFamily || theme?.fontFamily}
-            >
-              {props?.label}
-            </Label>
-          </LabelContainer>
+          {props?.label && (
+            <LabelContainer isExistValue={isExistValue || isFocus} textMessage={props?.textMessage}>
+              <Label
+                htmlFor={props.id}
+                fontSize={labelFontSize}
+                isFocus={isFocus}
+                isReadOnly={props.isReadOnly}
+                fontWeight={props?.fontWeight}
+                isDisabled={props.disabled}
+                fontFamily={props?.fontFamily || theme?.fontFamily}
+              >
+                {props?.label}
+              </Label>
+            </LabelContainer>
+          )}
           <Input
             id={props.id}
             name={props.name}
@@ -188,7 +190,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                   const onSelectChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
                     const element: any = evt.currentTarget;
                     const elementValue: string = element?.dataset?.value;
-                    props.onChange({ label: element.value, value: elementValue });
+                    props.onChange({ name: props.name, label: element.value, value: elementValue });
                     setIsVisibleList(!isVisibleList);
                   };
 
