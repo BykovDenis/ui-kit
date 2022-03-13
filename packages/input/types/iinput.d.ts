@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Variants from '../../enums/variants';
 import IInputVariants from './iinput-variants';
 
 interface IInput {
@@ -20,21 +21,26 @@ interface IInput {
   fontFamily: string;
   fontSize: number;
   fontWeight?: number;
+  getIsChangingState?: (isChanging: boolean) => void;
   height: number;
   hoverBackgroundColor?: string;
   hoverColor?: string;
   id?: string;
   isNotClearable?: boolean;
+  isNotUseDebounce?: boolean;
   isReadOnly?: boolean;
   isSeparateNumberFormat?: boolean;
+  mask?: RegExp;
   max?: number;
   min?: number;
   name: string;
-  onBlur: () => void;
+  onBlur: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: () => void;
+  onClick?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onRemove?: (name: string, value: string, evt?: React.ChangeEvent<HTMLInputElement>) => void;
+  ref?: any;
   required?: boolean;
   step?: number;
   textAlign: string;
@@ -42,9 +48,8 @@ interface IInput {
   theme?: any;
   type?: string;
   value: number | string;
-  variant?: IInputVariants;
+  variant?: Variants;
   width: number;
-  ref?: any;
 }
 
 export default IInput;

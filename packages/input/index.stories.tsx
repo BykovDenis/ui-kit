@@ -17,7 +17,7 @@ export default {
     fontSize: { control: { type: 'select', options: [ 10,12,14,16 ] }, defaultValue: 14  },
     fontWeight: { control: { type: 'select', options: [ 100, 400, 600, 900 ] }, defaultValue: 400  },
     textAlign: { control: { type: 'select', options: [ 'right', 'left', 'center' ] }  },
-    variant: { control: { type: 'select', options: [ 'normal', 'outlined' ]}, defaultValue: 'outline'   },
+    variant: { control: { type: 'select', options: [ 'normal', 'outlined', 'text' ]}, defaultValue: 'outline'   },
     onChange: { action: 'changed' }
   },
   args: {
@@ -28,7 +28,7 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args: IInput) => {
 
-  const [ value, setValue ] = useState('15');
+  const [ value, setValue ] = useState(0);
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
@@ -39,10 +39,11 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
 
   const onInputRemove = () => {
     setValue('');
-    console.log('');
   }
 
-  return <div style={{ width: '190px' }}><Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} /></div>
+  return (<div style={{ width: '190px' }}>
+    <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove}  />
+  </div>)
 }
 
 export const NormalInput = Template.bind({});

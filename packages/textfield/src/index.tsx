@@ -4,11 +4,11 @@ import Input from '../../input/src';
 import Label from '../../label/src';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
-import ItextField from '../types/itext-field';
+import ITextField from '../types/itext-field';
 import LabelContainer from './label-container.styled';
 import TextFieldContainer from './text-field-container.styled';
 
-const TextField: React.FunctionComponent<ItextField> = (props: ItextField) => {
+const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
 
@@ -51,7 +51,7 @@ const TextField: React.FunctionComponent<ItextField> = (props: ItextField) => {
 
     return (
       <TextFieldContainer backgroundImage={props?.backgroundImage} width={props?.width} height={props?.height}>
-        <LabelContainer isExistValue={isExistValue || isFocus}>
+        <LabelContainer isExistValue={isExistValue || isFocus} isExistTextMessageHelper={props?.textMessage > ''}>
           <Label
             htmlFor={props.id}
             fontSize={labelFontSize}
@@ -89,6 +89,9 @@ const TextField: React.FunctionComponent<ItextField> = (props: ItextField) => {
           type={props?.type}
           fontWeight={props?.fontWeight}
           isReadOnly={props?.isReadOnly}
+          getIsChangingState={props.getIsChangingState}
+          mask={props?.mask}
+          isNotUseDebounce={props?.isNotUseDebounce}
         />
       </TextFieldContainer>
     );

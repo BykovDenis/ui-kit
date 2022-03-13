@@ -12,17 +12,18 @@ import InputElementContainer from './input-element-container.styled';
 import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
 
-const DEFAULT_HEIGHT = 30;
+const DEFAULT_HEIGHT = 40;
 const TEXT_ALIGN = 'right';
 const TIMEOUT = 1000;
 const TYPE_TEXT = 'text';
 const FONT_WEIGHT_REGULAR = 400;
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
-  const [inputValue, setInputValue] = useState(props.value);
+  const [inputValue, setInputValue] = useState(props.value !== undefined && props?.value !== null ? props.value : '');
   const [evtObj, setEvtObject] = useState(null);
   const [isNotRunDebounce, setIsRunDebounce] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
+  const [isChanging, setIsChanging] = useState(false);
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const cb = () => {
@@ -40,11 +41,18 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
     evtObjNew.target.value = value;
     props?.onChange(evtObjNew);
+    setIsChanging(false);
     setIsRunDebounce(false);
   };
 
   useEffect(() => {
-    if (isNotRunDebounce) {
+    if (inputValue !== props.value) {
+      setInputValue(props.value)
+    }
+  }, [props.value]);
+
+  useEffect(() => {
+    if (isNotRunDebounce && !props.isNotUseDebounce) {
       const executeDebounce = debounce(cb, TIMEOUT);
       executeDebounce();
     } else {
@@ -58,29 +66,41 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
   }, [isNotRunDebounce]);
 
+  useEffect(() => {
+    if (props.getIsChangingState) {
+      props.getIsChangingState(isChanging);
+    }
+  }, [isChanging])
+
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     props?.onInput(evt);
   };
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt?.target;
-    setInputValue(element.value);
+    const value: string | number = props.mask ? element.value?.replaceAll(props.mask, '') : element.value;
+    setInputValue(value);
     setEvtObject(evt);
+    setIsChanging(true);
     if (props?.onInput) {
       onInput(evt);
     }
-    if (!isNotRunDebounce) {
+    if (!isNotRunDebounce && !props.isNotUseDebounce) {
       setIsRunDebounce(true);
+    }
+    if (props.isNotUseDebounce) {
+      props?.onChange(evt);
     }
   };
 
   const onInputDelete = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue('');
     setEvtObject(null);
+    setIsChanging(false);
     props?.onRemove(props?.name, '', evt);
   };
 
-  const onInputFocus = () => {
+  const onInputFocus = (evt?: React.ChangeEvent<HTMLInputElement>) => {
     setIsFocus(true);
     if (inputRef?.current && props?.value !== null && props?.isSeparateNumberFormat) {
       const inputElement = inputRef?.current;
@@ -89,15 +109,15 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
         setInputValue(props?.value);
       }
     }
-    props?.onFocus();
+    props?.onFocus(evt);
   };
 
-  const onInputBlur = () => {
+  const onInputBlur = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setIsFocus(false);
     if (props?.isSeparateNumberFormat && props?.value !== null) {
       setInputValue(parseFloat(props.value as string).toLocaleString('ru-RU').replace(',', '.'))
     }
-    props?.onBlur();
+    props?.onBlur(evt);
   };
 
   const componentThemed: any = (theme: ITheme) => {
@@ -122,12 +142,14 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     const ReactInput: React.FunctionComponent = (props: any) => <input {...props} />;
 
+    const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
+
     return (
       <InputContainer backgroundImage={props?.backgroundImage} height={props?.height} width={props?.width}>
         <InputElementContainer>
           <InputStyled
             {...props}
-            value={inputValue}
+            value={value}
             disabled={props?.disabled}
             width={props.width}
             height={props.height || DEFAULT_HEIGHT}
@@ -161,16 +183,17 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             min={props?.min}
             max={props?.max}
             readOnly={props?.isReadOnly}
+            autoComplete="off"
           />
-          <InputUnderline
+          {props?.variant !== TYPE_TEXT &&<InputUnderline
             name={props?.name}
             className="underline"
             variant={props?.variant}
             color={underlineColor}
             disabled={props?.disabled}
             width={props.width}
-          />
-          {!props?.isReadOnly && !props.isNotClearable && inputValue && inputValue > '' && !props?.disabled && (
+          />}
+          {!props?.isReadOnly && !props.isNotClearable && inputValue !== null && inputValue !== '' && !props?.disabled ? (
             <ButtonDelete
               onClick={onInputDelete}
               className="delete-button"
@@ -180,9 +203,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             >
               <DeleteIcon className="delete-icon" />
             </ButtonDelete>
-          )}
+          ) : null}
         </InputElementContainer>
-        {props?.textMessage && (
+        {props?.textMessage ? (
           <TextMessage
             className="text-message"
             fontSize={props?.fontSize ?? theme?.baseFontSize}
@@ -191,7 +214,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           >
             {props.textMessage}
           </TextMessage>
-        )}
+        ) : null}
       </InputContainer>
     );
   };

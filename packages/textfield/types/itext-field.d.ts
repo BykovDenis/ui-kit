@@ -7,6 +7,7 @@ interface ITextField extends IInput, ILabel {
   fontSize?: number;
   height?: number;
   id: string;
+  isExistTextMessageHelper?: boolean;
   isExistValue?: boolean;
   label?: string;
   textAlign?: string;
