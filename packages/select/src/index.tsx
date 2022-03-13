@@ -76,6 +76,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsExistValue(false);
     setIsVisibleList(false);
     setValue('');
+    props.onChange({ name: props.name, label: props.label, value: null });
   };
 
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
