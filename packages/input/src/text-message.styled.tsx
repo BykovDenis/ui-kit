@@ -8,6 +8,7 @@ const TextMessage =
   `
   display: block;
   margin: 0;
+  margin-top: 3px;  
   padding: 0;
   font-family: ${(props: Iinput) => props.fontFamily};
   font-size: ${(props: Iinput) => props.fontSize - 2}px; 
