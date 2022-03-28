@@ -1,6 +1,7 @@
 import debounce from 'debounce';
 import React, { useEffect, useRef, useState } from 'react';
 
+import {DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, TEXT_ALIGN_RIGHT, TIMEOUT, TYPE_TEXT} from '../../constants';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
 import IInput from '../types/IInput';
@@ -12,11 +13,6 @@ import InputElementContainer from './input-element-container.styled';
 import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
 
-const DEFAULT_HEIGHT = 40;
-const TEXT_ALIGN = 'right';
-const TIMEOUT = 1000;
-const TYPE_TEXT = 'text';
-const FONT_WEIGHT_REGULAR = 400;
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(props.value !== undefined && props?.value !== null ? props.value : '');
@@ -164,7 +160,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             fontSize={props?.fontSize ?? theme?.baseFontSize}
             className={props?.className}
             fontFamily={theme?.fontFamily}
-            textAlign={props?.textAlign || TEXT_ALIGN}
+            textAlign={props?.textAlign || TEXT_ALIGN_RIGHT}
             onChange={onInputChange}
             onFocus={onInputFocus}
             onBlur={onInputBlur}

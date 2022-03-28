@@ -76,7 +76,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsExistValue(false);
     setIsVisibleList(false);
     setValue('');
-    props.onChange({ name: props.name, label: props.label, value: null });
+    props.onChange({ name: props.name, label: props.label, value: null, index: null });
   };
 
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -191,7 +191,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                   const onSelectChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
                     const element: any = evt.currentTarget;
                     const elementValue: string = element?.dataset?.value;
-                    props.onChange({ name: props.name, label: element.value, value: elementValue });
+                    const index: number = element?.dataset?.index ? parseInt(element?.dataset?.index, 10) : null;
+                    props.onChange({ name: props.name, label: element.value, value: elementValue, index });
                     setIsVisibleList(!isVisibleList);
                   };
 
@@ -199,6 +200,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                     <ListItem
                       type="button"
                       key={`list-item-${index}`}
+                      data-index={index}
                       backgroundColor={backgroundColor}
                       hoverBackgroundColor={hoverBackgroundColor}
                       color={color}

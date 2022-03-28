@@ -1,5 +1,8 @@
+import React from 'react';
+
 interface IOption {
-  label: string;
+  index: number;
+  label: string || React.ReactNode;
   name: string;
   value: string;
 }
