@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-const SelectListContainer = styled('div')`
+import IDatepicker from '../types/idatepicker';
+
+const DatepickerDatesContainer =
+  styled('div') <
+  IDatepicker >
+  `
   top: 100%;
   background-color: rgb(255, 255, 255);
   border-radius: 4px;
@@ -8,11 +13,11 @@ const SelectListContainer = styled('div')`
   margin-bottom: 5px;
   margin-top: 5px;
   position: absolute;
-  width: 100%;
+  width: 250px;
+  height: 305px;
   z-index: 10001;
   box-sizing: border-box;
-  max-height: 500px;
-  overflow-y: auto;
+  border: 1px solid #666666; 
 `;
 
-export default SelectListContainer;
+export default DatepickerDatesContainer;

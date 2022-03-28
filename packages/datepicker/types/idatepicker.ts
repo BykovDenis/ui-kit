@@ -1,25 +1,27 @@
-import React from 'react';
 import Variants from '../../enums/variants';
 import IInput from '../../input/types/iinput';
 import ILabel from '../../label/types/ilabel';
-import IOption from './ioption';
 
-interface ISelect extends IInput, ILabel {
-  activeElement: string;
+interface IDatepicker extends IInput, ILabel {
   baseFontSize: number;
   children?: any;
-  elements?: any;
   error?: boolean;
   fontFamily: string;
   fontSize: number;
   height: number;
   id: string;
   isCreatable?: boolean;
+  isDisabled?: boolean;
   isExistValue?: boolean;
-  label?: string || React.ReactNode;
-  onChange: (option: IOption) => void;
+  label?: string;
+  locale: string;
+  maxDate?: string;
+  minDate?: string;
+  name?: string;
+  onChange?: (name: string, value: string, isValid: boolean) => void;
   textAlign: string;
+  value?: string;
   variant?: Variants;
 }
 
-export default ISelect;
+export default IDatepicker;

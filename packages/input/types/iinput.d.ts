@@ -30,11 +30,11 @@ interface IInput {
   isNotUseDebounce?: boolean;
   isReadOnly?: boolean;
   isSeparateNumberFormat?: boolean;
-  mask?: RegExp;
+  mask?: string;
   max?: number;
   min?: number;
   name: string;
-  onBlur: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onClick?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (evt: React.ChangeEvent<HTMLInputElement>) => void;

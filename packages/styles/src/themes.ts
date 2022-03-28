@@ -1,6 +1,6 @@
 import React from 'react';
-
 import IThemes from '../types/ithemes';
+
 
 export const themes: IThemes = {
   loanPricing: {
@@ -27,6 +27,7 @@ export const themes: IThemes = {
     mainBlackColor: 'rgba(0,0,0,0.85)',
     mainGrayColor: '#bdbdbd',
     mainWhiteColor: '#ffffff',
+    mainBackgroundColor: '#ffffff',
   },
   light: {
     palette: {
@@ -52,6 +53,7 @@ export const themes: IThemes = {
     mainBlackColor: 'rgba(0,0,0,0.85)',
     mainGrayColor: '#bdbdbd',
     mainWhiteColor: '#ffffff',
+    mainBackgroundColor: '#ffffff',
   },
   dark: {
     palette: {
@@ -77,6 +79,7 @@ export const themes: IThemes = {
     mainBlackColor: 'rgba(0,0,0,0.85)',
     mainGrayColor: '#bdbdbd',
     mainWhiteColor: '#ffffff',
+    mainBackgroundColor: '#ffffff',
   },
 };
 
