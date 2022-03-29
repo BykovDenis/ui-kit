@@ -58,9 +58,9 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsVisibleList(false);
   };
 
-  const onMouseUp = (evt: React.ChangeEvent<HTMLElement>, listRef: React.Ref<any>) => {
+  const onMouseUp = (evt: React.ChangeEvent<HTMLElement>, listRef: any) => {
     const element: any = evt.target;
-    if (listRef) {
+    if (listRef && listRef?.current) {
       const listElement: any = listRef?.current;
       onSelectChange(evt);
       if (listElement) {
