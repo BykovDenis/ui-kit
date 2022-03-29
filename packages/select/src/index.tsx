@@ -58,6 +58,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsVisibleList(false);
   };
 
+  const onMouseSelectUp = () => {
+    onListItemsCloseByKey();
+  };
+
   const onMouseUp = (evt: React.ChangeEvent<HTMLElement>, listRef: any) => {
     const element: any = evt.target;
     if (listRef && listRef?.current) {
@@ -71,7 +75,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     }
   };
 
-  const onKeyUp = (evt: React.KeyboardEvent<HTMLElement>) => {
+  const onKeyUp = (evt: any) => {
     if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
       onListItemsCloseByKey();
     }
@@ -82,10 +86,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, [props.activeElement]);
 
   useEffect(() => {
-    document.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('mouseup', onMouseSelectUp);
     document.addEventListener('keyup', onKeyUp);
     return () => {
-      document.removeEventListener('mouseup', onMouseUp);
+      document.removeEventListener('mouseup', onMouseSelectUp);
       document.addEventListener('keyup', onKeyUp);
     };
   }, []);
