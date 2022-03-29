@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 
-import { COLOR_THEME, KEY_ESCAPE } from '../../constants';
-import searchDomChildElement from '../../helpers/search-dom-child-element';
+import { COLOR_THEME } from '../../constants';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
 import ListType from '../enum/list-type';
@@ -10,6 +9,7 @@ import ListStyled from './list.styled';
 import ListDivStyled from './list-div.styled';
 
 const List: React.FunctionComponent<IList> = (props: IList) => {
+  const listRef = useRef();
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string =
       props?.colorTheme === COLOR_THEME || !props.colorTheme
@@ -26,6 +26,14 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
         ? theme?.palette?.baseFontColor
         : theme?.palette?.secondary?.main;
 
+    const onMouseUp = (evt: React.ChangeEvent<HTMLElement>) => {
+      props.onMouseUp(evt, listRef);
+    };
+
+    const onKeyUp = (evt: React.KeyboardEvent<HTMLElement>) => {
+      props.onKeyUp(evt, listRef);
+    };
+
     return props?.type === ListType.Buttons ? (
       <ListDivStyled
         fontFamily={theme?.fontFamily}
@@ -35,6 +43,9 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
         color={color}
         hoverColor={hoverColor}
         underlineColor={underlineColor}
+        onMouseUp={onMouseUp}
+        onKeyUp={onKeyUp}
+        ref={listRef}
       >
         {props.children}
       </ListDivStyled>
