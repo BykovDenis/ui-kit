@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 
 import Variants from '../../enums/variants';
+import searchDomChildElement from '../../helpers/search-dom-child-element';
 import Input from '../../input/src';
 import Label from '../../label/src';
 import List from '../../list/src';
@@ -19,8 +20,9 @@ const TYPE_TEXT = 'text';
 const FONT_WEIGHT_REGULAR = 400;
 const INPUT_TAG: string = 'INPUT';
 
+const KEY_ESCAPE: string = 'ESCAPE';
+
 const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
-  const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState(props.activeElement);
   const [elements, setElements] = useState(props.elements);
@@ -28,12 +30,69 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [isFoundValue, setIsFoundValue] = useState(true);
   const [isNewElement, setIsNewElement] = useState(false);
 
+  const onSelectChange = (evt: React.ChangeEvent<HTMLElement>) => {
+    const element: any = evt.target;
+    const value: string = element?.dataset?.value;
+
+    if (props?.onChange) {
+      const index: number = element?.dataset?.index ? parseInt(element?.dataset?.index, 10) : null;
+      props.onChange({ name: props.name, label: props.label, value, index });
+    } else {
+      setValue(value);
+    }
+    setIsVisibleList(!isVisibleList);
+  };
+
+  const onListItemsClose = (isSearchResult: boolean, evt?: React.ChangeEvent<HTMLElement>) => {
+    const element = evt.target;
+    if (element?.tagName !== INPUT_TAG) {
+      if (!isSearchResult) {
+        setIsFocus(false);
+        setIsVisibleList(false);
+      }
+    }
+  };
+
+  const onListItemsCloseByKey = () => {
+    setIsFocus(false);
+    setIsVisibleList(false);
+  };
+
+  const onMouseUp = (evt: React.ChangeEvent<HTMLElement>, listRef: React.Ref<any>) => {
+    const element: any = evt.target;
+    if (listRef) {
+      const listElement: any = listRef?.current;
+      onSelectChange(evt);
+      if (listElement) {
+        onListItemsClose(searchDomChildElement(listElement, element), evt);
+      }
+    } else {
+      onListItemsCloseByKey();
+    }
+  };
+
+  const onKeyUp = (evt: React.KeyboardEvent<HTMLElement>) => {
+    if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
+      onListItemsCloseByKey();
+    }
+  };
+
+  useEffect(() => {
+    setValue(props.activeElement);
+  }, [props.activeElement]);
+
+  useEffect(() => {
+    document.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('keyup', onKeyUp);
+    return () => {
+      document.removeEventListener('mouseup', onMouseUp);
+      document.addEventListener('keyup', onKeyUp);
+    };
+  }, []);
+
   useEffect(() => {
     if (props?.activeElement > '') {
-      setIsExistValue(true);
       setValue(props?.activeElement);
-    } else {
-      setIsExistValue(false);
     }
   }, [props.activeElement]);
 
@@ -42,11 +101,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, [props.elements]);
 
   useEffect(() => {
-    if (props?.activeElement > '') {
-      setIsExistValue(true);
-    } else {
-      setIsExistValue(false);
-    }
     const elements: Array<string> =
       isFocus && (value !== props.activeElement || value === null || value === '')
         ? props.elements.filter((element: string) => element.indexOf(value) > -1)
@@ -63,7 +117,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
   useEffect(
     () => () => {
-      setIsExistValue(false);
       setIsVisibleList(false);
       setIsFocus(false);
       setIsFoundValue(false);
@@ -73,19 +126,15 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
   const onInputDelete = (name: string) => {
     props?.onRemove(name, null);
-    setIsExistValue(false);
     setIsVisibleList(false);
     setValue('');
-    props.onChange({ name: props.name, label: props.label, value: null, index: null });
+    props.onChange({ name: name, label: props.label, value: null, index: null });
   };
 
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt.target;
     const elementParsed: string = element.value.trim();
-    if (elementParsed > '') {
-      setIsExistValue(true);
-    } else {
-      setIsExistValue(false);
+    if (elementParsed === '') {
       setIsVisibleList(true);
     }
   };
@@ -94,6 +143,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsFocus(true);
     setIsVisibleList(true);
   };
+
+  const isExistValue: boolean = value > '';
 
   const componentThemed: any = (theme: ITheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
@@ -106,21 +157,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
     const onInputBlur = () => {
       setIsFocus(false);
-    };
-
-    const onListItemsClose = (isSearchResult: boolean, evt?: React.ChangeEvent<HTMLElement>) => {
-      const element = evt.target;
-      if (element?.tagName !== INPUT_TAG) {
-        if (!isSearchResult) {
-          setIsFocus(false);
-          setIsVisibleList(false);
-        }
-      }
-    };
-
-    const onListItemsCloseByKey = () => {
-      setIsFocus(false);
-      setIsVisibleList(false);
     };
 
     const onElementAppend = () => {
@@ -180,7 +216,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         </SelectHeader>
         {isVisibleList && (
           <SelectListContainer>
-            <List type="list-buttons" onMouseOutUp={onListItemsClose} onKeyUp={onListItemsCloseByKey}>
+            <List type="list-buttons" onMouseUp={onMouseUp} onKeyUp={onKeyUp}>
               {isFoundValue &&
                 elements?.map((element: string, index: number) => {
                   const backgroundColor: string = element === props.activeElement ? theme.palette.primary.light : null;
@@ -188,23 +224,14 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                     element === props.activeElement ? theme.palette.primary.light : null;
                   const color: string = element === props.activeElement ? theme.mainWhiteColor : null;
 
-                  const onSelectChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-                    const element: any = evt.currentTarget;
-                    const elementValue: string = element?.dataset?.value;
-                    const index: number = element?.dataset?.index ? parseInt(element?.dataset?.index, 10) : null;
-                    props.onChange({ name: props.name, label: element.value, value: elementValue, index });
-                    setIsVisibleList(!isVisibleList);
-                  };
-
                   return (
                     <ListItem
                       type="button"
                       key={`list-item-${index}`}
-                      data-index={index}
                       backgroundColor={backgroundColor}
                       hoverBackgroundColor={hoverBackgroundColor}
                       color={color}
-                      onClick={onSelectChange}
+                      data-index={index}
                       data-value={element}
                       textAlign={props?.textAlign || TEXT_ALIGN}
                       fontSize={fontSize}

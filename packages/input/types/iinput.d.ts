@@ -39,7 +39,7 @@ interface IInput {
   onClick?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  onRemove?: (name: string, value: string, evt?: React.ChangeEvent<HTMLInputElement>) => void;
+  onRemove?: (name: string, value?: string, evt?: any) => void;
   ref?: any;
   required?: boolean;
   step?: number;
