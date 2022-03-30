@@ -15,49 +15,34 @@ pipeline {
                 nodejs 'v16.3.0-linux-x64'
             }
         }
-        steps {
-            sh 'chmod a+x ./build.sh'
-            sh 'npm -v'
-            nodejs('v16.3.0-linux-x64') {
-                withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                    dir("${frontend_file}") {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-
-                                script {
-                                    sh "echo ${NPMRC_CONFIG}"
-                                    sh 'npm whoami'
-                                    sh 'npm i --legacy-peer-deps --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/'
-                                }
-                        }
-                    }
-                }
-            }
-        }
-        stage("NPM package deploy with npm") {
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        dir("${frontend_file}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                sh """
-                                    npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/
-                                """
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-//         stage("NPM package deploy with yarn") {
-//             steps {
-//                 nodejs('v10.15.3-linux-x64') {
-//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//         steps {
+//             sh 'chmod a+x ./build.sh'
+//             sh 'npm -v'
+//             nodejs('v16.3.0-linux-x64') {
+//                 withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                     dir("${frontend_file}") {
 //                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-//                             sh """
-//                                 ${yarnHome}/bin/yarn version --new-version ${BUILD_VERSION}
-//                                 ${yarnHome}/bin/yarn publish
-//                             """
+//
+//                                 script {
+//                                     sh "echo ${NPMRC_CONFIG}"
+//                                     sh 'npm whoami'
+//                                     sh 'npm i --legacy-peer-deps --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/'
+//                                 }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage("NPM package deploy with npm") {
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         dir("${frontend_file}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                 sh """
+//                                     npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/
+//                                 """
+//                             }
 //                         }
 //                     }
 //                 }
