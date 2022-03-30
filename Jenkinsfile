@@ -10,7 +10,7 @@ pipeline {
     options {
         timestamps()
         timeout(time: 1, unit: 'HOURS')
-        buildDiscarder(logRotator(artifactDaysToKeepStr: '7', artifactNumToKeepStr: '10', daysToKeepStr: '7', numToKeepStr: '50'))
+//         buildDiscarder(logRotator(artifactDaysToKeepStr: '7', artifactNumToKeepStr: '10', daysToKeepStr: '7', numToKeepStr: '50'))
     }
 //     environment {
 //         yarnHome = tool name: 'v16.3.0-linux-x64', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
@@ -41,8 +41,7 @@ pipeline {
                         dir("${frontend_file}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                 sh """
-                                    npm version ${BUILD_VERSION}
-                                    npm publish
+                                    npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/
                                 """
                             }
                         }
