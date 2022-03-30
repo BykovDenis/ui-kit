@@ -9,13 +9,11 @@ pipeline {
     }
     options { timeout(time: 60, unit: 'MINUTES') }
     stages {
-        stage("NODE install") {
+        stage("NPM package install") {
             tools
             {
                 nodejs 'v16.3.0-linux-x64'
             }
-        }
-        stage("NPM package install") {
             steps {
                 sh 'chmod a+x ./build.sh'
                 sh 'npm -v'
