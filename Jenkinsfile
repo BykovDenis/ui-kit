@@ -23,7 +23,7 @@ pipeline {
 
                                     script {
                                         sh "echo ${NPMRC_CONFIG}"
-                                        sh 'npm i --legacy-peer-deps'
+                                        sh 'npm ci --legacy-peer-deps'
                                     }
                             }
                         }
