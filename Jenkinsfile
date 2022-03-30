@@ -23,7 +23,6 @@ pipeline {
 
                                     script {
                                         sh "echo ${NPMRC_CONFIG}"
-                                        sh 'npm whoami'
                                         sh 'npm i --legacy-peer-deps'
                                     }
                             }
@@ -32,21 +31,21 @@ pipeline {
                 }
             }
         }
-//         stage("NPM package deploy with npm") {
-//             steps {
-//                 nodejs('v16.3.0-linux-x64') {
-//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-//                         dir("${frontend_file}") {
-//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-//                                 sh """
-//                                     npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/
-//                                 """
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         }
+        stage("NPM package deploy with npm") {
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        dir("${frontend_file}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                sh """
+                                    npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/
+                                """
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     post {
         always {
