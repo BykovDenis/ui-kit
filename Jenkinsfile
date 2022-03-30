@@ -24,7 +24,7 @@ pipeline {
                                     script {
                                         sh "echo ${NPMRC_CONFIG}"
                                         sh 'npm whoami'
-                                        sh 'npm i --legacy-peer-deps --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/'
+                                        sh 'npm i --legacy-peer-deps'
                                     }
                             }
                         }
