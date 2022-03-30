@@ -14,6 +14,7 @@ pipeline {
             {
                 nodejs 'v16.3.0-linux-x64'
             }
+        }
         steps {
             sh 'chmod a+x ./build.sh'
             sh 'npm -v'
