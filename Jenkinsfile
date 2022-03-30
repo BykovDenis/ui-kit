@@ -16,7 +16,7 @@ pipeline {
         yarnHome = tool name: 'v16.3.0-linux-x64', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
     }
     stages {
-        stage("NPM package deploy with npm") {
+        stage("NPM package install") {
             steps {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
@@ -28,6 +28,22 @@ pipeline {
                                         sh 'npm whoami'
                                         sh 'npm i --legacy-peer-deps --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/'
                                     }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage("NPM package deploy with npm") {
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        dir("${frontend_file}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                sh """
+                                    npm version ${BUILD_VERSION}
+                                    npm publish
+                                """
                             }
                         }
                     }
