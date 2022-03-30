@@ -15,7 +15,6 @@ pipeline {
                 nodejs 'v16.3.0-linux-x64'
             }
             steps {
-                sh 'chmod a+x ./build.sh'
                 sh 'npm -v'
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
