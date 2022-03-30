@@ -12,9 +12,9 @@ pipeline {
         timeout(time: 1, unit: 'HOURS')
         buildDiscarder(logRotator(artifactDaysToKeepStr: '7', artifactNumToKeepStr: '10', daysToKeepStr: '7', numToKeepStr: '50'))
     }
-    environment {
-        yarnHome = tool name: 'v16.3.0-linux-x64', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
-    }
+//     environment {
+//         yarnHome = tool name: 'v16.3.0-linux-x64', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
+//     }
     stages {
         stage("NPM package install") {
             steps {
