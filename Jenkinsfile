@@ -7,17 +7,18 @@ pipeline {
             label 'Linux_Default' //Сборка должна происходить на централизованных агентах из пула Linux_Default
         }
     }
-    options {
-        timestamps()
-        timeout(time: 1, unit: 'HOURS')
-//         buildDiscarder(logRotator(artifactDaysToKeepStr: '7', artifactNumToKeepStr: '10', daysToKeepStr: '7', numToKeepStr: '50'))
-    }
-//     environment {
-//         yarnHome = tool name: 'v16.3.0-linux-x64', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
-//     }
+    options { timeout(time: 60, unit: 'MINUTES') }
     stages {
+        stage("NODE install") {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+        }
         stage("NPM package install") {
             steps {
+                sh 'chmod a+x ./build.sh'
+                sh 'npm -v'
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         dir("${frontend_file}") {
