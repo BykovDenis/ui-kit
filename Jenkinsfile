@@ -134,6 +134,114 @@ pipeline {
                 }
             }
         }
+        stage('The packages build') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        dir("${uiKitPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Root build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
+                        dir("${buttonPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Button build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
+                        dir("${checkboxPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Checkbox build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
+                        dir("${datepickerPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Datepicker build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
+                        dir("${inputPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Input build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
+                        dir("${labelPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Label build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
+                        dir("${listPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'List build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
+                        dir("${listItemPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'List item build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
+                        dir("${radioPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Radio build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
+                        dir("${selectPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Select build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
+                        dir("${textFieldPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'TextField build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
+                        dir("${warningPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Warning panel build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         stage('The clean node_modules directories') {
             tools
             {
@@ -236,114 +344,6 @@ pipeline {
                                     script {
                                         echo 'Warning panel  clean node_modules'
                                         sh 'npm i --legacy-peer-deps'
-                                    }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('The packages build') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        dir("${uiKitPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Root build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${buttonPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Button build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${checkboxPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Checkbox build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${datepickerPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Datepicker build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${inputPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Input build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${labelPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Label build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${listPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'List build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${listItemPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'List item build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${radioPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Radio build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${selectPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Select build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${textFieldPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'TextField build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${warningPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Warning panel build packages'
-                                        sh 'npm run build'
                                     }
                             }
                         }
