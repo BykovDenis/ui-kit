@@ -58,7 +58,6 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
 
                                     script {
-                                        sh "echo ${NPMRC_CONFIG}"
                                         sh 'npm i --legacy-peer-deps'
                                     }
                             }
