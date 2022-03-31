@@ -42,6 +42,14 @@ pipeline {
                                     }
                             }
                         }
+                        dir("${textFieldPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'TextField install packages'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
                         dir("${datepickerPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
@@ -66,6 +74,14 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Root build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
+                        dir("${textFieldPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'TextField build packages'
                                         sh 'npm run build'
                                     }
                             }
@@ -99,10 +115,18 @@ pipeline {
                                     }
                             }
                         }
+                        dir("${textFieldPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'TextField  clean node_modules'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
                         dir("${datepickerPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
-                                        echo 'Datepicker  clean node_modules'
+                                        echo 'Datepicker clean node_modules'
                                         sh 'npm i --legacy-peer-deps'
                                     }
                             }
