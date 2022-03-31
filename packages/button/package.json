@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c rollup.config.prod.js",
-    "build-dev": "rollup -w -c rollup.config.dev.js"
+    "build-dev": "rollup -w -c rollup.config.dev.js",
+    "clean-node-modules": "rm -rf node_modules"
   },
   "repository": {
     "type": "git",
