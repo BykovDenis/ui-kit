@@ -1,5 +1,5 @@
-
-def frontend_file = './packages/'
+def rootPath = '.'
+def uiKitPath = './packages/'
 
 pipeline {
     agent {
@@ -18,7 +18,7 @@ pipeline {
                 sh 'npm -v'
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        dir("${frontend_file}") {
+                        dir("${rootPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
 
                                     script {
@@ -31,21 +31,38 @@ pipeline {
                 }
             }
         }
-        stage("NPM package deploy with npm") {
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        dir("${frontend_file}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                sh """
-                                    npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/
-                                """
-                            }
-                        }
-                    }
-                }
-            }
-        }
+//             steps {
+//                 sh 'npm -v'
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         dir("${uiKitPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//
+//                                     script {
+//                                         sh "echo ${NPMRC_CONFIG}"
+//                                         sh 'npm ci --legacy-peer-deps'
+//                                     }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage("NPM package deploy with npm") {
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         dir("${uiKitPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                 sh """
+//                                     npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/
+//                                 """
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
     }
     post {
         always {

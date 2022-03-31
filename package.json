@@ -28,7 +28,6 @@
     "html5"
   ],
   "dependencies": {
-    "@sber-riski-cib-ui/core": "^0.0.8",
     "@svgr/webpack": "^6.2.0",
     "babel-eslint": "^10.0.1",
     "chroma-js": "2.0.3",
