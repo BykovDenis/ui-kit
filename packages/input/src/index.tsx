@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import {DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, TEXT_ALIGN_RIGHT, TIMEOUT, TYPE_TEXT} from '../../constants';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
-import IInput from '../types/IInput';
+import IInput from '../types/iinput';
 import ButtonDelete from './button-delete.styled';
 import DeleteIcon from './delete-icon';
 import InputStyled from './input.styled';
