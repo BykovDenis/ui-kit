@@ -98,43 +98,43 @@ pipeline {
                 }
             }
         }
-        stage('The clean node_modules directories') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                sh 'npm -v'
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        dir("${uiKitPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Root clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
-                                    }
-                            }
-                        }
-                        dir("${textFieldPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'TextField  clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
-                                    }
-                            }
-                        }
-                        dir("${datepickerPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Datepicker clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
-                                    }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+//         stage('The clean node_modules directories') {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 sh 'npm -v'
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         dir("${uiKitPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                     script {
+//                                         echo 'Root clean node_modules'
+//                                         sh 'npm i --legacy-peer-deps'
+//                                     }
+//                             }
+//                         }
+//                         dir("${textFieldPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                     script {
+//                                         echo 'TextField  clean node_modules'
+//                                         sh 'npm i --legacy-peer-deps'
+//                                     }
+//                             }
+//                         }
+//                         dir("${datepickerPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                     script {
+//                                         echo 'Datepicker clean node_modules'
+//                                         sh 'npm i --legacy-peer-deps'
+//                                     }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
     }
     post {
         always {
