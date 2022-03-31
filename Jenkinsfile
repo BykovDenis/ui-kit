@@ -373,7 +373,7 @@ pipeline {
     }
     post {
         always {
-            cleanWs disableDeferredWipeout: true, deleteDirs: true //Очистка workspace Подробнее https://jenkins.io/doc/pipeline/steps/ws-cleanup/
+            cleanWs disableDeferredWipeout: true, deleteDirs: true
         }
     }
 }
