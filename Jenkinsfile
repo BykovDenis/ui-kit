@@ -57,46 +57,46 @@ pipeline {
                 sh 'npm -v'
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        dir("${uiKitPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Root install packages'
-                                        sh 'npm i --legacy-peer-deps'
-                                    }
-                            }
-                        }
-                        dir("${buttonPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Button install packages'
-                                        sh 'npm i --legacy-peer-deps'
-                                    }
-                            }
-                        }
-                        dir("${checkboxPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Checkbox install packages'
-                                        sh 'npm i --legacy-peer-deps'
-                                    }
-                            }
-                        }
-                        dir("${datepickerPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Datepicker install packages'
-                                        sh 'npm i --legacy-peer-deps'
-                                    }
-                            }
-                        }
-                        dir("${dividerPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Divider install packages'
-                                        sh 'npm i --legacy-peer-deps'
-                                    }
-                            }
-                        }
+//                         dir("${uiKitPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                     script {
+//                                         echo 'Root install packages'
+//                                         sh 'npm i --legacy-peer-deps'
+//                                     }
+//                             }
+//                         }
+//                         dir("${buttonPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                     script {
+//                                         echo 'Button install packages'
+//                                         sh 'npm i --legacy-peer-deps'
+//                                     }
+//                             }
+//                         }
+//                         dir("${checkboxPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                     script {
+//                                         echo 'Checkbox install packages'
+//                                         sh 'npm i --legacy-peer-deps'
+//                                     }
+//                             }
+//                         }
+//                         dir("${datepickerPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                     script {
+//                                         echo 'Datepicker install packages'
+//                                         sh 'npm i --legacy-peer-deps'
+//                                     }
+//                             }
+//                         }
+//                         dir("${dividerPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                     script {
+//                                         echo 'Divider install packages'
+//                                         sh 'npm i --legacy-peer-deps'
+//                                     }
+//                             }
+//                         }
                         dir("${inputPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
@@ -173,46 +173,46 @@ pipeline {
             steps {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        dir("${uiKitPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Root build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${buttonPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Button build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${checkboxPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Checkbox build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${datepickerPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Datepicker build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${dividerPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Divider build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
+//                         dir("${uiKitPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                     script {
+//                                         echo 'Root build packages'
+//                                         sh 'npm run build'
+//                                     }
+//                             }
+//                         }
+//                         dir("${buttonPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                     script {
+//                                         echo 'Button build packages'
+//                                         sh 'npm run build'
+//                                     }
+//                             }
+//                         }
+//                         dir("${checkboxPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                     script {
+//                                         echo 'Checkbox build packages'
+//                                         sh 'npm run build'
+//                                     }
+//                             }
+//                         }
+//                         dir("${datepickerPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                     script {
+//                                         echo 'Datepicker build packages'
+//                                         sh 'npm run build'
+//                                     }
+//                             }
+//                         }
+//                         dir("${dividerPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                     script {
+//                                         echo 'Divider build packages'
+//                                         sh 'npm run build'
+//                                     }
+//                             }
+//                         }
                         dir("${inputPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
