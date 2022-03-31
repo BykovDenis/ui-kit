@@ -22,9 +22,7 @@
   "gitHead": "266ed2306b3cfb0550d61e31ba771de48f7de3f5",
   "types": "./types/itext-field.d.ts",
   "dependencies": {
-    "date-fns": "^2.28.0"
-  },
-  "devDependencies": {
+    "date-fns": "^2.28.0",
     "autoprefixer": "^10.4.0"
   }
 }
