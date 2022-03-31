@@ -12,6 +12,8 @@ def radioPath = './packages/radio'
 def selectPath = './packages/select'
 def textFieldPath = './packages/textfield'
 def warningPath = './packages/warning-panel'
+def switcherPath = './packages/switcher';
+def stylesPath = './packages/styles';
 
 pipeline {
     agent {
@@ -119,6 +121,22 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Select install packages'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${stylesPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Styles install packages'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${switcherPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Switcher install packages'
                                         sh 'npm i --legacy-peer-deps'
                                     }
                             }
@@ -231,6 +249,22 @@ pipeline {
                                     }
                             }
                         }
+                        dir("${stylesPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Styles build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
+                        dir("${switcherPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Switcher build packages'
+                                        sh 'npm run build'
+                                    }
+                            }
+                        }
                         dir("${textFieldPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
@@ -336,6 +370,22 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Select  clean node_modules'
+                                        sh 'npm run clean-node-modules'
+                                    }
+                            }
+                        }
+                        dir("${stylesPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Styles clean node_modules'
+                                        sh 'npm run clean-node-modules'
+                                    }
+                            }
+                        }
+                        dir("${switcherPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Switcher clean node_modules'
                                         sh 'npm run clean-node-modules'
                                     }
                             }
