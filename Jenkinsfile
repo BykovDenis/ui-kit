@@ -66,14 +66,6 @@ pipeline {
                                     }
                             }
                         }
-                        dir("${dividerPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Divider install packages'
-                                        sh 'npm i --legacy-peer-deps'
-                                    }
-                            }
-                        }
                         dir("${inputPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
@@ -142,6 +134,115 @@ pipeline {
                 }
             }
         }
+        stage('The clean node_modules directories') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                sh 'npm -v'
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        dir("${uiKitPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Root clean node_modules'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${buttonPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Button  clean node_modules'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${checkboxPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Checkbox  clean node_modules'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${datepickerPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Datepicker  clean node_modules'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${inputPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Input  clean node_modules'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${labelPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Label  clean node_modules'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${listPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'List  clean node_modules'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${listItemPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'List item  clean node_modules'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${radioPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Radio  clean node_modules'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${selectPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Select  clean node_modules'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${textFieldPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'TextField  clean node_modules'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${warningPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Warning panel  clean node_modules'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         stage('The packages build') {
             tools
             {
@@ -178,14 +279,6 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Datepicker build packages'
-                                        sh 'npm run build'
-                                    }
-                            }
-                        }
-                        dir("${dividerPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Divider build packages'
                                         sh 'npm run build'
                                     }
                             }
