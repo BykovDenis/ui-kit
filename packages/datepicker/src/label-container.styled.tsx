@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import ISelect from '../types/iselect';
+import ISelect from '../../select/types/iselect';
 
 const LabelContainer =
   styled('div') <
