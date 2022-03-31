@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/core",
-  "version": "0.5.22",
+  "version": "0.5.23",
   "description": "Riski react UI",
   "main": "dist/index.js",
   "module": "styles/src/index.js",
