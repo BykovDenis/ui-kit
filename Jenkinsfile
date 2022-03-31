@@ -264,7 +264,7 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Root clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
+                                        sh 'npm run clean-node-modules'
                                     }
                             }
                         }
@@ -272,7 +272,7 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Button  clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
+                                        sh 'npm run clean-node-modules'
                                     }
                             }
                         }
@@ -280,7 +280,7 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Checkbox  clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
+                                        sh 'npm run clean-node-modules'
                                     }
                             }
                         }
@@ -288,7 +288,7 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Datepicker  clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
+                                        sh 'npm run clean-node-modules'
                                     }
                             }
                         }
@@ -296,7 +296,7 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Input  clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
+                                        sh 'npm run clean-node-modules'
                                     }
                             }
                         }
@@ -304,7 +304,7 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Label  clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
+                                        sh 'npm run clean-node-modules'
                                     }
                             }
                         }
@@ -312,7 +312,7 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'List  clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
+                                        sh 'npm run clean-node-modules'
                                     }
                             }
                         }
@@ -320,7 +320,7 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'List item  clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
+                                        sh 'npm run clean-node-modules'
                                     }
                             }
                         }
@@ -328,7 +328,7 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Radio  clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
+                                        sh 'npm run clean-node-modules'
                                     }
                             }
                         }
@@ -336,7 +336,7 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Select  clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
+                                        sh 'npm run clean-node-modules'
                                     }
                             }
                         }
@@ -344,7 +344,7 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'TextField  clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
+                                        sh 'npm run clean-node-modules'
                                     }
                             }
                         }
@@ -352,7 +352,7 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Warning panel  clean node_modules'
-                                        sh 'npm i --legacy-peer-deps'
+                                        sh 'npm run clean-node-modules'
                                     }
                             }
                         }
