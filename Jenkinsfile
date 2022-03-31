@@ -1,6 +1,17 @@
 def rootPath = '.'
 def uiKitPath = './packages/'
 def buttonPath = './packages/button'
+def checkboxPath = './packages/checkbox'
+def datepickerPath = './packages/datepicker'
+def dividerPath = './packages/divider'
+def dividerPath = './packages/input'
+def labelPath = './packages/label'
+def listPath = './packages/list'
+def listItemPath = './packages/list-item'
+def radioPath = './packages/radio'
+def selectPath = './packages/select'
+def textFieldPath = './packages/textfield'
+def warningPath = './packages/warning-panel'
 
 pipeline {
     agent {
@@ -43,9 +54,24 @@ pipeline {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         dir("${uiKitPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-
                                     script {
-                                        sh "echo ${NPMRC_CONFIG}"
+                                        echo 'Root install packages'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${buttonPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Button install packages'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                        dir("${checkboxPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Checkbox install packages'
                                         sh 'npm i --legacy-peer-deps'
                                     }
                             }
