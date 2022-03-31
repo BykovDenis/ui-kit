@@ -9,8 +9,8 @@ interface IList {
   colorTheme?: string;
   elements?: Array<IListElement>;
   fontFamily?: string;
-  onKeyUp: (evt?: React.KeyboardEvent<HTMLElement>, listRef?: React.Ref<any>) => void;
-  onMouseUp: (evt?: React.ChangeEvent<HTMLElement>, listRef?: React.Ref<any>) => void;
+  onKeyUp?: (evt?: React.KeyboardEvent<HTMLElement>, listRef?: React.Ref<any>) => void;
+  onMouseUp?: (evt?: React.ChangeEvent<HTMLElement>, listRef?: React.Ref<any>) => void;
   type?: string;
 }
 

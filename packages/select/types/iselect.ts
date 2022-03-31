@@ -20,7 +20,7 @@ interface ISelect extends IInput, ILabel {
   label?: string | React.ReactNode;
   name: string;
   onChange: (option: IOption) => void;
-  textAlign: string;
+  textAlign?: string;
   variant?: Variants;
 }
 

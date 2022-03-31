@@ -47,9 +47,9 @@ interface IInput {
   textMessage?: string;
   theme?: any;
   type?: string;
-  value: number | string;
+  value?: number | string;
   variant?: Variants;
-  width: number;
+  width?: number;
 }
 
 export default IInput;

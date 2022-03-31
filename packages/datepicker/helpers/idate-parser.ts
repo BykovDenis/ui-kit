@@ -1,5 +1,5 @@
 interface IDateParser {
-  changeDay: (day: string) => void;
+  changeDay: (day: number) => void;
   changeMonth: (month: number) => void;
   changeYear: (month: number) => void;
   checkIsValidateDate: () => boolean;
