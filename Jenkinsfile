@@ -52,19 +52,7 @@ pipeline {
                         }
                     }
                 }
-//                 nodejs('v16.3.0-linux-x64') {
-//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-//                         dir("${buttonPath}") {
-//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-//
-//                                     script {
-//                                         sh 'npm i --legacy-peer-deps'
-//                                     }
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
+            }
         }
         stage('Ui-kit project npm build') {
             tools
@@ -83,20 +71,13 @@ pipeline {
                         }
                     }
                 }
-//                 nodejs('v16.3.0-linux-x64') {
-//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-//                         dir("${buttonPath}") {
-//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-//                                 script {
-//                                     sh 'npm run build'
-//                                 }
-//                             }
-//                         }
-//                     }
-//                 }
             }
         }
         stage("NPM package deploy with npm") {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
             steps {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
