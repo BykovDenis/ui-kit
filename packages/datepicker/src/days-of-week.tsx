@@ -1,4 +1,4 @@
-import './days-of-week.css';
+import './days-of-week.scss';
 
 import React from 'react';
 
