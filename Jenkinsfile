@@ -9,7 +9,7 @@ pipeline {
     }
     options { timeout(time: 60, unit: 'MINUTES') }
     stages {
-        stage('NPM package install') {
+        stage('Root project npm install') {
             tools
             {
                 nodejs 'v16.3.0-linux-x64'
@@ -23,7 +23,7 @@ pipeline {
 
                                     script {
                                         sh "echo ${NPMRC_CONFIG}"
-                                        sh 'npm ci --legacy-peer-deps'
+                                        sh 'npm i --legacy-peer-deps'
                                     }
                             }
                         }
@@ -31,23 +31,28 @@ pipeline {
                 }
             }
         }
-//             steps {
-//                 sh 'npm -v'
-//                 nodejs('v16.3.0-linux-x64') {
-//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-//                         dir("${uiKitPath}") {
-//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-//
-//                                     script {
-//                                         sh "echo ${NPMRC_CONFIG}"
-//                                         sh 'npm ci --legacy-peer-deps'
-//                                     }
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         }
+        stage('Ui-kit project npm install') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                sh 'npm -v'
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        dir("${uiKitPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+
+                                    script {
+                                        sh "echo ${NPMRC_CONFIG}"
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 //         stage("NPM package deploy with npm") {
 //             steps {
 //                 nodejs('v16.3.0-linux-x64') {
