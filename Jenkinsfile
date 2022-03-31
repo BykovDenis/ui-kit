@@ -94,7 +94,7 @@ pipeline {
 //                         }
 //                     }
 //                 }
-//             }
+            }
         }
         stage("NPM package deploy with npm") {
             steps {
