@@ -1,5 +1,6 @@
 def rootPath = '.'
 def uiKitPath = './packages/'
+def buttonPath = './packages/button'
 
 pipeline {
     agent {
@@ -51,27 +52,70 @@ pipeline {
                         }
                     }
                 }
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        dir("${buttonPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+
+                                    script {
+                                        sh "echo ${NPMRC_CONFIG}"
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                        }
+                    }
+                }
             }
         }
-//         stage("NPM package deploy with npm") {
-//             steps {
-//                 nodejs('v16.3.0-linux-x64') {
-//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-//                         dir("${uiKitPath}") {
-//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-//                                 sh """
-//                                     npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/
-//                                 """
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-    }
-    post {
-        always {
-            cleanWs disableDeferredWipeout: true, deleteDirs: true //Очистка workspace Подробнее https://jenkins.io/doc/pipeline/steps/ws-cleanup/
+        stage('Ui-kit project npm build') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        dir("${uiKitPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                script {
+                                    sh 'npm run build'
+                                }
+                            }
+                        }
+                    }
+                }
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        dir("${buttonPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                script {
+                                    sh 'npm run build'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage("NPM package deploy with npm") {
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        dir("${uiKitPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                sh """
+                                    npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/
+                                """
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
+//     post {
+//         always {
+//             cleanWs disableDeferredWipeout: true, deleteDirs: true //Очистка workspace Подробнее https://jenkins.io/doc/pipeline/steps/ws-cleanup/
+//         }
+//     }
 }
