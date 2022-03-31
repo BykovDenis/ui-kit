@@ -15,7 +15,7 @@ def warningPath = './packages/warning-panel'
 pipeline {
     agent {
         node {
-            label 'Linux_Default' //Сборка должна происходить на централизованных агентах из пула Linux_Default
+            label 'sbt-oainr-0055' // 'Linux_Default' //Сборка должна происходить на централизованных агентах из пула Linux_Default
         }
     }
 
