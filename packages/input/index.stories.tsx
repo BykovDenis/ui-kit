@@ -42,7 +42,7 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
   }
 
   return (<div style={{ width: '190px' }}>
-    <Input {...args} name="input" value={value} mask="__.__.__" onChange={onInputChange} onRemove={onInputRemove}  />
+    <Input {...args} name="input" value={value} backgroundColor="#ffffff" onChange={onInputChange} onRemove={onInputRemove}  />
   </div>)
 }
 

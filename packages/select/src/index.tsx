@@ -15,10 +15,11 @@ import SelectHeader from './select-header.styled';
 import SelectListContainer from './select-list-container.styled';
 
 const DEFAULT_HEIGHT = 40;
-const TEXT_ALIGN = 'right';
+const TEXT_ALIGN = 'center';
 const TYPE_TEXT = 'text';
 const FONT_WEIGHT_REGULAR = 400;
 const INPUT_TAG: string = 'INPUT';
+const TRANSPARENT_COLOR: string = 'transparent';
 
 const KEY_ESCAPE: string = 'ESCAPE';
 
@@ -168,11 +169,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     };
 
     return (
-      <SelectContainer
-        backgroundImage={props?.backgroundImage}
-        width={props?.width}
-        height={props?.height || DEFAULT_HEIGHT}
-      >
+      <SelectContainer width={props?.width} height={props?.height || DEFAULT_HEIGHT}>
         <SelectHeader>
           {props?.label && (
             <LabelContainer isExistValue={isExistValue || isFocus} textMessage={props?.textMessage}>
@@ -216,6 +213,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
             isReadOnly={props?.isReadOnly}
             isNotUseDebounce={true}
+            backgroundColor={props?.backgroundColor || TRANSPARENT_COLOR}
           />
         </SelectHeader>
         {isVisibleList && (

@@ -1,7 +1,14 @@
 import debounce from 'debounce';
 import React, { useEffect, useRef, useState } from 'react';
 
-import {DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, TEXT_ALIGN_RIGHT, TIMEOUT, TYPE_TEXT} from '../../constants';
+import {
+  COLOR_TRANSPARENT,
+  DEFAULT_HEIGHT,
+  FONT_WEIGHT_REGULAR,
+  TEXT_ALIGN_RIGHT,
+  TIMEOUT,
+  TYPE_TEXT
+} from '../../constants';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
 import IInput from '../types/iinput';
@@ -141,8 +148,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
 
     return (
-      <InputContainer backgroundImage={props?.backgroundImage} height={props?.height} width={props?.width}>
-        <InputElementContainer>
+      <InputContainer height={props?.height} width={props?.width}>
+        <InputElementContainer backgroundColor={props?.backgroundColor || COLOR_TRANSPARENT}>
           <InputStyled
             {...props}
             value={value}

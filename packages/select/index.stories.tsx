@@ -35,7 +35,7 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
   }
 
   return <div style={{ width: '220px' }}>
-    <Select {...args} isCreatable={true} onRemove={onInputRemove} name="select-custom"  id="select" label="Списочег" activeElement={value} >{args.children}</Select>
+    <Select {...args} isCreatable={true} backgroundColor="#ffffff" onRemove={onInputRemove} name="select-custom"  id="select"  activeElement={value} >{args.children}</Select>
   </div>;
 }
 
