@@ -410,7 +410,7 @@ pipeline {
                 }
             }
         }
-        stage("The packages publish") {
+        stage("UI Kit PUBLISH") {
             tools
             {
                 nodejs 'v16.3.0-linux-x64'
