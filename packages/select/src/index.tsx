@@ -230,6 +230,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             color={props?.color}
             isNotClearable={props?.isNotClearable}
             borderColor={props?.borderColor}
+            hoverColor={props?.hoverColor}
+            focusColor={props?.focusColor}
           />
         </SelectHeader>
         {isVisibleList && (
