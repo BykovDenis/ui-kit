@@ -7,3 +7,4 @@ export const FONT_WEIGHT_REGULAR = 400;
 export const INPUT_TAG: string = 'INPUT';
 export const KEY_ESCAPE: string = 'ESCAPE';
 export const COLOR_THEME: string = 'normal';
+export const COLOR_TRANSPARENT: string = 'transparent';
