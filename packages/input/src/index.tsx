@@ -159,8 +159,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             width={props.width}
             height={props.height || DEFAULT_HEIGHT}
             color={inputColor}
-            hoverColor={hoverColor}
-            focusColor={focusColor}
+            hoverColor={props?.hoverColor || hoverColor}
+            focusColor={props.focusColor || focusColor}
             disabledBackgroundColor={theme?.mainGrayColor}
             hoverBackgroundColor={hoverBackgroundColor}
             disabledColor={theme?.mainBlackColor}

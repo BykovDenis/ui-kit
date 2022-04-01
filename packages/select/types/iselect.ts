@@ -15,6 +15,7 @@ interface ISelect extends IInput, ILabel {
   fontSize: number;
   height: number;
   id: string;
+  indicatorColor?: string;
   isCreatable?: boolean;
   isExistValue?: boolean;
   label?: string | React.ReactNode;

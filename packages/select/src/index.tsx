@@ -168,11 +168,11 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       setIsFocus(false);
     };
 
-    const color: string = !props?.isReadOnly
+    const indicatorColor: string = !props?.isReadOnly
       ? isExistValue
         ? isEdited
           ? theme?.mainGrayColor
-          : theme?.palette?.primary?.main
+          : props?.indicatorColor || theme?.palette?.primary?.main
         : theme?.palette?.secondary?.main
       : theme?.palette?.baseFontColor;
 
@@ -198,7 +198,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
               </Label>
             </LabelContainer>
           )}
-          <SelectIndicator backgroundColor={props?.color || color} />
+          <SelectIndicator backgroundColor={indicatorColor} />
           <Input
             id={props.id}
             name={props.name}
