@@ -12,6 +12,7 @@ import ISelect from '../types/iselect';
 import LabelContainer from './label-container.styled';
 import SelectContainer from './select-container.styled';
 import SelectHeader from './select-header.styled';
+import SelectIndicator from './select-indicator.styled';
 import SelectListContainer from './select-list-container.styled';
 
 const DEFAULT_HEIGHT = 40;
@@ -30,6 +31,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [isVisibleList, setIsVisibleList] = useState(false);
   const [isFoundValue, setIsFoundValue] = useState(true);
   const [isNewElement, setIsNewElement] = useState(false);
+  const [activeElement, setActiveElement] = useState(props.activeElement);
+  const [isEdited, setIsEdited] = useState(false);
 
   const onSelectChange = (evt: React.ChangeEvent<HTMLElement>) => {
     const element: any = evt.target;
@@ -41,6 +44,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     } else {
       setValue(value);
     }
+    setIsEdited(false);
+    setElements([...props.elements, value]);
     setIsVisibleList(!isVisibleList);
   };
 
@@ -76,14 +81,17 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     }
   };
 
-  const onKeyUp = (evt: any) => {
+  const onKeyUp = (evt: React.KeyboardEvent<HTMLElement>) => {
     if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
       onListItemsCloseByKey();
     }
   };
 
   useEffect(() => {
-    setValue(props.activeElement);
+    if (props?.activeElement > '') {
+      setValue(props?.activeElement);
+      setActiveElement(props?.activeElement);
+    }
   }, [props.activeElement]);
 
   useEffect(() => {
@@ -96,13 +104,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, []);
 
   useEffect(() => {
-    if (props?.activeElement > '') {
-      setValue(props?.activeElement);
-    }
-  }, [props.activeElement]);
-
-  useEffect(() => {
     setElements(props.elements);
+    setActiveElement(value);
   }, [props.elements]);
 
   useEffect(() => {
@@ -142,6 +145,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     if (elementParsed === '') {
       setIsVisibleList(true);
     }
+    setIsEdited(true);
   };
 
   const onInputFocus = () => {
@@ -164,15 +168,23 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       setIsFocus(false);
     };
 
-    const onElementAppend = () => {
-      setElements([...props.elements, value]);
-    };
+    const color: string = !props?.isReadOnly
+      ? isExistValue
+        ? isEdited
+          ? theme?.mainGrayColor
+          : theme?.palette?.primary?.main
+        : theme?.palette?.secondary?.main
+      : theme?.palette?.baseFontColor;
 
     return (
       <SelectContainer width={props?.width} height={props?.height || DEFAULT_HEIGHT}>
-        <SelectHeader>
+        <SelectHeader height={props?.height || DEFAULT_HEIGHT}>
           {props?.label && (
-            <LabelContainer isExistValue={isExistValue || isFocus} textMessage={props?.textMessage}>
+            <LabelContainer
+              isExistValue={isExistValue || isFocus}
+              textMessage={props?.textMessage}
+              backgroundColor={props?.backgroundColor || theme.mainWhiteColor}
+            >
               <Label
                 htmlFor={props.id}
                 fontSize={labelFontSize}
@@ -186,6 +198,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
               </Label>
             </LabelContainer>
           )}
+          <SelectIndicator backgroundColor={props?.color || color} />
           <Input
             id={props.id}
             name={props.name}
@@ -214,6 +227,9 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             isReadOnly={props?.isReadOnly}
             isNotUseDebounce={true}
             backgroundColor={props?.backgroundColor || TRANSPARENT_COLOR}
+            color={props?.color}
+            isNotClearable={props?.isNotClearable}
+            borderColor={props?.borderColor}
           />
         </SelectHeader>
         {isVisibleList && (
@@ -221,10 +237,9 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             <List type="list-buttons" onMouseUp={onMouseUp} onKeyUp={onKeyUp}>
               {isFoundValue &&
                 elements?.map((element: string, index: number) => {
-                  const backgroundColor: string = element === props.activeElement ? theme.palette.primary.light : null;
-                  const hoverBackgroundColor: string =
-                    element === props.activeElement ? theme.palette.primary.light : null;
-                  const color: string = element === props.activeElement ? theme.mainWhiteColor : null;
+                  const backgroundColor: string = element === activeElement ? theme.palette.primary.light : null;
+                  const hoverBackgroundColor: string = element === activeElement ? theme.palette.primary.light : null;
+                  const color: string = element === activeElement ? theme.mainWhiteColor : null;
 
                   return (
                     <ListItem
@@ -248,12 +263,11 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                 <ListItem
                   type="button"
                   key={`list-item-new`}
-                  data-value={'Create'}
+                  data-value={value}
                   textAlign={props?.textAlign || TEXT_ALIGN}
                   fontSize={fontSize}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
-                  height={props?.height || DEFAULT_HEIGHT / 2}
-                  onClick={onElementAppend}
+                  height={props?.height || DEFAULT_HEIGHT}
                 >
                   Create new {value}
                 </ListItem>

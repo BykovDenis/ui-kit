@@ -21,9 +21,9 @@ export default {
 
 const Template: ComponentStory<typeof Select> = (args: ISelect) => {
 
-  const [ value, setValue ] = useState('');
+  const [ value, setValue ] = useState('List item 113');
 
-  const onInputChange = (params: {label: string, value: string | number}) => {
+  const onInputChange = (params: {index: number, label: string, value: string | number}) => {
     const value: string = params.value.toString();
     setValue(value);
     console.log(value);
@@ -35,7 +35,7 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
   }
 
   return <div style={{ width: '220px' }}>
-    <Select {...args} isCreatable={true} backgroundColor="#ffffff" onRemove={onInputRemove} name="select-custom"  id="select"  activeElement={value} >{args.children}</Select>
+    <Select {...args} isCreatable={true} onChange={onInputChange} onRemove={onInputRemove} label="Select" name="select-custom"  id="select"  activeElement={value} >{args.children}</Select>
   </div>;
 }
 
