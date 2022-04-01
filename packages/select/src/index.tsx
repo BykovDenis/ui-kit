@@ -81,7 +81,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     }
   };
 
-  const onKeyUp = (evt: React.KeyboardEvent<HTMLElement>) => {
+  const onKeyUp = (evt: any) => {
     if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
       onListItemsCloseByKey();
     }
