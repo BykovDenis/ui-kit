@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Variants from '../../enums/variants';
 import IInput from '../../input/types/iinput';
 import ILabel from '../../label/types/ilabel';
@@ -13,11 +15,13 @@ interface ISelect extends IInput, ILabel {
   fontSize: number;
   height: number;
   id: string;
+  indicatorColor?: string;
   isCreatable?: boolean;
   isExistValue?: boolean;
-  label?: string;
+  label?: string | React.ReactNode;
+  name: string;
   onChange: (option: IOption) => void;
-  textAlign: string;
+  textAlign?: string;
   variant?: Variants;
 }
 

@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 
-import searchDomChildElement from '../../helpers/search-dom-child-element';
+import { COLOR_THEME } from '../../constants';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
 import ListType from '../enum/list-type';
@@ -8,37 +8,8 @@ import IList from '../types/ilist';
 import ListStyled from './list.styled';
 import ListDivStyled from './list-div.styled';
 
-const KEY_ESCAPE: string = 'ESCAPE';
-const COLOR_THEME: string = 'normal';
-
 const List: React.FunctionComponent<IList> = (props: IList) => {
   const listRef = useRef();
-
-  const onMouseUp = (evt: any) => {
-    const element: any = evt.target;
-    if (listRef) {
-      const listElement: any = listRef?.current;
-      if (listElement) {
-        props?.onMouseOutUp(searchDomChildElement(listElement, element), evt);
-      }
-    }
-  };
-
-  const onKeyUp = (evt: any) => {
-    if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
-      props?.onKeyUp(evt);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('mouseup', onMouseUp);
-    document.addEventListener('keyup', onKeyUp);
-    return () => {
-      document.removeEventListener('mouseup', onMouseUp);
-      document.addEventListener('keyup', onKeyUp);
-    };
-  }, []);
-
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string =
       props?.colorTheme === COLOR_THEME || !props.colorTheme
@@ -55,6 +26,14 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
         ? theme?.palette?.baseFontColor
         : theme?.palette?.secondary?.main;
 
+    const onMouseUp = (evt: React.ChangeEvent<HTMLElement>) => {
+      props.onMouseUp(evt, listRef);
+    };
+
+    const onKeyUp = (evt: React.KeyboardEvent<HTMLElement>) => {
+      props.onKeyUp(evt, listRef);
+    };
+
     return props?.type === ListType.Buttons ? (
       <ListDivStyled
         fontFamily={theme?.fontFamily}
@@ -64,6 +43,8 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
         color={color}
         hoverColor={hoverColor}
         underlineColor={underlineColor}
+        onMouseUp={onMouseUp}
+        onKeyUp={onKeyUp}
         ref={listRef}
       >
         {props.children}

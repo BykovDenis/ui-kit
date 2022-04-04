@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/core",
-  "version": "0.5.21",
+  "version": "0.5.27-alpha.1",
   "description": "Riski react UI",
   "main": "dist/index.js",
   "module": "styles/src/index.js",
@@ -15,7 +15,8 @@
     "build": "rollup -c rollup.config.prod.js",
     "build-dev": "rollup -w -c rollup.config.dev.js",
     "prepare-ui-kit": "lerna bootstrap && lerna run build && git reset --hard",
-    "publish-ui-kit": "lerna clean && npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/"
+    "publish-ui-kit": "lerna clean && npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/",
+    "clean-node-modules": "rm -rf node_modules"
   },
   "publishConfig": {
     "registry": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"

@@ -1,0 +1,10 @@
+export const DEFAULT_HEIGHT = 40;
+export const TEXT_ALIGN_RIGHT = 'right';
+export const TEXT_ALIGN_LEFT = 'left';
+export const TIMEOUT = 1000;
+export const TYPE_TEXT = 'text';
+export const FONT_WEIGHT_REGULAR = 400;
+export const INPUT_TAG: string = 'INPUT';
+export const KEY_ESCAPE: string = 'ESCAPE';
+export const COLOR_THEME: string = 'normal';
+export const COLOR_TRANSPARENT: string = 'transparent';

@@ -1,7 +1,10 @@
+import React from 'react';
+
 interface IOption {
-  label: string;
+  index?: number | null;
+  label: string | React.ReactNode;
   name: string;
-  value: string;
+  value?: string | null;
 }
 
 export default IOption;

@@ -1,9 +1,17 @@
 import debounce from 'debounce';
 import React, { useEffect, useRef, useState } from 'react';
 
+import {
+  COLOR_TRANSPARENT,
+  DEFAULT_HEIGHT,
+  FONT_WEIGHT_REGULAR,
+  TEXT_ALIGN_RIGHT,
+  TIMEOUT,
+  TYPE_TEXT
+} from '../../constants';
 import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
-import IInput from '../types/IInput';
+import IInput from '../types/iinput';
 import ButtonDelete from './button-delete.styled';
 import DeleteIcon from './delete-icon';
 import InputStyled from './input.styled';
@@ -12,11 +20,6 @@ import InputElementContainer from './input-element-container.styled';
 import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
 
-const DEFAULT_HEIGHT = 40;
-const TEXT_ALIGN = 'right';
-const TIMEOUT = 1000;
-const TYPE_TEXT = 'text';
-const FONT_WEIGHT_REGULAR = 400;
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(props.value !== undefined && props?.value !== null ? props.value : '');
@@ -127,8 +130,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
         : theme?.palette?.secondary?.main;
 
     const hoverBackgroundColor: string = props?.error ? theme?.palette?.secondary?.lighter : 'transparent';
-
-    const underlineColor: string = props?.error ? theme?.palette?.secondary?.main : theme?.mainBlackColor;
+    const underlineColor: string = props?.error ? theme?.palette?.secondary?.main : props?.borderColor || theme?.mainBlackColor;
     const hoverColor: string = props?.error ? theme?.palette?.secondary?.main : theme?.mainGrayColor;
 
     const color: string =
@@ -138,24 +140,27 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           : theme?.palette?.baseFontColor
         : theme?.palette?.secondary?.main;
 
-    const focusColor: string = backgroundColor;
+    const focusColor: string = props?.error ? theme?.palette?.secondary?.lighter : backgroundColor;
 
     const ReactInput: React.FunctionComponent = (props: any) => <input {...props} />;
 
+    const colorInteractive: string = props?.error ? theme?.palette?.secondary?.lighter : isFocus ? theme?.palette?.primary?.main : props?.color;
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
+    const borderColor: string = props?.error ? theme?.palette?.secondary?.lighter : props?.borderColor || theme?.mainBlackColor;
+    const inputColor: string = props?.error ? theme?.palette?.secondary?.lighter : props?.color || color;
 
     return (
-      <InputContainer backgroundImage={props?.backgroundImage} height={props?.height} width={props?.width}>
-        <InputElementContainer>
+      <InputContainer height={props?.height} width={props?.width}>
+        <InputElementContainer backgroundColor={props?.backgroundColor || theme.mainWhiteColor}>
           <InputStyled
             {...props}
             value={value}
             disabled={props?.disabled}
             width={props.width}
             height={props.height || DEFAULT_HEIGHT}
-            color={color}
-            hoverColor={hoverColor}
-            focusColor={focusColor}
+            color={inputColor}
+            hoverColor={props?.hoverColor || hoverColor}
+            focusColor={props.focusColor || focusColor}
             disabledBackgroundColor={theme?.mainGrayColor}
             hoverBackgroundColor={hoverBackgroundColor}
             disabledColor={theme?.mainBlackColor}
@@ -164,12 +169,12 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             fontSize={props?.fontSize ?? theme?.baseFontSize}
             className={props?.className}
             fontFamily={theme?.fontFamily}
-            textAlign={props?.textAlign || TEXT_ALIGN}
+            textAlign={props?.textAlign || TEXT_ALIGN_RIGHT}
             onChange={onInputChange}
             onFocus={onInputFocus}
             onBlur={onInputBlur}
             variant={props?.variant}
-            borderColor={theme?.mainBlackColor}
+            borderColor={borderColor}
             error={props?.error}
             id={props?.id}
             name={props?.name}
@@ -185,7 +190,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             readOnly={props?.isReadOnly}
             autoComplete="off"
           />
-          {props?.variant !== TYPE_TEXT &&<InputUnderline
+          {props?.variant !== TYPE_TEXT && <InputUnderline
             name={props?.name}
             className="underline"
             variant={props?.variant}
@@ -201,7 +206,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
               focusColor={focusColor}
               disabled={props?.disabled}
             >
-              <DeleteIcon className="delete-icon" />
+              <DeleteIcon color={colorInteractive} className="delete-icon" />
             </ButtonDelete>
           ) : null}
         </InputElementContainer>
@@ -210,7 +215,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             className="text-message"
             fontSize={props?.fontSize ?? theme?.baseFontSize}
             fontFamily={theme?.fontFamily}
-            color={color}
+            color={colorInteractive}
           >
             {props.textMessage}
           </TextMessage>

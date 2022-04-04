@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/Warning-panel",
-  "version": "0.5.21",
+  "version": "0.5.27-alpha.1",
   "description": "A warning panel component",
   "main": "dist/index.js",
   "directories": {
@@ -8,7 +8,8 @@
   },
   "scripts": {
     "build": "rollup -c rollup.config.prod.js",
-    "build-dev": "rollup -w -c rollup.config.dev.js"
+    "build-dev": "rollup -w -c rollup.config.dev.js",
+    "clean-node-modules": "rm -rf node_modules"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,7 @@
   "files": [
     "dist"
   ],
-  "gitHead": "b721f2688dc96e1a127ed9544d494c85292fa118",
+  "gitHead": "09932143f19f1cc78c8390ababca48b92254a79e",
   "devDependencies": {
     "@types/styled-components": "^5.1.18"
   }

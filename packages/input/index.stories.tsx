@@ -28,7 +28,7 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args: IInput) => {
 
-  const [ value, setValue ] = useState(0);
+  const [ value, setValue ] = useState('123');
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
@@ -42,7 +42,7 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
   }
 
   return (<div style={{ width: '190px' }}>
-    <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove}  />
+    <Input {...args} borderColor="#ffffff" color="#ffffff" backgroundColor="transparent" name="input" value={value} onChange={onInputChange} onRemove={onInputRemove}  />
   </div>)
 }
 
