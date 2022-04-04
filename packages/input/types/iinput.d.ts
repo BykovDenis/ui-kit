@@ -30,16 +30,16 @@ interface IInput {
   isNotUseDebounce?: boolean;
   isReadOnly?: boolean;
   isSeparateNumberFormat?: boolean;
-  mask?: RegExp;
+  mask?: string;
   max?: number;
   min?: number;
   name: string;
-  onBlur: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onClick?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  onRemove?: (name: string, value: string, evt?: React.ChangeEvent<HTMLInputElement>) => void;
+  onRemove?: (name: string, value?: string, evt?: any) => void;
   ref?: any;
   required?: boolean;
   step?: number;
@@ -47,9 +47,9 @@ interface IInput {
   textMessage?: string;
   theme?: any;
   type?: string;
-  value: number | string;
+  value?: number | string;
   variant?: Variants;
-  width: number;
+  width?: number;
 }
 
 export default IInput;

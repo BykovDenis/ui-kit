@@ -11,6 +11,8 @@ const SelectListContainer = styled('div')`
   width: 100%;
   z-index: 10001;
   box-sizing: border-box;
+  max-height: 500px;
+  overflow-y: auto;
 `;
 
 export default SelectListContainer;

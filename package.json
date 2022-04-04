@@ -11,7 +11,8 @@
     "start": "webpack serve --open --config webpack.dev.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "bootstrap": "npm run lerna bootstrap"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,6 @@
     "html5"
   ],
   "dependencies": {
-    "@sber-riski-cib-ui/core": "^0.0.8",
     "@svgr/webpack": "^6.2.0",
     "babel-eslint": "^10.0.1",
     "chroma-js": "2.0.3",
