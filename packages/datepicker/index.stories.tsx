@@ -18,14 +18,14 @@ export default {
 } as ComponentMeta<typeof Datepicker>;
 
 const Template: ComponentStory<typeof Datepicker> = (args: IDatepicker) => {
-  const [value, setValue] = useState('15.04.2021');
+  const [value, setValue] = useState('01.04.2022');
 
   const onDatepickerValueChange = (name: string, value: string) => {
     setValue(value);
   }
 
   return <div style={{ width: '250px' }}>
-    <Datepicker {...args} value={value} minDate="01.09.2021" maxDate="15.09.2021" onChange={onDatepickerValueChange} />
+    <Datepicker {...args} value={value} minDate="01.01.2021" maxDate="15.09.2029" onChange={onDatepickerValueChange} />
   </div>
 
 }

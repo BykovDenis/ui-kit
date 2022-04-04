@@ -25,7 +25,7 @@ interface IDaysOfMonth {
 
 const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth) => {
   const daysElements: Array<number> =
-    props.countDaysIsMonth && props.numberDayInWeek
+    props.countDaysIsMonth && props.numberDayInWeek !== null
       ? new Array(props?.countDaysIsMonth + props?.numberDayInWeek)?.fill(null)
       : null;
 

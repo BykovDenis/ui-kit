@@ -16,9 +16,10 @@ const ButtonStyled =
     align-items: center;
     flex-direction: row;
     justify-content: center;
+    box-sizing: border-box;
     font-family: ${(props: IButton) => props?.fontFamily};
     border: none;
-    border-radius: 4px;
+    border-radius: ${(props: IButton) => (props?.borderRadius ? props?.borderRadius : '4px')};
     font-style: normal;
     font-weight: normal;
     font-size:  ${(props: IButton) => props?.fontSize}px;
@@ -55,7 +56,6 @@ const ButtonStyled =
         props?.variant === CONTAINED || !props?.variant
           ? rgbToRgba(props.backgroundColor, 0.85)
           : rgbToRgba(props.backgroundColor, 0.05)};
-      border-radius: 4px;
     }
 
     &:active {
@@ -67,7 +67,6 @@ const ButtonStyled =
         props?.variant === CONTAINED || !props?.variant
           ? rgbToRgba(props.backgroundColor, 0.5)
           : rgbToRgba(props.backgroundColor, 0.25)};
-      border-radius: 4px;
     }
 
     &:disabled {

@@ -1,4 +1,4 @@
-import {format, getDate, getDay, getDaysInMonth, isValid} from 'date-fns';
+import {add, format, getDate, getDay, getDaysInMonth, isValid, sub} from 'date-fns';
 
 import IDateParser from './idate-parser';
 
@@ -70,6 +70,18 @@ class DateParser implements IDateParser{
   }
   getSplittedParamsByDate() {
     return this.dateParamsSeparate;
+  }
+  changeToTheNextMonth() {
+    this.dateParsed = add(this.dateParsed, { months: 1 })
+  }
+  changeToThePreviousMonth() {
+    this.dateParsed = sub(this.dateParsed, { months: 1 })
+  }
+  changeToTheNextYear() {
+    this.dateParsed = add(this.dateParsed, { months: 11 })
+  }
+  changeToThePreviousYear() {
+    this.dateParsed = sub(this.dateParsed, { months: 11 })
   }
 }
 
