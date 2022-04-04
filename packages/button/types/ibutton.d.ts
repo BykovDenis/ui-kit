@@ -1,10 +1,11 @@
 import IButtonVariants from './ibutton-variants';
 
-interface Ibutton {
+interface IButton {
   ReactThemeContext?: any;
   backgroundColor?: string;
   backgroundImage?: string;
-  baseFontSize: string;
+  baseFontSize?: string;
+  borderRadius?: string;
   children?: any;
   className?: any;
   color?: string;
@@ -13,8 +14,9 @@ interface Ibutton {
   disabled?: boolean;
   focusColor?: string;
   fontFamily: string;
-  fontSize: string;
+  fontSize: number;
   height?: number;
+  id?: string;
   onClick?: (evt: any) => void;
   theme?: any;
   type?: string;
@@ -22,4 +24,4 @@ interface Ibutton {
   width?: number | string;
 }
 
-export default Ibutton;
+export default IButton;
