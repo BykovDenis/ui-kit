@@ -26,7 +26,6 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
   const onInputChange = (params: {index: number, label: string, value: string | number}) => {
     const value: string = params.value.toString();
     setValue(value);
-    console.log(value);
   }
 
   const onInputRemove = () => {

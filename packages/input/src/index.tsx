@@ -2,7 +2,6 @@ import debounce from 'debounce';
 import React, { useEffect, useRef, useState } from 'react';
 
 import {
-  COLOR_TRANSPARENT,
   DEFAULT_HEIGHT,
   FONT_WEIGHT_REGULAR,
   TEXT_ALIGN_RIGHT,
@@ -118,7 +117,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const onInputBlur = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setIsFocus(false);
     if (props?.isSeparateNumberFormat && props?.value !== null) {
-      setInputValue(parseFloat(props.value as string).toLocaleString('ru-RU').replace(',', '.'))
+      setInputValue(parseFloat(props.value as string)?.toLocaleString('ru-RU')?.replace(',', '.'))
     }
     props?.onBlur(evt);
   };
