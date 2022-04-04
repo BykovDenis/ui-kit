@@ -13,12 +13,13 @@ const Button: React.FunctionComponent = (props: any) => {
     return (
       <ButtonStyled
         {...props}
+        id={props?.id}
         width={props?.width}
         height={props?.height}
         type={props.type ?? 'button'}
         onClick={props?.onClick}
         disabled={props?.disabled}
-        color={theme?.palette?.baseButtonFontColor}
+        color={props?.color || theme?.palette?.baseButtonFontColor}
         backgroundColor={props?.backgroundColor || backgroundColor}
         backgroundImage={props?.backgroundImage}
         fontSize={props?.fontSize ?? theme?.baseFontSize}
@@ -27,6 +28,7 @@ const Button: React.FunctionComponent = (props: any) => {
         theme={theme}
         dataset={props?.dataset}
         focusColor={theme?.palette?.primary?.main}
+        borderRadius={props?.borderRadius}
       >
         {props.children}
       </ButtonStyled>
