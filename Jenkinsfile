@@ -44,12 +44,16 @@ pipeline {
                                         sh 'npm i --legacy-peer-deps'
                                     }
                             }
+                        }
+                        dir("${packagePath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Test component'
                                         sh 'npm test'
                                     }
                             }
+                        }
+                        dir("${buttonPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Build component'
