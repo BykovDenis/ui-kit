@@ -45,14 +45,6 @@ pipeline {
                                     }
                             }
                         }
-                        dir("${uiKitPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Root packages installing'
-                                        sh 'npm i --legacy-peer-deps'
-                                    }
-                            }
-                        }
                     }
                 }
             }
@@ -74,6 +66,12 @@ pipeline {
                             }
                         }
                         dir("${uiKitPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Root packages installing'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Component testing'
