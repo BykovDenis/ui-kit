@@ -49,7 +49,7 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Component testing'
-                                        sh 'npm test'
+                                        sh 'npm run test -- --updateSnapshot'
                                     }
                             }
                         }
