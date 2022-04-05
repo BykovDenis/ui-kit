@@ -45,7 +45,7 @@ pipeline {
                                     }
                             }
                         }
-                        dir("${packagePath}") {
+                        dir("${uiKitPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Test component'
