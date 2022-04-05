@@ -43,7 +43,7 @@ pipeline {
                                         echo 'Root packages installing'
                                         sh 'npm i --legacy-peer-deps'
                                         echo 'Component testing'
-                                        sh 'npm test ./button/src/index.tsx'
+                                        sh 'npm test ./button/__tests__'
                                     }
                             }
                         }
