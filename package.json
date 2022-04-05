@@ -9,7 +9,6 @@
     "build": "webpack --config webpack.prod.config.js",
     "start-demo": "webpack serve --open --config webpack.dev.config.js",
     "start": "webpack serve --open --config webpack.dev.config.js",
-    "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "bootstrap": "npm run lerna bootstrap"
@@ -65,7 +64,6 @@
     "@storybook/preset-create-react-app": "^3.2.0",
     "@storybook/preset-scss": "^1.0.3",
     "@storybook/react": "^6.3.12",
-    "@types/jest": "^27.4.1",
     "@types/react-dom": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
