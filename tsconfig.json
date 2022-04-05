@@ -5,8 +5,8 @@
     "outDir": "build",
     "jsx": "react",
     "target": "es5",
-    "module": "ESNext",
-    "noImplicitAny": true,
+    "module": "commonjs",
+    "noImplicitAny": false,
     "sourceMap": true,
     "allowJs": true,
     "checkJs": false,
@@ -18,11 +18,11 @@
     "esModuleInterop": true
   },
   "files": [
-    "./packages/styles/src/index.tsx"
+    "./src/index.tsx"
   ],
   "exclude": [
     "node_modules",
     "build"
   ],
-  "include": ["packages/**/*", "node_modules"]
+  "include": ["packages/**/*",]
 }

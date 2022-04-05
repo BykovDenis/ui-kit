@@ -3,7 +3,7 @@ import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
 import Button from  './src/index';
-import Ibutton from './types/ibutton'
+import IButton from './types/ibutton'
 
 export default {
   title: 'Components/Button',
@@ -20,7 +20,7 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args: Ibutton) => {
+const Template: ComponentStory<typeof Button> = (args: IButton) => {
   return <Button  {...args} onClick={action('clicked')} >{args.children}</Button>;
 }
 
