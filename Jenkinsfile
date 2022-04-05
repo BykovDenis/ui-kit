@@ -37,28 +37,16 @@ pipeline {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
-                        dir("${rootPath}") {
+                        dir("${uiKitPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
-                                        echo 'Root install packages'
+                                        echo 'Root packages installing'
                                         sh 'npm i --legacy-peer-deps'
+                                        echo 'Component testing'
+                                        sh 'npm test'
                                     }
                             }
                         }
-                    }
-                }
-                dir("${uiKitPath}") {
-                    withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            script {
-                                echo 'Root packages installing'
-                                sh 'npm i --legacy-peer-deps'
-                            }
-                    }
-                    withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            script {
-                                echo 'Component testing'
-                                sh 'npm test'
-                            }
                     }
                 }
             }
