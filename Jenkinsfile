@@ -47,6 +47,20 @@ pipeline {
                         }
                     }
                 }
+                dir("${uiKitPath}") {
+                    withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            script {
+                                echo 'Root packages installing'
+                                sh 'npm i --legacy-peer-deps'
+                            }
+                    }
+                    withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            script {
+                                echo 'Component testing'
+                                sh 'npm test'
+                            }
+                    }
+                }
             }
         }
         stage('Deploy Button component') {
@@ -64,22 +78,6 @@ pipeline {
                                         sh 'npm i --legacy-peer-deps'
                                     }
                             }
-                        }
-                        dir("${uiKitPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Root packages installing'
-                                        sh 'npm i --legacy-peer-deps'
-                                    }
-                            }
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Component testing'
-                                        sh 'npm run test'
-                                    }
-                            }
-                        }
-                        dir("${buttonPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Component building'
@@ -98,9 +96,5 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            cleanWs disableDeferredWipeout: true, deleteDirs: true
-        }
-    }
+
 }
