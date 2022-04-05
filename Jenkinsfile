@@ -28,6 +28,28 @@ pipeline {
     }
     options { timeout(time: 60, unit: 'MINUTES') }
     stages {
+        stage('Root packages installing') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            dir("${rootPath}") {
+                withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                        script {
+                            echo 'Root install packages'
+                            sh 'npm i --legacy-peer-deps'
+                        }
+                }
+            }
+            dir("${uiKitPath}") {
+                withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                        script {
+                            echo 'Root install packages'
+                            sh 'npm i --legacy-peer-deps'
+                        }
+                }
+            }
+        }
         stage('Deploy Button component') {
             tools
             {
