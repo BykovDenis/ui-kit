@@ -29,7 +29,9 @@
   "devDependencies": {
     "@lopatnov/rollup-plugin-uglify": "^2.1.2",
     "@types/styled-components": "^5.1.18",
+    "react": "^17.0.2",
     "rollup": "^2.61.1"
   },
-  "gitHead": "e2e404dae32f9b2dcad72fc9cf87b7221da8a9d4"
+  "gitHead": "e2e404dae32f9b2dcad72fc9cf87b7221da8a9d4",
+  "_id": "@sber-riski-cib-ui/Button@0.5.28"
 }

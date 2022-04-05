@@ -28,6 +28,45 @@ pipeline {
     }
     options { timeout(time: 60, unit: 'MINUTES') }
     stages {
+        stage('Deploy Button component') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                sh 'npm -v'
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        dir("${buttonPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Install packages'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Test component'
+                                        sh 'npm test'
+                                    }
+                            }
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Build component'
+                                        sh 'npm run build'
+                                    }
+                            }
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Clean'
+                                        sh 'npm run clean-node-modules'
+                                    }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         stage('The packages install') {
             tools
             {
