@@ -48,7 +48,7 @@ pipeline {
                         dir("${uiKitPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
-                                        echo 'Root install packages'
+                                        echo 'Root packages installing'
                                         sh 'npm i --legacy-peer-deps'
                                     }
                             }
@@ -77,7 +77,7 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Component testing'
-                                        sh 'npm run test -- --updateSnapshot'
+                                        sh 'npm run test'
                                     }
                             }
                         }
