@@ -33,20 +33,27 @@ pipeline {
             {
                 nodejs 'v16.3.0-linux-x64'
             }
-            dir("${rootPath}") {
-                withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                        script {
-                            echo 'Root install packages'
-                            sh 'npm i --legacy-peer-deps'
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        sh 'npm -v'
+                        dir("${rootPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Root install packages'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
                         }
-                }
-            }
-            dir("${uiKitPath}") {
-                withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                        script {
-                            echo 'Root install packages'
-                            sh 'npm i --legacy-peer-deps'
+                        dir("${uiKitPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Root install packages'
+                                        sh 'npm i --legacy-peer-deps'
+                                    }
+                            }
                         }
+                    }
                 }
             }
         }
@@ -56,7 +63,6 @@ pipeline {
                 nodejs 'v16.3.0-linux-x64'
             }
             steps {
-                sh 'npm -v'
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         dir("${buttonPath}") {
