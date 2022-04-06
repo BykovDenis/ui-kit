@@ -37,15 +37,16 @@ pipeline {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
-                        dir("${uiKitPath}") {
+                        dir("${rootPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Root packages installing'
                                         sh 'npm i'
-                                        sh 'cd ..'
                                         sh 'ls'
                                         echo 'Root packages installing'
+                                        sh 'ls'
                                         sh 'npm i'
+                                        cd './packages'
                                         echo 'Component testing'
                                         sh 'npm test'
                                     }
@@ -54,8 +55,7 @@ pipeline {
                         dir("${rootPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
-                                        echo 'Root packages installing'
-                                        sh 'npm i'
+                                        sh 'ls'
                                         echo 'Component testing'
                                         sh 'npm test'
                                     }
