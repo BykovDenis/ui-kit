@@ -50,13 +50,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${rootPath}") {
-                                script {
-                                    sh 'ls'
-                                    echo 'Component testing'
-                                    sh 'npm test /packages/button/__tests__'
-                                }
-                            }
                         }
                     }
                 }
@@ -87,7 +80,7 @@ pipeline {
                             dir("${buttonPath}") {
                                 script {
                                     echo 'Building'
-                                    sh 'npm test /packages/button/__tests__'
+                                    sh 'npm run build'
                                     echo 'Clean'
                                     sh 'npm run clean-node-modules'
                                 }
