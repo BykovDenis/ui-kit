@@ -11,8 +11,7 @@
     "build-dev": "rollup -w -c rollup.config.dev.js",
     "prepare-ui-kit": "lerna bootstrap && lerna run build && git reset --hard",
     "publish-ui-kit": "lerna clean && npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/",
-    "clean-node-modules": "rm -rf node_modules",
-    "test": "jest"
+    "clean-node-modules": "rm -rf node_modules"
   },
   "publishConfig": {
     "registry": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"
@@ -23,7 +22,6 @@
     "@lopatnov/rollup-plugin-uglify": "^2.1.2",
     "@svgr/rollup": "^6.2.0",
     "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.3",
     "@types/debounce": "^1.2.1",
     "@types/enzyme": "^3.10.10",
     "@types/react": "^17.0.0",
@@ -33,8 +31,6 @@
     "babel-jest": "^27.5.1",
     "babel-runtime": "^6.26.0",
     "html-webpack-plugin": "^5.5.0",
-    "jest": "^27.5.1",
-    "jest-styled-components": "^7.0.8",
     "postcss": "8.4.4",
     "postcss-url": "^10.1.3",
     "react": "^17.0.2",
@@ -48,7 +44,6 @@
     "rollup-plugin-typescript2": "^0.31.1",
     "rollup-pluginutils": "^2.8.2",
     "styled-components": "^5.3.3",
-    "ts-jest": "^27.1.3",
     "typescript": "^4.4.4",
     "webpack": "5.65"
   },

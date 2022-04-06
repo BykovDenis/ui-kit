@@ -41,9 +41,17 @@ pipeline {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                     script {
                                         echo 'Root packages installing'
-                                        sh 'npm i --legacy-peer-deps'
+                                        sh 'npm i'
+                                    }
+                            }
+                        }
+                        dir("${rootPath}") {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                                    script {
+                                        echo 'Root packages installing'
+                                        sh 'npm i'
                                         echo 'Component testing'
-                                        sh 'npm test ./button/__tests__'
+                                        sh 'npm test'
                                     }
                             }
                         }
