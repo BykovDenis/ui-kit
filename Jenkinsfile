@@ -42,14 +42,12 @@ pipeline {
                                 script {
                                     echo 'Root packages installing'
                                     sh 'npm i'
-                                    sh 'ls'
                                 }
                             }
                             dir("${uiKitPath}") {
                                 script {
                                     echo 'Root packages installing'
                                     sh 'npm i'
-                                    sh 'ls'
                                 }
                             }
                             dir("${rootPath}") {
@@ -57,6 +55,41 @@ pipeline {
                                     sh 'ls'
                                     echo 'Component testing'
                                     sh 'npm test /packages/button/__tests__'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Button deploy') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        sh 'npm -v'
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${buttonPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                }
+                            }
+                            dir("${rootPath}") {
+                                script {
+                                    echo 'Testing'
+                                    sh 'npm test /packages/button/__tests__'
+                                }
+                            }
+                            dir("${buttonPath}") {
+                                script {
+                                    echo 'Building'
+                                    sh 'npm test /packages/button/__tests__'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
                                 }
                             }
                         }
