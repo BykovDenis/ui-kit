@@ -3,7 +3,7 @@ import { themes } from '../../styles/src';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Button from '../src';
+import Button from '../src/button1';
 
 it('Button renders correctly', () => {
   const themeCustom: any = {
