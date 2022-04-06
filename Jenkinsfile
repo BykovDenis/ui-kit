@@ -65,7 +65,7 @@ pipeline {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${buttonPath}") {
+                            dir("${checkboxPath}") {
                                 script {
                                     echo 'Packages installing'
                                     sh 'npm i'
@@ -74,10 +74,10 @@ pipeline {
                             dir("${rootPath}") {
                                 script {
                                     echo 'Testing'
-                                    sh 'npm test /packages/button/__tests__'
+                                    sh 'npm test /packages/checkbox/__tests__'
                                 }
                             }
-                            dir("${buttonPath}") {
+                            dir("${checkboxPath}") {
                                 script {
                                     echo 'Building'
                                     sh 'npm run build'
@@ -91,6 +91,42 @@ pipeline {
             }
         }
     }
+    stage('Checkbox deploy') {
+        tools
+        {
+            nodejs 'v16.3.0-linux-x64'
+        }
+        steps {
+            nodejs('v16.3.0-linux-x64') {
+                withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                    sh 'npm -v'
+                    withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                        dir("${buttonPath}") {
+                            script {
+                                echo 'Packages installing'
+                                sh 'npm i'
+                            }
+                        }
+                        dir("${rootPath}") {
+                            script {
+                                echo 'Testing'
+                                sh 'npm test /packages/button/__tests__'
+                            }
+                        }
+                        dir("${buttonPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
     post {
         always {
             cleanWs disableDeferredWipeout: true, deleteDirs: true
