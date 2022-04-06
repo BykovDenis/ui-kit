@@ -42,6 +42,11 @@ pipeline {
                                     script {
                                         echo 'Root packages installing'
                                         sh 'npm i'
+                                        sh 'cd ..'
+                                        echo 'Root packages installing'
+                                        sh 'npm i'
+                                        echo 'Component testing'
+                                        sh 'npm test'
                                     }
                             }
                         }
