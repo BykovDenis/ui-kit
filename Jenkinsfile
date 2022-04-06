@@ -43,10 +43,10 @@ pipeline {
                                         echo 'Root packages installing'
                                         sh 'npm i'
                                         sh 'ls'
+                                        sh 'cd ./packages'
                                         echo 'Root packages installing'
                                         sh 'ls'
                                         sh 'npm i'
-                                        cd './packages'
                                         echo 'Component testing'
                                         sh 'npm test'
                                     }
