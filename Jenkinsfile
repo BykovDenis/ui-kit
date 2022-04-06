@@ -37,26 +37,27 @@ pipeline {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
-                        dir("${rootPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Root packages installing'
-                                        sh 'npm i'
-                                        sh 'ls'
-                                        sh 'cd ./packages'
-                                        echo 'Root packages installing'
-                                        sh 'ls'
-                                        sh 'npm i'
-                                    }
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${rootPath}") {
+                                script {
+                                    echo 'Root packages installing'
+                                    sh 'npm i'
+                                    sh 'ls'
+                                }
                             }
-                        }
-                        dir("${rootPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        sh 'ls'
-                                        echo 'Component testing'
-                                        sh 'npm test'
-                                    }
+                            dir("${uiKitPath}") {
+                                script {
+                                    echo 'Root packages installing'
+                                    sh 'npm i'
+                                    sh 'ls'
+                                }
+                            }
+                            dir("${rootPath}") {
+                                script {
+                                    sh 'ls'
+                                    echo 'Component testing'
+                                    sh 'npm test'
+                                }
                             }
                         }
                     }
