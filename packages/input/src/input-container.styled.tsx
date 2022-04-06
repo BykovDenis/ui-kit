@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
-import Iinput from '../types/iinput';
+interface IInputContainer {
+  width: number;
+  height: number;
+}
 
 const InputContainer =
   styled('div') <
-  Iinput >
+  IInputContainer >
   `
   position: relative;  
   display: flex;
@@ -12,8 +15,8 @@ const InputContainer =
   align-items: flex-start;
   margin: 0;
   padding: 0;
-  width: ${(props: Iinput) => (props?.width ? `${props?.width}px` : `100%`)};
-  height: ${(props: Iinput) => (props?.height ? `${props?.height + 5}px` : 'initial')};
+  width: ${(props: IInputContainer) => (props?.width ? `${props?.width}px` : `100%`)};
+  height: ${(props: IInputContainer) => (props?.height ? `${props?.height + 5}px` : 'initial')};
 `;
 
 export default InputContainer;

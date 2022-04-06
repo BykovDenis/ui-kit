@@ -1,19 +1,23 @@
 import styled from 'styled-components';
 
-import Iinput from '../types/iinput';
+interface ITextMessage {
+  fontFamily: string;
+  fontSize: number;
+  color: string;
+}
 
 const TextMessage =
   styled('p') <
-  Iinput >
+  ITextMessage >
   `
   display: block;
   margin: 0;
   margin-top: 3px;  
   padding: 0;
-  font-family: ${(props: Iinput) => props.fontFamily};
-  font-size: ${(props: Iinput) => props.fontSize - 2}px; 
+  font-family: ${(props: ITextMessage) => props.fontFamily};
+  font-size: ${(props: ITextMessage) => props.fontSize - 2}px; 
   text-align: left;  
-  color: ${(props: Iinput) => props?.color};
+  color: ${(props: ITextMessage) => props?.color};
 `;
 
 export default TextMessage;
