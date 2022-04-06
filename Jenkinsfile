@@ -56,7 +56,7 @@ pipeline {
                                 script {
                                     sh 'ls'
                                     echo 'Component testing'
-                                    sh 'npm test'
+                                    sh 'npm test /packages/button/__tests__'
                                 }
                             }
                         }
