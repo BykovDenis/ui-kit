@@ -1,0 +1,40 @@
+module.exports = {
+  env: {
+    browser: true,
+    commonjs: true,
+  },
+  parser: '@typescript-eslint/parser',
+  extends: [
+    'eslint:recommended',
+    'prettier',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:typescript-enum/recommended',
+  ],
+  parserOptions: {
+    project: './tsconfig.eslint.json',
+    sourceType: 'module',
+  },
+  plugins: [
+    'react',
+    'prettier',
+    'simple-import-sort',
+    'import',
+    'typescript-sort-keys',
+    'react-hooks',
+    '@typescript-eslint',
+  ],
+  rules: {
+    indent: ['error', 2],
+    'prettier/prettier': 'error',
+    'simple-import-sort/imports': 'error',
+    'typescript-sort-keys/interface': 'error',
+    'typescript-sort-keys/string-enum': 'error',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-inferrable-types': 0,
+    '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/prefer-readonly': 'error',
+  },
+};
