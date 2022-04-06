@@ -55,7 +55,7 @@ pipeline {
                 }
             }
         }
-        stage('Button deploy') {
+        stage('Checkbox deploy') {
             tools
             {
                 nodejs 'v16.3.0-linux-x64'
@@ -90,7 +90,7 @@ pipeline {
                 }
             }
         }
-        stage('Checkbox deploy') {
+        stage('Button deploy') {
             tools
             {
                 nodejs 'v16.3.0-linux-x64'
@@ -113,6 +113,41 @@ pipeline {
                                 }
                             }
                             dir("${buttonPath}") {
+                                script {
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Input deploy') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        sh 'npm -v'
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${inputPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                }
+                            }
+                            dir("${rootPath}") {
+                                script {
+                                    echo 'Testing'
+                                    sh 'npm test /packages/button/__tests__'
+                                }
+                            }
+                            dir("${inputPath}") {
                                 script {
                                     echo 'Building'
                                     sh 'npm run build'
