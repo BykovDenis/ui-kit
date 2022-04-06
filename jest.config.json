@@ -1,0 +1,23 @@
+{
+  "verbose": true,
+  "preset": "ts-jest",
+  "testEnvironment": "jsdom",
+  "globals": {
+  "ts-jest": {
+    "isolatedModules": true
+  }
+},
+  "transform": {
+  "^.+\\.jsx?$": "babel-jest"
+},
+  "moduleNameMapper": {
+  "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+},
+  "moduleDirectories": ["<rootDir>/packages", "node_modules"],
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+  "**/*.{ts, tsx, js,jsx}",
+  "!**/node_modules/**"
+],
+  "coverageDirectory": "<rootDir>/coverage/jest"
+}
