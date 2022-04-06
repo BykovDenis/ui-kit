@@ -64,38 +64,6 @@ pipeline {
                 }
             }
         }
-        stage('Deploy Button component') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        dir("${buttonPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Packages installing'
-                                        sh 'npm i --legacy-peer-deps'
-                                    }
-                            }
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Component building'
-                                        sh 'npm run build'
-                                    }
-                            }
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                    script {
-                                        echo 'Packages cleaning'
-                                        sh 'npm run clean-node-modules'
-                                    }
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
     post {
         always {
