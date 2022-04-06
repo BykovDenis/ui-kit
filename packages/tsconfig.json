@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "./packages",
+    "rootDir": "./",
     "baseUrl": "./",
     "outDir": "build",
     "jsx": "react",
@@ -18,10 +18,10 @@
     "esModuleInterop": true
   },
   "files": [
-    "./src/index.tsx"
+    "./src/index.ts"
   ],
   "exclude": [
-    "node_modules",
+    "button/node_modules",
     "build"
   ],
   "include": ["packages/**/*",]
