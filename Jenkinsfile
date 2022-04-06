@@ -47,8 +47,6 @@ pipeline {
                                         echo 'Root packages installing'
                                         sh 'ls'
                                         sh 'npm i'
-                                        echo 'Component testing'
-                                        sh 'npm test'
                                     }
                             }
                         }
