@@ -1,10 +1,20 @@
 import styled from 'styled-components';
 
-import IListElement from '../types/ilist-element';
+interface IListItemButton {
+  height?: number;
+  color?: string;
+  textAlign?: string;
+  backgroundColor?: string;
+  hoverBackgroundColor?: string;
+  activeBackgroundColor?: string;
+  className?: string;
+  type?: any;
+  onClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;
+}
 
-const ListItem =
+const ListItemButton =
   styled('button') <
-  IListElement >
+  IListItemButton >
   `  
   box-sizing: border-box;  
   display: flex;
@@ -12,22 +22,22 @@ const ListItem =
   align-items: center;
   justify-content: center;  
   width: 100%;
-  height: ${(props: IListElement) => props.height}px;
-  color: ${(props: IListElement) => props.color};
+  height: ${(props: IListItemButton) => props.height}px;
+  color: ${(props: IListItemButton) => props.color};
   font-family: inherit;
   font-size: inherit;
   line-height: 1;  
-  text-align: ${(props: IListElement) => props.textAlign};
+  text-align: ${(props: IListItemButton) => props.textAlign};
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background-color: ${(props: IListElement) => props.backgroundColor || 'transparent'};
+  background-color: ${(props: IListItemButton) => props.backgroundColor || 'transparent'};
   &:hover {
-    background-color: ${(props: IListElement) => props.hoverBackgroundColor};
+    background-color: ${(props: IListItemButton) => props.hoverBackgroundColor};
   }
   &:active {
-    background-color: ${(props: IListElement) => props.activeBackgroundColor};
+    background-color: ${(props: IListItemButton) => props.activeBackgroundColor};
   }
   `;
 
-export default ListItem;
+export default ListItemButton;
