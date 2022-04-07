@@ -34,8 +34,6 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
     props.onDayChange(parseInt(element.name, 10));
   };
 
-  console.log('props.numberDayInWeek', props.numberDayInWeek);
-
   const numberDayInWeek: number = props.numberDayInWeek; // props.numberDayInWeek >= 6 ? 0 : props.numberDayInWeek;
 
   const minDateParsed: IDateParser = new DateParser(props?.minDate);
@@ -67,7 +65,7 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
             fontSize={props.fontSize}
             borderColor={dayValue === props.currentDayNumber ? props.color : props.backgroundColor}
             numberDayInWeek={props.numberDayInWeek}
-            key={`day-number-${dayValue}`}
+            key={`day-number-${dayValue}-${index}`}
             onClick={onDayChange}
             name={dayValueParsed}
             disabled={isDisabled}

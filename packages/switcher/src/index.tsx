@@ -5,18 +5,7 @@ import ITheme from '../../styles/types/itheme';
 import FormSwitcher from './form-switcher';
 import InputSwitcher from './input-switcher';
 import LabelSwitcher from './label-switcher';
-
-interface ISwitcher {
-  ReactThemeContext?: any;
-  activeElement?: string;
-  backgroundColor?: string;
-  classes?: any;
-  color?: string;
-  disabled?: boolean;
-  element1: string;
-  element2: string;
-  onSwitcherChange?: (datasetName: string) => void;
-}
+import ISwitcher from '../types/iswitcher';
 
 const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
   const { element1, element2, activeElement, disabled } = props;

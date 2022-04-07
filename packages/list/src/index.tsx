@@ -26,7 +26,7 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
         ? theme?.palette?.baseFontColor
         : theme?.palette?.secondary?.main;
 
-    const onMouseUp = (evt: React.ChangeEvent<HTMLElement>) => {
+    const onMouseUp = (evt: React.MouseEvent<HTMLElement, MouseEvent>) => {
       props.onMouseUp(evt, listRef);
     };
 

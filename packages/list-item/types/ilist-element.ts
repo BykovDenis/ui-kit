@@ -12,7 +12,7 @@ interface IListElement {
   hoverBackgroundColor?: string;
   hoverColor?: string;
   key?: string | number;
-  onClick?: (evt: React.ChangeEvent<HTMLButtonElement>) => void;
+  onClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;
   textAlign?: string;
   type?: string;
   underLineColor?: string;

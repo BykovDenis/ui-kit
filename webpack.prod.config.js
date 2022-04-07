@@ -6,7 +6,6 @@ const paths = require('./paths');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const publicPath = paths.servedPath;
@@ -124,9 +123,6 @@ module.exports = {
     new MiniCssExtractPlugin(),
     // new BundleAnalyzerPlugin(),
     new WebpackBar(),
-    new MomentLocalesPlugin({
-      localesToKeep: ['es-us', 'ru'],
-    }),
     new webpack.DefinePlugin({
       'process.env': {
         PRODUCTION: JSON.stringify(true),

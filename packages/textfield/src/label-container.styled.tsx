@@ -2,19 +2,24 @@ import styled from 'styled-components';
 
 import ITextField from '../types/itext-field';
 
+interface ILabelContainer {
+  isExistValue?: boolean;
+  isExistTextMessageHelper?: boolean;
+}
+
 const LabelContainer =
   styled('div') <
-  ITextField >
+  ILabelContainer >
   `
-  background-color: ${(props: ITextField) => (props.isExistValue ? '#ffffff' : 'transparent')};
+  background-color: ${(props: ILabelContainer) => (props.isExistValue ? '#ffffff' : 'transparent')};
   padding-left: 4px;
   padding-right: 4px;
   display: block;
   position: absolute;
-  top: ${(props: ITextField) => (props.isExistValue ? '-10px' : props?.isExistTextMessageHelper ? '35%' : '50%')};
+  top: ${(props: ILabelContainer) => (props.isExistValue ? '-10px' : props?.isExistTextMessageHelper ? '35%' : '50%')};
   left: 5px;
   z-index: 1;
-  transform: translateY(${(props: ITextField) => (props.isExistValue ? 0 : '-50%')}) rotate(360deg);
+  transform: translateY(${(props: ILabelContainer) => (props.isExistValue ? 0 : '-50%')}) rotate(360deg);
   border-radius: 3px;
   transition: all 100ms ease-in-out;
 `;

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import rgbToRgba from '../../helpers/rgb-to-rgba';
 
 interface IDayOfMonth {
+  key?: string;
   activeBackgroundColor: string;
   activeColor: string;
   backgroundColor: string;
