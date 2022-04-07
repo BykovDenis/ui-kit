@@ -42,11 +42,6 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
       name="select-custom"
       id="select"
       activeElement={value}
-      color="#ffffff"
-      hoverColor="#ff0000"
-      focusColor="#0000ff"
-      borderColor="#ffffff"
-      indicatorColor="#ffffff"
     >{args.children}</Select>
   </div>;
 }
