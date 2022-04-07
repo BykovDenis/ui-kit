@@ -3,9 +3,11 @@ import { themes } from '../../styles/src';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Input from '../src';
+import ListItem from '../../list-item/src';
+import List from '../src';
+import { action } from '@storybook/addon-actions';
 
-it('Input renders correctly', () => {
+it('List renders correctly', () => {
   const themeCustom: any = {
     ...themes.loanPricing,
     fontFamily: 'SBSansInterface", "Open Sans", "Arial", sans-serif',
@@ -13,28 +15,19 @@ it('Input renders correctly', () => {
   const ReactThemeContext: any = React.createContext(themeCustom);
 
   const props: any = {
-    isSeparateNumberFormat: false,
-    disabled: false,
-    error: false,
-    isReadOnly: false,
-    isNotClearable: false,
-    type: 'text',
-    fontSize: 14,
-    fontWeight: 400,
-    variant: 'outline',
-    textMessage: 'text message',
-    onChange: jest.fn(),
-    onRemove: jest.fn(),
-    borderColor: '#ffffff',
-    color: '#ffffff',
-    backgroundColor: 'transparent',
-    name: 'input',
-    value: '123',
+    type: 'list-buttons',
+    elements: ['List item 1', 'List item 2', 'List item 3', 'List item 4', 'List item 5'],
   };
 
   const { asFragment } = render(
     <ReactThemeContext.Provider value={themeCustom}>
-      <Input {...props} />
+      <List {...props}>
+        {props.elements.map((element: string, index: number) => (
+          <ListItem onClick={action('clicked')} type="text" key={index}>
+            {element}
+          </ListItem>
+        ))}
+      </List>
     </ReactThemeContext.Provider>
   );
   expect(asFragment()).toMatchSnapshot();

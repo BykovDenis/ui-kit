@@ -144,7 +144,7 @@ pipeline {
                             dir("${rootPath}") {
                                 script {
                                     echo 'Testing'
-                                    sh 'npm test /packages/button/__tests__'
+                                    sh 'npm test /packages/input/__tests__'
                                 }
                             }
                             dir("${inputPath}") {
@@ -179,10 +179,80 @@ pipeline {
                             dir("${rootPath}") {
                                 script {
                                     echo 'Testing'
-                                    sh 'npm test /packages/button/__tests__'
+                                    sh 'npm test /packages/label/__tests__'
                                 }
                             }
                             dir("${labelPath}") {
+                                script {
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('ListItem deploy') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        sh 'npm -v'
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${listItemPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                }
+                            }
+                            dir("${rootPath}") {
+                                script {
+                                    echo 'Testing'
+                                    sh 'npm test /packages/list-item/__tests__'
+                                }
+                            }
+                            dir("${listItemPath}") {
+                                script {
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('List deploy') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        sh 'npm -v'
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${listPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                }
+                            }
+                            dir("${rootPath}") {
+                                script {
+                                    echo 'Testing'
+                                    sh 'npm test /packages/list-item/__tests__'
+                                }
+                            }
+                            dir("${listPath}") {
                                 script {
                                     echo 'Building'
                                     sh 'npm run build'
