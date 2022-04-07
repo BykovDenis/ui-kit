@@ -63,7 +63,6 @@ pipeline {
             steps {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        sh 'npm -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${checkboxPath}") {
                                 script {
@@ -98,7 +97,6 @@ pipeline {
             steps {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        sh 'npm -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${buttonPath}") {
                                 script {
@@ -133,7 +131,6 @@ pipeline {
             steps {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        sh 'npm -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${inputPath}") {
                                 script {
@@ -168,7 +165,6 @@ pipeline {
             steps {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        sh 'npm -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${labelPath}") {
                                 script {
@@ -203,7 +199,6 @@ pipeline {
             steps {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        sh 'npm -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${listItemPath}") {
                                 script {
@@ -238,7 +233,6 @@ pipeline {
             steps {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        sh 'npm -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${listPath}") {
                                 script {
@@ -273,7 +267,6 @@ pipeline {
             steps {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        sh 'npm -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${radioPath}") {
                                 script {
@@ -308,7 +301,6 @@ pipeline {
             steps {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        sh 'npm -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${selectPath}") {
                                 script {
@@ -343,7 +335,6 @@ pipeline {
             steps {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        sh 'npm -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${textFieldPath}") {
                                 script {
@@ -359,6 +350,31 @@ pipeline {
                             }
                             dir("${textFieldPath}") {
                                 script {
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Switcher deploy') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${switcherPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
