@@ -249,7 +249,7 @@ pipeline {
                             dir("${rootPath}") {
                                 script {
                                     echo 'Testing'
-                                    sh 'npm test /packages/list-item/__tests__'
+                                    sh 'npm test /packages/list/__tests__'
                                 }
                             }
                             dir("${listPath}") {
