@@ -386,6 +386,31 @@ pipeline {
                 }
             }
         }
+        stage('Styles theme deploy') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${stylesPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         stage("UI Kit PUBLISH") {
             tools
             {
