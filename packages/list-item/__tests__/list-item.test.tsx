@@ -3,9 +3,9 @@ import { themes } from '../../styles/src';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Input from '../src';
+import ListItem from '../src';
 
-it('Input renders correctly', () => {
+it('ListItem renders correctly', () => {
   const themeCustom: any = {
     ...themes.loanPricing,
     fontFamily: 'SBSansInterface", "Open Sans", "Arial", sans-serif',
@@ -13,28 +13,13 @@ it('Input renders correctly', () => {
   const ReactThemeContext: any = React.createContext(themeCustom);
 
   const props: any = {
-    isSeparateNumberFormat: false,
-    disabled: false,
-    error: false,
-    isReadOnly: false,
-    isNotClearable: false,
-    type: 'text',
-    fontSize: 14,
-    fontWeight: 400,
-    variant: 'outline',
-    textMessage: 'text message',
-    onChange: jest.fn(),
-    onRemove: jest.fn(),
-    borderColor: '#ffffff',
-    color: '#ffffff',
-    backgroundColor: 'transparent',
-    name: 'input',
-    value: '123',
+    onClick: jest.fn(),
+    type: 'button',
   };
 
   const { asFragment } = render(
     <ReactThemeContext.Provider value={themeCustom}>
-      <Input {...props} />
+      <ListItem {...props}>{props.children}</ListItem>
     </ReactThemeContext.Provider>
   );
   expect(asFragment()).toMatchSnapshot();
