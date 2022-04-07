@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/Button",
-  "version": "0.5.28",
+  "version": "0.6.0",
   "description": "A simple button component",
   "main": "dist/index.js",
   "scripts": {
@@ -29,7 +29,9 @@
   "devDependencies": {
     "@lopatnov/rollup-plugin-uglify": "^2.1.2",
     "@types/styled-components": "^5.1.18",
+    "react": "^17.0.2",
     "rollup": "^2.61.1"
   },
-  "gitHead": "e2e404dae32f9b2dcad72fc9cf87b7221da8a9d4"
+  "gitHead": "fe280f57090e7f6efe17aa01b89c3e99d768fcd5",
+  "_id": "@sber-riski-cib-ui/Button@0.5.28"
 }

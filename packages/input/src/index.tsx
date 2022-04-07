@@ -95,14 +95,14 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
   };
 
-  const onInputDelete = (evt: React.ChangeEvent<HTMLInputElement>) => {
+  const onInputDelete = (evt: React.MouseEvent<HTMLButtonElement>) => {
     setInputValue('');
     setEvtObject(null);
     setIsChanging(false);
     props?.onRemove(props?.name, '', evt);
   };
 
-  const onInputFocus = (evt?: React.ChangeEvent<HTMLInputElement>) => {
+  const onInputFocus = (evt?: any) => {
     setIsFocus(true);
     if (inputRef?.current && props?.value !== null && props?.isSeparateNumberFormat) {
       const inputElement = inputRef?.current;
@@ -114,7 +114,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     props?.onFocus(evt);
   };
 
-  const onInputBlur = (evt: React.ChangeEvent<HTMLInputElement>) => {
+  const onInputBlur = (evt: any) => {
     setIsFocus(false);
     if (props?.isSeparateNumberFormat && props?.value !== null) {
       setInputValue(parseFloat(props.value as string)?.toLocaleString('ru-RU')?.replace(',', '.'))

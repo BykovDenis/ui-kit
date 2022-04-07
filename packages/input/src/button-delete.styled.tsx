@@ -2,11 +2,19 @@ import styled from 'styled-components';
 
 import Variants from '../../enums/variants';
 import rgbToRgba from '../../helpers/rgb-to-rgba';
-import IInput from '../types/iinput';
+
+interface IButtonDelete {
+  variant?: Variants;
+  hoverColor?: string;
+  focusColor?: string;
+  onClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;
+  className?: string;
+  disabled?: boolean;
+}
 
 const ButtonDelete =
   styled('button') <
-  IInput >
+  IButtonDelete >
   `
   position: absolute;
   right: 5px;
@@ -24,20 +32,22 @@ const ButtonDelete =
   border: 0;
   cursor: pointer;
   &:hover .delete-icon > path {
-    stroke: ${(props: IInput) => props.hoverColor};
-    fill: ${(props: IInput) => props.hoverColor};
+    stroke: ${(props: IButtonDelete) => props.hoverColor};
+    fill: ${(props: IButtonDelete) => props.hoverColor};
   }
   &:focus {
-    outline: ${(props: IInput) => (props?.variant === Variants.Outlined ? 0 : rgbToRgba(props?.focusColor, 0.3))};
-    box-shadow: 1px 1px 5px 3px ${(props: IInput) => rgbToRgba(props?.focusColor, 0.3)};
+    outline: ${(props: IButtonDelete) =>
+      props?.variant === Variants.Outlined ? 0 : rgbToRgba(props?.focusColor, 0.3)};
+    box-shadow: 1px 1px 5px 3px ${(props: IButtonDelete) => rgbToRgba(props?.focusColor, 0.3)};
     & .delete-icon > path {
-      stroke: ${(props: IInput) => props?.focusColor};
-      fill: ${(props: IInput) => props?.focusColor};
+      stroke: ${(props: IButtonDelete) => props?.focusColor};
+      fill: ${(props: IButtonDelete) => props?.focusColor};
     }
   }
   &:active {
-    outline: ${(props: IInput) => (props?.variant === Variants.Outlined ? 0 : rgbToRgba(props?.focusColor, 0.5))};
-    box-shadow: 1px 2px 5px 3px ${(props: IInput) => rgbToRgba(props?.focusColor, 0.5)};
+    outline: ${(props: IButtonDelete) =>
+      props?.variant === Variants.Outlined ? 0 : rgbToRgba(props?.focusColor, 0.5)};
+    box-shadow: 1px 2px 5px 3px ${(props: IButtonDelete) => rgbToRgba(props?.focusColor, 0.5)};
   }
 `;
 

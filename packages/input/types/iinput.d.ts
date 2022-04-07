@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Variants from '../../enums/variants';
-import IInputVariants from './iinput-variants';
 
 interface IInput {
   ReactThemeContext?: any;
@@ -34,10 +33,10 @@ interface IInput {
   max?: number;
   min?: number;
   name: string;
-  onBlur?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (evt: any) => void;
   onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  onClick?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick?: (evt: any) => void;
+  onFocus?: (evt: any) => void;
   onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onRemove?: (name: string, value?: string, evt?: any) => void;
   ref?: any;
@@ -50,6 +49,7 @@ interface IInput {
   value?: number | string;
   variant?: Variants;
   width?: number;
+  inputComponent?: any;
 }
 
 export default IInput;

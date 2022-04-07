@@ -34,7 +34,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [activeElement, setActiveElement] = useState(props.activeElement);
   const [isEdited, setIsEdited] = useState(false);
 
-  const onSelectChange = (evt: React.ChangeEvent<HTMLElement>) => {
+  const onSelectChange = (evt: React.ChangeEvent<HTMLElement> | React.MouseEvent<HTMLElement, MouseEvent>) => {
     const element: any = evt.target;
     const value: string = element?.dataset?.value;
 
@@ -49,7 +49,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsVisibleList(!isVisibleList);
   };
 
-  const onListItemsClose = (isSearchResult: boolean, evt?: React.ChangeEvent<HTMLElement>) => {
+  const onListItemsClose = (isSearchResult: boolean, evt?: any) => {
     const element = evt.target;
     if (element?.tagName !== INPUT_TAG) {
       if (!isSearchResult) {
@@ -68,7 +68,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     onListItemsCloseByKey();
   };
 
-  const onMouseUp = (evt: React.ChangeEvent<HTMLElement>, listRef: any) => {
+  const onMouseUp = (evt: React.MouseEvent<HTMLElement, MouseEvent>, listRef: any) => {
     const element: any = evt.target;
     if (listRef && listRef?.current) {
       const listElement: any = listRef?.current;
@@ -182,7 +182,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
           {props?.label && (
             <LabelContainer
               isExistValue={isExistValue || isFocus}
-              textMessage={props?.textMessage}
               backgroundColor={props?.backgroundColor || theme.mainWhiteColor}
             >
               <Label

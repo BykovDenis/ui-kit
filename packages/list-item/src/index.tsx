@@ -32,12 +32,9 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
     return props.type === ListItemType.Button ? (
       <ListItemContainer underLineColor={underLineColor} hoverColor={hoverColor}>
         <ListItemButtonStyled
-          {...props}
           color={props?.color || color}
           height={props?.height || HEIGHT}
           textAlign={props?.textAlign || TEXT_ALIGN}
-          underLineColor={underLineColor}
-          hoverColor={hoverColor}
           hoverBackgroundColor={props.hoverBackgroundColor || hoverBackgroundColor}
           activeBackgroundColor={activeBackgroundColor}
           type={props?.type || listItemType}
