@@ -230,7 +230,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       >
         <DatepickerHeader>
           {props?.label && (
-            <LabelContainer isExistValue={isExistValue || isFocus} textMessage={props?.textMessage}>
+            <LabelContainer isExistValue={isExistValue || isFocus}>
               <Label
                 htmlFor={props.id}
                 fontSize={labelFontSize}
