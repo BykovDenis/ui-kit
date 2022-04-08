@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import rgbToRgba from '../../helpers/rgb-to-rgba';
+import React from 'react';
 
 interface IDayOfMonth {
   key?: string;
@@ -9,11 +10,13 @@ interface IDayOfMonth {
   backgroundColor: string;
   borderColor: string;
   color: string;
-  countDaysIsMonth: number;
   fontFamily: string;
   fontSize: number;
   hoverBackgroundColor: string;
-  isCurrentDay: boolean;
+  onClick: (evt: React.MouseEvent<HTMLButtonElement>) => void;
+  numberDayInWeek: number;
+  name: string;
+  disabled: boolean;
 }
 
 const DayOfMonth =
