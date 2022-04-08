@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/Datepicker",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "The datepicker component",
   "main": "dist/index.js",
   "module": "styles/src/index.js",
