@@ -1,14 +1,18 @@
 import styled from 'styled-components';
-import IDatepicker from '../types/idatepicker';
 
+interface IDayOfWeek {
+  color: string;
+  fontFamily: string;
+  fontSize: number;
+}
 
 const DayOfWeek =
   styled('li') <
-  IDatepicker >
+  IDayOfWeek >
   `
-    color: ${(props: IDatepicker) => props.color};
-    font-family: ${(props: IDatepicker) => props.fontFamily};
-    font-size: ${(props: IDatepicker) => props.fontSize}px;
+    color: ${(props: IDayOfWeek) => props.color};
+    font-family: ${(props: IDayOfWeek) => props.fontFamily};
+    font-size: ${(props: IDayOfWeek) => props.fontSize}px;
 `;
 
 export default DayOfWeek;

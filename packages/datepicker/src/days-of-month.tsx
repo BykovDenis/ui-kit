@@ -29,7 +29,7 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
       ? new Array(props?.countDaysIsMonth + props?.numberDayInWeek)?.fill(null)
       : null;
 
-  const onDayChange = (evt: React.ChangeEvent<HTMLButtonElement>) => {
+  const onDayChange = (evt: React.MouseEvent<HTMLButtonElement>) => {
     const element = evt.currentTarget;
     props.onDayChange(parseInt(element.name, 10));
   };

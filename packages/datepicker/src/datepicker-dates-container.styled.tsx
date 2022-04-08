@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 
 import IDatepicker from '../types/idatepicker';
+import React from 'react';
+
+interface IDatepickerDatesContainer {
+  ref?: any;
+  onMouseUp: (evt: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onKeyUp: (evt: React.KeyboardEvent<HTMLElement>) => void;
+}
 
 const DatepickerDatesContainer =
   styled('div') <
-  IDatepicker >
+  IDatepickerDatesContainer >
   `
   top: 100%;
   background-color: rgb(255, 255, 255);
