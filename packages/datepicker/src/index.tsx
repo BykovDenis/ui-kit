@@ -274,15 +274,15 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
         <DatepickerDatesContainer onMouseUp={onMouseOutUp} onKeyUp={onDatesContainerCloseByKey} ref={dateRef}>
           <MonthsYearsRuleContainer>
             <DatepickerNavigateContainerStyled>
-              <DatepickerButtonNavigate
-                id="get-previous-month"
-                fontSize={fontSize}
-                fontFamily={props?.fontFamily || theme?.fontFamily}
-                color={theme.palette.primary.main}
-                onClick={onGetPreviousMonth}
-              >
-                {'<'}
-              </DatepickerButtonNavigate>
+              {/*<DatepickerButtonNavigate*/}
+              {/*  id="get-previous-month"*/}
+              {/*  fontSize={fontSize}*/}
+              {/*  fontFamily={props?.fontFamily || theme?.fontFamily}*/}
+              {/*  color={theme.palette.primary.main}*/}
+              {/*  onClick={onGetPreviousMonth}*/}
+              {/*>*/}
+              {/*  {'<'}*/}
+              {/*</DatepickerButtonNavigate>*/}
               <Select
                 id="datepicker-month"
                 name="month"
@@ -298,26 +298,26 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 fontFamily={props?.fontFamily || theme?.fontFamily}
                 height={props?.height || DEFAULT_HEIGHT}
               />
-              <DatepickerButtonNavigate
-                id="get-next-month"
-                fontSize={fontSize}
-                fontFamily={props?.fontFamily || theme?.fontFamily}
-                color={theme.palette.primary.main}
-                onClick={onGetNextMonth}
-              >
-                {'>'}
-              </DatepickerButtonNavigate>
+              {/*<DatepickerButtonNavigate*/}
+              {/*  id="get-next-month"*/}
+              {/*  fontSize={fontSize}*/}
+              {/*  fontFamily={props?.fontFamily || theme?.fontFamily}*/}
+              {/*  color={theme.palette.primary.main}*/}
+              {/*  onClick={onGetNextMonth}*/}
+              {/*>*/}
+              {/*  {'>'}*/}
+              {/*</DatepickerButtonNavigate>*/}
             </DatepickerNavigateContainerStyled>
             <DatepickerNavigateContainerStyled>
-              <DatepickerButtonNavigate
-                id="get-previous-year"
-                fontSize={fontSize}
-                fontFamily={props?.fontFamily || theme?.fontFamily}
-                color={theme.palette.primary.main}
-                onClick={onGetPreviousYear}
-              >
-                {'<'}
-              </DatepickerButtonNavigate>
+              {/*<DatepickerButtonNavigate*/}
+              {/*  id="get-previous-year"*/}
+              {/*  fontSize={fontSize}*/}
+              {/*  fontFamily={props?.fontFamily || theme?.fontFamily}*/}
+              {/*  color={theme.palette.primary.main}*/}
+              {/*  onClick={onGetPreviousYear}*/}
+              {/*>*/}
+              {/*  {'<'}*/}
+              {/*</DatepickerButtonNavigate>*/}
               <Select
                 id="datepicker-year"
                 name="year"
@@ -333,15 +333,15 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 fontFamily={props?.fontFamily || theme?.fontFamily}
                 height={props?.height || DEFAULT_HEIGHT}
               />
-              <DatepickerButtonNavigate
-                id="get-next-year"
-                fontSize={fontSize}
-                fontFamily={props?.fontFamily || theme?.fontFamily}
-                color={theme.palette.primary.main}
-                onClick={onGetNextYear}
-              >
-                {'>'}
-              </DatepickerButtonNavigate>
+              {/*<DatepickerButtonNavigate*/}
+              {/*  id="get-next-year"*/}
+              {/*  fontSize={fontSize}*/}
+              {/*  fontFamily={props?.fontFamily || theme?.fontFamily}*/}
+              {/*  color={theme.palette.primary.main}*/}
+              {/*  onClick={onGetNextYear}*/}
+              {/*>*/}
+              {/*  {'>'}*/}
+              {/*</DatepickerButtonNavigate>*/}
             </DatepickerNavigateContainerStyled>
           </MonthsYearsRuleContainer>
           <DaysOfWeek
