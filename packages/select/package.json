@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/Select",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Riski react UI",
   "main": "dist/index.js",
   "module": "styles/src/index.js",
