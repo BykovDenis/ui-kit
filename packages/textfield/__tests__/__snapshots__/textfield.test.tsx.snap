@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-furwcr gNVNEy"
+  >
+    <div
+      class="sc-iCfMLu bFeWsF"
+    >
+      <label
+        class="sc-gKclnd hribFI"
+        color="#333333"
+        font-family="Roboto, Arial, sans-serif"
+        font-size="14"
+        font-weight="400"
+        for="textfield1"
+      >
+        label
+      </label>
+    </div>
+    <div
+      class="sc-dkPtRN bbOemD"
+    >
+      <p
+        class="sc-hKwDye jiFsKN"
+      >
+        <input
+          autocomplete="off"
+          class="sc-gsDKAQ PBATR"
+          color="#333333"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          font-weight="400"
+          height="40"
+          id="textfield1"
+          label="label"
+          name="textfield1"
+          type="text"
+          value=""
+        />
+      </p>
+      <div
+        class="sc-eCImPb caIXOY underline"
+        color="rgba(0,0,0,0.85)"
+        name="textfield1"
+      />
+      <p />
+      <p
+        class="sc-jRQBWg gxCMlM text-message"
+        font-family="Roboto, Arial, sans-serif"
+        font-size="14"
+      >
+        text message
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
