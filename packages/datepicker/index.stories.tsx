@@ -18,7 +18,7 @@ export default {
 } as ComponentMeta<typeof Datepicker>;
 
 const Template: ComponentStory<typeof Datepicker> = (args: IDatepicker) => {
-  const [value, setValue] = useState('01.04.2022');
+  const [value, setValue] = useState('01.05.2022');
 
   const onDatepickerValueChange = (name: string, value: string) => {
     setValue(value);
