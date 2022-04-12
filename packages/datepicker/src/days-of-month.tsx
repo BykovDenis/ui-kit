@@ -1,7 +1,6 @@
 import React from 'react';
 
 import rgbToRgba from '../../helpers/rgb-to-rgba';
-import DateCustom from '../helpers/date-parser';
 import DateParser from '../helpers/date-parser';
 import IDateParser from '../helpers/idate-parser';
 import DayEmptyOfMonth from './day-empty-of-month.styled';
@@ -12,7 +11,9 @@ interface IDaysOfMonth {
   backgroundColor: string;
   color: string;
   countDaysIsMonth: number;
-  currentDayNumber: number;
+  activeDayNumber: number;
+  activeMonthNumber: number;
+  activeYearNumber: number;
   currentMonthNumber: number;
   currentYearNumber: number;
   fontFamily: string;
@@ -41,29 +42,35 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
 
   return (
     <DaysOfMonthStyled>
-      {daysElements?.map((element: number, index: number, array: Array<number>) => {
+      {daysElements?.map((element: number, index: number) => {
         const currentNumberDayOfWeek: number = index + 1;
-        const dayValue: number = currentNumberDayOfWeek - numberDayInWeek + 1;
+        const dayValue: number = currentNumberDayOfWeek - numberDayInWeek + (numberDayInWeek > 0 ? 1 : 0);
         const dayValueParsed: string = dayValue?.toString();
-        if (numberDayInWeek >= currentNumberDayOfWeek || index >= array.length - 1 || index >= array.length) {
+        if (numberDayInWeek > currentNumberDayOfWeek || dayValue > props.countDaysIsMonth) {
           return <DayEmptyOfMonth />;
         }
 
         const dateParsed: IDateParser = new DateParser(
-          `${dayValueParsed}.${props.currentMonthNumber}.${props.currentYearNumber}`
+          `${dayValueParsed}.${props.activeMonthNumber}.${props.activeYearNumber}`
         );
         const isDisabled: boolean =
           dateParsed?.getDate() < minDateParsed.getDate() || dateParsed?.getDate() > maxDateParsed.getDate();
+
+        const isSameDate: boolean =
+          dayValue === props.activeDayNumber &&
+          props.activeMonthNumber === props.currentMonthNumber &&
+          props.activeYearNumber === props.currentYearNumber;
+
         return (
           <DayOfMonth
             fontFamily={props.fontFamily}
             hoverBackgroundColor={rgbToRgba(props.color, 0.85)}
             activeBackgroundColor={rgbToRgba(props.color, 0.5)}
             activeColor={props.backgroundColor}
-            backgroundColor={dayValue === props.currentDayNumber ? props.color : props.backgroundColor}
-            color={dayValue === props.currentDayNumber ? props.backgroundColor : props.color}
+            backgroundColor={isSameDate ? props.color : props.backgroundColor}
+            color={isSameDate ? props.backgroundColor : props.color}
             fontSize={props.fontSize}
-            borderColor={dayValue === props.currentDayNumber ? props.color : props.backgroundColor}
+            borderColor={isSameDate ? props.color : props.backgroundColor}
             numberDayInWeek={props.numberDayInWeek}
             key={`day-number-${dayValue}-${index}`}
             onClick={onDayChange}
