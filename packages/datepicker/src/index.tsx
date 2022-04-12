@@ -14,7 +14,6 @@ import monthsElementEn from '../dictionaries/months-en';
 import monthsElementRu from '../dictionaries/months-ru';
 import DateParser from '../helpers/date-parser';
 import IDatepicker from '../types/idatepicker';
-import DatepickerButtonNavigate from './datepicker-button-navigate/index';
 import DatepickerContainerStyled from './datepicker-container.styled';
 import DatepickerDatesContainer from './datepicker-dates-container.styled';
 import DatepickerHeader from './datepicker-header.styled';
@@ -23,6 +22,7 @@ import DaysOfMonth from './days-of-month';
 import DaysOfWeek from './days-of-week';
 import LabelContainer from './label-container.styled';
 import MonthsYearsRuleContainer from './months-years-rule-container.styled';
+import DatepickerButtonNavigate from './datepicker-button-navigate';
 
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
@@ -31,10 +31,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState(props.value);
+  const [valueState, setValueState] = useState(props.value);
   const [isVisibleList, setIsVisibleList] = useState(false);
   const [currentDayNumber, setCurrentDayNumber] = useState(dateParsed?.getNumberCurrentDateOfMonth());
   const [currentMonthNumber, setCurrentMonthNumber] = useState(dateParsed?.getNumberMonth()?.toString());
-  const [currentYearNumber, setCurrentYearNumber] = useState(dateParsed?.getNumberYear());
+  const [currentYearNumber, setCurrentYearNumber] = useState(dateParsed?.getNumberYear().toString());
+  const [activeDayNumber, setActiveDayNumber] = useState(dateParsed?.getNumberCurrentDateOfMonth());
+  const [activeMonthNumber, setActiveMonthNumber] = useState(dateParsed?.getNumberMonth()?.toString());
+  const [activeYearNumber, setActiveYearNumber] = useState(dateParsed?.getNumberYear().toString());
   const [numberDayInWeek, setNumberDayInWeek] = useState(dateParsed?.getNumberDayInWeek());
   const [countDaysIsMonth, setCountDaysIsMonth] = useState(dateParsed?.getCountDaysInMonth());
   const [isError, setIsError] = useState(false);
@@ -46,10 +50,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     setValue('');
   };
 
-  const onDatesContainerCloseByKey = () => {
-    setIsFocus(false);
-    setIsVisibleList(false);
-  };
+  // const onDatesContainerCloseByKey = () => {
+  //   setIsFocus(false);
+  //   setIsVisibleList(false);
+  // };
 
   const onMouseOutUp = (evt: any) => {
     const element: any = evt.target;
@@ -63,7 +67,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onKeyUp = (evt: any) => {
     if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
-      onDatesContainerCloseByKey();
+      setIsFocus(false);
+      setIsVisibleList(false);
     }
   };
 
@@ -88,28 +93,42 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     }
   }, [props.value]);
 
-  useEffect(() => {
-    if (value !== props.value) {
-      dateParsed = new DateParser(value);
-      setCurrentDayNumber(null);
-      setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
-      setCountDaysIsMonth(dateParsed?.getCountDaysInMonth());
-    }
-  }, [currentMonthNumber]);
+  // useEffect(() => {
+  //   if (valueState !== props.value) {
+  //     dateParsed = new DateParser(valueState);
+  //     setCurrentDayNumber(null);
+  //     setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
+  //     setCountDaysIsMonth(dateParsed?.getCountDaysInMonth());
+  //   }
+  // }, [currentMonthNumber]);
+
+  // useEffect(() => {
+  //   if (valueState !== props.value) {
+  //     dateParsed = new DateParser(valueState);
+  //     setCurrentDayNumber(null);
+  //     setNumberDayInWeek(dateParsed.getNumberDayInWeek());
+  //     setCountDaysIsMonth(dateParsed.getCountDaysInMonth());
+  //   }
+  // }, [currentYearNumber]);
 
   useEffect(() => {
-    if (value !== props.value) {
-      dateParsed = new DateParser(value);
-      setCurrentDayNumber(null);
-      setNumberDayInWeek(dateParsed.getNumberDayInWeek());
-      setCountDaysIsMonth(dateParsed.getCountDaysInMonth());
-    }
-  }, [currentYearNumber]);
+    dateParsed = new DateParser(valueState);
+    setCurrentMonthNumber(dateParsed.getNumberMonth().toString());
+    setCurrentYearNumber(dateParsed.getNumberYear().toString());
+    setCurrentDayNumber(null);
+    setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
+    setCountDaysIsMonth(dateParsed?.getCountDaysInMonth());
+  }, [valueState]);
+
+  useEffect(() => {
+    dateParsed = new DateParser(value);
+    setActiveDayNumber(dateParsed.getNumberCurrentDateOfMonth());
+    setActiveMonthNumber(dateParsed.getNumberMonth().toString());
+    setActiveYearNumber(dateParsed.getNumberYear().toString());
+    setValueState(value);
+  }, [value]);
 
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    const element = evt.target;
-    const valueParsed: string = element.value.trim();
-    // setValue(valueParsed);
     setIsVisibleList(false);
   };
 
@@ -192,24 +211,24 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     };
 
     const onGetPreviousMonth = () => {
-      dateParsed = new DateParser(value);
+      dateParsed = new DateParser(valueState);
       dateParsed.changeToThePreviousMonth();
-      setValue(dateParsed.formatToString());
+      setValueState(dateParsed.formatToString());
     };
     const onGetNextMonth = () => {
-      dateParsed = new DateParser(value);
+      dateParsed = new DateParser(valueState);
       dateParsed.changeMonth(dateParsed.getNumberMonth() + 1);
-      setValue(dateParsed.formatToString());
+      setValueState(dateParsed.formatToString());
     };
     const onGetPreviousYear = () => {
-      dateParsed = new DateParser(value);
+      dateParsed = new DateParser(valueState);
       dateParsed.changeToThePreviousYear();
-      setValue(dateParsed.formatToString());
+      setValueState(dateParsed.formatToString());
     };
     const onGetNextYear = () => {
-      dateParsed = new DateParser(value);
+      dateParsed = new DateParser(valueState);
       dateParsed.changeToTheNextYear();
-      setValue(dateParsed.formatToString());
+      setValueState(dateParsed.formatToString());
     };
 
     const month: string = months[parseInt(currentMonthNumber, 10)];
@@ -271,18 +290,18 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           />
         </DatepickerHeader>
         {isVisibleList && (
-          <DatepickerDatesContainer onMouseUp={onMouseOutUp} onKeyUp={onDatesContainerCloseByKey} ref={dateRef}>
+          <DatepickerDatesContainer onMouseUp={onMouseOutUp} onKeyUp={onKeyUp} ref={dateRef}>
             <MonthsYearsRuleContainer>
               <DatepickerNavigateContainerStyled>
-                {/*<DatepickerButtonNavigate*/}
-                {/*  id="get-previous-month"*/}
-                {/*  fontSize={fontSize}*/}
-                {/*  fontFamily={props?.fontFamily || theme?.fontFamily}*/}
-                {/*  color={theme.palette.primary.main}*/}
-                {/*  onClick={onGetPreviousMonth}*/}
-                {/*>*/}
-                {/*  {'<'}*/}
-                {/*</DatepickerButtonNavigate>*/}
+                <DatepickerButtonNavigate
+                  id="get-previous-month"
+                  fontSize={fontSize}
+                  fontFamily={props?.fontFamily || theme?.fontFamily}
+                  color={theme.palette.primary.main}
+                  onClick={onGetPreviousMonth}
+                >
+                  {'<'}
+                </DatepickerButtonNavigate>
                 <Select
                   id="datepicker-month"
                   name="month"
@@ -298,26 +317,26 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   height={props?.height || DEFAULT_HEIGHT}
                 />
-                {/*<DatepickerButtonNavigate*/}
-                {/*  id="get-next-month"*/}
-                {/*  fontSize={fontSize}*/}
-                {/*  fontFamily={props?.fontFamily || theme?.fontFamily}*/}
-                {/*  color={theme.palette.primary.main}*/}
-                {/*  onClick={onGetNextMonth}*/}
-                {/*>*/}
-                {/*  {'>'}*/}
-                {/*</DatepickerButtonNavigate>*/}
+                <DatepickerButtonNavigate
+                  id="get-next-month"
+                  fontSize={fontSize}
+                  fontFamily={props?.fontFamily || theme?.fontFamily}
+                  color={theme.palette.primary.main}
+                  onClick={onGetNextMonth}
+                >
+                  {'>'}
+                </DatepickerButtonNavigate>
               </DatepickerNavigateContainerStyled>
               <DatepickerNavigateContainerStyled>
-                {/*<DatepickerButtonNavigate*/}
-                {/*  id="get-previous-year"*/}
-                {/*  fontSize={fontSize}*/}
-                {/*  fontFamily={props?.fontFamily || theme?.fontFamily}*/}
-                {/*  color={theme.palette.primary.main}*/}
-                {/*  onClick={onGetPreviousYear}*/}
-                {/*>*/}
-                {/*  {'<'}*/}
-                {/*</DatepickerButtonNavigate>*/}
+                <DatepickerButtonNavigate
+                  id="get-previous-year"
+                  fontSize={fontSize}
+                  fontFamily={props?.fontFamily || theme?.fontFamily}
+                  color={theme.palette.primary.main}
+                  onClick={onGetPreviousYear}
+                >
+                  {'<'}
+                </DatepickerButtonNavigate>
                 <Select
                   id="datepicker-year"
                   name="year"
@@ -333,15 +352,15 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   height={props?.height || DEFAULT_HEIGHT}
                 />
-                {/*<DatepickerButtonNavigate*/}
-                {/*  id="get-next-year"*/}
-                {/*  fontSize={fontSize}*/}
-                {/*  fontFamily={props?.fontFamily || theme?.fontFamily}*/}
-                {/*  color={theme.palette.primary.main}*/}
-                {/*  onClick={onGetNextYear}*/}
-                {/*>*/}
-                {/*  {'>'}*/}
-                {/*</DatepickerButtonNavigate>*/}
+                <DatepickerButtonNavigate
+                  id="get-next-year"
+                  fontSize={fontSize}
+                  fontFamily={props?.fontFamily || theme?.fontFamily}
+                  color={theme.palette.primary.main}
+                  onClick={onGetNextYear}
+                >
+                  {'>'}
+                </DatepickerButtonNavigate>
               </DatepickerNavigateContainerStyled>
             </MonthsYearsRuleContainer>
             <DaysOfWeek
@@ -354,9 +373,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             <Divider color={theme.palette.primary.main} />
             <DaysOfMonth
               countDaysIsMonth={countDaysIsMonth}
+              activeMonthNumber={+activeMonthNumber + 1}
+              activeYearNumber={activeYearNumber}
               currentMonthNumber={+currentMonthNumber + 1}
               currentYearNumber={currentYearNumber}
-              currentDayNumber={currentDayNumber}
+              activeDayNumber={activeDayNumber}
               color={theme.palette.primary.main}
               fontSize={fontSize}
               fontFamily={props?.fontFamily || theme?.fontFamily}
