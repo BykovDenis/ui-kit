@@ -55,6 +55,40 @@ pipeline {
                 }
             }
         }
+        stage('Datepicker deploy') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${datepickerPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                }
+                            }
+                            dir("${rootPath}") {
+                                script {
+                                    echo 'Testing'
+                                    sh 'npm test /packages/datepicker/__tests__'
+                                }
+                            }
+                            dir("${datepickerPath}") {
+                                script {
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         stage('Checkbox deploy') {
             tools
             {

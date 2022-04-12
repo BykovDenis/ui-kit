@@ -270,104 +270,104 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             error={isError}
           />
         </DatepickerHeader>
-        {/*{isVisibleList && (*/}
-        <DatepickerDatesContainer onMouseUp={onMouseOutUp} onKeyUp={onDatesContainerCloseByKey} ref={dateRef}>
-          <MonthsYearsRuleContainer>
-            <DatepickerNavigateContainerStyled>
-              <DatepickerButtonNavigate
-                id="get-previous-month"
-                fontSize={fontSize}
-                fontFamily={props?.fontFamily || theme?.fontFamily}
-                color={theme.palette.primary.main}
-                onClick={onGetPreviousMonth}
-              >
-                {'<'}
-              </DatepickerButtonNavigate>
-              <Select
-                id="datepicker-month"
-                name="month"
-                label={monthTitle}
-                onChange={onMonthNameChange}
-                onRemove={onMonthRemove}
-                activeElement={month}
-                elements={months}
-                isNotClearable={true}
-                isCreatable={false}
-                baseFontSize={props?.baseFontSize}
-                fontSize={fontSize}
-                fontFamily={props?.fontFamily || theme?.fontFamily}
-                height={props?.height || DEFAULT_HEIGHT}
-              />
-              <DatepickerButtonNavigate
-                id="get-next-month"
-                fontSize={fontSize}
-                fontFamily={props?.fontFamily || theme?.fontFamily}
-                color={theme.palette.primary.main}
-                onClick={onGetNextMonth}
-              >
-                {'>'}
-              </DatepickerButtonNavigate>
-            </DatepickerNavigateContainerStyled>
-            <DatepickerNavigateContainerStyled>
-              <DatepickerButtonNavigate
-                id="get-previous-year"
-                fontSize={fontSize}
-                fontFamily={props?.fontFamily || theme?.fontFamily}
-                color={theme.palette.primary.main}
-                onClick={onGetPreviousYear}
-              >
-                {'<'}
-              </DatepickerButtonNavigate>
-              <Select
-                id="datepicker-year"
-                name="year"
-                label={yearTitle}
-                onChange={onYearNameChange}
-                onRemove={onYearRemove}
-                activeElement={currentYearNumberString}
-                elements={years}
-                isNotClearable={true}
-                isCreatable={false}
-                baseFontSize={props?.baseFontSize}
-                fontSize={fontSize}
-                fontFamily={props?.fontFamily || theme?.fontFamily}
-                height={props?.height || DEFAULT_HEIGHT}
-              />
-              <DatepickerButtonNavigate
-                id="get-next-year"
-                fontSize={fontSize}
-                fontFamily={props?.fontFamily || theme?.fontFamily}
-                color={theme.palette.primary.main}
-                onClick={onGetNextYear}
-              >
-                {'>'}
-              </DatepickerButtonNavigate>
-            </DatepickerNavigateContainerStyled>
-          </MonthsYearsRuleContainer>
-          <DaysOfWeek
-            primaryColor={theme.palette.primary.main}
-            secondaryColor={theme.palette.secondary.main}
-            fontSize={fontSize}
-            fontFamily={props?.fontFamily || theme?.fontFamily}
-            locale={props?.locale}
-          />
-          <Divider color={theme.palette.primary.main} />
-          <DaysOfMonth
-            countDaysIsMonth={countDaysIsMonth}
-            currentMonthNumber={+currentMonthNumber + 1}
-            currentYearNumber={currentYearNumber}
-            currentDayNumber={currentDayNumber}
-            color={theme.palette.primary.main}
-            fontSize={fontSize}
-            fontFamily={props?.fontFamily || theme?.fontFamily}
-            backgroundColor={theme.mainBackgroundColor}
-            numberDayInWeek={numberDayInWeek}
-            onDayChange={onDayChange}
-            minDate={props?.minDate}
-            maxDate={props?.maxDate}
-          />
-        </DatepickerDatesContainer>
-        {/*)}*/}
+        {isVisibleList && (
+          <DatepickerDatesContainer onMouseUp={onMouseOutUp} onKeyUp={onDatesContainerCloseByKey} ref={dateRef}>
+            <MonthsYearsRuleContainer>
+              <DatepickerNavigateContainerStyled>
+                {/*<DatepickerButtonNavigate*/}
+                {/*  id="get-previous-month"*/}
+                {/*  fontSize={fontSize}*/}
+                {/*  fontFamily={props?.fontFamily || theme?.fontFamily}*/}
+                {/*  color={theme.palette.primary.main}*/}
+                {/*  onClick={onGetPreviousMonth}*/}
+                {/*>*/}
+                {/*  {'<'}*/}
+                {/*</DatepickerButtonNavigate>*/}
+                <Select
+                  id="datepicker-month"
+                  name="month"
+                  label={monthTitle}
+                  onChange={onMonthNameChange}
+                  onRemove={onMonthRemove}
+                  activeElement={month}
+                  elements={months}
+                  isNotClearable={true}
+                  isCreatable={false}
+                  baseFontSize={props?.baseFontSize}
+                  fontSize={fontSize}
+                  fontFamily={props?.fontFamily || theme?.fontFamily}
+                  height={props?.height || DEFAULT_HEIGHT}
+                />
+                {/*<DatepickerButtonNavigate*/}
+                {/*  id="get-next-month"*/}
+                {/*  fontSize={fontSize}*/}
+                {/*  fontFamily={props?.fontFamily || theme?.fontFamily}*/}
+                {/*  color={theme.palette.primary.main}*/}
+                {/*  onClick={onGetNextMonth}*/}
+                {/*>*/}
+                {/*  {'>'}*/}
+                {/*</DatepickerButtonNavigate>*/}
+              </DatepickerNavigateContainerStyled>
+              <DatepickerNavigateContainerStyled>
+                {/*<DatepickerButtonNavigate*/}
+                {/*  id="get-previous-year"*/}
+                {/*  fontSize={fontSize}*/}
+                {/*  fontFamily={props?.fontFamily || theme?.fontFamily}*/}
+                {/*  color={theme.palette.primary.main}*/}
+                {/*  onClick={onGetPreviousYear}*/}
+                {/*>*/}
+                {/*  {'<'}*/}
+                {/*</DatepickerButtonNavigate>*/}
+                <Select
+                  id="datepicker-year"
+                  name="year"
+                  label={yearTitle}
+                  onChange={onYearNameChange}
+                  onRemove={onYearRemove}
+                  activeElement={currentYearNumberString}
+                  elements={years}
+                  isNotClearable={true}
+                  isCreatable={false}
+                  baseFontSize={props?.baseFontSize}
+                  fontSize={fontSize}
+                  fontFamily={props?.fontFamily || theme?.fontFamily}
+                  height={props?.height || DEFAULT_HEIGHT}
+                />
+                {/*<DatepickerButtonNavigate*/}
+                {/*  id="get-next-year"*/}
+                {/*  fontSize={fontSize}*/}
+                {/*  fontFamily={props?.fontFamily || theme?.fontFamily}*/}
+                {/*  color={theme.palette.primary.main}*/}
+                {/*  onClick={onGetNextYear}*/}
+                {/*>*/}
+                {/*  {'>'}*/}
+                {/*</DatepickerButtonNavigate>*/}
+              </DatepickerNavigateContainerStyled>
+            </MonthsYearsRuleContainer>
+            <DaysOfWeek
+              primaryColor={theme.palette.primary.main}
+              secondaryColor={theme.palette.secondary.main}
+              fontSize={fontSize}
+              fontFamily={props?.fontFamily || theme?.fontFamily}
+              locale={props?.locale}
+            />
+            <Divider color={theme.palette.primary.main} />
+            <DaysOfMonth
+              countDaysIsMonth={countDaysIsMonth}
+              currentMonthNumber={+currentMonthNumber + 1}
+              currentYearNumber={currentYearNumber}
+              currentDayNumber={currentDayNumber}
+              color={theme.palette.primary.main}
+              fontSize={fontSize}
+              fontFamily={props?.fontFamily || theme?.fontFamily}
+              backgroundColor={theme.mainBackgroundColor}
+              numberDayInWeek={numberDayInWeek}
+              onDayChange={onDayChange}
+              minDate={props?.minDate}
+              maxDate={props?.maxDate}
+            />
+          </DatepickerDatesContainer>
+        )}
       </DatepickerContainerStyled>
     );
   };

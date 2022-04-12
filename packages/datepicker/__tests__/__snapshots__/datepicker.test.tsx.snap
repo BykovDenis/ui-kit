@@ -1,0 +1,538 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-fotOHu kjxyWA"
+    height="40"
+  >
+    <div
+      class="sc-bkkeKt esSmFA"
+    >
+      <div
+        class="sc-fKVqWL fZNRYz"
+      >
+        <label
+          class="sc-iCfMLu jxqBgb"
+          color="#333333"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="12"
+          font-weight="400"
+        >
+          label
+        </label>
+      </div>
+      <div
+        class="sc-hKwDye bchdDn"
+        height="40"
+      >
+        <p
+          class="sc-eCImPb buHhCl"
+        >
+          <input
+            autocomplete="off"
+            class="sc-dkPtRN fcInKg"
+            color="#333333"
+            font-family="Roboto, Arial, sans-serif"
+            font-size="14"
+            font-weight="400"
+            height="40"
+            type="text"
+            value="01.04.2022"
+          />
+        </p>
+        <div
+          class="sc-jRQBWg fohRuQ underline"
+          color="rgba(0,0,0,0.85)"
+        />
+        <button
+          class="sc-gsDKAQ vMrtN delete-button"
+        >
+          <svg
+            class="delete-icon"
+            height="14"
+            version="1.1"
+            viewBox="5 5 14 14"
+            width="14"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+              fill="#333333"
+              stroke="#333333"
+            />
+          </svg>
+        </button>
+        <p />
+        <p
+          class="sc-gKclnd dcWcWq text-message"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+        >
+          text message
+        </p>
+      </div>
+    </div>
+    <div
+      class="sc-fFeiMQ fLHFQC"
+    >
+      <div
+        class="sc-bBHxTw hIQYVB"
+      >
+        <div
+          class="sc-ieecCq dRwdoI"
+        >
+          <div
+            class="sc-egiyK dSYlDL"
+            height="40"
+          >
+            <div
+              class="sc-bqiRlB diyHQT"
+              height="40"
+            >
+              <div
+                class="sc-crHmcD bKhaxW"
+              >
+                <label
+                  class="sc-iCfMLu jxqBgb"
+                  color="#333333"
+                  font-family="Roboto, Arial, sans-serif"
+                  font-size="12"
+                  font-weight="400"
+                  for="datepicker-month"
+                >
+                  Месяц
+                </label>
+              </div>
+              <div
+                class="sc-ksdxgE bkIvBY"
+              />
+              <div
+                class="sc-hKwDye bchdDn"
+                height="40"
+              >
+                <p
+                  class="sc-eCImPb dmsVHQ"
+                >
+                  <input
+                    autocomplete="off"
+                    class="sc-dkPtRN gaUcoy"
+                    color="#333333"
+                    font-family="Roboto, Arial, sans-serif"
+                    font-size="14"
+                    font-weight="400"
+                    height="40"
+                    id="datepicker-month"
+                    name="month"
+                    type="text"
+                    value="Апрель"
+                  />
+                </p>
+                <div
+                  class="sc-jRQBWg fohRuQ underline"
+                  color="rgba(0,0,0,0.85)"
+                  name="month"
+                />
+                <p />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-ieecCq dRwdoI"
+        >
+          <div
+            class="sc-egiyK dSYlDL"
+            height="40"
+          >
+            <div
+              class="sc-bqiRlB diyHQT"
+              height="40"
+            >
+              <div
+                class="sc-crHmcD bKhaxW"
+              >
+                <label
+                  class="sc-iCfMLu jxqBgb"
+                  color="#333333"
+                  font-family="Roboto, Arial, sans-serif"
+                  font-size="12"
+                  font-weight="400"
+                  for="datepicker-year"
+                >
+                  Год
+                </label>
+              </div>
+              <div
+                class="sc-ksdxgE bkIvBY"
+              />
+              <div
+                class="sc-hKwDye bchdDn"
+                height="40"
+              >
+                <p
+                  class="sc-eCImPb dmsVHQ"
+                >
+                  <input
+                    autocomplete="off"
+                    class="sc-dkPtRN gaUcoy"
+                    color="#333333"
+                    font-family="Roboto, Arial, sans-serif"
+                    font-size="14"
+                    font-weight="400"
+                    height="40"
+                    id="datepicker-year"
+                    name="year"
+                    type="text"
+                    value="2022"
+                  />
+                </p>
+                <div
+                  class="sc-jRQBWg fohRuQ underline"
+                  color="rgba(0,0,0,0.85)"
+                  name="year"
+                />
+                <p />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul
+        class="sc-furwcr irLZcE list"
+        font-family="Roboto, Arial, sans-serif"
+      >
+        <li
+          class="sc-kfPuZi lfNXIT"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="12"
+        >
+          Mo
+        </li>
+        <li
+          class="sc-kfPuZi lfNXIT"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="12"
+        >
+          Tu
+        </li>
+        <li
+          class="sc-kfPuZi lfNXIT"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="12"
+        >
+          We
+        </li>
+        <li
+          class="sc-kfPuZi lfNXIT"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="12"
+        >
+          Th
+        </li>
+        <li
+          class="sc-kfPuZi lfNXIT"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="12"
+        >
+          Fr
+        </li>
+        <li
+          class="sc-kfPuZi BIkFB"
+          color="rgb(246, 101, 10)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="12"
+        >
+          Sa
+        </li>
+      </ul>
+      <hr
+        class="sc-bdvvtL bbQoUY"
+        color="rgb(8, 166, 82)"
+      />
+      <div
+        class="sc-dlVxhl gpjDqB"
+      >
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="2"
+        >
+          2
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="3"
+        >
+          3
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="4"
+        >
+          4
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="5"
+        >
+          5
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="6"
+        >
+          6
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="7"
+        >
+          7
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="8"
+        >
+          8
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="9"
+        >
+          9
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="10"
+        >
+          10
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="11"
+        >
+          11
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="12"
+        >
+          12
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="13"
+        >
+          13
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="14"
+        >
+          14
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="15"
+        >
+          15
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="16"
+        >
+          16
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="17"
+        >
+          17
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="18"
+        >
+          18
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="19"
+        >
+          19
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="20"
+        >
+          20
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="21"
+        >
+          21
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="22"
+        >
+          22
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="23"
+        >
+          23
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="24"
+        >
+          24
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="25"
+        >
+          25
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="26"
+        >
+          26
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="27"
+        >
+          27
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="28"
+        >
+          28
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="29"
+        >
+          29
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="30"
+        >
+          30
+        </button>
+        <button
+          class="sc-hGPBjI alkqC"
+          color="rgb(8, 166, 82)"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          name="31"
+        >
+          31
+        </button>
+        <div
+          class="sc-dJjYzT lgLrPa"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
