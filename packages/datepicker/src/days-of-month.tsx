@@ -41,11 +41,11 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
 
   return (
     <DaysOfMonthStyled>
-      {daysElements?.map((element: number, index: number, array: number[]) => {
+      {daysElements?.map((element: number, index: number, array: Array<number>) => {
         const currentNumberDayOfWeek: number = index + 1;
         const dayValue: number = currentNumberDayOfWeek - numberDayInWeek + 1;
         const dayValueParsed: string = dayValue?.toString();
-        if (numberDayInWeek > currentNumberDayOfWeek || index >= array.length - 1) {
+        if (numberDayInWeek >= currentNumberDayOfWeek || index >= array.length - 1 || index >= array.length) {
           return <DayEmptyOfMonth />;
         }
 
