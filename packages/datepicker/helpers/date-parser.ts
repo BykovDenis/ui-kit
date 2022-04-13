@@ -16,7 +16,7 @@ class DateParser implements IDateParser{
       this.dateParsed = date;
       this.dateParamsSeparate = [ date.getDate(), date.getMonth(), date.getFullYear()  ];
     }
-    this.firstDayOnMonth= new Date(this.dateParamsSeparate[2], this.dateParamsSeparate[1] - 1, 1);
+    this.firstDayOnMonth= new Date(this.dateParamsSeparate[2], this.dateParamsSeparate[1] - 1 , 1);
   }
   getParsedDate() {
     return this.dateParsed.toString();
@@ -32,14 +32,14 @@ class DateParser implements IDateParser{
   }
   changeDay(day: number) {
     this.dateParamsSeparate[0] = day;
-    this.dateParsed = new Date(this.dateParamsSeparate[2], this.dateParamsSeparate[1] - 1, this.dateParamsSeparate[0] ?? 7);
+    this.dateParsed = new Date(this.dateParamsSeparate[2], this.dateParamsSeparate[1] -1, this.dateParamsSeparate[0] ?? 7);
   }
   changeMonth(month: number) {
     if (month === null) {
       this.dateParsed = null;
     } else {
       this.dateParamsSeparate[1] = month + 1;
-      this.dateParsed = new Date(this.dateParamsSeparate[2], this.dateParamsSeparate[1] - 1, this.dateParamsSeparate[0] ?? 7);
+      this.dateParsed = new Date(this.dateParamsSeparate[2], this.dateParamsSeparate[1] -1, this.dateParamsSeparate[0] ?? 7);
     }
   }
   changeYear(year: number) {
