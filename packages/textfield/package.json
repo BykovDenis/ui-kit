@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/Textfield",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "description": "Riski react UI",
   "main": "dist/index.js",
   "module": "styles/src/index.js",
@@ -19,6 +19,6 @@
   "publishConfig": {
     "registry": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"
   },
-  "gitHead": "d2bba4872cef299e4eb6f556eb0140635963c54f",
+  "gitHead": "97163eae7dc505fe0280f092e47419769eb6c407",
   "types": "./types/itext-field.d.ts"
 }

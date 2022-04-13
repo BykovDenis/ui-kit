@@ -20,6 +20,7 @@ const TEXT_ALIGN = 'center';
 const TYPE_TEXT = 'text';
 const FONT_WEIGHT_REGULAR = 400;
 const INPUT_TAG: string = 'INPUT';
+const BUTTON_TAG: string = 'BUTTON';
 const TRANSPARENT_COLOR: string = 'transparent';
 
 const KEY_ESCAPE: string = 'ESCAPE';
@@ -37,6 +38,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const onSelectChange = (evt: React.ChangeEvent<HTMLElement> | React.MouseEvent<HTMLElement, MouseEvent>) => {
     const element: any = evt.target;
     const value: string = element?.dataset?.value;
+
+    if (element.tagName !== BUTTON_TAG) {
+      return;
+    }
 
     if (props?.onChange) {
       const index: number = element?.dataset?.index ? parseInt(element?.dataset?.index, 10) : null;
@@ -224,7 +229,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             type={props?.type || TYPE_TEXT}
             fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
             isReadOnly={props?.isReadOnly}
-            isNotUseDebounce={true}
+            isNotUseDebounce={elements?.length < 500}
             backgroundColor={props?.backgroundColor || TRANSPARENT_COLOR}
             color={props?.color}
             isNotClearable={props?.isNotClearable}
