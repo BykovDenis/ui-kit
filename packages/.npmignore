@@ -1,3 +1,40 @@
-!node_modules
-!__tests__
-!src
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+**/node_modules
+**/tmp
+**/.temp_cache
+./stories-examples
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+git push
+# production
+/build
+# storybook static
+/storybook-static
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/.idea
+**/.npmrc
+**/build
+**/dist
+.npmrc
+
+
+
+node_modules
+__tests__
+src
+
