@@ -37,8 +37,8 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
 
   const numberDayInWeek: number = props.numberDayInWeek; // props.numberDayInWeek >= 6 ? 0 : props.numberDayInWeek;
 
-  const minDateParsed: IDateParser = new DateParser(props?.minDate);
-  const maxDateParsed: IDateParser = new DateParser(props?.maxDate);
+  const minDateParsed: IDateParser = props?.minDate !== null ? new DateParser(props?.minDate) : null;
+  const maxDateParsed: IDateParser = props?.maxDate !== null ? new DateParser(props?.maxDate) : null;
 
   return (
     <DaysOfMonthStyled>
@@ -50,11 +50,13 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
           return <DayEmptyOfMonth />;
         }
 
-        const dateParsed: IDateParser = new DateParser(
-          `${dayValueParsed}.${props.activeMonthNumber}.${props.activeYearNumber}`
+        const currentDateParsed: IDateParser = new DateParser(
+          `${dayValueParsed}.${props.currentMonthNumber}.${props.currentYearNumber}`
         );
+
         const isDisabled: boolean =
-          dateParsed?.getDate() < minDateParsed.getDate() || dateParsed?.getDate() > maxDateParsed.getDate();
+          (props?.minDate !== null && currentDateParsed?.getDate() < minDateParsed.getDate()) ||
+          (props?.maxDate !== null && currentDateParsed?.getDate() > maxDateParsed.getDate());
 
         const isSameDate: boolean =
           dayValue === props.activeDayNumber &&
