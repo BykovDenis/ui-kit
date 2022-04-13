@@ -15,7 +15,7 @@ export default {
   },
   args: {
     children: 'Label',
-    elements: ['List item 111', 'List item 112', 'List item 113', 'List item 114', 'List item 115']
+    elements: new Array(2500).fill(null).map((element: null, index: number) => `List item ${index}`)
   },
 } as ComponentMeta<typeof Select>;
 
