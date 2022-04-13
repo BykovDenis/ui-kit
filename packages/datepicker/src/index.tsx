@@ -33,12 +33,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [value, setValue] = useState(props.value);
   const [valueState, setValueState] = useState(props.value);
   const [isVisibleList, setIsVisibleList] = useState(false);
-  const [currentDayNumber, setCurrentDayNumber] = useState(dateParsed?.getNumberCurrentDateOfMonth()?.toString());
-  const [currentMonthNumber, setCurrentMonthNumber] = useState(dateParsed?.getNumberMonth()?.toString());
-  const [currentYearNumber, setCurrentYearNumber] = useState(dateParsed?.getNumberYear().toString());
+  const [currentDayNumber, setCurrentDayNumber] = useState(dateParsed?.getNumberCurrentDateOfMonth());
+  const [currentMonthNumber, setCurrentMonthNumber] = useState(dateParsed?.getNumberMonth());
+  const [currentYearNumber, setCurrentYearNumber] = useState(dateParsed?.getNumberYear());
   const [activeDayNumber, setActiveDayNumber] = useState(dateParsed?.getNumberCurrentDateOfMonth());
-  const [activeMonthNumber, setActiveMonthNumber] = useState(dateParsed?.getNumberMonth()?.toString());
-  const [activeYearNumber, setActiveYearNumber] = useState(dateParsed?.getNumberYear().toString());
+  const [activeMonthNumber, setActiveMonthNumber] = useState(dateParsed?.getNumberMonth());
+  const [activeYearNumber, setActiveYearNumber] = useState(dateParsed?.getNumberYear());
   const [numberDayInWeek, setNumberDayInWeek] = useState(dateParsed?.getNumberDayInWeek());
   const [countDaysIsMonth, setCountDaysIsMonth] = useState(dateParsed?.getCountDaysInMonth());
   const [isError, setIsError] = useState(false);
@@ -78,9 +78,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   useEffect(() => {
     dateParsed = new DateParser(props.value);
-    setCurrentDayNumber(dateParsed?.getNumberCurrentDateOfMonth()?.toString());
-    setCurrentMonthNumber(dateParsed?.getNumberMonth()?.toString());
-    setCurrentYearNumber(dateParsed?.getNumberYear()?.toString());
+    setCurrentDayNumber(dateParsed?.getNumberCurrentDateOfMonth());
+    setCurrentMonthNumber(dateParsed?.getNumberMonth());
+    setCurrentYearNumber(dateParsed?.getNumberYear());
     setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
     setCountDaysIsMonth(dateParsed?.getCountDaysInMonth());
     if (props.value !== null) {
@@ -90,8 +90,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   useEffect(() => {
     dateParsed = new DateParser(valueState);
-    setCurrentMonthNumber(dateParsed.getNumberMonth().toString());
-    setCurrentYearNumber(dateParsed.getNumberYear().toString());
+    setCurrentMonthNumber(dateParsed.getNumberMonth());
+    setCurrentYearNumber(dateParsed.getNumberYear());
     setCurrentDayNumber(null);
     setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
     setCountDaysIsMonth(dateParsed?.getCountDaysInMonth());
@@ -100,8 +100,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   useEffect(() => {
     dateParsed = new DateParser(value);
     setActiveDayNumber(dateParsed.getNumberCurrentDateOfMonth());
-    setActiveMonthNumber(dateParsed.getNumberMonth().toString());
-    setActiveYearNumber(dateParsed.getNumberYear().toString());
+    setActiveMonthNumber(dateParsed.getNumberMonth());
+    setActiveYearNumber(dateParsed.getNumberYear());
     setValueState(value);
   }, [value]);
 
@@ -147,7 +147,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const months: Array<string> = props.locale === Locales.Ru || !props?.locale ? monthsElementRu : monthsElementEn;
   const years: Array<string> = new Array(100)
-    .fill(parseInt(currentYearNumber, 10) ?? 0 - 50)
+    .fill(currentYearNumber ?? 0 - 50)
     .map((element: number, index: number) => (element + index)?.toString());
 
   const componentThemed: any = (theme: ITheme) => {
@@ -157,24 +157,24 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const onMonthNameChange = (option: IOption): void => {
       dateParsed = new DateParser(value);
       dateParsed.changeMonth(option.index);
-      setCurrentMonthNumber(dateParsed.getNumberMonth().toString());
+      setCurrentMonthNumber(dateParsed.getNumberMonth());
       setValue(dateParsed.formatToString());
     };
 
     const onYearNameChange = (option: IOption): void => {
       dateParsed = new DateParser(value);
       dateParsed.changeYear(option.value !== null ? parseInt(option.value, 10) : null);
-      setCurrentYearNumber(dateParsed.getNumberYear()?.toString());
+      setCurrentYearNumber(dateParsed.getNumberYear());
       setValue(dateParsed.formatToString());
     };
 
     const onDayChange = (day: number): void => {
       dateParsed = new DateParser(value);
       dateParsed.changeDay(day);
-      dateParsed.changeMonth(parseInt(currentMonthNumber, 10));
-      dateParsed.changeYear(parseInt(currentYearNumber, 10));
+      dateParsed.changeMonth(currentMonthNumber);
+      dateParsed.changeYear(currentYearNumber);
       const valueParsed: string = dateParsed.formatToString();
-      setCurrentDayNumber(dateParsed.getNumberCurrentDateOfMonth()?.toString());
+      setCurrentDayNumber(dateParsed.getNumberCurrentDateOfMonth());
       setValue(valueParsed);
       props?.onChange(props.name, valueParsed, true);
       setIsVisibleList(false);
@@ -182,11 +182,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     };
 
     const onMonthRemove = (name: string, value: string) => {
-      setCurrentMonthNumber(value);
+      setCurrentMonthNumber(parseInt(value, 10));
     };
 
     const onYearRemove = (name: string, value: string) => {
-      setCurrentYearNumber(value);
+      setCurrentYearNumber(parseInt(value));
     };
 
     const onGetPreviousMonth = () => {
@@ -210,7 +210,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       setValueState(dateParsed.formatToString());
     };
 
-    const month: string = months[parseInt(currentMonthNumber, 10)];
+    const month: string = months[currentMonthNumber];
 
     const monthTitle: string = props?.locale === Locales.Ru || !props?.locale ? 'Месяц' : 'Month';
     const yearTitle: string = props?.locale === Locales.Ru || !props?.locale ? 'Год' : 'Year';
@@ -352,10 +352,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             <Divider color={theme.palette.primary.main} />
             <DaysOfMonth
               countDaysIsMonth={countDaysIsMonth}
-              activeMonthNumber={+activeMonthNumber + 1}
-              activeYearNumber={parseInt(activeYearNumber, 10)}
-              currentMonthNumber={+currentMonthNumber + 1}
-              currentYearNumber={parseInt(currentYearNumber, 10)}
+              activeMonthNumber={activeMonthNumber + 1}
+              activeYearNumber={activeYearNumber}
+              currentMonthNumber={currentMonthNumber + 1}
+              currentYearNumber={currentYearNumber}
               activeDayNumber={activeDayNumber}
               color={theme.palette.primary.main}
               fontSize={fontSize}
@@ -375,6 +375,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const Consumer: any = props.ReactThemeContext ? props.ReactThemeContext.Consumer : ThemeContext.Consumer;
 
   return <Consumer>{componentThemed}</Consumer>;
+};
+
+Datepicker.defaultProps = {
+  minDate: null,
+  maxDate: null,
 };
 
 export default React.memo(Datepicker);
