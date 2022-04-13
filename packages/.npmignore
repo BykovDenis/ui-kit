@@ -30,8 +30,9 @@ yarn-error.log*
 
 **/__tests__
 **/src
-**/stories.tsx
+**/*stories.tsx
 **/rollup*
 **/helpers
 **/paths.js
+**/*tsconfig*
 
