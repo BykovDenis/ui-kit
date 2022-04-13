@@ -9,10 +9,9 @@
 .pnp.js
 
 # testing
-/coverage
+**/coverage
 git push
 # production
-/build
 # storybook static
 /storybook-static
 
@@ -26,15 +25,13 @@ git push
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/.idea
+**/.idea
 **/.npmrc
-**/build
-**/dist
-.npmrc
 
-
-
-node_modules
-__tests__
-src
+**/__tests__
+**/src
+**/stories.tsx
+**/rollup*
+**/helpers
+**/paths.js
 
