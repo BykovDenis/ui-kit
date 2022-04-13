@@ -224,7 +224,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             type={props?.type || TYPE_TEXT}
             fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
             isReadOnly={props?.isReadOnly}
-            isNotUseDebounce={true}
+            isNotUseDebounce={elements?.length < 500}
             backgroundColor={props?.backgroundColor || TRANSPARENT_COLOR}
             color={props?.color}
             isNotClearable={props?.isNotClearable}
