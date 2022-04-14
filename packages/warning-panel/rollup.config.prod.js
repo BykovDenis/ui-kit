@@ -1,4 +1,4 @@
-import uglify from '@lopatnov/rollup-plugin-uglify';
+import { terser } from 'rollup-plugin-terser';
 import cleaner from 'rollup-plugin-cleaner';
 import postcss from 'rollup-plugin-postcss';
 import svg from 'rollup-plugin-svg';
@@ -32,7 +32,7 @@ export default {
         autoprefixer: true,
       },
     }),
-    uglify(),
+    terser(),
   ],
   external: ['react', 'react-dom', 'styled-components'],
   globals: { 'styled-components': 'styled' },

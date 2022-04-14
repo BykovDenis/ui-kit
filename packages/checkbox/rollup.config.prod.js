@@ -1,4 +1,4 @@
-import uglify from '@lopatnov/rollup-plugin-uglify';
+import { terser } from 'rollup-plugin-terser';
 import url from 'postcss-url';
 import cleaner from 'rollup-plugin-cleaner';
 import postcss from 'rollup-plugin-postcss';
@@ -38,7 +38,7 @@ export default {
         }),
       ],
     }),
-    uglify(),
+    terser(),
   ],
   external: ['react', 'react-dom', 'styled-components'],
 };
