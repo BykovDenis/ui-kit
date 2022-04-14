@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/Input",
-  "version": "0.6.7",
+  "version": "0.6.8",
   "description": "Riski react UI",
   "main": "dist/index.js",
   "module": "styles/src/index.js",
