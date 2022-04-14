@@ -2,7 +2,7 @@ import Variants from '../../enums/variants';
 import IInput from '../../input/types/iinput';
 import ILabel from '../../label/types/ilabel';
 
-interface IDatepicker extends IInput, ILabel {
+export default interface IDatepicker extends IInput, ILabel {
   baseFontSize: number;
   children?: any;
   error?: boolean;
@@ -24,4 +24,5 @@ interface IDatepicker extends IInput, ILabel {
   variant?: Variants;
 }
 
-export default IDatepicker;
+
+

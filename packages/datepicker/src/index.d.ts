@@ -1,7 +1,5 @@
-import IDatepickerSource from '../types/idatepicker';
-import IDayOfWeekSource from '../types/iday-of-week';
+import React from 'react';
+import IDatepicker from '../types/idatepicker';
 
-declare namespace Datepicker {
-  export interface IDatepicker extends IDatepickerSource {};
-  export interface IDayOfWeek extends IDayOfWeekSource {};
-}
+declare const Datepicker: React.FC<IDatepicker>;
+export default Datepicker;

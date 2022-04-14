@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import IDatepicker from '../types/idatepicker';
+import Idatepicker from '../types/idatepicker';
 
 interface IDatepickerContainer {
   width: number;
