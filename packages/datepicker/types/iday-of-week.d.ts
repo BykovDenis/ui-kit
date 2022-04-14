@@ -1,4 +1,4 @@
-interface IDayOfWeek {
+export default interface IDayOfWeek {
   fontFamily: string;
   fontSize: number;
   locale?: string;
@@ -6,4 +6,3 @@ interface IDayOfWeek {
   secondaryColor: string;
 }
 
-export default IDayOfWeek;

@@ -1,8 +1,8 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
-import Datepicker from './src';
-import IDatepicker from './types/idatepicker';
+import Datepicker from './src/datepicker';
+import Idatepicker from './types/idatepicker';
 
 export default {
   title: 'Components/Datepicker',
@@ -17,7 +17,7 @@ export default {
   },
 } as ComponentMeta<typeof Datepicker>;
 
-const Template: ComponentStory<typeof Datepicker> = (args: IDatepicker) => {
+const Template: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
   const [value, setValue] = useState('04.05.2022');
 
   const onDatepickerValueChange = (name: string, value: string) => {
