@@ -1,4 +1,4 @@
-interface IPalette {
+interface Ipalette {
   baseButtonFontColor: string;
   baseFontColor: string;
   primary: {
@@ -17,4 +17,4 @@ interface IPalette {
   };
 }
 
-export default IPalette;
+export default Ipalette;

@@ -1,11 +1,8 @@
 import React, { FunctionComponent } from 'react';
-
+import IRiskiReactUIProvider from '../types/iriski-react-ui-provider';
 import ThemeContext, { themes } from './themes';
 
-interface IRiskiReactUIProvider {
-  children?: React.ReactNode;
-  value?: any;
-}
+
 
 const SberRiskiReactUiProvider: FunctionComponent<IRiskiReactUIProvider> = (props: IRiskiReactUIProvider) => (<ThemeContext.Provider value={props.value}>{React.cloneElement(props.children as React.ReactElement<any>, { ...props, ReactThemeContext: ThemeContext } ) }</ThemeContext.Provider>);
 

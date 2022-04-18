@@ -3,7 +3,7 @@ import { themes } from '../../styles/src';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Datepicker from '../src/datepicker';
+import Datepicker from '../src/index';
 
 it('Checkbox renders correctly', () => {
   const themeCustom: any = {

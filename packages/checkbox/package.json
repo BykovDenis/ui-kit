@@ -3,6 +3,8 @@
   "version": "0.6.8",
   "description": "A simple checkbox component",
   "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c rollup.config.prod.js",
     "build-dev": "rollup -c rollup.config.dev.js",

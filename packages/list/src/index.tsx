@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 
 import { COLOR_THEME } from '../../constants';
 import ThemeContext from '../../styles/src/themes';
-import ITheme from '../../styles/types/itheme';
+import Itheme from '../../styles/types/itheme';
 import ListType from '../enum/list-type';
 import IList from '../types/ilist';
 import ListStyled from './list.styled';
@@ -10,7 +10,7 @@ import ListDivStyled from './list-div.styled';
 
 const List: React.FunctionComponent<IList> = (props: IList) => {
   const listRef = useRef();
-  const componentThemed: any = (theme: ITheme) => {
+  const componentThemed: any = (theme: Itheme) => {
     const backgroundColor: string =
       props?.colorTheme === COLOR_THEME || !props.colorTheme
         ? theme?.palette?.primary?.main

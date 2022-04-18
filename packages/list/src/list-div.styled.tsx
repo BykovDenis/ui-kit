@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-import IList from '../types/ilist';
+import Ilist from '../types/ilist';
 
 const ListDiv =
   styled('div') <
-  IList >
+  Ilist >
   `
   display: block;
   list-style: none;
-  font-family: ${(props: IList) => props.fontFamily};
+  font-family: ${(props: Ilist) => props.fontFamily};
 `;
 
 export default ListDiv;

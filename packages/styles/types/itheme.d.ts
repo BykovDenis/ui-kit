@@ -1,13 +1,13 @@
-import IPalette from './ipalette';
+import Ipalette from './ipalette';
 
-interface ITheme {
+interface Itheme {
   baseFontSize: number;
   fontFamily: string;
   mainBlackColor: string;
   mainGrayColor: string;
   mainWhiteColor: string;
-  palette: IPalette;
+  palette: Ipalette;
   mainBackgroundColor: string;
 }
 
-export default ITheme;
+export default Itheme;

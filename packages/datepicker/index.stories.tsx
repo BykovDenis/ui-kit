@@ -1,7 +1,7 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
-import Datepicker from './src/datepicker';
+import Datepicker from './src/index';
 import Idatepicker from './types/idatepicker';
 
 export default {

@@ -1,11 +1,11 @@
 import React from 'react';
 
 import ThemeContext from '../../styles/src/themes';
-import ITheme from '../../styles/types/itheme';
+import Itheme from '../../styles/types/itheme';
 import ButtonStyled from './button.styled';
 
 const Button: React.FunctionComponent = (props: any) => {
-  const componentThemed: any = (theme: ITheme) => {
+  const componentThemed: any = (theme: Itheme) => {
     const backgroundColor: string =
       props?.colorTheme === 'normal' || !props.colorTheme
         ? theme?.palette?.primary?.main
