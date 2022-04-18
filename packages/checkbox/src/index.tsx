@@ -2,13 +2,13 @@ import React from 'react';
 
 import Label from '../../label/src';
 import ThemeContext from '../../styles/src/themes';
-import ITheme from '../../styles/types/itheme';
+import Itheme from '../../styles/types/itheme';
 import ICheckbox from '../types/icheckbox';
 import CheckboxStyled from './checkbox.styled';
 import FormControl from './form-control.styled';
 
-const Checkbox: React.FunctionComponent<ICheckbox> = (props: any) => {
-  const componentThemed: any = (theme: ITheme) => (
+const Checkbox: React.FunctionComponent<ICheckbox> = (props: ICheckbox) => {
+  const componentThemed: any = (theme: Itheme) => (
     <FormControl>
       <CheckboxStyled
         {...props}

@@ -3,10 +3,10 @@
   "version": "0.6.8",
   "description": "The datepicker component",
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
   "author": "Denis Bykov",
   "license": "MIT",
-  "types": "dist/index.d.ts",
   "jest": {
     "setupFiles": [
       "./setupTests.js"

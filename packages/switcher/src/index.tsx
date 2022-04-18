@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ThemeContext from '../../styles/src/themes';
-import ITheme from '../../styles/types/itheme';
+import Itheme from '../../styles/types/itheme';
 import FormSwitcher from './form-switcher';
 import InputSwitcher from './input-switcher';
 import LabelSwitcher from './label-switcher';
@@ -21,7 +21,7 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
     }
   };
 
-  const componentThemed = (theme: ITheme) => {
+  const componentThemed = (theme: Itheme) => {
     const color: string = theme?.palette?.baseButtonFontColor;
     const backgroundColor: string = theme?.palette?.primary?.main;
 

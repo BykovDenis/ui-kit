@@ -1,9 +1,10 @@
 {
   "name": "@sber-riski-cib-ui/Select",
   "version": "0.6.8",
-  "description": "Riski react UI",
+  "description": "Simple react component",
   "main": "dist/index.js",
-  "module": "styles/src/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
   "author": "Denis Bykov",
   "license": "MIT",
   "jest": {

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Input from '../../input/src';
 import Label from '../../label/src';
 import ThemeContext from '../../styles/src/themes';
-import ITheme from '../../styles/types/itheme';
+import Itheme from '../../styles/types/itheme';
 import ITextField from '../types/itext-field';
 import LabelContainer from './label-container.styled';
 import TextFieldContainer from './text-field-container.styled';
@@ -45,7 +45,7 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
     }
   };
 
-  const componentThemed: any = (theme: ITheme) => {
+  const componentThemed: any = (theme: Itheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
 

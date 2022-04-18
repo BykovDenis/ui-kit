@@ -1,4 +1,6 @@
-﻿interface Iradio {
+﻿import React from 'react';
+
+interface IRadio {
   ReactThemeContext?: any;
   backgroundColor?: string;
   checked?: boolean;
@@ -9,11 +11,12 @@
   fontFamily?: string;
   fontSize?: string;
   id: string;
-  label?: string;
+  label?: string | React.ReactNode;
   name?: string;
   onChange?: (evt: any) => void;
   tabIndex?: any;
   theme?: any;
+  value?: string;
 }
 
-export default Iradio;
+export default IRadio;

@@ -1,14 +1,14 @@
 import React from 'react';
 
 import ThemeContext from '../../styles/src/themes';
-import ITheme from '../../styles/types/itheme';
+import Itheme from '../../styles/types/itheme';
 import ILabel from '../types/ilabel';
 import LabelStyled from './label.styled';
 
 const FONT_WEIGHT_REGULAR = 400;
 
 const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
-  const componentThemed: any = (theme: ITheme) => {
+  const componentThemed: any = (theme: Itheme) => {
     const color: string =
       (props?.colorTheme === 'normal' || !props.colorTheme) && !props?.error
         ? props?.isFocus && !props.isReadOnly && !props.isDisabled

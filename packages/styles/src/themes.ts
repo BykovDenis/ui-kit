@@ -1,7 +1,6 @@
 import React from 'react';
 import IThemes from '../types/ithemes';
 
-
 export const themes: IThemes = {
   loanPricing: {
     palette: {
@@ -83,6 +82,6 @@ export const themes: IThemes = {
   },
 };
 
-const ThemeContext = React.createContext(themes.loanPricing);
+const ThemeContext: any = React.createContext(themes.loanPricing);
 
 export default ThemeContext;

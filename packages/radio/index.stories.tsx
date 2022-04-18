@@ -2,7 +2,8 @@ import { action } from '@storybook/addon-actions';
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {Fragment } from 'react';
 
-import Radio from  './src/index';
+// import Radio from  './src/index';
+import Radio from './dist';
 import Iradio from "./types/iradio";
 
 export default {
@@ -28,6 +29,14 @@ const Template: ComponentStory<typeof Radio> = (args: Iradio) => {
   return (<Fragment>
     <Radio {...args} id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} tabIndex="0" />
     <Radio {...args} id="radio2" name="radio1" onChange={onCheckboxCheck}  tabIndex="1" />
+    <Radio
+      id="useDynamicalReserveRate2"
+      value="false"
+      name="useDynamicalReserveRate"
+      checked={false}
+      onChange={onCheckboxCheck}
+      disabled={false}
+    />
   </Fragment>)
 }
 

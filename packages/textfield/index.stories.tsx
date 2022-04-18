@@ -1,7 +1,7 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
-import TextField from  './src/index';
+import TextField from './dist';
 import ItextField from './types/itext-field';
 
 export default {
@@ -21,7 +21,6 @@ export default {
     onChange: { action: 'changed' }
   },
   args: {
-    textMessage: 'text message',
     label: 'label'
   },
 } as ComponentMeta<typeof TextField>;

@@ -1,12 +1,10 @@
 import React from 'react';
 
-import Variants from '../../enums/variants';
-
 interface IInput {
   ReactThemeContext?: any;
   backgroundColor?: string;
   backgroundImage?: string;
-  baseFontSize: number;
+  baseFontSize?: number;
   borderColor?: string;
   className?: any;
   color?: string;
@@ -17,11 +15,11 @@ interface IInput {
   error?: boolean;
   focusBackgroundColor?: string;
   focusColor?: string;
-  fontFamily: string;
-  fontSize: number;
+  fontFamily?: string;
+  fontSize?: number;
   fontWeight?: number;
   getIsChangingState?: (isChanging: boolean) => void;
-  height: number;
+  height?: number;
   hoverBackgroundColor?: string;
   hoverColor?: string;
   id?: string;
@@ -29,7 +27,7 @@ interface IInput {
   isNotUseDebounce?: boolean;
   isReadOnly?: boolean;
   isSeparateNumberFormat?: boolean;
-  mask?: string;
+  mask?: RegExp;
   max?: number;
   min?: number;
   name: string;
@@ -42,14 +40,16 @@ interface IInput {
   ref?: any;
   required?: boolean;
   step?: number;
-  textAlign: string;
+  textAlign?: string;
   textMessage?: string;
   theme?: any;
   type?: string;
   value?: number | string;
-  variant?: Variants;
+  variant?: 'outlined' | 'text' | 'contained';
   width?: number;
   inputComponent?: any;
+  placeholder?: string;
+  textAling?: string;
 }
 
 export default IInput;

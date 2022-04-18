@@ -18,12 +18,19 @@ export default [
         sourcemap: false,
         strict: false,
       },
+      {
+        file: pkg.module,
+        format: 'esm',
+        exports: 'named',
+        sourcemap: false,
+        strict: false,
+      },
     ],
     plugins: [
       cleaner({
         targets: ['./dist'],
       }),
-      typescript({ objectHashIgnoreUnknownHack: true }),
+      typescript({ objectHashIgnoreUnknownHack: false }),
       //svg(),
       svgr(),
       postcss({
@@ -35,7 +42,7 @@ export default [
           autoprefixer: true,
         },
       }),
-      // terser(),
+      terser(),
     ],
     external: ['react', 'react-dom'],
   },

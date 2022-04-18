@@ -1,9 +1,8 @@
-import url from 'postcss-url';
 import cleaner from 'rollup-plugin-cleaner';
-import svg from 'rollup-plugin-image-base64';
 import postcss from 'rollup-plugin-postcss';
 import typescript from 'rollup-plugin-typescript2';
 import { terser } from 'rollup-plugin-terser';
+import dts from 'rollup-plugin-dts';
 
 import pkg from './package.json';
 
@@ -28,11 +27,9 @@ export default [
     ],
     plugins: [
       cleaner({
-        targets: ['./styles/dest'],
+        targets: ['./dist'],
       }),
       typescript({ objectHashIgnoreUnknownHack: false }),
-      typescript('./tsconfig.json'),
-      svg(),
       postcss({
         autoModules: true,
         modules: {
@@ -41,16 +38,14 @@ export default [
         options: {
           autoprefixer: true,
         },
-        plugins: [
-          url({
-            url: 'inline', // enable inline assets using base64 encoding
-            maxSize: 1000, // maximum file size to inline (in kilobytes)
-            fallback: 'copy', // fallback method to use if max size is exceeded
-          }),
-        ],
       }),
       terser(),
     ],
     external: ['react', 'react-dom'],
+  },
+  {
+    input: './src/index.d.ts',
+    output: [{ file: './dist/index.d.ts', format: 'es' }],
+    plugins: [dts()],
   },
 ];

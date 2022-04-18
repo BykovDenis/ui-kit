@@ -7,7 +7,7 @@ import Label from '../../label/src';
 import List from '../../list/src';
 import ListItem from '../../list-item/src';
 import ThemeContext from '../../styles/src/themes';
-import ITheme from '../../styles/types/itheme';
+import Itheme from '../../styles/types/itheme';
 import ISelect from '../types/iselect';
 import LabelContainer from './label-container.styled';
 import SelectContainer from './select-container.styled';
@@ -160,7 +160,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
   const isExistValue: boolean = value > '';
 
-  const componentThemed: any = (theme: ITheme) => {
+  const componentThemed: any = (theme: Itheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
 
