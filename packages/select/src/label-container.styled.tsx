@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import ISelect from '../types/iselect';
+import Iselect from '../types/iselect';
 
 interface ILabelContainer {
   backgroundColor: string;

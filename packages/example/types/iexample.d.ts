@@ -1,5 +1,5 @@
-interface Iexample {
+interface IExample {
   title: string;
 }
 
-export default Iexample;
+export default IExample;

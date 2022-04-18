@@ -2,7 +2,7 @@ import React from 'react';
 
 import IInput from '../../input/types/iinput';
 import ILabel from '../../label/types/ilabel';
-import IOption from './ioption';
+import Ioption from './ioption';
 
 interface ISelect extends IInput, ILabel {
   activeElement: string;
@@ -19,7 +19,7 @@ interface ISelect extends IInput, ILabel {
   isExistValue?: boolean;
   label?: string | React.ReactNode;
   name: string;
-  onChange?: (option: IOption) => void;
+  onChange?: (option: Ioption) => void;
   textAlign?: string;
   variant?: 'contained' | 'text' | 'outlined';
 }
