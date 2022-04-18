@@ -1,7 +1,7 @@
-import Itheme from './itheme';
+import ITheme from './itheme';
 
-interface Ithemes {
-  [key: string]: Itheme;
+interface IThemes {
+  [key: string]: ITheme;
 }
 
-export default Ithemes;
+export default IThemes;

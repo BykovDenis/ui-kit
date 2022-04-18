@@ -2,7 +2,7 @@ import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
 import Select from  './src';
-import ISelect from './types/iselect';
+import Iselect from './types/iselect';
 
 export default {
   title: 'Components/Select',
@@ -19,7 +19,7 @@ export default {
   },
 } as ComponentMeta<typeof Select>;
 
-const Template: ComponentStory<typeof Select> = (args: ISelect) => {
+const Template: ComponentStory<typeof Select> = (args: Iselect) => {
 
   const [ value, setValue ] = useState('List item 113');
 

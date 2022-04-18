@@ -2,7 +2,7 @@ import React from 'react';
 import { themes } from '../../styles/src';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import ISelect from '../types/iselect';
+import Iselect from '../types/iselect';
 import Variants from '../../enums/variants';
 import Select from '../src';
 
@@ -13,7 +13,7 @@ it('Select renders correctly', () => {
   };
   const ReactThemeContext: any = React.createContext(themeCustom);
 
-  const props: ISelect = {
+  const props: Iselect = {
     type: 'list-buttons',
     elements: ['List item 1', 'List item 2', 'List item 3', 'List item 4', 'List item 5'],
     variant: Variants.Outlined,

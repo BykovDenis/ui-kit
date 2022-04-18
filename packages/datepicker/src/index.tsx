@@ -7,7 +7,7 @@ import searchDomChildElement from '../../helpers/search-dom-child-element';
 import Input from '../../input/src';
 import Label from '../../label/src';
 import Select from '../../select/src';
-import IOption from '../../select/types/ioption';
+import Ioption from '../../select/types/ioption';
 import ThemeContext from '../../styles/src/themes';
 import Itheme from '../../styles/types/itheme';
 import monthsElementEn from '../dictionaries/months-en';
@@ -154,14 +154,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
 
-    const onMonthNameChange = (option: IOption): void => {
+    const onMonthNameChange = (option: Ioption): void => {
       dateParsed = new DateParser(value);
       dateParsed.changeMonth(option.index);
       setCurrentMonthNumber(dateParsed.getNumberMonth());
       setValue(dateParsed.formatToString());
     };
 
-    const onYearNameChange = (option: IOption): void => {
+    const onYearNameChange = (option: Ioption): void => {
       dateParsed = new DateParser(value);
       dateParsed.changeYear(option.value !== null ? parseInt(option.value, 10) : null);
       setCurrentYearNumber(dateParsed.getNumberYear());

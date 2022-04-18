@@ -8,7 +8,7 @@ import List from '../../list/src';
 import ListItem from '../../list-item/src';
 import ThemeContext from '../../styles/src/themes';
 import Itheme from '../../styles/types/itheme';
-import ISelect from '../types/iselect';
+import Iselect from '../types/iselect';
 import LabelContainer from './label-container.styled';
 import SelectContainer from './select-container.styled';
 import SelectHeader from './select-header.styled';
@@ -25,7 +25,7 @@ const TRANSPARENT_COLOR: string = 'transparent';
 
 const KEY_ESCAPE: string = 'ESCAPE';
 
-const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
+const Select: React.FunctionComponent<Iselect> = (props: Iselect) => {
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState(props.activeElement);
   const [elements, setElements] = useState(props.elements);
