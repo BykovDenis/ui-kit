@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import searchDomChildElement from '../../helpers/search-dom-child-element';
 import Input from '../../input/src';
@@ -149,18 +149,28 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, [props.elements]);
 
   useEffect(() => {
-    const elementsFiltered: Array<IOption> = getElementsParsed(props.elements).filter(
-      (element: IOption) => element?.label?.toString()?.indexOf(label?.toString()) > -1
-    );
+    const elementsFiltered: Array<IOption> = getElementsParsed(props.elements)?.filter(
+      (element: IOption) => {
+        const labelParsed: string = element?.label?.toString();
+        if (labelParsed && label) {
+          return labelParsed?.indexOf(label?.toString()) > -1
+        }
+        return true;
+      });
     setElements(elementsFiltered);
     setIsFoundValue(elementsFiltered.length > 0);
     setIsNewElement(elementsFiltered?.length === 0);
   }, [label]);
 
   useEffect(() => {
-    const elementsFiltered: Array<IOption> = elements.filter(
-      (element: IOption) => element?.label?.toString()?.indexOf(label?.toString()) > -1
-    );
+    const elementsFiltered: Array<IOption> = elements?.filter(
+      (element: IOption) => {
+        const labelParsed: string = element?.label?.toString();
+        if (labelParsed && label) {
+          return labelParsed?.indexOf(label?.toString()) > -1
+        }
+        return true;
+      });
     setIsNewElement(elementsFiltered?.length === 0);
     setIsFoundValue(true);
   }, [elements]);
