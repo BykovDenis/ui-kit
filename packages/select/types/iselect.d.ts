@@ -3,7 +3,6 @@ import React from 'react';
 import IInput from '../../input/types/iinput';
 import ILabel from '../../label/types/ilabel';
 import IOption from './ioption';
-import IElement from './ielement';
 
 interface ISelect extends IInput, ILabel {
   activeElement: string | number | IElement;
