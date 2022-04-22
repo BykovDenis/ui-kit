@@ -2,13 +2,14 @@ import React from 'react';
 
 import IInput from '../../input/types/iinput';
 import ILabel from '../../label/types/ilabel';
-import Ioption from './ioption';
+import IOption from './ioption';
+import IElement from './ielement';
 
 interface ISelect extends IInput, ILabel {
-  activeElement: string;
+  activeElement: string | number | IElement;
   baseFontSize?: number;
   children?: any;
-  elements?: any;
+  elements?: Array<string> | Array<number> | Array<IElement>;
   error?: boolean;
   fontFamily?: string;
   fontSize?: number;
@@ -19,7 +20,7 @@ interface ISelect extends IInput, ILabel {
   isExistValue?: boolean;
   label?: string | React.ReactNode;
   name: string;
-  onChange?: (option: Ioption) => void;
+  onChange?: (option: IOption) => void;
   textAlign?: string;
   variant?: 'contained' | 'text' | 'outlined';
 }
