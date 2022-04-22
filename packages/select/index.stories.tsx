@@ -2,8 +2,8 @@ import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
 import Select from  './src';
-import Iselect from './types/iselect';
-import IElement from './types/ielement';
+import ISelect from './types/iselect';
+import IOption from './types/ioption';
 
 export default {
   title: 'Components/Select',
@@ -21,11 +21,12 @@ export default {
   },
 } as ComponentMeta<typeof Select>;
 
-const Template: ComponentStory<typeof Select> = (args: Iselect) => {
+const Template: ComponentStory<typeof Select> = (args: ISelect) => {
 
-  const [ value, setValue ] = useState<IElement>('List item 6');
+  // const [ value, setValue ] = useState('List item 6');
+  const [ value, setValue ] = useState<IOption>(null);
 
-  const onInputChange = (option: IElement) => {
+  const onInputChange = (option: IOption) => {
     setValue(option);
   }
 
