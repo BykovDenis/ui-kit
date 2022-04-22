@@ -13,7 +13,7 @@ export default interface IDatepicker extends IInput, ILabel {
   isCreatable?: boolean;
   isDisabled?: boolean;
   isExistValue?: boolean;
-  label?: string;
+  label?: string | React.ReactNode;
   locale?: string;
   maxDate?: string;
   minDate?: string;
@@ -21,7 +21,7 @@ export default interface IDatepicker extends IInput, ILabel {
   onChange?: (name: string, value: string, isValid: boolean) => void;
   textAlign?: string;
   value?: string;
-  variant?: Variants;
+  variant?: 'contained' | 'outlined' | 'text';
 }
 
 

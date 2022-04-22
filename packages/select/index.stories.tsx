@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 
 import Select from  './src';
 import Iselect from './types/iselect';
+import IElement from './types/ielement';
 
 export default {
   title: 'Components/Select',
@@ -15,21 +16,21 @@ export default {
   },
   args: {
     children: 'Label',
-    elements: new Array(2500).fill(null).map((element: null, index: number) => `List item ${index}`)
+    elements: new Array(10).fill(null).map((element: null, index: number) => `List item ${index}`)
+    // elements: [{ label: 'One', value: '111' }, { label: 'Two', value: '222' }, { label: 'Three', value: '333' }, { label: 'Four', value: '444' }]
   },
 } as ComponentMeta<typeof Select>;
 
 const Template: ComponentStory<typeof Select> = (args: Iselect) => {
 
-  const [ value, setValue ] = useState('List item 113');
+  const [ value, setValue ] = useState<IElement>('List item 6');
 
-  const onInputChange = (params: {index: number, label: string, value: string | number}) => {
-    const value: string = params.value.toString();
-    setValue(value);
+  const onInputChange = (option: IElement) => {
+    setValue(option);
   }
 
   const onInputRemove = () => {
-    setValue('');
+    setValue({ label: null, value: null });
     console.log('');
   }
 
