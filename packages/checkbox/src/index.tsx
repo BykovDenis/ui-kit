@@ -9,7 +9,7 @@ import FormControl from './form-control.styled';
 
 const Checkbox: React.FunctionComponent<ICheckbox> = (props: ICheckbox) => {
   const componentThemed: any = (theme: Itheme) => (
-    <FormControl>
+    <FormControl isExistLabel={props?.label > '' && props?.label !== null}>
       <CheckboxStyled
         {...props}
         name={props.name}
