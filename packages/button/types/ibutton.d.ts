@@ -1,5 +1,3 @@
-import IButtonVariants from './ibutton-variants';
-
 interface IButton {
   ReactThemeContext?: any;
   backgroundColor?: string;
@@ -13,14 +11,14 @@ interface IButton {
   dataset?: any;
   disabled?: boolean;
   focusColor?: string;
-  fontFamily: string;
-  fontSize: number;
+  fontFamily?: string;
+  fontSize?: number;
   height?: number;
   id?: string;
   onClick?: (evt: any) => void;
   theme?: any;
   type?: string;
-  variant?: IButtonVariants;
+  variant?: 'contained' | 'outlined' | 'text';
   width?: number | string;
 }
 

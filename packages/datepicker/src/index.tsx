@@ -7,9 +7,9 @@ import searchDomChildElement from '../../helpers/search-dom-child-element';
 import Input from '../../input/src';
 import Label from '../../label/src';
 import Select from '../../select/src';
-import IOption from '../../select/types/ioption';
+import IOption from '../types/ioption';
 import ThemeContext from '../../styles/src/themes';
-import ITheme from '../../styles/types/itheme';
+import Itheme from '../../styles/types/itheme';
 import monthsElementEn from '../dictionaries/months-en';
 import monthsElementRu from '../dictionaries/months-ru';
 import DateParser from '../helpers/date-parser';
@@ -150,7 +150,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     .fill(currentYearNumber ?? 0 - 50)
     .map((element: number, index: number) => (element + index)?.toString());
 
-  const componentThemed: any = (theme: ITheme) => {
+  const componentThemed: any = (theme: Itheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
 

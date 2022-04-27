@@ -1,6 +1,6 @@
 import React from 'react';
 
-import IListElement from './ilist-element';
+import IListElement from '../../list-item/types/ilist-element';
 
 interface IList {
   ReactThemeContext?: any;

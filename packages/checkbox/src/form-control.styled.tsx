@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 
-const FormControl = styled.p`
+interface IFormControlStylish {
+  isExistLabel: boolean;
+}
+
+const FormControl =
+  styled.p <
+  IFormControlStylish >
+  `
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: ${(props: IFormControlStylish) => (props.isExistLabel ? 'flex-start' : 'center')};
   margin: 0;
   padding: 0;
 `;
