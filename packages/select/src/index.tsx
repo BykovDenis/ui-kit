@@ -1,19 +1,19 @@
-import React, { createRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import Variants from '../../enums/variants';
 import searchDomChildElement from '../../helpers/search-dom-child-element';
 import Input from '../../input/src';
 import Label from '../../label/src';
 import List from '../../list/src';
 import ListItem from '../../list-item/src';
 import ThemeContext from '../../styles/src/themes';
-import ITheme from '../../styles/types/itheme';
+import Itheme from '../../styles/types/itheme';
 import ISelect from '../types/iselect';
 import LabelContainer from './label-container.styled';
 import SelectContainer from './select-container.styled';
 import SelectHeader from './select-header.styled';
 import SelectIndicator from './select-indicator.styled';
 import SelectListContainer from './select-list-container.styled';
+import IOption from '../types/ioption';
 
 const DEFAULT_HEIGHT = 40;
 const TEXT_ALIGN = 'center';
@@ -25,19 +25,52 @@ const TRANSPARENT_COLOR: string = 'transparent';
 
 const KEY_ESCAPE: string = 'ESCAPE';
 
+function getElementsParsed(elements: Array<IOption | string | number>): Array<IOption> {
+  return elements?.map((element: string | number | IOption) => {
+    if (typeof element === 'object') {
+      return element;
+    }
+    return {
+      label: element?.toString(),
+      value: element,
+    };
+  });
+}
+
+function getActiveElementParsed(activeElement: string | number | IOption): IOption {
+  const activeElementType: string = typeof activeElement;
+  switch (activeElementType) {
+    case 'object': {
+      return activeElement as IOption;
+    }
+    case 'string': {
+      return { label: activeElement, value: activeElement } as IOption;
+    }
+    case 'number': {
+      return { label: activeElement?.toString(), value: activeElement } as IOption;
+    }
+    default: {
+      return activeElement as IOption;
+    }
+  }
+}
+
 const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
-  const [isFocus, setIsFocus] = useState(false);
-  const [value, setValue] = useState(props.activeElement);
-  const [elements, setElements] = useState(props.elements);
-  const [isVisibleList, setIsVisibleList] = useState(false);
-  const [isFoundValue, setIsFoundValue] = useState(true);
-  const [isNewElement, setIsNewElement] = useState(false);
-  const [activeElement, setActiveElement] = useState(props.activeElement);
-  const [isEdited, setIsEdited] = useState(false);
+  const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);
+
+  const [isFocus, setIsFocus] = useState<boolean>(false);
+  // const [value, setValue] = useState<string | number>(null);
+  const [label, setLabel] = useState<string>(activeElementParsed?.label);
+  const [elements, setElements] = useState<Array<IOption>>(getElementsParsed(props.elements));
+  const [isVisibleList, setIsVisibleList] = useState<boolean>(false);
+  const [isFoundValue, setIsFoundValue] = useState<boolean>(true);
+  const [isNewElement, setIsNewElement] = useState<boolean>(false);
+  const [activeElement, setActiveElement] = useState<IOption>(activeElementParsed);
+  const [isEdited, setIsEdited] = useState<boolean>(false);
 
   const onSelectChange = (evt: React.ChangeEvent<HTMLElement> | React.MouseEvent<HTMLElement, MouseEvent>) => {
     const element: any = evt.target;
-    const value: string = element?.dataset?.value;
+    const activeElement: IOption = { label: element?.dataset?.label, value: element?.dataset?.value };
 
     if (element.tagName !== BUTTON_TAG) {
       return;
@@ -45,12 +78,11 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
     if (props?.onChange) {
       const index: number = element?.dataset?.index ? parseInt(element?.dataset?.index, 10) : null;
-      props.onChange({ name: props.name, label: props.label, value, index });
+      props.onChange({ name: props.name, index, ...activeElement });
     } else {
-      setValue(value);
+      setActiveElement(activeElement);
     }
     setIsEdited(false);
-    setElements([...props.elements, value]);
     setIsVisibleList(!isVisibleList);
   };
 
@@ -93,10 +125,9 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   };
 
   useEffect(() => {
-    if (props?.activeElement > '') {
-      setValue(props?.activeElement);
-      setActiveElement(props?.activeElement);
-    }
+    const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);
+    setActiveElement(activeElementParsed);
+    setLabel(activeElementParsed?.label);
   }, [props.activeElement]);
 
   useEffect(() => {
@@ -105,43 +136,61 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     return () => {
       document.removeEventListener('mouseup', onMouseSelectUp);
       document.addEventListener('keyup', onKeyUp);
+      setIsVisibleList(false);
+      setIsFocus(false);
+      setIsFoundValue(false);
     };
   }, []);
 
   useEffect(() => {
-    setElements(props.elements);
-    setActiveElement(value);
+    setElements(getElementsParsed(props.elements));
+    /** TODO ??? */
+    setActiveElement({ label: label?.toString(), value: label?.toString() });
   }, [props.elements]);
 
   useEffect(() => {
-    const elements: Array<string> =
-      isFocus && (value !== props.activeElement || value === null || value === '')
-        ? props.elements.filter((element: string) => element.indexOf(value) > -1)
-        : props.elements;
-    setElements(elements);
-    setIsFoundValue(elements.length > 0);
-    setIsNewElement(elements?.filter((element: string) => element.indexOf(value) > -1)?.length === 0);
-  }, [value]);
+    const elementsFiltered: Array<IOption> = getElementsParsed(props.elements)?.filter(
+      (element: IOption) => {
+        const labelParsed: string = element?.label?.toString();
+        if (labelParsed && label) {
+          return labelParsed?.indexOf(label?.toString()) > -1
+        }
+        return true;
+      });
+    setElements(elementsFiltered);
+    setIsFoundValue(elementsFiltered.length > 0);
+    setIsNewElement(elementsFiltered?.length === 0);
+  }, [label]);
 
   useEffect(() => {
-    setIsNewElement(elements?.filter((element: string) => element.indexOf(value) > -1)?.length === 0);
+    const elementsFiltered: Array<IOption> = elements?.filter(
+      (element: IOption) => {
+        const labelParsed: string = element?.label?.toString();
+        if (labelParsed && label) {
+          return labelParsed?.indexOf(label?.toString()) > -1
+        }
+        return true;
+      });
+    setIsNewElement(elementsFiltered?.length === 0);
     setIsFoundValue(true);
   }, [elements]);
 
-  useEffect(
-    () => () => {
-      setIsVisibleList(false);
-      setIsFocus(false);
-      setIsFoundValue(false);
-    },
-    []
-  );
+  useEffect(() => {
+    const isElementFounded: boolean = elements.some(
+      (element: IOption) => element?.label?.toString() === label?.toString()
+    );
+    if (!isElementFounded && activeElement?.label > '') {
+      setElements([...getElementsParsed(props.elements), activeElement]);
+    } else {
+      setElements([...getElementsParsed(props.elements)]);
+    }
+  }, [activeElement]);
 
   const onInputDelete = (name: string) => {
     props?.onRemove(name, null);
     setIsVisibleList(false);
-    setValue('');
-    props.onChange({ name: name, label: props.label, value: null, index: null });
+    setLabel('');
+    props.onChange({ name: name, label: null, value: null, index: null });
   };
 
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -158,15 +207,16 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsVisibleList(true);
   };
 
-  const isExistValue: boolean = value > '';
+  const isExistValue: boolean = label > '';
 
-  const componentThemed: any = (theme: ITheme) => {
+  const componentThemed: any = (theme: Itheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
 
     const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
       const element: any = evt.target;
-      setValue(element.value);
+      // setActiveElement({element.value});
+      setLabel(element.value);
     };
 
     const onInputBlur = () => {
@@ -212,7 +262,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             onRemove={onInputDelete}
             onInput={onInput}
             variant={props?.variant}
-            value={value}
+            value={label}
             textAlign={props?.textAlign || TEXT_ALIGN}
             fontSize={fontSize}
             baseFontSize={props?.baseFontSize}
@@ -242,10 +292,11 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
           <SelectListContainer>
             <List type="list-buttons" onMouseUp={onMouseUp} onKeyUp={onKeyUp}>
               {isFoundValue &&
-                elements?.map((element: string, index: number) => {
-                  const backgroundColor: string = element === activeElement ? theme.palette.primary.light : null;
-                  const hoverBackgroundColor: string = element === activeElement ? theme.palette.primary.light : null;
-                  const color: string = element === activeElement ? theme.mainWhiteColor : null;
+                elements?.map((element: IOption, index: number) => {
+                  const isActiveElementCompared: boolean = element?.value === activeElement?.value;
+                  const backgroundColor: string = isActiveElementCompared ? theme.palette.primary.light : null;
+                  const hoverBackgroundColor: string = isActiveElementCompared ? theme.palette.primary.light : null;
+                  const color: string = isActiveElementCompared ? theme.mainWhiteColor : null;
 
                   return (
                     <ListItem
@@ -255,27 +306,29 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                       hoverBackgroundColor={hoverBackgroundColor}
                       color={color}
                       data-index={index}
-                      data-value={element}
+                      data-value={element.value}
+                      data-label={element.label}
                       textAlign={props?.textAlign || TEXT_ALIGN}
                       fontSize={fontSize}
                       height={props?.height || DEFAULT_HEIGHT}
                       fontFamily={props?.fontFamily || theme?.fontFamily}
                     >
-                      {element}
+                      {element.label}
                     </ListItem>
                   );
                 })}
-              {isNewElement && props?.isCreatable && (
+              {isNewElement && props?.isCreatable && activeElement?.label > '' && (
                 <ListItem
                   type="button"
                   key={`list-item-new`}
-                  data-value={value}
+                  data-label={label}
+                  data-value={label}
                   textAlign={props?.textAlign || TEXT_ALIGN}
                   fontSize={fontSize}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   height={props?.height || DEFAULT_HEIGHT}
                 >
-                  Create new {value}
+                  Create new {label}
                 </ListItem>
               )}
             </List>

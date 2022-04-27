@@ -1,8 +1,10 @@
 {
   "name": "@sber-riski-cib-ui/Checkbox",
-  "version": "0.6.7",
+  "version": "0.6.12",
   "description": "A simple checkbox component",
   "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c rollup.config.prod.js",
     "build-dev": "rollup -c rollup.config.dev.js",
@@ -31,5 +33,5 @@
     "@types/styled-components": "^5.1.18",
     "rollup": "^2.61.1"
   },
-  "gitHead": "97163eae7dc505fe0280f092e47419769eb6c407"
+  "gitHead": "5284769215ae8966cd9efdb2396a09c18715ee84"
 }

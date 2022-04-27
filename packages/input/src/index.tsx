@@ -9,7 +9,7 @@ import {
   TYPE_TEXT
 } from '../../constants';
 import ThemeContext from '../../styles/src/themes';
-import ITheme from '../../styles/types/itheme';
+import Itheme from '../../styles/types/itheme';
 import IInput from '../types/iinput';
 import ButtonDelete from './button-delete.styled';
 import DeleteIcon from './delete-icon';
@@ -122,7 +122,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     props?.onBlur(evt);
   };
 
-  const componentThemed: any = (theme: ITheme) => {
+  const componentThemed: any = (theme: Itheme) => {
     const backgroundColor: string =
       (props?.colorTheme === 'normal' || !props.colorTheme) && !props?.error
         ? theme?.palette?.primary?.main

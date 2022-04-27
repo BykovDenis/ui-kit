@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ThemeContext from '../../styles/src/themes';
-import ITheme from '../../styles/types/itheme';
+import Itheme from '../../styles/types/itheme';
 import ListItemType from '../enums/list-item-type';
 import IListElement from '../types/ilist-element';
 import ListItemStyled from './list-item.styled';
@@ -14,7 +14,7 @@ const TEXT_ALIGN = 'center';
 const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) => {
   const listItemType: string = ListItemType.Text;
 
-  const componentThemed: any = (theme: ITheme) => {
+  const componentThemed: any = (theme: Itheme) => {
     const backgroundColor: string =
       props?.colorTheme === 'normal' || !props.colorTheme ? theme?.mainWhiteColor : theme?.palette?.secondary?.main;
 

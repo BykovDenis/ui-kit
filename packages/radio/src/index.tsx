@@ -2,14 +2,14 @@
 
 import Label from '../../label/src';
 import ThemeContext from '../../styles/src/themes';
-import ITheme from '../../styles/types/itheme';
+import Itheme from '../../styles/types/itheme';
 import IRadio from '../types/iradio';
 import FormControl from './form-control.styled';
 import RadioStyled from './radio.styled';
 
 const Radio: React.FunctionComponent<IRadio> = (props: any) => {
-  const componentThemed = (theme: ITheme) => (
-    <FormControl>
+  const componentThemed = (theme: Itheme) => (
+    <FormControl isExistLabel={props?.label > '' && props?.label !== null}>
       <RadioStyled
         {...props}
         name={props.name}

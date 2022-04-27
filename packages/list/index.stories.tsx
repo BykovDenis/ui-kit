@@ -4,7 +4,7 @@ import React from 'react';
 
 import ListItem from '../list-item/src';
 import List from  './src';
-import IList from './types/ilist';
+import Ilist from './types/ilist';
 
 export default {
   title: 'Components/List',
@@ -18,7 +18,7 @@ export default {
   },
 } as ComponentMeta<typeof List>;
 
-const Template: ComponentStory<typeof List> = (props: IList) => {
+const Template: ComponentStory<typeof List> = (props: Ilist) => {
 
   const elements: Array<string> = ['List item 1', 'List item 2', 'List item 3', 'List item 4', 'List item 5'];
 

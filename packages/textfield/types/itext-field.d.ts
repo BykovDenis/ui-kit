@@ -1,3 +1,4 @@
+import React from 'react';
 import IInput from '../../input/types/iinput';
 import ILabel from '../../label/types/ilabel';
 
@@ -9,7 +10,7 @@ interface ITextField extends IInput, ILabel {
   id: string;
   isExistTextMessageHelper?: boolean;
   isExistValue?: boolean;
-  label?: string;
+  label?: string | React.ReactNode;
   textAlign?: string;
   value?: string | number;
   width?: number;
