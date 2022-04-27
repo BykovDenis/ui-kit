@@ -9,7 +9,7 @@ import RadioStyled from './radio.styled';
 
 const Radio: React.FunctionComponent<IRadio> = (props: any) => {
   const componentThemed = (theme: Itheme) => (
-    <FormControl>
+    <FormControl isExistLabel={props?.label > '' && props?.label !== null}>
       <RadioStyled
         {...props}
         name={props.name}
