@@ -171,7 +171,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const months: Array<string> = props.locale === Locales.Ru || !props?.locale ? monthsElementRu : monthsElementEn;
   const years: Array<string> = new Array(100)
-    .fill(currentYearNumber ?? 0 - 50)
+    .fill((currentYearNumber ?? 0) - 50)
     .map((element: number, index: number) => (element + index)?.toString());
 
   const componentThemed: any = (theme: Itheme) => {
