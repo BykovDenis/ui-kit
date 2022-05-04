@@ -138,8 +138,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     if (
       props.onChange &&
       dateParsed.checkIsValidateDate() &&
-      dateParsedMilliseconds >= minDateMilliseconds &&
-      dateParsedMilliseconds <= maxDateMilliseconds
+      ((minDateMilliseconds && dateParsedMilliseconds >= minDateMilliseconds) || true) &&
+      ((maxDateMilliseconds && dateParsedMilliseconds <= maxDateMilliseconds) || true)
     ) {
       props.onChange(props.name, valueParsed, true);
       setIsError(false);
