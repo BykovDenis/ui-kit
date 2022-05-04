@@ -65,7 +65,8 @@ exports[`Checkbox renders correctly 1`] = `
         </button>
         <p />
         <p
-          class="sc-gKclnd dcWcWq text-message"
+          class="sc-gKclnd duJait text-message"
+          color="#333333"
           font-family="Roboto, Arial, sans-serif"
           font-size="14"
         >
