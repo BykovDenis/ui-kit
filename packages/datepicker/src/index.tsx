@@ -42,6 +42,13 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [numberDayInWeek, setNumberDayInWeek] = useState(dateParsed?.getNumberDayInWeek());
   const [countDaysIsMonth, setCountDaysIsMonth] = useState(dateParsed?.getCountDaysInMonth());
   const [isError, setIsError] = useState(false);
+  const [isMinDateError, setIsMinDateError] = useState(false);
+  const [isMaxDateError, setIsMaxDateError] = useState(false);
+
+  const minDate = new DateParser(props.minDate);
+  const maxDate = new DateParser(props.maxDate);
+  const minDateMilliseconds: number = minDate?.getTimestamp();
+  const maxDateMilliseconds: number = maxDate?.getTimestamp();
 
   const onInputDelete = (name: string) => {
     if (props?.onRemove) {
@@ -122,13 +129,28 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const regExpr: RegExp = new RegExp('(?<day>[0-9]{2})(?<month>[0-9]{2})(?<year>[0-9]{4})');
     const datePartitioned: { day: string, month: string, year: string } =
       element?.value !== null ? element?.value?.replaceAll('.', '')?.match(regExpr)?.groups : null;
-    const valueParsed: string = `${datePartitioned.day}.${datePartitioned.month}.${datePartitioned.year}`;
+    const valueParsed: string = datePartitioned
+      ? `${datePartitioned?.day}.${datePartitioned?.month}.${datePartitioned?.year}`
+      : null;
     setValue(valueParsed);
     dateParsed = new DateParser(valueParsed);
-    if (props.onChange && dateParsed.checkIsValidateDate()) {
+    const dateParsedMilliseconds: number = dateParsed.getTimestamp();
+    if (
+      props.onChange &&
+      dateParsed.checkIsValidateDate() &&
+      dateParsedMilliseconds >= minDateMilliseconds &&
+      dateParsedMilliseconds <= maxDateMilliseconds
+    ) {
       props.onChange(props.name, valueParsed, true);
       setIsError(false);
+      setIsMinDateError(false);
+      setIsMaxDateError(false);
     } else {
+      if (dateParsedMilliseconds < minDateMilliseconds) {
+        setIsMinDateError(true);
+      } else if (dateParsedMilliseconds > maxDateMilliseconds) {
+        setIsMaxDateError(true);
+      }
       setIsError(true);
     }
   };
@@ -218,7 +240,19 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const yearTitle: string = props?.locale === Locales.Ru || !props?.locale ? 'Год' : 'Year';
 
     const textMessageError: string = props?.locale === Locales.Ru ? 'Дата не валидна' : 'Date is not valid';
-    const textMessage = isError ? textMessageError : props?.textMessage;
+
+    const minDateMessage: string =
+      props?.locale === Locales.Ru ? 'Дата меньше допустимой' : 'Date is less than allowed';
+    const maxDateMessage: string =
+      props?.locale === Locales.Ru ? 'Дата больше допустимой' : 'Date is more then allowed';
+
+    const textMessage = isError
+      ? isMinDateError
+        ? minDateMessage
+        : isMaxDateError
+        ? maxDateMessage
+        : textMessageError
+      : props?.textMessage;
 
     const currentYearNumberString: string = currentYearNumber.toString();
 
@@ -239,6 +273,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 fontWeight={props?.fontWeight}
                 isDisabled={props.disabled}
                 fontFamily={props?.fontFamily || theme?.fontFamily}
+                error={isError}
               >
                 {props?.label}
               </Label>
