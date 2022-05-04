@@ -44,7 +44,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [isError, setIsError] = useState(false);
 
   const onInputDelete = (name: string) => {
-    props?.onRemove(name, null);
+    if (props?.onRemove) {
+      props?.onRemove(name, null);
+    }
     setIsExistValue(false);
     setIsVisibleList(false);
     setValue('');
