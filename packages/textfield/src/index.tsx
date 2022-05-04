@@ -59,6 +59,7 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
             isReadOnly={props.isReadOnly}
             fontWeight={props?.fontWeight}
             isDisabled={props.disabled}
+            error={props?.error}
           >
             {props?.label}
           </Label>

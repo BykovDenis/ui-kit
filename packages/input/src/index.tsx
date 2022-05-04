@@ -139,14 +139,14 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           : theme?.palette?.baseFontColor
         : theme?.palette?.secondary?.main;
 
-    const focusColor: string = props?.error ? theme?.palette?.secondary?.lighter : backgroundColor;
+    const focusColor: string = props?.error ? theme?.palette?.secondary?.main : backgroundColor;
 
     const ReactInput: React.FunctionComponent = (props: any) => <input {...props} />;
 
     const colorInteractive: string = props?.error ? theme?.palette?.secondary?.lighter : isFocus ? theme?.palette?.primary?.main : props?.color;
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
     const borderColor: string = props?.error ? theme?.palette?.secondary?.lighter : props?.borderColor || theme?.mainBlackColor;
-    const inputColor: string = props?.error ? theme?.palette?.secondary?.lighter : props?.color || color;
+    const inputColor: string = props?.error ? theme?.palette?.secondary?.main : props?.color || color;
 
     return (
       <InputContainer height={props?.height} width={props?.width}>
@@ -214,7 +214,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             className="text-message"
             fontSize={props?.fontSize ?? theme?.baseFontSize}
             fontFamily={theme?.fontFamily}
-            color={colorInteractive}
+            color={inputColor}
           >
             {props.textMessage}
           </TextMessage>
