@@ -47,7 +47,8 @@ exports[`Input renders correctly 1`] = `
       />
       <p />
       <p
-        class="sc-jRQBWg gxCMlM text-message"
+        class="sc-jRQBWg bjqfZv text-message"
+        color="#333333"
         font-family="Roboto, Arial, sans-serif"
         font-size="14"
       >
