@@ -149,11 +149,13 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, [props.elements]);
 
   useEffect(() => {
+    const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
     const elementsFiltered: Array<IOption> = getElementsParsed(props.elements)?.filter(
       (element: IOption) => {
         const labelParsed: string = element?.label?.toString();
+        const labelParsedUppercase: string = labelParsed?.toLocaleUpperCase();
         if (labelParsed && label) {
-          return labelParsed?.indexOf(label?.toString()) > -1
+          return labelParsedUppercase?.indexOf(labelUpperCase) > -1
         }
         return true;
       });
@@ -163,11 +165,12 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, [label]);
 
   useEffect(() => {
+    const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
     const elementsFiltered: Array<IOption> = elements?.filter(
       (element: IOption) => {
         const labelParsed: string = element?.label?.toString();
         if (labelParsed && label) {
-          return labelParsed?.indexOf(label?.toString()) > -1
+          return labelParsed?.toLocaleUpperCase()?.indexOf(labelUpperCase) > -1
         }
         return true;
       });

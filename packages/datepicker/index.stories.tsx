@@ -25,7 +25,7 @@ const Template: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
   }
 
   return <div style={{ width: '250px' }}>
-    <Datepicker {...args} value={value} minDate="28.04.2022" maxDate="12.06.2023" locale="ru" onChange={onDatepickerValueChange} />
+    <Datepicker {...args} value={value} minDate="28.04.2020" locale="ru" onChange={onDatepickerValueChange} />
   </div>
 
 }
