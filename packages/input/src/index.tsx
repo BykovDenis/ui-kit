@@ -31,9 +31,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const cb = () => {
     let value: number | string = evtObj.target.value;
     const evtObjNew = {...evtObj};
-    if (props?.min !== undefined && props?.min !== null) {        if (input?.blur) {
-      input.blur();
-    }
+    if (props?.min !== undefined && props?.min !== null) {
       if (parseFloat(value as string) < props?.min) {
         value = props?.min;
       }
