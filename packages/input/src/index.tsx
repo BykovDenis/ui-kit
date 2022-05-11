@@ -31,7 +31,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const cb = () => {
     let value: number | string = evtObj.target.value;
     const evtObjNew = {...evtObj};
-    if (props?.min !== undefined && props?.min !== null) {
+    if (props?.min !== undefined && props?.min !== null) {        if (input?.blur) {
+      input.blur();
+    }
       if (parseFloat(value as string) < props?.min) {
         value = props?.min;
       }
@@ -121,7 +123,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     if (props?.isSeparateNumberFormat && props?.value !== null) {
       setInputValue(parseFloat(props.value as string)?.toLocaleString('ru-RU')?.replace(',', '.'))
     }
-    props?.onBlur(evt);
+    if (props?.onBlur) {
+      props.onBlur(evt);
+    }
   };
 
   const componentThemed: any = (theme: Itheme) => {
