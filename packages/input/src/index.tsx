@@ -58,8 +58,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
       const executeDebounce = debounce(cb, TIMEOUT);
       executeDebounce();
     } else {
-      if (inputRef?.current) {
-        const inputElement = inputRef?.current;
+      const ref = props?.inputRef || inputRef;
+      if (ref?.current) {
+        const inputElement = ref?.current;
         if (inputElement) {
           inputElement.value = props?.value;
           setInputValue(props?.value);
@@ -104,8 +105,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
   const onInputFocus = (evt?: any) => {
     setIsFocus(true);
-    if (inputRef?.current && props?.value !== null && props?.isSeparateNumberFormat) {
-      const inputElement = inputRef?.current;
+    const ref = props?.inputRef || inputRef;
+    if (ref?.current && props?.value !== null && props?.isSeparateNumberFormat) {
+      const inputElement = ref?.current;
       if (inputElement) {
         inputElement.value = props?.value;
         setInputValue(props?.value);
@@ -183,7 +185,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             step={props?.step}
             type={props?.type || TYPE_TEXT}
             fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
-            ref={inputRef}
+            ref={props?.inputRef || inputRef}
             min={props?.min}
             max={props?.max}
             readOnly={props?.isReadOnly}

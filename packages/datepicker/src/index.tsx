@@ -45,6 +45,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [isMinDateError, setIsMinDateError] = useState(false);
   const [isMaxDateError, setIsMaxDateError] = useState(false);
 
+  const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
+
   const minDate = new DateParser(props.minDate);
   const maxDate = new DateParser(props.maxDate);
   const minDateMilliseconds: number = minDate?.getTimestamp();
@@ -65,6 +67,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       const listElement: any = dateRef?.current;
       if (listElement) {
         onDatesContainerClose(searchDomChildElement(listElement, element), evt);
+      }
+    }
+    if (inputRef) {
+      const input = inputRef?.current;
+      if (element !== input) {
+        if (input?.blur) {
+          input.blur();
+        }
       }
     }
   };
@@ -303,6 +313,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             isReadOnly={props?.isReadOnly}
             isNotUseDebounce={true}
             error={isError}
+            inputRef={inputRef}
           />
         </DatepickerHeader>
         {isVisibleList && (
