@@ -50,6 +50,7 @@ interface IInput {
   inputComponent?: any;
   placeholder?: string;
   textAling?: string;
+  inputRef?: React.MutableRefObject<HTMLInputElement>;
 }
 
 export default IInput;
