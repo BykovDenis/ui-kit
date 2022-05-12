@@ -229,8 +229,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
     const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
       const element: any = evt.target;
-      // setActiveElement({element.value});
       setLabel(element.value);
+      setActiveElement({label: null, value: null});
     };
 
     const onInputBlur = () => {
