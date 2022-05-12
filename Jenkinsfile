@@ -1,6 +1,7 @@
 def rootPath = '.'
 def uiKitPath = './packages/'
 def buttonPath = './packages/button'
+def iconButtonPath = './packages/button'
 def checkboxPath = './packages/checkbox'
 def datepickerPath = './packages/datepicker'
 def dividerPath = './packages/divider'
@@ -142,6 +143,40 @@ pipeline {
                                 script {
                                     echo 'Testing'
                                     sh 'npm test /packages/button/__tests__'
+                                }
+                            }
+                            dir("${buttonPath}") {
+                                script {
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('IconButton deploy') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${iconButtonPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                }
+                            }
+                            dir("${rootPath}") {
+                                script {
+                                    echo 'Testing'
+                                    sh 'npm test /packages/icon-button/__tests__'
                                 }
                             }
                             dir("${buttonPath}") {
@@ -408,7 +443,6 @@ pipeline {
                                 script {
                                     echo 'Packages installing'
                                     sh 'npm i'
-                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -432,7 +466,6 @@ pipeline {
                             dir("${stylesPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm i'
                                     sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
