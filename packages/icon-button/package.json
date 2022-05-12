@@ -33,6 +33,6 @@
     "@types/styled-components": "^5.1.18",
     "rollup": "^2.61.1"
   },
-  "gitHead": "5f35e7dd67e73707fc89c6ccb39b3cbb93d5988b",
+  "gitHead": "408ab704f47de926607ef05e67408c902ad028df",
   "_id": "@sber-riski-cib-ui/Button@0.5.28"
 }
