@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 import searchDomChildElement from '../../helpers/search-dom-child-element';
 import Input from '../../input/src';
@@ -59,7 +59,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);
 
   const [isFocus, setIsFocus] = useState<boolean>(false);
-  // const [value, setValue] = useState<string | number>(null);
   const [label, setLabel] = useState<string>(activeElementParsed?.label);
   const [elements, setElements] = useState<Array<IOption>>(getElementsParsed(props.elements));
   const [isVisibleList, setIsVisibleList] = useState<boolean>(false);
@@ -67,6 +66,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [isNewElement, setIsNewElement] = useState<boolean>(false);
   const [activeElement, setActiveElement] = useState<IOption>(activeElementParsed);
   const [isEdited, setIsEdited] = useState<boolean>(false);
+
+  const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const onSelectChange = (evt: React.ChangeEvent<HTMLElement> | React.MouseEvent<HTMLElement, MouseEvent>) => {
     const element: any = evt.target;
@@ -101,8 +102,18 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsVisibleList(false);
   };
 
-  const onMouseSelectUp = () => {
-    onListItemsCloseByKey();
+  const onMouseSelectUp = (evt: any) => {
+    const element = evt.target;
+    if (inputRef) {
+      const input = inputRef?.current;
+      if (element !== input) {
+        onListItemsCloseByKey();
+        setIsFocus(false);
+        if (input?.blur) {
+          input.blur();
+        }
+      }
+    }
   };
 
   const onMouseUp = (evt: React.MouseEvent<HTMLElement, MouseEvent>, listRef: any) => {
@@ -149,11 +160,13 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, [props.elements]);
 
   useEffect(() => {
+    const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
     const elementsFiltered: Array<IOption> = getElementsParsed(props.elements)?.filter(
       (element: IOption) => {
         const labelParsed: string = element?.label?.toString();
+        const labelParsedUppercase: string = labelParsed?.toLocaleUpperCase();
         if (labelParsed && label) {
-          return labelParsed?.indexOf(label?.toString()) > -1
+          return labelParsedUppercase?.indexOf(labelUpperCase) > -1
         }
         return true;
       });
@@ -163,11 +176,12 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, [label]);
 
   useEffect(() => {
+    const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
     const elementsFiltered: Array<IOption> = elements?.filter(
       (element: IOption) => {
         const labelParsed: string = element?.label?.toString();
         if (labelParsed && label) {
-          return labelParsed?.indexOf(label?.toString()) > -1
+          return labelParsed?.toLocaleUpperCase()?.indexOf(labelUpperCase) > -1
         }
         return true;
       });
@@ -215,8 +229,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
     const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
       const element: any = evt.target;
-      // setActiveElement({element.value});
       setLabel(element.value);
+      setActiveElement({label: null, value: null});
     };
 
     const onInputBlur = () => {
@@ -286,6 +300,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             borderColor={props?.borderColor}
             hoverColor={props?.hoverColor}
             focusColor={props?.focusColor}
+            inputRef={inputRef}
           />
         </SelectHeader>
         {isVisibleList && (

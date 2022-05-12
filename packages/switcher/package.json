@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/Switcher",
-  "version": "0.6.12",
+  "version": "0.7.4",
   "description": "A simple switcher component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -33,5 +33,5 @@
     "@types/styled-components": "^5.1.18",
     "rollup": "^2.61.1"
   },
-  "gitHead": "5284769215ae8966cd9efdb2396a09c18715ee84"
+  "gitHead": "a2ac36151ab5f5943063b7f4ea2fcf2df4a73605"
 }

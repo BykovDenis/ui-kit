@@ -13,6 +13,7 @@ interface IDateParser {
   getNumberYear: () => number;
   getParsedDate: () => string;
   getSplittedParamsByDate?: (date: string) => Array<number>;
+  getTimestamp: () => number;
   locale?: string;
 }
 

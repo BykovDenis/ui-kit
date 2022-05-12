@@ -58,8 +58,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
       const executeDebounce = debounce(cb, TIMEOUT);
       executeDebounce();
     } else {
-      if (inputRef?.current) {
-        const inputElement = inputRef?.current;
+      const ref = props?.inputRef || inputRef;
+      if (ref?.current) {
+        const inputElement = ref?.current;
         if (inputElement) {
           inputElement.value = props?.value;
           setInputValue(props?.value);
@@ -104,8 +105,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
   const onInputFocus = (evt?: any) => {
     setIsFocus(true);
-    if (inputRef?.current && props?.value !== null && props?.isSeparateNumberFormat) {
-      const inputElement = inputRef?.current;
+    const ref = props?.inputRef || inputRef;
+    if (ref?.current && props?.value !== null && props?.isSeparateNumberFormat) {
+      const inputElement = ref?.current;
       if (inputElement) {
         inputElement.value = props?.value;
         setInputValue(props?.value);
@@ -119,7 +121,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     if (props?.isSeparateNumberFormat && props?.value !== null) {
       setInputValue(parseFloat(props.value as string)?.toLocaleString('ru-RU')?.replace(',', '.'))
     }
-    props?.onBlur(evt);
+    if (props?.onBlur) {
+      props.onBlur(evt);
+    }
   };
 
   const componentThemed: any = (theme: Itheme) => {
@@ -139,14 +143,14 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           : theme?.palette?.baseFontColor
         : theme?.palette?.secondary?.main;
 
-    const focusColor: string = props?.error ? theme?.palette?.secondary?.lighter : backgroundColor;
+    const focusColor: string = props?.error ? theme?.palette?.secondary?.main : backgroundColor;
 
     const ReactInput: React.FunctionComponent = (props: any) => <input {...props} />;
 
     const colorInteractive: string = props?.error ? theme?.palette?.secondary?.lighter : isFocus ? theme?.palette?.primary?.main : props?.color;
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
     const borderColor: string = props?.error ? theme?.palette?.secondary?.lighter : props?.borderColor || theme?.mainBlackColor;
-    const inputColor: string = props?.error ? theme?.palette?.secondary?.lighter : props?.color || color;
+    const inputColor: string = props?.error ? theme?.palette?.secondary?.main : props?.color || color;
 
     return (
       <InputContainer height={props?.height} width={props?.width}>
@@ -183,7 +187,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             step={props?.step}
             type={props?.type || TYPE_TEXT}
             fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
-            ref={inputRef}
+            ref={props?.inputRef || inputRef}
             min={props?.min}
             max={props?.max}
             readOnly={props?.isReadOnly}
@@ -214,7 +218,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             className="text-message"
             fontSize={props?.fontSize ?? theme?.baseFontSize}
             fontFamily={theme?.fontFamily}
-            color={colorInteractive}
+            color={inputColor}
           >
             {props.textMessage}
           </TextMessage>
