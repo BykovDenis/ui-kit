@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddIcon: React.FunctionComponent<{ className: string, color: string }> = ({
+const AddIcon: React.FunctionComponent<{ className?: string, color?: string }> = ({
   className,
   color,
 }: {

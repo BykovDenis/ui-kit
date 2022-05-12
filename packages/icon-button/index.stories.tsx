@@ -4,7 +4,7 @@ import React from 'react';
 
 import IconButton from  './src/index';
 import IIconButton from './types/iicon-button'
-import AddIcon from '../icons-components/add-icon';
+import Index from '../icons-components/add-icon';
 
 export default {
   title: 'Components/IconButton',
@@ -22,7 +22,7 @@ export default {
 } as ComponentMeta<typeof IconButton>;
 
 const Template: ComponentStory<typeof IconButton> = (args: IIconButton) => {
-  return <IconButton  {...args} name="button1" onClick={action('clicked')} ><AddIcon color="#ffffff" /></IconButton>;
+  return <IconButton  {...args} name="button1" onClick={action('clicked')} ><Index color="#ffffff" /></IconButton>;
 }
 
 export const NormalIconButton = Template.bind({});
