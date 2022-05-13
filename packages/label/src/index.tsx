@@ -25,6 +25,7 @@ const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
         fontSize={props?.fontSize ?? theme?.baseFontSize}
         htmlFor={props?.htmlFor}
         fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
+        width={props?.width}
       >
         {props.children}
       </LabelStyled>

@@ -20,6 +20,7 @@ const Label =
       line-height: 0.7;
       white-space: nowrap;
       font-weight: ${(props: ILabel) => props.fontWeight}; 
+      width: ${(props: ILabel) => (props.width ? `${props.width}px` : '100%')};  
       &:focus {
         outline: 1px solid ${(props: ILabel) => rgbToRgba(props?.focusColor, 0.3)};
         box-shadow: 1px 1px 5px 3px ${(props: ILabel) => rgbToRgba(props?.focusColor, 0.3)};

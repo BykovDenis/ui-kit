@@ -4,7 +4,7 @@ interface IButton {
   backgroundImage?: string;
   baseFontSize?: string;
   borderRadius?: string;
-  children?: any;
+  children?: React.ReactNode;
   className?: any;
   color?: string;
   colorTheme?: string;
