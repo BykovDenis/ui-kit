@@ -179,7 +179,7 @@ pipeline {
                                     sh 'npm test /packages/icon-button/__tests__'
                                 }
                             }
-                            dir("${buttonPath}") {
+                            dir("${iconButtonPath}") {
                                 script {
                                     echo 'Building'
                                     sh 'npm run build'

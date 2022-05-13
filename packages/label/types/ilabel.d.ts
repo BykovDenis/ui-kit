@@ -15,6 +15,7 @@ interface ILabel {
   isReadOnly?: boolean;
   tabIndex?: string;
   theme?: any;
+  width?: number;
 }
 
 export default ILabel;
