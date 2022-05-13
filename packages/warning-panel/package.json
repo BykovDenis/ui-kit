@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/Warning-panel",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "A warning panel component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
