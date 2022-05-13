@@ -71,8 +71,7 @@ const IconButtonStyled =
 
     &:disabled {
       background-color: #bdbdbd;
-      box-shadow: none; 
-      border-radius: 4px;
+      box-shadow: none;
       color: #ffffff;
       border: 1px solid #bdbdbd;
     }
