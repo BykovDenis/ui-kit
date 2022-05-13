@@ -7,7 +7,7 @@ exports[`Radio renders correctly 1`] = `
   >
     <input
       checked=""
-      class="sc-dkPtRN gfAHJJ"
+      class="sc-dkPtRN WVbvl"
       color="#333333"
       id="radio1"
       name="radio1"
@@ -27,7 +27,7 @@ exports[`Radio renders correctly 1`] = `
     class="sc-gsDKAQ dieCOK"
   >
     <input
-      class="sc-dkPtRN gfAHJJ"
+      class="sc-dkPtRN WVbvl"
       color="#333333"
       id="radio2"
       name="radio1"
