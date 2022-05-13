@@ -17,6 +17,7 @@ interface IRadio {
   tabIndex?: any;
   theme?: any;
   value?: string;
+  isIconDisabled?: boolean;
 }
 
 export default IRadio;

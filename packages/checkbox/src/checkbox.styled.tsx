@@ -9,6 +9,7 @@ const CheckIcon: string =
 interface ICheckboxStylish {
   backgroundColor: string;
   indeterminate: boolean;
+  isIconDisabled?: boolean;
 }
 
 const Checkbox =
@@ -18,7 +19,7 @@ const Checkbox =
     display: none;
   & + label:before {
     box-sizing: border-box;
-    display: block;
+    display:  ${(props: ICheckboxStylish) => (props.isIconDisabled === true ? 'none' : 'block')};
     content: '';
     height: 20px;
     width: 20px;
@@ -30,14 +31,14 @@ const Checkbox =
     background-color: #ffffff;
   }  
   &:disabled + label:before {
-    display: block;
+    display:  ${(props: ICheckboxStylish) => (props.isIconDisabled === true ? 'none' : 'block')};
     content: '';
     height: 20px;
     width: 20px;
     background-color: #bdbdbd;
   }
   &:checked + label:before {
-    display: block;
+    display:  ${(props: ICheckboxStylish) => (props.isIconDisabled === true ? 'none' : 'block')};
     content: '';
     height: 20px;
     width: 20px;
@@ -53,7 +54,7 @@ const Checkbox =
     }
     & + label:after {
       position: absolute;
-      display: block;
+      display:  ${(props: ICheckboxStylish) => (props.isIconDisabled === true ? 'none' : 'block')};
       content: '';
       height: 2px;
       width: 16px;
@@ -65,7 +66,7 @@ const Checkbox =
     background-color: #bdbdbd;
   }
   &:disabled:checked + label:before {
-    display: block;
+    display:  ${(props: ICheckboxStylish) => (props.isIconDisabled === true ? 'none' : 'block')};
     content: '';
     height: 20px;
     width: 20px;
