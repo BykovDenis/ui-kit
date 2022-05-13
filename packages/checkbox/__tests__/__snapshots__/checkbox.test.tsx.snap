@@ -14,7 +14,7 @@ exports[`Checkbox renders correctly 1`] = `
       type="checkbox"
     />
     <label
-      class="sc-bdvvtL cMbKqj"
+      class="sc-bdvvtL ccvued"
       color="#333333"
       font-family="Roboto, Arial, sans-serif"
       font-size="14"
