@@ -20,6 +20,7 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: ICheckbox) => {
         checked={props.checked}
         onChange={props.onChange}
         indeterminate={props.indeterminate}
+        isIconDisabled={props.isIconDisabled}
       />
       <Label
         htmlFor={props.id}

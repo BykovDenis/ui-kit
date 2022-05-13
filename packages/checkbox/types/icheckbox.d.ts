@@ -18,6 +18,7 @@ interface ICheckbox {
   theme?: any;
   readOnly?: boolean;
   value?: string;
+  isIconDisabled?: boolean;
 }
 
 export default ICheckbox;
