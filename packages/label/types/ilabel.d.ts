@@ -16,6 +16,7 @@ interface ILabel {
   tabIndex?: string;
   theme?: any;
   width?: number;
+  backgroundColor?: string;
 }
 
 export default ILabel;
