@@ -189,16 +189,16 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsFoundValue(true);
   }, [elements]);
 
-  useEffect(() => {
-    const isElementFounded: boolean = elements.some(
-      (element: IOption) => element?.label?.toString() === label?.toString()
-    );
-    if (!isElementFounded && activeElement?.label > '') {
-      setElements([...getElementsParsed(props.elements), activeElement]);
-    } else {
-      setElements([...getElementsParsed(props.elements)]);
-    }
-  }, [activeElement]);
+  // useEffect(() => {
+  //   const isElementFounded: boolean = elements.some(
+  //     (element: IOption) => element?.label?.toString() === label?.toString()
+  //   );
+  //   if (!isElementFounded && activeElement?.label > '') {
+  //     setElements([...getElementsParsed(props.elements), activeElement]);
+  //   } else {
+  //     setElements([...getElementsParsed(props.elements)]);
+  //   }
+  // }, [activeElement]);
 
   const onInputDelete = (name: string) => {
     props?.onRemove(name, null);
