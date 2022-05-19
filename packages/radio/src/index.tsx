@@ -2,13 +2,13 @@
 
 import Label from '../../label/src';
 import ThemeContext from '../../styles/src/themes';
-import Itheme from '../../styles/types/itheme';
+import ITheme from '../../styles/types/itheme';
 import IRadio from '../types/iradio';
 import FormControl from './form-control.styled';
 import RadioStyled from './radio.styled';
 
 const Radio: React.FunctionComponent<IRadio> = (props: any) => {
-  const componentThemed = (theme: Itheme) => (
+  const componentThemed = (theme: ITheme) => (
     <FormControl isExistLabel={props?.label > '' && props?.label !== null}>
       <RadioStyled
         {...props}
@@ -19,6 +19,7 @@ const Radio: React.FunctionComponent<IRadio> = (props: any) => {
         backgroundColor={theme?.palette?.primary?.main}
         checked={props.checked}
         onChange={props.onChange}
+        isIconDisabled={props?.isIconDisabled}
       />
       <Label
         htmlFor={props.id}
@@ -39,4 +40,4 @@ const Radio: React.FunctionComponent<IRadio> = (props: any) => {
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default Radio;
+export default React.memo(Radio);

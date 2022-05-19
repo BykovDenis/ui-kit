@@ -4,8 +4,8 @@ const DeleteIcon: React.FunctionComponent<{ className: string, color: string }> 
   className,
   color,
 }: {
-  className: string,
-  color: string,
+  className?: string,
+  color?: string,
 }) => (
   <svg
     className={className}
