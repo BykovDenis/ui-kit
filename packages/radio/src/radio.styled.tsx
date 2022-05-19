@@ -10,7 +10,7 @@ const RadioStyled =
     display: none;
   & + label:before {
     box-sizing: border-box;
-    display: block;
+    display:  ${(props: IRadio) => (props.isIconDisabled === true ? 'none' : 'block')};
     content: '';
     height: 20px;
     width: 20px;
@@ -22,12 +22,12 @@ const RadioStyled =
     background-color: #ffffff;
   }  
   &:disabled + label:before {
-    display: block;
+    display:  ${(props: IRadio) => (props.isIconDisabled === true ? 'none' : 'block')};
     content: '';
     background-color: #bdbdbd;
   }
   &:checked + label:before {
-    display: block;
+    display:  ${(props: IRadio) => (props.isIconDisabled === true ? 'none' : 'block')};
     content: '';
     background-repeat: no-repeat;
     background-position: center center;
@@ -35,7 +35,7 @@ const RadioStyled =
   }
   &:checked + label:after {
     position: absolute;
-    display: block;
+    display:  ${(props: IRadio) => (props.isIconDisabled === true ? 'none' : 'block')};
     content: '';
     width: 8px;
     height: 8px;
@@ -45,7 +45,7 @@ const RadioStyled =
   }
   &:disabled:checked + label:after {
     position: absolute;
-    display: block;
+    display:  ${(props: IRadio) => (props.isIconDisabled === true ? 'none' : 'block')};
     content: '';
     width: 8px;
     height: 8px;

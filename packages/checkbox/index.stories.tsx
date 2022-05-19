@@ -13,6 +13,7 @@ export default {
     fontSize: { control: { type: 'select', options: [ 10, 12, 14, 16 ] }  },
     checked: { control: { type: 'select', options: [ true, false ] }, defaultValue: false  },
     indeterminate: { control: { type: 'select', options: [ true, false ] }, defaultValue: false  },
+    isIconDisabled: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
   },
   args: {
     id: 'label1',

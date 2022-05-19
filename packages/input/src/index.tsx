@@ -12,7 +12,7 @@ import ThemeContext from '../../styles/src/themes';
 import Itheme from '../../styles/types/itheme';
 import IInput from '../types/iinput';
 import ButtonDelete from './button-delete.styled';
-import DeleteIcon from './delete-icon';
+import Index from '../../icons-components/delete-icon';
 import InputStyled from './input.styled';
 import InputContainer from './input-container.styled';
 import InputElementContainer from './input-element-container.styled';
@@ -209,7 +209,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
               focusColor={focusColor}
               disabled={props?.disabled}
             >
-              <DeleteIcon color={colorInteractive} className="delete-icon" />
+              <Index color={colorInteractive} className="delete-icon" />
             </ButtonDelete>
           ) : null}
         </InputElementContainer>

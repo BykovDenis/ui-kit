@@ -11,13 +11,13 @@ exports[`Select renders correctly 1`] = `
       height="40"
     >
       <div
-        class="sc-iqseJM fvgLVV"
+        class="sc-iqseJM fVQZBA"
       >
         <label
-          class="sc-gKclnd hribFI"
+          class="sc-gKclnd eWsZnj"
           color="#333333"
           font-family="Roboto, Arial, sans-serif"
-          font-size="14"
+          font-size="12"
           font-weight="400"
           for="select"
         >
@@ -25,7 +25,7 @@ exports[`Select renders correctly 1`] = `
         </label>
       </div>
       <div
-        class="sc-bqiRlB dGggBa"
+        class="sc-bqiRlB lkRRzK"
       />
       <div
         class="sc-dkPtRN bAtqlE"
@@ -45,7 +45,7 @@ exports[`Select renders correctly 1`] = `
             id="select"
             name="select-custom"
             type="list-buttons"
-            value=""
+            value="List item 1"
           />
         </p>
         <div

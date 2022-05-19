@@ -18,7 +18,7 @@ export default {
 } as ComponentMeta<typeof Label>;
 
 const Template: ComponentStory<typeof Label> = (args: ILabel) => {
-  return <Label {...args} >{args.children}</Label>;
+  return <Label {...args}  backgroundColor="#ff0000">{args.children}</Label>;
 }
 
 export const NormalLabel = Template.bind({});

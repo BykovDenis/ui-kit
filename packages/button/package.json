@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/Button",
-  "version": "0.7.4",
+  "version": "0.8.6",
   "description": "A simple button component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -34,6 +34,6 @@
     "react": "^17.0.2",
     "rollup": "^2.61.1"
   },
-  "gitHead": "a2ac36151ab5f5943063b7f4ea2fcf2df4a73605",
+  "gitHead": "a790362543b24b82bbfb8f0e02b8e2b93331863c",
   "_id": "@sber-riski-cib-ui/Button@0.5.28"
 }

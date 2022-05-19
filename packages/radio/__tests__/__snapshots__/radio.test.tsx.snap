@@ -7,7 +7,7 @@ exports[`Radio renders correctly 1`] = `
   >
     <input
       checked=""
-      class="sc-dkPtRN gfAHJJ"
+      class="sc-dkPtRN WVbvl"
       color="#333333"
       id="radio1"
       name="radio1"
@@ -15,7 +15,7 @@ exports[`Radio renders correctly 1`] = `
       type="radio"
     />
     <label
-      class="sc-bdvvtL cMbKqj"
+      class="sc-bdvvtL ezxMLi"
       color="#333333"
       font-family="Roboto, Arial, sans-serif"
       font-size="14"
@@ -27,7 +27,7 @@ exports[`Radio renders correctly 1`] = `
     class="sc-gsDKAQ dieCOK"
   >
     <input
-      class="sc-dkPtRN gfAHJJ"
+      class="sc-dkPtRN WVbvl"
       color="#333333"
       id="radio2"
       name="radio1"
@@ -35,7 +35,7 @@ exports[`Radio renders correctly 1`] = `
       type="radio"
     />
     <label
-      class="sc-bdvvtL cMbKqj"
+      class="sc-bdvvtL ezxMLi"
       color="#333333"
       font-family="Roboto, Arial, sans-serif"
       font-size="14"
