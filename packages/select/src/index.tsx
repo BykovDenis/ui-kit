@@ -165,8 +165,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, [props.activeElement]);
 
   useEffect(() => {
-    const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
-    const elementsFiltered: Array<IOption> = getElementsFiltered(getElementsParsed(props.elements), labelUpperCase);
+    const elementsFiltered: Array<IOption> = getElementsParsed(props.elements);
     setElements(elementsFiltered);
     /** TODO ??? */
     setActiveElement({ label: label?.toString(), value: label?.toString() });
