@@ -1,7 +1,7 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
-import Select from  './src';
+import Select from  './dist';
 import ISelect from './types/iselect';
 import IOption from './types/ioption';
 
@@ -42,6 +42,7 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
 
   const onInputChange = (option: IOption) => {
     setValue(option.value?.toString());
+    console.log(option.value?.toString());
   }
 
   const onInputRemove = () => {
@@ -55,7 +56,7 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
     setElements(elementsState);
     setElements(elementsState);
     setElements(elementsState);
-  }, 6000)
+  }, 100)
 
   return <div style={{ width: '220px' }}>
     <Select
