@@ -90,6 +90,11 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       return;
     }
 
+    if (props?.onChange) {
+      const index: number = element?.dataset?.index ? parseInt(element?.dataset?.index, 10) : null;
+      props.onChange({ name: props.name, index, ...activeElement });
+    }
+
     if (activeElement?.label) {
       setActiveElement(activeElement);
     }
