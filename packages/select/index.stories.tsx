@@ -1,7 +1,7 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
-import Select from  './src';
+import Select from  './dist';
 import ISelect from './types/iselect';
 import IOption from './types/ioption';
 
@@ -16,126 +16,47 @@ export default {
   },
   args: {
     children: 'Label',
-    elements: [
-      {
-        label: 'Процентная кривая',
-        value: 'ForecastCurve'
-      },
-      {
-        label: 'Процентные кривые',
-        value: 'DiscountCurve'
-      },
-      {
-        label: 'Кредитная кривая',
-        value: 'CreditCurve'
-      },
-      {
-        label: 'Рейтинг контрагента',
-        value: 'CreditRank'
-      },
-      {
-        label: 'LGD',
-        value: 'Lgd'
-      },
-      {
-        label: 'Ставка резерва',
-        value: 'ReserveRate'
-      },
-      {
-        label: 'EUR :FRA CURVE',
-        value: 'EUR :FRA CURVE'
-      },
-      {
-        label: 'RUB: IRS CURVE',
-        value: 'RUB: IRS CURVE'
-      },
-      {
-        label: 'RUB: KEY RATE',
-        value: 'RUB: KEY RATE'
-      },
-      {
-        label: 'RUB: OFZ CURVE',
-        value: 'RUB: OFZ CURVE'
-      },
-      {
-        label: 'USD: LIBOR 3M',
-        value: 'USD: LIBOR 3M'
-      },
-      {
-        label: 'USD :LIBOR 1M',
-        value: 'USD :LIBOR 1M'
-      },
-      {
-        label: 'USD :LIBOR 6M',
-        value: 'USD :LIBOR 6M'
-      },
-      {
-        label: 'EUR :FX',
-        value: 'EUR :FX'
-      },
-      {
-        label: 'EUR: XCCY',
-        value: 'EUR: XCCY'
-      },
-      {
-        label: 'USD_MINFIN',
-        value: 'USD_MINFIN'
-      },
-      {
-        label: 'RUB :RUONIA OIS',
-        value: 'RUB :RUONIA OIS'
-      },
-      {
-        label: 'EUR/RUB',
-        value: 'EUR'
-      },
-      {
-        label: 'USD/RUB',
-        value: 'USD'
-      },
-      {
-        label: 'ADDON',
-        value: 'Addon'
-      },
-      {
-        label: 'ICS',
-        value: 'Ics'
-      },
-      {
-        label: 'IR - alpha',
-        value: 'IrAlpha'
-      },
-      {
-        label: 'IR - sigma',
-        value: 'IrSigma'
-      },
-      {
-        label: 'HZ - alpha',
-        value: 'HzAlpha'
-      },
-      {
-        label: 'HZ - sigma',
-        value: 'HzSigma'
-      }
-    ]
-    // elements: new Array(10).fill(null).map((element: null, index: number) => `List item ${index}`)
-    // elements: [{ label: 'One', value: '111' }, { label: 'Two', value: '222' }, { label: 'Three', value: '333' }, { label: 'Four', value: '444' }]
   },
 } as ComponentMeta<typeof Select>;
 
 const Template: ComponentStory<typeof Select> = (args: ISelect) => {
 
   // const [ value, setValue ] = useState('List item 6');
-  const [ value, setValue ] = useState<IOption>(null);
+  const [ value, setValue ] = useState<string>('loan_pricing');
+  const [elements, setElements] = useState([]);
+
+  const elementsState = [
+    'cibfv_2496',
+    'cibfv_2555',
+    'CIBFV_2555',
+    'cibfv_2575',
+    'denis',
+    'loan_pricing',
+    'mass_corrr',
+    'mass_corrr_2',
+    'rel2207',
+    'rel2208',
+    't05042022',
+    'T05042022',
+    'tenant_2021_11_30'];
 
   const onInputChange = (option: IOption) => {
-    setValue(option);
+    setValue(option.value?.toString());
+    console.log(option.value?.toString());
   }
 
   const onInputRemove = () => {
-    setValue({ label: null, value: null });
+    setValue(null);
     console.log('');
   }
+
+  setTimeout(() => {
+    setElements(elementsState);
+    setElements(elementsState);
+    setElements(elementsState);
+    setElements(elementsState);
+    setElements(elementsState);
+  }, 100)
 
   return <div style={{ width: '220px' }}>
     <Select
@@ -146,6 +67,7 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
       name="select-custom"
       id="select"
       activeElement={value}
+      elements={elements}
     >{args.children}</Select>
   </div>;
 }

@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/Select",
-  "version": "0.8.6",
+  "version": "0.8.9",
   "description": "Simple react component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -20,5 +20,5 @@
   "publishConfig": {
     "registry": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"
   },
-  "gitHead": "a790362543b24b82bbfb8f0e02b8e2b93331863c"
+  "gitHead": "e655b6fc8ab6b54dd9c72db8c3b1b0feb02c2de9"
 }

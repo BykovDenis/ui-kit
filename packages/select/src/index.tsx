@@ -55,6 +55,19 @@ function getActiveElementParsed(activeElement: string | number | IOption): IOpti
   }
 }
 
+function getElementsFiltered(elements: Array<IOption>, label: string) {
+  const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
+  return elements?.filter(
+    (element: IOption) => {
+      const labelParsed: string = element?.label?.toString();
+      const labelParsedUppercase: string = labelParsed?.toLocaleUpperCase();
+      if (labelParsed && label) {
+        return labelParsedUppercase?.indexOf(labelUpperCase) > -1
+      }
+      return true;
+    });
+}
+
 const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);
 
@@ -80,9 +93,12 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     if (props?.onChange) {
       const index: number = element?.dataset?.index ? parseInt(element?.dataset?.index, 10) : null;
       props.onChange({ name: props.name, index, ...activeElement });
-    } else {
+    }
+
+    if (activeElement?.label) {
       setActiveElement(activeElement);
     }
+    setLabel(activeElement?.label);
     setIsEdited(false);
     setIsVisibleList(!isVisibleList);
   };
@@ -136,12 +152,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   };
 
   useEffect(() => {
-    const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);
-    setActiveElement(activeElementParsed);
-    setLabel(activeElementParsed?.label);
-  }, [props.activeElement]);
-
-  useEffect(() => {
     document.addEventListener('mouseup', onMouseSelectUp);
     document.addEventListener('keyup', onKeyUp);
     return () => {
@@ -154,56 +164,36 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, []);
 
   useEffect(() => {
-    setElements(getElementsParsed(props.elements));
+    const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);
+    setActiveElement(activeElementParsed);
+    setLabel(activeElementParsed?.label);
+  }, [props.activeElement]);
+
+  useEffect(() => {
+    const elementsFiltered: Array<IOption> = getElementsParsed(props.elements);
+    setElements(elementsFiltered);
     /** TODO ??? */
     setActiveElement({ label: label?.toString(), value: label?.toString() });
   }, [props.elements]);
 
   useEffect(() => {
-    const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
-    const elementsFiltered: Array<IOption> = getElementsParsed(props.elements)?.filter(
-      (element: IOption) => {
-        const labelParsed: string = element?.label?.toString();
-        const labelParsedUppercase: string = labelParsed?.toLocaleUpperCase();
-        if (labelParsed && label) {
-          return labelParsedUppercase?.indexOf(labelUpperCase) > -1
-        }
-        return true;
-      });
-    setElements(elementsFiltered);
-    setIsFoundValue(elementsFiltered.length > 0);
-    setIsNewElement(elementsFiltered?.length === 0);
+    if (isEdited) {
+      const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
+      const elementsFiltered: Array<IOption> = getElementsFiltered(getElementsParsed(props.elements), labelUpperCase);
+      setElements(elementsFiltered);
+      setIsFoundValue(elementsFiltered.length > 0);
+      setIsNewElement(elementsFiltered?.length === 0);
+    } else {
+      setElements(getElementsParsed(props.elements));
+    }
   }, [label]);
-
-  useEffect(() => {
-    const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
-    const elementsFiltered: Array<IOption> = elements?.filter(
-      (element: IOption) => {
-        const labelParsed: string = element?.label?.toString();
-        if (labelParsed && label) {
-          return labelParsed?.toLocaleUpperCase()?.indexOf(labelUpperCase) > -1
-        }
-        return true;
-      });
-    setIsNewElement(elementsFiltered?.length === 0);
-    setIsFoundValue(true);
-  }, [elements]);
-
-  // useEffect(() => {
-  //   const isElementFounded: boolean = elements.some(
-  //     (element: IOption) => element?.label?.toString() === label?.toString()
-  //   );
-  //   if (!isElementFounded && activeElement?.label > '') {
-  //     setElements([...getElementsParsed(props.elements), activeElement]);
-  //   } else {
-  //     setElements([...getElementsParsed(props.elements)]);
-  //   }
-  // }, [activeElement]);
 
   const onInputDelete = (name: string) => {
     props?.onRemove(name, null);
     setIsVisibleList(false);
     setLabel('');
+    setIsEdited(false);
+    setActiveElement({ label: null, value: null });
     props.onChange({ name: name, label: null, value: null, index: null });
   };
 
