@@ -25,17 +25,18 @@ interface IDaysOfMonth {
 }
 
 const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth) => {
-  const daysElements: Array<number> =
-    props.countDaysIsMonth && props.numberDayInWeek !== null
-      ? new Array(props?.countDaysIsMonth + props?.numberDayInWeek)?.fill(null)
-      : null;
 
   const onDayChange = (evt: React.MouseEvent<HTMLButtonElement>) => {
     const element = evt.currentTarget;
     props.onDayChange(parseInt(element.name, 10));
   };
 
-  const numberDayInWeek: number = props.numberDayInWeek; // props.numberDayInWeek >= 6 ? 0 : props.numberDayInWeek;
+  const numberDayInWeek: number = props.numberDayInWeek === 0 ? 7 : props.numberDayInWeek;
+
+  const daysElements: Array<number> =
+    props.countDaysIsMonth && props.numberDayInWeek !== null
+      ? new Array(props?.countDaysIsMonth + numberDayInWeek)?.fill(null)
+      : null;
 
   const minDateParsed: IDateParser = props?.minDate !== null ? new DateParser(props?.minDate) : null;
   const maxDateParsed: IDateParser = props?.maxDate !== null ? new DateParser(props?.maxDate) : null;

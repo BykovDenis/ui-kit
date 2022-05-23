@@ -41,6 +41,7 @@ const ButtonStyled =
       props?.variant === OUTLINED ? `1px solid ${props.backgroundColor}` : '1px solid transparent'};
     width: ${(props: IButton) => `${props?.width}px` ?? 'initial'};
     height: ${(props: IButton) => `${props?.height}px` ?? 'initial'};
+    margin-top: -5px;
 
     &:focus {
       outline: 1px solid ${(props: IButton) => rgbToRgba(props?.focusColor, 0.3)};
