@@ -5,18 +5,29 @@ import IDateParser from './idate-parser';
 class DateParser implements IDateParser{
   private dateParsed: Date;
   private dateParamsSeparate: Array<number>;
+	private isValid: boolean;
   private readonly firstDayOnMonth: Date
   constructor(date?: string) {
     const dateElements: Array<string> = date?.split('.') ?? [];
-    this.dateParamsSeparate = dateElements?.map((element: string) => parseInt(element, 10)) ?? null;
+    this.dateParamsSeparate = dateElements?.map((element: string) => {
+      return element !== null && element !== undefined && element !== '' ? parseInt(element, 10) : 0
+    }) ?? null;
+    const year: number = this.dateParamsSeparate[2];
+    const month: number = this.dateParamsSeparate[1] - 1 <= 12 ? this.dateParamsSeparate[1] - 1 : null;
+    const days: number = this.dateParamsSeparate[0];
+		if (month === null) {
+			this.dateParsed = new Date(year, month, days);
+			this.isValid = false;
+		}
+		this.isValid = true;
     if (this.dateParamsSeparate?.length >= 2) {
-      this.dateParsed = new Date(this.dateParamsSeparate[2], this.dateParamsSeparate[1] - 1, this.dateParamsSeparate[0]);
+      this.dateParsed = new Date(year, month, days);
     } else {
       const date: Date = new Date();
       this.dateParsed = date;
-      this.dateParamsSeparate = [ date.getDate(), date.getMonth(), date.getFullYear()  ];
+      this.dateParamsSeparate = [ date.getDate(), date.getMonth() + 1, date.getFullYear()  ];
     }
-    this.firstDayOnMonth= new Date(this.dateParamsSeparate[2], this.dateParamsSeparate[1] - 1 , 1);
+    this.firstDayOnMonth= new Date(year, month, 1);
   }
   getParsedDate() {
     return this.dateParsed.toString();
@@ -86,6 +97,9 @@ class DateParser implements IDateParser{
   changeToThePreviousYear() {
     this.dateParsed = sub(this.dateParsed, { months: 12 })
   }
+	checkIsErrorDate() {
+		 return isValid;
+	}
 }
 
 export default DateParser;

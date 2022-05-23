@@ -135,6 +135,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt.target;
+    if (element?.value?.length < 10) {
+      setIsError(true);
+      props.onChange(props.name, element.value, true);
+      return;
+    }
     setIsExistValue(element?.value?.trim() > '');
     const regExpr: RegExp = new RegExp('(?<day>[0-9]{2})(?<month>[0-9]{2})(?<year>[0-9]{4})');
     const datePartitioned: { day: string, month: string, year: string } =
@@ -147,7 +152,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const dateParsedMilliseconds: number = dateParsed.getTimestamp();
     if (
       props.onChange &&
-      dateParsed.checkIsValidateDate() &&
+      !dateParsed.checkIsErrorDate() &&
       ((minDateMilliseconds && dateParsedMilliseconds >= minDateMilliseconds) || true) &&
       ((maxDateMilliseconds && dateParsedMilliseconds <= maxDateMilliseconds) || true)
     ) {
@@ -162,6 +167,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
         setIsMaxDateError(true);
       }
       setIsError(true);
+      props.onChange(props.name, element.value , true);
     }
   };
 
@@ -180,9 +186,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   };
 
   const months: Array<string> = props.locale === Locales.Ru || !props?.locale ? monthsElementRu : monthsElementEn;
+  const compareFn = (a, b) => a < b ? 1 : -1;
   const years: Array<string> = new Array(100)
     .fill((currentYearNumber ?? 0) - 50)
-    .map((element: number, index: number) => (element + index)?.toString());
+    .map((element: number, index: number) => (element + index)?.toString())
+    .sort(compareFn);
 
   const componentThemed: any = (theme: Itheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
