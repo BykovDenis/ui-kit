@@ -51,6 +51,7 @@ interface IInput {
   placeholder?: string;
   textAling?: string;
   inputRef?: React.MutableRefObject<HTMLInputElement>;
+  isNotRunDebounce?: boolean;
 }
 
 export default IInput;
