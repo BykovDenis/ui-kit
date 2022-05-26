@@ -23,7 +23,7 @@ import TextMessage from './text-message.styled';
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(props.value !== undefined && props?.value !== null ? props.value : '');
   const [evtObj, setEvtObject] = useState(null);
-  const [isNotRunDebounce, setIsRunDebounce] = useState(false);
+  const [isNotRunDebounce, setIsRunDebounce] = useState(props?.isNotRunDebounce || false);
   const [isFocus, setIsFocus] = useState(false);
   const [isChanging, setIsChanging] = useState(false);
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;

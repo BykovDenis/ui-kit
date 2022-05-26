@@ -21,6 +21,8 @@ interface IButton {
   variant?: 'contained' | 'outlined' | 'text';
   width?: number | string;
   draggable?: boolean;
+  onDragStart?: (evt: any) => void;
+  name?: string;
 }
 
 export default IButton;

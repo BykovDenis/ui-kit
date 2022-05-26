@@ -30,6 +30,8 @@ const Button: React.FunctionComponent = (props: any) => {
         focusColor={theme?.palette?.primary?.main}
         borderRadius={props?.borderRadius}
         draggable={props?.draggable}
+        onDragStart={props?.onDragStart}
+        name={props?.name}
       >
         {props.children}
       </ButtonStyled>
