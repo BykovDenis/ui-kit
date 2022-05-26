@@ -29,6 +29,7 @@ const Button: React.FunctionComponent = (props: any) => {
         dataset={props?.dataset}
         focusColor={theme?.palette?.primary?.main}
         borderRadius={props?.borderRadius}
+        draggable={props?.draggable}
       >
         {props.children}
       </ButtonStyled>
