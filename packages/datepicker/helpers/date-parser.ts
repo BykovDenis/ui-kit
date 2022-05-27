@@ -98,7 +98,7 @@ class DateParser implements IDateParser{
     this.dateParsed = sub(this.dateParsed, { months: 12 })
   }
 	checkIsErrorDate() {
-		 return isValid;
+		 return this.isValid;
 	}
 }
 
