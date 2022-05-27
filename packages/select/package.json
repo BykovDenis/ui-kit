@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/Select",
-  "version": "0.8.9",
+  "version": "0.8.10",
   "description": "Simple react component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
