@@ -32,10 +32,10 @@ pipeline {
         stage('Root packages installing') {
             tools
             {
-                nodejs 'v17.5.0-linux-x64'
+                nodejs 'v16.3.0-linux-x64'
             }
             steps {
-                nodejs('v17.5.0-linux-x64') {
+                nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
