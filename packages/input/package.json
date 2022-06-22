@@ -20,5 +20,8 @@
   "publishConfig": {
     "registry": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"
   },
-  "gitHead": "3a2a46ea514077ad16a0795079475db6d333cb98"
+  "gitHead": "3a2a46ea514077ad16a0795079475db6d333cb98",
+  "devDependencies": {
+    "rollup-plugin-cleaner": "^1.0.0"
+  }
 }

@@ -31,7 +31,8 @@
   "devDependencies": {
     "@lopatnov/rollup-plugin-uglify": "^2.1.2",
     "@types/styled-components": "^5.1.18",
-    "rollup": "^2.61.1"
+    "rollup": "^2.61.1",
+    "rollup-plugin-cleaner": "^1.0.0"
   },
   "gitHead": "3a2a46ea514077ad16a0795079475db6d333cb98",
   "_id": "@sber-riski-cib-ui/Button@0.5.28"
