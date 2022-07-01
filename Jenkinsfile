@@ -16,6 +16,26 @@ def warningPath = './packages/warning-panel'
 def switcherPath = './packages/switcher';
 def stylesPath = './packages/styles';
 
+def secret_name = 'CREDIT_RISKS_CREDENTIALS'
+def jenkins_secrets_path = 'CI00747472_CI00756401/A/LOANPRIC/JEN/SECRET/KV'
+def vault_url = 'https://ift.secrets.sigma.sbrf.ru'
+def secman_configuration = [ vaultUrl: vault_url, vaultCredentialId: 'secman_jenkins_approle', ngineVersion: 1, skipSslVerification: true, timeout: 60]
+def secrets = [
+        [path: "${jenkins_secrets_path}/CREDIT_RISKS_CREDENTIALS", engineVersion: 1, secretValues: [
+            [vaultKey: 'Username', envVar: 'CORPORATE_NUGET_FEED_USR'],
+            [vaultKey: 'Password', envVar: 'CORPORATE_NUGET_FEED_PSW']]],
+        [path: "${jenkins_secrets_path}/CAB-SA-CI000101", engineVersion: 1, secretValues: [
+            [vaultKey: 'username', envVar: 'CI_TUZ_USERNAME'],
+            [vaultKey: 'password', envVar: 'CI_TUZ_PASSWORD']]],
+        [path: "${jenkins_secrets_path}/CAB-SA-CI000101", engineVersion: 1, secretValues: [
+            [vaultKey: 'username', envVar: 'CD_TUZ_USERNAME'],
+            [vaultKey: 'password', envVar: 'CD_TUZ_PASSWORD']]],
+        [path: "${jenkins_secrets_path}/SBER_OSC", engineVersion: 1, secretValues: [
+            [vaultKey: 'username', envVar: 'SBER_OSC_USERNAME'],
+            [vaultKey: 'token', envVar: 'SBER_OSC_TOKEN'],
+            [vaultKey: 'token_base64', envVar: 'SBER_OSC_TOKEN_BASE64']]]
+
+
 pipeline {
     agent {
         node {
@@ -35,468 +55,491 @@ pipeline {
                 nodejs 'v16.3.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        sh 'npm -v'
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Root packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                            dir("${uiKitPath}") {
-                                script {
-                                    echo 'Core packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                        }
+                script {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets){
+
+                        def npmrc_token = "${CI_TUZ_USERNAME}:${CI_TUZ_PASSWORD}".bytes.encodeBase64().toString()
+                        def npmrc_name = 'NPMRC_CONFIG'
+
+                        def npmrc_content = """\
+    //sberosc.sigma.sbrf.ru/repo/npm/:_authToken=${SBER_OSC_TOKEN_BASE64}
+    registry = https://sberosc.sigma.sbrf.ru/repo/npm/
+    @sber-riski-cib-ui:registry = https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/
+    strict-ssl=false
+    always-auth=true
+    _auth=${npmrc_token}
+    """
+
+                        writeFile(file: npmrc_name, text: npmrc_content)
+                        def npmrc_path = sh(returnStdout: true, script: "readlink -f ${npmrc_name}")
+
+
+
+
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         sh 'npm -v'
+//                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Root packages installing'
+//                                     sh 'npm i'
+//                                 }
+//                             }
+//                             dir("${uiKitPath}") {
+//                                 script {
+//                                     echo 'Core packages installing'
+//                                     sh 'npm i'
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
                     }
                 }
             }
         }
-        stage('Datepicker deploy') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${datepickerPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/datepicker/__tests__'
-                                }
-                            }
-                            dir("${datepickerPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Checkbox deploy') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${checkboxPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/checkbox/__tests__'
-                                }
-                            }
-                            dir("${checkboxPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Button deploy') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${buttonPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/button/__tests__'
-                                }
-                            }
-                            dir("${buttonPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('IconButton deploy') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${iconButtonPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/icon-button/__tests__'
-                                }
-                            }
-                            dir("${iconButtonPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Input deploy') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${inputPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/input/__tests__'
-                                }
-                            }
-                            dir("${inputPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Label deploy') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${labelPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/label/__tests__'
-                                }
-                            }
-                            dir("${labelPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('ListItem deploy') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${listItemPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/list-item/__tests__'
-                                }
-                            }
-                            dir("${listItemPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('List deploy') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${listPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/list/__tests__'
-                                }
-                            }
-                            dir("${listPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Radio deploy') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${radioPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/radio/__tests__'
-                                }
-                            }
-                            dir("${radioPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Select deploy') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${selectPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/select/__tests__'
-                                }
-                            }
-                            dir("${selectPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Textfield deploy') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${textFieldPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/switcher/__tests__'
-                                }
-                            }
-                            dir("${textFieldPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Switcher deploy') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${switcherPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Styles theme deploy') {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${stylesPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage("UI Kit PUBLISH") {
-            tools
-            {
-                nodejs 'v16.3.0-linux-x64'
-            }
-            steps {
-                nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        dir("${uiKitPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                                sh """
-                                    npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/
-                                """
-                            }
-                        }
-                    }
-                }
-            }
-        }
+//         stage('Datepicker deploy') {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                             dir("${datepickerPath}") {
+//                                 script {
+//                                     echo 'Packages installing'
+//                                     sh 'npm i'
+//                                 }
+//                             }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/datepicker/__tests__'
+//                                 }
+//                             }
+//                             dir("${datepickerPath}") {
+//                                 script {
+//                                     echo 'Building'
+//                                     sh 'npm run build'
+//                                     echo 'Clean'
+//                                     sh 'npm run clean-node-modules'
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage('Checkbox deploy') {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                             dir("${checkboxPath}") {
+//                                 script {
+//                                     echo 'Packages installing'
+//                                     sh 'npm i'
+//                                 }
+//                             }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/checkbox/__tests__'
+//                                 }
+//                             }
+//                             dir("${checkboxPath}") {
+//                                 script {
+//                                     echo 'Building'
+//                                     sh 'npm run build'
+//                                     echo 'Clean'
+//                                     sh 'npm run clean-node-modules'
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage('Button deploy') {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                             dir("${buttonPath}") {
+//                                 script {
+//                                     echo 'Packages installing'
+//                                     sh 'npm i'
+//                                 }
+//                             }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/button/__tests__'
+//                                 }
+//                             }
+//                             dir("${buttonPath}") {
+//                                 script {
+//                                     echo 'Building'
+//                                     sh 'npm run build'
+//                                     echo 'Clean'
+//                                     sh 'npm run clean-node-modules'
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage('IconButton deploy') {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                             dir("${iconButtonPath}") {
+//                                 script {
+//                                     echo 'Packages installing'
+//                                     sh 'npm i'
+//                                 }
+//                             }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/icon-button/__tests__'
+//                                 }
+//                             }
+//                             dir("${iconButtonPath}") {
+//                                 script {
+//                                     echo 'Building'
+//                                     sh 'npm run build'
+//                                     echo 'Clean'
+//                                     sh 'npm run clean-node-modules'
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage('Input deploy') {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                             dir("${inputPath}") {
+//                                 script {
+//                                     echo 'Packages installing'
+//                                     sh 'npm i'
+//                                 }
+//                             }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/input/__tests__'
+//                                 }
+//                             }
+//                             dir("${inputPath}") {
+//                                 script {
+//                                     echo 'Building'
+//                                     sh 'npm run build'
+//                                     echo 'Clean'
+//                                     sh 'npm run clean-node-modules'
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage('Label deploy') {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                             dir("${labelPath}") {
+//                                 script {
+//                                     echo 'Packages installing'
+//                                     sh 'npm i'
+//                                 }
+//                             }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/label/__tests__'
+//                                 }
+//                             }
+//                             dir("${labelPath}") {
+//                                 script {
+//                                     echo 'Building'
+//                                     sh 'npm run build'
+//                                     echo 'Clean'
+//                                     sh 'npm run clean-node-modules'
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage('ListItem deploy') {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                             dir("${listItemPath}") {
+//                                 script {
+//                                     echo 'Packages installing'
+//                                     sh 'npm i'
+//                                 }
+//                             }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/list-item/__tests__'
+//                                 }
+//                             }
+//                             dir("${listItemPath}") {
+//                                 script {
+//                                     echo 'Building'
+//                                     sh 'npm run build'
+//                                     echo 'Clean'
+//                                     sh 'npm run clean-node-modules'
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage('List deploy') {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                             dir("${listPath}") {
+//                                 script {
+//                                     echo 'Packages installing'
+//                                     sh 'npm i'
+//                                 }
+//                             }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/list/__tests__'
+//                                 }
+//                             }
+//                             dir("${listPath}") {
+//                                 script {
+//                                     echo 'Building'
+//                                     sh 'npm run build'
+//                                     echo 'Clean'
+//                                     sh 'npm run clean-node-modules'
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage('Radio deploy') {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                             dir("${radioPath}") {
+//                                 script {
+//                                     echo 'Packages installing'
+//                                     sh 'npm i'
+//                                 }
+//                             }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/radio/__tests__'
+//                                 }
+//                             }
+//                             dir("${radioPath}") {
+//                                 script {
+//                                     echo 'Building'
+//                                     sh 'npm run build'
+//                                     echo 'Clean'
+//                                     sh 'npm run clean-node-modules'
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage('Select deploy') {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                             dir("${selectPath}") {
+//                                 script {
+//                                     echo 'Packages installing'
+//                                     sh 'npm i'
+//                                 }
+//                             }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/select/__tests__'
+//                                 }
+//                             }
+//                             dir("${selectPath}") {
+//                                 script {
+//                                     echo 'Building'
+//                                     sh 'npm run build'
+//                                     echo 'Clean'
+//                                     sh 'npm run clean-node-modules'
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage('Textfield deploy') {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                             dir("${textFieldPath}") {
+//                                 script {
+//                                     echo 'Packages installing'
+//                                     sh 'npm i'
+//                                 }
+//                             }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/switcher/__tests__'
+//                                 }
+//                             }
+//                             dir("${textFieldPath}") {
+//                                 script {
+//                                     echo 'Building'
+//                                     sh 'npm run build'
+//                                     echo 'Clean'
+//                                     sh 'npm run clean-node-modules'
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage('Switcher deploy') {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                             dir("${switcherPath}") {
+//                                 script {
+//                                     echo 'Packages installing'
+//                                     sh 'npm i'
+//                                     echo 'Building'
+//                                     sh 'npm run build'
+//                                     echo 'Clean'
+//                                     sh 'npm run clean-node-modules'
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage('Styles theme deploy') {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                             dir("${stylesPath}") {
+//                                 script {
+//                                     echo 'Packages installing'
+//                                     sh 'npm i'
+//                                     echo 'Building'
+//                                     sh 'npm run build'
+//                                     echo 'Clean'
+//                                     sh 'npm run clean-node-modules'
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         stage("UI Kit PUBLISH") {
+//             tools
+//             {
+//                 nodejs 'v16.3.0-linux-x64'
+//             }
+//             steps {
+//                 nodejs('v16.3.0-linux-x64') {
+//                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+//                         dir("${uiKitPath}") {
+//                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+//                                 sh """
+//                                     npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/
+//                                 """
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
     }
     post {
         always {
