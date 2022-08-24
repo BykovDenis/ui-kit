@@ -22,6 +22,7 @@ interface ISelect extends IInput, ILabel {
   onChange?: (option: IOption) => void;
   textAlign?: string;
   variant?: 'contained' | 'text' | 'outlined';
+  isMulti?: boolean;
 }
 
 export default ISelect;
