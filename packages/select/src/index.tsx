@@ -322,7 +322,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                     </ListItem>
                   );
                 })}
-              {isNewElement && props?.isCreatable && activeElement?.label > '' && (
+              {isNewElement && props?.isCreatable && label > '' && (
                 <ListItem
                   type="button"
                   key={`list-item-new`}
