@@ -15,6 +15,7 @@ def textFieldPath = './packages/textfield'
 def warningPath = './packages/warning-panel'
 def switcherPath = './packages/switcher';
 def stylesPath = './packages/styles';
+def formControlPath = './packages/form-control';
 
 pipeline {
     agent {
@@ -464,6 +465,30 @@ pipeline {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${switcherPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('FormControl deploy') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${formControlPath}") {
                                 script {
                                     echo 'Packages installing'
                                     sh 'npm i'
