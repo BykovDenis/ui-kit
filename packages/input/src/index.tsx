@@ -113,7 +113,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
         setInputValue(props?.value);
       }
     }
-    props?.onFocus(evt);
+    if (props?.onFocus) {
+      props?.onFocus(evt);
+    }
   };
 
   const onInputBlur = (evt: any) => {

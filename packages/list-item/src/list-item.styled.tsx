@@ -10,7 +10,7 @@ const ListItem =
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;  
+    justify-content: ${(props: IListElement) => (props.justifyContent ? 'flex-start' : 'center')};  
     width: 100%;
     height: ${(props: IListElement) => props.height}px;
     color: ${(props: IListElement) => props.color};

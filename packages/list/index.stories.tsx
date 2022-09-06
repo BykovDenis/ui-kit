@@ -1,10 +1,12 @@
 import {action} from '@storybook/addon-actions';
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
+import ITheme from '../styles/types/itheme';
+import { themes } from '../styles/src/themes'
 
 import ListItem from '../list-item/src';
 import List from  './src';
-import Ilist from './types/ilist';
+import IList from './types/ilist';
 
 export default {
   title: 'Components/List',
@@ -18,13 +20,20 @@ export default {
   },
 } as ComponentMeta<typeof List>;
 
-const Template: ComponentStory<typeof List> = (props: Ilist) => {
+const themeCustom: ITheme = { ...themes.loanPricing, fontFamily: `${themes.loanPricing.fontFamily}, 'SBSansInterface", "Open Sans", "Arial", sans-serif'` };
+
+export const ReactThemeContext = React.createContext(themeCustom);
+
+const Template: ComponentStory<typeof List> = (props: IList) => {
 
   const elements: Array<string> = ['List item 1', 'List item 2', 'List item 3', 'List item 4', 'List item 5'];
 
   return <div style={{ width: '220px' }}>
-    <List type="list-buttons">
-      {elements.map((element: string, index: number) => (<ListItem onClick={action('clicked')} type="text" key={index}>{element}</ListItem>))}
+    <List type="list" ReactThemeContext={ReactThemeContext}>
+      {elements.map((element: string, index: number) => (<ListItem onClick={action('clicked')} ReactThemeContext={ReactThemeContext} type="text" key={index}             type="text"
+                                                                   justifyContent="flex-start"
+                                                                   ReactThemeContext={ReactThemeContext}
+                                                                   color="var(--primary-main-color)">{element}</ListItem>))}
     </List>
   </div>
 }
