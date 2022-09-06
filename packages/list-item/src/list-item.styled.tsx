@@ -22,7 +22,7 @@ const ListItem =
     background-color: ${(props: IListElement) => props.backgroundColor || 'transparent'};
     border-radius: 4px;
     &:hover {
-      background-color: ${(props: IListElement) => props.hoverBackgroundColor};
+      background-color: ${(props: IListElement) => props.hoverBackgroundColor || 'transparent'};
     }
     &:after {
       display: block;
@@ -33,10 +33,10 @@ const ListItem =
       transform: translateX(-50%);
       height: 1px;
       content: '';
-      background-color: ${(props: IListElement) => props.underLineColor};
+      background-color: ${(props: IListElement) => props.underLineColor || 'transparent'};
     }
     &:hover:after {
-      background-color: ${(props: IListElement) => props.hoverColor};
+      background-color: ${(props: IListElement) => props.hoverColor || 'transparent'};
     }
   `;
 

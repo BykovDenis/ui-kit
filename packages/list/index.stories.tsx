@@ -29,11 +29,15 @@ const Template: ComponentStory<typeof List> = (props: IList) => {
   const elements: Array<string> = ['List item 1', 'List item 2', 'List item 3', 'List item 4', 'List item 5'];
 
   return <div style={{ width: '220px' }}>
-    <List type="list" ReactThemeContext={ReactThemeContext}>
-      {elements.map((element: string, index: number) => (<ListItem onClick={action('clicked')} ReactThemeContext={ReactThemeContext} type="text" key={index}             type="text"
-                                                                   justifyContent="flex-start"
-                                                                   ReactThemeContext={ReactThemeContext}
-                                                                   color="var(--primary-main-color)">{element}</ListItem>))}
+    <List type="list" >
+      {elements.map((element: string, index: number) => (
+        <ListItem
+          key={index}
+          onClick={action('clicked')}
+          type="text"
+        >
+          {element}
+        </ListItem>))}
     </List>
   </div>
 }
