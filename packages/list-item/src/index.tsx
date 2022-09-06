@@ -36,8 +36,8 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
           color={props?.color || color}
           height={props?.height || HEIGHT}
           textAlign={props?.textAlign || TEXT_ALIGN}
-          hoverBackgroundColor={props.hoverBackgroundColor || hoverBackgroundColor}
-          activeBackgroundColor={activeBackgroundColor}
+          hoverBackgroundColor={props?.hoverBackgroundColor || hoverBackgroundColor}
+          activeBackgroundColor={props?.hoverBackgroundColor || activeBackgroundColor}
           type={props?.type || listItemType}
           backgroundColor={props?.backgroundColor || backgroundColor}
           onClick={props?.onClick}
@@ -49,13 +49,13 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
       </ListItemContainer>
     ) : (
       <ListItemStyled
-        color={color}
+        color={props?.color || color}
         height={props?.height || HEIGHT}
         textAlign={props?.textAlign || TEXT_ALIGN}
         underLineColor={underLineColor}
-        hoverColor={hoverColor}
-        hoverBackgroundColor={hoverBackgroundColor}
-        activeBackgroundColor={activeBackgroundColor}
+        hoverColor={props?.hoverColor || hoverColor}
+        hoverBackgroundColor={props?.hoverBackgroundColor || hoverBackgroundColor}
+        activeBackgroundColor={props?.hoverBackgroundColor || activeBackgroundColor}
         type={props?.type || listItemType}
         backgroundColor={props?.backgroundColor || backgroundColor}
         className={props?.className}
