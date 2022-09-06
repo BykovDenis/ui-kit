@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/ListItem",
-  "version": "0.8.14",
+  "version": "0.8.15",
   "description": "List item",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
