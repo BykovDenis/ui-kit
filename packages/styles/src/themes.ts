@@ -24,7 +24,7 @@ export const themes: IThemes = {
     fontFamily: 'Roboto, Arial, sans-serif',
     baseFontSize: 14,
     mainBlackColor: 'rgba(0,0,0,0.85)',
-    mainGrayColor: '#bdbdbd',
+    mainGrayColor: '#e3e3e3',
     mainWhiteColor: '#ffffff',
     mainBackgroundColor: '#ffffff',
   },
