@@ -36,7 +36,7 @@ exports[`Select renders correctly 1`] = `
         >
           <input
             autocomplete="off"
-            class="sc-gsDKAQ idQxEx"
+            class="sc-gsDKAQ gKsPSV"
             color="#ffffff"
             font-family="Roboto, Arial, sans-serif"
             font-size="14"
@@ -54,7 +54,7 @@ exports[`Select renders correctly 1`] = `
           name="select-custom"
         />
         <button
-          class="sc-bdvvtL gosEVA delete-button"
+          class="sc-bdvvtL kbcJko delete-button"
         >
           <svg
             class="delete-icon"
