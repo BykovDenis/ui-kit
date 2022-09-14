@@ -34,6 +34,6 @@
     "rollup": "^2.61.1",
     "rollup-plugin-cleaner": "^1.0.0"
   },
-  "gitHead": "45bdb2da4520b2919f009d1542b1e0006045eab3",
+  "gitHead": "9b6e4c5fd8e59b87f765a42c6a28123dc5b295b9",
   "_id": "@sber-riski-cib-ui/Button@0.5.28"
 }
