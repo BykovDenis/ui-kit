@@ -115,6 +115,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       setCurrentDayNumber(null);
       setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
       setCountDaysIsMonth(dateParsed?.getCountDaysInMonth());
+      setIsError(false);
     } else {
       setIsError(true);
     }
