@@ -14,8 +14,9 @@ interface IDateParser {
   getParsedDate: () => string;
   getSplittedParamsByDate?: (date: string) => Array<number>;
   getTimestamp: () => number;
-  checkIsErrorDate: () => boolean;
+  checkIsNotExistErrorDate: () => boolean;
   locale?: string;
+  changeParsedDate: (date: string) => void;
 }
 
 export default IDateParser;
