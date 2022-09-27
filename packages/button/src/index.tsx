@@ -27,7 +27,7 @@ const Button: React.FunctionComponent = (props: any) => {
         fontFamily={theme?.fontFamily}
         theme={theme}
         dataset={props?.dataset}
-        focusColor={theme?.palette?.primary?.main}
+        focusColor={props.focusColor || backgroundColor}
         borderRadius={props?.borderRadius}
         draggable={props?.draggable}
         onDragStart={props?.onDragStart}

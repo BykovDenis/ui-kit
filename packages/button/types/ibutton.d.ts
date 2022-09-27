@@ -7,7 +7,7 @@ interface IButton {
   children?: any;
   className?: any;
   color?: string;
-  colorTheme?: string;
+  colorTheme?: 'normal' | 'warning';
   dataset?: any;
   disabled?: boolean;
   focusColor?: string;
