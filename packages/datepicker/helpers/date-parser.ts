@@ -6,7 +6,7 @@ class DateParser implements IDateParser{
   private dateParsed: Date;
   private dateParamsSeparate: Array<number>;
   isValid: boolean;
-  private readonly firstDayOnMonth: Date
+  private firstDayOnMonth: Date
   constructor(date?: string) {
     this.changeParsedDate(date);
     // this.dateParamsSeparate = dateElements?.map((element: string) => {
