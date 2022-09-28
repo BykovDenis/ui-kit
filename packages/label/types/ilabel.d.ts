@@ -15,7 +15,7 @@ interface ILabel {
   isReadOnly?: boolean;
   tabIndex?: string;
   theme?: any;
-  width?: number;
+  width?: number | string;
   backgroundColor?: string;
 }
 

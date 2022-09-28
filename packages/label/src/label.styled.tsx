@@ -20,7 +20,8 @@ const Label =
       line-height: 0.7;
       white-space: nowrap;
       font-weight: ${(props: ILabel) => props.fontWeight}; 
-      width: ${(props: ILabel) => (props.width ? `${props.width}px` : '100%')};  
+      width: ${(props: ILabel) =>
+        props.width ? (typeof props.width === 'string' ? props.width : `${props.width}px`) : '100%'};  
       background-color: ${(props: ILabel) => (props.backgroundColor ? props.backgroundColor : 'inherit')};
       &:focus {
         outline: 1px solid ${(props: ILabel) => rgbToRgba(props?.focusColor, 0.3)};
