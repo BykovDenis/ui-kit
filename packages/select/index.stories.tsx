@@ -1,7 +1,7 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
-import Select from  './dist';
+import Select from  './src';
 import ISelect from './types/iselect';
 import IOption from './types/ioption';
 
@@ -43,13 +43,13 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
     console.log('');
   }
 
-  setTimeout(() => {
-    setElements(elementsState);
-    setElements(elementsState);
-    setElements(elementsState);
-    setElements(elementsState);
-    setElements(elementsState);
-  }, 100)
+  // setTimeout(() => {
+  //   setElements(elementsState);
+  //   setElements(elementsState);
+  //   setElements(elementsState);
+  //   setElements(elementsState);
+  //   setElements(elementsState);
+  // }, 100)
 
   return <div style={{ width: '220px' }}>
     <Select
@@ -59,7 +59,7 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
       name="select-custom"
       id="select"
       activeElement={value}
-      elements={elements}
+      elements={elementsState}
     >{args.children}</Select>
   </div>;
 }

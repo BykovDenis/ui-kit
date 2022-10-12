@@ -14,6 +14,7 @@ import SelectHeader from './select-header.styled';
 import SelectIndicator from './select-indicator.styled';
 import SelectListContainer from './select-list-container.styled';
 import IOption from '../types/ioption';
+import isNotEmptyString from '../../helpers/is-not-empty-string';
 
 const DEFAULT_HEIGHT = 40;
 const TEXT_ALIGN = 'center';
@@ -172,7 +173,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   useEffect(() => {
     const elementsFiltered: Array<IOption> = getElementsParsed(props.elements);
     setElements(elementsFiltered);
-    /** TODO ??? */
     setActiveElement({ label: label?.toString(), value: label?.toString() });
   }, [props.elements]);
 
@@ -185,6 +185,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       setIsNewElement(elementsFiltered?.length === 0);
     } else {
       setElements(getElementsParsed(props.elements));
+    }
+    if (!isNotEmptyString((label))) {
+      setActiveElement(activeElementParsed);
+      setLabel(activeElementParsed.label);
     }
   }, [label]);
 
@@ -202,6 +206,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     const elementParsed: string = element.value.trim();
     if (elementParsed === '') {
       setIsVisibleList(true);
+      setLabel(activeElementParsed?.label);
     }
     setIsEdited(true);
   };
