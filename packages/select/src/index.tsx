@@ -186,10 +186,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     } else {
       setElements(getElementsParsed(props.elements));
     }
-    if (!isNotEmptyString(label)) {
-      setActiveElement(activeElementParsed);
-      setLabel(activeElementParsed?.label);
-    }
   }, [label]);
 
   const onInputDelete = (name: string) => {
@@ -230,6 +226,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
     const onInputBlur = () => {
       setIsFocus(false);
+      if (!isNotEmptyString(label)) {
+        setActiveElement(activeElementParsed);
+        setLabel(activeElementParsed?.label);
+      }
     };
 
     const indicatorColor: string = !props?.isReadOnly

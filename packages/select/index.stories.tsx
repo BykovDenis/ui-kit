@@ -1,7 +1,7 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
-import Select from  './dist';
+import Select from  './src';
 import ISelect from './types/iselect';
 import IOption from './types/ioption';
 
