@@ -181,14 +181,14 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
       const elementsFiltered: Array<IOption> = getElementsFiltered(getElementsParsed(props.elements), labelUpperCase);
       setElements(elementsFiltered);
-      setIsFoundValue(elementsFiltered.length > 0);
+      setIsFoundValue(elementsFiltered?.length > 0);
       setIsNewElement(elementsFiltered?.length === 0);
     } else {
       setElements(getElementsParsed(props.elements));
     }
-    if (!isNotEmptyString((label))) {
+    if (!isNotEmptyString(label)) {
       setActiveElement(activeElementParsed);
-      setLabel(activeElementParsed.label);
+      setLabel(activeElementParsed?.label);
     }
   }, [label]);
 
