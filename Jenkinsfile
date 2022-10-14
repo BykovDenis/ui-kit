@@ -27,7 +27,7 @@ pipeline {
     environment {
         PROJECT_NAME = 'Riski react UI Kit'
         OWNER_NAME = 'Denis Bykov'
-    }n
+    }
     options { timeout(time: 60, unit: 'MINUTES') }
     stages {
         stage('Root packages installing') {
