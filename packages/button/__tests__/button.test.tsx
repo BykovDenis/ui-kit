@@ -1,16 +1,13 @@
 import React from 'react';
-import { themes } from '../../styles/src';
+import getNewReactThemeContext from '../../styles/src';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import Button from '../src';
+import theme from '../../helpers/theme';
 
 it('Button renders correctly', () => {
-  const themeCustom: any = {
-    ...themes.loanPricing,
-    fontFamily: 'SBSansInterface", "Open Sans", "Arial", sans-serif',
-  };
-  const ReactThemeContext: any = React.createContext(themeCustom);
+  const ReactThemeContext = getNewReactThemeContext(theme);
 
   const props: any = {
     disabled: false,
@@ -34,7 +31,7 @@ it('Button renders correctly', () => {
   };
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={themeCustom}>
+    <ReactThemeContext.Provider value={theme}>
       <Button {...props}>Hello world!</Button>
     </ReactThemeContext.Provider>
   );

@@ -1,18 +1,15 @@
 import React from 'react';
-import { themes } from '../../styles/src';
+import getNewReactThemeContext from '../../styles/src';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import TextField from '../src';
 import ITextField from '../types/itext-field';
 import Variants from '../../enums/variants';
+import theme from '../../helpers/theme';
 
 it('Input renders correctly', () => {
-  const themeCustom: any = {
-    ...themes.loanPricing,
-    fontFamily: 'SBSansInterface", "Open Sans", "Arial", sans-serif',
-  };
-  const ReactThemeContext: any = React.createContext(themeCustom);
+  const ReactThemeContext = getNewReactThemeContext(theme);
 
   const props: ITextField = {
     isSeparateNumberFormat: false,
@@ -34,7 +31,7 @@ it('Input renders correctly', () => {
   };
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={themeCustom}>
+    <ReactThemeContext.Provider value={theme}>
       <TextField {...props} />
     </ReactThemeContext.Provider>
   );

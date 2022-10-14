@@ -31,7 +31,7 @@ exports[`Checkbox renders correctly 1`] = `
         >
           <input
             autocomplete="off"
-            class="sc-dkPtRN jpSXPc"
+            class="sc-dkPtRN bggapA"
             color="#333333"
             font-family="Roboto, Arial, sans-serif"
             font-size="14"
@@ -46,7 +46,7 @@ exports[`Checkbox renders correctly 1`] = `
           color="rgba(0,0,0,0.85)"
         />
         <button
-          class="sc-gsDKAQ cwWBfF delete-button"
+          class="sc-gsDKAQ iLjgyZ delete-button"
         >
           <svg
             class="delete-icon"

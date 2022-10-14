@@ -4,6 +4,8 @@ import React, {Fragment } from 'react';
 
 import Radio from  './src/index';
 import Iradio from "./types/iradio";
+import theme from '../helpers/theme';
+import getNewReactThemeContext from '../styles/src';
 
 export default {
   title: 'Components/Radio',
@@ -26,10 +28,12 @@ const Template: ComponentStory<typeof Radio> = (args: Iradio) => {
     action('checked');
   }
 
-  return (<Fragment>
+  const ReactThemeContext = getNewReactThemeContext(theme);
+
+  return (<ReactThemeContext.Provider value={theme}><Fragment>
     <Radio {...args} id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} tabIndex="0" />
     <Radio {...args} id="radio2" name="radio1" onChange={onCheckboxCheck}  tabIndex="1" />
-  </Fragment>)
+  </Fragment></ReactThemeContext.Provider>)
 }
 
 export const NormalRadio = Template.bind({});

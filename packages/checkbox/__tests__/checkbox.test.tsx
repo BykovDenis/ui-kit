@@ -1,17 +1,12 @@
 import React from 'react';
-import { themes } from '../../styles/src';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import getNewReactThemeContext from '../../styles/src';
 
 import Checkbox from '../src';
+import theme from '../../helpers/theme';
 
 it('Checkbox renders correctly', () => {
-  const themeCustom: any = {
-    ...themes.loanPricing,
-    fontFamily: 'SBSansInterface", "Open Sans", "Arial", sans-serif',
-  };
-  const ReactThemeContext: any = React.createContext(themeCustom);
-
   const props: any = {
     disabled: false,
     checked: false,
@@ -22,8 +17,10 @@ it('Checkbox renders correctly', () => {
     tabIndex: '1',
   };
 
+  const ReactThemeContext: any = getNewReactThemeContext(theme);
+
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={themeCustom}>
+    <ReactThemeContext.Provider value={theme}>
       <Checkbox {...props} tabIndex="1" />
     </ReactThemeContext.Provider>
   );

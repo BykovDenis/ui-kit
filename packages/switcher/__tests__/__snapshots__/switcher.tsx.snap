@@ -8,7 +8,7 @@ exports[`Switcher renders correctly 1`] = `
   >
     <input
       checked=""
-      class="sc-gsDKAQ jbEMPJ"
+      class="sc-gsDKAQ bRlChS"
       color="#ffffff"
       data-name="Native"
       id="custom-switcher-element1-Native"
@@ -22,7 +22,7 @@ exports[`Switcher renders correctly 1`] = `
       Native
     </label>
     <input
-      class="sc-gsDKAQ dNDzZ"
+      class="sc-gsDKAQ hyoEnu"
       color="#ffffff"
       data-name="RUB"
       id="custom-switcher-element2-RUB"

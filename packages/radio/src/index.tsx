@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 
 import Label from '../../label/src';
-import ThemeContext from '../../styles/src/themes';
+import { ReactThemeContextConsumer } from '../../styles/src';
 import ITheme from '../../styles/types/itheme';
 import IRadio from '../types/iradio';
 import FormControl from './form-control.styled';
@@ -35,9 +35,12 @@ const Radio: React.FunctionComponent<IRadio> = (props: any) => {
     </FormControl>
   );
 
-  const Consumer: any = props.ReactThemeContext ? props.ReactThemeContext.Consumer : ThemeContext.Consumer;
+  if (!ReactThemeContextConsumer) {
+    console.error('You need an initialization provider');
+    return null;
+  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
 };
 
 export default React.memo(Radio);

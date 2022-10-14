@@ -1,17 +1,14 @@
 import React from 'react';
-import { themes } from '../../styles/src';
+import getNewReactThemeContext from '../../styles/src';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ISelect from '../types/iselect';
 import Variants from '../../enums/variants';
 import Select from '../src';
+import theme from '../../helpers/theme';
 
 it('Select renders correctly', () => {
-  const themeCustom: any = {
-    ...themes.loanPricing,
-    fontFamily: 'SBSansInterface", "Open Sans", "Arial", sans-serif',
-  };
-  const ReactThemeContext: any = React.createContext(themeCustom);
+  const ReactThemeContext = getNewReactThemeContext(theme);
 
   const props: ISelect = {
     activeElement: 'List item 1',
@@ -32,7 +29,7 @@ it('Select renders correctly', () => {
   };
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={themeCustom}>
+    <ReactThemeContext.Provider value={theme}>
       <Select {...props} />
     </ReactThemeContext.Provider>
   );

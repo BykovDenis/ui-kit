@@ -1,16 +1,13 @@
 import React from 'react';
-import { themes } from '../../styles/src';
+import getNewReactThemeContext from '../../styles/src';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import Datepicker from '../src/index';
+import theme from '../../helpers/theme';
 
 it('Checkbox renders correctly', () => {
-  const themeCustom: any = {
-    ...themes.loanPricing,
-    fontFamily: 'SBSansInterface", "Open Sans", "Arial", sans-serif',
-  };
-  const ReactThemeContext: any = React.createContext(themeCustom);
+  const ReactThemeContext = getNewReactThemeContext(theme);
 
   const props: any = {
     type: 'button',
@@ -24,7 +21,7 @@ it('Checkbox renders correctly', () => {
   };
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={themeCustom}>
+    <ReactThemeContext.Provider value={theme}>
       <Datepicker {...props} />
     </ReactThemeContext.Provider>
   );

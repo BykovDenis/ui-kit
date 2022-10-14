@@ -3,10 +3,10 @@
 exports[`ListItem renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="sc-dkPtRN fXiYMp"
+    class="sc-dkPtRN gACcOO"
   >
     <button
-      class="sc-gsDKAQ jfMKsF"
+      class="sc-gsDKAQ jwjYKx"
       color="#333333"
       height="30"
       type="button"

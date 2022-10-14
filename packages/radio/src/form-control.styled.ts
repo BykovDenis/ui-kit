@@ -5,7 +5,7 @@ interface IFormControlStylish {
 }
 
 const FormControl =
-  styled.p <
+  styled.div <
   IFormControlStylish >
   `
   display: flex;

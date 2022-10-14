@@ -54,7 +54,7 @@ exports[`Select renders correctly 1`] = `
           name="select-custom"
         />
         <button
-          class="sc-bdvvtL kbcJko delete-button"
+          class="sc-bdvvtL gtNVLY delete-button"
         >
           <svg
             class="delete-icon"

@@ -101,7 +101,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     setEvtObject(null);
     setIsChanging(false);
     if (props?.onRemove) {
-      props?.onRemove(props?.name, '', evt);
+      props.onRemove(props?.name, '', evt);
     }
   };
 
