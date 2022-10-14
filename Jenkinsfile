@@ -27,7 +27,7 @@ pipeline {
     environment {
         PROJECT_NAME = 'Riski react UI Kit'
         OWNER_NAME = 'Denis Bykov'
-    }
+    }n
     options { timeout(time: 60, unit: 'MINUTES') }
     stages {
         stage('Root packages installing') {
@@ -39,6 +39,7 @@ pipeline {
                 nodejs('v16.3.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
+                        sh 'node -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${rootPath}") {
                                 script {
