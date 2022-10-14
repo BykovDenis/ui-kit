@@ -2,12 +2,12 @@
 
 exports[`Radio renders correctly 1`] = `
 <DocumentFragment>
-  <p
+  <div
     class="sc-gsDKAQ dieCOK"
   >
     <input
       checked=""
-      class="sc-dkPtRN WVbvl"
+      class="sc-dkPtRN cgNhGa"
       color="#333333"
       id="radio1"
       name="radio1"
@@ -22,12 +22,12 @@ exports[`Radio renders correctly 1`] = `
       font-weight="400"
       for="radio1"
     />
-  </p>
-  <p
+  </div>
+  <div
     class="sc-gsDKAQ dieCOK"
   >
     <input
-      class="sc-dkPtRN WVbvl"
+      class="sc-dkPtRN cgNhGa"
       color="#333333"
       id="radio2"
       name="radio1"
@@ -42,6 +42,6 @@ exports[`Radio renders correctly 1`] = `
       font-weight="400"
       for="radio2"
     />
-  </p>
+  </div>
 </DocumentFragment>
 `;
