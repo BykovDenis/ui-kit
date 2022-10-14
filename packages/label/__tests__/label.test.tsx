@@ -1,24 +1,21 @@
 import React from 'react';
-import { themes } from '../../styles/src';
+import getNewReactThemeContext from '../../styles/src';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import Label from '../src';
+import theme from '../../helpers/theme';
 
 it('Input renders correctly', () => {
-  const themeCustom: any = {
-    ...themes.loanPricing,
-    fontFamily: 'SBSansInterface", "Open Sans", "Arial", sans-serif',
-  };
-  const ReactThemeContext: any = React.createContext(themeCustom);
-
   const props: any = {
     error: false,
     children: 'Label',
   };
 
+  const ReactThemeContext = getNewReactThemeContext(theme);
+
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={themeCustom}>
+    <ReactThemeContext.Provider value={theme}>
       <Label {...props} />
     </ReactThemeContext.Provider>
   );
