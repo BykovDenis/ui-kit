@@ -1,7 +1,6 @@
 import React from 'react';
-import { ITheme } from 'styles/dist';
+import ITheme from '../types/itheme';
 import { themes } from './themes';
-
 
 let ReactThemeContextConsumer: any;
 
