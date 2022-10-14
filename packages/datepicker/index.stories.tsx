@@ -4,6 +4,8 @@ import React, {useState} from 'react';
 import Datepicker from './src';
 import Idatepicker from './types/idatepicker';
 import Locales from '../enums/locales';
+import theme from '../helpers/theme';
+import getNewReactThemeContext from '../styles/src';
 
 export default {
   title: 'Components/Datepicker',
@@ -25,10 +27,13 @@ const Template: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
     setValue(value);
   }
 
-  return <div style={{ width: '250px' }}>
+  const ReactThemeContext = getNewReactThemeContext(theme);
+
+  return <ReactThemeContext.Provider value={theme}>
+  <div style={{ width: '250px' }}>
     <Datepicker {...args} variant="outlined" value={value} locale={Locales.Ru} onChange={onDatepickerValueChange} />
   </div>
-
+  </ReactThemeContext.Provider>
 }
 
 export const NormalDatepicker = Template.bind({});

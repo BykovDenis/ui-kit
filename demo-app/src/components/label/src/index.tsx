@@ -1,10 +1,9 @@
 import React from 'react';
 
 import ITheme from '../../styles/types/itheme';
+import { ReactConsumer } from '../../styles/src';
 import ILabel from '../types/ilabel';
 import LabelStyled from './label.styled';
-import { ReactThemeContextConsumer } from '../../styles/src';
-
 const FONT_WEIGHT_REGULAR = 400;
 
 const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
@@ -33,12 +32,12 @@ const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
     );
   };
 
-  if (!ReactThemeContextConsumer) {
+  if (!ReactConsumer) {
     console.error('You need an initialization provider');
     return null;
   }
 
-  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
+  return <ReactConsumer>{componentThemed}</ReactConsumer>;
 };
 
-export default React.memo(Label);
+export default Label;

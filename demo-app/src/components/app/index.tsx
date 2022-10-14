@@ -1,28 +1,27 @@
-import React, { Fragment, useState } from 'react';
-import Button from '@sber-riski-cib-ui/core/button';
-import SberRiskiReactUiProvider from '@sber-riski-cib-ui/core';
-import ButtonLocal from '../button';
-import { themes } from '../styles/src/themes';
+import React, { createContext, Fragment, useState } from 'react';
 import './index.css';
-import Input from '../input1/dist';
+
+import Label from '../label/src';
+import Button from '@sber-riski-cib-ui/core/button';
+import TextField from '@sber-riski-cib-ui/core/textfield';
+import Select from '@sber-riski-cib-ui/core/select';
+import FormControl from '@sber-riski-cib-ui/core/form-control';
+import getNewContext from '../styles/src';
+import theme from '../../themes';
 
 const App: React.FunctionComponent = () => {
   const [value, setValue] = useState('2');
 
-  const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    const element = evt?.target;
-    setValue(element?.value);
+  const onValueChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const element = evt.target;
+    setValue(element.value);
   };
 
-  const ThemeContext = React.createContext(themes.light);
-
-  const onBtnClick = () => {
-    console.log('Clicked');
-  };
+  const ReactThemeContext = getNewContext(theme);
 
   return (
     <Fragment>
-      <SberRiskiReactUiProvider>
+      <ReactThemeContext.Provider value={theme}>
         <div>
           <p>Tools Kit UI</p>
           <table>
@@ -34,27 +33,48 @@ const App: React.FunctionComponent = () => {
             </thead>
             <tbody>
               <tr>
-                <td col-span="2">Base button</td>
+                <td col-span="2">Label</td>
               </tr>
               <tr>
+                <td>This is a label</td>
                 <td>
-                  <Button ReactThemeContext={ThemeContext}>Click me!</Button>
-                </td>
-                <td>
-                  <ButtonLocal onClick={onBtnClick} backgroundColor="#ff0000" color="green" className="button-pink">
-                    Click me !!!
-                  </ButtonLocal>
+                  <FormControl margin="0 0 5px 0">
+                    <Label>This is a label</Label>
+                  </FormControl>
+                  <Label error={true}>This is a label</Label>
                 </td>
               </tr>
               <tr>
-                <td colSpan={2}>
-                  <Input name="input1" />
+                <td>Button</td>
+                <td>
+                  <FormControl margin="0 0 15px 0">
+                    <Button colorTheme="warning">Click me!</Button>
+                  </FormControl>
+                  <Button>Click me!</Button>
+                </td>
+              </tr>
+              <tr>
+                <td>Text field</td>
+                <td>
+                  <TextField
+                    id="text-field"
+                    name="textField"
+                    value={value}
+                    onChange={onValueChange}
+                    label="Some textfield"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Select component</td>
+                <td>
+                  <Select id="text-field" name="textField" activeElement="blue" elements={['red', 'blue', 'green']} />
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-      </SberRiskiReactUiProvider>
+      </ReactThemeContext.Provider>
     </Fragment>
   );
 };

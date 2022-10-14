@@ -4,6 +4,8 @@ import React, {useState} from 'react';
 import Select from  './src';
 import ISelect from './types/iselect';
 import IOption from './types/ioption';
+import theme from '../helpers/theme';
+import getNewReactThemeContext from '../styles/src';
 
 export default {
   title: 'Components/Select',
@@ -51,7 +53,11 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
   //   setElements(elementsState);
   // }, 100)
 
-  return <div style={{ width: '220px' }}>
+
+  const ReactThemeContext = getNewReactThemeContext(theme);
+
+  return <ReactThemeContext.Provider value={theme}>
+  <div style={{ width: '220px' }}>
     <Select
       {...args}
       onChange={onInputChange}
@@ -61,7 +67,8 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
       activeElement={value}
       elements={elementsState}
     >{args.children}</Select>
-  </div>;
+  </div>
+  </ReactThemeContext.Provider>;
 }
 
 export const NormalSelect = Template.bind({});

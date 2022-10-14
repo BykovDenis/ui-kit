@@ -3,6 +3,8 @@ import React, {useState} from 'react';
 
 import Input from  './src/index';
 import IInput from './types/iinput';
+import theme from '../helpers/theme';
+import getNewReactThemeContext from '../styles/src';
 
 export default {
   title: 'Components/Input',
@@ -41,9 +43,14 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
     setValue('');
   }
 
-  return (<div style={{ width: '190px' }}>
-    <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove}  />
-  </div>)
+  const ReactThemeContext = getNewReactThemeContext(theme);
+
+  return (
+    <ReactThemeContext.Provider value={theme}>
+      <div style={{ width: '190px' }}>
+        <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove}  />
+      </div>
+    </ReactThemeContext.Provider>)
 }
 
 export const NormalInput = Template.bind({});

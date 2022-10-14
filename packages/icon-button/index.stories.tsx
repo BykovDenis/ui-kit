@@ -5,6 +5,8 @@ import React from 'react';
 import IconButton from  './src/index';
 import IIconButton from './types/iicon-button'
 import Index from '../icons-components/add-icon';
+import theme from '../helpers/theme';
+import getNewReactThemeContext from '../styles/src';
 
 export default {
   title: 'Components/IconButton',
@@ -22,7 +24,12 @@ export default {
 } as ComponentMeta<typeof IconButton>;
 
 const Template: ComponentStory<typeof IconButton> = (args: IIconButton) => {
-  return <IconButton  {...args} name="button1" onClick={action('clicked')} ><Index color="#ffffff" /></IconButton>;
+
+  const ReactThemeContext = getNewReactThemeContext(theme);
+
+  return <ReactThemeContext.Provider value={theme}>
+    <IconButton  {...args} name="button1" onClick={action('clicked')} ><Index color="#ffffff" /></IconButton>
+  </ReactThemeContext.Provider>
 }
 
 export const NormalIconButton = Template.bind({});

@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 
 import { COLOR_THEME } from '../../constants';
-import ThemeContext from '../../styles/src/themes';
-import Itheme from '../../styles/types/itheme';
+import { ReactThemeContextConsumer } from '../../styles/src';
+import ITheme from '../../styles/types/itheme';
 import ListType from '../enum/list-type';
 import IList from '../types/ilist';
 import ListStyled from './list.styled';
@@ -10,7 +10,7 @@ import ListDivStyled from './list-div.styled';
 
 const List: React.FunctionComponent<IList> = (props: IList) => {
   const listRef = useRef();
-  const componentThemed: any = (theme: Itheme) => {
+  const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string =
       props?.colorTheme === COLOR_THEME || !props.colorTheme
         ? theme?.palette?.primary?.main
@@ -56,9 +56,12 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
     );
   };
 
-  const Consumer: any = props.ReactThemeContext ? props.ReactThemeContext.Consumer : ThemeContext.Consumer;
+  if (!ReactThemeContextConsumer) {
+    console.error('You need an initialization provider');
+    return null;
+  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
 };
 
 export default List;

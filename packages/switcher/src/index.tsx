@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ThemeContext from '../../styles/src/themes';
-import Itheme from '../../styles/types/itheme';
+import { ReactThemeContextConsumer } from '../../styles/src';
+import ITheme from '../../styles/types/itheme';
 import FormSwitcher from './form-switcher';
 import InputSwitcher from './input-switcher';
 import LabelSwitcher from './label-switcher';
@@ -21,7 +21,7 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
     }
   };
 
-  const componentThemed = (theme: Itheme) => {
+  const componentThemed = (theme: ITheme) => {
     const color: string = theme?.palette?.baseButtonFontColor;
     const backgroundColor: string = theme?.palette?.primary?.main;
 
@@ -56,17 +56,13 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
       </FormSwitcher>
     );
   };
-  //
-  // <SwitcherComponent
-  //   {...props}
-  //   color={theme?.palette?.baseButtonFontColor}
-  //   backgroundColor={theme?.palette?.primary?.main}
-  // />
-  // )}
 
-  const Consumer: any = props.ReactThemeContext ? props.ReactThemeContext.Consumer : ThemeContext.Consumer;
+  if (!ReactThemeContextConsumer) {
+    console.error('You need an initialization provider');
+    return null;
+  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
 };
 
 Switcher.defaultProps = {

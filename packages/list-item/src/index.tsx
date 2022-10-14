@@ -1,12 +1,12 @@
 import React from 'react';
 
-import ThemeContext from '../../styles/src/themes';
-import Itheme from '../../styles/types/itheme';
 import ListItemType from '../enums/list-item-type';
 import IListElement from '../types/ilist-element';
 import ListItemStyled from './list-item.styled';
 import ListItemButtonStyled from './list-item-button.styled';
 import ListItemContainer from './list-item-container.styled';
+import { ReactThemeContextConsumer } from '../../styles/src';
+import ITheme from '../../styles/types/itheme';
 
 const HEIGHT: number = 30;
 const TEXT_ALIGN = 'center';
@@ -14,7 +14,7 @@ const TEXT_ALIGN = 'center';
 const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) => {
   const listItemType: string = ListItemType.Text;
 
-  const componentThemed: any = (theme: Itheme) => {
+  const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string =
       props?.colorTheme === 'normal' || !props.colorTheme ? theme?.mainWhiteColor : theme?.palette?.secondary?.main;
 
@@ -66,9 +66,12 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
     );
   };
 
-  const Consumer: any = props.ReactThemeContext ? props.ReactThemeContext.Consumer : ThemeContext.Consumer;
+  if (!ReactThemeContextConsumer) {
+    console.error('You need an initialization provider');
+    return null;
+  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
 };
 
 export default ListItem;

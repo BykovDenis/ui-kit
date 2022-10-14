@@ -1,5 +1,4 @@
 interface ISwitcher {
-  ReactThemeContext?: any;
   activeElement?: string;
   backgroundColor?: string;
   classes?: any;

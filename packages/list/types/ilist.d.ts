@@ -3,7 +3,6 @@ import React from 'react';
 import IListElement from '../../list-item/types/ilist-element';
 
 interface IList {
-  ReactThemeContext?: any;
   children?: any;
   className?: string;
   colorTheme?: string;

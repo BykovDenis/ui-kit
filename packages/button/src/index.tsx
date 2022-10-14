@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ThemeContext from '../../styles/src/themes';
 import ITheme from '../../styles/types/itheme';
+import { ReactThemeContextConsumer } from '../../styles/src';
 import ButtonStyled from './button.styled';
 
 const Button: React.FunctionComponent = (props: any) => {
@@ -38,9 +38,12 @@ const Button: React.FunctionComponent = (props: any) => {
     );
   };
 
-  const Consumer: any = props.ReactThemeContext ? props.ReactThemeContext.Consumer : ThemeContext.Consumer;
+  if (!ReactThemeContextConsumer) {
+    console.error('You need an initialization provider');
+    return null;
+  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
 };
 
 export default React.memo(Button);

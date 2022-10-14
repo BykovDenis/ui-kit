@@ -3,10 +3,12 @@ import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import ITheme from '../styles/types/itheme';
 import { themes } from '../styles/src/themes'
+import getNewReactThemeContext from '../styles/src';
 
 import ListItem from '../list-item/src';
 import List from  './src';
 import IList from './types/ilist';
+import theme from '../helpers/theme';
 
 export default {
   title: 'Components/List',
@@ -27,8 +29,10 @@ export const ReactThemeContext = React.createContext(themeCustom);
 const Template: ComponentStory<typeof List> = (props: IList) => {
 
   const elements: Array<string> = ['List item 1', 'List item 2', 'List item 3', 'List item 4', 'List item 5'];
+  const ReactThemeContext = getNewReactThemeContext(theme);
 
-  return <div style={{ width: '220px' }}>
+  return <ReactThemeContext.Provider value={theme}>
+    <div style={{ width: '220px' }}>
     <List type="list" >
       {elements.map((element: string, index: number) => (
         <ListItem
@@ -40,6 +44,7 @@ const Template: ComponentStory<typeof List> = (props: IList) => {
         </ListItem>))}
     </List>
   </div>
+  </ReactThemeContext.Provider>
 }
 
 export const NormalList = Template.bind({});
