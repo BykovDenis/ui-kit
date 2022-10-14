@@ -1,15 +1,14 @@
 import React from 'react';
 
 import Label from '../../label/src';
-import ThemeContext from '../../styles/src/themes';
-import Itheme from '../../styles/types/itheme';
+import ITheme from '../../styles/types/itheme';
 import ICheckbox from '../types/icheckbox';
 import CheckboxStyled from './checkbox.styled';
 import FormControl from './form-control.styled';
 import { ReactThemeContextConsumer } from '../../styles/src';
 
 const Checkbox: React.FunctionComponent<ICheckbox> = (props: ICheckbox) => {
-  const componentThemed: any = (theme: Itheme) => (
+  const componentThemed: any = (theme: ITheme) => (
     <FormControl isExistLabel={props?.label > '' && props?.label !== null}>
       <CheckboxStyled
         {...props}
