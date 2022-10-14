@@ -1,7 +1,6 @@
 import React from 'react';
 
 interface ICheckbox {
-  ReactThemeContext?: any;
   backgroundColor?: string;
   checked?: boolean;
   className?: any;

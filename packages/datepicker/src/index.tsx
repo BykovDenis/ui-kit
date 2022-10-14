@@ -8,8 +8,6 @@ import Input from '../../input/src';
 import Label from '../../label/src';
 import Select from '../../select/src';
 import IOption from '../types/ioption';
-import ThemeContext from '../../styles/src/themes';
-import Itheme from '../../styles/types/itheme';
 import monthsElementEn from '../dictionaries/months-en';
 import monthsElementRu from '../dictionaries/months-ru';
 import DateParser from '../helpers/date-parser';
@@ -23,6 +21,8 @@ import DaysOfWeek from './days-of-week';
 import LabelContainer from './label-container.styled';
 import MonthsYearsRuleContainer from './months-years-rule-container.styled';
 import DatepickerButtonNavigate from './datepicker-button-navigate';
+import { ReactThemeContextConsumer } from '../../styles/src';
+import ITheme from '../../styles/types/itheme';
 
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
@@ -200,7 +200,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     .map((element: number, index: number) => (element + index)?.toString())
     .sort(compareFn);
 
-  const componentThemed: any = (theme: Itheme) => {
+  const componentThemed: any = (theme: ITheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
 
@@ -446,9 +446,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     );
   };
 
-  const Consumer: any = props.ReactThemeContext ? props.ReactThemeContext.Consumer : ThemeContext.Consumer;
+  if (!ReactThemeContextConsumer) {
+    console.error('You need an initialization provider');
+    return null;
+  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
 };
 
 Datepicker.defaultProps = {

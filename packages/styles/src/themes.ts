@@ -1,4 +1,3 @@
-import React from 'react';
 import IThemes from '../types/ithemes';
 
 export const themes: IThemes = {
@@ -38,11 +37,11 @@ export const themes: IThemes = {
         bestLighter: 'rgba(66, 165, 245, 0.05)',
       },
       secondary: {
-        main: 'rgb(255, 23, 68)',
-        light: 'rgba(255, 23, 68, 0.6)',
-        lighter: 'rgba(255, 23, 68, 0.3)',
-        moreLighter: 'rgba(255, 23, 68, 0.15)',
-        bestLighter: 'rgba(255, 23, 68, 0.05)',
+        main: 'rgb(246, 11, 10)',
+        light: 'rgba(246, 11, 10, 0.6)',
+        lighter: 'rgba(246, 11, 10, 0.3)',
+        moreLighter: 'rgba(246, 11, 10, 0.15)',
+        bestLighter: 'rgba(246, 11, 10, 0.05)',
       },
       baseButtonFontColor: '#ffffff',
       baseFontColor: '#333333',
@@ -81,7 +80,3 @@ export const themes: IThemes = {
     mainBackgroundColor: '#ffffff',
   },
 };
-
-const ThemeContext: any = React.createContext(themes.loanPricing);
-
-export default ThemeContext;

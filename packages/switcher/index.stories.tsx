@@ -1,8 +1,10 @@
 import { action } from '@storybook/addon-actions';
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
+import getNewReactThemeContext from '../styles/src';
 
 import Switcher from  './src/index';
+import theme from '../helpers/theme';
 
 export default {
   title: 'Components/Switcher',
@@ -34,8 +36,12 @@ const Template2: ComponentStory<typeof Switcher> = () => {
   const element1: string = 'Native';
   const element2: string = 'RUB';
 
-  return <div style={{ display: 'inline-block' }}><Switcher disabled={true} element1={element1} element2={element2}
-    activeElement={activeElement}/></div>;
+  const ReactThemeContext = getNewReactThemeContext(theme);
+
+  return <ReactThemeContext.Provider value={theme}>
+    <div style={{ display: 'inline-block' }}><Switcher disabled={true} element1={element1} element2={element2}
+    activeElement={activeElement}/></div>
+  </ReactThemeContext.Provider>;
 }
 
 

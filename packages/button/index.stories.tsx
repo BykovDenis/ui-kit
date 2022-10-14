@@ -1,9 +1,11 @@
 import { action } from '@storybook/addon-actions';
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
+import getNewReactThemeContext from '../styles/src';
 
 import Button from  './src/index';
 import IButton from './types/ibutton'
+import theme from '../helpers/theme';
 
 export default {
   title: 'Components/Button',
@@ -21,7 +23,12 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args: IButton) => {
-  return <Button  {...args} name="button1" onClick={action('clicked')} >{args.children}</Button>;
+
+  const ReactThemeContext = getNewReactThemeContext(theme);
+
+  return <ReactThemeContext.Provider value={theme}>
+    <Button  {...args} name="button1" onClick={action('clicked')} >{args.children}</Button>
+  </ReactThemeContext.Provider>
 }
 
 export const NormalButton = Template.bind({});

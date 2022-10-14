@@ -6,6 +6,7 @@ import Itheme from '../../styles/types/itheme';
 import ICheckbox from '../types/icheckbox';
 import CheckboxStyled from './checkbox.styled';
 import FormControl from './form-control.styled';
+import { ReactThemeContextConsumer } from '../../styles/src';
 
 const Checkbox: React.FunctionComponent<ICheckbox> = (props: ICheckbox) => {
   const componentThemed: any = (theme: Itheme) => (
@@ -36,9 +37,7 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: ICheckbox) => {
     </FormControl>
   );
 
-  const Consumer: any = props.ReactThemeContext ? props.ReactThemeContext.Consumer : ThemeContext.Consumer;
-
-  return <Consumer>{componentThemed}</Consumer>;
+  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
 };
 
 export default Checkbox;

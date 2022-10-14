@@ -8,7 +8,6 @@ import {
   TIMEOUT,
   TYPE_TEXT
 } from '../../constants';
-import ThemeContext from '../../styles/src/themes';
 import Itheme from '../../styles/types/itheme';
 import IInput from '../types/iinput';
 import ButtonDelete from './button-delete.styled';
@@ -18,6 +17,7 @@ import InputContainer from './input-container.styled';
 import InputElementContainer from './input-element-container.styled';
 import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
+import { ReactThemeContextConsumer } from '../../styles/src';
 
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
@@ -100,7 +100,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     setInputValue('');
     setEvtObject(null);
     setIsChanging(false);
-    props?.onRemove(props?.name, '', evt);
+    if (props?.onRemove) {
+      props?.onRemove(props?.name, '', evt);
+    }
   };
 
   const onInputFocus = (evt?: any) => {
@@ -229,9 +231,12 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     );
   };
 
-  const Consumer: any = props.ReactThemeContext ? props.ReactThemeContext.Consumer : ThemeContext.Consumer;
+  if (!ReactThemeContextConsumer) {
+    console.error('You need an initialization provider');
+    return null;
+  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
 };
 
 export default React.memo(Input);

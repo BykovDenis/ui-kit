@@ -1,5 +1,4 @@
 interface IListElement {
-  ReactThemeContext?: any;
   activeBackgroundColor?: string;
   backgroundColor?: string;
   children: any;

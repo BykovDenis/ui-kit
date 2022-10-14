@@ -1,5 +1,4 @@
 interface IButton {
-  ReactThemeContext?: any;
   backgroundColor?: string;
   backgroundImage?: string;
   baseFontSize?: string;

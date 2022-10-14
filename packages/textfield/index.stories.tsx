@@ -2,7 +2,9 @@ import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
 import TextField from './src';
-import ItextField from './types/itext-field';
+import ITextField from './types/itext-field';
+import theme from '../helpers/theme';
+import getNewReactThemeContext from '../styles/src';
 
 export default {
   title: 'Components/TextField',
@@ -26,9 +28,11 @@ export default {
   },
 } as ComponentMeta<typeof TextField>;
 
-const Template: ComponentStory<typeof TextField> = (args: ItextField) => {
+const Template: ComponentStory<typeof TextField> = (args: ITextField) => {
 
   const [ value, setValue ] = useState('');
+
+  const ReactThemeContext = getNewReactThemeContext(theme);
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
@@ -40,16 +44,18 @@ const Template: ComponentStory<typeof TextField> = (args: ItextField) => {
     setValue(value);
   }
 
-  return <div style={{ width: '190px' }}>
-    <TextField
-      {...args}
-      id="textfield1"
-      name="textfield1"
-      value={value}
-      onChange={onInputChange}
-      onRemove={onInputDelete}
-    />
-  </div>
+  return <ReactThemeContext.Provider value={theme}>
+    <div style={{ width: '190px' }}>
+      <TextField
+        {...args}
+        id="textfield1"
+        name="textfield1"
+        value={value}
+        onChange={onInputChange}
+        onRemove={onInputDelete}
+      />
+    </div>
+  </ReactThemeContext.Provider>
 }
 
 export const NormalTextField = Template.bind({});
