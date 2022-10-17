@@ -20,7 +20,7 @@ def formControlPath = './packages/form-control';
 pipeline {
     agent {
         node {
-            label 'tkles-jenci0057' //Сборка должна происходить на централизованных агентах из пула Linux_Default
+            label 'Linux_Default' //Сборка должна происходить на централизованных агентах из пула Linux_Default
         }
     }
 
