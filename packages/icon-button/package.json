@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/IconButton",
-  "version": "0.9.0-alpha.0",
+  "version": "0.9.0",
   "description": "The icon button component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
