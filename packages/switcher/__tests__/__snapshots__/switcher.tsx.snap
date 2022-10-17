@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switcher renders correctly 1`] = `
+<DocumentFragment>
+  <form
+    class="sc-bdvvtL IjPKj"
+    method="get"
+  >
+    <input
+      checked=""
+      class="sc-gsDKAQ bRlChS"
+      color="#ffffff"
+      data-name="Native"
+      id="custom-switcher-element1-Native"
+      name="custom-switcher"
+      type="radio"
+    />
+    <label
+      class="sc-dkPtRN XvgAA"
+      for="custom-switcher-element1-Native"
+    >
+      Native
+    </label>
+    <input
+      class="sc-gsDKAQ hyoEnu"
+      color="#ffffff"
+      data-name="RUB"
+      id="custom-switcher-element2-RUB"
+      name="custom-switcher"
+      type="radio"
+    />
+    <label
+      class="sc-dkPtRN XvgAA"
+      for="custom-switcher-element2-RUB"
+    >
+      RUB
+    </label>
+  </form>
+</DocumentFragment>
+`;
