@@ -20,7 +20,7 @@ def formControlPath = './packages/form-control';
 pipeline {
     agent {
         node {
-            label 'tkles-jenci0057' //Сборка должна происходить на централизованных агентах из пула Linux_Default
+            label 'Linux_Default' //Сборка должна происходить на централизованных агентах из пула Linux_Default tkles-jenci0057
         }
     }
 
@@ -51,6 +51,30 @@ pipeline {
                                 script {
                                     echo 'Core packages installing'
                                     sh 'npm i'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Styles theme deploy') {
+            tools
+            {
+                nodejs 'v16.3.0-linux-x64'
+            }
+            steps {
+                nodejs('v16.3.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${stylesPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
                                 }
                             }
                         }
