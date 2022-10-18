@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="sc-bdvvtL hEKwgJ"
+    color="#ffffff"
+    font-family="Roboto, Arial, sans-serif"
+    font-size="14"
+    type="button"
+  >
+    Hello world!
+  </button>
+</DocumentFragment>
+`;
