@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Itheme from '../../styles/types/itheme';
 import IconButtonStyled from './icon-button.styled';
 
 const IconButton: React.FunctionComponent = (props: any) => {
+  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+
+  useEffect(() => {
+    setConsumer(globalThis.ReactThemeContextConsumer);
+  }, [globalThis.ReactThemeContextConsumer]);
+
   const componentThemed: any = (theme: Itheme) => {
     const backgroundColor: string =
       props?.colorTheme === 'normal' || !props.colorTheme
@@ -35,12 +41,12 @@ const IconButton: React.FunctionComponent = (props: any) => {
     );
   };
 
-  if (!globalThis.ReactThemeContextConsumer) {
+  if (!Consumer) {
     console.error('The IconButton component. You need an initialization provider');
     return null;
   }
 
-  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(IconButton);

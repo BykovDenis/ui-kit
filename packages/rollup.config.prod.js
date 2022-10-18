@@ -15,14 +15,14 @@ export default [
         format: 'cjs',
         exports: 'named',
         sourcemap: false,
-        strict: false,
+        strict: true,
       },
       {
         file: pkg.module,
         format: 'esm',
         exports: 'named',
         sourcemap: false,
-        strict: false,
+        strict: true,
       },
     ],
     plugins: [

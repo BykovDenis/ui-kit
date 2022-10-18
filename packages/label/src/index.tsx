@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ITheme from '../../styles/types/itheme';
 import ILabel from '../types/ilabel';
@@ -7,6 +7,12 @@ import LabelStyled from './label.styled';
 const FONT_WEIGHT_REGULAR = 400;
 
 const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
+  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+
+  useEffect(() => {
+    setConsumer(globalThis.ReactThemeContextConsumer);
+  }, [globalThis.ReactThemeContextConsumer]);
+
   const componentThemed: any = (theme: ITheme) => {
     const color: string =
       (props?.colorTheme === 'normal' || !props.colorTheme) && !props?.error
@@ -32,12 +38,12 @@ const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
     );
   };
 
-  if (!globalThis.ReactThemeContextConsumer) {
+  if (!Consumer) {
     console.error('You need an initialization provider');
     return null;
   }
 
-  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(Label);

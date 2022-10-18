@@ -26,6 +26,11 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [isFocus, setIsFocus] = useState(false);
   const [isChanging, setIsChanging] = useState(false);
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+
+  useEffect(() => {
+    setConsumer(globalThis.ReactThemeContextConsumer);
+  }, [globalThis.ReactThemeContextConsumer]);
 
   const cb = () => {
     let value: number | string = evtObj.target.value;
@@ -230,12 +235,12 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     );
   };
 
-  if ((!globalThis.ReactThemeContextConsumer)) {
+  if (!Consumer) {
     console.error('You need an initialization provider');
     return null;
   }
 
-  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(Input);

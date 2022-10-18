@@ -13,14 +13,21 @@ export default {
       format: 'cjs',
       exports: 'named',
       sourcemap: true,
-      strict: false,
+      strict: true,
+    },
+    {
+      file: pkg.module,
+      format: 'esm',
+      exports: 'named',
+      sourcemap: true,
+      strict: true,
     },
   ],
   plugins: [
     cleaner({
       targets: ['./dist'],
     }),
-    typescript({ objectHashIgnoreUnknownHack: false, inlineSourceMap: true }),
+    typescript({ objectHashIgnoreUnknownHack: false, inlineSourceMap: true, sourceMap: true }),
     svg(),
     postcss({
       autoModules: true,
