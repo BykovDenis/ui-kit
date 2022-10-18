@@ -5,7 +5,6 @@ import IListElement from '../types/ilist-element';
 import ListItemStyled from './list-item.styled';
 import ListItemButtonStyled from './list-item-button.styled';
 import ListItemContainer from './list-item-container.styled';
-import { ReactThemeContextConsumer } from '../../styles/src';
 import ITheme from '../../styles/types/itheme';
 
 const HEIGHT: number = 30;
@@ -66,12 +65,7 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
     );
   };
 
-  if (!ReactThemeContextConsumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
-
-  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
+  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
 };
 
 export default ListItem;

@@ -21,7 +21,6 @@ import DaysOfWeek from './days-of-week';
 import LabelContainer from './label-container.styled';
 import MonthsYearsRuleContainer from './months-years-rule-container.styled';
 import DatepickerButtonNavigate from './datepicker-button-navigate';
-import { ReactThemeContextConsumer } from '../../styles/src';
 import ITheme from '../../styles/types/itheme';
 
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
@@ -446,12 +445,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     );
   };
 
-  if (!ReactThemeContextConsumer) {
-    console.error('You need an initialization provider');
+  if ((!globalThis.ReactThemeContextConsumer)) {
+    console.error('The Datepicker component. You need an initialization provider');
     return null;
   }
 
-  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
+  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
 };
 
 Datepicker.defaultProps = {

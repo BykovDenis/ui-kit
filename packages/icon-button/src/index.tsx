@@ -2,7 +2,6 @@ import React from 'react';
 
 import Itheme from '../../styles/types/itheme';
 import IconButtonStyled from './icon-button.styled';
-import { ReactThemeContextConsumer } from '../../styles/src';
 
 const IconButton: React.FunctionComponent = (props: any) => {
   const componentThemed: any = (theme: Itheme) => {
@@ -36,12 +35,12 @@ const IconButton: React.FunctionComponent = (props: any) => {
     );
   };
 
-  if (!ReactThemeContextConsumer) {
-    console.error('You need an initialization provider');
+  if (!globalThis.ReactThemeContextConsumer) {
+    console.error('The IconButton component. You need an initialization provider');
     return null;
   }
 
-  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
+  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
 };
 
 export default React.memo(IconButton);

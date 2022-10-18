@@ -5,7 +5,6 @@ import Input from '../../input/src';
 import Label from '../../label/src';
 import List from '../../list/src';
 import ListItem from '../../list-item/src';
-import { ReactThemeContextConsumer } from '../../styles/src';
 import Itheme from '../../styles/types/itheme';
 import ISelect from '../types/iselect';
 import LabelContainer from './label-container.styled';
@@ -348,12 +347,12 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     );
   };
 
-  if (!ReactThemeContextConsumer) {
-    console.error('You need an initialization provider');
+  if (!globalThis.ReactThemeContextConsumer) {
+    console.error('The Select component. You need an initialization provider');
     return null;
   }
 
-  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
+  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
 };
 
 export default React.memo(Select);
