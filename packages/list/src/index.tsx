@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 
 import { COLOR_THEME } from '../../constants';
-import { ReactThemeContextConsumer } from '../../styles/src';
 import ITheme from '../../styles/types/itheme';
 import ListType from '../enum/list-type';
 import IList from '../types/ilist';
@@ -56,12 +55,12 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
     );
   };
 
-  if (!ReactThemeContextConsumer) {
-    console.error('You need an initialization provider');
+  if (!globalThis.ReactThemeContextConsumer) {
+    console.error('The List component. You need an initialization provider');
     return null;
   }
 
-  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
+  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
 };
 
-export default List;
+export default React.memo(List);

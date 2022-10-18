@@ -17,7 +17,6 @@ import InputContainer from './input-container.styled';
 import InputElementContainer from './input-element-container.styled';
 import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
-import { ReactThemeContextConsumer } from '../../styles/src';
 
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
@@ -231,12 +230,12 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     );
   };
 
-  if (!ReactThemeContextConsumer) {
+  if ((!globalThis.ReactThemeContextConsumer)) {
     console.error('You need an initialization provider');
     return null;
   }
 
-  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
+  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
 };
 
 export default React.memo(Input);

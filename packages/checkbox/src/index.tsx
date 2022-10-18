@@ -5,7 +5,6 @@ import ITheme from '../../styles/types/itheme';
 import ICheckbox from '../types/icheckbox';
 import CheckboxStyled from './checkbox.styled';
 import FormControl from './form-control.styled';
-import { ReactThemeContextConsumer } from '../../styles/src';
 
 const Checkbox: React.FunctionComponent<ICheckbox> = (props: ICheckbox) => {
   const componentThemed: any = (theme: ITheme) => (
@@ -36,7 +35,12 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: ICheckbox) => {
     </FormControl>
   );
 
-  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
+  if (!globalThis.ReactThemeContextConsumer) {
+    console.error('The Checkbox component. You need an initialization provider');
+    return null;
+  }
+
+  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
 };
 
-export default Checkbox;
+export default React.memo(Checkbox);

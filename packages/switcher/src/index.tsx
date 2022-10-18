@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { ReactThemeContextConsumer } from '../../styles/src';
 import ITheme from '../../styles/types/itheme';
 import FormSwitcher from './form-switcher';
 import InputSwitcher from './input-switcher';
@@ -57,12 +56,12 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
     );
   };
 
-  if (!ReactThemeContextConsumer) {
+  if (!globalThis.ReactThemeContextConsumer) {
     console.error('You need an initialization provider');
     return null;
   }
 
-  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
+  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
 };
 
 Switcher.defaultProps = {

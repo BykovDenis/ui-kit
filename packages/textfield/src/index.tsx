@@ -6,7 +6,6 @@ import ITheme from '../../styles/types/itheme';
 import ITextField from '../types/itext-field';
 import LabelContainer from './label-container.styled';
 import TextFieldContainer from './text-field-container.styled';
-import { ReactThemeContextConsumer } from '../../styles/src';
 
 const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
   const [isExistValue, setIsExistValue] = useState(false);
@@ -98,12 +97,12 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
     );
   };
 
-  if (!ReactThemeContextConsumer) {
-    console.error('You need an initialization provider');
+  if (!globalThis.ReactThemeContextConsumer) {
+    console.error('The Textfield component. You need an initialization provider');
     return null;
   }
 
-  return <ReactThemeContextConsumer>{componentThemed}</ReactThemeContextConsumer>;
+  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
 };
 
 export default React.memo(TextField);
