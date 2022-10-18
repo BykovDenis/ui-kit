@@ -13,7 +13,7 @@ export default {
       format: 'cjs',
       exports: 'named',
       sourcemap: true,
-      strict: false,
+      strict: true,
     },
   ],
   plugins: [

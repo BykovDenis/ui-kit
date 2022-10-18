@@ -15,7 +15,7 @@ export default [
         format: 'cjs',
         exports: 'named',
         sourcemap: false,
-        strict: false,
+        strict: true,
       },
     ],
     plugins: [

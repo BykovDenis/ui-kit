@@ -79,6 +79,11 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [isNewElement, setIsNewElement] = useState<boolean>(false);
   const [activeElement, setActiveElement] = useState<IOption>(activeElementParsed);
   const [isEdited, setIsEdited] = useState<boolean>(false);
+  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+
+  useEffect(() => {
+    setConsumer(globalThis.ReactThemeContextConsumer);
+  }, [globalThis.ReactThemeContextConsumer]);
 
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
 
@@ -347,12 +352,12 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     );
   };
 
-  if (!globalThis.ReactThemeContextConsumer) {
+  if (!Consumer) {
     console.error('The Select component. You need an initialization provider');
     return null;
   }
 
-  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(Select);

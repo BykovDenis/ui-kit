@@ -10,6 +10,11 @@ import TextFieldContainer from './text-field-container.styled';
 const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
+  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+
+  useEffect(() => {
+    setConsumer(globalThis.ReactThemeContextConsumer);
+  }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
     if (props?.value > '') {
@@ -97,12 +102,12 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
     );
   };
 
-  if (!globalThis.ReactThemeContextConsumer) {
+  if (!Consumer) {
     console.error('The Textfield component. You need an initialization provider');
     return null;
   }
 
-  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(TextField);

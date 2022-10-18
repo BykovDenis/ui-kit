@@ -1,6 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from '../src/components/app';
+import getNewReactThemeContext from '@sber-riski-cib-ui/core/styles';
+import theme from './themes';
+import App from './components/app';
 
-ReactDOM.render(<App />, document.getElementById('ui-riski-cib-ui'));
+const ReactThemeContext: any = getNewReactThemeContext(theme);
+
+ReactDOM.render(
+  <ReactThemeContext.Provider value={theme}>
+    <App />
+  </ReactThemeContext.Provider>,
+  document.getElementById('ui-riski-cib-ui')
+);

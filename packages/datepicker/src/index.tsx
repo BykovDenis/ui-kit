@@ -27,6 +27,13 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const dateRef = useRef();
   let dateParsed = new DateParser(props.value);
 
+  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+
+  useEffect(() => {
+    setConsumer(globalThis.ReactThemeContextConsumer);
+  }, [globalThis.ReactThemeContextConsumer]);
+
+
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState(props.value);
@@ -445,12 +452,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     );
   };
 
-  if ((!globalThis.ReactThemeContextConsumer)) {
+  if (!Consumer) {
     console.error('The Datepicker component. You need an initialization provider');
     return null;
   }
 
-  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 Datepicker.defaultProps = {

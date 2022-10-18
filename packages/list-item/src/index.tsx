@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ListItemType from '../enums/list-item-type';
 import IListElement from '../types/ilist-element';
@@ -11,6 +11,11 @@ const HEIGHT: number = 30;
 const TEXT_ALIGN = 'center';
 
 const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) => {
+  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+
+  useEffect(() => {
+    setConsumer(globalThis.ReactThemeContextConsumer);
+  }, [globalThis.ReactThemeContextConsumer]);
   const listItemType: string = ListItemType.Text;
 
   const componentThemed: any = (theme: ITheme) => {
@@ -65,7 +70,7 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
     );
   };
 
-  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default ListItem;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Label from '../../label/src';
 import ITheme from '../../styles/types/itheme';
@@ -7,6 +7,12 @@ import CheckboxStyled from './checkbox.styled';
 import FormControl from './form-control.styled';
 
 const Checkbox: React.FunctionComponent<ICheckbox> = (props: ICheckbox) => {
+  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+
+  useEffect(() => {
+    setConsumer(globalThis.ReactThemeContextConsumer);
+  }, [globalThis.ReactThemeContextConsumer]);
+
   const componentThemed: any = (theme: ITheme) => (
     <FormControl isExistLabel={props?.label > '' && props?.label !== null}>
       <CheckboxStyled
@@ -35,12 +41,12 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: ICheckbox) => {
     </FormControl>
   );
 
-  if (!globalThis.ReactThemeContextConsumer) {
+  if (!Consumer) {
     console.error('The Checkbox component. You need an initialization provider');
     return null;
   }
 
-  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(Checkbox);

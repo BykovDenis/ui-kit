@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, { useEffect, useState } from 'react';
 
 import Label from '../../label/src';
 import ITheme from '../../styles/types/itheme';
@@ -7,6 +7,12 @@ import FormControl from './form-control.styled';
 import RadioStyled from './radio.styled';
 
 const Radio: React.FunctionComponent<IRadio> = (props: any) => {
+  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+
+  useEffect(() => {
+    setConsumer(globalThis.ReactThemeContextConsumer);
+  }, [globalThis.ReactThemeContextConsumer]);
+
   const componentThemed = (theme: ITheme) => (
     <FormControl isExistLabel={props?.label > '' && props?.label !== null}>
       <RadioStyled
@@ -34,12 +40,12 @@ const Radio: React.FunctionComponent<IRadio> = (props: any) => {
     </FormControl>
   );
 
-  if (!globalThis.ReactThemeContextConsumer) {
+  if (!Consumer) {
     console.error('The Radio component. You need an initialization provider');
     return null;
   }
 
-  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(Radio);

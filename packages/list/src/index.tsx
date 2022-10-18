@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { COLOR_THEME } from '../../constants';
 import ITheme from '../../styles/types/itheme';
@@ -8,6 +8,12 @@ import ListStyled from './list.styled';
 import ListDivStyled from './list-div.styled';
 
 const List: React.FunctionComponent<IList> = (props: IList) => {
+  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+
+  useEffect(() => {
+    setConsumer(globalThis.ReactThemeContextConsumer);
+  }, [globalThis.ReactThemeContextConsumer]);
+
   const listRef = useRef();
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string =
@@ -55,12 +61,12 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
     );
   };
 
-  if (!globalThis.ReactThemeContextConsumer) {
+  if (!Consumer) {
     console.error('The List component. You need an initialization provider');
     return null;
   }
 
-  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(List);

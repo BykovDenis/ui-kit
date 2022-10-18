@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ITheme from '../../styles/types/itheme';
 import FormSwitcher from './form-switcher';
@@ -7,6 +7,11 @@ import LabelSwitcher from './label-switcher';
 import ISwitcher from '../types/iswitcher';
 
 const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
+  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+
+  useEffect(() => {
+    setConsumer(globalThis.ReactThemeContextConsumer);
+  }, [globalThis.ReactThemeContextConsumer]);
   const { element1, element2, activeElement, disabled } = props;
   const isActiveFirstElement = element1 === activeElement;
   const isActiveSecondElement = element2 === activeElement;
@@ -56,12 +61,12 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
     );
   };
 
-  if (!globalThis.ReactThemeContextConsumer) {
+  if (!Consumer) {
     console.error('You need an initialization provider');
     return null;
   }
 
-  return <globalThis.ReactThemeContextConsumer>{componentThemed}</globalThis.ReactThemeContextConsumer>;
+  return <Consumer>{componentThemed}</Consumer>;
 };
 
 Switcher.defaultProps = {
