@@ -20,6 +20,7 @@ interface IButton {
   variant?: 'contained' | 'outlined' | 'text';
   width?: number | string;
   padding?: number;
+  name?: string;
 }
 
 export default IButton;

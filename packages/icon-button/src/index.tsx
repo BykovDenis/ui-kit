@@ -35,6 +35,7 @@ const IconButton: React.FunctionComponent = (props: any) => {
         focusColor={theme?.palette?.primary?.main}
         borderRadius={props?.borderRadius}
         padding={props?.padding}
+        name={props.name}
       >
         {props.children}
       </IconButtonStyled>

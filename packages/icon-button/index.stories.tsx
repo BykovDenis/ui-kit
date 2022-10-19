@@ -4,9 +4,9 @@ import React from 'react';
 
 import IconButton from  './src/index';
 import IIconButton from './types/iicon-button'
-import Index from '../icons-components/add-icon';
 import theme from '../helpers/theme';
 import getNewReactThemeContext from '../styles/src';
+import SunIcon from '../icons-components/24x24/sun-icon';
 
 export default {
   title: 'Components/IconButton',
@@ -28,7 +28,7 @@ const Template: ComponentStory<typeof IconButton> = (args: IIconButton) => {
   const ReactThemeContext = getNewReactThemeContext(theme);
 
   return <ReactThemeContext.Provider value={theme}>
-    <IconButton  {...args} name="button1" onClick={action('clicked')} ><Index color="#ffffff" /></IconButton>
+    <IconButton  {...args} name="button1" onClick={action('clicked')} ><SunIcon color="#ffffff" /></IconButton>
   </ReactThemeContext.Provider>
 }
 
