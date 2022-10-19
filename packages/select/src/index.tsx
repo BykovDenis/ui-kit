@@ -232,6 +232,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       if (!isNotEmptyString(label)) {
         setActiveElement(activeElementParsed);
         setLabel(activeElementParsed?.label);
+        setIsEdited(false);
       }
     };
 
