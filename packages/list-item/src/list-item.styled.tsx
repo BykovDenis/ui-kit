@@ -23,6 +23,7 @@ const ListItem =
     border-radius: 4px;
     &:hover {
       background-color: ${(props: IListElement) => props.hoverBackgroundColor || 'transparent'};
+      color: ${(props: IListElement) => props.hoverColor};
     }
     &:after {
       display: block;
@@ -37,6 +38,7 @@ const ListItem =
     }
     &:hover:after {
       background-color: ${(props: IListElement) => props.hoverColor || 'transparent'};
+      color: ${(props: IListElement) => props.hoverColor};
     }
   `;
 

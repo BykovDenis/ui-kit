@@ -5,7 +5,7 @@ import Input from '../../input/src';
 import Label from '../../label/src';
 import List from '../../list/src';
 import ListItem from '../../list-item/src';
-import Itheme from '../../styles/types/itheme';
+import ITheme from '../../styles/types/itheme';
 import ISelect from '../types/iselect';
 import LabelContainer from './label-container.styled';
 import SelectContainer from './select-container.styled';
@@ -21,7 +21,6 @@ const TYPE_TEXT = 'text';
 const FONT_WEIGHT_REGULAR = 400;
 const INPUT_TAG: string = 'INPUT';
 const BUTTON_TAG: string = 'BUTTON';
-const TRANSPARENT_COLOR: string = 'transparent';
 
 const KEY_ESCAPE: string = 'ESCAPE';
 
@@ -218,7 +217,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
   const isExistValue: boolean = label > '';
 
-  const componentThemed: any = (theme: Itheme) => {
+  const componentThemed: any = (theme: ITheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
 
@@ -293,7 +292,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
             isReadOnly={props?.isReadOnly}
             isNotUseDebounce={elements?.length < 500}
-            backgroundColor={props?.backgroundColor || TRANSPARENT_COLOR}
+            backgroundColor={props?.backgroundColor || theme.mainBackgroundColor}
             color={props?.color}
             isNotClearable={props?.isNotClearable}
             borderColor={props?.borderColor}
@@ -307,18 +306,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             <List type="list-buttons" onMouseUp={onMouseUp} onKeyUp={onKeyUp}>
               {isFoundValue &&
                 elements?.map((element: IOption, index: number) => {
-                  const isActiveElementCompared: boolean = element?.value === activeElement?.value;
-                  const backgroundColor: string = isActiveElementCompared ? theme.palette.primary.light : null;
-                  const hoverBackgroundColor: string = isActiveElementCompared ? theme.palette.primary.light : null;
-                  const color: string = isActiveElementCompared ? theme.mainWhiteColor : null;
-
                   return (
                     <ListItem
                       type="button"
                       key={`list-item-${index}`}
-                      backgroundColor={backgroundColor}
-                      hoverBackgroundColor={hoverBackgroundColor}
-                      color={color}
                       data-index={index}
                       data-value={element.value}
                       data-label={element.label}

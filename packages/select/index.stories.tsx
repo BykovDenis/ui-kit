@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import Select from  './src';
 import ISelect from './types/iselect';
 import IOption from './types/ioption';
-import theme from '../helpers/theme';
+import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
 
 export default {
@@ -24,9 +24,7 @@ export default {
 
 const Template: ComponentStory<typeof Select> = (args: ISelect) => {
 
-  // const [ value, setValue ] = useState('List item 6');
   const [ value, setValue ] = useState<IOption>({ label: 'Admin', value: '2121' });
-  const [elements, setElements] = useState([]);
 
   const elementsState = [
     { label: 'Admin', value: '2121' },
@@ -45,18 +43,10 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
     console.log('');
   }
 
-  // setTimeout(() => {
-  //   setElements(elementsState);
-  //   setElements(elementsState);
-  //   setElements(elementsState);
-  //   setElements(elementsState);
-  //   setElements(elementsState);
-  // }, 100)
+  const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
+  return <ReactThemeContext.Provider value={themes.dark}>
 
-  const ReactThemeContext = getNewReactThemeContext(theme);
-
-  return <ReactThemeContext.Provider value={theme}>
   <div style={{ width: '220px' }}>
     <Select
       {...args}

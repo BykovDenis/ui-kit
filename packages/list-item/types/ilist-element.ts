@@ -17,6 +17,7 @@ interface IListElement {
   underLineColor?: string;
   width?: number;
   justifyContent?: string;
+  colorInverted?: string;
 }
 
 export default IListElement;
