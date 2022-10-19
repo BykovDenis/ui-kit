@@ -28,7 +28,8 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
   const componentThemed = (theme: ITheme) => {
     const color: string = theme?.palette?.baseButtonFontColor;
     const backgroundColor: string = theme?.palette?.primary?.main;
-    const innactiveBackgroundColor: string = theme?.mainBackgroundColor;
+    const inactiveBackgroundColor: string = theme?.mainBackgroundColor;
+    const inactiveColor: string = theme?.palette.baseFontColor;
 
     return (
       <FormSwitcher method="get">
@@ -43,7 +44,8 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
           position="left"
           color={color}
           backgroundColor={backgroundColor}
-          inactiveBackgroundColor={innactiveBackgroundColor}
+          inactiveBackgroundColor={inactiveBackgroundColor}
+          inactiveColor={inactiveColor}
         />
         <LabelSwitcher htmlFor={`custom-switcher-element1-${props.element1}`}>{props.element1}</LabelSwitcher>
         <InputSwitcher
@@ -57,7 +59,8 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
           position="right"
           color={color}
           backgroundColor={backgroundColor}
-          inactiveBackgroundColor={innactiveBackgroundColor}
+          inactiveBackgroundColor={inactiveBackgroundColor}
+          inactiveColor={inactiveColor}
         />
         <LabelSwitcher htmlFor={`custom-switcher-element2-${props.element2}`}>{props.element2}</LabelSwitcher>
       </FormSwitcher>
