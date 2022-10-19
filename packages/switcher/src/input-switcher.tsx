@@ -4,6 +4,7 @@ import hexToRgb from '../../helpers/hex-to-rgba';
 
 interface IInputSwitcher {
   inactiveBackgroundColor?: string;
+  inactiveColor: string;
   backgroundColor?: string;
   color?: string;
   position: string;
@@ -17,7 +18,7 @@ const InputSwitcher =
   & + label {
     background-color: ${(props: IInputSwitcher) => props.inactiveBackgroundColor ?? 'transparent'};
     border-radius: ${(props: IInputSwitcher) => (props.position === 'left' ? '3px 0 0 3px' : '0 3px 3px 0')};
-    color: ${(props: IInputSwitcher) => props.color};
+    color: ${(props: IInputSwitcher) => props.inactiveColor};
   }
   &:checked + label {
     background-color: ${(props: IInputSwitcher) => props.backgroundColor ?? '#42a5f5'};

@@ -36,9 +36,9 @@ const Template2: ComponentStory<typeof Switcher> = () => {
   const element1: string = 'Native';
   const element2: string = 'RUB';
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
-  return <ReactThemeContext.Provider value={themes.dark}>
+  return <ReactThemeContext.Provider value={themes.loanPricing}>
     <div style={{ display: 'inline-block' }}><Switcher disabled={true} element1={element1} element2={element2}
     activeElement={activeElement}/></div>
   </ReactThemeContext.Provider>;
