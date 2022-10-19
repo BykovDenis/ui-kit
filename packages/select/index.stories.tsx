@@ -43,9 +43,9 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
     console.log('');
   }
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
-  return <ReactThemeContext.Provider value={themes.dark}>
+  return <ReactThemeContext.Provider value={themes.loanPricing}>
 
   <div style={{ width: '220px' }}>
     <Select
