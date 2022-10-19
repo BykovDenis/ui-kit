@@ -1,6 +1,7 @@
 interface IPalette {
   baseButtonFontColor: string;
   baseFontColor: string;
+  baseFontColorInverted: string;
   primary: {
     bestLighter: string,
     light: string,

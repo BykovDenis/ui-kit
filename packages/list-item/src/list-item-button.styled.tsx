@@ -3,6 +3,7 @@ import styled from 'styled-components';
 interface IListItemButton {
   height?: number;
   color?: string;
+  hoverColor?: string;
   textAlign?: string;
   backgroundColor?: string;
   hoverBackgroundColor?: string;
@@ -34,9 +35,11 @@ const ListItemButton =
   background-color: ${(props: IListItemButton) => props.backgroundColor || 'transparent'};
   &:hover {
     background-color: ${(props: IListItemButton) => props.hoverBackgroundColor};
+    color: ${(props: IListItemButton) => props.hoverColor};
   }
   &:active {
     background-color: ${(props: IListItemButton) => props.activeBackgroundColor};
+    color: ${(props: IListItemButton) => props.hoverColor};
   }
   `;
 
