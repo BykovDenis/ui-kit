@@ -27,6 +27,9 @@ export const themes: IThemes = {
     mainGrayColor: '#e3e3e3',
     mainWhiteColor: '#ffffff',
     mainBackgroundColor: '#ffffff',
+    h1FontSize: 28,
+    h2FontSize: 24,
+    h3FontSize: 20,
   },
   light: {
     palette: {
@@ -54,6 +57,9 @@ export const themes: IThemes = {
     mainGrayColor: '#bdbdbd',
     mainWhiteColor: '#ffffff',
     mainBackgroundColor: '#ffffff',
+    h1FontSize: 28,
+    h2FontSize: 24,
+    h3FontSize: 20,
   },
   dark: {
     palette: {
@@ -81,5 +87,8 @@ export const themes: IThemes = {
     mainGrayColor: '#e3e3e3',
     mainWhiteColor: '#b9b9b9',
     mainBackgroundColor: '#333333',
+    h1FontSize: 28,
+    h2FontSize: 24,
+    h3FontSize: 20,
   },
 };

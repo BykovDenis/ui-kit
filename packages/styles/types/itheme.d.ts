@@ -8,6 +8,9 @@ interface ITheme {
   mainWhiteColor: string;
   palette: IPalette;
   mainBackgroundColor: string;
+  h1FontSize: number;
+  h2FontSize: number;
+  h3FontSize: number;
 }
 
 export default ITheme;

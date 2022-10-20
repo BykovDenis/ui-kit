@@ -294,7 +294,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             isReadOnly={props?.isReadOnly}
             isNotUseDebounce={elements?.length < 500}
             backgroundColor={props?.backgroundColor || theme.mainBackgroundColor}
-            color={props?.color}
+            color={props?.color ?? props?.backgroundColor}
             isNotClearable={props?.isNotClearable}
             borderColor={props?.borderColor}
             hoverColor={props?.hoverColor}
