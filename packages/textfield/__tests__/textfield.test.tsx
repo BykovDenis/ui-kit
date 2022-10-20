@@ -8,7 +8,7 @@ import ITextField from '../types/itext-field';
 import Variants from '../../enums/variants';
 import theme from '../../helpers/theme';
 
-it('Input renders correctly', () => {
+it('TextField renders correctly', () => {
   const ReactThemeContext = getNewReactThemeContext(theme);
 
   const props: ITextField = {
