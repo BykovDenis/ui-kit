@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Typography renders correctly 1`] = `
+<DocumentFragment>
+  <h1
+    class="sc-bdvvtL kvylzO"
+    color="#333333"
+  >
+    Some text
+  </h1>
+</DocumentFragment>
+`;
