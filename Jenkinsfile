@@ -15,7 +15,7 @@ def textFieldPath = './packages/textfield'
 def warningPath = './packages/warning-panel'
 def switcherPath = './packages/switcher';
 def stylesPath = './packages/styles';
-def typographyPath = './packages/styles';
+def typographyPath = './packages/typography';
 def formControlPath = './packages/form-control';
 
 pipeline {
