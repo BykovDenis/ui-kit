@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 
 import Input from  './src/index';
 import IInput from './types/iinput';
-import theme from '../helpers/theme';
+import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
 
 export default {
@@ -43,10 +43,10 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
     setValue('');
   }
 
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   return (
-    <ReactThemeContext.Provider value={theme}>
+    <ReactThemeContext.Provider value={themes.dark}>
       <div style={{ width: '190px' }}>
         <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove}  />
       </div>

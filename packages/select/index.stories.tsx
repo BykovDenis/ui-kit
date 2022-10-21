@@ -56,8 +56,6 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
       id="select"
       activeElement={value}
       elements={elementsState}
-      color="black"
-      backgroundColor="transparent"
     >{args.children}</Select>
   </div>
   </ReactThemeContext.Provider>;
