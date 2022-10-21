@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import getNewReactThemeContext from '../../styles/src';
 
 import Checkbox from '../src';
-import theme from '../../helpers/theme';
+import { themes } from '../../styles/src/themes';
 
 it('Checkbox renders correctly', () => {
   const props: any = {
@@ -17,10 +17,10 @@ it('Checkbox renders correctly', () => {
     tabIndex: '1',
   };
 
-  const ReactThemeContext: any = getNewReactThemeContext(theme);
+  const ReactThemeContext: any = getNewReactThemeContext(themes.loanPricing);
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={theme}>
+    <ReactThemeContext.Provider value={themes.loanPricing}>
       <Checkbox {...props} tabIndex="1" />
     </ReactThemeContext.Provider>
   );

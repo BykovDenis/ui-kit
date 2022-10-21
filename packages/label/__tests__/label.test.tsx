@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import Label from '../src';
-import theme from '../../helpers/theme';
+import { themes } from '../../styles/src/themes';
 
 it('Input renders correctly', () => {
   const props: any = {
@@ -12,10 +12,10 @@ it('Input renders correctly', () => {
     children: 'Label',
   };
 
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={theme}>
+    <ReactThemeContext.Provider value={themes.loanPricing}>
       <Label {...props} />
     </ReactThemeContext.Provider>
   );

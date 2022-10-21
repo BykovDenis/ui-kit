@@ -21,9 +21,9 @@ export default {
 
 const Template: ComponentStory<typeof Label> = (args: ILabel) => {
 
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
-  return <ReactThemeContext.Provider value={theme}>
+  return <ReactThemeContext.Provider value={themes.loanPricing}>
     <Label {...args} >{args.children}</Label>
   </ReactThemeContext.Provider>
 }

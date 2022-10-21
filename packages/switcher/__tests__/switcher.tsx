@@ -5,10 +5,10 @@ import '@testing-library/jest-dom';
 
 import Switcher from '../src';
 import ISwitcher from '../types/iswitcher';
-import theme from '../../helpers/theme';
+import { themes } from '../../styles/src/themes';
 
 it('Switcher renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   const props: ISwitcher = {
     onSwitcherChange: jest.fn(),
@@ -18,7 +18,7 @@ it('Switcher renders correctly', () => {
   };
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={theme}>
+    <ReactThemeContext.Provider value={themes.loanPricing}>
       <Switcher {...props} />
     </ReactThemeContext.Provider>
   );

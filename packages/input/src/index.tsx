@@ -17,10 +17,11 @@ import InputContainer from './input-container.styled';
 import InputElementContainer from './input-element-container.styled';
 import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
+import isNotEmptyString from '../../helpers/is-not-empty-string';
 
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
-  const [inputValue, setInputValue] = useState(props.value !== undefined && props?.value !== null ? props.value : '');
+  const [inputValue, setInputValue] = useState(isNotEmptyString(props.value?.toString()) ? props.value : '');
   const [evtObj, setEvtObject] = useState(null);
   const [isNotRunDebounce, setIsRunDebounce] = useState(props?.isNotRunDebounce || false);
   const [isFocus, setIsFocus] = useState(false);

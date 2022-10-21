@@ -28,9 +28,9 @@ const Template: ComponentStory<typeof Radio> = (args: Iradio) => {
     action('checked');
   }
 
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
-  return (<ReactThemeContext.Provider value={theme}><Fragment>
+  return (<ReactThemeContext.Provider value={themes.loanPricing}><Fragment>
     <Radio {...args} id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} tabIndex="0" />
     <Radio {...args} id="radio2" name="radio1" onChange={onCheckboxCheck}  tabIndex="1" />
   </Fragment></ReactThemeContext.Provider>)

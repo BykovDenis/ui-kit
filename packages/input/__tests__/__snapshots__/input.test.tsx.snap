@@ -6,11 +6,11 @@ exports[`Input renders correctly 1`] = `
     class="sc-dkPtRN bbOemD"
   >
     <p
-      class="sc-hKwDye gcMlPU"
+      class="sc-hKwDye jiFsKN"
     >
       <input
         autocomplete="off"
-        class="sc-gsDKAQ QfTYj"
+        class="sc-gsDKAQ jckkGf"
         color="#ffffff"
         font-family="Roboto, Arial, sans-serif"
         font-size="14"
@@ -27,7 +27,7 @@ exports[`Input renders correctly 1`] = `
       name="input"
     />
     <button
-      class="sc-bdvvtL gtNVLY delete-button"
+      class="sc-bdvvtL dEljDY delete-button"
     >
       <svg
         class="delete-icon"

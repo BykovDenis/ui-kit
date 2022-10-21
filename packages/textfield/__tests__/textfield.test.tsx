@@ -6,10 +6,10 @@ import '@testing-library/jest-dom';
 import TextField from '../src';
 import ITextField from '../types/itext-field';
 import Variants from '../../enums/variants';
-import theme from '../../helpers/theme';
+import { themes } from '../../styles/src/themes';
 
 it('TextField renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   const props: ITextField = {
     isSeparateNumberFormat: false,
@@ -31,7 +31,7 @@ it('TextField renders correctly', () => {
   };
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={theme}>
+    <ReactThemeContext.Provider value={themes.loanPricing}>
       <TextField {...props} />
     </ReactThemeContext.Provider>
   );

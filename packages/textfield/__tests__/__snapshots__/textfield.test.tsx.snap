@@ -27,7 +27,7 @@ exports[`TextField renders correctly 1`] = `
       >
         <input
           autocomplete="off"
-          class="sc-gsDKAQ ggTpgx"
+          class="sc-gsDKAQ cQgPvT"
           color="#333333"
           font-family="Roboto, Arial, sans-serif"
           font-size="14"
@@ -41,8 +41,8 @@ exports[`TextField renders correctly 1`] = `
         />
       </p>
       <div
-        class="sc-eCImPb caIXOY underline"
-        color="rgba(0,0,0,0.85)"
+        class="sc-eCImPb jAsBIb underline"
+        color="#333333"
         name="textfield1"
       />
       <p />

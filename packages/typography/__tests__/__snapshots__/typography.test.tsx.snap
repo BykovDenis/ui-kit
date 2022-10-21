@@ -3,8 +3,9 @@
 exports[`Typography renders correctly 1`] = `
 <DocumentFragment>
   <h1
-    class="sc-bdvvtL cGmohJ"
+    class="sc-bdvvtL gGZfMD"
     color="#333333"
+    font-size="28"
   >
     Some text
   </h1>

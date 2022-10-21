@@ -5,10 +5,10 @@ import '@testing-library/jest-dom';
 import ISelect from '../types/iselect';
 import Variants from '../../enums/variants';
 import Select from '../src';
-import theme from '../../helpers/theme';
+import { themes } from '../../styles/src/themes';
 
 it('Select renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   const props: ISelect = {
     activeElement: 'List item 1',
@@ -29,7 +29,7 @@ it('Select renders correctly', () => {
   };
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={theme}>
+    <ReactThemeContext.Provider value={themes.loanPricing}>
       <Select {...props} />
     </ReactThemeContext.Provider>
   );
