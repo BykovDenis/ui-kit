@@ -52,10 +52,15 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
   const componentThemed: any = (theme: ITheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
+    const backgroundColor: string = theme?.mainBackgroundColor;
 
     return (
       <TextFieldContainer backgroundImage={props?.backgroundImage} width={props?.width} height={props?.height}>
-        <LabelContainer isExistValue={isExistValue || isFocus} isExistTextMessageHelper={props?.textMessage > ''}>
+        <LabelContainer
+          backgroundColor={backgroundColor}
+          isExistValue={isExistValue || isFocus}
+          isExistTextMessageHelper={props?.textMessage > ''}
+        >
           <Label
             htmlFor={props.id}
             fontSize={labelFontSize}

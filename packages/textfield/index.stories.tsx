@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 
 import TextField from './src';
 import ITextField from './types/itext-field';
-import theme from '../helpers/theme';
+import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
 
 export default {
@@ -32,7 +32,7 @@ const Template: ComponentStory<typeof TextField> = (args: ITextField) => {
 
   const [ value, setValue ] = useState('');
 
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
@@ -44,7 +44,7 @@ const Template: ComponentStory<typeof TextField> = (args: ITextField) => {
     setValue(value);
   }
 
-  return <ReactThemeContext.Provider value={theme}>
+  return <ReactThemeContext.Provider value={themes.loanPricing}>
     <div style={{ width: '190px' }}>
       <TextField
         {...args}

@@ -8,10 +8,10 @@ import {
   TIMEOUT,
   TYPE_TEXT
 } from '../../constants';
-import Itheme from '../../styles/types/itheme';
+import ITheme from '../../styles/types/itheme';
 import IInput from '../types/iinput';
 import ButtonDelete from './button-delete.styled';
-import Index from '../../icons-components/delete-icon';
+import DeleteIcon from '../../icons-components/delete-icon';
 import InputStyled from './input.styled';
 import InputContainer from './input-container.styled';
 import InputElementContainer from './input-element-container.styled';
@@ -134,35 +134,32 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
   };
 
-  const componentThemed: any = (theme: Itheme) => {
-    const backgroundColor: string =
-      (props?.colorTheme === 'normal' || !props.colorTheme) && !props?.error
-        ? theme?.palette?.primary?.main
-        : theme?.palette?.secondary?.main;
+  const componentThemed: any = (theme: ITheme) => {
+    const backgroundColor: string = theme?.mainBackgroundColor;
 
-    const hoverBackgroundColor: string = props?.error ? theme?.palette?.secondary?.lighter : 'transparent';
-    const underlineColor: string = props?.error ? theme?.palette?.secondary?.main : props?.borderColor || theme?.mainBlackColor;
-    const hoverColor: string = props?.error ? theme?.palette?.secondary?.main : theme?.mainGrayColor;
+    const hoverBackgroundColor: string = props?.error ? theme?.palette?.secondary?.lighter : theme?.mainBackgroundColor;
+    const hoverColor: string = props?.error ? theme?.palette?.secondary?.main : theme?.palette.baseFontColorOpacity05;
 
     const color: string =
-      (props?.colorTheme === 'normal' || !props.colorTheme) && !props?.error
-        ? isFocus && !props?.isReadOnly
+      props?.error
+        ? theme?.palette?.secondary?.main
+        : isFocus && !props?.isReadOnly
           ? theme?.palette?.primary?.main
-          : theme?.palette?.baseFontColor
-        : theme?.palette?.secondary?.main;
+          : theme?.palette?.baseFontColor;
 
-    const focusColor: string = props?.error ? theme?.palette?.secondary?.main : backgroundColor;
+    const focusColor: string = props?.error ? theme?.palette?.secondary?.main : theme.palette.primary.main;
 
     const ReactInput: React.FunctionComponent = (props: any) => <input {...props} />;
 
-    const colorInteractive: string = props?.error ? theme?.palette?.secondary?.lighter : isFocus ? theme?.palette?.primary?.main : props?.color;
+    // const colorInteractive: string = props?.error ? theme?.palette?.secondary?.lighter : isFocus ? theme?.palette?.primary?.main : props?.color;
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
-    const borderColor: string = props?.error ? theme?.palette?.secondary?.lighter : props?.borderColor || theme?.mainBlackColor;
+    const borderColor: string = props?.error ? theme?.palette?.secondary?.lighter : props?.borderColor || theme?.palette.baseFontColor;
     const inputColor: string = props?.error ? theme?.palette?.secondary?.main : props?.color || color;
+    const underlineColor: string = props?.error ? theme?.palette?.secondary?.main : props?.borderColor || theme?.palette.baseFontColor;
 
     return (
       <InputContainer height={props?.height} width={props?.width}>
-        <InputElementContainer backgroundColor={props?.backgroundColor || theme.mainWhiteColor}>
+        <InputElementContainer backgroundColor={backgroundColor}>
           <InputStyled
             {...props}
             value={value}
@@ -175,7 +172,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             disabledBackgroundColor={theme?.mainGrayColor}
             hoverBackgroundColor={hoverBackgroundColor}
             disabledColor={theme?.mainBlackColor}
-            backgroundColor={backgroundColor}
+            backgroundColor={props.backgroundColor ?? backgroundColor}
             backgroundImage={props?.backgroundImage}
             fontSize={props?.fontSize ?? theme?.baseFontSize}
             className={props?.className}
@@ -217,7 +214,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
               focusColor={focusColor}
               disabled={props?.disabled}
             >
-              <Index color={colorInteractive} className="delete-icon" />
+              <DeleteIcon color={inputColor} className="delete-icon" />
             </ButtonDelete>
           ) : null}
         </InputElementContainer>
