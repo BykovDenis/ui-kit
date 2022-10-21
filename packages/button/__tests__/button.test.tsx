@@ -7,6 +7,8 @@ import Button from '../src';
 import { themes } from '../../styles/src/themes';
 
 it('Button renders correctly', () => {
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+
   const props: any = {
     disabled: false,
     children: 'Click me',
@@ -27,8 +29,6 @@ it('Button renders correctly', () => {
     },
     focusColor: 'rgb(8, 166, 82)',
   };
-
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   const { asFragment } = render(
     <ReactThemeContext.Provider value={themes.loanPricing}>
