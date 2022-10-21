@@ -200,12 +200,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/button/__tests__'
-                                }
-                            }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/button/__tests__'
+//                                 }
+//                             }
                             dir("${buttonPath}") {
                                 script {
                                     echo 'Building'

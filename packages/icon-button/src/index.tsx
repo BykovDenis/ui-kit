@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import Itheme from '../../styles/types/itheme';
+import ITheme from '../../styles/types/itheme';
 import IconButtonStyled from './icon-button.styled';
 
 const IconButton: React.FunctionComponent = (props: any) => {
@@ -10,7 +10,7 @@ const IconButton: React.FunctionComponent = (props: any) => {
     setConsumer(globalThis.ReactThemeContextConsumer);
   }, [globalThis.ReactThemeContextConsumer]);
 
-  const componentThemed: any = (theme: Itheme) => {
+  const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string =
       props?.colorTheme === 'normal' || !props.colorTheme
         ? theme?.palette?.primary?.main
