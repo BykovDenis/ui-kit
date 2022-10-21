@@ -25,7 +25,7 @@ exports[`Select renders correctly 1`] = `
         </label>
       </div>
       <div
-        class="sc-bqiRlB lkRRzK"
+        class="sc-bqiRlB fOrgoJ"
       />
       <div
         class="sc-dkPtRN bAtqlE"
@@ -36,7 +36,7 @@ exports[`Select renders correctly 1`] = `
         >
           <input
             autocomplete="off"
-            class="sc-gsDKAQ bqvZuQ"
+            class="sc-gsDKAQ dLbKaw"
             color="#ffffff"
             font-family="Roboto, Arial, sans-serif"
             font-size="14"
@@ -54,7 +54,7 @@ exports[`Select renders correctly 1`] = `
           name="select-custom"
         />
         <button
-          class="sc-bdvvtL dEljDY delete-button"
+          class="sc-bdvvtL deugBQ delete-button"
         >
           <svg
             class="delete-icon"

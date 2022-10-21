@@ -139,7 +139,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     const backgroundColor: string = theme?.mainBackgroundColor;
 
     const hoverBackgroundColor: string = props?.error ? theme?.palette?.secondary?.lighter : theme?.mainBackgroundColor;
-    const hoverColor: string = props?.error ? theme?.palette?.secondary?.main : theme?.palette.baseFontColorOpacity05;
+    const hoverColor: string = props?.error ? theme?.palette?.secondary?.main : theme?.palette.baseFontColor;
+    const hoverBorderColor: string = props?.error ? theme?.palette?.secondary?.main : theme?.palette.baseFontColorOpacity05;
 
     const color: string =
       props?.error
@@ -171,6 +172,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             hoverColor={props?.hoverColor || hoverColor}
             focusColor={props.focusColor || focusColor}
             disabledBackgroundColor={theme?.mainGrayColor}
+            hoverBorderColor={props?.hoverColor || hoverBorderColor}
             hoverBackgroundColor={hoverBackgroundColor}
             disabledColor={theme?.mainBlackColor}
             backgroundColor={props.backgroundColor ?? backgroundColor}

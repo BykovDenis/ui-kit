@@ -13,7 +13,6 @@ import SelectHeader from './select-header.styled';
 import SelectIndicator from './select-indicator.styled';
 import SelectListContainer from './select-list-container.styled';
 import IOption from '../types/ioption';
-import isNotEmptyString from '../../helpers/is-not-empty-string';
 
 const DEFAULT_HEIGHT = 40;
 const TEXT_ALIGN = 'center';
@@ -229,11 +228,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
     const onInputBlur = () => {
       setIsFocus(false);
-      if (!isNotEmptyString(label)) {
-        setActiveElement(activeElementParsed);
-        setLabel(activeElementParsed?.label);
-        setIsEdited(false);
-      }
+      setIsEdited(false);
+      setElements(getElementsParsed(props.elements));
+      setActiveElement(activeElementParsed);
+      setLabel(activeElementParsed?.label);
     };
 
     const indicatorColor: string = !props?.isReadOnly
@@ -294,7 +292,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             isReadOnly={props?.isReadOnly}
             isNotUseDebounce={elements?.length < 500}
             backgroundColor={props?.backgroundColor || theme.mainBackgroundColor}
-            color={props?.color ?? props?.backgroundColor}
+            color={props?.color}
             isNotClearable={props?.isNotClearable}
             borderColor={props?.borderColor}
             hoverColor={props?.hoverColor}
@@ -305,7 +303,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         {isVisibleList && (
           <SelectListContainer>
             <List type="list-buttons" onMouseUp={onMouseUp} onKeyUp={onKeyUp}>
-              {isFoundValue &&
+              {isFoundValue  &&
                 elements?.map((element: IOption, index: number) => {
                   return (
                     <ListItem

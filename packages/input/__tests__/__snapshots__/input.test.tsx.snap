@@ -10,7 +10,7 @@ exports[`Input renders correctly 1`] = `
     >
       <input
         autocomplete="off"
-        class="sc-gsDKAQ jckkGf"
+        class="sc-gsDKAQ gwvesJ"
         color="#ffffff"
         font-family="Roboto, Arial, sans-serif"
         font-size="14"
@@ -27,7 +27,7 @@ exports[`Input renders correctly 1`] = `
       name="input"
     />
     <button
-      class="sc-bdvvtL dEljDY delete-button"
+      class="sc-bdvvtL deugBQ delete-button"
     >
       <svg
         class="delete-icon"

@@ -43,12 +43,12 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
     setValue('');
   }
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   return (
-    <ReactThemeContext.Provider value={themes.dark}>
+    <ReactThemeContext.Provider value={themes.loanPricing}>
       <div style={{ width: '190px' }}>
-        <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove}  />
+        <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  />
       </div>
     </ReactThemeContext.Provider>)
 }
