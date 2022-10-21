@@ -21,6 +21,7 @@ interface IInput {
   getIsChangingState?: (isChanging: boolean) => void;
   height?: number;
   hoverBackgroundColor?: string;
+  hoverBorderColor?: string;
   hoverColor?: string;
   id?: string;
   isNotClearable?: boolean;

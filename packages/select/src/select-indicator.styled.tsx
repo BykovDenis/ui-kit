@@ -12,6 +12,7 @@ const SelectIndicator =
   left: 5px;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 1;
   width: 10px;
   height: 10px;
   border-radius: 50%;

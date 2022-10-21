@@ -20,11 +20,13 @@ const Input =
   border-radius: ${(props: IInput) => (props?.variant === Variants.Outlined ? '3px' : 0)};  
   border-color: ${(props: IInput) => (props?.variant === Variants.Outlined ? props?.borderColor : 'transparent')};
   color: ${(props: IInput) => props?.color};
-  background-color: transparent;  
+  background-color: ${(props: IInput) => props?.backgroundColor};  
   font-weight: ${(props: IInput) => props.fontWeight};
   &:hover {
-    border-color: ${(props: IInput) => (props?.variant === Variants.Outlined ? props?.hoverColor : 'transparent')};
+    border-color: ${(props: IInput) =>
+      props?.variant === Variants.Outlined ? props?.hoverBorderColor : 'transparent'};
     background-color: ${(props: IInput) => props?.hoverBackgroundColor};
+    color: ${(props: IInput) => props?.hoverColor};
   }
   &:hover + .underline {
     background-color: ${(props: IInput) => props?.hoverColor};
