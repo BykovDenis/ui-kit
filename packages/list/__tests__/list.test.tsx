@@ -6,10 +6,10 @@ import '@testing-library/jest-dom';
 import ListItem from '../../list-item/src';
 import List from '../src';
 import { action } from '@storybook/addon-actions';
-import theme from '../../helpers/theme';
+import { themes } from '../../styles/src/themes';
 
 it('List renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   const props: any = {
     type: 'list-buttons',
@@ -17,7 +17,7 @@ it('List renders correctly', () => {
   };
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={theme}>
+    <ReactThemeContext.Provider value={themes.loanPricing}>
       <List {...props}>
         {props.elements.map((element: string, index: number) => (
           <ListItem onClick={action('clicked')} type="text" key={index}>

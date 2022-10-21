@@ -4,10 +4,10 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import ListItem from '../src';
-import theme from '../../helpers/theme';
+import { themes } from '../../styles/src/themes';
 
 it('ListItem renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   const props: any = {
     onClick: jest.fn(),
@@ -15,7 +15,7 @@ it('ListItem renders correctly', () => {
   };
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={theme}>
+    <ReactThemeContext.Provider value={themes.loanPricing}>
       <ListItem {...props}>{props.children}</ListItem>
     </ReactThemeContext.Provider>
   );

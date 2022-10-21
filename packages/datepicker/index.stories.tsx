@@ -27,9 +27,9 @@ const Template: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
     setValue(value);
   }
 
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
-  return <ReactThemeContext.Provider value={theme}>
+  return <ReactThemeContext.Provider value={themes.loanPricing}>
   <div style={{ width: '250px' }}>
     <Datepicker {...args} variant="outlined" value={value} locale={Locales.Ru} onChange={onDatepickerValueChange} />
   </div>

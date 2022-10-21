@@ -4,10 +4,10 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import Input from '../src';
-import theme from '../../helpers/theme';
+import { themes } from '../../styles/src/themes';
 
 it('Input renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   const props: any = {
     isSeparateNumberFormat: false,
@@ -30,7 +30,7 @@ it('Input renders correctly', () => {
   };
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={theme}>
+    <ReactThemeContext.Provider value={themes.loanPricing}>
       <Input {...props} />
     </ReactThemeContext.Provider>
   );

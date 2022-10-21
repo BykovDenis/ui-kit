@@ -24,9 +24,9 @@ export default {
 
 const Template: ComponentStory<typeof Button> = (args: IButton) => {
 
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
-  return <ReactThemeContext.Provider value={theme}>
+  return <ReactThemeContext.Provider value={themes.loanPricing}>
     <Button  {...args} name="button1" onClick={action('clicked')} >{args.children}</Button>
   </ReactThemeContext.Provider>
 }

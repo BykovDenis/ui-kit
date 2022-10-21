@@ -4,10 +4,10 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import Datepicker from '../src/index';
-import theme from '../../helpers/theme';
+import { themes } from '../../styles/src/themes';
 
 it('Checkbox renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   const props: any = {
     type: 'button',
@@ -21,7 +21,7 @@ it('Checkbox renders correctly', () => {
   };
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={theme}>
+    <ReactThemeContext.Provider value={themes.loanPricing}>
       <Datepicker {...props} />
     </ReactThemeContext.Provider>
   );

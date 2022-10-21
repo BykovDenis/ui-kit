@@ -25,9 +25,9 @@ export default {
 
 const Template: ComponentStory<typeof IconButton> = (args: IIconButton) => {
 
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
-  return <ReactThemeContext.Provider value={theme}>
+  return <ReactThemeContext.Provider value={themes.loanPricing}>
     <IconButton  {...args} name="button1" onClick={action('clicked')} ><SunIcon color="#ffffff" /></IconButton>
   </ReactThemeContext.Provider>
 }

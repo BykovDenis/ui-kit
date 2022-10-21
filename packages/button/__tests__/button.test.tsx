@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import Button from '../src';
-import theme from '../../helpers/theme';
+import { themes } from '../../styles/src/themes';
 
 it('Button renders correctly', () => {
   const props: any = {
@@ -28,10 +28,10 @@ it('Button renders correctly', () => {
     focusColor: 'rgb(8, 166, 82)',
   };
 
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={theme}>
+    <ReactThemeContext.Provider value={themes.loanPricing}>
       <Button {...props}>Hello world!</Button>
     </ReactThemeContext.Provider>
   );

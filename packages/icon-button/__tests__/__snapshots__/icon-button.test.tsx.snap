@@ -3,7 +3,7 @@
 exports[`IconButton renders correctly 1`] = `
 <DocumentFragment>
   <button
-    class="sc-bdvvtL cvkTtf"
+    class="sc-bdvvtL eMZfD"
     color="#ffffff"
     font-family="Roboto, Arial, sans-serif"
     font-size="14"

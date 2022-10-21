@@ -4,10 +4,10 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import IconButton from '../src';
-import theme from '../../helpers/theme';
+import { themes } from '../../styles/src/themes';
 
 it('IconButton renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(theme);
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   const props: any = {
     disabled: false,
@@ -31,7 +31,7 @@ it('IconButton renders correctly', () => {
   };
 
   const { asFragment } = render(
-    <ReactThemeContext.Provider value={theme}>
+    <ReactThemeContext.Provider value={themes.loanPricing}>
       <IconButton {...props}>Hello world!</IconButton>
     </ReactThemeContext.Provider>
   );

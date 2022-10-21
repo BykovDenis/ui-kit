@@ -8,7 +8,7 @@ exports[`List renders correctly 1`] = `
     font-family="Roboto, Arial, sans-serif"
   >
     <li
-      class="sc-bdvvtL hPSCpA"
+      class="sc-bdvvtL ccRBta"
       color="#333333"
       height="30"
       type="text"
@@ -16,7 +16,7 @@ exports[`List renders correctly 1`] = `
       List item 1
     </li>
     <li
-      class="sc-bdvvtL hPSCpA"
+      class="sc-bdvvtL ccRBta"
       color="#333333"
       height="30"
       type="text"
@@ -24,7 +24,7 @@ exports[`List renders correctly 1`] = `
       List item 2
     </li>
     <li
-      class="sc-bdvvtL hPSCpA"
+      class="sc-bdvvtL ccRBta"
       color="#333333"
       height="30"
       type="text"
@@ -32,7 +32,7 @@ exports[`List renders correctly 1`] = `
       List item 3
     </li>
     <li
-      class="sc-bdvvtL hPSCpA"
+      class="sc-bdvvtL ccRBta"
       color="#333333"
       height="30"
       type="text"
@@ -40,7 +40,7 @@ exports[`List renders correctly 1`] = `
       List item 4
     </li>
     <li
-      class="sc-bdvvtL hPSCpA"
+      class="sc-bdvvtL ccRBta"
       color="#333333"
       height="30"
       type="text"
