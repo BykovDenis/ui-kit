@@ -20,11 +20,12 @@ const Radio: React.FunctionComponent<IRadio> = (props: any) => {
         name={props.name}
         id={props.id}
         disabled={props?.disabled}
-        color={theme?.palette?.baseFontColor}
+        color={theme?.mainBackgroundColor}
         backgroundColor={theme?.palette?.primary?.main}
         checked={props.checked}
         onChange={props.onChange}
         isIconDisabled={props?.isIconDisabled}
+        borderColor={theme?.palette?.baseFontColor}
       />
       <Label
         htmlFor={props.id}

@@ -4,7 +4,7 @@ import React, {Fragment } from 'react';
 
 import Radio from  './src/index';
 import Iradio from "./types/iradio";
-import theme from '../helpers/theme';
+import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
 
 export default {
@@ -28,9 +28,9 @@ const Template: ComponentStory<typeof Radio> = (args: Iradio) => {
     action('checked');
   }
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
-  return (<ReactThemeContext.Provider value={themes.loanPricing}><Fragment>
+  return (<ReactThemeContext.Provider value={themes.dark}><Fragment>
     <Radio {...args} id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} tabIndex="0" />
     <Radio {...args} id="radio2" name="radio1" onChange={onCheckboxCheck}  tabIndex="1" />
   </Fragment></ReactThemeContext.Provider>)
