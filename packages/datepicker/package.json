@@ -20,7 +20,7 @@
   "publishConfig": {
     "registry": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"
   },
-  "gitHead": "7e8d57ef578bf79a6123bd20c803c71320f9cd5a",
+  "gitHead": "6ae02fe0782394aa963fb1431a5f7a716e2f4e8f",
   "dependencies": {
     "date-fns": "^2.28.0"
   },
