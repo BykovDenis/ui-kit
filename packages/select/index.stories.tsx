@@ -24,13 +24,45 @@ export default {
 
 const Template: ComponentStory<typeof Select> = (args: ISelect) => {
 
-  const [ value, setValue ] = useState<IOption>({ label: 'Admin', value: '2121' });
+  const [ value, setValue ] = useState<string>('addSchema');
 
   const elementsState = [
-    { label: 'Admin', value: '2121' },
-    { label: 'cva_desk', value: '3432' },
-    { label: 'ReportingRiskManager', value: '3231' },
-    { label: 'Pricing (sales)', value: '2832' },
+    'a_2022_05_31',
+    'addSchema',
+    'biba',
+    'check_zero',
+    'cibfv_2496',
+    'cibfv_2575',
+    'cibfv_2585',
+    'cibfv_2596',
+    'cibfv_2642',
+    'cibfv_2644',
+    'cibfv_2658',
+    'cibfv_2819',
+    'cxemanull',
+    'daniil1',
+    'daniil2000',
+    'denis',
+    'forecast_2022_09_21',
+    'i_am_the_auditor',
+    'keks',
+    'kekuraz',
+    'kkk2219',
+    'kkkkk',
+    'kuku',
+    'loan_pricing',
+    'pppsi',
+    'rel2217_1',
+    'rel2219',
+    'rel2219_31122021',
+    'rel2220',
+    'robocop',
+    'tradepad_1',
+    'tradepad_2',
+    'tradepad_3',
+    'x2022_08_31',
+    'x2022_09_26',
+    'xxx2000'
   ];
 
   const onInputChange = (option: IOption) => {
@@ -46,7 +78,6 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
   const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   return <ReactThemeContext.Provider value={themes.loanPricing}>
-
   <div style={{ width: '220px' }}>
     <Select
       {...args}
@@ -56,8 +87,6 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
       id="select"
       activeElement={value}
       elements={elementsState}
-      backgroundColor="transparent"
-      hoverColor="red"
     >{args.children}</Select>
   </div>
   </ReactThemeContext.Provider>;

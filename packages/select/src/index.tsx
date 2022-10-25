@@ -28,7 +28,9 @@ function getElementsParsed(elements: Array<IOption | string | number>): Array<IO
     if (typeof element === 'object') {
       return element;
     }
+    const index: string = `${Math.round(Math.random() * 100000)}`;
     return {
+      index,
       label: element?.toString(),
       value: element,
     };
@@ -135,7 +137,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     }
   };
 
-  const onMouseUp = (evt: React.MouseEvent<HTMLElement, MouseEvent>, listRef: any) => {
+  const onMouseDown = (evt: React.MouseEvent<HTMLElement, MouseEvent>, listRef: any) => {
     const element: any = evt.target;
     if (listRef && listRef?.current) {
       const listElement: any = listRef?.current;
@@ -302,14 +304,14 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         </SelectHeader>
         {isVisibleList && (
           <SelectListContainer>
-            <List type="list-buttons" onMouseUp={onMouseUp} onKeyUp={onKeyUp}>
+            <List type="list-buttons" onMouseDown={onMouseDown} onKeyUp={onKeyUp}>
               {isFoundValue  &&
-                elements?.map((element: IOption, index: number) => {
+                elements?.map((element: IOption) => {
                   return (
                     <ListItem
                       type="button"
-                      key={`list-item-${index}`}
-                      data-index={index}
+                      key={`list-item-${element.index}`}
+                      data-index={element.index}
                       data-value={element.value}
                       data-label={element.label}
                       textAlign={props?.textAlign || TEXT_ALIGN}

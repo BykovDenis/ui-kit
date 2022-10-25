@@ -31,8 +31,8 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
         ? theme?.palette?.baseFontColor
         : theme?.palette?.secondary?.main;
 
-    const onMouseUp = (evt: React.MouseEvent<HTMLElement, MouseEvent>) => {
-      props.onMouseUp(evt, listRef);
+    const onMouseDown = (evt: React.MouseEvent<HTMLElement, MouseEvent>) => {
+      props.onMouseDown(evt, listRef);
     };
 
     const onKeyUp = (evt: React.KeyboardEvent<HTMLElement>) => {
@@ -48,7 +48,7 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
         color={color}
         hoverColor={hoverColor}
         underlineColor={underlineColor}
-        onMouseUp={onMouseUp}
+        onMouseDown={onMouseDown}
         onKeyUp={onKeyUp}
         ref={listRef}
       >
