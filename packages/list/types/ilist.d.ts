@@ -9,7 +9,7 @@ interface IList {
   elements?: Array<IListElement>;
   fontFamily?: string;
   onKeyUp?: (evt?: React.KeyboardEvent<HTMLElement>, listRef?: React.Ref<any>) => void;
-  onMouseUp?: (evt?: React.MouseEvent<HTMLElement, MouseEvent>, listRef?: React.Ref<any>) => void;
+  onMouseDown?: (evt?: React.MouseEvent<HTMLElement, MouseEvent>, listRef?: React.Ref<any>) => void;
   type?: string;
   backgroundColor?: string;
   hoverBackgroundColor?: string;
