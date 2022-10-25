@@ -2,78 +2,8 @@
 
 exports[`Checkbox renders correctly 1`] = `
 <DocumentFragment>
-  <div
-    class="sc-fotOHu kjxyWA"
-    height="40"
-  >
-    <div
-      class="sc-bkkeKt esSmFA"
-    >
-      <div
-        class="sc-fKVqWL fZNRYz"
-      >
-        <label
-          class="sc-iCfMLu YXZRG"
-          color="#333333"
-          font-family="Roboto, Arial, sans-serif"
-          font-size="12"
-          font-weight="400"
-        >
-          label
-        </label>
-      </div>
-      <div
-        class="sc-hKwDye bchdDn"
-        height="40"
-      >
-        <p
-          class="sc-eCImPb buHhCl"
-        >
-          <input
-            autocomplete="off"
-            class="sc-dkPtRN fSFcoX"
-            color="#333333"
-            font-family="Roboto, Arial, sans-serif"
-            font-size="14"
-            font-weight="400"
-            height="40"
-            type="text"
-            value="01.04.2022"
-          />
-        </p>
-        <div
-          class="sc-jRQBWg ifhkeH underline"
-          color="#333333"
-        />
-        <button
-          class="sc-gsDKAQ bYCFwR delete-button"
-        >
-          <svg
-            class="delete-icon"
-            height="14"
-            version="1.1"
-            viewBox="5 5 14 14"
-            width="14"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-              fill="#333333"
-              stroke="#333333"
-            />
-          </svg>
-        </button>
-        <p />
-        <p
-          class="sc-gKclnd duJait text-message"
-          color="#333333"
-          font-family="Roboto, Arial, sans-serif"
-          font-size="14"
-        >
-          text message
-        </p>
-      </div>
-    </div>
-  </div>
+  <p>
+    datepicker
+  </p>
 </DocumentFragment>
 `;
