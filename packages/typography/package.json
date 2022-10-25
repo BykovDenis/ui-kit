@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/Typography",
-  "version": "0.9.7-alpha.2",
+  "version": "0.9.7-alpha.3",
   "description": "The simple typography component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
