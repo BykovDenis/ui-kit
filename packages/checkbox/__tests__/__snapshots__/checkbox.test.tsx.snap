@@ -6,7 +6,7 @@ exports[`Checkbox renders correctly 1`] = `
     class="sc-dkPtRN ffbVmP"
   >
     <input
-      class="sc-gsDKAQ gmvhZI"
+      class="sc-gsDKAQ nHOMU"
       color="#333333"
       id="label1"
       label="Label for the Checkbox"
