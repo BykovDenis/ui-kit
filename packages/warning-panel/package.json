@@ -30,7 +30,7 @@
   "files": [
     "dist"
   ],
-  "gitHead": "83591b9f971605864f9e8f8d753955d3d716ccfd",
+  "gitHead": "7e8d57ef578bf79a6123bd20c803c71320f9cd5a",
   "devDependencies": {
     "@types/styled-components": "^5.1.18"
   }
