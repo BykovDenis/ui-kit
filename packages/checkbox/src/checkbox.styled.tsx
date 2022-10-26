@@ -31,7 +31,7 @@ const Checkbox =
     border: 2px solid ${(props: TCheckboxStylish) => rgbToRgba(props.borderColor, 0.5)};    
     border-radius: 3px;
     margin-right: 5px;
-    background-color: ${(props: ICheckbox) => (props?.color ? props.color : '#ffffff')};
+    background-color: ${(props: ICheckbox) => (props?.backgroundColor ? props.backgroundColor : '#ffffff')};
   }  
   &:disabled + label:before {
     display:  ${(props: TCheckboxStylish) => (props.isIconDisabled === true ? 'none' : 'block')};
