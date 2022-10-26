@@ -1,6 +1,6 @@
 {
   "name": "@sber-riski-cib-ui/FormControl",
-  "version": "0.9.7-alpha.3",
+  "version": "0.9.7-alpha.4",
   "description": "The FormControl component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
