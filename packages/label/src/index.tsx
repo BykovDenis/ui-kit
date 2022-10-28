@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ITheme from '../../styles/types/itheme';
 import ILabel from '../types/ilabel';
 import LabelStyled from './label.styled';
+import rgbToRgba from '../../helpers/rgb-to-rgba';
 
 const FONT_WEIGHT_REGULAR = 400;
 
@@ -14,12 +15,11 @@ const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
   }, [globalThis.ReactThemeContextConsumer]);
 
   const componentThemed: any = (theme: ITheme) => {
-    const color: string =
-      (props?.colorTheme === 'normal' || !props.colorTheme) && !props?.error
-        ? props?.isFocus && !props.isReadOnly && !props.isDisabled
-          ? theme?.palette?.primary?.main
-          : theme?.palette?.baseFontColor
-        : theme?.palette?.secondary?.main;
+    const color: string = props?.error
+      ? theme?.palette?.secondary?.main
+      : props?.isFocus
+        ? theme?.palette?.primary?.main
+        : props.isDisabled ? theme?.palette?.baseFontColorOpacity05 : theme?.palette?.baseFontColor
 
     return (
       <LabelStyled
@@ -32,6 +32,7 @@ const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
         fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
         width={props?.width}
         backgroundColor={props?.backgroundColor}
+        disabled={props.isDisabled}
       >
         {props.children}
       </LabelStyled>

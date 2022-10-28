@@ -36,7 +36,7 @@ exports[`Select renders correctly 1`] = `
         >
           <input
             autocomplete="off"
-            class="sc-gsDKAQ dLbKaw"
+            class="sc-gsDKAQ gVeiVo"
             color="#ffffff"
             font-family="Roboto, Arial, sans-serif"
             font-size="14"

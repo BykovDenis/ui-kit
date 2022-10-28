@@ -32,7 +32,7 @@ const Template: ComponentStory<typeof TextField> = (args: ITextField) => {
 
   const [ value, setValue ] = useState('');
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
@@ -44,7 +44,7 @@ const Template: ComponentStory<typeof TextField> = (args: ITextField) => {
     setValue(value);
   }
 
-  return <ReactThemeContext.Provider value={themes.loanPricing}>
+  return <ReactThemeContext.Provider value={themes.dark}>
     <div style={{ width: '190px' }}>
       <TextField
         {...args}

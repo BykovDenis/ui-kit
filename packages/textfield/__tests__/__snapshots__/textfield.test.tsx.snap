@@ -27,7 +27,7 @@ exports[`TextField renders correctly 1`] = `
       >
         <input
           autocomplete="off"
-          class="sc-gsDKAQ cjegEY"
+          class="sc-gsDKAQ jCbeDc"
           color="#333333"
           font-family="Roboto, Arial, sans-serif"
           font-size="14"

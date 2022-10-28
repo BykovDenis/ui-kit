@@ -18,6 +18,7 @@ import InputElementContainer from './input-element-container.styled';
 import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
+import rgbToRgba from '../../helpers/rgb-to-rgba';
 
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
@@ -174,7 +175,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             disabledBackgroundColor={theme?.mainGrayColor}
             hoverBorderColor={props?.hoverColor || hoverBorderColor}
             hoverBackgroundColor={hoverBackgroundColor}
-            disabledColor={theme?.mainBlackColor}
+            disabledColor={theme?.palette.baseFontColorOpacity05}
             backgroundColor={props.backgroundColor ?? backgroundColor}
             backgroundImage={props?.backgroundImage}
             fontSize={props?.fontSize ?? theme?.baseFontSize}

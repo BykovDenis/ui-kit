@@ -3,7 +3,7 @@ import React from 'react';
 
 import Label from  './src/index';
 import ILabel from './types/ilabel';
-import theme from '../helpers/theme';
+import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
 
 export default {
@@ -21,9 +21,9 @@ export default {
 
 const Template: ComponentStory<typeof Label> = (args: ILabel) => {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
-  return <ReactThemeContext.Provider value={themes.loanPricing}>
+  return <ReactThemeContext.Provider value={themes.dark}>
     <Label {...args} >{args.children}</Label>
   </ReactThemeContext.Provider>
 }
