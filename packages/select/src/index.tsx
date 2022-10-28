@@ -244,13 +244,15 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         : theme?.palette?.secondary?.main
       : theme?.palette?.baseFontColor;
 
+    const backgroundColor: string = theme?.mainBackgroundColor;
+
     return (
       <SelectContainer width={props?.width} height={props?.height || DEFAULT_HEIGHT}>
         <SelectHeader height={props?.height || DEFAULT_HEIGHT}>
           {props?.label && (
             <LabelContainer
               isExistValue={isExistValue || isFocus}
-              backgroundColor={props?.backgroundColor || theme.mainWhiteColor}
+              backgroundColor={backgroundColor}
             >
               <Label
                 htmlFor={props.id}

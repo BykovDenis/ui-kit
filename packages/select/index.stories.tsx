@@ -75,9 +75,9 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
     console.log('');
   }
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
-  return <ReactThemeContext.Provider value={themes.loanPricing}>
+  return <ReactThemeContext.Provider value={themes.dark}>
   <div style={{ width: '220px' }}>
     <Select
       {...args}
@@ -87,6 +87,7 @@ const Template: ComponentStory<typeof Select> = (args: ISelect) => {
       id="select"
       activeElement={value}
       elements={elementsState}
+      label="Some label"
     >{args.children}</Select>
   </div>
   </ReactThemeContext.Provider>;
