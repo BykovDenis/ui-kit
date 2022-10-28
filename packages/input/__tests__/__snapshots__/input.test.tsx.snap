@@ -10,7 +10,7 @@ exports[`Input renders correctly 1`] = `
     >
       <input
         autocomplete="off"
-        class="sc-gsDKAQ gwvesJ"
+        class="sc-gsDKAQ jBcAkF"
         color="#ffffff"
         font-family="Roboto, Arial, sans-serif"
         font-size="14"
