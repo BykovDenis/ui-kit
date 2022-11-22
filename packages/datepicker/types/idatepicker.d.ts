@@ -1,5 +1,5 @@
 import IInput from '../../input/types/iinput';
-import ILabel from '../../label/types/ilabel';
+import ILabel from '../../label/types/tlabel';
 
 export default interface IDatepicker extends IInput, ILabel {
   baseFontSize?: number;

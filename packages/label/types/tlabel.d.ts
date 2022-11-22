@@ -1,4 +1,4 @@
-interface ILabel {
+type TLabel = {
   children?: any;
   className?: any;
   color?: string;
@@ -16,6 +16,7 @@ interface ILabel {
   theme?: any;
   width?: number | string;
   backgroundColor?: string;
+  whiteSpace?: string
 }
 
-export default ILabel;
+export default TLabel;

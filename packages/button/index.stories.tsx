@@ -5,7 +5,7 @@ import getNewReactThemeContext from '../styles/src';
 
 import Button from  './src/index';
 import IButton from './types/ibutton'
-import theme from '../helpers/theme';
+import { themes } from '../styles/src/themes';
 
 export default {
   title: 'Components/Button',
