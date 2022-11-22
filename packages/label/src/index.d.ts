@@ -1,5 +1,5 @@
 import React from 'react'
-import ILabel from '../types/ilabel';
+import TLabel from '../types/tlabel';
 
-declare const Label: React.FunctionComponent<ILabel>;
+declare const Label: React.FunctionComponent<TLabel>;
 export default Label;

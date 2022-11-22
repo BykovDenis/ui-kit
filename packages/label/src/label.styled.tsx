@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 import rgbToRgba from '../../helpers/rgb-to-rgba';
-import ILabel from '../types/ilabel';
+import TLabel from '../types/tlabel';
 
 const Label =
   styled.label <
-  ILabel >
+    TLabel >
   `
       position: relative;
       display: inline-flex;
@@ -13,19 +13,19 @@ const Label =
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
-      font-family: ${(props: ILabel) => props.fontFamily};
-      cursor: ${(props: ILabel) => (!props.isReadOnly && !props.isDisabled ? 'pointer' : 'default')};
-      color: ${(props: ILabel) => props.color};
-      font-size: ${(props: ILabel) => props.fontSize}px;
+      font-family: ${(props: TLabel) => props.fontFamily};
+      cursor: ${(props: TLabel) => (!props.isReadOnly && !props.isDisabled ? 'pointer' : 'default')};
+      color: ${(props: TLabel) => props.color};
+      font-size: ${(props: TLabel) => props.fontSize}px;
       line-height: 0.7;
-      white-space: nowrap;
-      font-weight: ${(props: ILabel) => props.fontWeight}; 
-      width: ${(props: ILabel) =>
+      white-space: ${(props: TLabel) => props?.whiteSpace ? props.whiteSpace : 'nowrap'};
+      font-weight: ${(props: TLabel) => props.fontWeight}; 
+      width: ${(props: TLabel) =>
         props.width ? (typeof props.width === 'string' ? props.width : `${props.width}px`) : '100%'};  
-      background-color: ${(props: ILabel) => (props.backgroundColor ? props.backgroundColor : 'inherit')};
+      background-color: ${(props: TLabel) => (props.backgroundColor ? props.backgroundColor : 'inherit')};
       &:focus {
-        outline: 1px solid ${(props: ILabel) => rgbToRgba(props?.focusColor, 0.3)};
-        box-shadow: 1px 1px 5px 3px ${(props: ILabel) => rgbToRgba(props?.focusColor, 0.3)};
+        outline: 1px solid ${(props: TLabel) => rgbToRgba(props?.focusColor, 0.3)};
+        box-shadow: 1px 1px 5px 3px ${(props: TLabel) => rgbToRgba(props?.focusColor, 0.3)};
       }
       `;
 

@@ -2,7 +2,7 @@ import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
 import Label from  './src/index';
-import ILabel from './types/ilabel';
+import ILabel from './types/tlabel';
 import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
 

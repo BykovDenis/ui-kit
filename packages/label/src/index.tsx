@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import ITheme from '../../styles/types/itheme';
-import ILabel from '../types/ilabel';
+import ILabel from '../types/tlabel';
 import LabelStyled from './label.styled';
 import rgbToRgba from '../../helpers/rgb-to-rgba';
 
@@ -33,6 +33,7 @@ const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
         width={props?.width}
         backgroundColor={props?.backgroundColor}
         disabled={props.isDisabled}
+        whiteSpace={props?.whiteSpace}
       >
         {props.children}
       </LabelStyled>

@@ -1,6 +1,6 @@
 import React from 'react';
 import IInput from '../../input/types/iinput';
-import ILabel from '../../label/types/ilabel';
+import ILabel from '../../label/types/tlabel';
 
 interface ITextField extends IInput, ILabel {
   baseFontSize?: number;

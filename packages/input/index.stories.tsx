@@ -50,6 +50,9 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
       <div style={{ width: '190px' }}>
         <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  />
       </div>
+      <div style={{ width: '190px' }}>
+        <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  isSeparateNumberFormat={true} />
+      </div>
     </ReactThemeContext.Provider>)
 }
 
