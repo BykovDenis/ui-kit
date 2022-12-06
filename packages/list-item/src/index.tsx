@@ -57,9 +57,6 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
         height={props?.height || HEIGHT}
         textAlign={props?.textAlign || TEXT_ALIGN}
         underLineColor={underLineColor}
-        hoverColor={hoverColor}
-        hoverBackgroundColor={props?.hoverBackgroundColor || hoverBackgroundColor}
-        activeBackgroundColor={props?.hoverBackgroundColor || activeBackgroundColor}
         type={props?.type || listItemType}
         backgroundColor={props?.backgroundColor || backgroundColor}
         className={props?.className}

@@ -21,10 +21,6 @@ const ListItem =
     cursor: pointer;
     background-color: ${(props: IListElement) => props.backgroundColor || 'transparent'};
     border-radius: 4px;
-    &:hover {
-      background-color: ${(props: IListElement) => props.hoverBackgroundColor || 'transparent'};
-      color: ${(props: IListElement) => props.hoverColor};
-    }
     &:after {
       display: block;
       position: absolute;
@@ -35,10 +31,6 @@ const ListItem =
       height: 1px;
       content: '';
       background-color: ${(props: IListElement) => props.underLineColor || 'transparent'};
-    }
-    &:hover:after {
-      background-color: ${(props: IListElement) => props.hoverColor || 'transparent'};
-      color: ${(props: IListElement) => props.hoverColor};
     }
   `;
 
