@@ -3,7 +3,7 @@
 exports[`Button renders correctly 1`] = `
 <DocumentFragment>
   <button
-    class="sc-bdvvtL hEKwgJ"
+    class="sc-bdvvtL bTUdLd"
     color="#ffffff"
     font-family="Roboto, Arial, sans-serif"
     font-size="14"

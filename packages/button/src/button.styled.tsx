@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import rgbToRgba from '../../helpers/rgb-to-rgba';
 import IButton from '../types/ibutton';
+import isNotEmptyString from '../../helpers/is-not-empty-string';
+import isNotEmptyNumber from '../../helpers/is-not-empty-number';
 
 const CONTAINED: string = 'contained';
 const OUTLINED: string = 'outlined';
@@ -39,7 +41,11 @@ const ButtonStyled =
     cursor: pointer;    
     border: ${(props: IButton) =>
       props?.variant === OUTLINED ? `1px solid ${props.backgroundColor}` : '1px solid transparent'};
-    width: ${(props: IButton) => `${props?.width}px` ?? 'initial'};
+    width: ${(props: IButton) =>  typeof props?.width === 'string' 
+            ? isNotEmptyString(props?.width) 
+                    ? props?.width 
+                    : 'initial' 
+            : isNotEmptyNumber(props?.width) ? `${props?.width}px` : 'initial'};
     height: ${(props: IButton) => `${props?.height}px` ?? 'initial'};
     margin-top: -5px;
 
