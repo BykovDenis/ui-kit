@@ -38,7 +38,7 @@ pipeline {
             }
             steps {
                 nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                    withCredentials([file(credentialsId: 'npmrc_root', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
                         sh 'node -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
