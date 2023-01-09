@@ -45,9 +45,11 @@ pipeline {
                             dir("${rootPath}") {
                                 script {
                                     echo 'Root packages installing'
-                                    sh 'npm i'
+                                    sh 'npm ci'
                                 }
                             }
+                        }
+                        withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                             dir("${uiKitPath}") {
                                 script {
                                     echo 'Core packages installing'
