@@ -146,7 +146,7 @@ module.exports = {
     // красивые прогрессбарчики билдинга
     new WebpackBar(),
     // большой борд с пачкой зависимостей для анализа состава билда
-    // new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin(),
     // поиск неиспользуемых файлов в проекте (not compatible webpack5)
     // new UnusedFilesWebpackPlugin(),
     // поиск неиспользуемых файлов в проекте (not compatible webpack5)
