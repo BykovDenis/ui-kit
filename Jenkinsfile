@@ -45,7 +45,7 @@ pipeline {
                             dir("${rootPath}") {
                                 script {
                                     echo 'Root packages installing'
-                                    sh 'npm ci --verbose'
+                                    sh 'npm ci'
                                 }
                             }
                         }
