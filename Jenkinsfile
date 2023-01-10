@@ -41,6 +41,7 @@ pipeline {
                     withCredentials([file(credentialsId: 'npmrc_root', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
                         sh 'node -v'
+                        sh 'npm config list'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${rootPath}") {
                                 script {
