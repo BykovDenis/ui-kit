@@ -38,13 +38,13 @@ pipeline {
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc_root', variable: 'NPMRC_CONFIG')]) {
+                    withCredentials([file(credentialsId: 'npmrc_root', variable: 'NPMRC_CONFIG_ROOT')]) {
                         sh 'npm -v'
                         sh 'node -v'
-                        sh 'npm config list'
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG_ROOT}"]) {
                             dir("${rootPath}") {
                                 script {
+                                    sh 'npm config list'
                                     echo 'Root packages installing'
                                     sh 'npm i --legacy-peer-deps'
                                 }
