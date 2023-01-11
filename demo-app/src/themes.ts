@@ -1,4 +1,4 @@
-import ITheme from '@sber-riski-cib-ui/styles/types/itheme';
+import ITheme from '@sber-risks-ui/styles/types/itheme';
 
 const theme: ITheme = {
   palette: {

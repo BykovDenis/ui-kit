@@ -550,7 +550,7 @@ pipeline {
                         dir("${uiKitPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                 sh """
-                                    npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/
+                                    npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
                                 """
                             }
                         }

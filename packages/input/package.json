@@ -1,5 +1,5 @@
 {
-  "name": "@sber-riski-cib-ui/Input",
+  "name": "@sber-risks-ui/Input",
   "version": "0.9.9",
   "description": "Riski react UI",
   "main": "dist/index.js",

@@ -1,5 +1,5 @@
 {
-  "name": "@sber-riski-cib-ui/FormControl",
+  "name": "@sber-risks-ui/FormControl",
   "version": "0.9.9",
   "description": "The FormControl component",
   "main": "dist/index.js",

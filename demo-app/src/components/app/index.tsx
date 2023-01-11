@@ -2,13 +2,13 @@ import React, { Fragment, useState } from 'react';
 import './index.css';
 
 // @ts-ignore
-import Label from '@sber-riski-cib-ui/core/label';
-import Button from '@sber-riski-cib-ui/core/button';
-import TextField from '@sber-riski-cib-ui/core/textfield';
-import Select from '@sber-riski-cib-ui/core/select';
-import FormControl from '@sber-riski-cib-ui/core/form-control';
+import Label from '@sber-risks-ui/core/label';
+import Button from '@sber-risks-ui/core/button';
+import TextField from '@sber-risks-ui/core/textfield';
+import Select from '@sber-risks-ui/core/select';
+import FormControl from '@sber-risks-ui/core/form-control';
 import theme from '../../themes';
-import getNewReactThemeContext from '@sber-riski-cib-ui/core/styles';
+import getNewReactThemeContext from '@sber-risks-ui/core/styles';
 
 const App: React.FunctionComponent = () => {
   const [value, setValue] = useState('2');
