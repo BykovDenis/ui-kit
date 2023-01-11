@@ -546,9 +546,9 @@ pipeline {
             }
             steps {
                 nodejs('v16.3.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                    withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                         dir("${uiKitPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
                                 sh """
                                     npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
                                 """
