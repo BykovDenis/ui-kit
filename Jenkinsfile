@@ -46,7 +46,7 @@ pipeline {
                                 script {
                                     sh 'npm config list'
                                     echo 'Root packages installing'
-                                    sh 'npm i --legacy-peer-deps --registry https://nexus-ci.delta.sbrf.ru/repository/npm-all'
+                                    sh 'npm i --legacy-peer-deps'
                                 }
                             }
                         }
@@ -553,7 +553,7 @@ pipeline {
                         dir("${uiKitPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                                 sh """
-                                    npm publish
+                                    npm publish --registry https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp
                                 """
                             }
                         }
