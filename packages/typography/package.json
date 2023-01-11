@@ -1,5 +1,5 @@
 {
-  "name": "@sber-riski-cib-ui/Typography",
+  "name": "@sber-risks-ui/Typography",
   "version": "0.9.9",
   "description": "The simple typography component",
   "main": "dist/index.js",

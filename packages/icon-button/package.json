@@ -1,5 +1,5 @@
 {
-  "name": "@sber-riski-cib-ui/IconButton",
+  "name": "@sber-risks-ui/IconButton",
   "version": "0.9.9",
   "description": "The icon button component",
   "main": "dist/index.js",
@@ -35,5 +35,5 @@
     "rollup-plugin-cleaner": "^1.0.0"
   },
   "gitHead": "47d1d35a2073dcd8c862f03bad0381ffe1846258",
-  "_id": "@sber-riski-cib-ui/Button@0.5.28"
+  "_id": "@sber-risks-ui/Button@0.5.28"
 }

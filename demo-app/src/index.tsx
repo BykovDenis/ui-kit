@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import getNewReactThemeContext from '@sber-riski-cib-ui/core/styles';
+import getNewReactThemeContext from '@sber-risks-ui/core/styles';
 import theme from './themes';
 import App from './components/app';
 

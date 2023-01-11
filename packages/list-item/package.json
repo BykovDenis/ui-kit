@@ -1,5 +1,5 @@
 {
-  "name": "@sber-riski-cib-ui/ListItem",
+  "name": "@sber-risks-ui/ListItem",
   "version": "0.9.9",
   "description": "List item",
   "main": "dist/index.js",

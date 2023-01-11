@@ -1,3 +1,3 @@
 Набор компонентоа
 
-1. Установить @sber-riski-cib-ui/core
+1. Установить @sber-risks-ui/core

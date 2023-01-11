@@ -1,5 +1,5 @@
 {
-  "name": "@sber-riski-cib-ui/Select",
+  "name": "@sber-risks-ui/Select",
   "version": "0.9.9",
   "description": "Simple react component",
   "main": "dist/index.js",

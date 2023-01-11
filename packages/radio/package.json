@@ -1,5 +1,5 @@
 {
-  "name": "@sber-riski-cib-ui/Radio",
+  "name": "@sber-risks-ui/Radio",
   "version": "0.9.9",
   "description": "A simple radio component",
   "main": "dist/index.js",

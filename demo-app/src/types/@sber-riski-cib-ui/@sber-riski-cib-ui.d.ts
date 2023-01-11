@@ -1,1 +1,1 @@
-declare module '@sber-riski-cib-ui/core/button';
+declare module '@sber-risks-ui/core/button';

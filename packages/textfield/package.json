@@ -1,5 +1,5 @@
 {
-  "name": "@sber-riski-cib-ui/Textfield",
+  "name": "@sber-risks-ui/Textfield",
   "version": "0.9.9",
   "description": "The simple Textfield component",
   "main": "dist/index.js",

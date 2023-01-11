@@ -1,5 +1,5 @@
 {
-  "name": "@sber-riski-cib-ui/Warning-panel",
+  "name": "@sber-risks-ui/Warning-panel",
   "version": "0.9.9",
   "description": "A warning panel component",
   "main": "dist/index.js",

@@ -1,5 +1,5 @@
 {
-  "name": "@sber-riski-cib-ui/Datepicker",
+  "name": "@sber-risks-ui/Datepicker",
   "version": "0.9.9",
   "description": "The datepicker component",
   "main": "dist/index.js",
