@@ -46,7 +46,7 @@ pipeline {
                                 script {
                                     sh 'npm config list'
                                     echo 'Root packages installing'
-                                    sh 'npm i --legacy-peer-deps'
+                                    sh 'npm i --legacy-peer-deps --registry https://nexus-ci.delta.sbrf.ru/repository/npm-all'
                                 }
                             }
                         }
