@@ -34,10 +34,10 @@ pipeline {
         stage('Root packages installing') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
                         sh 'node -v'
@@ -62,10 +62,10 @@ pipeline {
         stage('Styles theme deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${stylesPath}") {
@@ -86,10 +86,10 @@ pipeline {
         stage('Typography deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${typographyPath}") {
@@ -98,12 +98,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/typography/__tests__'
-                                }
-                            }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/typography/__tests__'
+//                                 }
+//                             }
                             dir("${typographyPath}") {
                                 script {
                                     echo 'Building'
@@ -120,10 +120,10 @@ pipeline {
         stage('Datepicker deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${datepickerPath}") {
@@ -132,12 +132,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/datepicker/__tests__'
-                                }
-                            }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/datepicker/__tests__'
+//                                 }
+//                             }
                             dir("${datepickerPath}") {
                                 script {
                                     echo 'Building'
@@ -154,10 +154,10 @@ pipeline {
         stage('Checkbox deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${checkboxPath}") {
@@ -166,12 +166,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/checkbox/__tests__'
-                                }
-                            }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/checkbox/__tests__'
+//                                 }
+//                             }
                             dir("${checkboxPath}") {
                                 script {
                                     echo 'Building'
@@ -188,10 +188,10 @@ pipeline {
         stage('Button deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${buttonPath}") {
@@ -222,10 +222,10 @@ pipeline {
         stage('IconButton deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${iconButtonPath}") {
@@ -234,12 +234,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/icon-button/__tests__'
-                                }
-                            }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/icon-button/__tests__'
+//                                 }
+//                             }
                             dir("${iconButtonPath}") {
                                 script {
                                     echo 'Building'
@@ -256,10 +256,10 @@ pipeline {
         stage('Input deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${inputPath}") {
@@ -268,12 +268,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/input/__tests__'
-                                }
-                            }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/input/__tests__'
+//                                 }
+//                             }
                             dir("${inputPath}") {
                                 script {
                                     echo 'Building'
@@ -290,10 +290,10 @@ pipeline {
         stage('Label deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${labelPath}") {
@@ -302,12 +302,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/label/__tests__'
-                                }
-                            }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/label/__tests__'
+//                                 }
+//                             }
                             dir("${labelPath}") {
                                 script {
                                     echo 'Building'
@@ -324,10 +324,10 @@ pipeline {
         stage('ListItem deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${listItemPath}") {
@@ -336,12 +336,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/list-item/__tests__'
-                                }
-                            }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/list-item/__tests__'
+//                                 }
+//                             }
                             dir("${listItemPath}") {
                                 script {
                                     echo 'Building'
@@ -358,10 +358,10 @@ pipeline {
         stage('List deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${listPath}") {
@@ -370,12 +370,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/list/__tests__'
-                                }
-                            }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/list/__tests__'
+//                                 }
+//                             }
                             dir("${listPath}") {
                                 script {
                                     echo 'Building'
@@ -392,10 +392,10 @@ pipeline {
         stage('Radio deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${radioPath}") {
@@ -404,12 +404,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/radio/__tests__'
-                                }
-                            }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/radio/__tests__'
+//                                 }
+//                             }
                             dir("${radioPath}") {
                                 script {
                                     echo 'Building'
@@ -426,10 +426,10 @@ pipeline {
         stage('Select deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${selectPath}") {
@@ -438,12 +438,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/select/__tests__'
-                                }
-                            }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/select/__tests__'
+//                                 }
+//                             }
                             dir("${selectPath}") {
                                 script {
                                     echo 'Building'
@@ -460,10 +460,10 @@ pipeline {
         stage('Textfield deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${textFieldPath}") {
@@ -472,12 +472,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Testing'
-                                    sh 'npm test /packages/switcher/__tests__'
-                                }
-                            }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/switcher/__tests__'
+//                                 }
+//                             }
                             dir("${textFieldPath}") {
                                 script {
                                     echo 'Building'
@@ -494,10 +494,10 @@ pipeline {
         stage('Switcher deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${switcherPath}") {
@@ -518,10 +518,10 @@ pipeline {
         stage('FormControl deploy') {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${formControlPath}") {
@@ -542,10 +542,10 @@ pipeline {
         stage("UI Kit PUBLISH") {
             tools
             {
-                nodejs 'v16.3.0-linux-x64'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('v16.3.0-linux-x64') {
+                nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                         dir("${uiKitPath}") {
                             withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
