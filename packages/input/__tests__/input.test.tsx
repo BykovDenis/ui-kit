@@ -1,7 +1,6 @@
 import React from 'react';
 import getNewReactThemeContext from '../../styles/src';
-import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import renderer from 'react-test-renderer';
 
 import Input from '../src';
 import { themes } from '../../styles/src/themes';
@@ -29,10 +28,10 @@ it('Input renders correctly', () => {
     value: '123',
   };
 
-  const { asFragment } = render(
+  const wrapper = renderer.create(
     <ReactThemeContext.Provider value={themes.loanPricing}>
       <Input {...props} />
     </ReactThemeContext.Provider>
   );
-  expect(asFragment()).toMatchSnapshot();
+  expect(wrapper.toJSON()).toMatchSnapshot();
 });

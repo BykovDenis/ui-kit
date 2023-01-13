@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import getNewReactThemeContext from '../../styles/src';
+import renderer from 'react-test-renderer';
 
 import Checkbox from '../src';
 import { themes } from '../../styles/src/themes';
@@ -19,10 +20,10 @@ it('Checkbox renders correctly', () => {
 
   const ReactThemeContext: any = getNewReactThemeContext(themes.loanPricing);
 
-  const { asFragment } = render(
+  const wrapper = renderer.create(
     <ReactThemeContext.Provider value={themes.loanPricing}>
       <Checkbox {...props} tabIndex="1" />
     </ReactThemeContext.Provider>
   );
-  expect(asFragment()).toMatchSnapshot();
+  expect(wrapper.toJSON()).toMatchSnapshot();
 });

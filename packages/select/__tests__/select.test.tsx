@@ -1,7 +1,6 @@
 import React from 'react';
 import getNewReactThemeContext from '../../styles/src';
-import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import renderer from 'react-test-renderer';
 import ISelect from '../types/iselect';
 import Variants from '../../enums/variants';
 import Select from '../src';
@@ -28,10 +27,10 @@ it('Select renders correctly', () => {
     onRemove: jest.fn(),
   };
 
-  const { asFragment } = render(
+  const wrapper = renderer.create(
     <ReactThemeContext.Provider value={themes.loanPricing}>
       <Select {...props} />
     </ReactThemeContext.Provider>
   );
-  expect(asFragment()).toMatchSnapshot();
+  expect(wrapper.toJSON()).toMatchSnapshot();
 });

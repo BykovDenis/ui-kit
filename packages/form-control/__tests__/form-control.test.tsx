@@ -1,6 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import renderer from 'react-test-renderer';
 
 import FormControl from '../dist';
 import IFormControl from 'form-control/types/iform-control';
@@ -10,6 +9,6 @@ it('FormControl renders correctly', () => {
     children: 'Form control content',
   };
 
-  const { asFragment } = render(<FormControl>{props.children}</FormControl>);
-  expect(asFragment()).toMatchSnapshot();
+  const wrapper = renderer.create(<FormControl>{props.children}</FormControl>);
+  expect(wrapper).toMatchSnapshot();
 });

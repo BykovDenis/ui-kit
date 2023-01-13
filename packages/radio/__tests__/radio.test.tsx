@@ -1,7 +1,6 @@
 import React from 'react';
 import getNewReactThemeContext from '../../styles/src';
-import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import renderer from 'react-test-renderer';
 
 import Radio from '../src';
 import { themes } from '../../styles/src/themes';
@@ -11,11 +10,11 @@ it('Radio renders correctly', () => {
 
   const onCheckboxCheck = jest.fn();
 
-  const { asFragment } = render(
+  const wrapper = renderer.create(
     <ReactThemeContext.Provider value={themes.loanPricing}>
       <Radio id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} tabIndex="0" />
       <Radio id="radio2" name="radio1" onChange={onCheckboxCheck} tabIndex="1" />
     </ReactThemeContext.Provider>
   );
-  expect(asFragment()).toMatchSnapshot();
+  expect(wrapper.toJSON()).toMatchSnapshot();
 });

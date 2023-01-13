@@ -18,7 +18,6 @@ import InputElementContainer from './input-element-container.styled';
 import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
-import rgbToRgba from '../../helpers/rgb-to-rgba';
 
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {

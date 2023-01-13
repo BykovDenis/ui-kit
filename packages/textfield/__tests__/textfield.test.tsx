@@ -1,7 +1,6 @@
 import React from 'react';
 import getNewReactThemeContext from '../../styles/src';
-import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import renderer from 'react-test-renderer';
 
 import TextField from '../src';
 import ITextField from '../types/itext-field';
@@ -30,10 +29,10 @@ it('TextField renders correctly', () => {
     onRemove: jest.fn(),
   };
 
-  const { asFragment } = render(
+  const wrapper = renderer.create(
     <ReactThemeContext.Provider value={themes.loanPricing}>
       <TextField {...props} />
     </ReactThemeContext.Provider>
   );
-  expect(asFragment()).toMatchSnapshot();
+  expect(wrapper.toJSON()).toMatchSnapshot();
 });
