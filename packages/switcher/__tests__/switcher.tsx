@@ -1,7 +1,6 @@
 import React from 'react';
 import getNewReactThemeContext from '../../styles/src';
-import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import renderer from 'react-test-renderer';
 
 import Switcher from '../src';
 import ISwitcher from '../types/iswitcher';
@@ -17,10 +16,10 @@ it('Switcher renders correctly', () => {
     activeElement: 'Native',
   };
 
-  const { asFragment } = render(
+  const wrapper = renderer.create(
     <ReactThemeContext.Provider value={themes.loanPricing}>
       <Switcher {...props} />
     </ReactThemeContext.Provider>
   );
-  expect(asFragment()).toMatchSnapshot();
+  expect(wrapper.toJSON()).toMatchSnapshot();
 });

@@ -1,7 +1,6 @@
 import React from 'react';
 import getNewReactThemeContext from '../../styles/src';
-import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import renderer from 'react-test-renderer';
 
 import Button from '../src';
 import { themes } from '../../styles/src/themes';
@@ -30,10 +29,10 @@ it('Button renders correctly', () => {
     focusColor: 'rgb(8, 166, 82)',
   };
 
-  const { asFragment } = render(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
-      <Button {...props}>Hello world!</Button>
-    </ReactThemeContext.Provider>
-  );
-  expect(asFragment()).toMatchSnapshot();
+
+  const wrapper = renderer.create(<ReactThemeContext.Provider value={themes.loanPricing}>
+    <Button {...props}>Hello world!</Button>
+  </ReactThemeContext.Provider>);
+
+  expect(wrapper.toJSON()).toMatchSnapshot();
 });

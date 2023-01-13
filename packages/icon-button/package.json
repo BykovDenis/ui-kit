@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp"
+    "url": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
   },
   "keywords": [
     "react",
@@ -22,7 +22,7 @@
   "author": "DenisBykov",
   "license": "MIT",
   "bugs": {
-    "url": "https://nexus.sigma.sbrf.ru/nexus/content/repositories/npm-corp/issues"
+    "url": "https://nexus-ci.delta.sbrf.ru/repository/npm-all/issues"
   },
   "homepage": "/",
   "files": [

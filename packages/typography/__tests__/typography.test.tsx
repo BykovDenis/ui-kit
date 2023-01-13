@@ -1,7 +1,6 @@
 import React from 'react';
 import getNewReactThemeContext from '../../styles/src';
-import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import renderer from 'react-test-renderer';
 
 import { themes } from '../../styles/src/themes';
 import Typography from '../src';
@@ -9,10 +8,10 @@ import Typography from '../src';
 it('Typography renders correctly', () => {
   const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
-  const { asFragment } = render(
+  const wrapper = renderer.create(
     <ReactThemeContext.Provider value={themes.loanPricing}>
       <Typography variant="H1">Some text</Typography>
     </ReactThemeContext.Provider>
   );
-  expect(asFragment()).toMatchSnapshot();
+  expect(wrapper.toJSON()).toMatchSnapshot();
 });

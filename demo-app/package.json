@@ -27,7 +27,7 @@
     "html5"
   ],
   "dependencies": {
-    "@sber-risks-ui/core": "^0.8.22",
+    "@sber-riski-cib-ui/core": "^0.9.9",
     "babel-eslint": "^10.0.1",
     "chroma-js": "2.0.3",
     "date-fns": "^2.9.0",

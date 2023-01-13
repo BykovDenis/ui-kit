@@ -1,7 +1,6 @@
 import React from 'react';
 import getNewReactThemeContext from '../../styles/src';
-import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import renderer from 'react-test-renderer';
 
 import ListItem from '../../list-item/src';
 import List from '../src';
@@ -16,7 +15,7 @@ it('List renders correctly', () => {
     elements: ['List item 1', 'List item 2', 'List item 3', 'List item 4', 'List item 5'],
   };
 
-  const { asFragment } = render(
+  const wrapper = renderer.create(
     <ReactThemeContext.Provider value={themes.loanPricing}>
       <List {...props}>
         {props.elements.map((element: string, index: number) => (
@@ -27,5 +26,5 @@ it('List renders correctly', () => {
       </List>
     </ReactThemeContext.Provider>
   );
-  expect(asFragment()).toMatchSnapshot();
+  expect(wrapper.toJSON()).toMatchSnapshot();
 });
