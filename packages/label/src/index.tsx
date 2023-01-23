@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import ITheme from '../../styles/types/itheme';
 import ILabel from '../types/tlabel';
 import LabelStyled from './label.styled';
-import rgbToRgba from '../../helpers/rgb-to-rgba';
 
 const FONT_WEIGHT_REGULAR = 400;
 
@@ -18,8 +17,10 @@ const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
     const color: string = props?.error
       ? theme?.palette?.secondary?.main
       : props?.isFocus
-        ? theme?.palette?.primary?.main
-        : props.isDisabled ? theme?.palette?.baseFontColorOpacity05 : theme?.palette?.baseFontColor
+      ? theme?.palette?.primary?.main
+      : props.isDisabled
+      ? theme?.palette?.baseFontColorOpacity05
+      : theme?.palette?.baseFontColor;
 
     return (
       <LabelStyled

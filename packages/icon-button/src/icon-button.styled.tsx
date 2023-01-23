@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
+import isNotEmptyNumber from '../../helpers/is-not-empty-number';
+import isNotEmptyString from '../../helpers/is-not-empty-string';
 import rgbToRgba from '../../helpers/rgb-to-rgba';
 import IIconButton from '../types/iicon-button';
-import isNotEmptyString from '../../helpers/is-not-empty-string';
-import isNotEmptyNumber from '../../helpers/is-not-empty-number';
 
 const CONTAINED: string = 'contained';
 const OUTLINED: string = 'outlined';
@@ -41,11 +41,14 @@ const IconButtonStyled =
     cursor: pointer;    
     border: ${(props: IIconButton) =>
       props?.variant === OUTLINED ? `1px solid ${props.backgroundColor}` : '1px solid transparent'};
-    width: ${(props: IIconButton) =>  typeof props?.width === 'string'
-            ? isNotEmptyString(props?.width)
-                    ? props?.width
-                    : 'initial'
-            : isNotEmptyNumber(props?.width) ? `${props?.width}px` : 'initial'};
+    width: ${(props: IIconButton) =>
+      typeof props?.width === 'string'
+        ? isNotEmptyString(props?.width)
+          ? props?.width
+          : 'initial'
+        : isNotEmptyNumber(props?.width)
+        ? `${props?.width}px`
+        : 'initial'};
     height: ${(props: IIconButton) => `${props?.height}px` ?? 'initial'};
 
     &:focus {
