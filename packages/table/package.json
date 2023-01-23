@@ -1,0 +1,24 @@
+{
+  "name": "@sber-risks-ui/Table",
+  "version": "0.9.9",
+  "description": "Table react UI",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Denis Bykov",
+  "license": "MIT",
+  "jest": {
+    "setupFiles": [
+      "./setupTests.js"
+    ]
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.prod.js",
+    "build-dev": "rollup -w -c rollup.config.dev.js",
+    "clean-node-modules": "rm -rf node_modules"
+  },
+  "publishConfig": {
+    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
+  },
+  "gitHead": "47d1d35a2073dcd8c862f03bad0381ffe1846258"
+}

@@ -1,7 +1,6 @@
 module.exports = {
   env: {
     browser: true,
-    commonjs: true,
   },
   parser: '@typescript-eslint/parser',
   extends: [

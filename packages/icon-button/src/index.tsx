@@ -10,6 +10,8 @@ const IconButton: React.FunctionComponent = (props: any) => {
     setConsumer(globalThis.ReactThemeContextConsumer);
   }, [globalThis.ReactThemeContextConsumer]);
 
+  const children: any = props?.children;
+
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string =
       props?.colorTheme === 'normal' || !props.colorTheme
@@ -37,7 +39,7 @@ const IconButton: React.FunctionComponent = (props: any) => {
         padding={props?.padding}
         name={props.name}
       >
-        {props.children}
+        {children}
       </IconButtonStyled>
     );
   };
