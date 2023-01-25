@@ -51,13 +51,13 @@ pipeline {
                             dir("${rootPath}") {
                                 script {
                                     echo 'Root packages installing'
-                                    sh 'npm i'
+                                    sh 'npm ci'
                                 }
                             }
                             dir("${uiKitPath}") {
                                 script {
                                     echo 'Core packages installing'
-                                    sh 'npm i'
+                                    sh 'npm ci'
                                 }
                             }
                         }
@@ -615,16 +615,28 @@ pipeline {
                 nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
-                        dir("${uiKitPath}") {
-                            withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
-                                sh """
-                                    npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
-                                """
-                            }
-                        }
-                    }
+                script {
+
+                  def IS_PUBLISH = input(
+                    message: 'Publish library UI KIt?',
+                    ok: 'y',
+                    parameters: [
+                      string(name: 'IS_PUBLISH', defaultValue: 'n', description: 'Publish library UI KIt?')
+                    ]
+                  )
+                  if (IS_PUBLISH == 'y') {
+                      nodejs('node-v17.5.0-linux-x64') {
+                          withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
+                              dir("${uiKitPath}") {
+                                  withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
+                                      sh """
+                                          npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
+                                      """
+                                  }
+                              }
+                          }
+                      }
+                   }
                 }
             }
         }
