@@ -620,6 +620,7 @@ pipeline {
                   def IS_PUBLISH = input(
                     message: 'Publish library UI KIt?',
                     ok: 'y',
+                    no: 'n',
                     parameters: [
                       string(name: 'IS_PUBLISH', defaultValue: 'n', description: 'Publish library UI KIt?')
                     ]
