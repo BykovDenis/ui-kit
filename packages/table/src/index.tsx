@@ -16,8 +16,16 @@ const Table: React.FunctionComponent<TTable> = (props: TTable) => {
     const backgroundColor: string = props.backgroundColor ?? theme.mainBackgroundColor;
     const fontFamily: string = props?.fontFamily ? props?.fontFamily : theme.fontFamily;
 
+    const bgOddColumnColor: string = props.isStrippedColumn ? theme.palette.primary.lighter : backgroundColor;
+
     return (
-      <TableStyled {...props} backgroundColor={backgroundColor} color={color} fontFamily={fontFamily}>
+      <TableStyled
+        {...props}
+        backgroundColor={backgroundColor}
+        color={color}
+        fontFamily={fontFamily}
+        bgOddColumnColor={bgOddColumnColor}
+      >
         {props.children}
       </TableStyled>
     );

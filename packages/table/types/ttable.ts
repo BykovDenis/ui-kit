@@ -1,5 +1,6 @@
 type TTable = {
   backgroundColor?: string,
+  bgOddColumnColor?: string,
   children?: React.ReactNode,
   className?: string,
   color?: string,

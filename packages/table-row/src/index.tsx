@@ -15,10 +15,8 @@ const TableRow: React.FunctionComponent<TTableRow> = (props: TTableRow) => {
     const backgroundColor: string =
       props?.backgroundColor ?? props?.isHeader ? theme.palette.primary.main : theme.mainBackgroundColor;
 
-    const bgOddColumnColor: string = props.isStrippedColumn ? theme.palette.primary.lighter : backgroundColor;
-
     return (
-      <TableRowStyled {...props} backgroundColor={backgroundColor} bgOddColumnColor={bgOddColumnColor}>
+      <TableRowStyled {...props} backgroundColor={backgroundColor}>
         {props.children}
       </TableRowStyled>
     );

@@ -10,10 +10,7 @@ const TableRowStyled =
   position: ${(props: TTableRow) => props?.position ?? 'relative'};
   font-weight: ${(props: TTableRow) =>
     isNotEmptyNumber(props?.fontWeight) ? props?.fontWeight : props?.isHeader ? 900 : 400};
-  background-color: ${(props: TTableRow) => props?.backgroundColor};  
-  &:nth-child(even) {
-    background-color: ${(props: TTableRow) => props?.bgOddColumnColor};
-  }  
+  background-color: ${(props: TTableRow) => props?.backgroundColor};
 `;
 
 export default TableRowStyled;

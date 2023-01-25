@@ -17,6 +17,12 @@ def switcherPath = './packages/switcher';
 def stylesPath = './packages/styles';
 def typographyPath = './packages/typography';
 def formControlPath = './packages/form-control';
+def tablePath = './packages/table';
+def tableHeadPath = './packages/table-head';
+def tableBodyPath = './packages/table-body';
+def tableRowPath = './packages/table-row';
+def tableCellPath = './packages/table-cell';
+
 
 pipeline {
     agent {
@@ -525,6 +531,70 @@ pipeline {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${formControlPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Table deploy') {
+            tools
+            {
+                nodejs 'node-v17.5.0-linux-x64'
+            }
+            steps {
+                nodejs('node-v17.5.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${tablePath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                            dir("${tableHeadPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                            dir("${tableBodyPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                            dir("${tableRowPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                            dir("${tableCellPath}") {
                                 script {
                                     echo 'Packages installing'
                                     sh 'npm i'
