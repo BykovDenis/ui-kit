@@ -1,6 +1,8 @@
+import React from 'react';
+
 type TLabel = {
   backgroundColor?: string,
-  children?: any,
+  children?: any | Array<any>, // React.ReactNode | number | string | Array<React.ReactNode>,
   className?: any,
   color?: string,
   colorTheme?: string,

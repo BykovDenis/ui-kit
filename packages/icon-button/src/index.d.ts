@@ -1,7 +1,7 @@
 import React from 'react';
-import IIconButton from '../types/iicon-button';
-import IIconButtonVariants from '../types/iicon-button-variants'
+import TButton from '../../button/types/tbutton';
+import TButtonVariants from '../../button/types/tbutton-variants'
 
-declare const IconButton: React.FunctionComponent<IIconButton>;
-export { IIconButtonVariants, IIconButton }
+declare const IconButton: React.FunctionComponent<TButton>;
+export { TButtonVariants, TButton }
 export default IconButton;

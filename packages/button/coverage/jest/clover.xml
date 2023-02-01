@@ -16,7 +16,7 @@
     </package>
     <package name="types">
       <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="ibutton.d.ts" path="/Users/16783656-mobile/www/riski-react-ui/packages/button/types/ibutton.d.ts">
+      <file name="tbutton.d.ts" path="/Users/16783656-mobile/www/riski-react-ui/packages/button/types/tbutton.d.ts">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
