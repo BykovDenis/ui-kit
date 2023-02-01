@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 import ITheme from '../../styles/types/itheme';
-import ILabel from '../types/tlabel';
+import TLabel from '../types/tlabel';
 import LabelStyled from './label.styled';
 
-const FONT_WEIGHT_REGULAR = 400;
-
-const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
+const Label: React.FunctionComponent<TLabel> = (props: TLabel) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
 
   useEffect(() => {
@@ -18,7 +16,7 @@ const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
       ? theme?.palette?.secondary?.main
       : props?.isFocus
       ? theme?.palette?.primary?.main
-      : props.isDisabled
+      : props.disabled
       ? theme?.palette?.baseFontColorOpacity05
       : theme?.palette?.baseFontColor;
 
@@ -30,11 +28,12 @@ const Label: React.FunctionComponent<ILabel> = (props: ILabel) => {
         color={color}
         fontSize={props?.fontSize ?? theme?.baseFontSize}
         htmlFor={props?.htmlFor}
-        fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
+        fontWeight={props?.fontWeight}
         width={props?.width}
         backgroundColor={props?.backgroundColor}
-        disabled={props.isDisabled}
+        disabled={props.disabled}
         whiteSpace={props?.whiteSpace}
+        justifyContent={props?.justifyContent}
       >
         {props.children}
       </LabelStyled>

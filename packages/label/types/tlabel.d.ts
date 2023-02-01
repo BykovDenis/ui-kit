@@ -1,22 +1,23 @@
 type TLabel = {
-  children?: any;
-  className?: any;
-  color?: string;
-  colorTheme?: string;
-  error?: any;
-  focusColor?: string;
-  fontFamily?: string;
-  fontSize?: number;
-  fontWeight?: number;
-  htmlFor?: string;
-  isDisabled?: boolean;
-  isFocus?: boolean;
-  isReadOnly?: boolean;
-  tabIndex?: string;
-  theme?: any;
-  width?: number | string;
-  backgroundColor?: string;
-  whiteSpace?: string
-}
+  backgroundColor?: string,
+  children?: any,
+  className?: any,
+  color?: string,
+  colorTheme?: string,
+  disabled?: boolean,
+  error?: any,
+  focusColor?: string,
+  fontFamily?: string,
+  fontSize?: number,
+  fontWeight?: number,
+  htmlFor?: string,
+  isFocus?: boolean,
+  isReadOnly?: boolean,
+  justifyContent?: string,
+  tabIndex?: string,
+  theme?: any,
+  whiteSpace?: string,
+  width?: number | string,
+};
 
 export default TLabel;

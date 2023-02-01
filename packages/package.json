@@ -1,7 +1,7 @@
 {
   "name": "@sber-risks-ui/core",
   "version": "0.9.9",
-  "description": "Riski react UI",
+  "description": "Risks react UI",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",

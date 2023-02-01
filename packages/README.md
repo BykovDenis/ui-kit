@@ -1,1 +1,1 @@
-<h1>Library Riski React UI Kit components</h1>
+<h1>Library Risks react UI Kit components</h1>

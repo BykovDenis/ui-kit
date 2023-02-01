@@ -36,6 +36,7 @@ const Button: React.FunctionComponent = (props: any) => {
         borderRadius={props?.borderRadius}
         draggable={props?.draggable}
         onDragStart={props?.onDragStart}
+        fontWeight={props.fontWeight}
         name={props?.name}
       >
         {props.children}

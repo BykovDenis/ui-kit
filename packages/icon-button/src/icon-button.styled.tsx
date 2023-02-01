@@ -29,27 +29,27 @@ const IconButtonStyled =
     text-align: center;
     letter-spacing: 0.39998px;
     color: ${(props: IIconButton) =>
-      props?.variant === CONTAINED || !props?.variant ? props.color : props.backgroundColor};
+    props?.variant === CONTAINED || !props?.variant ? props.color : props.backgroundColor};
     padding: ${(props: IIconButton) => (props?.padding >= 0 ? `${props?.padding}px` : '5px')};    
     background-color: ${(props: IIconButton) =>
-      props?.variant === CONTAINED || !props?.variant
-        ? props.backgroundColor
-        : props?.variant === TEXT || props?.variant === OUTLINED
+    props?.variant === CONTAINED || !props?.variant
+      ? props.backgroundColor
+      : props?.variant === TEXT || props?.variant === OUTLINED
         ? TRANSPARENT_COLOR
         : props.color};
     background-image: ${(props: IIconButton) => props?.backgroundImage ?? 'none'};
     cursor: pointer;    
     border: ${(props: IIconButton) =>
-      props?.variant === OUTLINED ? `1px solid ${props.backgroundColor}` : '1px solid transparent'};
+    props?.variant === OUTLINED ? `1px solid ${props.backgroundColor}` : '1px solid transparent'};
     width: ${(props: IIconButton) =>
-      typeof props?.width === 'string'
-        ? isNotEmptyString(props?.width)
-          ? props?.width
-          : 'initial'
-        : isNotEmptyNumber(props?.width)
+    typeof props?.width === 'string'
+      ? isNotEmptyString(props?.width)
+        ? props?.width
+        : 'initial'
+      : isNotEmptyNumber(props?.width)
         ? `${props?.width}px`
         : 'initial'};
-    height: ${(props: IIconButton) => `${props?.height}px` ?? 'initial'};
+    height: ${(props: IIconButton) => (isNotEmptyNumber(props?.height) ? `${props?.height}px` : 'initial')};
 
     &:focus {
       outline: 1px solid ${(props: IIconButton) => rgbToRgba(props?.focusColor, 0.3)};
@@ -58,24 +58,24 @@ const IconButtonStyled =
 
     &:hover {
       box-shadow: ${(props: IIconButton) =>
-        props?.variant === CONTAINED || !props?.variant
-          ? '0 2px 2px 0 rgba(0, 0, 0, 0.25)'
-          : '0 1px 1px rgba(0, 0, 0, 0.15)'}; 
+    props?.variant === CONTAINED || !props?.variant
+      ? '0 2px 2px 0 rgba(0, 0, 0, 0.25)'
+      : '0 1px 1px rgba(0, 0, 0, 0.15)'}; 
       background-color: ${(props: IIconButton) =>
-        props?.variant === CONTAINED || !props?.variant
-          ? rgbToRgba(props.backgroundColor, 0.85)
-          : rgbToRgba(props.backgroundColor, 0.05)};
+    props?.variant === CONTAINED || !props?.variant
+      ? rgbToRgba(props.backgroundColor, 0.85)
+      : rgbToRgba(props.backgroundColor, 0.05)};
     }
 
     &:active {
       box-shadow: ${(props: IIconButton) =>
-        props?.variant === CONTAINED || !props?.variant
-          ? '0 2px 2px 0 rgba(0, 0, 0, 0.25)'
-          : '0 1px 1px 0 rgba(0, 0, 0, 0.15)'};
+    props?.variant === CONTAINED || !props?.variant
+      ? '0 2px 2px 0 rgba(0, 0, 0, 0.25)'
+      : '0 1px 1px 0 rgba(0, 0, 0, 0.15)'};
       background-color: ${(props: IIconButton) =>
-        props?.variant === CONTAINED || !props?.variant
-          ? rgbToRgba(props.backgroundColor, 0.5)
-          : rgbToRgba(props.backgroundColor, 0.25)};
+    props?.variant === CONTAINED || !props?.variant
+      ? rgbToRgba(props.backgroundColor, 0.5)
+      : rgbToRgba(props.backgroundColor, 0.25)};
     }
 
     &:disabled {

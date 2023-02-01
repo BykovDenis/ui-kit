@@ -7,6 +7,7 @@ def datepickerPath = './packages/datepicker'
 def dividerPath = './packages/divider'
 def inputPath = './packages/input'
 def labelPath = './packages/label'
+def labelInteractivePath = './packages/label-interactive'
 def listPath = './packages/list'
 def listItemPath = './packages/list-item'
 def radioPath = './packages/radio'
@@ -32,7 +33,7 @@ pipeline {
     }
 
     environment {
-        PROJECT_NAME = 'Riski react UI Kit'
+        PROJECT_NAME = 'Risks react UI Kit'
         OWNER_NAME = 'Denis Bykov'
     }
     options { timeout(time: 60, unit: 'MINUTES') }
@@ -315,6 +316,40 @@ pipeline {
 //                                 }
 //                             }
                             dir("${labelPath}") {
+                                script {
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Label interactive deploy') {
+            tools
+            {
+                nodejs 'node-v17.5.0-linux-x64'
+            }
+            steps {
+                nodejs('node-v17.5.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${labelInteractivePath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                }
+                            }
+//                             dir("${rootPath}") {
+//                                 script {
+//                                     echo 'Testing'
+//                                     sh 'npm test /packages/label/__tests__'
+//                                 }
+//                             }
+                            dir("${labelInteractivePath}") {
                                 script {
                                     echo 'Building'
                                     sh 'npm run build'
