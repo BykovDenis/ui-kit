@@ -1,3 +1,3 @@
-const uiKit: string = 'Riski react UI';
+const uiKit: string = 'Risks react UI';
 
 export default uiKit;

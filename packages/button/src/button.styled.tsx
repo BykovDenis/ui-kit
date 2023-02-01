@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
+import isNotEmptyNumber from '../../helpers/is-not-empty-number';
+import isNotEmptyString from '../../helpers/is-not-empty-string';
 import rgbToRgba from '../../helpers/rgb-to-rgba';
 import IButton from '../types/ibutton';
-import isNotEmptyString from '../../helpers/is-not-empty-string';
-import isNotEmptyNumber from '../../helpers/is-not-empty-number';
 
 const CONTAINED: string = 'contained';
 const OUTLINED: string = 'outlined';
@@ -22,33 +22,35 @@ const ButtonStyled =
     font-family: ${(props: IButton) => props?.fontFamily};
     border: none;
     border-radius: ${(props: IButton) => (props?.borderRadius ? props?.borderRadius : '4px')};
-    font-style: normal;
-    font-weight: normal;
+    font-style: inherit;
+    font-weight: ${(props: IButton) => props?.fontWeight ?? 'inherit'};
     font-size:  ${(props: IButton) => props?.fontSize}px;
     line-height: 1;
     text-align: center;
     letter-spacing: 0.39998px;
     color: ${(props: IButton) =>
-      props?.variant === CONTAINED || !props?.variant ? props.color : props.backgroundColor};
+    props?.variant === CONTAINED || !props?.variant ? props.color : props.backgroundColor};
     padding: 10px 15px;    
     background-color: ${(props: IButton) =>
-      props?.variant === CONTAINED || !props?.variant
-        ? props.backgroundColor
-        : props?.variant === TEXT || props?.variant === OUTLINED
+    props?.variant === CONTAINED || !props?.variant
+      ? props.backgroundColor
+      : props?.variant === TEXT || props?.variant === OUTLINED
         ? TRANSPARENT_COLOR
         : props.color};
     background-image: ${(props: IButton) => props?.backgroundImage ?? 'none'};
     cursor: pointer;    
     border: ${(props: IButton) =>
-      props?.variant === OUTLINED ? `1px solid ${props.backgroundColor}` : '1px solid transparent'};
-    width: ${(props: IButton) =>  typeof props?.width === 'string' 
-            ? isNotEmptyString(props?.width) 
-                    ? props?.width 
-                    : 'initial' 
-            : isNotEmptyNumber(props?.width) ? `${props?.width}px` : 'initial'};
-    height: ${(props: IButton) => `${props?.height}px` ?? 'initial'};
-    margin-top: -5px;
-
+    props?.variant === OUTLINED ? `1px solid ${props.backgroundColor}` : '1px solid transparent'};
+    width: ${(props: IButton) =>
+      typeof props?.width === 'string'
+        ? isNotEmptyString(props?.width)
+          ? props?.width
+          : 'initial'
+        : isNotEmptyNumber(props?.width)
+        ? `${props?.width}px`
+        : 'initial'};
+    height: ${(props: IButton) => (isNotEmptyNumber(props?.height) ? `${props?.height}px` : 'initial')};
+    margin: 0;
     &:focus {
       outline: 1px solid ${(props: IButton) => rgbToRgba(props?.focusColor, 0.3)};
       box-shadow: 1px 1px 5px 3px ${(props: IButton) => rgbToRgba(props?.focusColor, 0.3)};
@@ -56,24 +58,24 @@ const ButtonStyled =
 
     &:hover {
       box-shadow: ${(props: IButton) =>
-        props?.variant === CONTAINED || !props?.variant
-          ? '0 2px 2px 0 rgba(0, 0, 0, 0.25)'
-          : '0 1px 1px rgba(0, 0, 0, 0.15)'}; 
+    props?.variant === CONTAINED || !props?.variant
+      ? '0 2px 2px 0 rgba(0, 0, 0, 0.25)'
+      : '0 1px 1px rgba(0, 0, 0, 0.15)'}; 
       background-color: ${(props: IButton) =>
-        props?.variant === CONTAINED || !props?.variant
-          ? rgbToRgba(props.backgroundColor, 0.85)
-          : rgbToRgba(props.backgroundColor, 0.05)};
+    props?.variant === CONTAINED || !props?.variant
+      ? rgbToRgba(props.backgroundColor, 0.85)
+      : rgbToRgba(props.backgroundColor, 0.05)};
     }
 
     &:active {
       box-shadow: ${(props: IButton) =>
-        props?.variant === CONTAINED || !props?.variant
-          ? '0 2px 2px 0 rgba(0, 0, 0, 0.25)'
-          : '0 1px 1px 0 rgba(0, 0, 0, 0.15)'};
+    props?.variant === CONTAINED || !props?.variant
+      ? '0 2px 2px 0 rgba(0, 0, 0, 0.25)'
+      : '0 1px 1px 0 rgba(0, 0, 0, 0.15)'};
       background-color: ${(props: IButton) =>
-        props?.variant === CONTAINED || !props?.variant
-          ? rgbToRgba(props.backgroundColor, 0.5)
-          : rgbToRgba(props.backgroundColor, 0.25)};
+    props?.variant === CONTAINED || !props?.variant
+      ? rgbToRgba(props.backgroundColor, 0.5)
+      : rgbToRgba(props.backgroundColor, 0.25)};
     }
 
     &:disabled {
