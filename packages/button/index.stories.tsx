@@ -1,11 +1,11 @@
 import { action } from '@storybook/addon-actions';
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import getNewReactThemeContext from '../styles/src';
 
-import Button from  './src/index';
-import IButton from './types/ibutton'
+import getNewReactThemeContext from '../styles/src';
 import { themes } from '../styles/src/themes';
+import Button from  './src/index';
+import TButton from './types/tbutton'
 
 export default {
   title: 'Components/Button',
@@ -22,7 +22,7 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args: IButton) => {
+const Template: ComponentStory<typeof Button> = (args: TButton) => {
 
   const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 

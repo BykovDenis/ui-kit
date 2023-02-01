@@ -15,10 +15,10 @@ const Label: React.FunctionComponent<TLabel> = (props: TLabel) => {
     const color: string = props?.error
       ? theme?.palette?.secondary?.main
       : props?.isFocus
-      ? theme?.palette?.primary?.main
-      : props.disabled
-      ? theme?.palette?.baseFontColorOpacity05
-      : theme?.palette?.baseFontColor;
+        ? theme?.palette?.primary?.main
+        : props.disabled
+          ? theme?.palette?.baseFontColorOpacity05
+          : theme?.palette?.baseFontColor;
 
     return (
       <LabelStyled

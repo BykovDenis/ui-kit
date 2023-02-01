@@ -6,7 +6,8 @@ import ChevronUpIcon from '../icons-components/24x24/chevron-up-icon';
 import getNewReactThemeContext from '../styles/src';
 import { themes } from '../styles/src/themes';
 import LabelInterative from './src/index';
-import ILabelInterative from './types/tlabel-interactive';
+import TLabelInterative from './types/tlabel-interactive';
+import TLabelInteractive from "./types/tlabel-interactive";
 
 export default {
   title: 'Components/LabelInteractive',
@@ -18,12 +19,12 @@ export default {
   },
   args: {
     children: 'Label interative',
-    icon: <ChevronUpIcon color="white" />,
+    Icon: ChevronUpIcon,
     backgroundColor: 'rgb(8,166,82)'
   },
 } as ComponentMeta<typeof LabelInterative>;
 
-const Template: ComponentStory<typeof LabelInterative> = (args: ILabelInterative) => {
+const Template: ComponentStory<typeof LabelInterative> = (args: TLabelInteractive) => {
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 

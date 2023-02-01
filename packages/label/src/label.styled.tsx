@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import getMeasureValue from '../../helpers/get-measure-value';
 import rgbToRgba from '../../helpers/rgb-to-rgba';
 import TLabel from '../types/tlabel';
 
@@ -20,8 +21,7 @@ const Label =
       line-height: 0.7;
       white-space: ${(props: TLabel) => (props?.whiteSpace ? props.whiteSpace : 'nowrap')};
       font-weight: ${(props: TLabel) => props.fontWeight || 'inherit'}; 
-      width: ${(props: TLabel) =>
-    props.width ? (typeof props.width === 'string' ? props.width : `${props.width}px`) : '100%'};  
+      width: ${(props: TLabel) => getMeasureValue(props?.width, '100%')};     
       background-color: ${(props: TLabel) => (props.backgroundColor ? props.backgroundColor : 'inherit')};
       &:focus {
         outline: 1px solid ${(props: TLabel) => rgbToRgba(props?.focusColor, 0.3)};

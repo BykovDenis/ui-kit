@@ -3,7 +3,7 @@ import './index.css';
 import React from 'react';
 
 import Button from '../../../button/src/button.styled';
-import IButton from '../../../button/types/ibutton';
+import TButton from '../../../button/types/tbutton';
 
 interface IDatepickerButtonNavigate extends IButton {
   children?: React.ReactNode;
