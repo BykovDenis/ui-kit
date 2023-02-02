@@ -1,7 +1,7 @@
 import React from 'react';
 import TButton from '../types/tbutton';
-import IButtonVariants from '../types/ibutton-variants'
+import TButtonVariants from '../types/tbutton-variants'
 
-declare const Button: React.FunctionComponent<IButton>;
-export { IButtonVariants, TButton }
+declare const Button: React.FunctionComponent<TButton>;
+export { TButtonVariants, TButton }
 export default Button;

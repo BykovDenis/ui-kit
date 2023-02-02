@@ -6,7 +6,6 @@ type TButton = {
   backgroundImage?: string,
   baseFontSize?: string,
   borderRadius?: string,
-  children?: any | Array<any>, // React.ReactNode | number | string | Array<React.ReactNode>,
   className?: any,
   color?: string,
   colorTheme?: 'normal' | 'warning',
