@@ -4,13 +4,13 @@ import ILabel from '../../label/types/tlabel';
 export default interface IDatepicker extends IInput, ILabel {
   baseFontSize?: number;
   children?: any;
+  disabled?: boolean;
   error?: boolean;
   fontFamily?: string;
   fontSize?: number;
   height?: number;
   id: string;
   isCreatable?: boolean;
-  isDisabled?: boolean;
   isExistValue?: boolean;
   label?: string | React.ReactNode;
   locale?: string;

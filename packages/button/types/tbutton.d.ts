@@ -21,6 +21,7 @@ type TButton = {
   name?: string,
   onClick?: (evt: React.ChangeEvent<HTMLButtonElement>) => void,
   onDragStart?: (evt: any) => void,
+  padding?: number | string,
   theme?: any,
   type?: string,
   variant?: TButtonVariants,

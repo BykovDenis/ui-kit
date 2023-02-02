@@ -7,11 +7,13 @@ import searchDomChildElement from '../../helpers/search-dom-child-element';
 import Input from '../../input/src';
 import Label from '../../label/src';
 import Select from '../../select/src';
-import IOption from '../types/ioption';
+import ITheme from '../../styles/types/itheme';
 import monthsElementEn from '../dictionaries/months-en';
 import monthsElementRu from '../dictionaries/months-ru';
 import DateParser from '../helpers/date-parser';
 import IDatepicker from '../types/idatepicker';
+import IOption from '../types/ioption';
+import DatepickerButtonNavigate from './datepicker-button-navigate';
 import DatepickerContainerStyled from './datepicker-container.styled';
 import DatepickerDatesContainer from './datepicker-dates-container.styled';
 import DatepickerHeader from './datepicker-header.styled';
@@ -20,8 +22,6 @@ import DaysOfMonth from './days-of-month';
 import DaysOfWeek from './days-of-week';
 import LabelContainer from './label-container.styled';
 import MonthsYearsRuleContainer from './months-years-rule-container.styled';
-import DatepickerButtonNavigate from './datepicker-button-navigate';
-import ITheme from '../../styles/types/itheme';
 
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   // const dateRef = useRef();
@@ -313,7 +313,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   //               isFocus={isFocus}
   //               isReadOnly={props.isReadOnly}
   //               fontWeight={props?.fontWeight}
-  //               isDisabled={props.disabled}
+  //               disabled={props.disabled}
   //               fontFamily={props?.fontFamily || theme?.fontFamily}
   //               error={isError}
   //             >

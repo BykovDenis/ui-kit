@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import TButton from '../../button/types/tbutton';
+import getMeasureValue from '../../helpers/get-measure-value';
 import isNotEmptyNumber from '../../helpers/is-not-empty-number';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import rgbToRgba from '../../helpers/rgb-to-rgba';
@@ -30,7 +31,7 @@ const IconButtonStyled =
     letter-spacing: 0.39998px;
     color: ${(props: TButton) =>
       props?.variant === CONTAINED || !props?.variant ? props.color : props.backgroundColor};
-    padding: ${(props: TButton) => (props?.padding >= 0 ? `${props?.padding}px` : '5px')};    
+    padding: ${(props: TButton) => getMeasureValue(props?.padding, '5px')};    
     background-color: ${(props: TButton) =>
       props?.variant === CONTAINED || !props?.variant
         ? props.backgroundColor
@@ -49,7 +50,7 @@ const IconButtonStyled =
         : isNotEmptyNumber(props?.width)
         ? `${props?.width}px`
         : 'initial'};
-    height: ${(props: TButton) => (isNotEmptyNumber(props?.height) ? `${props?.height}px` : 'initial')};
+    height: ${(props: TButton) => getMeasureValue(props?.height)};
 
     &:focus {
       outline: 1px solid ${(props: TButton) => rgbToRgba(props?.focusColor, 0.3)};
