@@ -8,12 +8,12 @@ import DayOfMonth from './day-of-month.styled';
 import DaysOfMonthStyled from './days-of-month.styled';
 
 interface IDaysOfMonth {
-  backgroundColor: string;
-  color: string;
-  countDaysIsMonth: number;
   activeDayNumber: number;
   activeMonthNumber: number;
   activeYearNumber: number;
+  backgroundColor: string;
+  color: string;
+  countDaysIsMonth: number;
   currentMonthNumber: number;
   currentYearNumber: number;
   fontFamily: string;
@@ -25,7 +25,6 @@ interface IDaysOfMonth {
 }
 
 const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth) => {
-
   const onDayChange = (evt: React.MouseEvent<HTMLButtonElement>) => {
     const element = evt.currentTarget;
     props.onDayChange(parseInt(element.name, 10));
@@ -55,7 +54,7 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
           `${dayValueParsed}.${props.currentMonthNumber}.${props.currentYearNumber}`
         );
 
-        const isDisabled: boolean =
+        const disabled: boolean =
           (props?.minDate !== null && currentDateParsed?.getDate() < minDateParsed.getDate()) ||
           (props?.maxDate !== null && currentDateParsed?.getDate() > maxDateParsed.getDate());
 
@@ -78,7 +77,7 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
             key={`day-number-${dayValue}-${index}-${dayValueParsed}`}
             onClick={onDayChange}
             name={dayValueParsed}
-            disabled={isDisabled}
+            disabled={disabled}
           >
             {dayValueParsed}
           </DayOfMonth>
