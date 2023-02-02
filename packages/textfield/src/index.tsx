@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
+import rgbToRgba from '../../helpers/rgb-to-rgba';
 import Input from '../../input/src';
 import Label from '../../label/src';
 import ITheme from '../../styles/types/itheme';
 import ITextField from '../types/itext-field';
 import LabelContainer from './label-container.styled';
 import TextFieldContainer from './text-field-container.styled';
-import rgbToRgba from '../../helpers/rgb-to-rgba';
 
 const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
   const [isExistValue, setIsExistValue] = useState(false);
@@ -68,7 +68,7 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
             isFocus={isFocus}
             isReadOnly={props.isReadOnly}
             fontWeight={props?.fontWeight}
-            isDisabled={props.disabled}
+            disabled={props.disabled}
             error={props?.error}
           >
             {props?.label}

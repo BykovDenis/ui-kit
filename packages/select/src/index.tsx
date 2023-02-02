@@ -6,13 +6,13 @@ import Label from '../../label/src';
 import List from '../../list/src';
 import ListItem from '../../list-item/src';
 import ITheme from '../../styles/types/itheme';
+import IOption from '../types/ioption';
 import ISelect from '../types/iselect';
 import LabelContainer from './label-container.styled';
 import SelectContainer from './select-container.styled';
 import SelectHeader from './select-header.styled';
 import SelectIndicator from './select-indicator.styled';
 import SelectListContainer from './select-list-container.styled';
-import IOption from '../types/ioption';
 
 const DEFAULT_HEIGHT = 40;
 const TEXT_ALIGN = 'center';
@@ -40,18 +40,18 @@ function getElementsParsed(elements: Array<IOption | string | number>): Array<IO
 function getActiveElementParsed(activeElement: string | number | IOption): IOption {
   const activeElementType: string = typeof activeElement;
   switch (activeElementType) {
-    case 'object': {
-      return activeElement as IOption;
-    }
-    case 'string': {
-      return { label: activeElement, value: activeElement } as IOption;
-    }
-    case 'number': {
-      return { label: activeElement?.toString(), value: activeElement } as IOption;
-    }
-    default: {
-      return activeElement as IOption;
-    }
+  case 'object': {
+    return activeElement as IOption;
+  }
+  case 'string': {
+    return { label: activeElement, value: activeElement } as IOption;
+  }
+  case 'number': {
+    return { label: activeElement?.toString(), value: activeElement } as IOption;
+  }
+  default: {
+    return activeElement as IOption;
+  }
   }
 }
 
@@ -260,7 +260,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                 isFocus={isFocus}
                 isReadOnly={props.isReadOnly}
                 fontWeight={props?.fontWeight}
-                isDisabled={props.disabled}
+                disabled={props.disabled}
                 fontFamily={props?.fontFamily || theme?.fontFamily}
               >
                 {props?.label}
