@@ -1,10 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import Button from '../../button/src';
-import TButtonVariants from '../../button/types/tbutton-variants';
 import Label from '../../label/src/';
 import ITheme from '../../styles/types/itheme';
 import TLabelInteractive from '../types/tlabel-interactive';
+import ButtonStyled from './button.styled';
 import LabelInteractiveStyled from './label-interactive.styled';
 
 const LabelInteractive: React.FunctionComponent<TLabelInteractive> = (props: TLabelInteractive) => {
@@ -18,13 +17,14 @@ const LabelInteractive: React.FunctionComponent<TLabelInteractive> = (props: TLa
     const color: string = props?.error
       ? theme?.palette?.secondary?.main
       : props?.isFocus
-        ? theme?.palette?.primary?.main
-        : props.disabled
-          ? theme?.palette?.baseFontColorOpacity05
-          : theme?.palette?.baseFontColor;
+      ? theme?.palette?.primary?.main
+      : props.disabled
+      ? theme?.palette?.baseFontColorOpacity05
+      : theme?.palette?.baseFontColor;
+    // @ts-ignore
     return props?.isInteractive ? (
       <LabelInteractiveStyled backgroundColor={props?.backgroundColor}>
-        <Button color={color} onClick={props?.onClick} variant={props?.variant as TButtonVariants ?? 'text'} width="100%">
+        <ButtonStyled minHeight={props?.minHeight} onClick={props?.onClick}>
           <Label
             className={props?.className}
             fontFamily={theme?.fontFamily}
@@ -41,7 +41,7 @@ const LabelInteractive: React.FunctionComponent<TLabelInteractive> = (props: TLa
             {props.children}
           </Label>
           <props.Icon color={color} />
-        </Button>
+        </ButtonStyled>
       </LabelInteractiveStyled>
     ) : (
       <LabelInteractiveStyled backgroundColor={props?.backgroundColor}>

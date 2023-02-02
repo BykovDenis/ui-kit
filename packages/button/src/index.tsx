@@ -39,9 +39,7 @@ const Button: React.FunctionComponent = (props: TButton) => {
         onDragStart={props?.onDragStart}
         fontWeight={props.fontWeight}
         name={props?.name}
-      >
-        {props.children}
-      </ButtonStyled>
+      />
     );
   };
 

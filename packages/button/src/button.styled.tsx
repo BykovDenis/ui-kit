@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import getMeasureValue from '../../helpers/get-measure-value';
-import isNotEmptyNumber from '../../helpers/is-not-empty-number';
 import rgbToRgba from '../../helpers/rgb-to-rgba';
 import TButton from '../types/tbutton';
 
@@ -42,7 +41,7 @@ const ButtonStyled =
     border: ${(props: TButton) =>
       props?.variant === OUTLINED ? `1px solid ${props.backgroundColor}` : '1px solid transparent'};
     width: ${(props: TButton) => getMeasureValue(props?.width)};
-    height: ${(props: TButton) => (isNotEmptyNumber(props?.height) ? `${props?.height}px` : 'initial')};
+    height: ${(props: TButton) => getMeasureValue(props?.height)};
     margin: 0;
     &:focus {
       outline: 1px solid ${(props: TButton) => rgbToRgba(props?.focusColor, 0.3)};

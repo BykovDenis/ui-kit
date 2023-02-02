@@ -8,6 +8,7 @@ import { themes } from '../styles/src/themes';
 import LabelInterative from './src/index';
 import TLabelInterative from './types/tlabel-interactive';
 import TLabelInteractive from "./types/tlabel-interactive";
+import TIcon from "../icons-components/types/ticon";
 
 export default {
   title: 'Components/LabelInteractive',
@@ -19,7 +20,7 @@ export default {
   },
   args: {
     children: 'Label interative',
-    Icon: ChevronUpIcon,
+    Icon: ChevronUpIcon<TIcon>,
     backgroundColor: 'rgb(8,166,82)'
   },
 } as ComponentMeta<typeof LabelInterative>;
@@ -30,7 +31,7 @@ const Template: ComponentStory<typeof LabelInterative> = (args: TLabelInteractiv
 
   return <ReactThemeContext.Provider value={themes.dark}>
     <FormControl width="150px">
-      <LabelInterative {...args} >{args.children}</LabelInterative>
+      <LabelInterative minHeight={30} {...args} >{args.children}</LabelInterative>
     </FormControl>
   </ReactThemeContext.Provider>
 }
