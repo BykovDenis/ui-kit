@@ -6,6 +6,7 @@ type TButton = {
   backgroundImage?: string,
   baseFontSize?: string,
   borderRadius?: string,
+  children?: any,
   className?: any,
   color?: string,
   colorTheme?: 'normal' | 'warning',
