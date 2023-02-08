@@ -11,6 +11,7 @@ type TTable = {
   isStrippedColumn?: boolean,
   position?: string,
   textAlign?: string,
+  width?: number | string,
 };
 
 export default TTable;
