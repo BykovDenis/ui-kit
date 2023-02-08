@@ -654,13 +654,13 @@ pipeline {
 
                   def IS_PUBLISH = input(
                     message: 'Publish library UI KIt?',
-                    ok: 'y',
-                    no: 'n',
+                    ok: 'Yes',
+                    no: 'No',
                     parameters: [
-                      string(name: 'IS_PUBLISH', defaultValue: 'n', description: 'Publish library UI KIt?')
+                      string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Publish library UI KIt?')
                     ]
                   )
-                  if (IS_PUBLISH == 'y') {
+                  if (IS_PUBLISH == 'Yes') {
                       nodejs('node-v17.5.0-linux-x64') {
                           withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                               dir("${uiKitPath}") {
