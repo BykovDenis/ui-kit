@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
 import TTable from '../types/ttable';
+import getMeasureValue from '../../helpers/get-measure-value';
 
 const TableStyled =
   styled.table <
   TTable >
   `
-  position: ${(props: TTable) => props?.position ?? 'relative'};
+  width: ${(props: TTable) => getMeasureValue(props?.width, '100%')};
+    position: ${(props: TTable) => props?.position ?? 'relative'};
   background-color: ${(props: TTable) => props?.backgroundColor};
   color: ${(props: TTable) => props?.color};
   font-family: ${(props: TTable) => props?.fontFamily};

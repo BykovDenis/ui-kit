@@ -92,7 +92,7 @@ const TemplateDarkTable: ComponentStory<typeof Table> = (args: TTable) => {
   return <ReactThemeContext.Provider value={themes.dark}>
     <Table {...args} >
       <TableHead>
-        <TableRow isHeader={true}>
+        <TableRow isHeader={true} minHeight={40}>
           <TableCell>Наименование</TableCell>
           <TableCell>Дата</TableCell>
           <TableCell>CrmId</TableCell>

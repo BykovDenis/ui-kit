@@ -7,6 +7,7 @@ type TTableCell = TTableRow & {
   borderWidth?: string,
   color?: string,
   padding?: string,
+  width?: number | string,
 };
 
 export default TTableCell;
