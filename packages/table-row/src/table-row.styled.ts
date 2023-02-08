@@ -13,7 +13,7 @@ const TableRowStyled =
     isNotEmptyNumber(props?.fontWeight) ? props?.fontWeight : props?.isHeader ? 900 : 400};
   background-color: ${(props: TTableRow) => props?.backgroundColor};
   width: 100%;
-  min-height: ${(props: TTableRow) => getMeasureValue(props?.minHeight)};
+  min-height: ${(props: TTableRow) => getMeasureValue(props?.minHeight, '40px')};
 `;
 
 export default TableRowStyled;
