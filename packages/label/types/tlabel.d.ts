@@ -20,6 +20,7 @@ type TLabel = {
   theme?: any,
   whiteSpace?: string,
   width?: number | string,
+  padding?: string,
 };
 
 export default TLabel;

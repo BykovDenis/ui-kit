@@ -1,4 +1,5 @@
 import React from 'react';
+import TLabelInterative from '../types/tlabel-interactive'
 
-declare const Label: React.FunctionComponent<TLabel>;
-export default Label;
+declare const LabelInteractive: React.FunctionComponent<TLabelInterative>;
+export default LabelInteractive;

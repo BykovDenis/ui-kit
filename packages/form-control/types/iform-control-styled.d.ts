@@ -1,11 +1,11 @@
 interface IFormControlStyled {
-  alignItems: string;
+  alignItems?: string;
   backgroundColor?: string;
   color?: string;
-  flexDirection: string;
+  flexDirection?: string;
   flexGrow?: number;
-  height?: string;
-  justifyContent: string;
+  height?: number | string;
+  justifyContent?: string;
   margin?: string;
   maxHeight?: string;
   overflowY?: string;
@@ -13,7 +13,10 @@ interface IFormControlStyled {
   position?: string;
   textAlign?: string;
   whiteSpace?: string;
-  width?: string;
+  width?: number | string;
+  flexWrap?: string;
+  outline?: string;
+  borderRadius?: number | string;
 }
 
 export default IFormControlStyled;

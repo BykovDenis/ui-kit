@@ -18,6 +18,7 @@ interface IListElement {
   width?: number;
   justifyContent?: string;
   colorInverted?: string;
+  padding?: string;
 }
 
 export default IListElement;
