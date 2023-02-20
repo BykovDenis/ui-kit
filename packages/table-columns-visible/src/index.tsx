@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
 import TTableColumnsVisible from '../types/ttable-columns-visible';
 import { ITheme } from '../../package/styles/dist';
 import TableColumnsVisibleStyled from './table-columns-visible-styled';
@@ -15,7 +15,9 @@ import AddIcon from '../../icons-components/36x36/add-icon';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import getElementsFromLocalStorage from '../../helpers/get-elements-from-localstorage';
 
-const TableColumnsVisible: React.FunctionComponent<TTableColumnsVisible> = (props: TTableColumnsVisible) => {
+const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColumnsVisible>> = (
+  props: TTableColumnsVisible
+) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
   const [isExpanded, setExpanded] = useState<boolean>(false);
   const [columnNames, setColumnNames] = useState<Array<string>>(props.columnNames);

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
 
 import ITheme from '../../styles/types/itheme';
 import TButton from '../types/tbutton';
 import ButtonStyled from './button.styled';
 
-const Button: React.FunctionComponent = (props: TButton) => {
+const Button: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TButton) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
 
   useEffect(() => {
