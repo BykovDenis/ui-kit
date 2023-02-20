@@ -1,32 +1,19 @@
 import React from 'react';
+import TButtonVariants from './tbutton-variants';
+import TButtonStyled from './tbutton-styled';
 
-type TButton = {
+type TButton = TButtonStyled & {
   ReactThemeContext?: any,
-  backgroundColor?: string,
-  backgroundImage?: string,
-  baseFontSize?: string,
-  borderRadius?: string,
-  children?: any,
+  children?: React.ReactNode | string,
   className?: any,
-  color?: string,
   colorTheme?: 'normal' | 'warning',
   dataset?: any,
-  disabled?: boolean,
-  draggable?: boolean,
-  focusColor?: string,
-  fontFamily?: string,
-  fontSize?: number,
-  fontWeight?: number,
-  height?: number | string,
   id?: string,
   name?: string,
   onClick?: (evt: React.ChangeEvent<HTMLButtonElement>) => void,
   onDragStart?: (evt: any) => void,
-  padding?: number | string,
   theme?: any,
-  type?: string,
   variant?: TButtonVariants,
-  width?: number | string,
 };
 
 export default TButton;

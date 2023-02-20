@@ -23,6 +23,7 @@ const Label =
       font-weight: ${(props: TLabel) => props.fontWeight || 'inherit'}; 
       width: ${(props: TLabel) => getMeasureValue(props?.width, '100%')};     
       background-color: ${(props: TLabel) => (props.backgroundColor ? props.backgroundColor : 'inherit')};
+      padding: ${(props: TLabel) => props.padding || 'initial'};
       &:focus {
         outline: 1px solid ${(props: TLabel) => rgbToRgba(props?.focusColor, 0.3)};
         box-shadow: 1px 1px 5px 3px ${(props: TLabel) => rgbToRgba(props?.focusColor, 0.3)};

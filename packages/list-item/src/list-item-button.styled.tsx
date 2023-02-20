@@ -11,6 +11,7 @@ interface IListItemButton {
   className?: string;
   type?: any;
   onClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;
+  padding?: string;
 }
 
 const ListItemButton =
@@ -33,6 +34,7 @@ const ListItemButton =
   border-radius: 4px;
   cursor: pointer;
   background-color: ${(props: IListItemButton) => props.backgroundColor || 'transparent'};
+  padding: ${(props: IListItemButton) => props.padding || 'initial'};
   &:hover {
     background-color: ${(props: IListItemButton) => props.hoverBackgroundColor};
     color: ${(props: IListItemButton) => props.hoverColor};

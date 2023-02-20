@@ -21,6 +21,7 @@ const ListItem =
     cursor: pointer;
     background-color: ${(props: IListElement) => props.backgroundColor || 'transparent'};
     border-radius: 4px;
+    padding: ${(props: IListElement) => props.padding || 'initial'};
     &:after {
       display: block;
       position: absolute;

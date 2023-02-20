@@ -47,6 +47,7 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
           onClick={props?.onClick}
           className={props?.className}
           justifyContent={props?.justifyContent}
+          padding={props.padding}
         >
           {props.children}
         </ListItemButtonStyled>
@@ -61,6 +62,7 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
         backgroundColor={props?.backgroundColor || backgroundColor}
         className={props?.className}
         justifyContent={props?.justifyContent}
+        padding={props.padding}
       >
         {props.children}
       </ListItemStyled>
