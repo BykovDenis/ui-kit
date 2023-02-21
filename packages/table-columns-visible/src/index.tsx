@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import TTableColumnsVisible from '../types/ttable-columns-visible';
-import { ITheme } from '../../package/styles/dist';
+import ITheme from '../../styles/types/itheme';
 import TableColumnsVisibleStyled from './table-columns-visible-styled';
 import Label from '../../label/src';
 import FormControl from '../../form-control/src';
