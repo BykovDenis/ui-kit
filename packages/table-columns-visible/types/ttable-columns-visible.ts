@@ -3,12 +3,13 @@ type TTableColumnsVisible = {
   height?: number | string,
   className?: string,
   disabled?: boolean,
-  fontFamily: string,
+  fontFamily?: string,
   columnNames: Array<string>,
-  keyName: string,
+  keyName?: string,
   fontSize?: number | string,
   minHeight?: number | string,
   name?: string,
+  onChange?: (columnNames: Array<string>) => void,
 };
 
 export default TTableColumnsVisible;

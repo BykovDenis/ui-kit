@@ -49,7 +49,11 @@ const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColum
         const columnNamesEdited: Set<string> = columnNamesSelected.add(columnName);
         const columnNamesSelectedText: string = Array.from(columnNamesEdited).join(',');
         localStorage.setItem(props.name, columnNamesSelectedText);
-        setColumnNamesSelected(getElementsFromLocalStorage(props.name, ','));
+        const columnNamesEditedNew: Set<string> = getElementsFromLocalStorage(props.name, ',');
+        setColumnNamesSelected(columnNamesEditedNew);
+        if (props?.onChange) {
+          props.onChange(Array.from(columnNamesEditedNew));
+        }
       }
     };
 
@@ -61,7 +65,11 @@ const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColum
         columnNamesEdited.delete(columnName);
         const columnNamesSelectedText: string = Array.from(columnNamesEdited).join(',');
         localStorage.setItem(props.name, columnNamesSelectedText);
-        setColumnNamesSelected(getElementsFromLocalStorage(props.name, ','));
+        const columnNamesEditedNew: Set<string> = getElementsFromLocalStorage(props.name, ',');
+        setColumnNamesSelected(columnNamesEditedNew);
+        if (props?.onChange) {
+          props.onChange(Array.from(columnNamesEditedNew));
+        }
       }
     };
 
