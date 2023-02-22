@@ -610,7 +610,7 @@ pipeline {
         stage('ProgressBar deploy') {
             tools
             {
-                nodejs 'node-v17.5.0-linux-x64'
+                nodejs: 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
