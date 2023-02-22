@@ -44,7 +44,7 @@ pipeline {
         stage('Root packages installing') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -72,7 +72,7 @@ pipeline {
         stage('Styles theme deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -96,7 +96,7 @@ pipeline {
         stage('Typography deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -130,7 +130,7 @@ pipeline {
         stage('Datepicker deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -164,7 +164,7 @@ pipeline {
         stage('Checkbox deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -198,7 +198,7 @@ pipeline {
         stage('Button deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -232,7 +232,7 @@ pipeline {
         stage('IconButton deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -266,7 +266,7 @@ pipeline {
         stage('Input deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -300,7 +300,7 @@ pipeline {
         stage('Label deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -334,7 +334,7 @@ pipeline {
         stage('Label interactive deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -368,7 +368,7 @@ pipeline {
         stage('ListItem deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -402,7 +402,7 @@ pipeline {
         stage('List deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -436,7 +436,7 @@ pipeline {
         stage('Radio deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -470,7 +470,7 @@ pipeline {
         stage('Select deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -504,7 +504,7 @@ pipeline {
         stage('Textfield deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -538,7 +538,7 @@ pipeline {
         stage('Switcher deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -562,7 +562,7 @@ pipeline {
         stage('FormControl deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -586,7 +586,7 @@ pipeline {
         stage('TableColumnsVisible deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -610,7 +610,7 @@ pipeline {
         stage('ProgressBar deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -634,7 +634,7 @@ pipeline {
         stage('Table deploy') {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 nodejs('node-v17.5.0-linux-x64') {
@@ -698,7 +698,7 @@ pipeline {
         stage("UI Kit PUBLISH") {
             tools
             {
-                nodejs: '${npmAgentVersion}'
+                nodejs 'node-v17.5.0-linux-x64'
             }
             steps {
                 script {
