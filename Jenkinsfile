@@ -25,7 +25,6 @@ def tableRowPath = './packages/table-row';
 def tableCellPath = './packages/table-cell';
 def tableColumnsVisiblePath = './packages/table-columns-visible';
 def progressBarPath = './packages/progress-bar';
-def npmAgentVersion = 'node-v17.5.0-linux-x64';
 
 
 pipeline {
