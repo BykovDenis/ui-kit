@@ -1,0 +1,37 @@
+{
+  "name": "@sber-risks-ui/progress-bar",
+  "version": "0.10.1-alpha.4",
+  "description": "Progressbar react UI",
+  "keywords": "React, progressbar, progress-bar",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Denis Bykov",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c rollup.config.prod.js",
+    "build-dev": "rollup -w -c rollup.config.dev.js",
+    "clean-node-modules": "rm -rf node_modules"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.25",
+    "@types/styled-components": "^5.1.26",
+    "postcss": "8.4.4",
+    "react": "^18.2.0",
+    "rollup": "^2.61.1",
+    "rollup-plugin-cleaner": "^1.0.0",
+    "rollup-plugin-dts": "^4.1.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-scss": "^3.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "rollup-pluginutils": "^2.8.2",
+    "styled-components": "^5.3.3",
+    "typescript": "^4.4.4",
+    "tslib": "^2.3.1"
+  },
+  "publishConfig": {
+    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
+  },
+  "gitHead": "bf7ab1e1d43129667e7893db53b0efba66157487"
+}
