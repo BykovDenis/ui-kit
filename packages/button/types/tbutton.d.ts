@@ -14,6 +14,8 @@ type TButton = TButtonStyled & {
   onDragStart?: (evt: any) => void,
   theme?: any,
   variant?: TButtonVariants,
+  justifyContent?: string,
+  alignItems?: string,
 };
 
 export default TButton;

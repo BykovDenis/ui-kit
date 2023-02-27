@@ -20,25 +20,16 @@ const Button: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TBut
       <ButtonStyled
         {...props}
         id={props?.id}
-        width={props?.width}
-        height={props?.height}
         type={props.type ?? 'button'}
         onClick={props?.onClick}
-        disabled={props?.disabled}
         color={props?.color || theme?.palette?.baseButtonFontColor}
         backgroundColor={props?.backgroundColor || backgroundColor}
         backgroundImage={props?.backgroundImage}
         fontSize={props?.fontSize ?? theme?.baseFontSize}
-        className={props?.className}
-        fontFamily={theme?.fontFamily}
         theme={theme}
         dataset={props?.dataset}
         focusColor={props.focusColor || backgroundColor}
-        borderRadius={props?.borderRadius}
-        draggable={props?.draggable}
         onDragStart={props?.onDragStart}
-        fontWeight={props.fontWeight}
-        name={props?.name}
       />
     );
   };
