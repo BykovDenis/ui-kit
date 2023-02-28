@@ -11,3 +11,10 @@
 <ol>
     <li>bug fix radio</li>
 </ol>
+
+<H2>v 0.10.2</H2>
+
+<h3>Bugfix</h3>
+<ol>
+    <li>TableCell width attributes fixed</li>
+</ol>
