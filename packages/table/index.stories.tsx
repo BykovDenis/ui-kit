@@ -64,7 +64,7 @@ const TemplateDarkTableSortable: ComponentStory<typeof Table> = (args: TTable) =
     <Table {...args} >
       <TableHead>
         <TableRow isHeader={true}>
-          <TableCell>
+          <TableCell width={200}>
             <LabelInteractive Icon={ChevronDownIcon}>Наименование</LabelInteractive>
           </TableCell>
           <TableCell>Дата</TableCell>

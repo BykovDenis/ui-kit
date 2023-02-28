@@ -12,7 +12,7 @@ export default {
     fontSize: { control: { type: "select", options: [10, 12, 14, 16] } }
   },
   args: {
-    progress: 40
+    progress: 50
   }
 } as ComponentMeta<typeof ProgressBar>;
 
