@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import IListElement from '../types/ilist-element';
+import getMeasureValue from '../../helpers/get-measure-value';
 
 const ListItem =
   styled('li') <
@@ -15,7 +16,7 @@ const ListItem =
     height: ${(props: IListElement) => props.height}px;
     color: ${(props: IListElement) => props.color};
     font-family: inherit;
-    font-size: inherit;
+    font-size: ${(props: IListElement) => getMeasureValue(props.fontSize, 'inherit')};
     line-height: 1;  
     text-align: ${(props: IListElement) => props.textAlign};  
     cursor: pointer;

@@ -306,7 +306,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         </SelectHeader>
         {isVisibleList && (
           <SelectListContainer>
-            <List type="list-buttons" onMouseDown={onMouseDown} onKeyUp={onKeyUp}>
+            <List type="list-buttons" onMouseDown={onMouseDown} onKeyUp={onKeyUp} fontSize={props?.fontSize}>
               {isFoundValue  &&
                 elements?.map((element: IOption) => {
                   return (
