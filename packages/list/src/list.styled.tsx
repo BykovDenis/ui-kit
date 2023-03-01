@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
-import Ilist from '../types/ilist';
+import IList from '../types/ilist';
+import getMeasureValue from '../../helpers/get-measure-value';
 
-const List = styled('ul')`
+const List =
+  styled('ul') <
+  IList >
+  `
   list-style: none;
   padding: 0;
-  font-family: ${(props: Ilist) => props.fontFamily};
+  font-family: ${(props: IList) => props.fontFamily};
+  font-size: ${(props: IList) => getMeasureValue(props.fontSize, 'inherit')};   
 `;
 
 export default List;

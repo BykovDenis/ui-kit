@@ -16,6 +16,7 @@ interface IList {
   type?: string;
   underlineColor?: string;
   onMouseDown?: (evt?: React.MouseEvent<HTMLElement, MouseEvent>, listRef?: React.Ref<any>) => void;
+  fontSize: number | string;
 }
 
 export default IList;

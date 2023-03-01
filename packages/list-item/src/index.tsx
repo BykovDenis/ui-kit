@@ -48,6 +48,7 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
           className={props?.className}
           justifyContent={props?.justifyContent}
           padding={props.padding}
+          fontSize={props?.fontSize}
         >
           {props.children}
         </ListItemButtonStyled>
@@ -63,6 +64,7 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
         className={props?.className}
         justifyContent={props?.justifyContent}
         padding={props.padding}
+        fontSize={props?.fontSize}
       >
         {props.children}
       </ListItemStyled>

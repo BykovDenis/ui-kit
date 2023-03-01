@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import getMeasureValue from '../../helpers/get-measure-value';
 
 interface IListItemButton {
   height?: number;
@@ -12,6 +13,7 @@ interface IListItemButton {
   type?: any;
   onClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;
   padding?: string;
+  fontSize?: number | string;
 }
 
 const ListItemButton =
@@ -27,7 +29,7 @@ const ListItemButton =
   height: ${(props: IListItemButton) => props.height}px;
   color: ${(props: IListItemButton) => props.color};
   font-family: inherit;
-  font-size: inherit;
+  font-size: ${(props: IListItemButton) => getMeasureValue(props.fontSize, 'inherit')};
   line-height: 1;  
   text-align: ${(props: IListItemButton) => props.textAlign};
   border: none;

@@ -6,7 +6,7 @@ interface IListElement {
   color?: string;
   colorTheme?: string;
   fontFamily?: string;
-  fontSize?: number;
+  fontSize?: number | string;
   height?: number;
   hoverBackgroundColor?: string;
   hoverColor?: string;
@@ -19,6 +19,7 @@ interface IListElement {
   justifyContent?: string;
   colorInverted?: string;
   padding?: string;
+  fontSize?: string;
 }
 
 export default IListElement;
