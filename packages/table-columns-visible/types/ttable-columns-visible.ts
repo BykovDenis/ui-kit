@@ -10,6 +10,7 @@ type TTableColumnsVisible = {
   minHeight?: number | string,
   name?: string,
   onChange?: (columnNames: Array<string>) => void,
+  columnNamesDefaultSelected?: Array<string>,
 };
 
 export default TTableColumnsVisible;

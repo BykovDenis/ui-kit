@@ -24,7 +24,15 @@ const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColum
   const [columnNamesSelected, setColumnNamesSelected] = useState<Set<string>>(null);
 
   useEffect(() => {
-    setColumnNamesSelected(getElementsFromLocalStorage(props.name, ','));
+    const elementsFromLocaleStorage: Set<string> = getElementsFromLocalStorage(props.name, ',');
+    if (elementsFromLocaleStorage.size > 0) {
+      setColumnNamesSelected(elementsFromLocaleStorage);
+    } else {
+      const columns: Array<string> = props?.columnNamesDefaultSelected?.length > 0 ? props.columnNamesDefaultSelected : props.columnNames;
+      const columnNamesSelectedText: string =  columns?.join(',');
+      localStorage.setItem(props.name, columnNamesSelectedText);
+      setColumnNamesSelected(new Set(columns));
+    }
   }, []);
 
   useEffect(() => {

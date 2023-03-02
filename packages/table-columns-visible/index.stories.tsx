@@ -24,13 +24,14 @@ const Template: ComponentStory<typeof TableColumnsVisible> = (args: TTableColumn
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   const columns: Array<string> = ['column1', 'column2', 'column3', 'column4', 'column5'];
+  const columnsSelected: Array<string> = ['column2', 'column5']
 
   const onChange = (columnNames: Array<string>) => {
     console.log(columnNames);
   }
 
   return <ReactThemeContext.Provider value={themes.dark}>
-    <TableColumnsVisible {...args} name="someColumns" columnNames={columns} onChange={onChange} />
+    <TableColumnsVisible {...args} name="someColumns" columnNames={columns} onChange={onChange} columnNamesDefaultSelected={columnsSelected} />
   </ReactThemeContext.Provider>
 }
 
