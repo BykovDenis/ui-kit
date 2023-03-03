@@ -1,0 +1,6 @@
+140 error TypeError: Cannot read properties of undefined (reading 'rollup-plugin-cleaner')
+140 error     at /Users/16783656-mobile/.nvm/versions/node/v17.5.0/lib/node_modules/lerna/dist/cli.js:6823:72
+140 error     at Array.reduce (<anonymous>)
+140 error     at /Users/16783656-mobile/.nvm/versions/node/v17.5.0/lib/node_modules/lerna/dist/cli.js:6822:95
+140 error     at async Promise.all (index 0)
+140 error     at async /Users/16783656-mobile/.nvm/versions/node/v17.5.0/lib/node_modules/lerna/node_modules/p-pipe/index.js:12:19
