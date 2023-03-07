@@ -9,7 +9,7 @@ const Label =
   TLabel >
   `
       position: relative;
-      display: inline-flex;
+      display: ${(props: TLabel) => (props?.display ? props.display : 'inline-flex')};
       vertical-align: center;
       flex-direction: row;
       align-items: center;
@@ -21,7 +21,8 @@ const Label =
       line-height: 0.7;
       white-space: ${(props: TLabel) => (props?.whiteSpace ? props.whiteSpace : 'nowrap')};
       font-weight: ${(props: TLabel) => props.fontWeight || 'inherit'}; 
-      width: ${(props: TLabel) => getMeasureValue(props?.width, '100%')};     
+      width: ${(props: TLabel) => getMeasureValue(props?.width, '100%')};
+      height: ${(props: TLabel) => getMeasureValue(props?.height)};
       background-color: ${(props: TLabel) => (props.backgroundColor ? props.backgroundColor : 'inherit')};
       padding: ${(props: TLabel) => props.padding || 'initial'};
       &:focus {

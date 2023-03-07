@@ -11,7 +11,7 @@
     "start": "webpack serve --open --config webpack.dev.config.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "bootstrap": "npm run lerna bootstrap",
+    "bootstrap": "lerna bootstrap",
     "test": "jest"
   },
   "repository": {
@@ -88,7 +88,6 @@
     "inspectpack": "^4.0.1",
     "jest": "^27.5.1",
     "jest-styled-components": "^7.0.8",
-    "lerna": "^4.0.0",
     "react-test-renderer": "18.1.0",
     "regenerator-runtime": "0.13.9",
     "rollup-plugin-cleaner": "1.0.0",

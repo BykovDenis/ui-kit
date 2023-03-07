@@ -21,6 +21,7 @@ type TLabel = {
   whiteSpace?: string,
   width?: number | string,
   padding?: string,
+  height: number | string,
 };
 
 export default TLabel;

@@ -5,7 +5,7 @@ interface IInputElementContainer {
 }
 
 const InputElementContainer =
-  styled('p') <
+  styled('div') <
   IInputElementContainer >
   `
   position: relative;
