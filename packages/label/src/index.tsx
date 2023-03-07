@@ -35,6 +35,7 @@ const Label: React.FunctionComponent<TLabel> = (props: TLabel) => {
         whiteSpace={props?.whiteSpace}
         justifyContent={props?.justifyContent}
         padding={props?.padding}
+        height={props?.height}
       >
         {props.children}
       </LabelStyled>
