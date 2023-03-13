@@ -32,3 +32,10 @@
 <ol>
     <li>The component TableColumnsVisible improved. Custom default visible columns</li>
 </ol>
+
+<h2>v 0.10.5</h2>
+
+<h3>Features</h3>
+<ol>
+    <li>The component MultiSelect improved. Custom default visible elements</li>
+</ol>
