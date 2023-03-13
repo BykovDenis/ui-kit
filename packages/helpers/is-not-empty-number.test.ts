@@ -1,4 +1,4 @@
-import isNotEmptyNumber from '../is-not-empty-number';
+import isNotEmptyNumber from './is-not-empty-number';
 
 describe('test function of isNotEmptyString', () => {
   it('Test 1. Number is not empty', () => {

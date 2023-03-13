@@ -16,6 +16,7 @@ type TButton = TButtonStyled & {
   variant?: TButtonVariants,
   justifyContent?: string,
   alignItems?: string,
+  padding?: string,
 };
 
 export default TButton;

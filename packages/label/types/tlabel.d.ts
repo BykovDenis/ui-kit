@@ -22,6 +22,9 @@ type TLabel = {
   width?: number | string,
   padding?: string,
   height: number | string,
+  wordBreak?: string,
+  display?: string,
+  lineHeight?: number | string,
 };
 
 export default TLabel;
