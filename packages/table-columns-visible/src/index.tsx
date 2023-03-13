@@ -5,7 +5,7 @@ import TableColumnsVisibleStyled from './table-columns-visible-styled';
 import Label from '../../label/src';
 import FormControl from '../../form-control/src';
 import IconButton from '../../icon-button/src';
-import CrossIcon from '../../icons-components/24x24/cross-icon';
+import CrossIcon from '../../icons-components/24x24/circle-cross-icon';
 import Button from '../../button/src';
 import ChevronUpIcon from '../../icons-components/24x24/chevron-up-icon';
 import ChevronDownIcon from '../../icons-components/24x24/chevron-down-icon';

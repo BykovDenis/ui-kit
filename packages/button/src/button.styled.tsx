@@ -29,7 +29,7 @@ const ButtonStyled =
     letter-spacing: 0.39998px;
     color: ${(props: TButton) =>
       props?.variant === CONTAINED || !props?.variant ? props.color : props.backgroundColor};
-    padding: 10px 15px;    
+    padding: ${(props: TButton) => props?.padding ?? '10px 15px'};    
     background-color: ${(props: TButton) =>
       props?.variant === CONTAINED || !props?.variant
         ? props.backgroundColor

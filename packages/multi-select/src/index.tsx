@@ -1,40 +1,49 @@
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useState, Fragment, useMemo } from 'react';
 import TMultiSelect from '../types/tmulti-select';
 import ITheme from '../../styles/types/itheme';
 import MultiSelectStyled from './multi-select-styled';
 import Label from '../../label/src';
 import FormControl from '../../form-control/src';
-import IconButton from '../../icon-button/src';
-import CrossIcon from '../../icons-components/24x24/cross-icon';
+import CrossIcon from '../../icons-components/24x24/circle-cross-icon';
 import Button from '../../button/src';
 import ChevronUpIcon from '../../icons-components/24x24/chevron-up-icon';
 import ChevronDownIcon from '../../icons-components/24x24/chevron-down-icon';
 import List from '../../list/src';
 import ListItem from '../../list-item/src';
-import AddIcon from '../../icons-components/36x36/add-icon';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import getElementsFromLocalStorage from '../../helpers/get-elements-from-localstorage';
+import ListContainerStyled from './list-container.styled';
+import CirclePlusIcon from '../../icons-components/24x24/circle-plus-icon';
+import CircleCrossIcon from '../../icons-components/24x24/circle-cross-icon';
+import ButtonStyled from './button.styled';
+import pixelsMeasureToNumber from '../../helpers/pixels-measure-to-number';
+import Input from '../../input/src';
 
-const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (
-  props: TMultiSelect
-) => {
+const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelect) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
   const [isExpanded, setExpanded] = useState<boolean>(false);
   const [elementNames, setelementNames] = useState<Array<string>>(props.elementNames);
   const [elementNamesSelected, setElementNamesSelected] = useState<Set<string>>(null);
-  const [isUseLocaleStorage ] =  useState<boolean>(props?.isUseLocaleStorage !== undefined ? props.isUseLocaleStorage : false);
+  const [searchText, setSearchText] = useState<string>(null);
+  const [isUseLocaleStorage] = useState<boolean>(
+    props?.isUseLocaleStorage !== undefined ? props.isUseLocaleStorage : false
+  );
 
   useEffect(() => {
-    const elementsFromLocaleStorage: Set<string> = isUseLocaleStorage ? getElementsFromLocalStorage(props.name, ',') : props?.elementNamesDefaultSelected?.length > 0 ? new Set(props.elementNamesDefaultSelected) : new Set();
+    const elementsFromLocaleStorage: Set<string> = isUseLocaleStorage
+      ? getElementsFromLocalStorage(props.name, ',')
+      : props?.elementNamesDefaultSelected?.length > 0
+      ? new Set(props.elementNamesDefaultSelected)
+      : new Set();
     if (elementsFromLocaleStorage.size > 0) {
       setElementNamesSelected(elementsFromLocaleStorage);
     } else {
-      const columns: Array<string> = props?.elementNamesDefaultSelected?.length > 0 ? props.elementNamesDefaultSelected : props.elementNames;
+      const columns: Array<string> =
+        props?.elementNamesDefaultSelected?.length > 0 ? props.elementNamesDefaultSelected : props.elementNames;
       if (isUseLocaleStorage) {
         const elementNamesSelectedText: string = columns?.join(',');
         localStorage.setItem(props.name, elementNamesSelectedText);
-      } else
-      setElementNamesSelected(new Set(columns));
+      } else setElementNamesSelected(new Set(columns));
     }
   }, []);
 
@@ -77,26 +86,64 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (
       const element = evt.currentTarget;
       const columnName: string = element?.dataset?.name;
       if (columnName) {
-        const elementNamesEdited: Set<string> = isUseLocaleStorage ? getElementsFromLocalStorage(props.name, ',') : elementNamesSelected;
+        const elementNamesEdited: Set<string> = isUseLocaleStorage
+          ? getElementsFromLocalStorage(props.name, ',')
+          : elementNamesSelected;
         elementNamesEdited.delete(columnName);
         if (isUseLocaleStorage) {
           const elementNamesSelectedText: string = Array.from(elementNamesEdited).join(',');
           localStorage.setItem(props.name, elementNamesSelectedText);
         }
-        setElementNamesSelected(isUseLocaleStorage ? getElementsFromLocalStorage(props.name, ',') : new Set(elementNamesEdited));
+        setElementNamesSelected(
+          isUseLocaleStorage ? getElementsFromLocalStorage(props.name, ',') : new Set(elementNamesEdited)
+        );
         if (props?.onChange) {
           props.onChange(Array.from(elementNamesSelected));
         }
       }
     };
 
+    const onAllElementsSelected = () => {
+      const elementNamesSelectedParsed: Set<string> = new Set([...elementNames, ...Array.from(elementNamesSelected)]);
+      setElementNamesSelected(elementNamesSelectedParsed);
+
+      if (isUseLocaleStorage) {
+        const elementNamesSelectedText: string = Array.from(elementNamesSelectedParsed).join(',');
+        localStorage.setItem(props.name, elementNamesSelectedText);
+      }
+    };
+
+    const onAllElementsUnseleted = () => {
+      const elementNamesSelectedParsed: Set<string> = new Set();
+      setElementNamesSelected(elementNamesSelectedParsed);
+
+      if (isUseLocaleStorage) {
+        const elementNamesSelectedText: string = Array.from(elementNamesSelectedParsed).join(',');
+        localStorage.setItem(props.name, elementNamesSelectedText);
+      }
+    };
+
     const arrElementNames: Array<string> =
       elementNamesSelected && elementNamesSelected.size > 0 ? Array.from(elementNamesSelected) : [];
 
-    const elementNamesFiltered: Array<string> =
-      elementNames?.filter((columnName: string) => !elementNamesSelected?.has(columnName)) ?? [];
+    const onSearchStringChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+      const element = evt.target;
+      setSearchText(element.value);
+    };
 
-    // @ts-ignore
+    const onSearchStringClean = () => {
+      setSearchText(null);
+    };
+
+    const elementNamesFiltered: Array<string> =
+      elementNames?.filter(
+        (columnName: string) =>
+          !elementNamesSelected?.has(columnName) &&
+          (searchText?.length > 2 ? columnName?.toUpperCase()?.indexOf(searchText?.toUpperCase()) > -1 : true)
+      ) ?? [];
+
+    const fontSize: number | string = props.fontSize ?? theme.baseFontSize;
+
     return (
       <FormControl flexDirection="column" width={props?.width}>
         <MultiSelectStyled className={props?.className} color={color} minHeight={props.minHeight}>
@@ -106,37 +153,77 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (
               width="initial"
               outline={`1px solid ${theme?.palette?.baseFontColorOpacity05}`}
               borderRadius={5}
-              padding="3px 5px"
+              padding="1px"
               margin="0 3px 0 0"
             >
-              <Label htmlFor={`${index}-button`}>{columnNameElement}</Label>{' '}
-              <IconButton id={`${index}-button`} onClick={onColumnNameRemove} data-name={columnNameElement}>
+              <Label
+                fontSize={pixelsMeasureToNumber(fontSize) - 2}
+                htmlFor={`${index}-button`}
+                whiteSpace="normal"
+                wordBreak="break-all"
+                lineHeight={1}
+              >
+                {columnNameElement}
+              </Label>{' '}
+              <ButtonStyled id={`${index}-button`} onClick={onColumnNameRemove} data-name={columnNameElement}>
                 <CrossIcon color={color} />
-              </IconButton>
+              </ButtonStyled>
             </FormControl>
           ))}
         </MultiSelectStyled>
-        <Button onClick={onListExpanded}>
+        <Button padding="5px" onClick={onListExpanded} fontSize={pixelsMeasureToNumber(fontSize) - 2}>
           Add items {isExpanded ? <ChevronUpIcon color={color} /> : <ChevronDownIcon color={color} />}
         </Button>
         {isExpanded && (
-          <List>
-            {elementNamesFiltered?.map((columnNameElement: string, index: number) => (
-              <ListItem key={`${index}-list-item`} padding="5px 0">
-                <Label htmlFor={`${index}-list-item`} padding="0 5px 0 0" height="100%">
-                  {columnNameElement}
-                </Label>
-                <IconButton
-                  id={`${index}-list-item`}
-                  data-name={columnNameElement}
-                  onClick={onElementNameSelect}
-                  variant="text"
-                >
-                  <AddIcon color={color} />
-                </IconButton>
-              </ListItem>
-            ))}
-          </List>
+          <Fragment>
+            <FormControl>
+              <Button
+                padding="2px"
+                width="50%"
+                onClick={onAllElementsSelected}
+                fontSize={pixelsMeasureToNumber(fontSize) - 2}
+              >
+                Select all <CirclePlusIcon color={color} />
+              </Button>
+              <Button
+                padding="2px"
+                width="50%"
+                onClick={onAllElementsUnseleted}
+                fontSize={pixelsMeasureToNumber(fontSize) - 2}
+              >
+                Unselect all <CircleCrossIcon color={color} />
+              </Button>
+            </FormControl>
+            <Input
+              name="search-values"
+              value={searchText}
+              onChange={onSearchStringChange}
+              onRemove={onSearchStringClean}
+              placeholder="Search elements"
+              variant="outlined"
+            />
+            <ListContainerStyled>
+              <List>
+                {elementNamesFiltered?.map((columnNameElement: string, index: number) => (
+                  <ListItem key={`${index}-list-item`} padding="5px 0">
+                    <Label
+                      htmlFor={`${index}-list-item`}
+                      padding="0 5px 0 0"
+                      height="100%"
+                      whiteSpace="normal"
+                      wordBreak="break-all"
+                      lineHeight={1}
+                    >
+                      {columnNameElement}
+                    </Label>
+                    <ButtonStyled id={`${index}-list-item`} data-name={columnNameElement} onClick={onElementNameSelect}>
+                      <CirclePlusIcon color={color} />
+                    </ButtonStyled>
+                  </ListItem>
+                ))}
+              </List>
+            </ListContainerStyled>
+          </Fragment>
         )}
       </FormControl>
     );
