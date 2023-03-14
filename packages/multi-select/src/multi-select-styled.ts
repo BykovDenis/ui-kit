@@ -15,6 +15,9 @@ const MultiSelectStyled = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   border: 1px solid ${(props: TMultiSelectStyled) => props.color};
+  border-radius: 4px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
   width: 100%;
   min-height: ${(props: TMultiSelectStyled) => getMeasureValue(props.minHeight)};
   height: ${(props: TMultiSelectStyled) => getMeasureValue(props.height)};
