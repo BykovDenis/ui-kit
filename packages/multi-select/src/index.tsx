@@ -126,6 +126,9 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
         const elementNamesSelectedText: string = Array.from(elementNamesSelectedParsed).join(',');
         localStorage.setItem(props.name, elementNamesSelectedText);
       }
+      if (props?.onChange) {
+        props.onChange(Array.from(elementNamesSelectedParsed));
+      }
     };
 
     const onAllElementsUnselected = () => {
@@ -135,6 +138,9 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
       if (isUseLocaleStorage) {
         const elementNamesSelectedText: string = Array.from(elementNamesSelectedParsed).join(',');
         localStorage.setItem(props.name, elementNamesSelectedText);
+      }
+      if (props?.onChange) {
+        props.onChange(Array.from(elementNamesSelectedParsed));
       }
     };
 
