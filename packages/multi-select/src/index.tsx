@@ -21,6 +21,7 @@ import Input from '../../input/src';
 import ButtonExpandStyled from './button-expand.styled';
 import sortArray from '../../helpers/sort-array';
 import ToggleContainer from './toggle-container';
+import LabelContainer from './label-container.styled';
 
 const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelect) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
@@ -167,8 +168,25 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
 
     return (
       <FormControl flexDirection="column" width={props?.width}>
+        {props?.label && (
+          <LabelContainer>
+            <Label
+              fontSize={pixelsMeasureToNumber(fontSize) - 2}
+              disabled={props.disabled}
+              fontFamily={props?.fontFamily || theme?.fontFamily}
+              backgroundColor={theme.mainBackgroundColor}
+            >
+              {props?.label}
+            </Label>
+          </LabelContainer>
+        )}
         <FormControl>
-          <MultiSelectStyled className={props?.className} color={color} height={props.height}>
+          <MultiSelectStyled
+            className={props?.className}
+            color={color}
+            height={props.height}
+            isExistLabel={isNotEmptyString(props?.label)}
+          >
             {arrElementNames?.map((columnNameElement: string, index: number) => (
               <FormControl
                 key={`${index}-button`}
