@@ -19,11 +19,14 @@ import ButtonStyled from './button.styled';
 import pixelsMeasureToNumber from '../../helpers/pixels-measure-to-number';
 import Input from '../../input/src';
 import ButtonExpandStyled from './button-expand.styled';
+import sortArray from '../../helpers/sort-array';
 
 const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelect) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
   const [isExpanded, setExpanded] = useState<boolean>(false);
-  const [elementNames, setelementNames] = useState<Array<string>>(props.elementNames);
+  const [elementNames, setelementNames] = useState<Array<string>>(
+    props?.sortDirection ? sortArray(props.elementNames, props.sortDirection) : props.elementNames
+  );
   const [elementNamesSelected, setElementNamesSelected] = useState<Set<string>>(null);
   const [searchText, setSearchText] = useState<string>(null);
   const [isUseLocaleStorage] = useState<boolean>(
@@ -53,7 +56,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
   }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
-    setelementNames(props.elementNames);
+    setelementNames(props?.sortDirection ? sortArray(props.elementNames, props.sortDirection) : props.elementNames);
   }, [props.elementNames]);
 
   const componentThemed: any = (theme: ITheme) => {
@@ -67,19 +70,29 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
       const element = evt.currentTarget;
       const columnName: string = element?.dataset?.name;
       if (isNotEmptyString(columnName)) {
-        setElementNamesSelected((elementNamesSelected: Set<string>) => new Set(elementNamesSelected.add(columnName)));
-        if (isUseLocaleStorage) {
-          const elementNamesSelectedText: string = Array.from(elementNamesSelected).join(',');
-          localStorage.setItem(props.name, elementNamesSelectedText);
-          const elementNamesEditedNew: Set<string> = getElementsFromLocalStorage(props.name, ',');
-          if (props?.onChange) {
-            props.onChange(Array.from(elementNamesEditedNew));
+        setElementNamesSelected((elementNamesSelected: Set<string>) => {
+          const elementNamesSelectedModified: Set<string> = new Set(elementNamesSelected);
+          elementNamesSelectedModified.add(columnName);
+
+          const elementNamesSelectedModifiedSorted: Set<string> = props?.sortDirection
+            ? new Set(sortArray(Array.from(elementNamesSelectedModified), props.sortDirection))
+            : elementNamesSelectedModified;
+
+          if (isUseLocaleStorage) {
+            const elementNamesSelectedText: string = Array.from(elementNamesSelectedModifiedSorted).join(',');
+            localStorage.setItem(props.name, elementNamesSelectedText);
+            const elementNamesEditedNew: Set<string> = getElementsFromLocalStorage(props.name, ',');
+            if (props?.onChange) {
+              props.onChange(Array.from(elementNamesEditedNew));
+            }
+          } else {
+            if (props?.onChange) {
+              props.onChange(Array.from(elementNamesSelectedModifiedSorted));
+            }
           }
-        } else {
-          if (props?.onChange) {
-            props.onChange(Array.from(elementNamesSelected));
-          }
-        }
+
+          return elementNamesSelectedModifiedSorted;
+        });
       }
     };
 
@@ -114,7 +127,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
       }
     };
 
-    const onAllElementsUnseleted = () => {
+    const onAllElementsUnselected = () => {
       const elementNamesSelectedParsed: Set<string> = new Set();
       setElementNamesSelected(elementNamesSelectedParsed);
 
@@ -192,7 +205,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
               <Button
                 padding="2px"
                 width="50%"
-                onClick={onAllElementsUnseleted}
+                onClick={onAllElementsUnselected}
                 fontSize={pixelsMeasureToNumber(fontSize) - 2}
               >
                 Unselect all <CircleCrossIcon color={color} />
