@@ -28,7 +28,7 @@ function getElementsParsed(elements: Array<IOption | string | number>): Array<IO
     if (typeof element === 'object') {
       return element;
     }
-    const index: string = `${Math.round(Math.random() * 100000)}`;
+    const index: string = `${Math.round(Math.random() * 100000000)}`;
     return {
       index,
       label: element?.toString(),

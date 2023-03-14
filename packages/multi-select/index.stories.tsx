@@ -42,7 +42,7 @@ const TemplateMultiSelectUsedLocalStorage: ComponentStory<typeof MultiSelect> = 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   // const columns: Array<string> = ['column1', 'column2', 'column3', 'column4', 'column5', 'column6', 'column7', 'column8', 'column9', 'column10', 'column11', 'column12', 'column13', 'column14'];
-  const columns: Array<string> = ["ProductValue","CVA","DVA","BCVA","ExpectedDiscountedPositiveExposure","ExpectedDiscountedNegativeExposure","ExpectedDiscountedPositiveExposureNoCollateral","ExpectedDiscountedNegativeExposureNoCollateral","ExpectedPositiveExposure","ExpectedNegativeExposure","ExpectedOwnProbabilityOfDefault","ExpectedCounterpartyProbabilityOfDefault","CVA_NonLinear","DVA_NonLinear","BCVA_NonLinear","ProductValue_NonLinear","CVA_ByTrade","DVA_ByTrade","BCVA_ByTrade","PresentValues_ByTrade","ENE","EPE"];
+  const columns: Array<string> =  ["ProductValue","CVA","DVA","BCVA","ExpectedDiscountedPositiveExposure","ExpectedDiscountedNegativeExposure","ExpectedDiscountedPositiveExposureNoCollateral","ExpectedDiscountedNegativeExposureNoCollateral","ExpectedPositiveExposure","ExpectedNegativeExposure","ExpectedOwnProbabilityOfDefault","ExpectedCounterpartyProbabilityOfDefault","CVA_NonLinear","DVA_NonLinear","BCVA_NonLinear","ProductValue_NonLinear","CVA_ByTrade","DVA_ByTrade","BCVA_ByTrade","PresentValues_ByTrade","ENE","EPE"];
   const columnsSelected: Array<string> = ['ExpectedDiscountedPositiveExposure', 'ExpectedDiscountedPositiveExposureNoCollateral']
 
   const onChange = (columnNames: Array<string>) => {
