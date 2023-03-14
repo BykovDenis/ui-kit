@@ -18,6 +18,7 @@ import CircleCrossIcon from '../../icons-components/24x24/circle-cross-icon';
 import ButtonStyled from './button.styled';
 import pixelsMeasureToNumber from '../../helpers/pixels-measure-to-number';
 import Input from '../../input/src';
+import ButtonExpandStyled from './button-expand.styled';
 
 const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelect) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
@@ -146,34 +147,36 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
 
     return (
       <FormControl flexDirection="column" width={props?.width}>
-        <MultiSelectStyled className={props?.className} color={color} minHeight={props.minHeight}>
-          {arrElementNames?.map((columnNameElement: string, index: number) => (
-            <FormControl
-              key={`${index}-button`}
-              width="initial"
-              outline={`1px solid ${theme?.palette?.baseFontColorOpacity05}`}
-              borderRadius={5}
-              padding="1px"
-              margin="0 3px 0 0"
-            >
-              <Label
-                fontSize={pixelsMeasureToNumber(fontSize) - 2}
-                htmlFor={`${index}-button`}
-                whiteSpace="normal"
-                wordBreak="break-all"
-                lineHeight={1}
+        <FormControl>
+          <MultiSelectStyled className={props?.className} color={color} minHeight={props.minHeight}>
+            {arrElementNames?.map((columnNameElement: string, index: number) => (
+              <FormControl
+                key={`${index}-button`}
+                width="initial"
+                outline={`1px solid ${theme?.palette?.baseFontColorOpacity05}`}
+                borderRadius={5}
+                padding="1px"
+                margin="0 3px 0 0"
               >
-                {columnNameElement}
-              </Label>{' '}
-              <ButtonStyled id={`${index}-button`} onClick={onColumnNameRemove} data-name={columnNameElement}>
-                <CrossIcon color={color} />
-              </ButtonStyled>
-            </FormControl>
-          ))}
-        </MultiSelectStyled>
-        <Button padding="5px" onClick={onListExpanded} fontSize={pixelsMeasureToNumber(fontSize) - 2}>
-          Add items {isExpanded ? <ChevronUpIcon color={color} /> : <ChevronDownIcon color={color} />}
-        </Button>
+                <Label
+                  fontSize={pixelsMeasureToNumber(fontSize) - 2}
+                  htmlFor={`${index}-button`}
+                  whiteSpace="normal"
+                  wordBreak="break-all"
+                  lineHeight={1}
+                >
+                  {columnNameElement}
+                </Label>{' '}
+                <ButtonStyled id={`${index}-button`} onClick={onColumnNameRemove} data-name={columnNameElement}>
+                  <CrossIcon color={color} />
+                </ButtonStyled>
+              </FormControl>
+            ))}
+          </MultiSelectStyled>
+          <ButtonExpandStyled onClick={onListExpanded} fontSize={pixelsMeasureToNumber(fontSize) - 2} color={color}>
+            {isExpanded ? <ChevronUpIcon color={color} /> : <ChevronDownIcon color={color} />}
+          </ButtonExpandStyled>
+        </FormControl>
         {isExpanded && (
           <Fragment>
             <FormControl>
