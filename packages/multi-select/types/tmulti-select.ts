@@ -1,3 +1,5 @@
+import { SortDirections } from '../../helpers/sort-array';
+
 type TMultiSelect = {
   width?: number | string,
   height?: number | string,
@@ -11,6 +13,7 @@ type TMultiSelect = {
   onChange?: (columnNames: Array<string>) => void,
   elementNamesDefaultSelected?: Array<string>,
   isUseLocaleStorage?: boolean,
+  sortDirection?: SortDirections,
 };
 
 export default TMultiSelect;

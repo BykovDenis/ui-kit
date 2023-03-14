@@ -1,10 +1,11 @@
-import {ComponentMeta, ComponentStory } from '@storybook/react';
-import React from 'react';
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import React from "react";
 
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
+import { themes } from "../styles/src/themes";
+import getNewReactThemeContext from "../styles/src";
 import TMultiSelect from "./types/tmulti-select";
 import MultiSelect from "./src/index";
+import { SortDirections } from "../helpers/sort-array";
 
 export default {
   title: 'Components/MultiSelect',
@@ -49,7 +50,7 @@ const TemplateMultiSelectUsedLocalStorage: ComponentStory<typeof MultiSelect> = 
   }
 
   return <ReactThemeContext.Provider value={themes.dark}>
-    <MultiSelect {...args} name="someColumns" isUseLocaleStorage={true} elementNames={columns} onChange={onChange} elementNamesDefaultSelected={columnsSelected} />
+    <MultiSelect {...args} sortDirection={SortDirections.Desc} name="someColumns" isUseLocaleStorage={true} elementNames={columns} onChange={onChange} elementNamesDefaultSelected={columnsSelected} />
   </ReactThemeContext.Provider>
 }
 
