@@ -148,7 +148,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
     return (
       <FormControl flexDirection="column" width={props?.width}>
         <FormControl>
-          <MultiSelectStyled className={props?.className} color={color} minHeight={props.minHeight}>
+          <MultiSelectStyled className={props?.className} color={color} height={props.height}>
             {arrElementNames?.map((columnNameElement: string, index: number) => (
               <FormControl
                 key={`${index}-button`}

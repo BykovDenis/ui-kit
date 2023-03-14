@@ -16,7 +16,7 @@ export default {
   },
   args: {
     width: 300,
-    minHeight: 150
+    height: 150
   }
 } as ComponentMeta<typeof MultiSelect>;
 
