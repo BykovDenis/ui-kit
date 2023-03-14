@@ -21,7 +21,7 @@ type TLabel = {
   whiteSpace?: string,
   width?: number | string,
   padding?: string,
-  height: number | string,
+  height?: number | string,
   wordBreak?: string,
   display?: string,
   lineHeight?: number | string,
