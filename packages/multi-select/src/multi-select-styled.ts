@@ -5,6 +5,7 @@ type TMultiSelectStyled = {
   color: string,
   width?: number | string,
   height?: number | string,
+  isExistLabel?: boolean,
 };
 
 const MultiSelectStyled = styled.div`
@@ -20,6 +21,7 @@ const MultiSelectStyled = styled.div`
   width: 100%;
   height: ${(props: TMultiSelectStyled) => getMeasureValue(props.height)};
   padding: 3px 5px;
+  padding-top: ${(props: TMultiSelectStyled) => (props.isExistLabel ? '15px' : '3px')};
   box-sizing: border-box;
   overflow-y: auto;
   &:last-child {
