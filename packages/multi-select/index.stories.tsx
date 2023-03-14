@@ -6,6 +6,8 @@ import getNewReactThemeContext from "../styles/src";
 import TMultiSelect from "./types/tmulti-select";
 import MultiSelect from "./src/index";
 import { SortDirections } from "../helpers/sort-array";
+import Label from '../label/src';
+import FormControl from '../form-control/src';
 
 export default {
   title: 'Components/MultiSelect',
@@ -51,6 +53,12 @@ const TemplateMultiSelectUsedLocalStorage: ComponentStory<typeof MultiSelect> = 
 
   return <ReactThemeContext.Provider value={themes.dark}>
     <MultiSelect {...args} sortDirection={SortDirections.Desc} name="someColumns" isUseLocaleStorage={true} elementNames={columns} onChange={onChange} elementNamesDefaultSelected={columnsSelected} />
+    <FormControl width="initial" alignItems="flex-start" justifyContent="flex-start" flexDirection="column">
+        <Label width="initial" >Some text</Label>
+        <Label width="initial" >Some text</Label>
+        <Label width="initial" >Some text</Label>
+        <Label>Some text</Label>
+    </FormControl>
   </ReactThemeContext.Provider>
 }
 

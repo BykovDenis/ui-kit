@@ -20,6 +20,7 @@ import pixelsMeasureToNumber from '../../helpers/pixels-measure-to-number';
 import Input from '../../input/src';
 import ButtonExpandStyled from './button-expand.styled';
 import sortArray from '../../helpers/sort-array';
+import ToggleContainer from './toggle-container';
 
 const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelect) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
@@ -192,7 +193,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
           </ButtonExpandStyled>
         </FormControl>
         {isExpanded && (
-          <Fragment>
+          <ToggleContainer>
             <FormControl>
               <Button
                 padding="2px"
@@ -240,7 +241,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
                 ))}
               </List>
             </ListContainerStyled>
-          </Fragment>
+          </ToggleContainer>
         )}
       </FormControl>
     );
