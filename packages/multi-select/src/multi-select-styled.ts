@@ -4,7 +4,6 @@ import getMeasureValue from '../../helpers/get-measure-value';
 type TMultiSelectStyled = {
   color: string,
   width?: number | string,
-  minHeight?: number | string,
   height?: number | string,
 };
 
@@ -19,10 +18,10 @@ const MultiSelectStyled = styled.div`
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   width: 100%;
-  min-height: ${(props: TMultiSelectStyled) => getMeasureValue(props.minHeight)};
   height: ${(props: TMultiSelectStyled) => getMeasureValue(props.height)};
   padding: 3px 5px;
   box-sizing: border-box;
+  overflow-y: auto;
   &:last-child {
     margin-right: 0;
   }

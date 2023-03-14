@@ -7,7 +7,6 @@ type TMultiSelect = {
   elementNames: Array<string>,
   keyName?: string,
   fontSize?: number | string,
-  minHeight?: number | string,
   name: string,
   onChange?: (columnNames: Array<string>) => void,
   elementNamesDefaultSelected?: Array<string>,
