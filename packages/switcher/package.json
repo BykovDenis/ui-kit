@@ -33,5 +33,5 @@
     "@types/styled-components": "^5.1.18",
     "rollup": "^2.61.1"
   },
-  "gitHead": "52f7773f948205dce9883975166de99fc095a975"
+  "gitHead": "ea50b2a3661e469709281528b208aac3fbc3b5bf"
 }
