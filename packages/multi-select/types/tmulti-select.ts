@@ -16,6 +16,7 @@ type TMultiSelect = {
   sortDirection?: SortDirections,
   label?: string,
   id: string,
+  isSelectAll?: boolean,
 };
 
 export default TMultiSelect;
