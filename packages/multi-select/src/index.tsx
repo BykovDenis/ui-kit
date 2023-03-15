@@ -249,7 +249,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
                 {elementNamesFiltered?.map((columnNameElement: string, index: number) => (
                   <ListItem key={`${index}-list-item`} padding="5px 0">
                     <Label
-                      htmlFor={`${index}-list-item`}
+                      htmlFor={`${props.id}-${index}-list-item`}
                       padding="0 5px 0 0"
                       height="100%"
                       whiteSpace="normal"
@@ -258,7 +258,11 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
                     >
                       {columnNameElement}
                     </Label>
-                    <ButtonStyled id={`${index}-list-item`} data-name={columnNameElement} onClick={onElementNameSelect}>
+                    <ButtonStyled
+                      id={`${props.id}-${index}-list-item`}
+                      data-name={columnNameElement}
+                      onClick={onElementNameSelect}
+                    >
                       <CirclePlusIcon color={color} />
                     </ButtonStyled>
                   </ListItem>

@@ -15,6 +15,7 @@ type TMultiSelect = {
   isUseLocaleStorage?: boolean,
   sortDirection?: SortDirections,
   label?: string,
+  id: string,
 };
 
 export default TMultiSelect;
