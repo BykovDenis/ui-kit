@@ -1,7 +1,4 @@
-enum SortDirections {
-  Asc = 'asc',
-  Desc = 'desc',
-}
+import SortDirections from '../enums/sort-directions';
 
 function sortArray<T>(elements: Array<T>, direction: SortDirections): Array<T> {
   function sortCondition<T>(a: T, b: T): number {
