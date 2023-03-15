@@ -26,7 +26,7 @@ import LabelContainer from './label-container.styled';
 const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelect) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
   const [isExpanded, setExpanded] = useState<boolean>(false);
-  const [elementNames, setelementNames] = useState<Array<string>>(
+  const [elementNames, setElementNames] = useState<Array<string>>(
     props?.sortDirection ? sortArray(props.elementNames, props.sortDirection) : props.elementNames
   );
   const [elementNamesSelected, setElementNamesSelected] = useState<Set<string>>(null);
@@ -45,7 +45,11 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
       setElementNamesSelected(elementsFromLocaleStorage);
     } else {
       const columns: Array<string> =
-        props?.elementNamesDefaultSelected?.length > 0 ? props.elementNamesDefaultSelected : props.elementNames;
+        props?.elementNamesDefaultSelected?.length > 0
+          ? props.elementNamesDefaultSelected
+          : props?.isSelectAll
+          ? props.elementNames
+          : [];
       if (isUseLocaleStorage) {
         const elementNamesSelectedText: string = columns?.join(',');
         localStorage.setItem(props.name, elementNamesSelectedText);
@@ -58,7 +62,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
   }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
-    setelementNames(props?.sortDirection ? sortArray(props.elementNames, props.sortDirection) : props.elementNames);
+    setElementNames(props?.sortDirection ? sortArray(props.elementNames, props.sortDirection) : props.elementNames);
   }, [props.elementNames]);
 
   const componentThemed: any = (theme: ITheme) => {

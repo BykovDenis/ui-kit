@@ -1,13 +1,13 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { themes } from "../styles/src/themes";
 import getNewReactThemeContext from "../styles/src";
-import TMultiSelect from "./types/tmulti-select";
-import MultiSelect from "./src/index";
+import MultiSelect from "./src";
 import { SortDirections } from "../helpers/sort-array";
-import Label from '../label/src';
-import FormControl from '../form-control/src';
+import Label from "../label/src";
+import FormControl from "../form-control/src";
+import TmultiSelect from "./types/tmulti-select";
 
 export default {
   title: 'Components/MultiSelect',
@@ -23,19 +23,25 @@ export default {
   }
 } as ComponentMeta<typeof MultiSelect>;
 
-const Template: ComponentStory<typeof MultiSelect> = (args: TMultiSelect) => {
+const Template: ComponentStory<typeof MultiSelect> = (args: TmultiSelect) => {
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
-  const columns: Array<string> = ['column1', 'column2', 'column3', 'column4', 'column5', 'column6', 'column7', 'column8', 'column9', 'column10', 'column11', 'column12', 'column13', 'column14'];
+  const [columns, setColumns] = useState<Array<string>>([]);
   const columnsSelected: Array<string> = ['column2', 'column5']
+
+  useEffect(() => {
+    setTimeout(() => {
+      setColumns(['column1', 'column2', 'column3', 'column4', 'column5', 'column6', 'column7', 'column8', 'column9', 'column10', 'column11', 'column12', 'column13', 'column14']);
+    }, 3000);
+  }, [])
 
   const onChange = (columnNames: Array<string>) => {
     console.log(columnNames);
   }
 
   return <ReactThemeContext.Provider value={themes.dark}>
-    <MultiSelect {...args} name="someColumns" elementNames={columns} onChange={onChange} elementNamesDefaultSelected={columnsSelected} />
+    <MultiSelect {...args} sortDirection={SortDirections.Asc} isSelectAll={true}  name="someColumns" elementNames={columns} onChange={onChange} />
   </ReactThemeContext.Provider>
 }
 
@@ -52,8 +58,8 @@ const TemplateMultiSelectUsedLocalStorage: ComponentStory<typeof MultiSelect> = 
   }
 
   return <ReactThemeContext.Provider value={themes.dark}>
-    <MultiSelect {...args} sortDirection={SortDirections.Desc} id="multi-select-1" label="some-label" name="someColumns" isUseLocaleStorage={true} elementNames={columns} onChange={onChange} elementNamesDefaultSelected={columnsSelected} />
-    <MultiSelect {...args} sortDirection={SortDirections.Desc} id="multi-select-2" label="some-label" name="someColumns" isUseLocaleStorage={true} elementNames={columns} onChange={onChange} elementNamesDefaultSelected={columnsSelected} />
+    <MultiSelect {...args} sortDirection={SortDirections.Desc} id="multi-select-1" label="some-label" name="someColumns"  elementNames={columns} onChange={onChange} />
+    <MultiSelect sortDirection={SortDirections.Desc} id="multi-select-2" label="some-label" name="someColumns" elementNames={columns} onChange={onChange}  />
     <FormControl width="initial" alignItems="flex-start" justifyContent="flex-start" flexDirection="column">
         <Label width="initial" >Some text</Label>
         <Label width="initial" >Some text</Label>
