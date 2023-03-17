@@ -1,6 +1,6 @@
-const SortDirections = {
-  Asc: 'asc',
-  Desc: 'desc',
-};
+enum SortDirections {
+  Asc = 'asc',
+  Desc = 'desc',
+}
 
 export default SortDirections;
