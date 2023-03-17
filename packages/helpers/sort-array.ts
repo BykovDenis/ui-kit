@@ -12,4 +12,3 @@ function sortArray<T>(elements: Array<T>, direction: SortDirections): Array<T> {
 }
 
 export default sortArray;
-export { SortDirections };
