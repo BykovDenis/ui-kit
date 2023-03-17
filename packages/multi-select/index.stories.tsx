@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { themes } from "../styles/src/themes";
 import getNewReactThemeContext from "../styles/src";
 import MultiSelect from "./src";
-import { SortDirections } from "../helpers/sort-array";
+import SortDirections from '../enums/sort-directions'
 import Label from "../label/src";
 import FormControl from "../form-control/src";
 import TmultiSelect from "./types/tmulti-select";

@@ -1,8 +1,6 @@
-import SortDirections from '../enums/sort-directions';
-
-function sortArray<T>(elements: Array<T>, direction: SortDirections): Array<T> {
+function sortArray<T>(elements: Array<T>, direction: 'asc' | 'desc'): Array<T> {
   function sortCondition<T>(a: T, b: T): number {
-    if (direction === SortDirections.Asc) {
+    if (direction === 'asc') {
       return a < b ? -1 : a === b ? 0 : 1;
     }
     return a < b ? 1 : a === b ? 0 : -1;
