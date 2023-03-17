@@ -13,7 +13,7 @@ type TMultiSelect = {
   onChange?: (columnNames: Array<string>) => void,
   elementNamesDefaultSelected?: Array<string>,
   isUseLocaleStorage?: boolean,
-  sortDirection?: SortDirections,
+  sortDirection?: 'asc' | 'desc',
   label?: string,
   id: string,
   isSelectAll?: boolean,
