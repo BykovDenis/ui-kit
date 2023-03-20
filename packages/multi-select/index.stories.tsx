@@ -58,14 +58,7 @@ const TemplateMultiSelectUsedLocalStorage: ComponentStory<typeof MultiSelect> = 
   }
 
   return <ReactThemeContext.Provider value={themes.dark}>
-    <MultiSelect {...args} sortDirection={SortDirections.Desc} isUseLocaleStorage={true} id="multi-select-1" label="some-label" name="someColumns" elementNamesDefaultSelected={columnsSelected}  elementNames={columns} onChange={onChange} />
-    <MultiSelect sortDirection={SortDirections.Desc} isUseLocaleStorage={true} id="multi-select-2" label="some-label" name="someColumns" elementNames={columns} onChange={onChange}  />
-    <FormControl width="initial" alignItems="flex-start" justifyContent="flex-start" flexDirection="column">
-        <Label width="initial" >Some text</Label>
-        <Label width="initial" >Some text</Label>
-        <Label width="initial" >Some text</Label>
-        <Label>Some text</Label>
-    </FormControl>
+    <MultiSelect {...args} sortDirection={SortDirections.Asc} isUseLocaleStorage={true} id="multi-select-2" label="some-label" name="someColumns" elementNamesDefaultSelected={columnsSelected} elementNames={columns} onChange={onChange}  />
   </ReactThemeContext.Provider>
 }
 
