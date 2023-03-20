@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const ToggleContainer = styled.div`
+  background-color: var(--main-background-color);
   position: absolute;
   z-index: 10001;
   top: 100%;

@@ -118,7 +118,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
           isUseLocaleStorage ? getElementsFromLocalStorage(props.name, ',') : new Set(elementNamesEdited)
         );
         if (props?.onChange) {
-          props.onChange(Array.from(elementNamesSelected));
+          props.onChange(Array.from(elementNamesEdited));
         }
       }
     };
