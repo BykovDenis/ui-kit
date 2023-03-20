@@ -53,7 +53,8 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
       if (isUseLocaleStorage) {
         const elementNamesSelectedText: string = columns?.join(',');
         localStorage.setItem(props.name, elementNamesSelectedText);
-      } else setElementNamesSelected(new Set(columns));
+      }
+      setElementNamesSelected(new Set(columns));
     }
   }, []);
 
