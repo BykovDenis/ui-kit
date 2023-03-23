@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/Button",
-  "version": "0.10.5-alpha.10",
+  "version": "0.10.5",
   "description": "A simple button component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
