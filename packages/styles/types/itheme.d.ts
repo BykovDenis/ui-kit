@@ -11,6 +11,8 @@ interface ITheme {
   h1FontSize: number;
   h2FontSize: number;
   h3FontSize: number;
+  mainOutlinedColor: string;
+  mainOutlinedHoverColor: string;
 }
 
 export default ITheme;

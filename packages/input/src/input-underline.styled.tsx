@@ -8,6 +8,7 @@ interface IInputUnderline {
   color: string;
   name: string;
   disabled?: boolean;
+  hoverColor?: string;
 }
 
 const InputUnderline =
@@ -18,6 +19,9 @@ const InputUnderline =
   width: ${(props: IInputUnderline) => (props?.width ? `${props?.width}px` : `100%`)};
   height: 1px;
   background-color: ${(props: IInputUnderline) => props.color};
+  &:hover {
+    background-color: ${(props: IInputUnderline) => props.color}; 
+  }  
 `;
 
 export default InputUnderline;

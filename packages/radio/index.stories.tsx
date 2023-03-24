@@ -22,7 +22,7 @@ export default {
   }
 } as ComponentMeta<typeof Radio>;
 
-const Template: ComponentStory<typeof Radio> = (args: Iradio) => {
+const ThemeDarkTemplate: ComponentStory<typeof Radio> = (args: Iradio) => {
 
   const onCheckboxCheck = () => {
     action('checked');
@@ -36,5 +36,21 @@ const Template: ComponentStory<typeof Radio> = (args: Iradio) => {
   </Fragment></ReactThemeContext.Provider>)
 }
 
-export const NormalRadio = Template.bind({});
+const ThemeLightTemplate: ComponentStory<typeof Radio> = (args: Iradio) => {
+
+  const onCheckboxCheck = () => {
+    action('checked');
+  }
+
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+
+  return (<ReactThemeContext.Provider value={themes.loanPricing}><Fragment>
+    <Radio {...args} id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} tabIndex="0" />
+    <Radio {...args} id="radio2" name="radio1" onChange={onCheckboxCheck}  tabIndex="1" />
+  </Fragment></ReactThemeContext.Provider>)
+}
+
+export const DarkThemeRadio = ThemeDarkTemplate.bind({});
+export const LightThemeRadio = ThemeLightTemplate.bind({});
+
 

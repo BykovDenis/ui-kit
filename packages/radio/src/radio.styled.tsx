@@ -10,6 +10,7 @@ type TRadioStylish = {
   isIconDisabled?: boolean,
   color: string,
   borderColor: string,
+  disabledColor: string,
 };
 
 const RadioStyled =
@@ -25,10 +26,9 @@ const RadioStyled =
     width: 20px;
     min-width: 20px;
     min-height: 20px;
-    border: 2px solid ${(props: TRadioStylish) => rgbToRgba(props.borderColor, 0.85)};    
+    border: 2px solid ${(props: TRadioStylish) => props.borderColor};    
     border-radius: 50%;
     margin-right: 5px;
-    background-color: ${(props: TRadioStylish) => (props?.color ? props.color : '#ffffff')};
   }  
   &:disabled + label:before {
     display:  ${(props: TRadioStylish) => (props.isIconDisabled === true ? 'none' : 'block')};
@@ -52,6 +52,11 @@ const RadioStyled =
     left: 6px;
     background-color: ${(props: TRadioStylish) => props.backgroundColor};
   }
+  &:not(:checked) {
+    & + label:before {
+      background: none;
+    }
+  }
   &:disabled:checked + label:after {
     position: absolute;
     display:  ${(props: TRadioStylish) => (props.isIconDisabled === true ? 'none' : 'block')};
@@ -60,7 +65,7 @@ const RadioStyled =
     height: 8px;
     border-radius: 50%;
     left: 6px;
-    background-color: #ffffff;
+    background-color: ${(props: TRadioStylish) => props.disabledColor};
   }
 `;
 export default RadioStyled;

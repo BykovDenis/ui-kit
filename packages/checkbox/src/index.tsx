@@ -26,7 +26,8 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: ICheckbox) => {
         onChange={props.onChange}
         indeterminate={props.indeterminate}
         isIconDisabled={props.isIconDisabled}
-        borderColor={theme?.palette?.baseFontColor}
+        borderColor={theme?.mainOutlinedColor}
+        disabledColor={theme?.palette?.baseFontColor}
       />
       <Label
         htmlFor={props.id}
@@ -36,6 +37,7 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: ICheckbox) => {
         focusColor={theme?.palette?.primary?.main}
         fontFamily={theme?.fontFamily}
         className={props?.className}
+        width="initial"
       >
         {props?.label}
       </Label>
