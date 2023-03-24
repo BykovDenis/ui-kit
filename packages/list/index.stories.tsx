@@ -21,7 +21,7 @@ export default {
 } as ComponentMeta<typeof List>;
 
 
-const Template: ComponentStory<typeof List> = (args: IList) => {
+const ThemeDarkTemplate: ComponentStory<typeof List> = (args: IList) => {
 
   const elements: Array<string> = ['List item 1', 'List item 2', 'List item 3', 'List item 4', 'List item 5'];
   const ReactThemeContext = getNewReactThemeContext(themes?.dark);
@@ -42,5 +42,27 @@ const Template: ComponentStory<typeof List> = (args: IList) => {
   </ReactThemeContext.Provider>
 }
 
-export const NormalList = Template.bind({});
+const ThemeLightTemplate: ComponentStory<typeof List> = (args: IList) => {
+
+  const elements: Array<string> = ['List item 1', 'List item 2', 'List item 3', 'List item 4', 'List item 5'];
+  const ReactThemeContext = getNewReactThemeContext(themes?.loanPricing);
+
+  return <ReactThemeContext.Provider value={themes?.loanPricing}>
+    <div style={{ width: '220px' }}>
+      <List type="list" >
+        {elements.map((element: string, index: number) => (
+          <ListItem
+            {...args}
+            key={index}
+            onClick={action('clicked')}
+          >
+            {element}
+          </ListItem>))}
+      </List>
+    </div>
+  </ReactThemeContext.Provider>
+}
+
+export const DarkThemeList = ThemeDarkTemplate.bind({});
+export const LightThemeList = ThemeLightTemplate.bind({});
 

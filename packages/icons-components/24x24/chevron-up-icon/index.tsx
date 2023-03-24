@@ -1,5 +1,3 @@
-import React from 'react';
-
 import TIcon from '../../types/ticon';
 
 const ChevronUpIcon: React.FunctionComponent<TIcon> = (props: TIcon) => (

@@ -24,15 +24,23 @@ export default {
   }
 } as ComponentMeta<typeof Checkbox>;
 
-const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
 
 const onCheckboxCheck = () => {
   action('checked');
 }
 
-const Template: ComponentStory<typeof Checkbox> = (args: ICheckbox) => {
+const TemplateLightTheme: ComponentStory<typeof Checkbox> = (args: ICheckbox) => {
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  return <ReactThemeContext.Provider value={themes.loanPricing}> <Checkbox {...args} onChange={onCheckboxCheck} tabIndex="1" /></ReactThemeContext.Provider>
+}
+
+const TemplateDarkTheme: ComponentStory<typeof Checkbox> = (args: ICheckbox) => {
+  const ReactThemeContext = getNewReactThemeContext(themes.dark);
   return <ReactThemeContext.Provider value={themes.dark}> <Checkbox {...args} onChange={onCheckboxCheck} tabIndex="1" /></ReactThemeContext.Provider>
 }
 
-export const NormalCheckbox = Template.bind({});
+export const DarkThemeCheckbox = TemplateDarkTheme.bind({});
+export const LightThemeCheckbox = TemplateLightTheme.bind({});
+
 
