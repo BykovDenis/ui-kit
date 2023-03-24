@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useState, Fragment, useMemo } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
 import TMultiSelect from '../types/tmulti-select';
 import ITheme from '../../styles/types/itheme';
 import MultiSelectStyled from './multi-select-styled';
