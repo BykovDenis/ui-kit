@@ -178,6 +178,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
         width={props?.width}
         borderColor={outlinedColor}
         borderColorFocused={theme.palette.primary.main}
+        borderColorHovered={theme.mainOutlinedHoverColor}
       >
         {props?.label && (
           <LabelContainer>

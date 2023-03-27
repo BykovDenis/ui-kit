@@ -14,14 +14,6 @@ const ButtonExpandStyled =
   border: none;
   border-left: 1px solid ${(props: TButtonExpandStyled) => props.borderColor};
   background: none;
-  &:focus,
-  &:hover,
-  &:active {
-    border-left: 1px solid ${(props: TButtonExpandStyled) => props.borderColorFocused};
-    & > svg > path {
-      fill: ${(props: TButtonExpandStyled) => props.borderColorFocused};
-    }
-  }
   `;
 
 export default ButtonExpandStyled;
