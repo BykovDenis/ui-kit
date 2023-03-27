@@ -22,6 +22,7 @@ import ButtonExpandStyled from './button-expand.styled';
 import sortArray from '../../helpers/sort-array';
 import ToggleContainer from './toggle-container';
 import LabelContainer from './label-container.styled';
+import MultiSelectContainerStyled from './multi-select-container.styled';
 
 const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelect) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
@@ -68,6 +69,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
 
   const componentThemed: any = (theme: ITheme) => {
     const color: string = props.disabled ? theme?.palette?.baseFontColorOpacity05 : theme?.palette?.baseFontColor;
+    const outlinedColor: string = theme.mainOutlinedColor;
 
     const onListExpanded = () => {
       setExpanded((isExpanded: boolean) => !isExpanded);
@@ -172,7 +174,11 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
     const fontSize: number | string = props.fontSize ?? theme.baseFontSize;
 
     return (
-      <FormControl flexDirection="column" width={props?.width}>
+      <MultiSelectContainerStyled
+        width={props?.width}
+        borderColor={outlinedColor}
+        borderColorFocused={theme.palette.primary.main}
+      >
         {props?.label && (
           <LabelContainer>
             <Label
@@ -188,7 +194,6 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
         <FormControl>
           <MultiSelectStyled
             className={props?.className}
-            color={color}
             height={props.height}
             isExistLabel={isNotEmptyString(props?.label)}
           >
@@ -217,7 +222,12 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
               </FormControl>
             ))}
           </MultiSelectStyled>
-          <ButtonExpandStyled onClick={onListExpanded} fontSize={pixelsMeasureToNumber(fontSize) - 2} color={color}>
+          <ButtonExpandStyled
+            onClick={onListExpanded}
+            fontSize={pixelsMeasureToNumber(fontSize) - 2}
+            borderColor={outlinedColor}
+            borderColorFocused={theme.palette.primary.main}
+          >
             {isExpanded ? <ChevronUpIcon color={color} /> : <ChevronDownIcon color={color} />}
           </ButtonExpandStyled>
         </FormControl>
@@ -276,7 +286,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
             </ListContainerStyled>
           </ToggleContainer>
         )}
-      </FormControl>
+      </MultiSelectContainerStyled>
     );
   };
 
