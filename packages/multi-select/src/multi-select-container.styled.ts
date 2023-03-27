@@ -5,6 +5,7 @@ type TMultiSelectContainerStyled = {
   width: number | string,
   borderColor: string,
   borderColorFocused: string,
+  borderColorHovered: string,
 };
 
 const MultiSelectContainerStyled =
@@ -20,14 +21,22 @@ const MultiSelectContainerStyled =
   width: ${(props: TMultiSelectContainerStyled) => getMeasureValue(props.width, '100%')};
   background: none;
   padding: 5px;
+  &:hover {
+    border: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorHovered};
+    & svg path {
+      fill: ${(props: TMultiSelectContainerStyled) => props.borderColorHovered};
+    }
+    & button {
+      border-left: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorHovered};
+    }
+  }
   &:focus,
-  &:hover,
   &:active {
     border: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
-    & > svg > path {
+    & svg path {
       fill: ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
     }
-    & > button {
+    & button {
       border-left: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
     }
   }
