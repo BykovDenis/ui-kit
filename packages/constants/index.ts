@@ -8,3 +8,4 @@ export const INPUT_TAG: string = 'INPUT';
 export const KEY_ESCAPE: string = 'ESCAPE';
 export const COLOR_THEME: string = 'normal';
 export const COLOR_TRANSPARENT: string = 'transparent';
+export const SVG_FORMAT_FILE: string = 'svg';

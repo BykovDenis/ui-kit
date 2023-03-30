@@ -27,9 +27,10 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
     const hoverColor: string = theme?.palette?.secondary?.main;
 
     const color: string =
-      props?.colorTheme === COLOR_THEME || !props.colorTheme
+      props?.color ||
+      (props?.colorTheme === COLOR_THEME || !props.colorTheme
         ? theme?.palette?.baseFontColor
-        : theme?.palette?.secondary?.main;
+        : theme?.palette?.secondary?.main);
 
     const onMouseDown = (evt: React.MouseEvent<HTMLElement, MouseEvent>) => {
       props.onMouseDown(evt, listRef);

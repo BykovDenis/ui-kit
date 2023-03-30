@@ -1,9 +1,8 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 const ListContainerStyled = styled.div`
   overflow-y: auto;
-  height: 300px
-`
+  min-height: 30px;
+`;
 
 export default ListContainerStyled;

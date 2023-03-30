@@ -24,7 +24,7 @@ type TLabel = {
   height?: number | string,
   wordBreak?: string,
   display?: string,
-  lineHeight?: number | string,
+  lineHeight?: number,
 };
 
 export default TLabel;

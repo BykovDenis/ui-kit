@@ -17,6 +17,10 @@ interface IFormControlStyled {
   flexWrap?: string;
   outline?: string;
   borderRadius?: number | string;
+  right?: number | string;
+  left?: number | string;
+  top?: number | string;
+  bottom?: number | string;
 }
 
 export default IFormControlStyled;
