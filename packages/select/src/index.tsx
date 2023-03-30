@@ -307,23 +307,21 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         {isVisibleList && (
           <SelectListContainer>
             <List type="list-buttons" onMouseDown={onMouseDown} onKeyUp={onKeyUp} fontSize={props?.fontSize}>
-              {isFoundValue  &&
-                elements?.map((element: IOption) => (
-                    <ListItem
-                      type="button"
-                      key={`list-item-${element.index}`}
-                      data-index={element.index}
-                      data-value={element.value}
-                      data-label={element.label}
-                      textAlign={props?.textAlign || TEXT_ALIGN}
-                      fontSize={fontSize}
-                      height={props?.height || DEFAULT_HEIGHT}
-                      fontFamily={props?.fontFamily || theme?.fontFamily}
-                    >
-                      {element.label}
-                    </ListItem>
-                  ));
-                }
+              {isFoundValue && elements?.map((element: IOption) => (
+                  <ListItem
+                    type="button"
+                    key={`list-item-${element.index}`}
+                    data-index={element.index}
+                    data-value={element.value}
+                    data-label={element.label}
+                    textAlign={props?.textAlign || TEXT_ALIGN}
+                    fontSize={fontSize}
+                    height={props?.height || DEFAULT_HEIGHT}
+                    fontFamily={props?.fontFamily || theme?.fontFamily}
+                  >
+                    {element.label}
+                  </ListItem>
+                ))}
               {isNewElement && props?.isCreatable && label > '' && (
                 <ListItem
                   type="button"
