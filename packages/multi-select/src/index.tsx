@@ -24,7 +24,7 @@ import ToggleContainer from './toggle-container';
 import LabelContainer from './label-container.styled';
 import MultiSelectContainerStyled from './multi-select-container.styled';
 import searchDomChildElement from '../../helpers/search-dom-child-element';
-import { KEY_ESCAPE, SVG_FORMAT_FILE } from '../../constants';
+import { KEY_ESCAPE } from '../../constants';
 
 const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelect) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
@@ -43,7 +43,9 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
 
   const multiSelectVisibleChange = (evt: any) => {
     const element = evt.target;
-    if (!btnMultiSelect?.current?.contains(element)) {
+    const btnMultiSelectElement = btnMultiSelect?.current;
+    // @ts-ignore-next-line
+    if (btnMultiSelectElement && !btnMultiSelectElement?.contains(element)) {
       setExpanded(false);
     }
   };
@@ -197,8 +199,8 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
     const onBtnElementsClickExpand = (evt: React.ChangeEvent<HTMLButtonElement>) => {
       const rootElement = evt.currentTarget;
       const element = evt.target;
-      const btnMultiSelectElement = btnMultiSelect?.current;
       const btnToggleContainerElement = btnToggleContainer?.current;
+      // @ts-ignore-next-line
       if (element === rootElement || !btnToggleContainerElement?.contains(element)) {
         setExpanded(!isExpanded);
       }
