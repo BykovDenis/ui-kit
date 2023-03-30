@@ -21,10 +21,10 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
         ? theme?.palette?.primary?.main
         : theme?.palette?.secondary?.main;
 
-    const hoverBackgroundColor: string = theme?.palette?.secondary?.lighter;
+    const hoverBackgroundColor: string = theme?.palette?.primary?.lighter;
 
-    const underlineColor: string = theme?.palette?.secondary?.main;
-    const hoverColor: string = theme?.palette?.secondary?.main;
+    const underlineColor: string = theme?.palette?.primary?.main;
+    const hoverColor: string = theme?.palette?.baseFontColor;
 
     const color: string =
       props?.color ||
