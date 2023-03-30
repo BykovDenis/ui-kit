@@ -7,6 +7,7 @@ import getNewReactThemeContext from '../styles/src';
 import ListItem from '../list-item/src';
 import List from  './src';
 import IList from './types/ilist';
+import ListType from "./enum/list-type";
 
 export default {
   title: 'Components/List',
@@ -28,7 +29,7 @@ const ThemeDarkTemplate: ComponentStory<typeof List> = (args: IList) => {
 
   return <ReactThemeContext.Provider value={themes?.dark}>
     <div style={{ width: '220px' }}>
-    <List type="list" >
+    <List type={ListType.Buttons} >
       {elements.map((element: string, index: number) => (
         <ListItem
           {...args}
