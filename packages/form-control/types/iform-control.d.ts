@@ -6,6 +6,11 @@ interface IFormControl extends IFormControlStyled {
   className?: string;
   key?: number | string;
   id?: string;
+  lineHeight?: number | string;
+  right?: number | string;
+  left?: number | string;
+  top?: number | string;
+  bottom?: number | string;
 }
 
 export default IFormControl;

@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import TMultiSelect from '../types/tmulti-select';
 import ITheme from '../../styles/types/itheme';
 import MultiSelectStyled from './multi-select-styled';
@@ -23,6 +23,8 @@ import sortArray from '../../helpers/sort-array';
 import ToggleContainer from './toggle-container';
 import LabelContainer from './label-container.styled';
 import MultiSelectContainerStyled from './multi-select-container.styled';
+import searchDomChildElement from '../../helpers/search-dom-child-element';
+import { KEY_ESCAPE, SVG_FORMAT_FILE } from '../../constants';
 
 const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelect) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
@@ -35,6 +37,56 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
   const [isUseLocaleStorage] = useState<boolean>(
     props?.isUseLocaleStorage !== undefined ? props.isUseLocaleStorage : false
   );
+
+  const btnMultiSelect = useRef();
+  const btnToggleContainer = useRef();
+
+  const multiSelectVisibleChange = (evt: any) => {
+    const element = evt.target;
+    if (!btnMultiSelect?.current?.contains(element)) {
+      setExpanded(false);
+    }
+  };
+
+  const onListItemsCloseByKey = () => {
+    setExpanded(false);
+  };
+
+  const onElementNameSelect = (evt: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const element: any = evt.currentTarget;
+    const columnName: string = element?.dataset?.value;
+    if (isNotEmptyString(columnName)) {
+      setElementNamesSelected((elementNamesSelected: Set<string>) => {
+        const elementNamesSelectedModified: Set<string> = new Set(elementNamesSelected);
+        elementNamesSelectedModified.add(columnName);
+
+        const elementNamesSelectedModifiedSorted: Set<string> = props?.sortDirection
+          ? new Set(sortArray(Array.from(elementNamesSelectedModified), props.sortDirection))
+          : elementNamesSelectedModified;
+
+        if (isUseLocaleStorage) {
+          const elementNamesSelectedText: string = Array.from(elementNamesSelectedModifiedSorted).join(',');
+          localStorage.setItem(props.name, elementNamesSelectedText);
+          const elementNamesEditedNew: Set<string> = getElementsFromLocalStorage(props.name, ',');
+          if (props?.onChange) {
+            props.onChange(Array.from(elementNamesEditedNew));
+          }
+        } else {
+          if (props?.onChange) {
+            props.onChange(Array.from(elementNamesSelectedModifiedSorted));
+          }
+        }
+
+        return elementNamesSelectedModifiedSorted;
+      });
+    }
+  };
+
+  const onKeyUp = (evt: any) => {
+    if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
+      onListItemsCloseByKey();
+    }
+  };
 
   useEffect(() => {
     const elementsFromLocaleStorage: Set<string> = isUseLocaleStorage
@@ -57,6 +109,12 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
       }
       setElementNamesSelected(new Set(columns));
     }
+    document.addEventListener('mouseup', multiSelectVisibleChange);
+    document.addEventListener('keyup', onKeyUp);
+    return () => {
+      document.removeEventListener('mouseup', multiSelectVisibleChange);
+      document.removeEventListener('keyup', onKeyUp);
+    };
   }, []);
 
   useEffect(() => {
@@ -73,36 +131,6 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
 
     const onListExpanded = () => {
       setExpanded((isExpanded: boolean) => !isExpanded);
-    };
-
-    const onElementNameSelect = (evt: React.ChangeEvent<HTMLButtonElement>) => {
-      const element = evt.currentTarget;
-      const columnName: string = element?.dataset?.name;
-      if (isNotEmptyString(columnName)) {
-        setElementNamesSelected((elementNamesSelected: Set<string>) => {
-          const elementNamesSelectedModified: Set<string> = new Set(elementNamesSelected);
-          elementNamesSelectedModified.add(columnName);
-
-          const elementNamesSelectedModifiedSorted: Set<string> = props?.sortDirection
-            ? new Set(sortArray(Array.from(elementNamesSelectedModified), props.sortDirection))
-            : elementNamesSelectedModified;
-
-          if (isUseLocaleStorage) {
-            const elementNamesSelectedText: string = Array.from(elementNamesSelectedModifiedSorted).join(',');
-            localStorage.setItem(props.name, elementNamesSelectedText);
-            const elementNamesEditedNew: Set<string> = getElementsFromLocalStorage(props.name, ',');
-            if (props?.onChange) {
-              props.onChange(Array.from(elementNamesEditedNew));
-            }
-          } else {
-            if (props?.onChange) {
-              props.onChange(Array.from(elementNamesSelectedModifiedSorted));
-            }
-          }
-
-          return elementNamesSelectedModifiedSorted;
-        });
-      }
     };
 
     const onColumnNameRemove = (evt: React.ChangeEvent<HTMLButtonElement>) => {
@@ -137,6 +165,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
       if (props?.onChange) {
         props.onChange(Array.from(elementNamesSelectedParsed));
       }
+      setExpanded(false);
     };
 
     const onAllElementsUnselected = () => {
@@ -150,6 +179,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
       if (props?.onChange) {
         props.onChange(Array.from(elementNamesSelectedParsed));
       }
+      setExpanded(false);
     };
 
     const arrElementNames: Array<string> =
@@ -164,6 +194,16 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
       setSearchText(null);
     };
 
+    const onBtnElementsClickExpand = (evt: React.ChangeEvent<HTMLButtonElement>) => {
+      const rootElement = evt.currentTarget;
+      const element = evt.target;
+      const btnMultiSelectElement = btnMultiSelect?.current;
+      const btnToggleContainerElement = btnToggleContainer?.current;
+      if (element === rootElement || !btnToggleContainerElement?.contains(element)) {
+        setExpanded(!isExpanded);
+      }
+    };
+
     const elementNamesFiltered: Array<string> =
       elementNames?.filter(
         (columnName: string) =>
@@ -175,18 +215,22 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
 
     return (
       <MultiSelectContainerStyled
+        data-name="multi-select-container"
         width={props?.width}
         borderColor={outlinedColor}
-        borderColorFocused={theme.palette.primary.main}
+        borderColorFocused={theme.palette.primary.light}
         borderColorHovered={theme.mainOutlinedHoverColor}
+        onClick={onBtnElementsClickExpand}
+        ref={btnMultiSelect}
       >
         {props?.label && (
-          <LabelContainer>
+          <LabelContainer backgroundColor={theme.mainBackgroundColor}>
             <Label
               fontSize={pixelsMeasureToNumber(fontSize) - 2}
               disabled={props.disabled}
               fontFamily={props?.fontFamily || theme?.fontFamily}
               backgroundColor={theme.mainBackgroundColor}
+              data-label="multiselect-label"
             >
               {props?.label}
             </Label>
@@ -206,7 +250,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
                 borderRadius={5}
                 padding="1px"
                 margin="0 3px 0 0"
-                backgroundColor={theme.palette.primary.main}
+                backgroundColor={theme.palette.primary.light}
               >
                 <Label
                   fontSize={pixelsMeasureToNumber(fontSize) - 2}
@@ -214,42 +258,49 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
                   whiteSpace="normal"
                   wordBreak="break-all"
                   lineHeight={1}
+                  color={theme.palette.baseFontColor}
+                  backgroundColor="transparent"
                 >
                   {columnNameElement}
                 </Label>{' '}
                 <ButtonStyled id={`${index}-button`} onClick={onColumnNameRemove} data-name={columnNameElement}>
-                  <CrossIcon color={color} />
+                  <CrossIcon color={theme.palette.baseFontColor} />
                 </ButtonStyled>
               </FormControl>
             ))}
           </MultiSelectStyled>
           <ButtonExpandStyled
+            data-name="button-toggle"
             onClick={onListExpanded}
             fontSize={pixelsMeasureToNumber(fontSize) - 2}
             borderColor={outlinedColor}
-            borderColorFocused={theme.palette.primary.main}
+            borderColorFocused={theme.palette.primary.light}
           >
             {isExpanded ? <ChevronUpIcon color={color} /> : <ChevronDownIcon color={color} />}
           </ButtonExpandStyled>
         </FormControl>
         {isExpanded && (
-          <ToggleContainer>
+          <ToggleContainer data-name="toggle-container" ref={btnToggleContainer}>
             <FormControl>
               <Button
                 padding="2px"
                 width="50%"
                 onClick={onAllElementsSelected}
                 fontSize={pixelsMeasureToNumber(fontSize) - 2}
+                color={theme.palette.baseFontColor}
+                backgroundColor={theme.palette.primary.light}
               >
-                Select all <CirclePlusIcon color={color} />
+                Select all <CirclePlusIcon color={theme.palette.baseFontColor} />
               </Button>
               <Button
                 padding="2px"
                 width="50%"
                 onClick={onAllElementsUnselected}
                 fontSize={pixelsMeasureToNumber(fontSize) - 2}
+                color={theme.palette.baseFontColor}
+                backgroundColor={theme.palette.primary.light}
               >
-                Unselect all <CircleCrossIcon color={color} />
+                Unselect all <CircleCrossIcon color={theme.palette.baseFontColor} />
               </Button>
             </FormControl>
             <Input
@@ -261,26 +312,28 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
               variant="outlined"
             />
             <ListContainerStyled>
-              <List>
+              <List
+                type="list-buttons"
+                onKeyUp={onKeyUp}
+                backgroundColor={theme.mainBackgroundColor}
+                color={theme.palette.baseFontColor}
+              >
                 {elementNamesFiltered?.map((columnNameElement: string, index: number) => (
-                  <ListItem key={`${index}-list-item`} padding="5px 0">
-                    <Label
-                      htmlFor={`${props.id}-${index}-list-item`}
-                      padding="0 5px 0 0"
-                      height="100%"
-                      whiteSpace="normal"
-                      wordBreak="break-all"
-                      lineHeight={1}
-                    >
+                  <ListItem
+                    type="button"
+                    key={`${index}-list-item`}
+                    padding="5px 0"
+                    justifyContent="space-between"
+                    color={theme.palette.baseFontColor}
+                    data-value={columnNameElement}
+                    onClick={onElementNameSelect}
+                  >
+                    <Label backgroundColor="transparent" data-value={columnNameElement}>
                       {columnNameElement}
+                      <FormControl position="absolute" right={5} width="initial" data-value={columnNameElement}>
+                        <CirclePlusIcon color={theme.palette.baseFontColor} />
+                      </FormControl>
                     </Label>
-                    <ButtonStyled
-                      id={`${props.id}-${index}-list-item`}
-                      data-name={columnNameElement}
-                      onClick={onElementNameSelect}
-                    >
-                      <CirclePlusIcon color={color} />
-                    </ButtonStyled>
                   </ListItem>
                 ))}
               </List>
@@ -292,7 +345,7 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
   };
 
   if (!Consumer) {
-    console.error('You need an initialization provider');
+    console.error('MultiSelect. You need an initialization provider');
     return null;
   }
 

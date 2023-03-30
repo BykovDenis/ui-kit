@@ -28,6 +28,10 @@ const FormControlStyled =
   flex-wrap: ${(props: IFormControlStyled) => props.flexWrap || 'initial'};
   outline: ${(props: IFormControlStyled) => props?.outline || 'none'};
   border-radius: ${(props: IFormControlStyled) => getMeasureValue(props?.borderRadius, '0')};
+  right: ${(props: IFormControlStyled) => getMeasureValue(props.right, 'auto')};
+  left: ${(props: IFormControlStyled) => getMeasureValue(props.left, 'auto')};
+  top: ${(props: IFormControlStyled) => getMeasureValue(props.top, 'auto')};
+  bottom: ${(props: IFormControlStyled) => getMeasureValue(props.bottom, 'auto')};
 `;
 
 export default FormControlStyled;

@@ -22,10 +22,11 @@ const Label: React.FunctionComponent<TLabel> = (props: TLabel) => {
 
     return (
       <LabelStyled
+        {...props}
         className={props?.className}
         fontFamily={theme?.fontFamily}
         focusColor={color}
-        color={color}
+        color={props?.color || color}
         fontSize={props?.fontSize ?? theme?.baseFontSize}
         htmlFor={props?.htmlFor}
         fontWeight={props?.fontWeight}

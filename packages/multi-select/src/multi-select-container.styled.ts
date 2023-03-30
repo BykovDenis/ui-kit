@@ -23,21 +23,27 @@ const MultiSelectContainerStyled =
   padding: 5px;
   &:hover {
     border: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorHovered};
-    & svg path {
+    & button[data-name="button-toggle"] svg path {
       fill: ${(props: TMultiSelectContainerStyled) => props.borderColorHovered};
     }
-    & button {
+    & button[data-name="button-toggle"] {
       border-left: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorHovered};
+    }
+    & label[data-label="multiselect-label"] {
+      color: ${(props: TMultiSelectContainerStyled) => props.borderColorHovered};
     }
   }
   &:focus,
   &:active {
     border: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
-    & svg path {
+    & button[data-name="button-toggle"] svg path {
       fill: ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
     }
-    & button {
+    & button[data-name="button-toggle"] {
       border-left: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
+    }
+    & label[data-label="multiselect-label"] {
+      color: ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
     }
   }
   `;

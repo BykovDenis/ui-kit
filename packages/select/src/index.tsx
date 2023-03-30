@@ -308,8 +308,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
           <SelectListContainer>
             <List type="list-buttons" onMouseDown={onMouseDown} onKeyUp={onKeyUp} fontSize={props?.fontSize}>
               {isFoundValue  &&
-                elements?.map((element: IOption) => {
-                  return (
+                elements?.map((element: IOption) => (
                     <ListItem
                       type="button"
                       key={`list-item-${element.index}`}
@@ -323,8 +322,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                     >
                       {element.label}
                     </ListItem>
-                  );
-                })}
+                  ));
+                }
               {isNewElement && props?.isCreatable && label > '' && (
                 <ListItem
                   type="button"

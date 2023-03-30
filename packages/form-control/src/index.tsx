@@ -5,6 +5,7 @@ import IFormControl from '../types/iform-control';
 
 const FormControl: React.FunctionComponent<IFormControl> = (props: IFormControl) => (
   <FormControlStyled
+    {...props}
     flexDirection={props.flexDirection}
     alignItems={props?.alignItems || 'center'}
     justifyContent={props.justifyContent}
@@ -24,6 +25,10 @@ const FormControl: React.FunctionComponent<IFormControl> = (props: IFormControl)
     flexWrap={props.flexWrap}
     outline={props.outline}
     borderRadius={props.borderRadius}
+    left={props.left}
+    right={props.right}
+    top={props.top}
+    bottom={props.bottom}
   >
     {props.children}
   </FormControlStyled>
