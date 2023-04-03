@@ -31,6 +31,7 @@ const DayOfMonth =
   width: 25px;
   height: 25px;
   margin: 5px;
+  padding: 0;
   border: 1px solid ${(props: IDayOfMonth) => props.borderColor};  
   font-size: ${(props: IDayOfMonth) => props.fontSize}px;
   font-family: ${(props: IDayOfMonth) => props.fontFamily};

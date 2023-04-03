@@ -13,6 +13,7 @@ import SelectContainer from './select-container.styled';
 import SelectHeader from './select-header.styled';
 import SelectIndicator from './select-indicator.styled';
 import SelectListContainer from './select-list-container.styled';
+import getUniqueIndex from "../../helpers/get-unique-index";
 
 const DEFAULT_HEIGHT = 40;
 const TEXT_ALIGN = 'center';
@@ -28,9 +29,8 @@ function getElementsParsed(elements: Array<IOption | string | number>): Array<IO
     if (typeof element === 'object') {
       return element;
     }
-    const index: string = `${Math.round(Math.random() * 100000000)}${(new Date()).valueOf()}`;
     return {
-      index,
+      index: getUniqueIndex(),
       label: element?.toString(),
       value: element,
     };

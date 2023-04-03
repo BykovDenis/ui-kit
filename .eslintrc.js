@@ -1,15 +1,29 @@
 module.exports = {
   env: {
     browser: true,
-    commonjs: true
+    node: true,
   },
   parser: '@typescript-eslint/parser',
-  extends: ['eslint:recommended', 'prettier', 'plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended', 'plugin:typescript-enum/recommended', 'plugin:storybook/recommended'],
+  extends: [
+    'eslint:recommended',
+    'prettier',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:typescript-enum/recommended',
+  ],
   parserOptions: {
-    project: ['./tsconfig.eslint.json'],
-    sourceType: 'module'
+    project: ['tsconfig.eslint.json'],
+    sourceType: 'module',
   },
-  plugins: ['prettier', 'simple-import-sort', 'import', 'typescript-sort-keys', 'react-hooks', '@typescript-eslint', 'typescript-enum'],
+  plugins: [
+    'prettier',
+    'simple-import-sort',
+    'import',
+    'typescript-sort-keys',
+    'react-hooks',
+    '@typescript-eslint',
+    'typescript-enum',
+  ],
   rules: {
     indent: ['error', 2],
     'prettier/prettier': 'error',
@@ -22,6 +36,6 @@ module.exports = {
     '@typescript-eslint/no-inferrable-types': 0,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/prefer-readonly': 'error',
-    'no-empty-pattern': 0
-  }
+    'no-empty-pattern': 0,
+  },
 };
