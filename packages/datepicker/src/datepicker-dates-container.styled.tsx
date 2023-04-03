@@ -7,6 +7,7 @@ interface IDatepickerDatesContainer {
   ref?: any;
   onMouseUp: (evt: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onKeyUp: (evt: React.KeyboardEvent<HTMLElement>) => void;
+  backgroundColor?: string;
 }
 
 const DatepickerDatesContainer =
@@ -14,7 +15,7 @@ const DatepickerDatesContainer =
   IDatepickerDatesContainer >
   `
   top: 100%;
-  background-color: rgb(255, 255, 255);
+  background-color: ${(props: IDatepickerDatesContainer) => props.backgroundColor};
   border-radius: 4px;
   box-shadow: rgb(0 0 0 / 10%) 0px 0px 0px 1px, rgb(0 0 0 / 10%) 0px 4px 11px;
   margin-bottom: 5px;

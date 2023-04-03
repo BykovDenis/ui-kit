@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 interface ILabelContainer {
   isExistValue: boolean;
+  backgroundColor: string;
 }
 
 const LabelContainer =
   styled('div') <
   ILabelContainer >
   `
-  background-color: ${(props: ILabelContainer) => (props.isExistValue ? '#ffffff' : 'transparent')};
+  background-color: ${(props: ILabelContainer) => (props.isExistValue ? props.backgroundColor : 'transparent')};
   padding-left: 4px;
   padding-right: 4px;
   display: block;
