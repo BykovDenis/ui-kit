@@ -8,16 +8,27 @@
     }
   },
   "transform": {
-    "^.+\\.jsx?$": "babel-jest"
+    "^.+\\.jsx?$": "babel-jest",
+    "^.+\\.tsx?$": "ts-jest"
   },
   "moduleNameMapper": {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy"
   },
-  "moduleDirectories": ["<rootDir>/packages", "node_modules"],
+  "moduleDirectories": ["<rootDir>", "node_modules"],
   "collectCoverage": true,
   "collectCoverageFrom": [
-    "**/*.{ts, tsx, js,jsx}",
-    "!**/node_modules/**"
+    "**/*.{tsx, js, jsx}",
+    "!**/*.d.ts",
+    "**/*.ts",
+    "!**/node_modules/**",
+    "!**/vendor/**",
+    "!**/backend-contracts/**",
+    "!**/clients/**",
+    "!**/constants/**",
+    "!**/types/**",
+    "!**/enums/**",
+    "!**/__mocks__/**",
+    "!**/data/**"
   ],
   "coverageDirectory": "<rootDir>/coverage/jest"
 }

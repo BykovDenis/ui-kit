@@ -6,6 +6,7 @@ import IDateParser from '../helpers/idate-parser';
 import DayEmptyOfMonth from './day-empty-of-month.styled';
 import DayOfMonth from './day-of-month.styled';
 import DaysOfMonthStyled from './days-of-month.styled';
+import getUniqueIndex from '../../helpers/get-unique-index';
 
 interface IDaysOfMonth {
   activeDayNumber: number;
@@ -18,8 +19,8 @@ interface IDaysOfMonth {
   currentYearNumber: number;
   fontFamily: string;
   fontSize: number;
-  maxDate?: string;
-  minDate?: string;
+  maxDate?: IDateParser;
+  minDate?: IDateParser;
   numberDayInWeek: number;
   onDayChange: (day: number) => void;
 }
@@ -37,9 +38,6 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
       ? new Array(props?.countDaysIsMonth + numberDayInWeek)?.fill(null)
       : null;
 
-  const minDateParsed: IDateParser = props?.minDate !== null ? new DateParser(props?.minDate) : null;
-  const maxDateParsed: IDateParser = props?.maxDate !== null ? new DateParser(props?.maxDate) : null;
-
   return (
     <DaysOfMonthStyled>
       {daysElements?.map((element: number, index: number) => {
@@ -47,7 +45,7 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
         const dayValue: number = currentNumberDayOfWeek - numberDayInWeek + (numberDayInWeek > 0 ? 1 : 0);
         const dayValueParsed: string = dayValue?.toString();
         if (numberDayInWeek > currentNumberDayOfWeek || dayValue > props.countDaysIsMonth) {
-          return <DayEmptyOfMonth />;
+          return <DayEmptyOfMonth key={getUniqueIndex()} />;
         }
 
         const currentDateParsed: IDateParser = new DateParser(
@@ -55,8 +53,8 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
         );
 
         const disabled: boolean =
-          (props?.minDate !== null && currentDateParsed?.getDate() < minDateParsed.getDate()) ||
-          (props?.maxDate !== null && currentDateParsed?.getDate() > maxDateParsed.getDate());
+          (props?.minDate !== null && currentDateParsed?.getDate() < props.minDate.getDate()) ||
+          (props?.maxDate !== null && currentDateParsed?.getDate() > props.maxDate.getDate());
 
         const isSameDate: boolean =
           dayValue === props.activeDayNumber &&

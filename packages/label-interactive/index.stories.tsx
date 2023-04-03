@@ -20,7 +20,7 @@ export default {
   },
   args: {
     children: 'Label interative',
-    Icon: ChevronUpIcon<TIcon>,
+    Icon: ChevronUpIcon,
     backgroundColor: 'rgb(8,166,82)'
   },
 } as ComponentMeta<typeof LabelInterative>;

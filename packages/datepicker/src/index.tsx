@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, INPUT_TAG, KEY_ESCAPE, TEXT_ALIGN_LEFT } from '../../constants';
 import Divider from '../../divider/src/index.styled';
-import Locales from '../../enums/locales';
+import Locale from '../../enums/locale';
 import searchDomChildElement from '../../helpers/search-dom-child-element';
 import Input from '../../input/src';
 import Label from '../../label/src';
@@ -22,9 +22,15 @@ import DaysOfMonth from './days-of-month';
 import DaysOfWeek from './days-of-week';
 import LabelContainer from './label-container.styled';
 import MonthsYearsRuleContainer from './months-years-rule-container.styled';
+import sortArray from "../../helpers/sort-array";
+import SortDirection from "../../enums/sort-direction";
+import isNotEmptyString from "../../helpers/is-not-empty-string";
+import parseInputDate from "../helpers/parse-input-date";
+import IDateParser from "../helpers/idate-parser";
 
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
+  const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
   let dateParsed = new DateParser(props.value);
 
   // >>> initial values
@@ -32,8 +38,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
-  const [value, setValue] = useState(props.value);
-  const [valueState, setValueState] = useState(dateParsed.formatToString());
+  const [value, setValue] = useState<string>(props.value);
+  const [valueState, setValueState] = useState<string>(dateParsed.formatToString());
   const [isVisibleList, setIsVisibleList] = useState(false);
   const [currentDayNumber, setCurrentDayNumber] = useState(dateParsed?.getNumberCurrentDateOfMonth());
   const [currentMonthNumber, setCurrentMonthNumber] = useState(dateParsed?.getNumberMonth());
@@ -47,24 +53,22 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [isMinDateError, setIsMinDateError] = useState(false);
   const [isMaxDateError, setIsMaxDateError] = useState(false);
 
-  const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
-
-  const minDate = props.minDate !== null ? new DateParser(props.minDate) : null;
-  const maxDate = props.maxDate !== null ? new DateParser(props.maxDate) : null;
+  const minDate: IDateParser = isNotEmptyString(props.minDate) ? new DateParser(props.minDate) : null;
+  const maxDate: IDateParser = isNotEmptyString(props.maxDate) ? new DateParser(props.maxDate) : null;
   const minDateMilliseconds: number = minDate !== null ? minDate?.getTimestamp() : null;
   const maxDateMilliseconds: number = maxDate !== null ? maxDate?.getTimestamp() : null;
 
   // >> titles
 
-  const monthTitle: string = props?.locale === Locales.Ru || !props?.locale ? 'Месяц' : 'Month';
-  const yearTitle: string = props?.locale === Locales.Ru || !props?.locale ? 'Год' : 'Year';
+  const monthTitle: string = props?.locale === Locale.Ru || !props?.locale ? 'Месяц' : 'Month';
+  const yearTitle: string = props?.locale === Locale.Ru || !props?.locale ? 'Год' : 'Year';
 
-  const textMessageError: string = props?.locale === Locales.Ru ? 'Дата не валидна' : 'Date is not valid';
+  const textMessageError: string = props?.locale === Locale.Ru ? 'Дата не валидна' : 'Date is not valid';
 
   const minDateMessage: string =
-    props?.locale === Locales.Ru ? 'Дата меньше допустимой' : 'Date is less than allowed';
+    props?.locale === Locale.Ru ? 'Дата меньше допустимой' : 'Date is less than allowed';
   const maxDateMessage: string =
-    props?.locale === Locales.Ru ? 'Дата больше допустимой' : 'Date is more then allowed';
+    props?.locale === Locale.Ru ? 'Дата больше допустимой' : 'Date is more then allowed';
 
   const textMessage = isError
     ? isMinDateError
@@ -77,8 +81,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   // << titles
 
   // <<< initial values
-
-
 
   // >>> events handlers
 
@@ -116,53 +118,72 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     }
   };
 
-  const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setIsVisibleList(false);
-  };
-
   const onInputFocus = () => {
     setIsFocus(true);
     setIsVisibleList(true);
   };
 
-  const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+  const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt.target;
-    const regExpr: RegExp = new RegExp('(?<day>[0-9]{2})(?<month>[0-9]{2})(?<year>[0-9]{4})');
-    const datePartitioned: { day: string, month: string, year: string } =
-      element?.value !== null ? element?.value?.replaceAll('.', '')?.match(regExpr)?.groups : null;
-    const valueParsed: string = datePartitioned
-      ? `${datePartitioned?.day}.${datePartitioned?.month}.${datePartitioned?.year}`
-      : null;
-    if (!valueParsed) {
-      setIsError(true);
-      dateParsed.changeParsedDate(null);
-      props.onChange(props.name, element?.value, false);
-      return;
-    }
-    dateParsed.changeParsedDate(valueState);
-    setIsExistValue(element?.value?.trim() > '');
-    setValue(valueParsed);
-    const dateParsedMilliseconds: number = dateParsed.getTimestamp();
-    if (
-      props.onChange &&
-      dateParsed.isValid &&
-      ((minDateMilliseconds && dateParsedMilliseconds >= minDateMilliseconds) || true) &&
-      ((maxDateMilliseconds && dateParsedMilliseconds <= maxDateMilliseconds) || true)
-    ) {
-      props.onChange(props.name, valueParsed, true);
-      setIsError(false);
-      setIsMinDateError(false);
-      setIsMaxDateError(false);
-    } else {
-      if (minDateMilliseconds && dateParsedMilliseconds < minDateMilliseconds) {
-        setIsMinDateError(true);
-      } else if (maxDateMilliseconds && dateParsedMilliseconds > maxDateMilliseconds) {
-        setIsMaxDateError(true);
+    setIsVisibleList(false);
+    if (element.value >= value) {
+      const datePartitioned: string =
+        isNotEmptyString(element?.value) ? element?.value?.replaceAll(/\D/gi, '') : null;
+      const valueParsed: string = datePartitioned
+        ? parseInputDate(datePartitioned)
+        : null;
+      setValue(valueParsed);
+      const isDateValid: boolean = valueParsed?.length === 10;
+      setIsError(isDateValid);
+      if (isDateValid && props.onChange) {
+        props.onChange(props.name, element?.value, isDateValid);
       }
-      setIsError(true);
-      props.onChange(props.name, valueParsed, false);
+    } else {
+      setValue(element.value);
+      const isDateValid: boolean = element.value?.length === 10;
+      setIsError(isDateValid);
+      if (isDateValid && props.onChange) {
+        props.onChange(props.name, element?.value, isDateValid);
+      }
     }
-  };
+  }
+
+  // const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+  //   const element: any = evt.target;
+  //   const valueParsed: string = element?.value
+  //
+  //   if (!valueParsed) {
+  //     setIsError(true);
+  //     dateParsed.changeParsedDate(null);
+  //     if (props.onChange) {
+  //       props.onChange(props.name, element?.value, false);
+  //     }
+  //     return;
+  //   }
+  //   dateParsed.changeParsedDate(valueState);
+  //   setIsExistValue(element?.value?.trim() > '');
+  //   setValue(valueParsed);
+  //   const dateParsedMilliseconds: number = dateParsed.getTimestamp();
+  //   if (
+  //     props.onChange &&
+  //     dateParsed.isValid &&
+  //     ((minDateMilliseconds && dateParsedMilliseconds >= minDateMilliseconds) || true) &&
+  //     ((maxDateMilliseconds && dateParsedMilliseconds <= maxDateMilliseconds) || true)
+  //   ) {
+  //     props.onChange(props.name, valueParsed, true);
+  //     setIsError(false);
+  //     setIsMinDateError(false);
+  //     setIsMaxDateError(false);
+  //   } else {
+  //     if (minDateMilliseconds && dateParsedMilliseconds < minDateMilliseconds) {
+  //       setIsMinDateError(true);
+  //     } else if (maxDateMilliseconds && dateParsedMilliseconds > maxDateMilliseconds) {
+  //       setIsMaxDateError(true);
+  //     }
+  //     setIsError(true);
+  //     props.onChange(props.name, valueParsed, false);
+  //   }
+  // };
 
   const onInputBlur = () => {
     setIsFocus(false);
@@ -300,12 +321,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   // <<< useEffects
 
 
-  const months: Array<string> = props.locale === Locales.Ru || !props?.locale ? monthsElementRu : monthsElementEn;
-  const compareFn = (a, b) => a < b ? 1 : -1;
-  const years: Array<string> = new Array(100)
+  const months: Array<string> = props.locale === Locale.Ru || !props?.locale ? monthsElementRu : monthsElementEn;
+  const years: Array<string> =  sortArray(new Array(100)
     .fill((currentYearNumber ?? 0) - 50)
-    .map((element: number, index: number) => (element + index)?.toString())
-    .sort(compareFn);
+    .map((element: number, index: number) => (element + index)?.toString()), SortDirection.Desc);
 
   const componentThemed: any = (theme: ITheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
@@ -343,9 +362,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             name={props.name}
             height={props?.height || DEFAULT_HEIGHT}
             width={props?.width}
-            onChange={onInputChange}
-            onRemove={onInputDelete}
             onInput={onInput}
+            onRemove={onInputDelete}
             variant={props?.variant}
             value={value}
             textAlign={props?.textAlign || TEXT_ALIGN_LEFT}
@@ -460,8 +478,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
               backgroundColor={theme.mainBackgroundColor}
               numberDayInWeek={numberDayInWeek}
               onDayChange={onDayChange}
-              minDate={props?.minDate}
-              maxDate={props?.maxDate}
+              minDate={minDate}
+              maxDate={maxDate}
             />
           </DatepickerDatesContainer>
         )}
@@ -475,11 +493,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   }
 
   return <Consumer>{componentThemed}</Consumer>;
-};
-
-Datepicker.defaultProps = {
-  minDate: null,
-  maxDate: null,
 };
 
 export default React.memo(Datepicker);

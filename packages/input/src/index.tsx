@@ -96,8 +96,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     if (!isNotRunDebounce && !props.isNotUseDebounce) {
       setIsRunDebounce(true);
     }
-    if (props.isNotUseDebounce) {
-      props?.onChange(evt);
+    if (props.isNotUseDebounce && props?.onChange) {
+      props.onChange(evt);
     }
   };
 

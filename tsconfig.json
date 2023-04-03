@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "rootDir": "./packages",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "outDir": "build",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "target": "es5",
-    "module": "ESNext",
-    "noImplicitAny": false,
+    "module": "esnext",
+    "noImplicitAny": true,
     "sourceMap": true,
     "allowJs": true,
     "checkJs": false,
@@ -17,12 +17,9 @@
     "skipLibCheck": true,
     "esModuleInterop": true
   },
-  "files": [
-    "./src/index.tsx"
-  ],
   "exclude": [
     "node_modules",
     "build"
   ],
-  "include": ["packages/**/*",]
+  "include": ["src/**/*", "node_modules"]
 }
