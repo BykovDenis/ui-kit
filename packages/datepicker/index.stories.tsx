@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import Datepicker from './src';
 import Idatepicker from './types/idatepicker';
 import Locales from '../enums/locales';
-import theme from '../helpers/theme';
+import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
 
 export default {
@@ -20,7 +20,7 @@ export default {
   },
 } as ComponentMeta<typeof Datepicker>;
 
-const Template: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
+const ThemeLightTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
   const [value, setValue] = useState(null);
 
   const onDatepickerValueChange = (name: string, value: string) => {
@@ -36,5 +36,22 @@ const Template: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
   </ReactThemeContext.Provider>
 }
 
-export const NormalDatepicker = Template.bind({});
+const ThemeDarkTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
+  const [value, setValue] = useState(null);
+
+  const onDatepickerValueChange = (name: string, value: string) => {
+    setValue(value);
+  }
+
+  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
+  return <ReactThemeContext.Provider value={themes.dark}>
+    <div style={{ width: '250px' }}>
+      <Datepicker {...args} variant="outlined" value={value} locale={Locales.Ru} onChange={onDatepickerValueChange} />
+    </div>
+  </ReactThemeContext.Provider>
+}
+
+export const DarkThemeDatepicker = ThemeDarkTemplate.bind({});
+export const LightThemeDatepicker = ThemeLightTemplate.bind({});
 
