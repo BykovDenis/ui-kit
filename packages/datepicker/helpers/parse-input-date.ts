@@ -1,7 +1,18 @@
-function parseInputDate(date: string): string {
-  if (date?.length < 2) {
+import DatepickerMask from '../enums/datepicker-mask';
+
+function parseInputDate(date: string, mask: DatepickerMask = DatepickerMask.DDMMYYYY): string {
+  if (mask === DatepickerMask.YYYYMMDD) {
+    if (date?.length < 4) {
+      return date;
+    } else if (date.length === 4) {
+      return `${date}-`;
+    } else if (date.length < 7) {
+      return `${date?.substring(0, 4)}-${date?.substring(4, 6)}${date.length === 6 ? '-' : ''}`;
+    }
+    return `${date?.substring(0, 4)}-${date?.substring(4, 6)}-${date?.substring(6)}`;
+  } else if (date?.length < 2) {
     return date;
-  } else if (date.length == 2) {
+  } else if (date.length === 2) {
     return `${date}.`;
   } else if (date.length < 5) {
     return `${date?.substring(0, 2)}.${date?.substring(2)}${date.length === 4 ? '.' : ''}`;

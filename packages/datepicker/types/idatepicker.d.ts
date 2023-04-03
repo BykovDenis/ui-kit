@@ -21,6 +21,7 @@ export default interface IDatepicker extends IInput, ILabel {
   textAlign?: string;
   value?: string;
   variant?: 'contained' | 'outlined' | 'text';
+  mask?: string;
 }
 
 

@@ -1,32 +1,17 @@
 import {add, format, getDate, getDay, getDaysInMonth, isValid, sub, getUnixTime, toDate, getMonth, getYear} from 'date-fns';
 
 import IDateParser from './idate-parser';
+import DatepickerMask from "../enums/datepicker-mask";
 
 class DateParser implements IDateParser{
   private dateParsed: Date;
   private dateParamsSeparate: Array<number>;
   isValid: boolean;
-  private firstDayOnMonth: Date
-  constructor(date?: string) {
+  private mask: DatepickerMask;
+  private firstDayOnMonth: Date;
+  constructor(date?: string, mask?: DatepickerMask) {
     this.changeParsedDate(date);
-    // this.dateParamsSeparate = dateElements?.map((element: string) => {
-    //   return element !== null && element !== undefined && element !== '' ? parseInt(element, 10) : 0
-    // }) ?? null;
-    // const year: number = this.dateParamsSeparate[2];
-    // const month: number = this.dateParamsSeparate[1] - 1 <= 12 ? this.dateParamsSeparate[1] - 1 : null;
-    // const days: number = this.dateParamsSeparate[0];
-		// if (month === null) {
-		// 	this.dateParsed = new Date(year, month, days);
-		// 	this.isValid = false;
-		// }
-		// this.isValid = true;
-    // if (this.dateParamsSeparate?.length >= 2) {
-    //   this.dateParsed = new Date(year, month, days);
-    // } else {
-    //   const date: Date = new Date();
-    //   this.dateParsed = date;
-    //   this.dateParamsSeparate = [ date.getDate(), date.getMonth() + 1, date.getFullYear()  ];
-    // }
+    this.mask = mask;
     this.firstDayOnMonth = new Date(getYear(this.dateParsed), getMonth(this.dateParsed), 1);
   }
   changeParsedDate(date: string) {
@@ -34,8 +19,12 @@ class DateParser implements IDateParser{
       this.dateParsed = toDate(new Date());
       this.isValid = true;
     } else {
-      const datePartition: Array<string> = date?.split('.')
-      const dateParsed: string = datePartition?.reverse()?.join('-');
+      let dateParsed: string = date;
+      let datePartition: Array<string> = date?.split('-');
+      if (this.mask === DatepickerMask.DDMMYYYY) {
+        datePartition = date?.split('.');
+        dateParsed = datePartition?.reverse()?.join('-');
+      }
       this.dateParsed = toDate(new Date(dateParsed));
       this.isValid = parseInt(datePartition?.[1], 10) <= 12 && isValid(this.dateParsed);
     }
@@ -73,8 +62,8 @@ class DateParser implements IDateParser{
   getDate(){
     return this.dateParsed;
   }
-  formatToString() {
-    return isValid(this.dateParsed) ? format(this.dateParsed, 'dd.MM.yyyy') : null;
+  formatToString(): string {
+    return isValid(this.dateParsed) ? format(this.dateParsed, this.mask?.toString()) : null;
   }
   getNumberDay() {
     return getDate(this.dateParsed);
