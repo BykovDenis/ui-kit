@@ -27,11 +27,13 @@ import SortDirection from "../../enums/sort-direction";
 import isNotEmptyString from "../../helpers/is-not-empty-string";
 import parseInputDate from "../helpers/parse-input-date";
 import IDateParser from "../helpers/idate-parser";
+import DatepickerMask from "../enums/datepicker-mask";
 
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
-  let dateParsed = new DateParser(props.value);
+  const [ mask, setMask ] = useState<DatepickerMask>(DatepickerMask[props?.mask as keyof DatepickerMask] ?? DatepickerMask.DDMMYYYY);
+  let dateParsed = new DateParser(props.value, mask);
 
   // >>> initial values
 
@@ -53,8 +55,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [isMinDateError, setIsMinDateError] = useState(false);
   const [isMaxDateError, setIsMaxDateError] = useState(false);
 
-  const minDate: IDateParser = isNotEmptyString(props.minDate) ? new DateParser(props.minDate) : null;
-  const maxDate: IDateParser = isNotEmptyString(props.maxDate) ? new DateParser(props.maxDate) : null;
+  const minDate: DateParser = isNotEmptyString(props.minDate) ? new DateParser(props.minDate) : null;
+  const maxDate: DateParser = isNotEmptyString(props.maxDate) ? new DateParser(props.maxDate) : null;
   const minDateMilliseconds: number = minDate !== null ? minDate?.getTimestamp() : null;
   const maxDateMilliseconds: number = maxDate !== null ? maxDate?.getTimestamp() : null;
 
@@ -130,7 +132,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       const datePartitioned: string =
         isNotEmptyString(element?.value) ? element?.value?.replaceAll(/\D/gi, '') : null;
       const valueParsed: string = datePartitioned
-        ? parseInputDate(datePartitioned)
+        ? parseInputDate(datePartitioned, mask)
         : null;
       setValue(valueParsed);
       const isDateValid: boolean = valueParsed?.length === 10;
@@ -203,14 +205,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     dateParsed.changeParsedDate(value);
     dateParsed.changeMonth(option.index);
     setCurrentMonthNumber(dateParsed.getNumberMonth());
-    setValue(dateParsed.formatToString());
+    setValue(dateParsed.formatToString(mask));
   };
 
   const onYearNameChange = (option: IOption): void => {
     dateParsed.changeParsedDate(value);
     dateParsed.changeYear(option.value !== null ? parseInt(option.value, 10) : null);
     setCurrentYearNumber(dateParsed.getNumberYear());
-    setValue(dateParsed.formatToString());
+    setValue(dateParsed.formatToString(mask));
   };
 
   const onDayChange = (day: number): void => {
@@ -317,6 +319,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     }
     setValueState(value);
   }, [value]);
+
+  useEffect(() => {
+    if (props.mask) {
+      setMask(DatepickerMask[props.mask as keyof DatepickerMask]);
+    }
+  }, [props.mask])
 
   // <<< useEffects
 
