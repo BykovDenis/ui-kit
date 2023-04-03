@@ -10,9 +10,8 @@ class DateParser implements IDateParser{
   private mask: DatepickerMask;
   private firstDayOnMonth: Date;
   constructor(date?: string, mask?: DatepickerMask) {
-    this.changeParsedDate(date);
     this.mask = mask;
-    this.firstDayOnMonth = new Date(getYear(this.dateParsed), getMonth(this.dateParsed), 1);
+    this.changeParsedDate(date);
   }
   changeParsedDate(date: string) {
     if (!date) {

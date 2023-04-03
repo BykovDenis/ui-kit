@@ -7,6 +7,7 @@ import DayEmptyOfMonth from './day-empty-of-month.styled';
 import DayOfMonth from './day-of-month.styled';
 import DaysOfMonthStyled from './days-of-month.styled';
 import getUniqueIndex from '../../helpers/get-unique-index';
+import DatepickerMask from '../enums/datepicker-mask';
 
 interface IDaysOfMonth {
   activeDayNumber: number;
@@ -23,6 +24,7 @@ interface IDaysOfMonth {
   minDate?: IDateParser;
   numberDayInWeek: number;
   onDayChange: (day: number) => void;
+  mask: DatepickerMask;
 }
 
 const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth) => {
@@ -48,9 +50,12 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
           return <DayEmptyOfMonth key={getUniqueIndex()} />;
         }
 
-        const currentDateParsed: IDateParser = new DateParser(
-          `${dayValueParsed}.${props.currentMonthNumber}.${props.currentYearNumber}`
-        );
+        const currentDateValue =
+          props.mask === DatepickerMask.YYYYMMDD
+            ? `${props.currentYearNumber}-${props.currentMonthNumber}-${dayValueParsed}`
+            : `${dayValueParsed}.${props.currentMonthNumber}.${props.currentYearNumber}`;
+
+        const currentDateParsed: IDateParser = new DateParser(currentDateValue, props.mask);
 
         const disabled: boolean =
           (props?.minDate !== null && currentDateParsed?.getDate() < props.minDate.getDate()) ||
