@@ -35,8 +35,8 @@ function App() {
           value={dateValue}
           onChange={onDatepickerValueChange}
           onRemove={onDateRemove}
-          minDate="03.03.2023"
-          maxDate="11.03.2023"
+          minDate="2023-03-02"
+          maxDate="2023-03-11"
           mask="YYYYMMDD"
         />
       </ReactThemeContext.Provider>

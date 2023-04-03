@@ -55,10 +55,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [isMinDateError, setIsMinDateError] = useState(false);
   const [isMaxDateError, setIsMaxDateError] = useState(false);
 
-  const minDate: DateParser = isNotEmptyString(props.minDate) ? new DateParser(props.minDate) : null;
-  const maxDate: DateParser = isNotEmptyString(props.maxDate) ? new DateParser(props.maxDate) : null;
-  const minDateMilliseconds: number = minDate !== null ? minDate?.getTimestamp() : null;
-  const maxDateMilliseconds: number = maxDate !== null ? maxDate?.getTimestamp() : null;
+  const minDate: DateParser = isNotEmptyString(props.minDate) ? new DateParser(props.minDate, mask) : null;
+  const maxDate: DateParser = isNotEmptyString(props.maxDate) ? new DateParser(props.maxDate, mask) : null;
+  // const minDateMilliseconds: number = minDate !== null ? minDate?.getTimestamp() : null;
+  // const maxDateMilliseconds: number = maxDate !== null ? maxDate?.getTimestamp() : null;
 
   // >> titles
 
@@ -488,6 +488,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
               onDayChange={onDayChange}
               minDate={minDate}
               maxDate={maxDate}
+              mask={mask}
             />
           </DatepickerDatesContainer>
         )}
