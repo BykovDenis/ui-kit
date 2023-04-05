@@ -214,6 +214,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const onInputFocus = () => {
     setIsFocus(true);
     setIsVisibleList(true);
+    const elementSelected = document.querySelector(`[data-element-selected=${props.id}-element-selected]`);
+    if (elementSelected) {
+      elementSelected.scrollIntoView();
+    }
   };
 
   const isExistValue: boolean = label > '';
@@ -245,7 +249,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       : theme?.palette?.baseFontColor;
 
     const backgroundColor: string = theme?.mainBackgroundColor;
-
     return (
       <SelectContainer width={props?.width} height={props?.height || DEFAULT_HEIGHT}>
         <SelectHeader height={props?.height || DEFAULT_HEIGHT}>
@@ -310,15 +313,16 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
               {isFoundValue && elements?.map((element: IOption, index: number) => (
                   <ListItem
                     type="button"
-                    key={`list-item-${element.index}`}
+                    key={`list-item-${index}`}
                     data-index={element.index}
                     data-value={element.value}
                     data-label={element.label}
+                    data-element-selected={`${props.id}-element${element.value === activeElement.value ? '-selected' : ''}`}
                     textAlign={props?.textAlign || TEXT_ALIGN}
                     fontSize={fontSize}
                     height={props?.height || DEFAULT_HEIGHT}
                     fontFamily={props?.fontFamily || theme?.fontFamily}
-                    backgroundColor={element.value === activeElement.value ? theme.palette.primary.main : theme.mainBackgroundColor}
+                    backgroundColor={element.label === activeElement.label ? theme.palette.primary.main : theme.mainBackgroundColor}
                   >
                     {element.label}
                   </ListItem>

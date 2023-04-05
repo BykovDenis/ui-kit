@@ -49,7 +49,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker)
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   return <ReactThemeContext.Provider value={themes.dark}>
-    <div style={{ width: '250px', zoom: 2 }}>
+    <div style={{ width: '250px' }}>
       <Datepicker {...args} variant="outlined" value={value} locale={Locale.Ru} onChange={onDatepickerValueChange} />
     </div>
   </ReactThemeContext.Provider>
