@@ -5,7 +5,7 @@ import React from 'react';
 import Button from '../../../button/src/button.styled';
 import TButton from '../../../button/types/tbutton';
 
-interface IDatepickerButtonNavigate extends IButton {
+interface IDatepickerButtonNavigate extends TButton {
   children?: React.ReactNode;
   color: string;
   fontFamily: string;
