@@ -44,5 +44,8 @@
 
 <h3>Features</h3>
 <ol>
-    <li>The lines of outlines of components opacity change</li>
+    <li>Input components: The lines of outlines of components opacity change</li>
+    <li>Select component: Filling of color selected element on the list items</li>
+    <li>Select component: Scrolling to selected element on the list items</li>
+    <li>Datepicker component: Refactords and some improved</li>
 </ol>
