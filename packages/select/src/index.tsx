@@ -307,7 +307,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         {isVisibleList && (
           <SelectListContainer>
             <List type="list-buttons" onMouseDown={onMouseDown} onKeyUp={onKeyUp} fontSize={props?.fontSize}>
-              {isFoundValue && elements?.map((element: IOption) => (
+              {isFoundValue && elements?.map((element: IOption, index: number) => (
                   <ListItem
                     type="button"
                     key={`list-item-${element.index}`}
@@ -318,6 +318,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                     fontSize={fontSize}
                     height={props?.height || DEFAULT_HEIGHT}
                     fontFamily={props?.fontFamily || theme?.fontFamily}
+                    backgroundColor={element.value === activeElement.value ? theme.palette.primary.main : theme.mainBackgroundColor}
                   >
                     {element.label}
                   </ListItem>
