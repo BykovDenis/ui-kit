@@ -3,10 +3,12 @@ import {add, format, getDate, getDay, getDaysInMonth, isValid, sub, getUnixTime,
 import IDateParser from './idate-parser';
 import DatepickerMask from "../enums/datepicker-mask";
 
+const INVALID_DATE_TITLE: string = 'Invalid Date';
+
 class DateParser implements IDateParser{
   private dateParsed: Date;
   private dateParamsSeparate: Array<number>;
-  isValid: boolean;
+  private isValid: boolean;
   private mask: DatepickerMask;
   private firstDayOnMonth: Date;
   constructor(date?: string, mask?: DatepickerMask) {
@@ -25,7 +27,7 @@ class DateParser implements IDateParser{
         dateParsed = datePartition?.reverse()?.join('-');
       }
       this.dateParsed = toDate(new Date(dateParsed));
-      this.isValid = parseInt(datePartition?.[1], 10) <= 12 && isValid(this.dateParsed);
+      this.isValid = dateParsed?.length === 10 && parseInt(datePartition?.[1], 10) <= 12 && this.dateParsed?.toString() !== INVALID_DATE_TITLE && isValid(this.dateParsed);
     }
     this.firstDayOnMonth = new Date(getYear(this.dateParsed), getMonth(this.dateParsed), 1);
   }
@@ -95,7 +97,7 @@ class DateParser implements IDateParser{
     this.dateParsed = sub(this.dateParsed, { months: 12 })
   }
 	checkIsNotExistErrorDate() {
-		 return this.isValid;
+    return this.isValid;
 	}
 }
 

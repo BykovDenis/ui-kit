@@ -5,7 +5,7 @@ import ITheme from '../../styles/types/itheme';
 import IconButtonStyled from './icon-button.styled';
 
 const IconButton: React.FunctionComponent<PropsWithChildren<any>> = (props: any) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const [Consumer, setConsumer] = useState(globalThis?.ReactThemeContextConsumer);
 
   useEffect(() => {
     setConsumer(globalThis.ReactThemeContextConsumer);

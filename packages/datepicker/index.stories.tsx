@@ -16,12 +16,14 @@ export default {
   args: {
     textMessage: 'text message',
     label: 'label',
-    isReadOnly: false
+    isReadOnly: false,
+    // minDate: '01.04.2023',
+    // maxDate: '05.04.2023'
   },
 } as ComponentMeta<typeof Datepicker>;
 
 const ThemeLightTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState('03.04.2023');
 
   const onDatepickerValueChange = (name: string, value: string) => {
     setValue(value);
@@ -30,14 +32,14 @@ const ThemeLightTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker
   const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   return <ReactThemeContext.Provider value={themes.loanPricing}>
-  <div style={{ width: '250px' }}>
+  <div style={{ width: '250px', zoom: 3 }}>
     <Datepicker {...args} variant="outlined" value={value} locale={Locale.Ru} onChange={onDatepickerValueChange} />
   </div>
   </ReactThemeContext.Provider>
 }
 
 const ThemeDarkTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState('03.04.2023');
 
   const onDatepickerValueChange = (name: string, value: string) => {
     setValue(value);
@@ -47,7 +49,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker)
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   return <ReactThemeContext.Provider value={themes.dark}>
-    <div style={{ width: '250px' }}>
+    <div style={{ width: '250px', zoom: 3 }}>
       <Datepicker {...args} variant="outlined" value={value} locale={Locale.Ru} onChange={onDatepickerValueChange} />
     </div>
   </ReactThemeContext.Provider>

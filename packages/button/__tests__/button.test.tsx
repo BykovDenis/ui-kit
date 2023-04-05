@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import getNewReactThemeContext from '../../styles/src';
 import renderer from 'react-test-renderer';
 
@@ -29,10 +29,11 @@ it('Button renders correctly', () => {
     focusColor: 'rgb(8, 166, 82)',
   };
 
-
-  const wrapper = renderer.create(<ReactThemeContext.Provider value={themes.loanPricing}>
-    <Button {...props}>Hello world!</Button>
-  </ReactThemeContext.Provider>);
+  const wrapper = renderer.create(
+    <ReactThemeContext.Provider value={themes.loanPricing}>
+      <Button {...props}>Hello world!</Button>
+    </ReactThemeContext.Provider>
+  );
 
   expect(wrapper.toJSON()).toMatchSnapshot();
 });

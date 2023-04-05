@@ -1,12 +1,15 @@
-import './App.css';
 import Datepicker from '../../packages/datepicker/src';
 import { useState } from 'react';
 import getNewReactThemeContext from '@sber-risks-ui/styles/src';
 import { themes } from '@sber-risks-ui/styles/src/themes';
 import Locale from '../../packages/enums/locale';
+import Select from '../../packages/select/src';
+import IOption from '../../packages/select/types/ioption';
+import FormControl from '../../packages/form-control/src';
 
 function App() {
   const [dateValue, setDateValue] = useState<string>('2023-03-05');
+  const [value, setValue] = useState<string>('One');
 
   const onDatepickerValueChange = (name: string, value: string, isValid: boolean) => {
     console.log(value);
@@ -22,11 +25,17 @@ function App() {
     console.log('дата очищена');
   };
 
+  const onValueSelectChange = (option: IOption) => {
+    setValue(option.value);
+  };
+
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
+  const elements: Array<string> = ['One', 'Two', 'Three', 'Four'];
+
   return (
-    <div className="App">
-      <ReactThemeContext.Provider value={themes.dark}>
+    <ReactThemeContext.Provider value={themes.dark}>
+      <FormControl>
         <Datepicker
           label="Some date"
           locale={Locale.Ru}
@@ -39,8 +48,9 @@ function App() {
           maxDate="2023-03-11"
           mask="YYYYMMDD"
         />
-      </ReactThemeContext.Provider>
-    </div>
+      </FormControl>
+      <Select id="some-list" name="some-list" activeElement={value} elements={elements} />
+    </ReactThemeContext.Provider>
   );
 }
 
