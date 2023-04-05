@@ -7,7 +7,8 @@ interface IFormControlStyled {
   height?: number | string;
   justifyContent?: string;
   margin?: string;
-  maxHeight?: string;
+  maxHeight?: number | string;
+  minHeight?: number | string;
   overflowY?: string;
   padding?: string;
   position?: string;

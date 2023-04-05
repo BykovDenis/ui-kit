@@ -29,6 +29,7 @@ const FormControl: React.FunctionComponent<IFormControl> = (props: IFormControl)
     right={props.right}
     top={props.top}
     bottom={props.bottom}
+    minHeight={props.minHeight}
   >
     {props.children}
   </FormControlStyled>

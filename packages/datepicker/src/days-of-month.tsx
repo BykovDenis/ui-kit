@@ -16,8 +16,8 @@ interface IDaysOfMonth {
   backgroundColor: string;
   color: string;
   countDaysIsMonth: number;
-  currentMonthNumber: number;
-  currentYearNumber: number;
+  actualMonthNumber: number;
+  actualYearNumber: number;
   fontFamily: string;
   fontSize: number;
   maxDate?: IDateParser;
@@ -43,28 +43,28 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
   return (
     <DaysOfMonthStyled>
       {daysElements?.map((element: number, index: number) => {
-        const currentNumberDayOfWeek: number = index + 1;
-        const dayValue: number = currentNumberDayOfWeek - numberDayInWeek + (numberDayInWeek > 0 ? 1 : 0);
+        const actualNumberDayOfWeek: number = index + 1;
+        const dayValue: number = actualNumberDayOfWeek - numberDayInWeek + (numberDayInWeek > 0 ? 1 : 0);
         const dayValueParsed: string = dayValue?.toString();
-        if (numberDayInWeek > currentNumberDayOfWeek || dayValue > props.countDaysIsMonth) {
+        if (numberDayInWeek > actualNumberDayOfWeek || dayValue > props.countDaysIsMonth) {
           return <DayEmptyOfMonth key={getUniqueIndex()} />;
         }
 
-        const currentDateValue =
+        const actualDateValue =
           props.mask === DatepickerMask.YYYYMMDD
-            ? `${props.currentYearNumber}-${props.currentMonthNumber}-${dayValueParsed}`
-            : `${dayValueParsed}.${props.currentMonthNumber}.${props.currentYearNumber}`;
+            ? `${props.actualYearNumber}-${props.actualMonthNumber}-${dayValueParsed}`
+            : `${dayValueParsed}.${props.actualMonthNumber}.${props.actualYearNumber}`;
 
-        const currentDateParsed: IDateParser = new DateParser(currentDateValue, props.mask);
+        const actualDateParsed: IDateParser = new DateParser(actualDateValue, props.mask);
 
         const disabled: boolean =
-          (props?.minDate !== null && currentDateParsed?.getDate() < props.minDate.getDate()) ||
-          (props?.maxDate !== null && currentDateParsed?.getDate() > props.maxDate.getDate());
+          (props?.minDate !== null && actualDateParsed?.getDate() < props.minDate.getDate()) ||
+          (props?.maxDate !== null && actualDateParsed?.getDate() > props.maxDate.getDate());
 
         const isSameDate: boolean =
           dayValue === props.activeDayNumber &&
-          props.activeMonthNumber === props.currentMonthNumber &&
-          props.activeYearNumber === props.currentYearNumber;
+          props.activeMonthNumber === props.actualMonthNumber &&
+          props.activeYearNumber === props.actualYearNumber;
 
         return (
           <DayOfMonth
@@ -90,4 +90,4 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
   );
 };
 
-export default DaysOfMonth;
+export default React.memo(DaysOfMonth);

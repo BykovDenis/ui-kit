@@ -5,7 +5,7 @@ import TButton from '../types/tbutton';
 import ButtonStyled from './button.styled';
 
 const Button: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TButton) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const [Consumer, setConsumer] = useState(globalThis?.ReactThemeContextConsumer);
 
   useEffect(() => {
     setConsumer(globalThis.ReactThemeContextConsumer);
