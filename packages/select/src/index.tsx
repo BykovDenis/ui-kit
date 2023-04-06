@@ -86,6 +86,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, [globalThis.ReactThemeContextConsumer]);
 
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const selectListContainerRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const onSelectChange = (evt: React.ChangeEvent<HTMLElement> | React.MouseEvent<HTMLElement, MouseEvent>) => {
     const element: any = evt.target;
@@ -127,7 +128,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     const element = evt.target;
     if (inputRef) {
       const input = inputRef?.current;
-      if (element !== input) {
+      const selectContainer = selectListContainerRef?.current;
+      if (element !== input && element !== selectContainer) {
         onListItemsCloseByKey();
         setIsFocus(false);
         if (input?.blur) {
@@ -214,10 +216,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const onInputFocus = () => {
     setIsFocus(true);
     setIsVisibleList(true);
-    const elementSelected = document.querySelector(`[data-element-selected=${props.id}-element-selected]`);
-    if (elementSelected) {
-      elementSelected.scrollIntoView();
-    }
+    // const elementSelected = document.querySelector(`[data-element-selected=${props.id}-element-selected]`);
+    // if (elementSelected) {
+    //   elementSelected.scrollIntoView({ behavior: 'smooth', block: 'start'  });
+    // }
   };
 
   const isExistValue: boolean = label > '';
@@ -308,7 +310,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
           />
         </SelectHeader>
         {isVisibleList && (
-          <SelectListContainer>
+          <SelectListContainer ref={selectListContainerRef}>
             <List type="list-buttons" onMouseDown={onMouseDown} onKeyUp={onKeyUp} fontSize={props?.fontSize}>
               {isFoundValue && elements?.map((element: IOption, index: number) => (
                   <ListItem

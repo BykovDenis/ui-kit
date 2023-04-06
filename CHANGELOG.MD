@@ -49,3 +49,11 @@
     <li>Select component: Scrolling to selected element on the list items</li>
     <li>Datepicker component: Refactords and some improved</li>
 </ol>
+
+<h2>v 0.10.7</h2>
+
+<h3>Bugfix</h3>
+<ol>
+    <li>Select scroll to element selected</li>
+    <li>Select list items don't close list items</li>
+</ol>
