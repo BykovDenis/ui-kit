@@ -26,6 +26,7 @@ def tableCellPath = './packages/table-cell';
 def tableColumnsVisiblePath = './packages/table-columns-visible';
 def progressBarPath = './packages/progress-bar';
 def multiSelectPath = './packages/multi-select';
+def stickyBottomPanelPath = './packages/multi-select';
 
 
 pipeline {
@@ -641,6 +642,30 @@ pipeline {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${multiSelectPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('StickyBottomPanel deploy') {
+            tools
+            {
+                nodejs 'node-v17.5.0-linux-x64'
+            }
+            steps {
+                nodejs('node-v17.5.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${stickyBottomPanelPath}") {
                                 script {
                                     echo 'Packages installing'
                                     sh 'npm i'
