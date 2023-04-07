@@ -14,8 +14,8 @@ const StickyBottomPanelStyled =
     height: ${(props: TStickyBottomPanel) => getMeasureValue(props.height, '25%')};
     background-color: ${(props: TStickyBottomPanel) => props.backgroundColor};
     color: ${(props: TStickyBottomPanel) => props.color};
-    overflow-y: auto;
     z-index: 10002;
+    padding-top:45px;
   `;
 
 export default StickyBottomPanelStyled;

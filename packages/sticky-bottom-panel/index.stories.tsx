@@ -1,10 +1,11 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
-import React from 'react';
+import React, { useState } from "react";
 import Table from '@sber-risks-ui/Table';
 import TableHead from '@sber-risks-ui/TableHead';
 import TableRow from '@sber-risks-ui/TableRow';
 import TableCell from '@sber-risks-ui/TableCell';
 import TableBody from '@sber-risks-ui/TableBody';
+import Button from '@sber-risks-ui/Button';
 
 import StickyBottomPanel from  './src/index';
 import TStickyBottomPanel from './types/tsticky-bottom-panel';
@@ -27,6 +28,15 @@ export default {
 const elements: Array<number> = new Array(1000).fill(1000000);
 
 const ThemeDarkTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStickyBottomPanel) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const onBtnClick = () => {
+    setIsOpen(!isOpen);
+  }
+
+  const onDialogVisibleChange = () => {
+    setIsOpen(!isOpen)
+  }
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
   return <ReactThemeContext.Provider value={themes.dark}>
@@ -48,7 +58,7 @@ const ThemeDarkTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStic
       <TableBody>
         {elements?.map((element: number, index: number) => (
           <TableRow key={index}>
-          <TableCell>{element}</TableCell>
+          <TableCell><TableCell><Button onClick={onBtnClick}>{element}</Button></TableCell></TableCell>
           <TableCell>{element}</TableCell>
           <TableCell>{element}</TableCell>
           <TableCell>{element}</TableCell>
@@ -61,11 +71,11 @@ const ThemeDarkTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStic
           </TableRow>))}
       </TableBody>
     </Table>
-    <StickyBottomPanel {...args} >
+    <StickyBottomPanel {...args} isOpen={isOpen} onDialogVisibleChange={onDialogVisibleChange} >
       <Table>
         <TableHead>
           <TableRow isHeader={true}>
-            <TableCell >One</TableCell>
+            <TableCell>One</TableCell>
             <TableCell>One</TableCell>
             <TableCell>One</TableCell>
             <TableCell>One</TableCell>
@@ -80,7 +90,7 @@ const ThemeDarkTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStic
         <TableBody>
         {elements?.map((element: number, index: number) => (
           <TableRow key={index}>
-            <TableCell>{element}</TableCell>
+            <TableCell><Button onClick={onBtnClick}>{element}</Button></TableCell>
             <TableCell>{element}</TableCell>
             <TableCell>{element}</TableCell>
             <TableCell>{element}</TableCell>
