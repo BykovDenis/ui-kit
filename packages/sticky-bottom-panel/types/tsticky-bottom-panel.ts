@@ -4,6 +4,8 @@ type TStickyBottomPanel = {
   className?: any,
   height?: number | string,
   color: string,
+  isOpen: boolean,
+  onDialogVisibleChange?: () => void,
 };
 
 export default TStickyBottomPanel;

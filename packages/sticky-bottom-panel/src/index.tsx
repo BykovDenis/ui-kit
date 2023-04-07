@@ -3,9 +3,17 @@ import React, { useEffect, useState } from 'react';
 import ITheme from '../../styles/types/itheme';
 import TStickyBottomPanel from '../types/tsticky-bottom-panel';
 import StickyBottomPanelStyled from './sticky-bottom-panel.styled';
+import FormControl from '../../form-control/src';
+import IconButton from '../../icon-button/src';
+import CircleCrossIcon from '../../icons-components/24x24/circle-cross-icon';
 
 const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: TStickyBottomPanel) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const [isOpen, setIsOpen] = useState<boolean>(props.isOpen);
+
+  useEffect(() => {
+    setIsOpen(props.isOpen);
+  }, [props.isOpen]);
 
   useEffect(() => {
     setConsumer(globalThis.ReactThemeContextConsumer);
@@ -15,11 +23,18 @@ const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: T
     const backgroundColor: string = props?.backgroundColor || theme?.mainBackgroundColor;
     const color: string = props?.color || theme.palette.baseFontColor;
 
-    return (
+    return isOpen ? (
       <StickyBottomPanelStyled backgroundColor={backgroundColor} height={props?.height} color={color}>
-        {props.children}
+        <FormControl height={40} justifyContent="flex-end" position="absolute" top="0">
+          <IconButton onClick={props.onDialogVisibleChange} variant="outlined">
+            <CircleCrossIcon color={theme.palette.baseFontColor} />
+          </IconButton>
+        </FormControl>
+        <FormControl overflowY="auto" height="95%">
+          {props.children}
+        </FormControl>
       </StickyBottomPanelStyled>
-    );
+    ) : null;
   };
 
   if (!Consumer) {
