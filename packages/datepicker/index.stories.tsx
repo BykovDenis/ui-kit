@@ -49,9 +49,15 @@ const ThemeDarkTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker)
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   return <ReactThemeContext.Provider value={themes.dark}>
+    <ul>
+      {new Array(100).fill(1).map((element: number, index: number) => <li>{index}</li>)}
+    </ul>
     <div style={{ width: '250px' }}>
       <Datepicker {...args} variant="outlined" value={value} locale={Locale.Ru} onChange={onDatepickerValueChange} />
     </div>
+    <ul>
+      {new Array(100).fill(1).map((element: number, index: number) => <li>{index}</li>)}
+    </ul>
   </ReactThemeContext.Provider>
 }
 

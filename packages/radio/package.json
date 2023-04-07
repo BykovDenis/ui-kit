@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/Radio",
-  "version": "0.10.7-alpha.1",
+  "version": "0.10.7-alpha.0",
   "description": "A simple radio component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
