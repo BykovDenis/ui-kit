@@ -45,6 +45,7 @@ const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: T
         height={props?.height}
         color={color}
         panelAlign={panelAlign}
+        borderColor={theme.mainOutlinedColor}
       >
         <FormControl height={40} justifyContent="flex-end" position="absolute" top="0">
           <IconButton onClick={props.onDialogVisibleChange} variant="text">
