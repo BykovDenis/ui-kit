@@ -26,7 +26,7 @@ def tableCellPath = './packages/table-cell';
 def tableColumnsVisiblePath = './packages/table-columns-visible';
 def progressBarPath = './packages/progress-bar';
 def multiSelectPath = './packages/multi-select';
-def stickyBottomPanelPath = './packages/multi-select';
+def stickyBottomPanelPath = './packages/sticky-bottom-panel';
 
 
 pipeline {
