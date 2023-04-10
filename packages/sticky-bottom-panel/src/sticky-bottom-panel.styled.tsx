@@ -21,6 +21,8 @@ const StickyBottomPanelStyled =
     color: ${(props: TStickyBottomPanel) => props.color};
     z-index: 10002;
     padding-top:45px;
+    border: 1px solid ${(props: TStickyBottomPanel) => props.borderColor};
+    border-radius: 5px;
   `;
 
 export default StickyBottomPanelStyled;

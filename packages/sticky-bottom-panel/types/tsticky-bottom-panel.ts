@@ -8,6 +8,10 @@ type TStickyBottomPanel = {
   onDialogVisibleChange?: () => void,
   panelAlign: 'left' | 'right' | 'center',
   width?: number | string,
+  borderColor?: string,
+  borderWidth?: string,
+  borderStyle?: string,
+  border?: string,
 };
 
 export default TStickyBottomPanel;
