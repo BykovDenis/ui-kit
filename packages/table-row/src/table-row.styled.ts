@@ -14,6 +14,8 @@ const TableRowStyled =
   background-color: ${(props: TTableRow) => props?.backgroundColor};
   width: 100%;
   min-height: ${(props: TTableRow) => getMeasureValue(props?.minHeight, '40px')};
+  border-top: ${(props: TTableRow) => (props?.borderColor ? `1px solid ${props.borderColor}` : 'none')};
+  border-left: ${(props: TTableRow) => (props?.borderColor ? `1px solid ${props.borderColor}` : 'none')}
 `;
 
 export default TableRowStyled;
