@@ -19,13 +19,15 @@ export default {
     disabled: { control: { type: 'radio', options: [ true, false ] }  },
     fontSize: { control: { type: 'select', options: [ 10, 12, 14, 16] }, defaultValue: 14  },
     error: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
+    panelAlign: { control: { type: 'select', options: [ 'left', 'right', 'center'] }, defaultValue: 'center'  },
   },
   args: {
-    height: '400px'
+    height: '400px',
+    width: '100%'
   },
 } as ComponentMeta<typeof StickyBottomPanel>;
 
-const elements: Array<number> = new Array(1000).fill(1000000);
+const elements: Array<number> = new Array(100).fill(1000000);
 
 const ThemeDarkTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStickyBottomPanel) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
