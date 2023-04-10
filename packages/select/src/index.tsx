@@ -14,6 +14,7 @@ import SelectHeader from './select-header.styled';
 import SelectIndicator from './select-indicator.styled';
 import SelectListContainer from './select-list-container.styled';
 import getUniqueIndex from "../../helpers/get-unique-index";
+import onKeyUpEventHandler from "../../helpers/on-key-up-event-handler";
 
 const DEFAULT_HEIGHT = 40;
 const TEXT_ALIGN = 'center';
@@ -153,9 +154,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   };
 
   const onKeyUp = (evt: any) => {
-    if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
-      onListItemsCloseByKey();
-    }
+    onKeyUpEventHandler(evt, onListItemsCloseByKey);
   };
 
   useEffect(() => {
