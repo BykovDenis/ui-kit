@@ -28,6 +28,7 @@ import isNotEmptyString from "../../helpers/is-not-empty-string";
 import parseInputDate from "../helpers/parse-input-date";
 import DatepickerMask from "../enums/datepicker-mask";
 import checkMinMaxDate from "../helpers/check-min-max-date";
+import onKeyUpEventHandler from "../../helpers/on-key-up-event-handler";
 
 
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
@@ -115,10 +116,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   };
 
   const onKeyUp = (evt: any) => {
-    if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
+
+    const cb = () => {
       setIsFocus(false);
       setIsVisibleList(false);
     }
+
+    onKeyUpEventHandler(evt, cb);
+
   };
 
   const onInputFocus = () => {
