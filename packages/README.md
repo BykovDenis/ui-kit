@@ -9,7 +9,7 @@
     <h3>
         Create theme
     </h3>
-        <blockquote> 
+        <pre> 
 import { ITheme } from '@sber-risks-ui/core/styles';
 
 const default defaultTheme: ITheme = {
@@ -45,25 +45,25 @@ const default defaultTheme: ITheme = {
     h2FontSize: 24,
     h3FontSize: 20,
 };
-        </blockquote>
+        </pre>
     </li>
     <li>
     <h3>
         Import theme and create context
     </h3>
-<blockquote>
+        <pre>
 import defaultTheme from './themes/defaultTheme';
 
 export const ReactThemeContext: { Consumer: any, Provider: any } = getNewReactThemeContext(defaultTheme);
-<blockquote>
-    </li>
+        </pre>
+</li>
     <li>
         <h3>To wrap your root component by context provider</h3>
-<blockquote>
-    &lt;ReactThemeContext.Provider value={actualTheme}&gt;
-        &lt;SomeComponent /&gt;
-        &lt;/ReactThemeContext.Provider&gt;
-</blockquote>
+        <pre>
+&lt;ReactThemeContext.Provider value={actualTheme}&gt;
+    &lt;SomeComponent /&gt;
+&lt;/ReactThemeContext.Provider&gt;
+        </pre>
     </li>
 </ol>
 
