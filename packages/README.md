@@ -10,6 +10,7 @@
         Create theme
     </h3>
         <pre> 
+            <code>
 import { ITheme } from '@sber-risks-ui/core/styles';
 
 const default defaultTheme: ITheme = {
@@ -45,6 +46,7 @@ const default defaultTheme: ITheme = {
     h2FontSize: 24,
     h3FontSize: 20,
 };
+            </code>
         </pre>
     </li>
     <li>
