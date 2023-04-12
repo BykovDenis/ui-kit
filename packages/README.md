@@ -11,7 +11,8 @@
     </h3>
 <pre><code>
 import { ITheme } from '@sber-risks-ui/core/styles';
-
+</code></pre>
+<pre><code>
 const default defaultTheme: ITheme = {
     palette: {
         primary: {
