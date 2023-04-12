@@ -46,8 +46,8 @@ const default defaultTheme: ITheme = {
     h3FontSize: 20,
 };
 </code></pre>
-    </li>
-    <li>
+</li>
+<li>
     <h3>
         Import theme and create context
     </h3>
