@@ -1,6 +1,284 @@
-205 error Error: Command failed with exit code 128: git tag v0.10.7-alpha.1 -m v0.10.7-alpha.1
-205 error fatal: tag 'v0.10.7-alpha.1' already exists
-205 error     at makeError (/Users/16783656-mobile/.nvm/versions/node/v17.5.0/lib/node_modules/lerna/node_modules/execa/lib/error.js:59:11)
-205 error     at handlePromise (/Users/16783656-mobile/.nvm/versions/node/v17.5.0/lib/node_modules/lerna/node_modules/execa/index.js:114:26)
-205 error     at processTicksAndRejections (node:internal/process/task_queues:96:5)
-205 error     at async Promise.all (index 0)
+0 silly argv {
+0 silly argv   _: [ 'publish' ],
+0 silly argv   composed: 'publish',
+0 silly argv   lernaVersion: '4.0.0',
+0 silly argv   '$0': '..\\..\\AppData\\Roaming\\npm\\node_modules\\lerna\\cli.js'
+0 silly argv }
+1 notice cli v4.0.0
+2 verbose rootPath C:\Users\16783656\www\react-ui-components
+3 verbose session ce923aa18627179e
+4 verbose user-agent lerna/4.0.0/node@v16.18.1+x64 (win32)
+5 silly argv { _: [ 'publish' ], composed: 'publish', lernaVersion: '4.0.0' }
+6 verbose rootPath C:\Users\16783656\www\react-ui-components
+7 info current version 0.10.7-alpha.5
+8 silly isAnythingCommitted
+9 verbose isAnythingCommitted 1
+10 silly getCurrentBranch
+11 verbose currentBranch feature/Tab
+12 silly remoteBranchExists
+13 silly isBehindUpstream
+14 silly isBehindUpstream feature/Tab is behind origin/feature/Tab by 0 commit(s) and ahead by 0
+15 silly hasTags
+16 verbose hasTags true
+17 silly git-describe.sync "v0.10.7-alpha.5-13-gf37ca90e" => {"lastTagName":"v0.10.7-alpha.5","lastVersion":"v0.10.7-alpha.5","refCount":"13","sha":"f37ca90e","isDirty":false}
+18 info Looking for changed packages since v0.10.7-alpha.5
+19 silly checking diff packages/button
+20 silly no diff found in @sber-risks-ui/Button
+21 silly checking diff packages/checkbox
+22 silly no diff found in @sber-risks-ui/Checkbox
+23 silly checking diff packages/datepicker
+24 silly found diff in packages/datepicker/package.json
+25 verbose filtered diff [ 'packages/datepicker/package.json' ]
+26 silly checking diff packages/example
+27 silly no diff found in @sber-risks-ui/Example
+28 silly checking diff packages/form-control
+29 silly no diff found in @sber-risks-ui/FormControl
+30 silly checking diff packages/icon-button
+31 silly no diff found in @sber-risks-ui/IconButton
+32 silly checking diff packages/input
+33 silly no diff found in @sber-risks-ui/Input
+34 silly checking diff packages/label-interactive
+35 silly no diff found in @sber-risks-ui/LabelInteractive
+36 silly checking diff packages/label
+37 silly found diff in packages/label/types/tlabel.d.ts
+38 verbose filtered diff [ 'packages/label/types/tlabel.d.ts' ]
+39 silly checking diff packages/list-item
+40 silly no diff found in @sber-risks-ui/ListItem
+41 silly checking diff packages/list
+42 silly no diff found in @sber-risks-ui/List
+43 silly checking diff packages/multi-select
+44 silly no diff found in @sber-risks-ui/MultiSelect
+45 silly checking diff packages/progress-bar
+46 silly no diff found in @sber-risks-ui/progress-bar
+47 silly checking diff packages/radio
+48 silly no diff found in @sber-risks-ui/Radio
+49 silly checking diff packages/select
+50 silly found diff in packages/select/package.json
+51 verbose filtered diff [ 'packages/select/package.json' ]
+52 silly checking diff packages/sticky-bottom-panel
+53 silly found diff in packages/sticky-bottom-panel/package.json
+53 silly found diff in packages/sticky-bottom-panel/src/index.tsx
+53 silly found diff in packages/sticky-bottom-panel/src/sticky-bottom-panel.styled.tsx
+53 silly found diff in packages/sticky-bottom-panel/types/tsticky-bottom-panel.ts
+54 verbose filtered diff [
+54 verbose filtered diff   'packages/sticky-bottom-panel/package.json',
+54 verbose filtered diff   'packages/sticky-bottom-panel/src/index.tsx',
+54 verbose filtered diff   'packages/sticky-bottom-panel/src/sticky-bottom-panel.styled.tsx',
+54 verbose filtered diff   'packages/sticky-bottom-panel/types/tsticky-bottom-panel.ts'
+54 verbose filtered diff ]
+55 silly checking diff packages/styles
+56 silly no diff found in @sber-risks-ui/styles
+57 silly checking diff packages/switcher
+58 silly no diff found in @sber-risks-ui/Switcher
+59 silly checking diff packages/tab
+60 silly found diff in packages/tab/LICENSE.md
+60 silly found diff in packages/tab/README.md
+60 silly found diff in packages/tab/package.json
+60 silly found diff in packages/tab/rollup.config.dev.js
+60 silly found diff in packages/tab/rollup.config.prod.js
+60 silly found diff in packages/tab/src/index.d.ts
+60 silly found diff in packages/tab/src/index.tsx
+60 silly found diff in packages/tab/src/tab.styled.tsx
+60 silly found diff in packages/tab/types/ttab.ts
+61 verbose filtered diff [
+61 verbose filtered diff   'packages/tab/LICENSE.md',
+61 verbose filtered diff   'packages/tab/README.md',
+61 verbose filtered diff   'packages/tab/package.json',
+61 verbose filtered diff   'packages/tab/rollup.config.dev.js',
+61 verbose filtered diff   'packages/tab/rollup.config.prod.js',
+61 verbose filtered diff   'packages/tab/src/index.d.ts',
+61 verbose filtered diff   'packages/tab/src/index.tsx',
+61 verbose filtered diff   'packages/tab/src/tab.styled.tsx',
+61 verbose filtered diff   'packages/tab/types/ttab.ts'
+61 verbose filtered diff ]
+62 silly checking diff packages/table-body
+63 silly no diff found in @sber-risks-ui/TableBody
+64 silly checking diff packages/table-cell
+65 silly no diff found in @sber-risks-ui/TableCell
+66 silly checking diff packages/table-columns-visible
+67 silly no diff found in @sber-risks-ui/TableColumnsVisible
+68 silly checking diff packages/table-head
+69 silly no diff found in @sber-risks-ui/TableHead
+70 silly checking diff packages/table-row
+71 silly found diff in packages/table-row/package.json
+72 verbose filtered diff [ 'packages/table-row/package.json' ]
+73 silly checking diff packages/table
+74 silly no diff found in @sber-risks-ui/Table
+75 silly checking diff packages/tabs
+76 silly found diff in packages/tabs/LICENSE.md
+76 silly found diff in packages/tabs/README.md
+76 silly found diff in packages/tabs/helpers/render-children-with-props.ts
+76 silly found diff in packages/tabs/index.stories.tsx
+76 silly found diff in packages/tabs/package.json
+76 silly found diff in packages/tabs/rollup.config.dev.js
+76 silly found diff in packages/tabs/rollup.config.prod.js
+76 silly found diff in packages/tabs/src/index.d.ts
+76 silly found diff in packages/tabs/src/index.tsx
+76 silly found diff in packages/tabs/src/tabs.styled.tsx
+76 silly found diff in packages/tabs/types/ttabs.ts
+77 verbose filtered diff [
+77 verbose filtered diff   'packages/tabs/LICENSE.md',
+77 verbose filtered diff   'packages/tabs/README.md',
+77 verbose filtered diff   'packages/tabs/helpers/render-children-with-props.ts',
+77 verbose filtered diff   'packages/tabs/index.stories.tsx',
+77 verbose filtered diff   'packages/tabs/package.json',
+77 verbose filtered diff   'packages/tabs/rollup.config.dev.js',
+77 verbose filtered diff   'packages/tabs/rollup.config.prod.js',
+77 verbose filtered diff   'packages/tabs/src/index.d.ts',
+77 verbose filtered diff   'packages/tabs/src/index.tsx',
+77 verbose filtered diff   'packages/tabs/src/tabs.styled.tsx',
+77 verbose filtered diff   'packages/tabs/types/ttabs.ts'
+77 verbose filtered diff ]
+78 silly checking diff packages/textfield
+79 silly no diff found in @sber-risks-ui/Textfield
+80 silly checking diff packages/typography
+81 silly no diff found in @sber-risks-ui/Typography
+82 silly checking diff packages/warning-panel
+83 silly no diff found in @sber-risks-ui/Warning-panel
+84 verbose updated @sber-risks-ui/Datepicker
+85 verbose updated @sber-risks-ui/Label
+86 verbose updated @sber-risks-ui/Select
+87 verbose updated @sber-risks-ui/StickyBottomPanel
+88 verbose updated @sber-risks-ui/Tab
+89 verbose updated @sber-risks-ui/TableRow
+90 verbose updated @sber-risks-ui/Tabs
+91 verbose git-describe undefined => "v0.10.7-alpha.5-13-gf37ca90e"
+92 silly git-describe parsed => {"lastTagName":"v0.10.7-alpha.5","lastVersion":"v0.10.7-alpha.5","refCount":"13","sha":"f37ca90e","isDirty":false}
+93 info execute Skipping releases
+94 silly lifecycle No script for "preversion" in "root", continuing
+95 silly lifecycle No script for "preversion" in "@sber-risks-ui/Datepicker", continuing
+96 silly lifecycle No script for "preversion" in "@sber-risks-ui/Label", continuing
+97 silly lifecycle No script for "preversion" in "@sber-risks-ui/Select", continuing
+98 silly lifecycle No script for "preversion" in "@sber-risks-ui/StickyBottomPanel", continuing
+99 silly lifecycle No script for "preversion" in "@sber-risks-ui/Tab", continuing
+100 silly lifecycle No script for "preversion" in "@sber-risks-ui/TableRow", continuing
+101 silly lifecycle No script for "preversion" in "@sber-risks-ui/Tabs", continuing
+102 silly lifecycle No script for "version" in "@sber-risks-ui/Tab", continuing
+103 silly lifecycle No script for "version" in "@sber-risks-ui/StickyBottomPanel", continuing
+104 silly lifecycle No script for "version" in "@sber-risks-ui/Label", continuing
+105 silly lifecycle No script for "version" in "@sber-risks-ui/Tabs", continuing
+106 silly lifecycle No script for "version" in "@sber-risks-ui/Select", continuing
+107 silly lifecycle No script for "version" in "@sber-risks-ui/Datepicker", continuing
+108 silly lifecycle No script for "version" in "@sber-risks-ui/TableRow", continuing
+109 silly lifecycle No script for "version" in "root", continuing
+110 silly gitAdd [
+110 silly gitAdd   'packages/tab/package.json',
+110 silly gitAdd   'packages/sticky-bottom-panel/package.json',
+110 silly gitAdd   'packages/label/package.json',
+110 silly gitAdd   'packages/tabs/package.json',
+110 silly gitAdd   'packages/select/package.json',
+110 silly gitAdd   'packages/select/package-lock.json',
+110 silly gitAdd   'packages/datepicker/package.json',
+110 silly gitAdd   'packages/datepicker/package-lock.json',
+110 silly gitAdd   'packages/table-row/package.json',
+110 silly gitAdd   'packages/table-row/package-lock.json',
+110 silly gitAdd   'lerna.json'
+110 silly gitAdd ]
+111 silly gitCommit v0.10.7-alpha.6
+112 verbose git [ 'commit', '-m', 'v0.10.7-alpha.6' ]
+113 silly gitTag v0.10.7-alpha.6
+114 verbose git [ 'tag', 'v0.10.7-alpha.6', '-m', 'v0.10.7-alpha.6' ]
+115 silly lifecycle No script for "postversion" in "@sber-risks-ui/Datepicker", continuing
+116 silly lifecycle No script for "postversion" in "@sber-risks-ui/Label", continuing
+117 silly lifecycle No script for "postversion" in "@sber-risks-ui/Select", continuing
+118 silly lifecycle No script for "postversion" in "@sber-risks-ui/StickyBottomPanel", continuing
+119 silly lifecycle No script for "postversion" in "@sber-risks-ui/Tab", continuing
+120 silly lifecycle No script for "postversion" in "@sber-risks-ui/TableRow", continuing
+121 silly lifecycle No script for "postversion" in "@sber-risks-ui/Tabs", continuing
+122 silly lifecycle No script for "postversion" in "root", continuing
+123 info git Pushing tags...
+124 silly gitPush origin feature/Tab
+125 info publish Publishing packages to npm...
+126 notice Skipping all user and access validation due to third-party registry
+127 notice Make sure you're authenticated properly ¯\_(ツ)_/¯
+128 silly getCurrentSHA
+129 verbose getCurrentSHA 3cb82cac77f67bebb40009ca86237e2bfbe616b8
+130 silly lifecycle No script for "prepublish" in "root", continuing
+131 silly lifecycle No script for "prepare" in "root", continuing
+132 silly lifecycle No script for "prepublishOnly" in "root", continuing
+133 silly lifecycle No script for "prepack" in "root", continuing
+134 verbose pack-directory packages\datepicker
+135 verbose pack-directory packages\label
+136 verbose pack-directory packages\select
+137 verbose pack-directory packages\sticky-bottom-panel
+138 verbose pack-directory packages\tab
+139 verbose pack-directory packages\table-row
+140 verbose pack-directory packages\tabs
+141 silly lifecycle No script for "prepublish" in "@sber-risks-ui/Datepicker", continuing
+142 silly lifecycle No script for "prepublish" in "@sber-risks-ui/Label", continuing
+143 silly lifecycle No script for "prepublish" in "@sber-risks-ui/Select", continuing
+144 silly lifecycle No script for "prepublish" in "@sber-risks-ui/StickyBottomPanel", continuing
+145 silly lifecycle No script for "prepublish" in "@sber-risks-ui/Tab", continuing
+146 silly lifecycle No script for "prepublish" in "@sber-risks-ui/TableRow", continuing
+147 silly lifecycle No script for "prepublish" in "@sber-risks-ui/Tabs", continuing
+148 silly lifecycle No script for "prepare" in "@sber-risks-ui/Datepicker", continuing
+149 silly lifecycle No script for "prepare" in "@sber-risks-ui/Label", continuing
+150 silly lifecycle No script for "prepare" in "@sber-risks-ui/Select", continuing
+151 silly lifecycle No script for "prepare" in "@sber-risks-ui/StickyBottomPanel", continuing
+152 silly lifecycle No script for "prepare" in "@sber-risks-ui/Tab", continuing
+153 silly lifecycle No script for "prepare" in "@sber-risks-ui/TableRow", continuing
+154 silly lifecycle No script for "prepare" in "@sber-risks-ui/Tabs", continuing
+155 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Label", continuing
+156 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Select", continuing
+157 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/StickyBottomPanel", continuing
+158 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Datepicker", continuing
+159 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Tab", continuing
+160 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Tabs", continuing
+161 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/TableRow", continuing
+162 silly lifecycle No script for "prepack" in "@sber-risks-ui/Label", continuing
+163 silly lifecycle No script for "prepack" in "@sber-risks-ui/Datepicker", continuing
+164 silly lifecycle No script for "prepack" in "@sber-risks-ui/Select", continuing
+165 silly lifecycle No script for "prepack" in "@sber-risks-ui/Tab", continuing
+166 silly lifecycle No script for "prepack" in "@sber-risks-ui/Tabs", continuing
+167 silly lifecycle No script for "prepack" in "@sber-risks-ui/StickyBottomPanel", continuing
+168 silly lifecycle No script for "prepack" in "@sber-risks-ui/TableRow", continuing
+169 silly lifecycle No script for "postpack" in "@sber-risks-ui/Datepicker", continuing
+170 verbose packed packages\datepicker
+171 silly lifecycle No script for "postpack" in "@sber-risks-ui/Tab", continuing
+172 verbose packed packages\tab
+173 silly lifecycle No script for "postpack" in "@sber-risks-ui/TableRow", continuing
+174 verbose packed packages\table-row
+175 silly lifecycle No script for "postpack" in "@sber-risks-ui/Tabs", continuing
+176 verbose packed packages\tabs
+177 silly lifecycle No script for "postpack" in "@sber-risks-ui/StickyBottomPanel", continuing
+178 verbose packed packages\sticky-bottom-panel
+179 silly lifecycle No script for "postpack" in "@sber-risks-ui/Label", continuing
+180 verbose packed packages\label
+181 silly lifecycle No script for "postpack" in "@sber-risks-ui/Select", continuing
+182 verbose packed packages\select
+183 silly lifecycle No script for "postpack" in "root", continuing
+184 verbose publish @sber-risks-ui/Datepicker
+185 verbose publish @sber-risks-ui/Label
+186 verbose publish @sber-risks-ui/Select
+187 verbose publish @sber-risks-ui/StickyBottomPanel
+188 verbose publish @sber-risks-ui/Tab
+189 verbose publish @sber-risks-ui/TableRow
+190 verbose publish @sber-risks-ui/Tabs
+191 silly FetchError: request to https://nexus-ci.delta.sbrf.ru/repository/npm-release/@sber-risks-ui%2fDatepicker failed, reason: self signed certificate in certificate chain
+191 silly     at ClientRequest.<anonymous> (C:\Users\16783656\AppData\Roaming\npm\node_modules\lerna\node_modules\minipass-fetch\lib\index.js:110:14)
+191 silly     at ClientRequest.emit (node:events:513:28)
+191 silly     at TLSSocket.socketErrorListener (node:_http_client:494:9)
+191 silly     at TLSSocket.emit (node:events:525:35)
+191 silly     at emitErrorNT (node:internal/streams/destroy:157:8)
+191 silly     at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+191 silly     at processTicksAndRejections (node:internal/process/task_queues:83:21)
+191 silly  FetchError: request to https://nexus-ci.delta.sbrf.ru/repository/npm-release/@sber-risks-ui%2fDatepicker failed, reason: self signed certificate in certificate chain
+191 silly     at ClientRequest.<anonymous> (C:\Users\16783656\AppData\Roaming\npm\node_modules\lerna\node_modules\minipass-fetch\lib\index.js:110:14)
+191 silly     at ClientRequest.emit (node:events:513:28)
+191 silly     at TLSSocket.socketErrorListener (node:_http_client:494:9)
+191 silly     at TLSSocket.emit (node:events:525:35)
+191 silly     at emitErrorNT (node:internal/streams/destroy:157:8)
+191 silly     at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+191 silly     at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+191 silly   code: 'SELF_SIGNED_CERT_IN_CHAIN',
+191 silly   errno: 'SELF_SIGNED_CERT_IN_CHAIN',
+191 silly   type: 'system'
+191 silly }
+192 error SELF_SIGNED_CERT_IN_CHAIN request to https://nexus-ci.delta.sbrf.ru/repository/npm-release/@sber-risks-ui%2fDatepicker failed, reason: self signed certificate in certificate chain
+193 error FetchError: request to https://nexus-ci.delta.sbrf.ru/repository/npm-release/@sber-risks-ui%2fDatepicker failed, reason: self signed certificate in certificate chain
+193 error     at ClientRequest.<anonymous> (C:\Users\16783656\AppData\Roaming\npm\node_modules\lerna\node_modules\minipass-fetch\lib\index.js:110:14)
+193 error     at ClientRequest.emit (node:events:513:28)
+193 error     at TLSSocket.socketErrorListener (node:_http_client:494:9)
+193 error     at TLSSocket.emit (node:events:525:35)
+193 error     at emitErrorNT (node:internal/streams/destroy:157:8)
+193 error     at emitErrorCloseNT (node:internal/streams/destroy:122:3)
