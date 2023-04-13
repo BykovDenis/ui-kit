@@ -1,17 +1,10 @@
 import React from 'react';
 
-type TLabel = {
-  backgroundColor?: string,
-  children?: any | Array<any>, // React.ReactNode | number | string | Array<React.ReactNode>,
-  className?: any,
-  color?: string,
+type TLabel = TBaseStyles & {
   colorTheme?: string,
-  disabled?: boolean,
   error?: any,
   focusColor?: string,
   fontFamily?: string,
-  fontSize?: number,
-  fontWeight?: number,
   htmlFor?: string,
   isFocus?: boolean,
   isReadOnly?: boolean,
@@ -19,12 +12,6 @@ type TLabel = {
   tabIndex?: string,
   theme?: any,
   whiteSpace?: string,
-  width?: number | string,
-  padding?: string,
-  height?: number | string,
-  wordBreak?: string,
-  display?: string,
-  lineHeight?: number,
 };
 
 export default TLabel;
