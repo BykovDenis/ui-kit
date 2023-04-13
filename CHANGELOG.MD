@@ -51,7 +51,10 @@
 </ol>
 
 <h2>v 0.10.7</h2>
-
+<h3>Features</h3>
+<ol>
+    <li>Tabs component added</li>
+</ol>
 <h3>Bugfix</h3>
 <ol>
     <li>Select scroll to element selected</li>
