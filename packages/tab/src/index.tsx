@@ -16,6 +16,13 @@ const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
       ? theme?.palette?.baseFontColorOpacity05
       : props.color || theme?.palette?.baseFontColor;
 
+    const borderColor: string = theme.palette.secondary.main;
+
+    const onTabClick = (evt: React.ChangeEvent<HTMLButtonElement>) => {
+      props.onChange(props.tabIndex, evt);
+      console.log('tabNumber', props.tabIndex);
+    };
+
     return (
       <TabStyled
         {...props}
@@ -30,9 +37,10 @@ const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
         disabled={props.disabled}
         whiteSpace={props?.whiteSpace}
         padding={props?.padding}
-        height={props?.height}
         wordBreak={props?.wordBreak}
         lineHeight={props.lineHeight}
+        borderColor={borderColor}
+        onClick={onTabClick}
       >
         {props.children}
       </TabStyled>
