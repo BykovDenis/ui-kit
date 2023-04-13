@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ITheme from '../../styles/types/itheme';
 import TTabs from '../types/tTabs';
 import TabsStyled from './tabs.styled';
+import renderChildren from '../helpers/render-children-with-props';
 
 const Tabs: React.FunctionComponent<TTabs> = (props: TTabs) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
@@ -16,12 +17,7 @@ const Tabs: React.FunctionComponent<TTabs> = (props: TTabs) => {
       ? theme?.palette?.baseFontColorOpacity05
       : props.color || theme?.palette?.baseFontColor;
 
-    const children: any = React.Children.map(props.children, (child: any) => {
-      if (React.isValidElement(child)) {
-        return React.cloneElement(child, { ...props });
-      }
-      return child;
-    });
+    const children = renderChildren(props.children, props);
 
     return (
       <TabsStyled

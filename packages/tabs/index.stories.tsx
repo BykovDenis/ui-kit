@@ -1,5 +1,5 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
-import React from 'react';
+import React, {useState} from 'react';
 
 import Tabs from  './src/index';
 import TTabs from './types/ttabs';
@@ -15,14 +15,24 @@ export default {
     fontSize: { control: { type: 'select', options: [ 10, 12, 14, 16] }, defaultValue: 14  },
     error: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
   },
+  args: {
+    width: 700,
+  }
 } as ComponentMeta<typeof Tabs>;
+
 
 const ThemeDarkTemplate: ComponentStory<typeof Tabs> = (args: TTabs) => {
 
+  const [ tabActive, setTabActive ] = useState<number>(0);
+
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
-  return <ReactThemeContext.Provider value={themes.dark}>
-    <Tabs {...args} >
+  const onTabChange = (tabIndex: number) => {
+    setTabActive(tabIndex);
+  }
+
+  return <ReactThemeContext.Provider value={themes.dark} >
+    <Tabs {...args} value={tabActive} onChange={onTabChange}>
       <Tab>Tab 1</Tab>
       <Tab>Tab 2</Tab>
       <Tab>Tab 3</Tab>
@@ -32,10 +42,20 @@ const ThemeDarkTemplate: ComponentStory<typeof Tabs> = (args: TTabs) => {
 
 const ThemeLightTemplate: ComponentStory<typeof Tabs> = (args: TTabs) => {
 
+  const [ tabActive, setTabActive ] = useState<number>(0);
+
   const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
+  const onTabChange = (tabIndex: number) => {
+    setTabActive(tabIndex);
+  }
+
   return <ReactThemeContext.Provider value={themes.loanPricing}>
-    <Tabs {...args} >{args.children}</Tabs>
+    <Tabs {...args} value={tabActive} onChange={onTabChange}>
+      <Tab>Tab 1</Tab>
+      <Tab>Tab 2</Tab>
+      <Tab>Tab 3</Tab>
+    </Tabs>
   </ReactThemeContext.Provider>
 }
 
