@@ -31,7 +31,7 @@ const Tab =
       min-height: 40px;
       border: none;
       border-bottom: ${(props: TTabStyled) => `4px solid ${props.isActive ? props.borderColor : 'transparent'}`};
-      transition: border-color 800ms ease-in-out;
+      transition: border-color 500ms ease-in-out;
   `;
 
 export default Tab;
