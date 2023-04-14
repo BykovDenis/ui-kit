@@ -40,6 +40,8 @@ const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
         lineHeight={props.lineHeight}
         borderColor={borderColor}
         onClick={onTabClick}
+        maxWidth={props?.maxWidth}
+        minHeight={props?.minHeight}
       >
         {props.children}
       </TabStyled>

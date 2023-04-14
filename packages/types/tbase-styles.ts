@@ -14,6 +14,8 @@ type TBaseStyles = {
   wordBreak?: string,
   display?: string,
   lineHeight?: number,
+  minHeight?: number | string,
+  maxWidth?: number | string,
 };
 
 export default TBaseStyles;
