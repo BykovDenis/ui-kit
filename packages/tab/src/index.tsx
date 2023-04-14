@@ -19,8 +19,7 @@ const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
     const borderColor: string = theme.palette.secondary.main;
 
     const onTabClick = (evt: React.ChangeEvent<HTMLButtonElement>) => {
-      props.onChange(props.tabIndex, evt);
-      console.log('tabNumber', props.tabIndex);
+      props.onChange(props.tabActive, evt);
     };
 
     return (

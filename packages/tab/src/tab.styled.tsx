@@ -22,7 +22,7 @@ const Tab =
       font-size: ${(props: TTabStyled) => props.fontSize}px;
       line-height: ${(props: TTabStyled) => props.lineHeight ?? 0.7}; 
       white-space: ${(props: TTabStyled) => (props?.whiteSpace ? props.whiteSpace : 'nowrap')};
-      font-weight: ${(props: TTabStyled) => props.fontWeight || 'inherit'}; 
+      font-weight: ${(props: TTabStyled) => props.fontWeight || 900}; 
       width: ${(props: TTabStyled) => getMeasureValue(props?.width, '100%')};
       height: ${(props: TTabStyled) => getMeasureValue(props?.height)};
       background-color: ${(props: TTabStyled) => (props.backgroundColor ? props.backgroundColor : 'inherit')};
@@ -31,8 +31,7 @@ const Tab =
       min-height: 40px;
       border: none;
       border-bottom: ${(props: TTabStyled) => `4px solid ${props.isActive ? props.borderColor : 'transparent'}`};
-      transition: border-color 3s ease-in-out;    
-      font-weight: 900;   
+      transition: border-color 3s ease-in-out;
   `;
 
 export default Tab;

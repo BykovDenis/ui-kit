@@ -5,9 +5,14 @@ function renderChildren(children, props: any) {
   if (propsParsed?.children?.length > 0) {
     delete propsParsed?.children;
   }
-  return React.Children.map(children, (child: React.ReactElement, index: number) =>
-    React.cloneElement(child, { ...propsParsed, isActive: props.value === index, tabIndex: index })
-  );
+  return React.Children.map(children, (child: React.ReactElement, index: number) => {
+    const tabName: string = child?.props?.name;
+    return React.cloneElement(child, {
+      ...propsParsed,
+      isActive: tabName ? props.value === tabName : props.value === index,
+      tabActive: tabName ? tabName : index,
+    });
+  });
 }
 
 export default renderChildren;

@@ -23,7 +23,7 @@ export default {
 
 const ThemeDarkTemplate: ComponentStory<typeof Tabs> = (args: TTabs) => {
 
-  const [ tabActive, setTabActive ] = useState<number>(0);
+  const [ tabActive, setTabActive ] = useState<number | string>('tab2');
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
@@ -33,9 +33,9 @@ const ThemeDarkTemplate: ComponentStory<typeof Tabs> = (args: TTabs) => {
 
   return <ReactThemeContext.Provider value={themes.dark} >
     <Tabs {...args} value={tabActive} onChange={onTabChange}>
-      <Tab>Tab 1</Tab>
-      <Tab>Tab 2</Tab>
-      <Tab>Tab 3</Tab>
+      <Tab name="tab1">Tab 1</Tab>
+      <Tab name="tab2">Tab 2</Tab>
+      <Tab name="tab3">Tab 3</Tab>
     </Tabs>
   </ReactThemeContext.Provider>
 }
