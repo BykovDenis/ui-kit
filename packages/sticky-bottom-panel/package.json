@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/StickyBottomPanel",
-  "version": "0.10.7-alpha.9",
+  "version": "0.10.7-alpha.10",
   "description": "Risks react UI",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
