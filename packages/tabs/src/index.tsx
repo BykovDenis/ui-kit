@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import ITheme from '../../styles/types/itheme';
-import TTabs from '../types/tTabs';
+import TTabs from '../types/ttabs';
 import TabsStyled from './tabs.styled';
 import renderChildren from '../helpers/render-children-with-props';
 
