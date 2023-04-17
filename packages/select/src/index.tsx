@@ -15,6 +15,7 @@ import SelectIndicator from './select-indicator.styled';
 import SelectListContainer from './select-list-container.styled';
 import getUniqueIndex from "../../helpers/get-unique-index";
 import onKeyUpEventHandler from "../../helpers/on-key-up-event-handler";
+import isNotEmptyString from "../../helpers/is-not-empty-string";
 
 const DEFAULT_HEIGHT = 40;
 const TEXT_ALIGN = 'center';
@@ -318,12 +319,12 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                     data-index={element.index}
                     data-value={element.value}
                     data-label={element.label}
-                    data-element-selected={`${props.id}-element${element.value === activeElement.value ? '-selected' : ''}`}
+                    data-element-selected={`${props.id}-element${element?.value && activeElement?.value && element.value === activeElement.value ? '-selected' : ''}`}
                     textAlign={props?.textAlign || TEXT_ALIGN}
                     fontSize={fontSize}
                     height={props?.height || DEFAULT_HEIGHT}
                     fontFamily={props?.fontFamily || theme?.fontFamily}
-                    backgroundColor={element.label === activeElement.label ? theme.palette.primary.main : theme.mainBackgroundColor}
+                    backgroundColor={isNotEmptyString(element?.label) && isNotEmptyString(activeElement?.label) && element.label === activeElement.label ? theme.palette.primary.main : theme.mainBackgroundColor}
                   >
                     {element.label}
                   </ListItem>
