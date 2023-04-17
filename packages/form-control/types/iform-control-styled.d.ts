@@ -22,6 +22,7 @@ interface IFormControlStyled {
   left?: number | string;
   top?: number | string;
   bottom?: number | string;
+  fontSize?: number | string;
 }
 
 export default IFormControlStyled;

@@ -60,4 +60,6 @@
     <li>Select scroll to element selected</li>
     <li>Select list items don't close list items</li>
     <li>isNotEmptyClearable flag fixed</li>
+    <li>FormControl wrapped by Provider</li>
+    <li>fontSize property added into the FormControl</li>
 </ol>
