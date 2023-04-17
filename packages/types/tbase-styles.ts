@@ -1,4 +1,6 @@
 type TBaseStyles = {
+  name?: string,
+  id?: string,
   backgroundColor?: string,
   children?: any | Array<any>, // React.ReactNode | number | string | Array<React.ReactNode>,
   className?: any,
