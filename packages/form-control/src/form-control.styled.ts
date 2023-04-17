@@ -1,6 +1,5 @@
 ﻿import styled from 'styled-components';
 import IFormControlStyled from '../types/iform-control-styled';
-import isNotEmptyString from '../../helpers/is-not-empty-string';
 import getMeasureValue from '../../helpers/get-measure-value';
 
 const FormControlStyled =
@@ -33,6 +32,7 @@ const FormControlStyled =
   left: ${(props: IFormControlStyled) => getMeasureValue(props.left, 'auto')};
   top: ${(props: IFormControlStyled) => getMeasureValue(props.top, 'auto')};
   bottom: ${(props: IFormControlStyled) => getMeasureValue(props.bottom, 'auto')};
+  font-size: ${(props: IFormControlStyled) => props.fontSize};
 `;
 
 export default FormControlStyled;
