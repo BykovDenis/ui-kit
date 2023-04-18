@@ -55,6 +55,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [isError, setIsError] = useState<boolean>(false);
   const [isMinDateError, setIsMinDateError] = useState<boolean>(false);
   const [isMaxDateError, setIsMaxDateError] = useState<boolean>(false);
+  const [ isErrorMessageDisplay ] = useState(props.isErrorMessageDisplay !== undefined ? props.isErrorMessageDisplay : 'true');
 
 
   const [monthName, setMonthName] = useState<IOption | null>(null);
@@ -139,7 +140,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const valueParsed: string = datePartitioned
       ? parseInputDate(datePartitioned, mask)
       : null;
-    setValue(valueParsed);
+    if (valueParsed !== value) {
+      setValue(valueParsed);
+    }
   }
 
   const onInputBlur = () => {
@@ -160,7 +163,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     dateParsed.changeParsedDate(value);
     dateParsed.changeMonth(parseInt(option.value, 10));
     setActualMonthNumber(parseInt(option.value, 10));
-    setValue(dateParsed.formatToString());
+    const valueParsed: string = dateParsed.formatToString();
+    if (valueParsed !== value) {
+      setValue(valueParsed);
+    }
     setMonthName(option);
   };
 
@@ -168,7 +174,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     dateParsed.changeParsedDate(value);
     dateParsed.changeYear(option.value !== null ? parseInt(option.value, 10) : null);
     setActualYearNumber(dateParsed.getNumberYear());
-    setValue(dateParsed.formatToString());
+    const valueParsed: string = dateParsed.formatToString();
+    if (valueParsed !== value) {
+      setValue(valueParsed);
+    }
   };
 
   const onDayChange = (day: number): void => {
@@ -177,8 +186,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     dateParsed.changeMonth(actualMonthNumber);
     dateParsed.changeYear(actualYearNumber);
     const valueParsed: string = dateParsed.formatToString();
-    setValue(valueParsed);
-    props?.onChange(props.name, valueParsed, true);
+    if (valueParsed !== value) {
+      setValue(valueParsed);
+    }
+    // if (props?.onChange) {
+    //   props.onChange(props.name, valueParsed, true);
+    // }
     setIsVisibleList(false);
     setIsExistValue(true);
   };
@@ -267,7 +280,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   }, []);
 
   useEffect(() => {
-    setValue(props.value)
+    if (props.value !== value) {
+      setValue(props.value);
+    }
   }, [props.value]);
 
   useEffect(() => {
@@ -296,6 +311,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           setIsError(errors.isError)
           setIsMinDateError(errors.isErrorMinDate);
           setIsMaxDateError(errors.isErrorMaxDate);
+          if (props?.onChange) {
+            props.onChange(props.name, value, !errors.isError);
+          }
         } else {
           setIsError(true);
         }
@@ -368,7 +386,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             fontSize={fontSize}
             baseFontSize={props?.baseFontSize}
             fontFamily={props?.fontFamily || theme?.fontFamily}
-            textMessage={textMessage}
+            textMessage={isErrorMessageDisplay  && textMessage}
             onFocus={onInputFocus}
             onClick={onInputFocus}
             onBlur={onInputBlur}

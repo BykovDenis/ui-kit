@@ -22,6 +22,7 @@ export default interface IDatepicker extends IInput, ILabel {
   value?: string;
   variant?: 'contained' | 'outlined' | 'text';
   mask?: string;
+  isErrorMessageDisplay?: boolean,
 }
 
 

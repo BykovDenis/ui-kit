@@ -41,23 +41,22 @@ const ThemeLightTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker
 const ThemeDarkTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
   const [value, setValue] = useState('03.04.2023');
 
-  const onDatepickerValueChange = (name: string, value: string) => {
+  const onDatepickerValueChange = (name: string, value: string, isValid: boolean) => {
     setValue(value);
-    console.log(value);
+    console.log(name, value, isValid);
+  }
+
+  const onDatepickerRemove = () => {
+    setValue(null);
+    console.log(null);
   }
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   return <ReactThemeContext.Provider value={themes.dark}>
-    <ul>
-      {new Array(100).fill(1).map((element: number, index: number) => <li>{index}</li>)}
-    </ul>
     <div style={{ width: '250px' }}>
-      <Datepicker {...args} variant="outlined" value={value} locale={Locale.Ru} onChange={onDatepickerValueChange} />
+      <Datepicker {...args} variant="outlined" name="someDatepicker" value={value} locale={Locale.Ru} onChange={onDatepickerValueChange} onRemove={onDatepickerRemove} isErrorMessageDisplay={false} />
     </div>
-    <ul>
-      {new Array(100).fill(1).map((element: number, index: number) => <li>{index}</li>)}
-    </ul>
   </ReactThemeContext.Provider>
 }
 
