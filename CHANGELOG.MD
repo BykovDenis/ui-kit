@@ -62,4 +62,5 @@
     <li>isNotEmptyClearable flag fixed</li>
     <li>FormControl wrapped by Provider</li>
     <li>fontSize property added into the FormControl</li>
+    <li>DatePicker event handler onChange fixed</li>
 </ol>
