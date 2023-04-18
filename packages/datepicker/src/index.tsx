@@ -311,7 +311,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           setIsError(errors.isError)
           setIsMinDateError(errors.isErrorMinDate);
           setIsMaxDateError(errors.isErrorMaxDate);
-          if (props?.onChange) {
+          if (props?.onChange && props.value !== value) {
             props.onChange(props.name, value, !errors.isError);
           }
         } else {
