@@ -1,4 +1,4 @@
-import React from 'react';
+import TBaseStyles from '../../types/tbase-styles';
 
 type TLabel = TBaseStyles & {
   colorTheme?: string,
