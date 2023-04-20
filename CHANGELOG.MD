@@ -64,3 +64,9 @@
     <li>fontSize property added into the FormControl</li>
     <li>DatePicker event handler onChange fixed</li>
 </ol>
+
+<h2>v 0.10.8</h2>
+<h3>Features</h3>
+<ol>
+    <li>The new component Divider</li>
+</ol>

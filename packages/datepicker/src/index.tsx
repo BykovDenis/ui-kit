@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, INPUT_TAG, KEY_ESCAPE, TEXT_ALIGN_LEFT } from "../../constants";
-import Divider from "../../divider/src/index.styled";
+import Divider from "../../divider/src/divider.styled";
 import Locale from "../../enums/locale";
 import searchDomChildElement from "../../helpers/search-dom-child-element";
 import Input from "../../input/src";

@@ -1,0 +1,24 @@
+{
+  "name": "@sber-risks-ui/Divider",
+  "version": "0.10.7",
+  "description": "Risks react UI",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Denis Bykov",
+  "license": "MIT",
+  "jest": {
+    "setupFiles": [
+      "./setupTests.js"
+    ]
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.prod.js",
+    "build-dev": "rollup -w -c rollup.config.dev.js",
+    "clean-node-modules": "rm -rf node_modules"
+  },
+  "publishConfig": {
+    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
+  },
+  "gitHead": "dc2ac8ab7c118bf1eaad5741d4b8d5251edec7de"
+}
