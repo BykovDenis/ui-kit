@@ -70,3 +70,7 @@
 <ol>
     <li>The new component Divider</li>
 </ol>
+<h3>Improves</h3>
+<ol>
+    <li>Multiselect component border-right height 100% before button expand</li>
+</ol>

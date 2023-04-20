@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 type TButtonExpandStyled = {
   fontSize: string,
-  borderColor: string,
   borderColorFocused: string,
 };
 
@@ -12,7 +11,6 @@ const ButtonExpandStyled =
   `
   font-size: ${(props: TButtonExpandStyled) => props.fontSize};
   border: none;
-  border-left: 1px solid ${(props: TButtonExpandStyled) => props.borderColor};
   background: none;
   `;
 
