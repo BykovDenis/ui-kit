@@ -33,6 +33,7 @@ const Tab =
       border-bottom: ${(props: TTabStyled) => `4px solid ${props.isActive ? props.borderColor : 'transparent'}`};
       transition: border-color 500ms ease-in-out;
       min-height: ${(props: TTabStyled) => getMeasureValue(props.minHeight, '40px')};
+      text-transform: ${(props: TTabStyled) => (props?.isUpperCase ? 'uppercase' : 'none')};
   `;
 
 export default Tab;

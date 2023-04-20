@@ -42,6 +42,7 @@ const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
         onClick={onTabClick}
         maxWidth={props?.maxWidth}
         minHeight={props?.minHeight}
+        isUpperCase={props?.isUpperCase}
       >
         {props.children}
       </TabStyled>
