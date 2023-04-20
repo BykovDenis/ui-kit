@@ -240,9 +240,11 @@ const MultiSelect: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (p
         )}
         <FormControl>
           <MultiSelectStyled
+            data-id="multi-select-border-right"
             className={props?.className}
             height={props.height}
             isExistLabel={isNotEmptyString(props?.label)}
+            borderColor={theme.palette.baseFontColorOpacity05}
           >
             {arrElementNames?.map((columnNameElement: string, index: number) => (
               <FormControl

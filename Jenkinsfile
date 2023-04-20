@@ -29,8 +29,6 @@ def multiSelectPath = './packages/multi-select';
 def stickyBottomPanelPath = './packages/sticky-bottom-panel';
 def tabsPath = './packages/tabs';
 def tabPath = './packages/tab';
-def dividerPath = './packages/divider';
-
 
 
 pipeline {

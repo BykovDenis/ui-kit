@@ -26,8 +26,8 @@ const MultiSelectContainerStyled =
     & button[data-name="button-toggle"] svg path {
       fill: ${(props: TMultiSelectContainerStyled) => props.borderColorHovered};
     }
-    & button[data-name="button-toggle"] {
-      border-left: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorHovered};
+    & div[data-id="multi-select-border-right"] {
+      border-right: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorHovered};
     }
     & label[data-label="multiselect-label"] {
       color: ${(props: TMultiSelectContainerStyled) => props.borderColorHovered};
@@ -39,8 +39,8 @@ const MultiSelectContainerStyled =
     & button[data-name="button-toggle"] svg path {
       fill: ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
     }
-    & button[data-name="button-toggle"] {
-      border-left: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
+    & div[data-id="multi-select-border-right"] {
+      border-right: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
     }
     & label[data-label="multiselect-label"] {
       color: ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
