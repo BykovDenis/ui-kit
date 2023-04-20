@@ -32,7 +32,7 @@ const FormControlStyled =
   left: ${(props: IFormControlStyled) => getMeasureValue(props.left, 'auto')};
   top: ${(props: IFormControlStyled) => getMeasureValue(props.top, 'auto')};
   bottom: ${(props: IFormControlStyled) => getMeasureValue(props.bottom, 'auto')};
-  font-size: ${(props: IFormControlStyled) => props.fontSize};
+  font-size: ${(props: IFormControlStyled) => getMeasureValue(props.fontSize, 'inherit')};
 `;
 
 export default FormControlStyled;
