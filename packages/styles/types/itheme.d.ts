@@ -13,6 +13,8 @@ interface ITheme {
   h3FontSize: number;
   mainOutlinedColor: string;
   mainOutlinedHoverColor: string;
+  inactiveBackgroundColor: string;
+  inactiveColor: string;
 }
 
 export default ITheme;

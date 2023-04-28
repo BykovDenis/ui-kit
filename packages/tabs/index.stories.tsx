@@ -35,7 +35,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Tabs> = (args: TTabs) => {
     <Tabs {...args} value={tabActive} onChange={onTabChange} isUpperCase={true} fontWeight={400}>
       <Tab minHeight={80} name="tab1">Tab 1</Tab>
       <Tab minHeight={80} name="tab2">Tab 2</Tab>
-      <Tab minHeight={80} name="tab3">Tab 3</Tab>
+      <Tab minHeight={80} name="tab3" disabled={true}>Tab 3</Tab>
     </Tabs>
   </ReactThemeContext.Provider>
 }
@@ -53,7 +53,7 @@ const ThemeLightTemplate: ComponentStory<typeof Tabs> = (args: TTabs) => {
   return <ReactThemeContext.Provider value={themes.loanPricing}>
     <Tabs {...args} value={tabActive} onChange={onTabChange}>
       <Tab>Tab 1</Tab>
-      <Tab>Tab 2</Tab>
+      <Tab disabled={true}>Tab 2</Tab>
       <Tab>Tab 3</Tab>
     </Tabs>
   </ReactThemeContext.Provider>

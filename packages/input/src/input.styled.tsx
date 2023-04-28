@@ -33,12 +33,12 @@ const Input =
   }
   &:disabled {
     background-color: ${(props: IInput) => props?.disabledBackgroundColor};
-    color: ${(props: IInput) => props?.disabledColor};
+    color: ${(props: IInput) => props?.color};
     & + .underline {
       background-color: ${(props: IInput) => props?.disabledColor};
     }
     & ~ .text-message {
-      color: ${(props: IInput) => props?.disabledColor};
+      color: ${(props: IInput) => props?.color};
     }
   }
   &:focus {
@@ -57,7 +57,7 @@ const Input =
       background-color: ${(props: IInput) => props?.disabledColor};
     }
     & ~ .text-message {
-      color: ${(props: IInput) => props?.disabledColor};
+      color: ${(props: IInput) => props?.color};
     }
   }
   &:disabled:hover + .underline {

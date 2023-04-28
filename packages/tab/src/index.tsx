@@ -12,15 +12,15 @@ const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
   }, [globalThis.ReactThemeContextConsumer]);
 
   const componentThemed: any = (theme: ITheme) => {
-    const color: string = props.disabled
-      ? theme?.palette?.baseFontColorOpacity05
-      : props.color || theme?.palette?.baseFontColor;
+    const color: string = props.disabled ? theme?.inactiveColor : props.color ?? theme?.palette?.baseFontColor;
 
     const borderColor: string = theme.palette.secondary.main;
 
     const onTabClick = (evt: React.ChangeEvent<HTMLButtonElement>) => {
       props.onChange(props.tabActive, evt);
     };
+
+    const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : props?.backgroundColor;
 
     return (
       <TabStyled
@@ -32,7 +32,7 @@ const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
         fontSize={props?.fontSize ?? theme?.baseFontSize}
         fontWeight={props?.fontWeight}
         width={props?.width}
-        backgroundColor={props?.backgroundColor}
+        backgroundColor={backgroundColor}
         disabled={props.disabled}
         whiteSpace={props?.whiteSpace}
         padding={props?.padding}

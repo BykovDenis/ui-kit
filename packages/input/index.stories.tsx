@@ -28,7 +28,7 @@ export default {
   },
 } as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof Input> = (args: IInput) => {
+const TemplateDarkTheme: ComponentStory<typeof Input> = (args: IInput) => {
 
   const [ value, setValue ] = useState('123');
 
@@ -56,5 +56,33 @@ const Template: ComponentStory<typeof Input> = (args: IInput) => {
     </ReactThemeContext.Provider>)
 }
 
-export const NormalInput = Template.bind({});
+const TemplateLightTheme: ComponentStory<typeof Input> = (args: IInput) => {
 
+  const [ value, setValue ] = useState('123');
+
+  const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const element = evt?.target;
+    const value: string = element?.value;
+    setValue(value);
+    console.log(value);
+  }
+
+  const onInputRemove = () => {
+    setValue('');
+  }
+
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+
+  return (
+    <ReactThemeContext.Provider value={themes.loanPricing}>
+      <div style={{ width: '190px' }}>
+        <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  />
+      </div>
+      <div style={{ width: '190px' }}>
+        <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  isSeparateNumberFormat={true} />
+      </div>
+    </ReactThemeContext.Provider>)
+}
+
+export const DarkThemeTextField = TemplateDarkTheme.bind({});
+export const LightThemeTextField = TemplateLightTheme.bind({});
