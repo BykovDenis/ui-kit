@@ -73,14 +73,9 @@
 <h3>Improves</h3>
 <ol>
     <li>Multiselect component border-right height 100% before button expand</li>
+ <li>The color of disabled components edited</li>
 </ol>
-
-<h2>v 0.10.9</h2>
 <h3>Bugs</h3>
 <ol>
     <li>Tabs components disabled styles fixed</li>
-</ol>
-<h3>Improves</h3>
-<ol>
-    <li>The color of disabled components edited</li>
 </ol>
