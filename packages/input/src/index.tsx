@@ -138,8 +138,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string = theme?.mainBackgroundColor;
 
-    const hoverBackgroundColor: string = props?.error ? theme?.palette?.secondary?.lighter : theme?.mainBackgroundColor;
-    const hoverColor: string = props?.error ? theme?.palette?.secondary?.main : theme?.palette.baseFontColor;
+    const hoverBackgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : props?.error ? theme?.palette?.secondary?.lighter : theme?.mainBackgroundColor;
+    const hoverColor: string = props.disabled ? theme.inactiveColor : props?.error ? theme?.palette?.secondary?.main : theme?.palette.baseFontColor;
     const hoverBorderColor: string = props?.error ? theme?.palette?.secondary?.main : theme?.mainOutlinedHoverColor;
 
     const color: string =
@@ -156,7 +156,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     // const colorInteractive: string = props?.error ? theme?.palette?.secondary?.lighter : isFocus ? theme?.palette?.primary?.main : props?.color;
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
     const borderColor: string = props?.error ? theme?.palette?.secondary?.lighter : props?.borderColor || theme?.mainOutlinedColor;
-    const inputColor: string = props?.error ? theme?.palette?.secondary?.main : props?.color || color;
+    const inputColor: string = props.disabled ? theme.inactiveColor : props?.error ? theme?.palette?.secondary?.main : props?.color || color;
     const underlineColor: string = props?.error ? theme?.palette?.secondary?.main : props?.borderColor || theme?.mainOutlinedColor;
 
     return (

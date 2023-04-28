@@ -53,7 +53,8 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
   const componentThemed: any = (theme: ITheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
-    const backgroundColor: string = theme?.mainBackgroundColor;
+    const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : theme?.mainBackgroundColor;
+    const color: string = props?.disabled ? theme.inactiveColor : props.color;
 
     return (
       <TextFieldContainer backgroundImage={props?.backgroundImage} width={props?.width} height={props?.height}>
@@ -103,6 +104,7 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
           getIsChangingState={props.getIsChangingState}
           mask={props?.mask}
           isNotUseDebounce={props?.isNotUseDebounce}
+          color={color}
         />
       </TextFieldContainer>
     );

@@ -12,17 +12,20 @@ const Button: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TBut
   }, [globalThis.ReactThemeContextConsumer]);
 
   const componentThemed: any = (theme: ITheme) => {
-    const backgroundColor: string =
-      props?.colorTheme === 'normal' || !props.colorTheme
-        ? theme?.palette?.primary?.main
-        : theme?.palette?.secondary?.main;
+    const backgroundColor: string = props.disabled
+      ? theme.inactiveBackgroundColor
+      : props?.colorTheme === 'normal' || !props.colorTheme
+      ? theme?.palette?.primary?.main
+      : theme?.palette?.secondary?.main;
+
+    const color: string = props.disabled ? theme.inactiveColor : props?.color || theme?.palette?.baseButtonFontColor;
     return (
       <ButtonStyled
         {...props}
         id={props?.id}
         type={props.type ?? 'button'}
         onClick={props?.onClick}
-        color={props?.color || theme?.palette?.baseButtonFontColor}
+        color={color}
         backgroundColor={props?.backgroundColor || backgroundColor}
         backgroundImage={props?.backgroundImage}
         fontSize={props?.fontSize ?? theme?.baseFontSize}

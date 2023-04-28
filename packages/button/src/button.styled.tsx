@@ -71,10 +71,8 @@ const ButtonStyled =
     }
 
     &:disabled {
-      background-color: #bdbdbd;
       box-shadow: none; 
       border-radius: 4px;
-      color: #ffffff;
       border: 1px solid #bdbdbd;
     }
   `;
