@@ -28,10 +28,10 @@ const ButtonStyled =
     text-align: center;
     letter-spacing: 0.39998px;
     color: ${(props: TButton) =>
-      props?.variant === CONTAINED || !props?.variant ? props.color : props.backgroundColor};
+      props?.variant === CONTAINED || !props?.variant || props.disabled ? props.color : props.backgroundColor};
     padding: ${(props: TButton) => props?.padding ?? '10px 15px'};    
     background-color: ${(props: TButton) =>
-      props?.variant === CONTAINED || !props?.variant
+      props?.variant === CONTAINED || !props?.variant || props.disabled
         ? props.backgroundColor
         : props?.variant === TEXT || props?.variant === OUTLINED
         ? TRANSPARENT_COLOR
@@ -39,7 +39,7 @@ const ButtonStyled =
     background-image: ${(props: TButton) => props?.backgroundImage ?? 'none'};
     cursor: pointer;    
     border: ${(props: TButton) =>
-      props?.variant === OUTLINED ? `1px solid ${props.backgroundColor}` : '1px solid transparent'};
+      props?.variant === OUTLINED || props.disabled ? `1px solid ${props.backgroundColor}` : '1px solid transparent'};
     width: ${(props: TButton) => getMeasureValue(props?.width)};
     height: ${(props: TButton) => getMeasureValue(props?.height)};
     margin: 0;
