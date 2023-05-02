@@ -20,7 +20,7 @@
   "publishConfig": {
     "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
   },
-  "gitHead": "699724ae07fdfd8684533eb01b6f608ce0b3bb23",
+  "gitHead": "c4c1f92a4fd8a495f14b224d1ba19db7b2d42d45",
   "dependencies": {
     "date-fns": "^2.28.0"
   },
