@@ -17,12 +17,17 @@ const StickyBottomPanelStyled =
     transform: ${(props: TStickyBottomPanel) => (props.panelAlign === PanelAlign.Center ? 'translateX(-50%)' : 'none')};
     bottom: 0;
     height: ${(props: TStickyBottomPanel) => getMeasureValue(props.height, '25%')};
-    background-color: ${(props: TStickyBottomPanel) => props.backgroundColor};
     color: ${(props: TStickyBottomPanel) => props.color};
     z-index: 10002;
     padding-top:45px;
     border: 1px solid ${(props: TStickyBottomPanel) => props.borderColor};
     border-radius: 5px;
+    background : ${(props: TStickyBottomPanel) =>
+      props.backgroundColor || props.backgroundImage
+        ? `${props?.backgroundColor ? props.backgroundColor : ''} ${
+            props?.backgroundImage ? props.backgroundImage : ''
+          }`
+        : 'none'};
   `;
 
 export default StickyBottomPanelStyled;
