@@ -79,4 +79,5 @@
 <ol>
     <li>Tabs components disabled styles fixed</li>
     <li>Sticky bottom panel align-items changed to flex-start</li>
+    <li>Sticky bottom panel backgroundImage added</li>
 </ol>
