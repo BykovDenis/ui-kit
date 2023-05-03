@@ -47,12 +47,12 @@ const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: T
         panelAlign={panelAlign}
         borderColor={theme.mainOutlinedColor}
       >
-        <FormControl height={40} justifyContent="flex-end" position="absolute" top="0">
+        <FormControl height={40} justifyContent="flex-end" position="absolute" top="0" alignItems="flex-start">
           <IconButton onClick={props.onDialogVisibleChange} variant="text">
             <CircleCrossIcon color={theme.palette.baseFontColor} />
           </IconButton>
         </FormControl>
-        <FormControl overflowY="auto" height="95%">
+        <FormControl overflowY="auto" height="95%" alignItems="flex-start">
           {props.children}
         </FormControl>
       </StickyBottomPanelStyled>

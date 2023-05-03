@@ -78,4 +78,5 @@
 <h3>Bugs</h3>
 <ol>
     <li>Tabs components disabled styles fixed</li>
+    <li>Sticky bottom panel align-items changed to flex-start</li>
 </ol>
