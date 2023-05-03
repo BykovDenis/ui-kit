@@ -6,6 +6,7 @@ import TableRow from '@sber-risks-ui/TableRow';
 import TableCell from '@sber-risks-ui/TableCell';
 import TableBody from '@sber-risks-ui/TableBody';
 import Button from '@sber-risks-ui/Button';
+import FormControl from '@sber-risks-ui/FormControl';
 
 import StickyBottomPanel from  './src/index';
 import TStickyBottomPanel from './types/tsticky-bottom-panel';
@@ -27,7 +28,7 @@ export default {
   },
 } as ComponentMeta<typeof StickyBottomPanel>;
 
-const elements: Array<number> = new Array(100).fill(1000000);
+const elements: Array<number> = new Array(100).fill(1000);
 
 const ThemeDarkTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStickyBottomPanel) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -74,6 +75,7 @@ const ThemeDarkTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStic
       </TableBody>
     </Table>
     <StickyBottomPanel {...args} isOpen={isOpen} onDialogVisibleChange={onDialogVisibleChange} >
+      <FormControl height={100} overflowY="auto">
       <Table>
         <TableHead>
           <TableRow isHeader={true}>
@@ -105,6 +107,7 @@ const ThemeDarkTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStic
           </TableRow>))}
       </TableBody>
     </Table>
+      </FormControl>
     </StickyBottomPanel>
   </ReactThemeContext.Provider>
 }
