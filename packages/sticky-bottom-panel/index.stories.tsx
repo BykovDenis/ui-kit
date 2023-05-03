@@ -154,7 +154,7 @@ const ThemeLightTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TSti
           </TableRow>))}
       </TableBody>
     </Table>
-    <StickyBottomPanel height='400px' width='100%' backgroundImage="linear-gradient(to right, rgb(229, 242, 231) 0%, #08A652 100%)"  onDialogVisibleChange={onDialogVisibleChange}>
+    <StickyBottomPanel height='400px' width='100%' isOpen={isOpen} backgroundImage="linear-gradient(to right, rgb(229, 242, 231) 0%, #08A652 100%)"  onDialogVisibleChange={onDialogVisibleChange}>
       <FormControl height={100} overflowY="auto">
         <Table>
           <TableHead>
