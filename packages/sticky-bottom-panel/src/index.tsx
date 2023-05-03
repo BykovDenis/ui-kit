@@ -42,6 +42,7 @@ const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: T
       <StickyBottomPanelStyled
         width={props.width}
         backgroundColor={backgroundColor}
+        backgroundImage={props.backgroundImage}
         height={props?.height}
         color={color}
         panelAlign={panelAlign}
