@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/Textfield",
-  "version": "0.10.8-alpha.6",
+  "version": "0.10.8-alpha.7",
   "description": "The simple Textfield component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
