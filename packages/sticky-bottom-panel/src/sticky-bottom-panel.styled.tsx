@@ -28,6 +28,8 @@ const StickyBottomPanelStyled =
             props?.backgroundImage ? props.backgroundImage : ''
           }`
         : 'none'};
+    ${(props: TStickyBottomPanel) => (props?.boxShadow ? `box-shadow: ${props.boxShadow}` : '')};
+    ${(props: TStickyBottomPanel) => (props?.filter ? `filter: ${props.filter}` : '')};
   `;
 
 export default StickyBottomPanelStyled;

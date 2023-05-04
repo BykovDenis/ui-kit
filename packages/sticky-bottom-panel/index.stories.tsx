@@ -70,7 +70,7 @@ const ThemeDarkTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStic
           </TableRow>))}
       </TableBody>
     </Table>
-    <StickyBottomPanel height='400px' width='100%'  isOpen={isOpen} onDialogVisibleChange={onDialogVisibleChange} >
+    <StickyBottomPanel height='400px' width='100%' boxShadow="inset -2px 8px 11px -3px #5eaf44"  isOpen={isOpen} onDialogVisibleChange={onDialogVisibleChange} >
       <FormControl height={100} overflowY="auto">
       <Table>
         <TableHead>
@@ -154,7 +154,7 @@ const ThemeLightTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TSti
           </TableRow>))}
       </TableBody>
     </Table>
-    <StickyBottomPanel height='400px' width='100%' isOpen={isOpen} backgroundImage="linear-gradient(to right, rgb(229, 242, 231) 0%, #08A652 100%)"  onDialogVisibleChange={onDialogVisibleChange}>
+    <StickyBottomPanel boxShadow="inset -2px 8px 11px -3px #5eaf44" height='400px' width='100%' isOpen={isOpen} backgroundImage="linear-gradient(to right, rgb(229, 242, 231) 0%, #08A652 100%)"  onDialogVisibleChange={onDialogVisibleChange}>
       <FormControl height={100} overflowY="auto">
         <Table>
           <TableHead>

@@ -7,12 +7,14 @@ type TStickyBottomPanel = {
   color?: string,
   isOpen: boolean,
   onDialogVisibleChange?: () => void,
-  panelAlign: 'left' | 'right' | 'center',
+  panelAlign?: 'left' | 'right' | 'center',
   width?: number | string,
   borderColor?: string,
   borderWidth?: string,
   borderStyle?: string,
   border?: string,
+  boxShadow?: string,
+  filter?: string,
 };
 
 export default TStickyBottomPanel;
