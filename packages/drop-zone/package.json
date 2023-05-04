@@ -1,0 +1,24 @@
+{
+  "name": "@sber-risks-ui/DropZone",
+  "version": "0.10.8-alpha.6",
+  "description": "Risks react UI",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Denis Bykov",
+  "license": "MIT",
+  "jest": {
+    "setupFiles": [
+      "./setupTests.js"
+    ]
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.prod.js",
+    "build-dev": "rollup -w -c rollup.config.dev.js",
+    "clean-node-modules": "rm -rf node_modules"
+  },
+  "publishConfig": {
+    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
+  },
+  "gitHead": "5d92359a856a4d0f8cde0fdc068422154511da3d"
+}

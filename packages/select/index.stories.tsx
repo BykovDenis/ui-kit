@@ -24,7 +24,7 @@ export default {
 
 const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
 
-  const [ value, setValue ] = useState<string>(null);
+  const [ value, setValue ] = useState<string>('compoundIndex');
 
   const elementsState: Array<string> =  ['compoundIndex', 'compoundIndexAndSpread', 'compoundSpread', 'notCompound'];
 
