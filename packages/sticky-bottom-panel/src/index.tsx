@@ -11,7 +11,7 @@ import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
 const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: TStickyBottomPanel) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
   const [isOpen, setIsOpen] = useState<boolean>(props.isOpen);
-  const [panelAlign] = useState<'left' | 'right' | 'center'>(props.panelAlign);
+  const [panelAlign] = useState<'left' | 'right' | 'center'>(props.panelAlign || 'center');
 
   const onKeyUp = (evt: any) => {
     if (isOpen) {
@@ -47,6 +47,8 @@ const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: T
         color={color}
         panelAlign={panelAlign}
         borderColor={theme.mainOutlinedColor}
+        boxShadow={props.boxShadow}
+        filter={props.filter}
       >
         <FormControl height={40} justifyContent="flex-end" position="absolute" top="0" alignItems="flex-start">
           <IconButton onClick={props.onDialogVisibleChange} variant="text">

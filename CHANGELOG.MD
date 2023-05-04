@@ -73,11 +73,13 @@
 <h3>Improves</h3>
 <ol>
     <li>Multiselect component border-right height 100% before button expand</li>
+    <li>box-shadow and filter css properties added into the bottom sticky panel</li>
  <li>The color of disabled components edited</li>
 </ol>
 <h3>Bugs</h3>
 <ol>
     <li>Tabs components disabled styles fixed</li>
     <li>Sticky bottom panel align-items changed to flex-start</li>
+    <li>Sticky bottom panel backgroundImage added</li>
     <li>Sticky bottom panel backgroundImage added</li>
 </ol>
