@@ -3,7 +3,6 @@ import styled from 'styled-components';
 interface ITextFieldContainerStyled {
   width: number;
   height: number;
-  backgroundImage?: string;
 }
 
 const TextFieldContainerStyled =

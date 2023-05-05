@@ -57,7 +57,7 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
     const color: string = props?.disabled ? theme.inactiveColor : props.color;
 
     return (
-      <TextFieldContainer backgroundImage={props?.backgroundImage} width={props?.width} height={props?.height}>
+      <TextFieldContainer width={props?.width} height={props?.height}>
         <LabelContainer
           backgroundColor={backgroundColor}
           isExistValue={isExistValue || isFocus}
@@ -72,6 +72,7 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
             disabled={props.disabled}
             error={props?.error}
             color={color}
+            backgroundColor="transparent"
           >
             {props?.label}
           </Label>

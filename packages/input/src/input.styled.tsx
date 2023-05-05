@@ -32,8 +32,6 @@ const Input =
     background-color: ${(props: IInput) => props?.hoverColor};
   }
   &:disabled {
-    background-color: ${(props: IInput) => props?.disabledBackgroundColor};
-    color: ${(props: IInput) => props?.color};
     & + .underline {
       background-color: ${(props: IInput) => props?.disabledColor};
     }

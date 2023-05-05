@@ -10,7 +10,6 @@ interface IInput {
   color?: string;
   colorTheme?: string;
   disabled?: boolean;
-  disabledBackgroundColor?: string;
   disabledColor?: string;
   error?: boolean;
   focusBackgroundColor?: string;
