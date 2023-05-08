@@ -250,7 +250,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         : theme?.palette?.secondary?.main
       : theme?.palette?.baseFontColor;
 
-    const backgroundColor: string = theme?.mainBackgroundColor;
+    const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : theme?.mainBackgroundColor;
+    const color: string = props.disabled ? theme.inactiveColor : props?.color || theme?.palette.baseFontColor;
     return (
       <SelectContainer width={props?.width} height={props?.height || DEFAULT_HEIGHT}>
         <SelectHeader height={props?.height || DEFAULT_HEIGHT}>
@@ -267,6 +268,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                 fontWeight={props?.fontWeight}
                 disabled={props.disabled}
                 fontFamily={props?.fontFamily || theme?.fontFamily}
+                backgroundColor="transparent"
+                color={color}
               >
                 {props?.label}
               </Label>
@@ -300,7 +303,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
             isReadOnly={props?.isReadOnly}
             isNotUseDebounce={elements?.length < 500}
-            backgroundColor={props?.backgroundColor || theme.mainBackgroundColor}
+            backgroundColor={props.disabled ? theme.inactiveBackgroundColor : props?.backgroundColor || theme.mainBackgroundColor}
             color={props?.color}
             isNotClearable={props?.isNotClearable}
             borderColor={props?.borderColor}

@@ -1,5 +1,5 @@
 {
-  "name": "@sber-risks-ui/Tabs",
+  "name": "@sber-risks-ui/DropZone",
   "version": "0.10.8-alpha.8",
   "description": "Risks react UI",
   "main": "dist/index.js",

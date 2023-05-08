@@ -69,6 +69,7 @@
 <h3>Features</h3>
 <ol>
     <li>The new component Divider</li>
+    <li>The new component Dropzone</li>
 </ol>
 <h3>Improves</h3>
 <ol>
