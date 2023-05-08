@@ -1,11 +1,12 @@
 import Datepicker from '../../packages/datepicker/src';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import getNewReactThemeContext from '@sber-risks-ui/styles/src';
 import { themes } from '@sber-risks-ui/styles/src/themes';
 import Locale from '../../packages/enums/locale';
 import Select from '../../packages/select/src';
 import IOption from '../../packages/select/types/ioption';
 import FormControl from '../../packages/form-control/src';
+import DropZone from '../../packages/drop-zone/src';
 
 function App() {
   const [dateValue, setDateValue] = useState<string>('2023-03-05');
@@ -50,6 +51,9 @@ function App() {
         />
       </FormControl>
       <Select id="some-list" name="some-list" activeElement={value} elements={elements} />
+      <div style={{ width: '400px' }}>
+        <DropZone />
+      </div>
     </ReactThemeContext.Provider>
   );
 }

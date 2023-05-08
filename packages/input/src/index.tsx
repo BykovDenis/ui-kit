@@ -136,7 +136,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   };
 
   const componentThemed: any = (theme: ITheme) => {
-    const backgroundColor: string = theme?.mainBackgroundColor;
+    const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : props.backgroundColor ?? theme?.mainBackgroundColor;
 
     const hoverBackgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : props?.error ? theme?.palette?.secondary?.lighter : theme?.mainBackgroundColor;
     const hoverColor: string = props.disabled ? theme.inactiveColor : props?.error ? theme?.palette?.secondary?.main : theme?.palette.baseFontColor;
@@ -161,7 +161,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     return (
       <InputContainer height={props?.height} width={props?.width}>
-        <InputElementContainer backgroundColor={backgroundColor}>
+        <InputElementContainer backgroundColor="transparent">
           <InputStyled
             {...props}
             value={value}
@@ -171,11 +171,10 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             color={inputColor}
             hoverColor={props?.hoverColor || hoverColor}
             focusColor={props.focusColor || focusColor}
-            disabledBackgroundColor={theme?.mainGrayColor}
             hoverBorderColor={props?.hoverColor || hoverBorderColor}
             hoverBackgroundColor={hoverBackgroundColor}
             disabledColor={theme?.palette.baseFontColorOpacity05}
-            backgroundColor={props.backgroundColor ?? backgroundColor}
+            backgroundColor={backgroundColor}
             backgroundImage={props?.backgroundImage}
             fontSize={props?.fontSize ?? theme?.baseFontSize}
             className={props?.className}
