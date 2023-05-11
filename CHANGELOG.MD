@@ -76,10 +76,8 @@
     <li>box-shadow and filter css properties added into the bottom sticky panel</li>
  <li>The color of disabled components edited</li>
 </ol>
-<h3>Bugs</h3>
+<h2>v 0.10.9</h2>
+<h3>BugFix</h3>
 <ol>
-    <li>Tabs components disabled styles fixed</li>
-    <li>Sticky bottom panel align-items changed to flex-start</li>
-    <li>Sticky bottom panel backgroundImage added</li>
-    <li>Sticky bottom panel backgroundImage added</li>
+    <li>The height attribute into the Switcher fixed</li>
 </ol>
