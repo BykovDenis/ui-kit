@@ -3,7 +3,7 @@ import getNewReactThemeContext from '../../styles/src';
 import renderer from 'react-test-renderer';
 
 import Switcher from '../src';
-import ISwitcher from '../types/iswitcher';
+import ISwitcher from '../types/tswitcher';
 import { themes } from '../../styles/src/themes';
 
 it('Switcher renders correctly', () => {

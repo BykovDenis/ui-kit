@@ -1,4 +1,4 @@
-import ISwitcher from '../types/iswitcher';
+import TSwitcher from '../types/iswitcher';
 
-declare const Switcher: React.FunctionComponent<ISwitcher>;
+declare const Switcher: React.FunctionComponent<TSwitcher>;
 export default Switcher;

@@ -14,9 +14,9 @@ const InputSwitcher =
   styled.input <
   IInputSwitcher >
   `
+    width: 50%;
   display: none;
   & + label {
-    background-color: ${(props: IInputSwitcher) => props.inactiveBackgroundColor ?? 'transparent'};
     border-radius: ${(props: IInputSwitcher) => (props.position === 'left' ? '3px 0 0 3px' : '0 3px 3px 0')};
     color: ${(props: IInputSwitcher) => props.inactiveColor};
   }
@@ -33,16 +33,6 @@ const InputSwitcher =
       background-color: ${(props: IInputSwitcher) =>
         props.backgroundColor ? hexToRgb(props.backgroundColor, 0.5) : hexToRgb('#42a5f5', 0.5)};
     }    
-  }
-  &:disabled + label {
-    background-color: #bdbdbd;
-    color: white;
-    filter: none;
-    &:hover {
-      background-color: #bdbdbd;
-      color: white;
-      filter: none;
-    }
   }
 `;
 export default InputSwitcher;

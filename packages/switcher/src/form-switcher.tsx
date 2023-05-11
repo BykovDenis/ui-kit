@@ -1,19 +1,21 @@
 import styled from 'styled-components';
 
-interface IFormSwitcher {
-  backgroundColor?: string;
-}
+type TFormSwitcher = {
+  backgroundColor?: string,
+  borderColor: string,
+};
 
 const FormSwitcher =
   styled.form <
-  IFormSwitcher >
+  TFormSwitcher >
   `
   display: flex;
   flex-direction: row;
-  background-color: ${(props: IFormSwitcher) => props.backgroundColor ?? '#ffffff'};
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: ${(props: TFormSwitcher) => props.backgroundColor};
+  border: 1px solid ${(props: TFormSwitcher) => props.borderColor};;
   box-sizing: border-box;
   border-radius: 4px;
+  width: 100%;  
 `;
 
 export default FormSwitcher;

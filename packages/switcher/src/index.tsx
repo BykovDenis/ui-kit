@@ -4,9 +4,9 @@ import ITheme from '../../styles/types/itheme';
 import FormSwitcher from './form-switcher';
 import InputSwitcher from './input-switcher';
 import LabelSwitcher from './label-switcher';
-import ISwitcher from '../types/iswitcher';
+import TSwitcher from '../types/tswitcher';
 
-const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
+const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
 
   useEffect(() => {
@@ -27,12 +27,18 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
 
   const componentThemed = (theme: ITheme) => {
     const color: string = theme?.palette?.baseButtonFontColor;
-    const backgroundColor: string = theme?.palette?.primary?.main;
+    const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : theme?.palette?.primary?.main;
     const inactiveBackgroundColor: string = theme?.mainBackgroundColor;
     const inactiveColor: string = theme?.palette.baseFontColor;
 
     return (
-      <FormSwitcher method="get">
+      <FormSwitcher
+        method="get"
+        backgroundColor={
+          props.disabled ? theme.inactiveBackgroundColor : props?.backgroundColor ?? theme.mainBackgroundColor
+        }
+        borderColor={theme.mainOutlinedColor}
+      >
         <InputSwitcher
           name="custom-switcher"
           data-name={props.element1}
@@ -47,7 +53,14 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
           inactiveBackgroundColor={inactiveBackgroundColor}
           inactiveColor={inactiveColor}
         />
-        <LabelSwitcher htmlFor={`custom-switcher-element1-${props.element1}`}>{props.element1}</LabelSwitcher>
+        <LabelSwitcher
+          htmlFor={`custom-switcher-element1-${props.element1}`}
+          fontSize={props?.fontSize ?? theme.baseFontSize}
+          fontFamily={theme.fontFamily}
+          color={props?.color || theme.palette.baseFontColor}
+        >
+          {props.element1}
+        </LabelSwitcher>
         <InputSwitcher
           name="custom-switcher"
           data-name={props.element2}
@@ -62,7 +75,14 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
           inactiveBackgroundColor={inactiveBackgroundColor}
           inactiveColor={inactiveColor}
         />
-        <LabelSwitcher htmlFor={`custom-switcher-element2-${props.element2}`}>{props.element2}</LabelSwitcher>
+        <LabelSwitcher
+          htmlFor={`custom-switcher-element2-${props.element2}`}
+          fontFamily={theme.fontFamily}
+          color={props?.color || theme.palette.baseFontColor}
+          fontSize={props?.fontSize ?? theme.baseFontSize}
+        >
+          {props.element2}
+        </LabelSwitcher>
       </FormSwitcher>
     );
   };
