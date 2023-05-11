@@ -33,8 +33,8 @@ const TemplateDarkTheme: ComponentStory<typeof Switcher> = (args: TSwitcher) => 
       action('The new value RUB');
     }
   }
-  return <div style={{ display: 'inline-block' }}><Switcher {...args} height={56} onSwitcherChange={onSwitcherChange} element1={element1} element2={element2}
-    activeElement={activeElement}/></div>;
+  return <Switcher {...args} height={56} onSwitcherChange={onSwitcherChange} element1={element1} element2={element2}
+    activeElement={activeElement}/>;
 }
 
 const TemplateLightTheme: ComponentStory<typeof Switcher> = (args: TSwitcher)  => {
@@ -53,8 +53,8 @@ const TemplateLightTheme: ComponentStory<typeof Switcher> = (args: TSwitcher)  =
       action('The new value RUB');
     }
   }
-  return <div style={{ display: 'inline-block' }}><Switcher {...args} onSwitcherChange={onSwitcherChange} element1={element1} element2={element2}
-                                                            activeElement={activeElement}/></div>;
+  return <Switcher {...args} onSwitcherChange={onSwitcherChange} element1={element1} element2={element2}
+                                                            activeElement={activeElement}/>;
 }
 
 export const DarkThemeTextField = TemplateDarkTheme.bind({});
