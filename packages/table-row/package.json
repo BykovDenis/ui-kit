@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/TableRow",
-  "version": "0.10.8",
+  "version": "0.10.9-alpha.0",
   "description": "TableRow react UI",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
