@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/styles",
-  "version": "0.10.8-alpha.6",
+  "version": "0.10.8",
   "description": "Risks react UI styles",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
