@@ -18,6 +18,7 @@ const LabelSwitcher =
     color: ${props.color};
     font-size: ${getMeasureValue(props.fontSize, 'inherit')};
     height: ${getMeasureValue(props.height)};
+    align-items: center;
     border: none;
     border-radius: 4px;
     font-style: normal;

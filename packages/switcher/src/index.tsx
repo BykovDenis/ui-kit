@@ -8,11 +8,18 @@ import TSwitcher from '../types/tswitcher';
 
 const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const [disabled, setDisabled] = useState<boolean>(props?.disabled !== undefined ? props.disabled : false);
+
+  useEffect(() => {
+    if (props?.disabled !== undefined) {
+      setDisabled(props.disabled);
+    }
+  }, [props.disabled]);
 
   useEffect(() => {
     setConsumer(globalThis.ReactThemeContextConsumer);
   }, [globalThis.ReactThemeContextConsumer]);
-  const { element1, element2, activeElement, disabled } = props;
+  const { element1, element2, activeElement } = props;
   const isActiveFirstElement = element1 === activeElement;
   const isActiveSecondElement = element2 === activeElement;
 
@@ -27,16 +34,14 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
 
   const componentThemed = (theme: ITheme) => {
     const color: string = theme?.palette?.baseButtonFontColor;
-    const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : theme?.palette?.primary?.main;
+    const backgroundColor: string = disabled ? theme.inactiveBackgroundColor : theme?.palette?.primary?.main;
     const inactiveBackgroundColor: string = theme?.mainBackgroundColor;
     const inactiveColor: string = theme?.palette.baseFontColor;
 
     return (
       <FormSwitcher
         method="get"
-        backgroundColor={
-          props.disabled ? theme.inactiveBackgroundColor : props?.backgroundColor ?? theme.mainBackgroundColor
-        }
+        backgroundColor={disabled ? theme.inactiveBackgroundColor : props?.backgroundColor ?? theme.mainBackgroundColor}
         borderColor={theme.mainOutlinedColor}
       >
         <InputSwitcher
@@ -58,6 +63,7 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
           fontSize={props?.fontSize ?? theme.baseFontSize}
           fontFamily={theme.fontFamily}
           color={props?.color || theme.palette.baseFontColor}
+          height={props?.height}
         >
           {props.element1}
         </LabelSwitcher>
@@ -80,6 +86,7 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
           fontFamily={theme.fontFamily}
           color={props?.color || theme.palette.baseFontColor}
           fontSize={props?.fontSize ?? theme.baseFontSize}
+          height={props?.height}
         >
           {props.element2}
         </LabelSwitcher>
@@ -93,10 +100,6 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
   }
 
   return <Consumer>{componentThemed}</Consumer>;
-};
-
-Switcher.defaultProps = {
-  disabled: false,
 };
 
 export default React.memo(Switcher);
