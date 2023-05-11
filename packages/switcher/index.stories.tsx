@@ -33,7 +33,7 @@ const TemplateDarkTheme: ComponentStory<typeof Switcher> = (args: TSwitcher) => 
       action('The new value RUB');
     }
   }
-  return <div style={{ display: 'inline-block' }}><Switcher {...args} onSwitcherChange={onSwitcherChange} element1={element1} element2={element2}
+  return <div style={{ display: 'inline-block' }}><Switcher {...args} height={56} onSwitcherChange={onSwitcherChange} element1={element1} element2={element2}
     activeElement={activeElement}/></div>;
 }
 
@@ -56,22 +56,6 @@ const TemplateLightTheme: ComponentStory<typeof Switcher> = (args: TSwitcher)  =
   return <div style={{ display: 'inline-block' }}><Switcher {...args} onSwitcherChange={onSwitcherChange} element1={element1} element2={element2}
                                                             activeElement={activeElement}/></div>;
 }
-
-
-const Template2: ComponentStory<typeof Switcher> = () => {
-  const [activeElement] = useState('Native');
-  const element1: string = 'Native';
-  const element2: string = 'RUB';
-
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
-
-  return <ReactThemeContext.Provider value={themes.dark}>
-      <ReactThemeContext.Provider value={themes.dark}><Switcher disabled={true} element1={element1} element2={element2}
-    activeElement={activeElement}/>
-      </ReactThemeContext.Provider>
-  </ReactThemeContext.Provider>;
-}
-
 
 export const DarkThemeTextField = TemplateDarkTheme.bind({});
 export const LightThemeTextField = TemplateLightTheme.bind({});
