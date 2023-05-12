@@ -17,29 +17,33 @@ const Tabs: React.FunctionComponent<TTabs> = (props: TTabs) => {
       ? theme?.palette?.baseFontColorOpacity05
       : props.color || theme?.palette?.baseFontColor;
 
-    const children = renderChildren(props.children, props);
+    if (props.children > 0) {
+      const children = renderChildren(props.children, props);
 
-    return (
-      <TabsStyled
-        {...props}
-        className={props?.className}
-        fontFamily={theme?.fontFamily}
-        focusColor={color}
-        color={props?.color || color}
-        fontSize={props?.fontSize ?? theme?.baseFontSize}
-        fontWeight={props?.fontWeight}
-        width={props?.width}
-        backgroundColor={props?.backgroundColor}
-        disabled={props.disabled}
-        whiteSpace={props?.whiteSpace}
-        padding={props?.padding}
-        height={props?.height}
-        wordBreak={props?.wordBreak}
-        lineHeight={props.lineHeight}
-      >
-        {children}
-      </TabsStyled>
-    );
+      return (
+        <TabsStyled
+          {...props}
+          className={props?.className}
+          fontFamily={theme?.fontFamily}
+          focusColor={color}
+          color={props?.color || color}
+          fontSize={props?.fontSize ?? theme?.baseFontSize}
+          fontWeight={props?.fontWeight}
+          width={props?.width}
+          backgroundColor={props?.backgroundColor}
+          disabled={props.disabled}
+          whiteSpace={props?.whiteSpace}
+          padding={props?.padding}
+          height={props?.height}
+          wordBreak={props?.wordBreak}
+          lineHeight={props.lineHeight}
+        >
+          {children}
+        </TabsStyled>
+      );
+    } else {
+      return null;
+    }
   };
 
   if (!Consumer) {
