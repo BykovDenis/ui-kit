@@ -33,9 +33,9 @@ const ThemeDarkTemplate: ComponentStory<typeof Tabs> = (args: TTabs) => {
 
   return <ReactThemeContext.Provider value={themes.dark} >
     <Tabs {...args} value={tabActive} onChange={onTabChange} isUpperCase={true} fontWeight={400}>
-      {/*<Tab minHeight={80} name="tab1">Tab 1</Tab>*/}
-      {/*<Tab minHeight={80} name="tab2">Tab 2</Tab>*/}
-      {/*<Tab minHeight={80} name="tab3" disabled={true}>Tab 3</Tab>*/}
+      <Tab minHeight={80} name="tab1">Tab 1</Tab>
+      <Tab minHeight={80} name="tab2">Tab 2</Tab>
+      <Tab minHeight={80} name="tab3" disabled={true}>Tab 3</Tab>
     </Tabs>
   </ReactThemeContext.Provider>
 }

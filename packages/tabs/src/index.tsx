@@ -17,7 +17,7 @@ const Tabs: React.FunctionComponent<TTabs> = (props: TTabs) => {
       ? theme?.palette?.baseFontColorOpacity05
       : props.color || theme?.palette?.baseFontColor;
 
-    if (props.children > 0) {
+    if (props.children?.length > 0) {
       const children = renderChildren(props.children, props);
 
       return (
