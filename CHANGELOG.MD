@@ -80,4 +80,5 @@
 <h3>BugFix</h3>
 <ol>
     <li>The height attribute into the Switcher fixed</li>
+    <li>The Tabs component fixed with empty list of tab</li>
 </ol>

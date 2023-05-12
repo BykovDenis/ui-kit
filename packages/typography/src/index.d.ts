@@ -4,4 +4,4 @@ import IHeader from '../types/iheader';
 
 declare const Typography: React.FunctionComponent<ITypography>;
 export { IHeader };
-export default TextField;
+export default Typography;
