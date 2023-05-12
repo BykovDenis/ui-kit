@@ -6,18 +6,18 @@ import TabsStyled from './tabs.styled';
 import renderChildren from '../helpers/render-children-with-props';
 
 const Tabs: React.FunctionComponent<TTabs> = (props: TTabs) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  if (props.children?.length > 0) {
+    const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
 
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+    useEffect(() => {
+      setConsumer(globalThis.ReactThemeContextConsumer);
+    }, [globalThis.ReactThemeContextConsumer]);
 
-  const componentThemed: any = (theme: ITheme) => {
-    const color: string = props.disabled
-      ? theme?.palette?.baseFontColorOpacity05
-      : props.color || theme?.palette?.baseFontColor;
+    const componentThemed: any = (theme: ITheme) => {
+      const color: string = props.disabled
+        ? theme?.palette?.baseFontColorOpacity05
+        : props.color || theme?.palette?.baseFontColor;
 
-    if (props.children?.length > 0) {
       const children = renderChildren(props.children, props);
 
       return (
@@ -41,17 +41,17 @@ const Tabs: React.FunctionComponent<TTabs> = (props: TTabs) => {
           {children}
         </TabsStyled>
       );
-    } else {
+    };
+
+    if (!Consumer) {
+      console.error('You need an initialization provider');
       return null;
     }
-  };
 
-  if (!Consumer) {
-    console.error('You need an initialization provider');
+    return <Consumer>{componentThemed}</Consumer>;
+  } else {
     return null;
   }
-
-  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(Tabs);
