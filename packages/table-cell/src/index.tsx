@@ -13,7 +13,7 @@ const TableCell: React.FunctionComponent<TTableCell> = (props: TTableCell) => {
   }, [globalThis.ReactThemeContextConsumer]);
 
   const componentThemed: any = (theme: ITheme) => {
-    const borderColor: string = props.isHeader ? theme?.mainBackgroundColor : theme?.palette?.baseFontColor;
+    const borderColor: string = theme.mainOutlinedColor;
     return !props.isHeader ? (
       <TableCellStyled {...props} borderColor={borderColor}>
         {props.children}

@@ -14,7 +14,7 @@ const TableRow: React.FunctionComponent<TTableRow> = (props: TTableRow) => {
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string =
       props?.backgroundColor ?? props?.isHeader ? theme.palette.primary.main : theme.mainBackgroundColor;
-    const borderColor: string = props.isHeader ? theme?.mainBackgroundColor : theme?.palette?.baseFontColor;
+    const borderColor: string = theme?.mainOutlinedColor;
 
     return (
       <TableRowStyled {...props} backgroundColor={backgroundColor} borderColor={borderColor}>
