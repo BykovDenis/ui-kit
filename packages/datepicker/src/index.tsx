@@ -34,8 +34,7 @@ import onKeyUpEventHandler from "../../helpers/on-key-up-event-handler";
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
-  const [ mask, setMask ] = useState<DatepickerMask>(DatepickerMask[props?.mask as keyof DatepickerMask] ?? DatepickerMask.DDMMYYYY);
-  let dateParsed = new DateParser(props.value, mask);
+  let dateParsed = new DateParser(props.value, props.mask as DatepickerMask);
 
   // >>> initial values
   const [ months, setMonths ] = useState<Array<IOption>>(null);
@@ -60,8 +59,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const [monthName, setMonthName] = useState<IOption | null>(null);
 
-  const minDate: DateParser = isNotEmptyString(props.minDate) ? new DateParser(props.minDate, mask) : new DateParser(mask === DatepickerMask.YYYYMMDD ? '1971-01-01' : '01.01.1971', mask);
-  const maxDate: DateParser = isNotEmptyString(props.maxDate) ? new DateParser(props.maxDate, mask) : null;
+  const minDate: DateParser = isNotEmptyString(props.minDate) ? new DateParser(props.minDate, props.mask as DatepickerMask) : new DateParser(props.mask as DatepickerMask === DatepickerMask.YYYYMMDD ? '1971-01-01' : '01.01.1971', props.mask as DatepickerMask);
+  const maxDate: DateParser = isNotEmptyString(props.maxDate) ? new DateParser(props.maxDate, props.mask as DatepickerMask) : null;
 
   // >> titles
 
@@ -138,7 +137,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const datePartitioned: string =
       isNotEmptyString(element?.value) ? element?.value?.replaceAll(/\D/gi, '') : null;
     const valueParsed: string = datePartitioned
-      ? parseInputDate(datePartitioned, mask)
+      ? parseInputDate(datePartitioned, props.mask as DatepickerMask)
       : null;
     if (valueParsed !== value) {
       setValue(valueParsed);
@@ -322,12 +321,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   }, [value]);
 
   useEffect(() => {
-    if (props.mask) {
-      setMask(DatepickerMask[props.mask as keyof DatepickerMask]);
-    }
-  }, [props.mask])
-
-  useEffect(() => {
     setMonths((props.locale === Locale.Ru || !props?.locale) ? monthsElementRu : monthsElementEn);
   }, [props.locale]);
 
@@ -498,7 +491,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
               onDayChange={onDayChange}
               minDate={minDate}
               maxDate={maxDate}
-              mask={mask}
+              mask={props.mask as DatepickerMask}
             />
           </DatepickerDatesContainer>
         )}
