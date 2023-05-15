@@ -1,6 +1,18 @@
-import {add, format, getDate, getDay, getDaysInMonth, isValid, sub, getUnixTime, toDate, getMonth, getYear} from 'date-fns';
+import {
+  add,
+  format,
+  getDate,
+  getDay,
+  getDaysInMonth,
+  getMonth,
+  getUnixTime,
+  getYear,
+  isValid,
+  sub,
+  toDate
+} from "date-fns";
 
-import IDateParser from './idate-parser';
+import IDateParser from "./idate-parser";
 import DatepickerMask from "../enums/datepicker-mask";
 
 const INVALID_DATE_TITLE: string = 'Invalid Date';
@@ -12,7 +24,7 @@ class DateParser implements IDateParser{
   private mask: DatepickerMask;
   private firstDayOnMonth: Date;
   constructor(date?: string, mask?: DatepickerMask) {
-    this.mask = mask;
+    this.mask = mask ?? DatepickerMask.DDMMYYYY;
     this.changeParsedDate(date);
   }
   changeParsedDate(date: string) {
@@ -27,7 +39,9 @@ class DateParser implements IDateParser{
         dateParsed = datePartition?.reverse()?.join('-');
       }
       this.dateParsed = toDate(new Date(dateParsed));
-      this.isValid = dateParsed?.length === 10 && parseInt(datePartition?.[1], 10) <= 12 && this.dateParsed?.toString() !== INVALID_DATE_TITLE && isValid(this.dateParsed);
+      const isDateValid: boolean = isValid(new Date(getYear(this.dateParsed), getMonth(this.dateParsed), getDaysInMonth(this.dateParsed)));
+      console.log(getYear(this.dateParsed), getMonth(this.dateParsed), getDaysInMonth(this.dateParsed), isDateValid);
+      this.isValid = dateParsed?.length === 10 && parseInt(datePartition?.[1], 10) <= 12 && this.dateParsed?.toString() !== INVALID_DATE_TITLE && isDateValid;
     }
     this.firstDayOnMonth = new Date(getYear(this.dateParsed), getMonth(this.dateParsed), 1);
   }
