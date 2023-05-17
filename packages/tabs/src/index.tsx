@@ -6,7 +6,7 @@ import TabsStyled from './tabs.styled';
 import renderChildren from '../helpers/render-children-with-props';
 
 const Tabs: React.FunctionComponent<TTabs> = (props: TTabs) => {
-  if (props.children?.length > 0) {
+  if (props?.children) {
     const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ const Tabs: React.FunctionComponent<TTabs> = (props: TTabs) => {
         ? theme?.palette?.baseFontColorOpacity05
         : props.color || theme?.palette?.baseFontColor;
 
-      const children = renderChildren(props.children, props);
+      const children = renderChildren(props.children?.length ? props?.children : [props?.children], props);
 
       return (
         <TabsStyled
