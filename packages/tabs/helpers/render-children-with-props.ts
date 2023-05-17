@@ -2,11 +2,12 @@ import React from 'react';
 
 function renderChildren(children, props: any) {
   const propsParsed: any = { ...props };
-  const childrenCount: number = children?.length;
+  const childrenFiltered: any = children?.filter(element => element);
+  const childrenCount: number = childrenFiltered?.length;
   if (childrenCount > 0) {
     delete propsParsed?.children;
   }
-  return React.Children.map(children, (child: React.ReactElement, index: number) => {
+  return React.Children.map(childrenFiltered, (child: React.ReactElement, index: number) => {
     const tabName: string = child?.props?.name;
     const isDisabled: boolean = child?.props?.disabled;
     return React.cloneElement(child, {

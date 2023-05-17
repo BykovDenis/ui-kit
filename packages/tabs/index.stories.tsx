@@ -32,11 +32,17 @@ const ThemeDarkTemplate: ComponentStory<typeof Tabs> = (args: TTabs) => {
     setTabActive(tabIndex);
   }
 
+
+  const Tab1Title = () => <p>Исторические данные</p>
+
+
+  const i: number = 4;
+
   return <ReactThemeContext.Provider value={themes.dark} >
     <Label>fff</Label>
     <Tabs {...args} value={tabActive} onChange={onTabChange} isUpperCase={true} fontWeight={400}>
-      {/*<Tab minHeight={80} name="tab1" disabled={true}>Tab 1</Tab>*/}
-      {/*<Tab minHeight={80} name="tab2">Tab 2</Tab>*/}
+      <Tab minHeight={80} name="tab1" ><Tab1Title /></Tab>
+      <Tab minHeight={80} name="tab2">Tab 2</Tab>
       {/*<Tab minHeight={80} name="tab3" disabled={true}>Tab 3</Tab>*/}
     </Tabs>
       <Label>fff</Label>
