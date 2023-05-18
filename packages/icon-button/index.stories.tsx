@@ -2,8 +2,8 @@ import { action } from '@storybook/addon-actions';
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import IconButton from  './src/index';
-import IIconButton from './types/iicon-button'
+import IconButton from  './src';
+import TIconButton from '../button/types/tbutton';
 import getNewReactThemeContext from '../styles/src';
 import SunIcon from '../icons-components/24x24/sun-icon';
 import { themes } from '../styles/src/themes';
@@ -23,7 +23,7 @@ export default {
   },
 } as ComponentMeta<typeof IconButton>;
 
-const Template: ComponentStory<typeof IconButton> = (args: IIconButton) => {
+const ThemeLightTemplate: ComponentStory<typeof IconButton> = (args: TIconButton) => {
 
   const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
@@ -32,5 +32,15 @@ const Template: ComponentStory<typeof IconButton> = (args: IIconButton) => {
   </ReactThemeContext.Provider>
 }
 
-export const NormalIconButton = Template.bind({});
+const ThemeDarkTemplate: ComponentStory<typeof IconButton> = (args: TIconButton) => {
+
+  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
+  return <ReactThemeContext.Provider value={themes.dark}>
+    <IconButton  {...args} name="button1" onClick={action('clicked')} ><SunIcon color="#ffffff" /></IconButton>
+  </ReactThemeContext.Provider>
+}
+
+export const DarkThemeList = ThemeDarkTemplate.bind({});
+export const LightThemeList = ThemeLightTemplate.bind({});
 

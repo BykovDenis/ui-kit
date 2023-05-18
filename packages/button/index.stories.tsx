@@ -22,14 +22,24 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args: TButton) => {
+const ThemeLightTemplate: ComponentStory<typeof Button> = (args: TButton) => {
 
   const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   return <ReactThemeContext.Provider value={themes.loanPricing}>
-    <Button  {...args} name="button1" onClick={action('clicked')} >{args.children}</Button>
+    <Button {...args} name="button1" onClick={action('clicked')} >{args.children}</Button>
   </ReactThemeContext.Provider>
 }
 
-export const NormalButton = Template.bind({});
+const ThemeDarkTemplate: ComponentStory<typeof Button> = (args: TButton) => {
+
+  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
+  return <ReactThemeContext.Provider value={themes.dark}>
+    <Button {...args} name="button1" onClick={action('clicked')} >{args.children}</Button>
+  </ReactThemeContext.Provider>
+}
+
+export const DarkThemeList = ThemeDarkTemplate.bind({});
+export const LightThemeList = ThemeLightTemplate.bind({});
 

@@ -74,7 +74,7 @@
 <ol>
     <li>Multiselect component border-right height 100% before button expand</li>
     <li>box-shadow and filter css properties added into the bottom sticky panel</li>
- <li>The color of disabled components edited</li>
+    <li>The color of disabled components edited</li>
 </ol>
 <h2>v 0.10.9</h2>
 <h3>BugFix</h3>
@@ -82,4 +82,5 @@
     <li>The height attribute into the Switcher fixed</li>
     <li>The Tabs component fixed with empty list of tab</li>
     <li>Datepickler fixed for the mask yyyy-mm-dd</li>
+    <li>IconButton disable background</li>
 </ol>

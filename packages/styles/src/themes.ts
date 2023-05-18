@@ -63,7 +63,7 @@ export const themes: IThemes = {
     mainGrayColor: '#e3e3e3',
     mainWhiteColor: '#b9b9b9',
     mainBackgroundColor: '#333333',
-    inactiveBackgroundColor: '#e3e3e3',
+    inactiveBackgroundColor: '#696969',
     inactiveColor: '#b3b3b3',
     mainOutlinedColor: 'rgba(185, 185, 185, 0.6)',
     mainOutlinedHoverColor: 'rgba(185, 185, 185, 0.4)',
