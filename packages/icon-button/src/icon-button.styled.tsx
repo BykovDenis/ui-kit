@@ -80,9 +80,7 @@ const IconButtonStyled =
     }
 
     &:disabled {
-      background-color: #bdbdbd;
       box-shadow: none;
-      color: #ffffff;
       border: 1px solid #bdbdbd;
     }
   `;

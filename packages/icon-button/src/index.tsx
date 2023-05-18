@@ -14,10 +14,12 @@ const IconButton: React.FunctionComponent<PropsWithChildren<any>> = (props: any)
   const children: any = props?.children;
 
   const componentThemed: any = (theme: ITheme) => {
-    const backgroundColor: string =
-      props?.colorTheme === 'normal' || !props.colorTheme
-        ? theme?.palette?.primary?.main
-        : theme?.palette?.secondary?.main;
+    const backgroundColor: string = props.disabled
+      ? theme.inactiveBackgroundColor
+      : props?.colorTheme === 'normal' || !props.colorTheme
+      ? theme?.palette?.primary?.main
+      : theme?.palette?.secondary?.main;
+
     return (
       <IconButtonStyled
         {...props}
