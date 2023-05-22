@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/TableBody",
-  "version": "0.10.9-alpha.9",
+  "version": "0.10.9-alpha.10",
   "description": "TableBody react UI",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
