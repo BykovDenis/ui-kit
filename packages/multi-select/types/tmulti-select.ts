@@ -1,12 +1,10 @@
-import { SortDirections } from '../../helpers/sort-array';
-
 type TMultiSelect = {
   width?: number | string,
   height?: number | string,
   className?: string,
   disabled?: boolean,
   fontFamily?: string,
-  elementNames: Array<string>,
+  elementNames: Array<string | { label: string, value: string }>,
   keyName?: string,
   fontSize?: number | string,
   name: string,

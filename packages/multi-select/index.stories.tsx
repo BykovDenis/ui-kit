@@ -7,7 +7,7 @@ import MultiSelect from "./src";
 import SortDirections from '../enums/sort-direction'
 import Label from "../label/src";
 import FormControl from "../form-control/src";
-import TmultiSelect from "./types/tmulti-select";
+import TMultiSelect from "./types/tmulti-select";
 
 export default {
   title: 'Components/MultiSelect',
@@ -27,8 +27,19 @@ const ThemeDarkTemplate: ComponentStory<typeof MultiSelect> = (args: TMultiSelec
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
-  const columns: Array<string> =  ['Request Id', 'Response Id', 'Algo Id', 'Start time', 'Finish time', 'Publishing', 'Comment', 'Request Id 1', 'Response Id 1', 'Algo Id 1', 'Start time 1', 'Finish time 1', 'Publishing 1', 'Comment 1'];
-  const columnsSelected: Array<string> = ['Publishing', 'Comment']
+  // const columns: Array<string> =  ['Request Id', 'Response Id', 'Algo Id', 'Start time', 'Finish time', 'Publishing', 'Comment', 'Request Id 1', 'Response Id 1', 'Algo Id 1', 'Start time 1', 'Finish time 1', 'Publishing 1', 'Comment 1'];
+  // const columnsSelected: Array<string> = ['Publishing', 'Comment']
+
+  const columns: Array<{label: string, value: number}> = [
+    { label: 'one', value: 1 },
+    { label: 'five', value: 5 },
+    { label: 'three', value: 3 },
+    { label: 'two', value: 2 },
+    { label: 'four', value: 4 },
+    { label: 'some', value: 1 }
+  ];
+
+  const columnsSelected: Array<string> = ['3','5','4'];
 
   const onChange = (columnNames: Array<string>) => {
     console.log(columnNames);
