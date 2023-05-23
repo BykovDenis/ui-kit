@@ -26,6 +26,7 @@ export default {
 const ThemeDarkTemplate: ComponentStory<typeof MultiSelect> = (args: TMultiSelect) => {
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
+  const [columnsSelected, setColumnNamesSelected] = useState<Array<string>>([]);
 
   // const columns: Array<string> =  ['Request Id', 'Response Id', 'Algo Id', 'Start time', 'Finish time', 'Publishing', 'Comment', 'Request Id 1', 'Response Id 1', 'Algo Id 1', 'Start time 1', 'Finish time 1', 'Publishing 1', 'Comment 1'];
   // const columnsSelected: Array<string> = ['Publishing', 'Comment']
@@ -39,7 +40,9 @@ const ThemeDarkTemplate: ComponentStory<typeof MultiSelect> = (args: TMultiSelec
     { label: 'some', value: 1 }
   ];
 
-  const columnsSelected: Array<string> = ['3','5','4'];
+  useEffect(() => {
+    setColumnNamesSelected(['3','5','4']);
+  }, []);
 
   const onChange = (columnNames: Array<string>) => {
     console.log(columnNames);

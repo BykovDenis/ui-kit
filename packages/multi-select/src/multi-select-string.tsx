@@ -24,6 +24,7 @@ import ToggleContainer from './toggle-container';
 import LabelContainer from './label-container.styled';
 import MultiSelectContainerStyled from './multi-select-container.styled';
 import { KEY_ESCAPE } from '../../constants';
+import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
 
 type TMultiSelectString = TMultiSelect & {
   elementNames: Array<string>,
@@ -92,7 +93,6 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
       onListItemsCloseByKey();
     }
   };
-
   useEffect(() => {
     const elementsFromLocaleStorage: Set<string> = isUseLocaleStorage
       ? getElementsFromLocalStorage(props.name, ',')
@@ -206,6 +206,12 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
       // @ts-ignore-next-line
       if (element === rootElement || !btnToggleContainerElement?.contains(element)) {
         setExpanded(!isExpanded);
+      }
+    };
+
+    const onKeyUp = (evt: any) => {
+      if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
+        onListItemsCloseByKey();
       }
     };
 

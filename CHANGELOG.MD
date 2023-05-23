@@ -83,4 +83,5 @@
     <li> The Tabs component fixed with empty list of tab </li>
     <li> Datepickler fixed for the mask yyyy-mm-dd </li>
     <li> IconButton disable background </li>
+    <li> The logic initial state element selected fixed </li>
 </ol>
