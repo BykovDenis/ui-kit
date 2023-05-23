@@ -51,7 +51,9 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
   );
 
   const [elementNames, setElementNames] = useState<Array<{ label: string, value: string }>>(elementNamesMapped);
-  const [elementNamesSelected, setElementNamesSelected] = useState<Set<string>>(null);
+  const [elementNamesSelected, setElementNamesSelected] = useState<Set<string>>(
+    new Set(props.elementNamesDefaultSelected)
+  );
   const [searchText, setSearchText] = useState<string>(null);
   const [isUseLocaleStorage] = useState<boolean>(
     props?.isUseLocaleStorage !== undefined ? props.isUseLocaleStorage : false
@@ -163,6 +165,10 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
 
     setElementNames(elementNamesMapped);
   }, [props.elementNames]);
+
+  useEffect(() => {
+    setElementNamesSelected(new Set(props.elementNamesDefaultSelected));
+  }, [props.elementNamesDefaultSelected]);
 
   const componentThemed: any = (theme: ITheme) => {
     const color: string = props.disabled ? theme?.palette?.baseFontColorOpacity05 : theme?.palette?.baseFontColor;
