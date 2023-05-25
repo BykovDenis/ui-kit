@@ -24,8 +24,6 @@ const FONT_WEIGHT_REGULAR = 400;
 const INPUT_TAG: string = 'INPUT';
 const BUTTON_TAG: string = 'BUTTON';
 
-const KEY_ESCAPE: string = 'ESCAPE';
-
 function getElementsParsed(elements: Array<IOption | string | number>): Array<IOption> {
   return elements?.map((element: string | number | IOption) => {
     if (typeof element === 'object') {
@@ -72,6 +70,7 @@ function getElementsFiltered(elements: Array<IOption>, label: string) {
 
 const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);
+  const isScrollingToSelected: boolean = props?.isScrollingToSelected !== undefined ? props.isScrollingToSelected : false;
 
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [label, setLabel] = useState<string>(activeElementParsed?.label);
@@ -216,10 +215,15 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const onInputFocus = () => {
     setIsFocus(true);
     setIsVisibleList(true);
-    // const elementSelected = document.querySelector(`[data-element-selected=${props.id}-element-selected]`);
-    // if (elementSelected) {
-    //   elementSelected.scrollIntoView({ behavior: 'smooth', block: 'start'  });
-    // }
+    if (isScrollingToSelected) {
+      const elements = document.querySelector(`#${props.id}-list-items`);
+      if (elements) {
+        const options = elements.children[0].getBoundingClientRect();
+        if (options) {
+          elements?.scrollTo({ behavior: 'smooth', top: Math.round(options.height / 2) - options.top });
+        }
+      }
+    }
   };
 
   const isExistValue: boolean = label > '';
@@ -252,7 +256,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
     const backgroundColor: string = theme?.mainBackgroundColor;
     return (
-      <SelectContainer width={props?.width} height={props?.height || DEFAULT_HEIGHT}>
+      <SelectContainer id={props.id} width={props?.width} height={props?.height || DEFAULT_HEIGHT}>
         <SelectHeader height={props?.height || DEFAULT_HEIGHT}>
           {props?.label && (
             <LabelContainer
@@ -310,7 +314,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
           />
         </SelectHeader>
         {isVisibleList && (
-          <SelectListContainer ref={selectListContainerRef}>
+          <SelectListContainer ref={selectListContainerRef} id={`${props.id}-list-items`}>
             <List type="list-buttons" onMouseDown={onMouseDown} onKeyUp={onKeyUp} fontSize={props?.fontSize}>
               {isFoundValue && elements?.map((element: IOption, index: number) => (
                   <ListItem

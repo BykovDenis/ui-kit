@@ -23,6 +23,7 @@ interface ISelect extends IInput, ILabel {
   textAlign?: string;
   variant?: 'contained' | 'text' | 'outlined';
   isMulti?: boolean;
+  isScrollingToSelected?: boolean;
 }
 
 export default ISelect;

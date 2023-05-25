@@ -84,4 +84,5 @@
     <li> Datepickler fixed for the mask yyyy-mm-dd </li>
     <li> IconButton disable background </li>
     <li> The logic initial state element selected fixed </li>
+    <li> Datepickler library date-fns to dayjs changed </li>
 </ol>

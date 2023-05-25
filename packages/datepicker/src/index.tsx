@@ -426,6 +426,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                   fontSize={fontSize}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   height={props?.height || DEFAULT_HEIGHT}
+                  isScrollingToSelected={true}
                 />
                 <DatepickerButtonNavigate
                   id="get-next-month"
@@ -461,6 +462,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                   fontSize={fontSize}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   height={props?.height || DEFAULT_HEIGHT}
+                  isScrollingToSelected={true}
                 />
                 <DatepickerButtonNavigate
                   id="get-next-year"
