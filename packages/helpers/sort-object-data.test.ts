@@ -1,7 +1,7 @@
 import sortObjectData from './sort-object-data';
 
 describe('Test sortObjectData', () => {
-  test('Test 1. Main script', () => {
+  test('Test 1. Main scenario', () => {
     const elements: Array<{ label: string, value: string | number }> = [
       { label: 'one', value: 1 },
       { label: 'five', value: 5 },

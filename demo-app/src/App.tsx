@@ -8,7 +8,7 @@ import IOption from '../../packages/select/types/ioption';
 import FormControl from '../../packages/form-control/src';
 
 function App() {
-  const [dateValue, setDateValue] = useState<string>('2023-03-05');
+  const [dateValue, setDateValue] = useState<string>('11.05.2022');
   const [value, setValue] = useState<string>('One');
 
   const onDatepickerValueChange = (name: string, value: string, isValid: boolean) => {
@@ -44,9 +44,6 @@ function App() {
           value={dateValue}
           onChange={onDatepickerValueChange}
           onRemove={onDateRemove}
-          minDate="2023-03-02"
-          maxDate="2023-03-11"
-          mask="YYYYMMDD"
         />
       </FormControl>
       <Select id="some-list" name="some-list" activeElement={value} elements={elements} />

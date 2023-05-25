@@ -1,6 +1,17 @@
-159 error Error: Command failed with exit code 128: git tag v0.10.9-alpha.0 -m v0.10.9-alpha.0
-159 error fatal: tag 'v0.10.9-alpha.0' already exists
-159 error     at makeError (/Users/16783656-mobile/.nvm/versions/node/v17.5.0/lib/node_modules/lerna/node_modules/execa/lib/error.js:59:11)
-159 error     at handlePromise (/Users/16783656-mobile/.nvm/versions/node/v17.5.0/lib/node_modules/lerna/node_modules/execa/index.js:114:26)
-159 error     at processTicksAndRejections (node:internal/process/task_queues:96:5)
-159 error     at async Promise.all (index 0)
+0 silly argv {
+0 silly argv   _: [ 'add' ],
+0 silly argv   scope: 'datepicker',
+0 silly argv   globs: [],
+0 silly argv   lernaVersion: '6.6.1',
+0 silly argv   '$0': 'lerna',
+0 silly argv   pkg: 'dayjs@latest'
+0 silly argv }
+1 notice cli v6.6.1
+2 verbose rootPath /Users/16783656-mobile/www/sber-risks-ui
+3 error FetchError: request to https://nexus-ci.delta.sbrf.ru/repository/npm-all/dayjs failed, reason: self signed certificate in certificate chain
+3 error     at ClientRequest.<anonymous> (/Users/16783656-mobile/.nvm/versions/node/v16.18.1/lib/node_modules/lerna/node_modules/minipass-fetch/lib/index.js:130:14)
+3 error     at ClientRequest.emit (node:events:513:28)
+3 error     at TLSSocket.socketErrorListener (node:_http_client:494:9)
+3 error     at TLSSocket.emit (node:events:525:35)
+3 error     at emitErrorNT (node:internal/streams/destroy:157:8)
+3 error     at emitErrorCloseNT (node:internal/streams/destroy:122:3)

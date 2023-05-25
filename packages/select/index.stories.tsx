@@ -24,9 +24,25 @@ export default {
 
 const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
 
-  const [ value, setValue ] = useState<string>(null);
+  const [ value, setValue ] = useState<number>('50');
 
-  const elementsState: Array<string> =  ['compoundIndex', 'compoundIndexAndSpread', 'compoundSpread', 'notCompound'];
+  // const elementsState: Array<{ label: string, value: string}> =   [
+  //   { label: 'Январь', value: '0' },
+  //   { label: 'Февраль', value: '1' },
+  //   { label: 'Март', value: '2' },
+  //   { label: 'Апрель', value: '3' },
+  //   { label: 'Май', value: '4' },
+  //   { label: 'Июнь', value: '5' },
+  //   { label: 'Июль', value: '6' },
+  //   { label: 'Август', value: '7' },
+  //   { label: 'Сентябрь', value: '8' },
+  //   { label: 'Октябрь', value: '9' },
+  //   { label: 'Ноябрь', value: '10' },
+  //   { label: 'Декабрь', value: '11' },
+  // ];
+
+  const elementsEmpty: Array<number> = new Array(100).fill(0);
+  const elements: Array<number> = elementsEmpty.map((element: number, index: number) => `${index}` )
 
   const onInputChange = (option: IOption) => {
     setValue(option);
@@ -40,6 +56,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
+
   return <ReactThemeContext.Provider value={themes.dark}>
   <div style={{ width: '220px' }}>
     <Select
@@ -49,8 +66,9 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
       name="select-custom"
       id="select"
       activeElement={value}
-      elements={elementsState}
+      elements={elements}
       label="Some label"
+      isScrollingToSelected={true}
     >{args.children}</Select>
   </div>
   </ReactThemeContext.Provider>;
