@@ -41,7 +41,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
   //   { label: 'Декабрь', value: '11' },
   // ];
 
-  const elementsEmpty: Array<number> = new Array(100).fill(0);
+  const elementsEmpty: Array<number> = new Array(150).fill(0);
   const elements: Array<number> = elementsEmpty.map((element: number, index: number) => `${index}` )
 
   const onInputChange = (option: IOption) => {
@@ -58,7 +58,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
 
 
   return <ReactThemeContext.Provider value={themes.dark}>
-  <div style={{ width: '220px' }}>
+  <div style={{ width: '220px', zoom: 3 }}>
     <Select
       {...args}
       onChange={onInputChange}

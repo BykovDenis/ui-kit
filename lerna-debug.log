@@ -32,7 +32,7 @@
 25 silly found diff in packages/datepicker/helpers/date-parser.ts
 25 silly found diff in packages/datepicker/helpers/dayjs-parse-zone.ts
 25 silly found diff in packages/datepicker/helpers/idate-parser.ts
-25 silly found diff in packages/datepicker/helpers/parse-format-date.test.ts
+25 silly found diff in packages/datepicker/helpers/check-format-date.test.ts
 25 silly found diff in packages/datepicker/helpers/parse-input-date.test.ts
 25 silly found diff in packages/datepicker/index.stories.tsx
 25 silly found diff in packages/datepicker/package-lock.json
@@ -43,7 +43,7 @@
 26 verbose filtered diff   'packages/datepicker/helpers/date-parser.ts',
 26 verbose filtered diff   'packages/datepicker/helpers/dayjs-parse-zone.ts',
 26 verbose filtered diff   'packages/datepicker/helpers/idate-parser.ts',
-26 verbose filtered diff   'packages/datepicker/helpers/parse-format-date.test.ts',
+26 verbose filtered diff   'packages/datepicker/helpers/check-format-date.test.ts',
 26 verbose filtered diff   'packages/datepicker/helpers/parse-input-date.test.ts',
 26 verbose filtered diff   'packages/datepicker/index.stories.tsx',
 26 verbose filtered diff   'packages/datepicker/package-lock.json',
