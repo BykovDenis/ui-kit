@@ -80,6 +80,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [isNewElement, setIsNewElement] = useState<boolean>(false);
   const [activeElement, setActiveElement] = useState<IOption>(activeElementParsed);
   const [isEdited, setIsEdited] = useState<boolean>(false);
+  const [activeIndexElement, setActiveIndexElement] = useState<number>(null);
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
 
   useEffect(() => {
@@ -219,8 +220,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       const elements = document.querySelector(`#${props.id}-list-items`);
       if (elements) {
         const options = elements.children[0].getBoundingClientRect();
-        if (options) {
-          elements?.scrollTo({ behavior: 'smooth', top: Math.round(options.height / 2) - options.top });
+        if (options && activeIndexElement > 0) {
+          elements?.scrollTo({ behavior: 'smooth', top: activeIndexElement * 40 });
         }
       }
     }
@@ -316,14 +317,19 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         {isVisibleList && (
           <SelectListContainer ref={selectListContainerRef} id={`${props.id}-list-items`}>
             <List type="list-buttons" onMouseDown={onMouseDown} onKeyUp={onKeyUp} fontSize={props?.fontSize}>
-              {isFoundValue && elements?.map((element: IOption, index: number) => (
+              {isFoundValue && elements?.map((element: IOption, index: number) => {
+                const isSelectedElement: boolean = element?.value === activeElement?.value;
+                if (isSelectedElement) {
+                  setActiveIndexElement(index);
+                }
+                return (
                   <ListItem
                     type="button"
                     key={`list-item-${index}`}
                     data-index={element.index}
                     data-value={element.value}
                     data-label={element.label}
-                    data-element-selected={`${props.id}-element${element?.value && activeElement?.value && element.value === activeElement.value ? '-selected' : ''}`}
+                    data-element-selected={`${props.id}-element${element?.value && activeElement?.value && isSelectedElement ? '-selected' : ''}`}
                     textAlign={props?.textAlign || TEXT_ALIGN}
                     fontSize={fontSize}
                     height={props?.height || DEFAULT_HEIGHT}
@@ -332,7 +338,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                   >
                     {element.label}
                   </ListItem>
-                ))}
+                )})}
               {isNewElement && props?.isCreatable && label > '' && (
                 <ListItem
                   type="button"

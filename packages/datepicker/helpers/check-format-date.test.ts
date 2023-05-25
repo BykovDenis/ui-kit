@@ -1,28 +1,49 @@
 import checkFormatDate from './check-format-date';
 
 describe('Test function checkFormatDate', () => {
-  test('Test 1. Main scenario 30.02.2022', () => {
+  test('Main scenario 29.02.2100', () => {
+    const day: number = 29;
+    const month: number = 2;
+    const year: number = 2100;
+
+    expect(checkFormatDate(day, month, year)).toBeTruthy();
+  });
+  test('Main scenario 29.02.2400', () => {
+    const day: number = 29;
+    const month: number = 2;
+    const year: number = 2400;
+
+    expect(checkFormatDate(day, month, year)).toBeTruthy();
+  });
+  test('Main scenario 29.02.2401', () => {
+    const day: number = 29;
+    const month: number = 2;
+    const year: number = 2401;
+
+    expect(checkFormatDate(day, month, year)).toBeFalsy();
+  });
+  test('Main scenario 30.02.2022', () => {
     const day: number = 30;
     const month: number = 2;
     const year: number = 2022;
 
     expect(checkFormatDate(day, month, year)).toBeFalsy();
   });
-  test('Test 1. Main scenario 30.02.222', () => {
+  test('Main scenario 30.02.222', () => {
     const day: number = 30;
     const month: number = 2;
     const year: number = 222;
 
     expect(checkFormatDate(day, month, year)).toBeFalsy();
   });
-  test('Test 1. Main scenario 32.12.2023', () => {
+  test('Main scenario 32.12.2023', () => {
     const day: number = 32;
     const month: number = 12;
     const year: number = 2023;
 
     expect(checkFormatDate(day, month, year)).toBeFalsy();
   });
-  test('Test 1. Main scenario 31.12.2023', () => {
+  test('Main scenario 31.12.2023', () => {
     const day: number = 31;
     const month: number = 12;
     const year: number = 2023;

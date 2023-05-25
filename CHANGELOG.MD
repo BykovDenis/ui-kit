@@ -85,4 +85,5 @@
     <li> IconButton disable background </li>
     <li> The logic initial state element selected fixed </li>
     <li> Datepickler library date-fns to dayjs changed </li>
+    <li> Buttons warning types disabled </li>
 </ol>
