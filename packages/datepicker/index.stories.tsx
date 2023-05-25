@@ -40,14 +40,14 @@ const ThemeDarkTemplateYYYYMMDD: ComponentStory<typeof Datepicker> = (args: Idat
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   return <ReactThemeContext.Provider value={themes.dark}>
-    <div style={{ width: '250px' }}>
+    <div style={{ width: '250px', zoom: 2 }}>
       <Datepicker {...args} mask={DatepickerMask.YYYYMMDD} variant="outlined" name="someDatepicker" value={value} onChange={onDatepickerValueChange} onRemove={onDatepickerRemove} isErrorMessageDisplay={false} />
     </div>
   </ReactThemeContext.Provider>
 }
 
 const ThemeLightTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
-  const [value, setValue] = useState('03.04.2023');
+  const [value, setValue] = useState('03.11.2023');
 
   const onDatepickerValueChange = (name: string, value: string) => {
     setValue(value);
@@ -63,7 +63,7 @@ const ThemeLightTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker
 }
 
 const ThemeDarkTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
-  const [value, setValue] = useState('03.04.2023');
+  const [value, setValue] = useState('03.11.2023');
 
   const onDatepickerValueChange = (name: string, value: string, isValid: boolean) => {
     setValue(value);
@@ -78,7 +78,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker)
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   return <ReactThemeContext.Provider value={themes.dark}>
-    <div style={{ width: '250px' }}>
+    <div style={{ width: '250px', zoom: 2 }}>
       <Datepicker {...args} variant="outlined" name="someDatepicker" value={value} locale={Locale.Ru} onChange={onDatepickerValueChange} onRemove={onDatepickerRemove} isErrorMessageDisplay={false} />
     </div>
   </ReactThemeContext.Provider>

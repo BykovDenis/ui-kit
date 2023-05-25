@@ -316,7 +316,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   }, [months])
 
   useEffect(() => {
-    if (actualMonthNumber) {
+    if (actualMonthNumber !== null && actualMonthNumber !== undefined) {
       setMonthName(months[dateParsed.getNumberMonth()]);
       setValueState(dateParsed.formatToString());
       setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
@@ -327,7 +327,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   }, [actualMonthNumber]);
 
   useEffect(() => {
-    if (actualYearNumber) {
+    if (actualYearNumber !== null && actualYearNumber !== undefined) {
       setValueState(dateParsed.formatToString());
       setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
       setActualMonthNumber(dateParsed.getNumberMonth());
@@ -404,7 +404,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             <MonthsYearsRuleContainer>
               <DatepickerNavigateContainerStyled>
                 <DatepickerButtonNavigate
-                  id="get-previous-month"
+                  id={`get-previous-month-${props.id}`}
                   fontSize={fontSize}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   color={theme.palette.primary.main}
@@ -413,7 +413,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                   {'<'}
                 </DatepickerButtonNavigate>
                 <Select
-                  id="datepicker-month"
+                  id={`datepicker-month-${props.id}`}
                   name="month"
                   label={monthTitle}
                   onChange={onMonthNameChange}
@@ -429,7 +429,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                   isScrollingToSelected={true}
                 />
                 <DatepickerButtonNavigate
-                  id="get-next-month"
+                  id={`get-next-month-${props.id}`}
                   fontSize={fontSize}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   color={theme.palette.primary.main}
@@ -440,7 +440,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
               </DatepickerNavigateContainerStyled>
               <DatepickerNavigateContainerStyled>
                 <DatepickerButtonNavigate
-                  id="get-previous-year"
+                  id={`get-previous-year-${props.id}`}
                   fontSize={fontSize}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   color={theme.palette.primary.main}
@@ -449,7 +449,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                   {'<'}
                 </DatepickerButtonNavigate>
                 <Select
-                  id="datepicker-year"
+                  id={`datepicker-year-${props.id}`}
                   name="year"
                   label={yearTitle}
                   onChange={onYearNameChange}
@@ -465,7 +465,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                   isScrollingToSelected={true}
                 />
                 <DatepickerButtonNavigate
-                  id="get-next-year"
+                  id={`get-next-year-${props.id}`}
                   fontSize={fontSize}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   color={theme.palette.primary.main}

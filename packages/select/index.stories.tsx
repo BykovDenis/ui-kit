@@ -1,7 +1,7 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
-import Select from  './src';
+import Select from  './dist';
 import ISelect from './types/iselect';
 import IOption from './types/ioption';
 import { themes } from '../styles/src/themes';
@@ -24,7 +24,7 @@ export default {
 
 const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
 
-  const [ value, setValue ] = useState<number>('50');
+  const [ value, setValue ] = useState<string>('50');
 
   // const elementsState: Array<{ label: string, value: string}> =   [
   //   { label: 'Январь', value: '0' },
