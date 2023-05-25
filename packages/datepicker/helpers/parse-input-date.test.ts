@@ -9,7 +9,7 @@ describe('Test function parseInputDate', () => {
     mask = DatepickerMask.YYYYMMDD;
   });
 
-  test(`Test${i}. Main script date format DD.MM.YYYY`, () => {
+  test(`Test${i}. Main scenario date format DD.MM.YYYY`, () => {
     const date: string = '14102023';
     const expectedDate: string = '14.10.2023';
     expect(parseInputDate(date)).toEqual(expectedDate);
@@ -63,7 +63,7 @@ describe('Test function parseInputDate', () => {
     expect(parseInputDate(date)).toEqual(expectedDate);
   });
   i += 1;
-  test(`Test${i}. Main script date format YYYY-MM-DD`, () => {
+  test(`Test${i}. Main scenario date format YYYY-MM-DD`, () => {
     const date: string = '20231014';
     const expectedDate: string = '2023-10-14';
     expect(parseInputDate(date, mask)).toEqual(expectedDate);

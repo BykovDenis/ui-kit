@@ -1,3 +1,5 @@
+import { Dayjs } from 'dayjs';
+
 interface IDateParser {
   changeDay: (day: number) => void;
   changeMonth: (month: number) => void;
@@ -5,7 +7,7 @@ interface IDateParser {
   checkIsValidateDate: () => boolean;
   formatToString: () => string;
   getCountDaysInMonth: () => number;
-  getDate: () => Date;
+  getDate: () => Dayjs;
   getNumberCurrentDateOfMonth: () => number;
   getNumberDay: () => number;
   getNumberDayInWeek: () => number;

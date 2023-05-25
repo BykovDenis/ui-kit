@@ -12,7 +12,8 @@ export default {
   title: 'Components/Datepicker',
   component: Datepicker,
   argTypes: {
-    type: { control: { type: 'select', options: [ 'button', 'text'] }, defaultValue: 'button'  }
+    type: { control: { type: 'select', options: [ 'button', 'text'] }, defaultValue: 'button'  },
+    locale: { control: { type: 'select', options: [ 'RU', 'EN'] }, defaultValue: 'EN'  }
   },
   args: {
     textMessage: 'text message',
@@ -24,23 +25,23 @@ export default {
 } as ComponentMeta<typeof Datepicker>;
 
 const ThemeDarkTemplateYYYYMMDD: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
-  const [value, setValue] = useState('2023-04-03');
+  const [value, setValue] = useState('2022-05-11');
 
   const onDatepickerValueChange = (name: string, value: string, isValid: boolean) => {
     setValue(value);
-    console.log(name, value, isValid);
+    // console.log(name, value, isValid);
   }
 
   const onDatepickerRemove = () => {
     setValue(null);
-    console.log(null);
+    // console.log(null);
   }
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   return <ReactThemeContext.Provider value={themes.dark}>
     <div style={{ width: '250px' }}>
-      <Datepicker {...args} mask={DatepickerMask.YYYYMMDD} variant="outlined" name="someDatepicker" value={value} locale={Locale.Ru} onChange={onDatepickerValueChange} onRemove={onDatepickerRemove} isErrorMessageDisplay={false} />
+      <Datepicker {...args} mask={DatepickerMask.YYYYMMDD} variant="outlined" name="someDatepicker" value={value} onChange={onDatepickerValueChange} onRemove={onDatepickerRemove} isErrorMessageDisplay={false} />
     </div>
   </ReactThemeContext.Provider>
 }
@@ -66,12 +67,12 @@ const ThemeDarkTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker)
 
   const onDatepickerValueChange = (name: string, value: string, isValid: boolean) => {
     setValue(value);
-    console.log(name, value, isValid);
+    // console.log(name, value, isValid);
   }
 
   const onDatepickerRemove = () => {
     setValue(null);
-    console.log(null);
+    // console.log(null);
   }
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);

@@ -1,114 +1,120 @@
-import {
-  add,
-  format,
-  getDate,
-  getDay,
-  getDaysInMonth,
-  getMonth,
-  getUnixTime,
-  getYear,
-  isValid,
-  sub,
-  toDate
-} from "date-fns";
+import dayjs, { Dayjs } from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import utc from 'dayjs/plugin/utc';
 
+import parseZone from '../helpers/dayjs-parse-zone';
 import IDateParser from "./idate-parser";
 import DatepickerMask from "../enums/datepicker-mask";
+import checkFormatDate from "./check-format-date";
 
-const INVALID_DATE_TITLE: string = 'Invalid Date';
+dayjs.extend(parseZone);
+dayjs.extend(utc);
+dayjs.extend(customParseFormat);
 
-class DateParser implements IDateParser{
-  private dateParsed: Date;
+class DateParser implements IDateParser {
+  private dateParsed: Dayjs;
   private dateParamsSeparate: Array<number>;
   private isValid: boolean;
-  private mask: DatepickerMask;
-  private firstDayOnMonth: Date;
+  private mask: string;
+  private firstDayOnMonth: Dayjs;
   constructor(date?: string, mask?: DatepickerMask) {
-    this.mask = mask ?? DatepickerMask.DDMMYYYY;
+    this.mask = mask === DatepickerMask.YYYYMMDD ? 'YYYY-MM-DD' : 'DD.MM.YYYY';
     this.changeParsedDate(date);
   }
   changeParsedDate(date: string) {
     if (!date) {
-      this.dateParsed = toDate(new Date());
+      this.dateParsed = dayjs();
       this.isValid = true;
     } else {
-      let dateParsed: string = date;
       let datePartition: Array<string> = date?.split('-');
-      if (this.mask === DatepickerMask.DDMMYYYY) {
+      let day: number = parseInt(datePartition[2], 10);
+      let month: number = parseInt(datePartition[1], 10);
+      let year: number = parseInt(datePartition[0], 10);
+      if (this.mask === 'DD.MM.YYYY') {
         datePartition = date?.split('.');
-        dateParsed = datePartition?.reverse()?.join('-');
+        day = parseInt(datePartition[0], 10);
+        month = parseInt(datePartition[1], 10);
+        year = parseInt(datePartition[2], 10);
       }
-      this.dateParsed = toDate(new Date(dateParsed));
-      const isDateValid: boolean = isValid(new Date(getYear(this.dateParsed), getMonth(this.dateParsed), getDaysInMonth(this.dateParsed)));
-      console.log(getYear(this.dateParsed), getMonth(this.dateParsed), getDaysInMonth(this.dateParsed), isDateValid);
-      this.isValid = dateParsed?.length === 10 && parseInt(datePartition?.[1], 10) <= 12 && this.dateParsed?.toString() !== INVALID_DATE_TITLE && isDateValid;
+      this.dateParsed = dayjs(`${year < 1000 ? `0${year}` : year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`, 'YYYY-MM-DD');
+      this.isValid = checkFormatDate(day, month, year);
     }
-    this.firstDayOnMonth = new Date(getYear(this.dateParsed), getMonth(this.dateParsed), 1);
+    const month: number = this.dateParsed.get('month') + 1;
+    this.firstDayOnMonth = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-01`, 'YYYY-MM-DD');
   }
   getParsedDate() {
-    return this.dateParsed.toString();
+    return this.dateParsed.format(this.mask);
   }
   getNumberCurrentDateOfMonth() {
-    return getDate(this.dateParsed);
+    return this.dateParsed.get('date');
   }
   getCountDaysInMonth() {
-    return getDaysInMonth(this.dateParsed);
+    return this.dateParsed.daysInMonth();
   }
   getNumberDayInWeek() {
-    return getDay(this.firstDayOnMonth);
+    return this.firstDayOnMonth.day();
   }
   changeDay(day: number) {
-    this.dateParsed = new Date(getYear(this.dateParsed), getMonth(this.dateParsed) - 1, day ?? 7);
+    const month: number = this.dateParsed.get('month') + 1;
+    this.dateParsed = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day ?? 7}`, 'YYYY-MM-DD');
   }
   changeMonth(month: number) {
     if (month === null) {
       this.dateParsed = null;
     } else {
-      this.dateParsed = new Date(getYear(this.dateParsed), month, getDate(this.dateParsed));
+      this.dateParsed = this.dateParsed.month(month + 1);
     }
   }
   changeYear(year: number) {
     if (year === null) {
       this.dateParsed = null;
     } else {
-      this.dateParsed = new Date(year, getMonth(this.dateParsed), getDate(this.dateParsed));
+      this.dateParsed = this.dateParsed.year(year);
     }
   }
   getDate(){
     return this.dateParsed;
   }
   formatToString(): string {
-    return isValid(this.dateParsed) ? format(this.dateParsed, this.mask?.toString()) : null;
+    return this.dateParsed.isValid() ? this.dateParsed.format(this.mask) : null;
   }
   getNumberDay() {
-    return getDate(this.dateParsed);
+    return this.dateParsed.date();
   }
   getNumberMonth() {
-    return getMonth(this.dateParsed);
+    return this.dateParsed.month();
   }
   getNumberYear() {
-    return  getYear(this.dateParsed);
+    return this.dateParsed.year();
   }
   checkIsValidateDate() {
-    return isValid(this.dateParsed);
+    return this.dateParsed.isValid();
   }
   getSplittedParamsByDate() {
     return this.dateParamsSeparate;
   }
   getTimestamp() {
-    return getUnixTime(this.dateParsed);
+    return this.dateParsed.unix();
   }
   changeToTheNextMonth() {
-    this.dateParsed = add(this.dateParsed, { months: 1 })
+    this.dateParsed = this.dateParsed.add(1, 'month');
+    const month: number = this.dateParsed.get('month') + 1;
+    this.firstDayOnMonth = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-01`, 'YYYY-MM-DD');
   }
   changeToThePreviousMonth() {
-    this.dateParsed = sub(this.dateParsed, { months: 1 })
+    this.dateParsed = this.dateParsed.subtract(1, 'month');
+    const month: number = this.dateParsed.get('month') + 1;
+    this.firstDayOnMonth = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-01`, 'YYYY-MM-DD');
   }
   changeToTheNextYear() {
-    this.dateParsed = add(this.dateParsed, { months: 12 })
+    this.dateParsed = this.dateParsed.add(1, 'year');
+    const month: number = this.dateParsed.get('month') + 1;
+    this.firstDayOnMonth = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-01`, 'YYYY-MM-DD');
   }
   changeToThePreviousYear() {
-    this.dateParsed = sub(this.dateParsed, { months: 12 })
+    this.dateParsed = this.dateParsed.subtract(1, 'year');
+    const month: number = this.dateParsed.get('month') + 1;
+    this.firstDayOnMonth = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-01`, 'YYYY-MM-DD');
   }
 	checkIsNotExistErrorDate() {
     return this.isValid;
