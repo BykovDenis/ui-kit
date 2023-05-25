@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/IconButton",
-  "version": "0.10.9-alpha.11",
+  "version": "0.10.9-alpha.12",
   "description": "The icon button component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
