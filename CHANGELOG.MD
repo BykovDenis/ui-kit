@@ -87,3 +87,7 @@
     <li> Datepickler library date-fns to dayjs changed </li>
     <li> Buttons warning types disabled </li>
 </ol>
+<h3>Features</h3>
+<ol>
+    <li>The List item button can be disabled</li>
+</ol>
