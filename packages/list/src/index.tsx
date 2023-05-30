@@ -42,6 +42,7 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
 
     return props?.type === ListType.Buttons ? (
       <ListDivStyled
+        id={props.id}
         fontFamily={theme?.fontFamily}
         className={props.className}
         backgroundColor={backgroundColor}
@@ -56,7 +57,7 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
         {props.children}
       </ListDivStyled>
     ) : (
-      <ListStyled fontFamily={theme?.fontFamily} className={props.className}>
+      <ListStyled id={props.id} fontFamily={theme?.fontFamily} className={props.className}>
         {props.children}
       </ListStyled>
     );

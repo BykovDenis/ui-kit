@@ -35,6 +35,7 @@ const ThemeDarkTemplate: ComponentStory<typeof List> = (args: IList) => {
           {...args}
           key={index}
           onClick={action('clicked')}
+          isDisable={index === 2}
         >
           {element}
         </ListItem>))}

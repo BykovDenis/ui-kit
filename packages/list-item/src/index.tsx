@@ -19,18 +19,25 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
   const listItemType: string = ListItemType.Text;
 
   const componentThemed: any = (theme: ITheme) => {
-    const backgroundColor: string = theme.mainBackgroundColor;
+    const backgroundColor: string = props.isDisable ? theme.inactiveBackgroundColor : theme.mainBackgroundColor;
 
-    const hoverBackgroundColor: string = theme?.palette?.primary?.lighter;
-    const activeBackgroundColor: string = theme?.palette?.primary?.light;
+    const hoverBackgroundColor: string = props.isDisable
+      ? theme.inactiveBackgroundColor
+      : theme?.palette?.primary?.lighter;
+    const activeBackgroundColor: string = props.isDisable
+      ? theme.inactiveBackgroundColor
+      : theme?.palette?.primary?.light;
 
     const underLineColor: string = theme?.mainGrayColor;
-    const hoverColor: string = props?.colorInverted || theme.palette.baseFontColorInverted;
+    const hoverColor: string = props.isDisable
+      ? theme.inactiveColor
+      : props?.colorInverted || theme.palette.baseFontColorInverted;
 
-    const color: string =
-      props?.colorTheme === 'normal' || !props.colorTheme
-        ? theme?.palette?.baseFontColor
-        : theme?.palette?.secondary?.main;
+    const color: string = props.isDisable
+      ? theme.inactiveColor
+      : props?.colorTheme === 'normal' || !props.colorTheme
+      ? theme?.palette?.baseFontColor
+      : theme?.palette?.secondary?.main;
 
     return props.type === ListItemType.Button ? (
       <ListItemContainer underLineColor={underLineColor} hoverColor={hoverColor}>
@@ -49,6 +56,7 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
           justifyContent={props?.justifyContent}
           padding={props.padding}
           fontSize={props?.fontSize}
+          disabled={props.isDisable}
         >
           {props.children}
         </ListItemButtonStyled>
