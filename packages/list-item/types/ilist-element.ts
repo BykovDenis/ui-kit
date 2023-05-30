@@ -21,6 +21,7 @@ interface IListElement {
   padding?: string;
   isDisable?: boolean;
   id?: string;
+  isSelected?: boolean;
 }
 
 export default IListElement;

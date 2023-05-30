@@ -19,7 +19,11 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
   const listItemType: string = ListItemType.Text;
 
   const componentThemed: any = (theme: ITheme) => {
-    const backgroundColor: string = props.isDisable ? theme.inactiveBackgroundColor : theme.mainBackgroundColor;
+    const backgroundColor: string = props.isSelected
+      ? theme.palette.primary.lighter
+      : props.isDisable
+      ? theme.inactiveBackgroundColor
+      : theme.mainBackgroundColor;
 
     const hoverBackgroundColor: string = props.isDisable
       ? theme.inactiveBackgroundColor
@@ -29,11 +33,15 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
       : theme?.palette?.primary?.light;
 
     const underLineColor: string = theme?.mainGrayColor;
-    const hoverColor: string = props.isDisable
+    const hoverColor: string = props.isSelected
+      ? theme.palette.baseFontColor
+      : props.isDisable
       ? theme.inactiveColor
       : props?.colorInverted || theme.palette.baseFontColorInverted;
 
-    const color: string = props.isDisable
+    const color: string = props.isSelected
+      ? theme.palette.baseFontColor
+      : props.isDisable
       ? theme.inactiveColor
       : props?.colorTheme === 'normal' || !props.colorTheme
       ? theme?.palette?.baseFontColor
@@ -57,6 +65,7 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
           padding={props.padding}
           fontSize={props?.fontSize}
           disabled={props.isDisable}
+          isSelected={props.isSelected}
         >
           {props.children}
         </ListItemButtonStyled>
@@ -73,6 +82,7 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
         justifyContent={props?.justifyContent}
         padding={props.padding}
         fontSize={props?.fontSize}
+        isSelected={props.isSelected}
       >
         {props.children}
       </ListItemStyled>
