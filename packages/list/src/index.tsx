@@ -33,11 +33,15 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
         : theme?.palette?.secondary?.main);
 
     const onMouseDown = (evt: React.MouseEvent<HTMLElement, MouseEvent>) => {
-      props.onMouseDown(evt, listRef);
+      if (props?.onMouseDown) {
+        props.onMouseDown(evt, listRef);
+      }
     };
 
     const onKeyUp = (evt: React.KeyboardEvent<HTMLElement>) => {
-      props.onKeyUp(evt, listRef);
+      if (props?.onKeyUp) {
+        props.onKeyUp(evt, listRef);
+      }
     };
 
     return props?.type === ListType.Buttons ? (

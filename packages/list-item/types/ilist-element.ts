@@ -13,13 +13,14 @@ interface IListElement {
   key?: string | number;
   onClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;
   textAlign?: string;
-  type?: string;
+  type?: 'text' | 'button';
   underLineColor?: string;
   width?: number;
   justifyContent?: string;
   colorInverted?: string;
   padding?: string;
   isDisable?: boolean;
+  id?: string;
 }
 
 export default IListElement;
