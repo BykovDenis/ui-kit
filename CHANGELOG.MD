@@ -90,4 +90,5 @@
 <h3>Features</h3>
 <ol>
     <li>The List item button can be disabled</li>
+    <li>The List item selected can be marked</li>
 </ol>
