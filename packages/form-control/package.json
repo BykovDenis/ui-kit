@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/FormControl",
-  "version": "0.10.9-alpha.14",
+  "version": "0.10.9-alpha.15",
   "description": "The FormControl component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
