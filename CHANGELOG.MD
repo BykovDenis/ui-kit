@@ -86,6 +86,7 @@
     <li> The logic initial state element selected fixed </li>
     <li> Datepickler library date-fns to dayjs changed </li>
     <li> Buttons warning types disabled </li>
+    <li> margin and padding arttributes intom the List </li>
 </ol>
 <h3>Features</h3>
 <ol>

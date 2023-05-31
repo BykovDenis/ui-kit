@@ -1,15 +1,13 @@
 import React from 'react';
 
 import IListElement from '../../list-item/types/ilist-element';
+import TBaseStyles from '../../types/tbase-styles';
 
-interface IList {
+interface IList extends TBaseStyles {
   id?: string;
   backgroundColor?: string;
-  children?: any;
-  className?: string;
   colorTheme?: string;
   elements?: Array<IListElement>;
-  fontFamily?: string;
   hoverBackgroundColor?: string;
   hoverColor?: string;
   margin?: string;
@@ -17,8 +15,6 @@ interface IList {
   type?: string;
   underlineColor?: string;
   onMouseDown?: (evt?: React.MouseEvent<HTMLElement, MouseEvent>, listRef?: React.Ref<any>) => void;
-  fontSize?: number | string;
-  color?: string;
 }
 
 export default IList;

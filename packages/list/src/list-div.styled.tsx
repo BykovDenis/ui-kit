@@ -7,10 +7,13 @@ const ListDiv =
   styled('div') <
   Ilist >
   `
-  display: block;
-  list-style: none;
-  font-family: ${(props: Ilist) => props.fontFamily};
-  margin: ${(props: Ilist) => (isNotEmptyString(props.margin) ? props.margin : 0)}; 
+    ${(props: Ilist) => `  
+      display: block;
+      list-style: none;
+      font-family: ${props.fontFamily};
+      ${props.margin ? `margin: ${props.margin};` : ''}
+      ${props.padding ? `margin: ${props.padding};` : ''} 
+  `}
 `;
 
 export default ListDiv;

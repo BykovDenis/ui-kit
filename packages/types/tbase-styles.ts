@@ -12,6 +12,7 @@ type TBaseStyles = {
   whiteSpace?: string,
   width?: number | string,
   padding?: string,
+  margin?: string,
   height?: number | string,
   wordBreak?: string,
   display?: string,
