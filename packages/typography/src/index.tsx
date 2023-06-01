@@ -22,6 +22,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
             color={props?.color ?? color}
             fontSize={props?.fontSize ?? theme.h1FontSize}
             backgroundColor={props?.backgroundColor}
+            className={props?.className}
           >
             {props.children}
           </H1Styled>
@@ -33,6 +34,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
             color={props?.color ?? color}
             fontSize={props?.fontSize ?? theme.h2FontSize}
             backgroundColor={props?.backgroundColor}
+            className={props?.className}
           >
             {props.children}
           </H2Styled>
@@ -44,6 +46,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
             color={props?.color ?? color}
             fontSize={props?.fontSize ?? theme.h3FontSize}
             backgroundColor={props?.backgroundColor}
+            className={props?.className}
           >
             {props.children}
           </H3Styled>
@@ -53,8 +56,9 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
         return (
           <H3Styled
             color={props?.color ?? color}
-            fontSize={props?.fontSize ?? theme.h3FontSize}
+            fontSize={props?.fontSize ?? theme.h4FontSize}
             backgroundColor={props?.backgroundColor}
+            className={props?.className}
           >
             {props.children}
           </H3Styled>
@@ -64,8 +68,9 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
         return (
           <H3Styled
             color={props?.color ?? color}
-            fontSize={props?.fontSize ?? theme.h3FontSize}
+            fontSize={props?.fontSize ?? theme.h5FontSize}
             backgroundColor={props?.backgroundColor}
+            className={props?.className}
           >
             {props.children}
           </H3Styled>
@@ -75,8 +80,9 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
         return (
           <H3Styled
             color={props?.color ?? color}
-            fontSize={props?.fontSize ?? theme.h3FontSize}
+            fontSize={props?.fontSize ?? theme.h6FontSize}
             backgroundColor={props?.backgroundColor}
+            className={props?.className}
           >
             {props.children}
           </H3Styled>
@@ -88,6 +94,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
             color={props?.color ?? color}
             fontSize={props?.fontSize ?? theme.h1FontSize}
             backgroundColor={props?.backgroundColor}
+            className={props?.className}
           >
             {props.children}
           </H1Styled>
