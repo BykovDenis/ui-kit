@@ -92,4 +92,5 @@
 <ol>
     <li>The List item button can be disabled</li>
     <li>The List item selected can be marked</li>
+    <li>The className added into the Typography</li>
 </ol>

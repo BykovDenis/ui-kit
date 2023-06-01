@@ -11,6 +11,9 @@ interface ITheme {
   h1FontSize: number;
   h2FontSize: number;
   h3FontSize: number;
+  h4FontSize: number;
+  h5FontSize: number;
+  h6FontSize: number;
   mainOutlinedColor: string;
   mainOutlinedHoverColor: string;
   inactiveBackgroundColor: string;

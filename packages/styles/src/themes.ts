@@ -35,6 +35,9 @@ export const themes: IThemes = {
     h1FontSize: 28,
     h2FontSize: 24,
     h3FontSize: 20,
+    h4FontSize: 18,
+    h5FontSize: 16,
+    h6FontSize: 14,
   },
   dark: {
     palette: {
@@ -70,5 +73,8 @@ export const themes: IThemes = {
     h1FontSize: 28,
     h2FontSize: 24,
     h3FontSize: 20,
+    h4FontSize: 18,
+    h5FontSize: 16,
+    h6FontSize: 14,
   },
 };
