@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 
 import TextField from './src';
 import ITextField from './types/itext-field';
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
+
+
 
 export default {
   title: 'Components/TextField',
@@ -32,7 +32,7 @@ const TemplateLightTheme: ComponentStory<typeof TextField> = (args: ITextField) 
 
   const [ value, setValue ] = useState('');
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
@@ -44,7 +44,7 @@ const TemplateLightTheme: ComponentStory<typeof TextField> = (args: ITextField) 
     setValue(value);
   }
 
-  return <ReactThemeContext.Provider value={themes.loanPricing}>
+  return <>
     <div style={{ width: '190px' }}>
       <TextField
         {...args}
@@ -55,14 +55,14 @@ const TemplateLightTheme: ComponentStory<typeof TextField> = (args: ITextField) 
         onRemove={onInputDelete}
       />
     </div>
-  </ReactThemeContext.Provider>
+  </>
 }
 
 const Template: ComponentStory<typeof TextField> = (args: ITextField) => {
 
   const [ value, setValue ] = useState('');
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
@@ -74,7 +74,7 @@ const Template: ComponentStory<typeof TextField> = (args: ITextField) => {
     setValue(value);
   }
 
-  return <ReactThemeContext.Provider value={themes.dark}>
+  return <>
     <div style={{ width: '190px' }}>
       <TextField
         {...args}
@@ -85,7 +85,7 @@ const Template: ComponentStory<typeof TextField> = (args: ITextField) => {
         onRemove={onInputDelete}
       />
     </div>
-  </ReactThemeContext.Provider>
+  </>
 }
 
 export const DarkThemeTextField = Template.bind({});

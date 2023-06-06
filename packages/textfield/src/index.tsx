@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
-import rgbToRgba from '../../helpers/rgb-to-rgba';
 import Input from '../../input/src';
 import Label from '../../label/src';
-import ITheme from '../../styles/types/itheme';
 import ITextField from '../types/itext-field';
 import LabelContainer from './label-container.styled';
 import TextFieldContainer from './text-field-container.styled';
+import getCssVariables from '../../styles/src/get-css-variables';
 
 const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
 
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+  const cssVariables: any = getCssVariables();
 
   useEffect(() => {
     if (props?.value > '') {
@@ -50,11 +46,10 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
     }
   };
 
-  const componentThemed: any = (theme: ITheme) => {
-    const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
+    const fontSize: number = props?.fontSize ?? cssVariables.baseFontSize;
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
-    const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : theme?.mainBackgroundColor;
-    const color: string = props?.disabled ? theme.inactiveColor : props.color;
+    const backgroundColor: string = props.disabled ? cssVariables.inactiveBackgroundColor : cssVariables.mainBackgroundColor;
+    const color: string = props?.disabled ? cssVariables.inactiveFontColor : props.color;
 
     return (
       <TextFieldContainer width={props?.width} height={props?.height}>
@@ -110,14 +105,6 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
         />
       </TextFieldContainer>
     );
-  };
-
-  if (!Consumer) {
-    console.error('The Textfield component. You need an initialization provider');
-    return null;
-  }
-
-  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(TextField);

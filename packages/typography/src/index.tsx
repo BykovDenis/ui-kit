@@ -1,26 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ITypography from '../types/itypography';
 import H1Styled from './h1.styled';
 import H2Styled from './h2.styled';
 import H3Styled from './h3.styled';
-import ITheme from '../../styles/types/itheme';
+import getCssVariables from "../../styles/src/get-css-variables";
 
 const Typography: React.FunctionComponent<ITypography> = (props: ITypography) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
-
-  const componentThemed: any = (theme: ITheme) => {
-    const color: string = !props?.error ? theme?.palette?.baseFontColor : theme?.palette?.secondary?.main;
+  const cssVariables: any = getCssVariables();
+    const color: string = !props?.error ? cssVariables.baseFontColor : cssVariables.secondaryMainColor;
 
     switch (props.variant) {
       case 'H1': {
         return (
           <H1Styled
             color={props?.color ?? color}
-            fontSize={props?.fontSize ?? theme.h1FontSize}
+            fontSize={props?.fontSize ?? cssVariables.h1FontSize}
             backgroundColor={props?.backgroundColor}
           >
             {props.children}
@@ -31,7 +25,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
         return (
           <H2Styled
             color={props?.color ?? color}
-            fontSize={props?.fontSize ?? theme.h2FontSize}
+            fontSize={props?.fontSize ?? cssVariables.h2FontSize}
             backgroundColor={props?.backgroundColor}
           >
             {props.children}
@@ -42,7 +36,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
         return (
           <H3Styled
             color={props?.color ?? color}
-            fontSize={props?.fontSize ?? theme.h3FontSize}
+            fontSize={props?.fontSize ?? cssVariables.h3FontSize}
             backgroundColor={props?.backgroundColor}
           >
             {props.children}
@@ -53,7 +47,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
         return (
           <H3Styled
             color={props?.color ?? color}
-            fontSize={props?.fontSize ?? theme.h3FontSize}
+            fontSize={props?.fontSize ?? cssVariables.h4FontSize}
             backgroundColor={props?.backgroundColor}
           >
             {props.children}
@@ -64,7 +58,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
         return (
           <H3Styled
             color={props?.color ?? color}
-            fontSize={props?.fontSize ?? theme.h3FontSize}
+            fontSize={props?.fontSize ?? cssVariables.h5FontSize}
             backgroundColor={props?.backgroundColor}
           >
             {props.children}
@@ -75,7 +69,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
         return (
           <H3Styled
             color={props?.color ?? color}
-            fontSize={props?.fontSize ?? theme.h3FontSize}
+            fontSize={props?.fontSize ?? cssVariables.h6FontSize}
             backgroundColor={props?.backgroundColor}
           >
             {props.children}
@@ -86,7 +80,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
         return (
           <H1Styled
             color={props?.color ?? color}
-            fontSize={props?.fontSize ?? theme.h1FontSize}
+            fontSize={props?.fontSize ?? cssVariables.h1FontSize}
             backgroundColor={props?.backgroundColor}
           >
             {props.children}
@@ -94,14 +88,6 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
         );
       }
     }
-  };
-
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
-
-  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(Typography);

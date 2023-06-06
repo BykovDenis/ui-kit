@@ -3,8 +3,8 @@ import React from 'react';
 
 import ChevronDownIcon from '../icons-components/24x24/chevron-down-icon';
 import LabelInteractive from '../label-interactive/src';
-import getNewReactThemeContext from '../styles/src';
-import { themes } from '../styles/src/themes';
+
+
 import TableCell from '../table-cell/src';
 import TableHead from '../table-head/src';
 import TableRow from '../table-row/src';
@@ -58,9 +58,9 @@ const items: Array<any> = [
 
 const TemplateDarkTableSortable: ComponentStory<typeof Table> = (args: TTable) => {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
   
-  return <ReactThemeContext.Provider value={themes.dark}>
+  return <>
     <Table {...args} >
       <TableHead>
         <TableRow isHeader={true}>
@@ -81,15 +81,15 @@ const TemplateDarkTableSortable: ComponentStory<typeof Table> = (args: TTable) =
         ))}
       </tbody>
     </Table>
-  </ReactThemeContext.Provider>
+  </>
 }
 
 
 const TemplateDarkTable: ComponentStory<typeof Table> = (args: TTable) => {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
-  return <ReactThemeContext.Provider value={themes.dark}>
+
+  return <>
     <Table {...args} >
       <TableHead>
         <TableRow isHeader={true} minHeight={40}>
@@ -108,14 +108,14 @@ const TemplateDarkTable: ComponentStory<typeof Table> = (args: TTable) => {
         ))}
       </tbody>
     </Table>
-  </ReactThemeContext.Provider>
+  </>
 }
 
 const TemplateLightTable: ComponentStory<typeof Table> = (args: TTable) => {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  
 
-  return <ReactThemeContext.Provider value={themes.loanPricing}>
+  return <>
     <Table {...args} >
       <TableHead>
         <TableRow isHeader={true}>
@@ -134,7 +134,7 @@ const TemplateLightTable: ComponentStory<typeof Table> = (args: TTable) => {
         ))}
       </tbody>
     </Table>
-  </ReactThemeContext.Provider>
+  </>
 }
 
 export const DarkTableSortable = TemplateDarkTableSortable.bind({});

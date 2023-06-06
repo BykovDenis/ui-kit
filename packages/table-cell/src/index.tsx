@@ -1,39 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React  from 'react';
 
 import ChevronDownIcon from '../../icons-components/24x24/chevron-down-icon';
-import ITheme from '../../styles/types/itheme';
 import TTableCell from '../types/ttable-cell';
 import TableCellStyled from './table-cell.styled';
+import getCssVariables from '../../styles/src/get-css-variables';
 
 const TableCell: React.FunctionComponent<TTableCell> = (props: TTableCell) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
-
-  const componentThemed: any = (theme: ITheme) => {
-    const borderColor: string = props.isHeader ? theme?.mainBackgroundColor : theme?.palette?.baseFontColor;
-    return !props.isHeader ? (
-      <TableCellStyled {...props} borderColor={borderColor}>
+  const cssVariables: any = getCssVariables();
+  const borderColor: string = props.isHeader ? cssVariables.backgroundColor : cssVariables.baseFontColor;
+  return !props.isHeader ? (
+    <TableCellStyled {...props} borderColor={borderColor}>
+      {props.children}
+    </TableCellStyled>
+  ) : (
+    <TableCellStyled {...props} borderColor={borderColor}>
+      <div>
         {props.children}
-      </TableCellStyled>
-    ) : (
-      <TableCellStyled {...props} borderColor={borderColor}>
-        <div>
-          {props.children}
-          <ChevronDownIcon color={theme.palette.baseFontColor} />
-        </div>
-      </TableCellStyled>
-    );
-  };
-
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
-
-  return <Consumer>{componentThemed}</Consumer>;
+        <ChevronDownIcon color={cssVariables.baseFontColor} />
+      </div>
+    </TableCellStyled>
+  );
 };
 
 export default React.memo(TableCell);

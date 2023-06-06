@@ -1,56 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import '../../styles/src/index.scss';
 
-import ITheme from '../../styles/types/itheme';
+import getMeasureValue from '../../helpers/get-measure-value';
+import rgbToRgba from '../../helpers/rgb-to-rgba';
 import TLabel from '../types/tlabel';
-import LabelStyled from './label.styled';
 
-const Label: React.FunctionComponent<TLabel> = (props: TLabel) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+const Label =
+  styled.label <
+  TLabel >
+  `
+      ${(props: TLabel) => `  
+      position: relative;
+      display: ${props?.display ? props.display : 'inline-flex'};
+      vertical-align: center;
+      flex-direction: row;
+      align-items: center;
+      justify-content: ${props?.justifyContent ? props.justifyContent : 'center'};
+      font-family: ${props.fontFamily || 'var(--base-font-family)'};
+      cursor: ${!props.isReadOnly && !props.disabled ? 'pointer' : 'default'};
+      color: ${props?.color || 'var(--base-font-color)'};
+      font-size: ${props.fontSize ?? 'var(--base-font-size)'}px;
+      line-height: ${props.lineHeight ?? 0.7}; 
+      white-space: ${props?.whiteSpace || 'nowrap'};
+      font-weight: ${props.fontWeight || 'var(--base-font-weigh)'}; 
+      width: ${getMeasureValue(props?.width, '100%')};
+      height: ${getMeasureValue(props?.height)};
+      background-color: ${props.backgroundColor ||'var(--main-background-color)'};
+      word-break: ${props.wordBreak ?? 'initial'};  
+      padding: ${props.padding || 'initial'};
+      &:focus {
+        outline: 1px solid ${rgbToRgba(props?.focusColor, 0.3)};
+        box-shadow: 1px 1px 5px 3px ${rgbToRgba(props?.focusColor, 0.3)};
+      }
+      `}
+      `;
 
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
-
-  const componentThemed: any = (theme: ITheme) => {
-    const color: string = props?.error
-      ? theme?.palette?.secondary?.main
-      : props?.isFocus
-      ? theme?.palette?.primary?.main
-      : props.disabled
-      ? theme?.palette?.baseFontColorOpacity05
-      : theme?.palette?.baseFontColor;
-
-    return (
-      <LabelStyled
-        {...props}
-        className={props?.className}
-        fontFamily={theme?.fontFamily}
-        focusColor={color}
-        color={props?.color || color}
-        fontSize={props?.fontSize ?? theme?.baseFontSize}
-        htmlFor={props?.htmlFor}
-        fontWeight={props?.fontWeight}
-        width={props?.width}
-        backgroundColor={props?.backgroundColor}
-        disabled={props.disabled}
-        whiteSpace={props?.whiteSpace}
-        justifyContent={props?.justifyContent}
-        padding={props?.padding}
-        height={props?.height}
-        wordBreak={props?.wordBreak}
-        lineHeight={props.lineHeight}
-      >
-        {props.children}
-      </LabelStyled>
-    );
-  };
-
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
-
-  return <Consumer>{componentThemed}</Consumer>;
-};
-
-export default React.memo(Label);
+export default Label;

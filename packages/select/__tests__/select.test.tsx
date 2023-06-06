@@ -2,13 +2,11 @@ import React from 'react';
 import getNewReactThemeContext from '../../styles/src';
 import renderer from 'react-test-renderer';
 import ISelect from '../types/iselect';
-import Variants from '../../enums/variants';
+import Variant from '../../enums/variant';
 import Select from '../src';
 import { themes } from '../../styles/src/themes';
 
 it('Select renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
-
   const props: ISelect = {
     activeElement: 'List item 1',
     type: 'list-buttons',
@@ -28,9 +26,9 @@ it('Select renders correctly', () => {
   };
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <>
       <Select {...props} />
-    </ReactThemeContext.Provider>
+    </>
   );
   expect(wrapper.toJSON()).toMatchSnapshot();
 });

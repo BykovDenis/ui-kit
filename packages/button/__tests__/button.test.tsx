@@ -6,8 +6,6 @@ import Button from '../src';
 import { themes } from '../../styles/src/themes';
 
 it('Button renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
-
   const props: any = {
     disabled: false,
     children: 'Click me',
@@ -30,9 +28,9 @@ it('Button renders correctly', () => {
   };
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <>
       <Button {...props}>Hello world!</Button>
-    </ReactThemeContext.Provider>
+    </>
   );
 
   expect(wrapper.toJSON()).toMatchSnapshot();

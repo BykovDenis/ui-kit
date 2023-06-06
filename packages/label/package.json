@@ -1,6 +1,6 @@
 {
-  "name": "@sber-risks-ui/Label",
-  "version": "0.10.8-alpha.8",
+  "name": "@dbykov-ui-kit/Label",
+  "version": "0.0.1",
   "description": "Risks react UI",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -18,7 +18,7 @@
     "clean-node-modules": "rm -rf node_modules"
   },
   "publishConfig": {
-    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
+    "registry": "https://github.com/BykovDenis/ui-kit"
   },
   "gitHead": "ee2e8a49cf6dc0031e551a8d06ea11af3ff769a2"
 }

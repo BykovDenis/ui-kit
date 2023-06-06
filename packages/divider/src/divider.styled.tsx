@@ -9,7 +9,7 @@ const Divider =
   box-sizing: border-box;  
   width: ${(props: TDivider) => getMeasureValue(props?.width, '100%')};
   height: 1px;
-  background-color: ${(props: TDivider) => props.color};
+  background-color: ${(props: TDivider) => props?.color || 'var(--main-outlined-color)'};
   border: none;
   margin: 5px 0;
   margin-bottom: 0;

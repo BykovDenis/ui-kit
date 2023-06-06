@@ -1,5 +1,5 @@
 {
-  "name": "@sber-risks-ui/progress-bar",
+  "name": "@dbykov-ui-kit/progress-bar",
   "version": "0.10.7-alpha.1",
   "description": "Progressbar react UI",
   "keywords": "React, progressbar, progress-bar",
@@ -14,7 +14,7 @@
     "clean-node-modules": "rm -rf node_modules"
   },
   "publishConfig": {
-    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
+    "registry": "https://github.com/BykovDenis/ui-kit"
   },
   "gitHead": "1bfaec71040f88ff1d863d8acc28109dfd8b6a41"
 }

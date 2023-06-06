@@ -2,20 +2,14 @@
 
 import FormControlStyled from './form-control.styled';
 import IFormControl from '../types/iform-control';
-import ITheme from '../../styles/types/itheme';
+import getCssVariables from '../../styles/src/get-css-variables';
 
 const FormControl: React.FunctionComponent<IFormControl> = (props: IFormControl) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
-
+  const cssVariables: any = getCssVariables();
   const flexDirection: string = props.flexDirection || 'row';
   const alignItems: string = props.alignItems || 'center';
   const justifyContent: string = props.justifyContent || 'flex-start';
 
-  const componentThemed: any = (theme: ITheme) => {
     return (
       <FormControlStyled
         {...props}
@@ -43,19 +37,11 @@ const FormControl: React.FunctionComponent<IFormControl> = (props: IFormControl)
         top={props.top}
         bottom={props.bottom}
         minHeight={props.minHeight}
-        fontSize={props?.fontSize ?? theme.baseFontSize}
+        fontSize={props?.fontSize ?? cssVariables.baseFontSize}
       >
         {props.children}
       </FormControlStyled>
     );
-  };
-
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
-
-  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(FormControl);

@@ -4,8 +4,8 @@ import React, {Fragment } from 'react';
 
 import Radio from  './src/index';
 import Iradio from "./types/iradio";
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
+
+
 
 export default {
   title: 'Components/Radio',
@@ -28,12 +28,12 @@ const ThemeDarkTemplate: ComponentStory<typeof Radio> = (args: Iradio) => {
     action('checked');
   }
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
-  return (<ReactThemeContext.Provider value={themes.dark}><Fragment>
+
+  return (<><Fragment>
     <Radio {...args} id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} tabIndex="0" />
     <Radio {...args} id="radio2" name="radio1" onChange={onCheckboxCheck}  tabIndex="1" />
-  </Fragment></ReactThemeContext.Provider>)
+  </Fragment></>)
 }
 
 const ThemeLightTemplate: ComponentStory<typeof Radio> = (args: Iradio) => {
@@ -42,12 +42,12 @@ const ThemeLightTemplate: ComponentStory<typeof Radio> = (args: Iradio) => {
     action('checked');
   }
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  
 
-  return (<ReactThemeContext.Provider value={themes.loanPricing}><Fragment>
+  return (<><Fragment>
     <Radio {...args} id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} tabIndex="0" />
     <Radio {...args} id="radio2" name="radio1" onChange={onCheckboxCheck}  tabIndex="1" />
-  </Fragment></ReactThemeContext.Provider>)
+  </Fragment></>)
 }
 
 export const DarkThemeRadio = ThemeDarkTemplate.bind({});

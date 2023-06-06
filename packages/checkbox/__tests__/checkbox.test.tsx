@@ -21,9 +21,9 @@ it('Checkbox renders correctly', () => {
   const ReactThemeContext: any = getNewReactThemeContext(themes.loanPricing);
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <>
       <Checkbox {...props} tabIndex="1" />
-    </ReactThemeContext.Provider>
+    </>
   );
   expect(wrapper.toJSON()).toMatchSnapshot();
 });

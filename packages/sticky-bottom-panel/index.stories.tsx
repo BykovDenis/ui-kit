@@ -1,17 +1,17 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, { useState } from "react";
-import Table from '@sber-risks-ui/Table';
-import TableHead from '@sber-risks-ui/TableHead';
-import TableRow from '@sber-risks-ui/TableRow';
-import TableCell from '@sber-risks-ui/TableCell';
-import TableBody from '@sber-risks-ui/TableBody';
-import Button from '@sber-risks-ui/Button';
-import FormControl from '@sber-risks-ui/FormControl';
+import Table from '@dbykov-ui-kit/Table';
+import TableHead from '@dbykov-ui-kit/TableHead';
+import TableRow from '@dbykov-ui-kit/TableRow';
+import TableCell from '@dbykov-ui-kit/TableCell';
+import TableBody from '@dbykov-ui-kit/TableBody';
+import Button from '@dbykov-ui-kit/Button';
+import FormControl from '@dbykov-ui-kit/FormControl';
 
 import StickyBottomPanel from  './src/index';
 import TStickyBottomPanel from './types/tsticky-bottom-panel';
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
+
+
 
 export default {
   title: 'Components/StickyBottomPanel',
@@ -37,8 +37,8 @@ const ThemeDarkTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStic
     setIsOpen(!isOpen)
   }
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
-  return <ReactThemeContext.Provider value={themes.dark}>
+
+  return <>
     <Table>
       <TableHead>
         <TableRow isHeader={true}>
@@ -105,7 +105,7 @@ const ThemeDarkTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStic
     </Table>
       </FormControl>
     </StickyBottomPanel>
-  </ReactThemeContext.Provider>
+  </>
 }
 
 const ThemeLightTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStickyBottomPanel) => {
@@ -116,13 +116,13 @@ const ThemeLightTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TSti
     setIsOpen(!isOpen);
   }
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  
 
   const onDialogVisibleChange = () => {
     setIsOpen(!isOpen)
   }
 
-  return <ReactThemeContext.Provider value={themes.loanPricing}>
+  return <>
     <Table>
       <TableHead>
         <TableRow isHeader={true}>
@@ -189,7 +189,7 @@ const ThemeLightTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TSti
         </Table>
       </FormControl>
     </StickyBottomPanel>
-  </ReactThemeContext.Provider>
+  </>
 }
 
 export const DarkThemeStickyBottomPanel = ThemeDarkTemplate.bind({});

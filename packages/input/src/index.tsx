@@ -1,5 +1,6 @@
 import debounce from 'debounce';
 import React, { useEffect, useRef, useState } from 'react';
+import getCssVariables from '../../styles/src/get-css-variables';
 
 import {
   DEFAULT_HEIGHT,
@@ -8,7 +9,6 @@ import {
   TIMEOUT,
   TYPE_TEXT
 } from '../../constants';
-import ITheme from '../../styles/types/itheme';
 import IInput from '../types/iinput';
 import ButtonDelete from './button-delete.styled';
 import DeleteIcon from '../../icons-components/delete-icon';
@@ -27,11 +27,12 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [isFocus, setIsFocus] = useState(false);
   const [isChanging, setIsChanging] = useState(false);
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+
+  const [ cssVariables, setCssVariables ] = useState<{[key: string]: string}>({})
 
   useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+    setCssVariables(getCssVariables());
+  }, []);
 
   const cb = () => {
     let value: number | string = evtObj.target.value;
@@ -135,29 +136,28 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
   };
 
-  const componentThemed: any = (theme: ITheme) => {
-    const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : props.backgroundColor ?? theme?.mainBackgroundColor;
+    const backgroundColor: string = props.disabled ? cssVariables.inactiveBackgroundColor : props.backgroundColor ?? cssVariables.backgroundColor;
 
-    const hoverBackgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : props?.error ? theme?.palette?.secondary?.lighter : theme?.mainBackgroundColor;
-    const hoverColor: string = props.disabled ? theme.inactiveColor : props?.error ? theme?.palette?.secondary?.main : theme?.palette.baseFontColor;
-    const hoverBorderColor: string = props?.error ? theme?.palette?.secondary?.main : theme?.mainOutlinedHoverColor;
+    const hoverBackgroundColor: string = props.disabled ? cssVariables.inactiveBackgroundColor : props?.error ? cssVariables.secondaryLighterColor : cssVariables.backgroundColor;
+    const hoverColor: string = props.disabled ? cssVariables.inactiveFontColor : props?.error ? cssVariables.secondaryMainColor : cssVariables.baseFontColor;
+    const hoverBorderColor: string = props?.error ? cssVariables.secondaryMainColor : cssVariables.mainOutlinedHoverColor;
 
     const color: string =
       props?.error
-        ? theme?.palette?.secondary?.main
+        ? cssVariables.secondaryMainColor
         : isFocus && !props?.isReadOnly
-          ? theme?.palette?.primary?.main
-          : theme?.palette?.baseFontColor;
+          ? cssVariables.primaryMainColor
+          : cssVariables.baseFontColor;
 
-    const focusColor: string = props?.error ? theme?.palette?.secondary?.main : theme.palette.primary.main;
+    const focusColor: string = props?.error ? cssVariables.secondaryMainColor : cssVariables.primaryMainColor;
 
     const ReactInput: React.FunctionComponent = (props: any) => <input {...props} />;
 
     // const colorInteractive: string = props?.error ? theme?.palette?.secondary?.lighter : isFocus ? theme?.palette?.primary?.main : props?.color;
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
-    const borderColor: string = props?.error ? theme?.palette?.secondary?.lighter : props?.borderColor || theme?.mainOutlinedColor;
-    const inputColor: string = props.disabled ? theme.inactiveColor : props?.error ? theme?.palette?.secondary?.main : props?.color || color;
-    const underlineColor: string = props?.error ? theme?.palette?.secondary?.main : props?.borderColor || theme?.mainOutlinedColor;
+    const borderColor: string = props?.error ? cssVariables.secondaryLighterColor : props?.borderColor || cssVariables.mainOutlinedColor;
+    const inputColor: string = props.disabled ? cssVariables.inactiveFontColor : props?.error ? cssVariables.secondaryMainColor : props?.color || color;
+    const underlineColor: string = props?.error ? cssVariables.secondaryMainColor : props?.borderColor || cssVariables.mainOutlinedColor;
 
     return (
       <InputContainer height={props?.height} width={props?.width}>
@@ -173,12 +173,12 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             focusColor={props.focusColor || focusColor}
             hoverBorderColor={props?.hoverColor || hoverBorderColor}
             hoverBackgroundColor={hoverBackgroundColor}
-            disabledColor={theme?.palette.baseFontColorOpacity05}
+            disabledColor={cssVariables.baseFontColorOpacity05}
             backgroundColor={backgroundColor}
             backgroundImage={props?.backgroundImage}
-            fontSize={props?.fontSize ?? theme?.baseFontSize}
+            fontSize={props?.fontSize ?? cssVariables.baseFontSize}
             className={props?.className}
-            fontFamily={theme?.fontFamily}
+            fontFamily={cssVariables?.fontFamily}
             textAlign={props?.textAlign || TEXT_ALIGN_RIGHT}
             onChange={onInputChange}
             onFocus={onInputFocus}
@@ -224,8 +224,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
         {props?.textMessage ? (
           <TextMessage
             className="text-message"
-            fontSize={props?.fontSize ?? theme?.baseFontSize}
-            fontFamily={theme?.fontFamily}
+            fontSize={props?.fontSize ?? cssVariables.baseFontSize}
+            fontFamily={cssVariables?.fontFamily}
             color={inputColor}
           >
             {props.textMessage}
@@ -233,14 +233,6 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
         ) : null}
       </InputContainer>
     );
-  };
-
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
-
-  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(Input);

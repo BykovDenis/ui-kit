@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-interface ITextMessage {
+type TTextMessage = {
   fontFamily: string;
   fontSize: number;
   color: string;
@@ -8,16 +8,18 @@ interface ITextMessage {
 
 const TextMessage =
   styled('p') <
-  ITextMessage >
+      TTextMessage >
   `
+    ${(props: TTextMessage) => `
   display: block;
   margin: 0;
   margin-top: 3px;  
   padding: 0;
-  font-family: ${(props: ITextMessage) => props.fontFamily};
-  font-size: ${(props: ITextMessage) => props.fontSize - 2}px; 
+  font-family: ${props.fontFamily};
+  font-size: ${props.fontSize - 2}px; 
   text-align: left;  
-  color: ${(props: ITextMessage) => props?.color};
+  color: ${props?.color};
+  `}
 `;
 
 export default TextMessage;

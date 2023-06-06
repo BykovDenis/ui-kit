@@ -1,34 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import ITheme from '../../styles/types/itheme';
 import TTableRow from '../types/ttable-row';
 import TableRowStyled from './table-row.styled';
+import getCssVariables from '../../styles/src/get-css-variables';
 
 const TableRow: React.FunctionComponent<TTableRow> = (props: TTableRow) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const cssVariables = getCssVariables();
+  const backgroundColor: string =
+    props?.backgroundColor ?? props?.isHeader ? cssVariables.primaryMainColor : cssVariables.backgroundColor;
+  const borderColor: string = props.isHeader ? cssVariables.backgroundColor : cssVariables.baseFontColor;
 
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
-
-  const componentThemed: any = (theme: ITheme) => {
-    const backgroundColor: string =
-      props?.backgroundColor ?? props?.isHeader ? theme.palette.primary.main : theme.mainBackgroundColor;
-    const borderColor: string = props.isHeader ? theme?.mainBackgroundColor : theme?.palette?.baseFontColor;
-
-    return (
-      <TableRowStyled {...props} backgroundColor={backgroundColor} borderColor={borderColor}>
-        {props.children}
-      </TableRowStyled>
-    );
-  };
-
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
-
-  return <Consumer>{componentThemed}</Consumer>;
+  return (
+    <TableRowStyled {...props} backgroundColor={backgroundColor} borderColor={borderColor}>
+      {props.children}
+    </TableRowStyled>
+  );
 };
 
 export default React.memo(TableRow);

@@ -15,7 +15,7 @@ interface IInput {
   focusBackgroundColor?: string;
   focusColor?: string;
   fontFamily?: string;
-  fontSize?: number;
+  fontSize?: number | string;
   fontWeight?: number;
   getIsChangingState?: (isChanging: boolean) => void;
   height?: number;

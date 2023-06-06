@@ -1,6 +1,7 @@
 import React from 'react';
 import TButtonVariants from './tbutton-variants';
 import TButtonStyled from './tbutton-styled';
+import Variant from "../../enums/variant";
 
 type TButton = TButtonStyled & {
   ReactThemeContext?: any,
@@ -12,11 +13,12 @@ type TButton = TButtonStyled & {
   name?: string,
   onClick?: (evt: React.ChangeEvent<HTMLButtonElement>) => void,
   onDragStart?: (evt: any) => void,
-  theme?: any,
-  variant?: TButtonVariants,
+  variant?: Variant,
   justifyContent?: string,
   alignItems?: string,
   padding?: string,
+  type?: string,
+  cssVariables?: {[key: string]: value},
 };
 
 export default TButton;

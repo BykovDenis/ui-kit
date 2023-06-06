@@ -7,7 +7,6 @@ import searchDomChildElement from "../../helpers/search-dom-child-element";
 import Input from "../../input/src";
 import Label from "../../label/src";
 import Select from "../../select/src";
-import ITheme from "../../styles/types/itheme";
 import monthsElementEn from "../dictionaries/months-en";
 import monthsElementRu from "../dictionaries/months-ru";
 import DateParser from "../helpers/date-parser";
@@ -29,9 +28,11 @@ import parseInputDate from "../helpers/parse-input-date";
 import DatepickerMask from "../enums/datepicker-mask";
 import checkMinMaxDate from "../helpers/check-min-max-date";
 import onKeyUpEventHandler from "../../helpers/on-key-up-event-handler";
+import getCssVariables from '../../styles/src/get-css-variables';
 
 
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
+  const cssVariables = getCssVariables();
   const dateRef = useRef();
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
   const [ mask, setMask ] = useState<DatepickerMask>(DatepickerMask[props?.mask as keyof DatepickerMask] ?? DatepickerMask.DDMMYYYY);
@@ -346,8 +347,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     .fill((actualYearNumber ?? 0) - 50)
     .map((element: number, index: number) => (element + index)?.toString()), SortDirection.Desc);
 
-  const componentThemed: any = (theme: ITheme) => {
-    const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
+    const fontSize: number = props?.fontSize ?? parseInt(cssVariables.baseFontSize, 10);
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
 
     const actualYearNumberString: string = actualYearNumber.toString();
@@ -360,7 +360,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       >
         <DatepickerHeader>
           {props?.label && (
-            <LabelContainer backgroundColor={theme.mainBackgroundColor} isExistValue={isExistValue || isFocus}>
+            <LabelContainer backgroundColor={cssVariables.backgroundColor} isExistValue={isExistValue || isFocus}>
               <Label
                 htmlFor={props.id}
                 fontSize={labelFontSize}
@@ -368,7 +368,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 isReadOnly={props.isReadOnly}
                 fontWeight={props?.fontWeight}
                 disabled={props.disabled}
-                fontFamily={props?.fontFamily || theme?.fontFamily}
+                fontFamily={props?.fontFamily || cssVariables.fontFamily}
                 error={isError}
               >
                 {props?.label}
@@ -385,7 +385,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             textAlign={props?.textAlign || TEXT_ALIGN_LEFT}
             fontSize={fontSize}
             baseFontSize={props?.baseFontSize}
-            fontFamily={props?.fontFamily || theme?.fontFamily}
+            fontFamily={props?.fontFamily || cssVariables.fontFamily}
             textMessage={isErrorMessageDisplay  && textMessage}
             onFocus={onInputFocus}
             onClick={onInputFocus}
@@ -402,14 +402,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           />
         </DatepickerHeader>
         {isVisibleList && (
-          <DatepickerDatesContainer backgroundColor={theme.mainBackgroundColor}  onMouseUp={onMouseOutUp} onKeyUp={onKeyUp} ref={dateRef}>
+          <DatepickerDatesContainer backgroundColor={cssVariables.backgroundColor}  onMouseUp={onMouseOutUp} onKeyUp={onKeyUp} ref={dateRef}>
             <MonthsYearsRuleContainer>
               <DatepickerNavigateContainerStyled>
                 <DatepickerButtonNavigate
                   id="get-previous-month"
                   fontSize={fontSize}
-                  fontFamily={props?.fontFamily || theme?.fontFamily}
-                  color={theme.palette.primary.main}
+                  fontFamily={props?.fontFamily || cssVariables.fontFamily}
+                  color={cssVariables.primaryMainColor}
                   onClick={onGetPreviousMonth}
                 >
                   {'<'}
@@ -426,14 +426,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                   isCreatable={false}
                   baseFontSize={props?.baseFontSize}
                   fontSize={fontSize}
-                  fontFamily={props?.fontFamily || theme?.fontFamily}
+                  fontFamily={props?.fontFamily || cssVariables.fontFamily}
                   height={props?.height || DEFAULT_HEIGHT}
                 />
                 <DatepickerButtonNavigate
                   id="get-next-month"
                   fontSize={fontSize}
-                  fontFamily={props?.fontFamily || theme?.fontFamily}
-                  color={theme.palette.primary.main}
+                  fontFamily={props?.fontFamily || cssVariables.fontFamily}
+                  color={cssVariables.primaryMainColor}
                   onClick={onGetNextMonth}
                 >
                   {'>'}
@@ -443,8 +443,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 <DatepickerButtonNavigate
                   id="get-previous-year"
                   fontSize={fontSize}
-                  fontFamily={props?.fontFamily || theme?.fontFamily}
-                  color={theme.palette.primary.main}
+                  fontFamily={props?.fontFamily || cssVariables.fontFamily}
+                  color={cssVariables.primaryMainColor}
                   onClick={onGetPreviousYear}
                 >
                   {'<'}
@@ -461,14 +461,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                   isCreatable={false}
                   baseFontSize={props?.baseFontSize}
                   fontSize={fontSize}
-                  fontFamily={props?.fontFamily || theme?.fontFamily}
+                  fontFamily={props?.fontFamily || cssVariables.fontFamily}
                   height={props?.height || DEFAULT_HEIGHT}
                 />
                 <DatepickerButtonNavigate
                   id="get-next-year"
                   fontSize={fontSize}
-                  fontFamily={props?.fontFamily || theme?.fontFamily}
-                  color={theme.palette.primary.main}
+                  fontFamily={props?.fontFamily || cssVariables.fontFamily}
+                  color={cssVariables.primaryMainColor}
                   onClick={onGetNextYear}
                 >
                   {'>'}
@@ -476,13 +476,13 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
               </DatepickerNavigateContainerStyled>
             </MonthsYearsRuleContainer>
             <DaysOfWeek
-              primaryColor={theme.palette.primary.main}
-              secondaryColor={theme.palette.secondary.main}
+              primaryColor={cssVariables.primaryMainColor}
+              secondaryColor={cssVariables.secondaryMainColor}
               fontSize={fontSize}
-              fontFamily={props?.fontFamily || theme?.fontFamily}
+              fontFamily={props?.fontFamily || cssVariables.fontFamily}
               locale={props?.locale}
             />
-            <Divider color={theme.palette.primary.main} />
+            <Divider color={cssVariables.primaryMainColor} />
             <DaysOfMonth
               countDaysIsMonth={countDaysIsMonth}
               activeMonthNumber={activeMonthNumber + 1}
@@ -490,10 +490,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
               actualMonthNumber={actualMonthNumber + 1}
               actualYearNumber={actualYearNumber}
               activeDayNumber={activeDayNumber}
-              color={theme.palette.primary.main}
+              color={cssVariables.primaryMainColor}
               fontSize={fontSize}
-              fontFamily={props?.fontFamily || theme?.fontFamily}
-              backgroundColor={theme.mainBackgroundColor}
+              fontFamily={props?.fontFamily || cssVariables.fontFamily}
+              backgroundColor={cssVariables.backgroundColor}
               numberDayInWeek={numberDayInWeek}
               onDayChange={onDayChange}
               minDate={minDate}
@@ -504,14 +504,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
         )}
       </DatepickerContainerStyled>
     );
-  };
-
-  if (!Consumer) {
-    console.error('The Datepicker component. You need an initialization provider');
-    return null;
-  }
-
-  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default  React.memo(Datepicker);

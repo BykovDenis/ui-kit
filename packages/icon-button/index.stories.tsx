@@ -4,9 +4,9 @@ import React from 'react';
 
 import IconButton from  './src/index';
 import IIconButton from './types/iicon-button'
-import getNewReactThemeContext from '../styles/src';
+
 import SunIcon from '../icons-components/24x24/sun-icon';
-import { themes } from '../styles/src/themes';
+
 
 export default {
   title: 'Components/IconButton',
@@ -25,11 +25,11 @@ export default {
 
 const Template: ComponentStory<typeof IconButton> = (args: IIconButton) => {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  
 
-  return <ReactThemeContext.Provider value={themes.loanPricing}>
+  return <>
     <IconButton  {...args} name="button1" onClick={action('clicked')} ><SunIcon color="#ffffff" /></IconButton>
-  </ReactThemeContext.Provider>
+  </>
 }
 
 export const NormalIconButton = Template.bind({});

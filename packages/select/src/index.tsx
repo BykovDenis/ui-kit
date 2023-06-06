@@ -5,7 +5,6 @@ import Input from '../../input/src';
 import Label from '../../label/src';
 import List from '../../list/src';
 import ListItem from '../../list-item/src';
-import ITheme from '../../styles/types/itheme';
 import IOption from '../types/ioption';
 import ISelect from '../types/iselect';
 import LabelContainer from './label-container.styled';
@@ -16,6 +15,7 @@ import SelectListContainer from './select-list-container.styled';
 import getUniqueIndex from "../../helpers/get-unique-index";
 import onKeyUpEventHandler from "../../helpers/on-key-up-event-handler";
 import isNotEmptyString from "../../helpers/is-not-empty-string";
+import getCssVariables from '../../styles/src/get-css-variables';
 
 const DEFAULT_HEIGHT = 40;
 const TEXT_ALIGN = 'center';
@@ -23,8 +23,6 @@ const TYPE_TEXT = 'text';
 const FONT_WEIGHT_REGULAR = 400;
 const INPUT_TAG: string = 'INPUT';
 const BUTTON_TAG: string = 'BUTTON';
-
-const KEY_ESCAPE: string = 'ESCAPE';
 
 function getElementsParsed(elements: Array<IOption | string | number>): Array<IOption> {
   return elements?.map((element: string | number | IOption) => {
@@ -71,6 +69,7 @@ function getElementsFiltered(elements: Array<IOption>, label: string) {
 }
 
 const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
+  const cssVariables: any = getCssVariables();
   const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);
 
   const [isFocus, setIsFocus] = useState<boolean>(false);
@@ -81,11 +80,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [isNewElement, setIsNewElement] = useState<boolean>(false);
   const [activeElement, setActiveElement] = useState<IOption>(activeElementParsed);
   const [isEdited, setIsEdited] = useState<boolean>(false);
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
 
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
   const selectListContainerRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -224,8 +218,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
   const isExistValue: boolean = label > '';
 
-  const componentThemed: any = (theme: ITheme) => {
-    const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
+    const fontSize: number = props?.fontSize ?? cssVariables.baseFontSize;
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
 
     const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -245,13 +238,13 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     const indicatorColor: string = !props?.isReadOnly
       ? isExistValue
         ? isEdited
-          ? theme?.mainGrayColor
-          : props?.indicatorColor || theme?.palette?.primary?.main
-        : theme?.palette?.secondary?.main
-      : theme?.palette?.baseFontColor;
+          ? cssVariables.mainGrayColor
+          : props?.indicatorColor || cssVariables.primaryMainColor
+        : cssVariables.secondaryMainColor
+      : cssVariables.baseFontColor;
 
-    const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : theme?.mainBackgroundColor;
-    const color: string = props.disabled ? theme.inactiveColor : props?.color || theme?.palette.baseFontColor;
+    const backgroundColor: string = props.disabled ? cssVariables.inactiveBackgroundColor : cssVariables.mainBackgroundColor;
+    const color: string = props.disabled ? cssVariables.inactiveFontColor : props?.color || cssVariables.baseFontColor;
     return (
       <SelectContainer width={props?.width} height={props?.height || DEFAULT_HEIGHT}>
         <SelectHeader height={props?.height || DEFAULT_HEIGHT}>
@@ -267,7 +260,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                 isReadOnly={props.isReadOnly}
                 fontWeight={props?.fontWeight}
                 disabled={props.disabled}
-                fontFamily={props?.fontFamily || theme?.fontFamily}
+                fontFamily={props?.fontFamily || cssVariables.fontFamily}
                 backgroundColor="transparent"
                 color={color}
               >
@@ -289,7 +282,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             textAlign={props?.textAlign || TEXT_ALIGN}
             fontSize={fontSize}
             baseFontSize={props?.baseFontSize}
-            fontFamily={props?.fontFamily || theme?.fontFamily}
+            fontFamily={props?.fontFamily || cssVariables.fontFamily}
             textMessage={props?.textMessage}
             onFocus={onInputFocus}
             onClick={onInputFocus}
@@ -303,7 +296,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
             isReadOnly={props?.isReadOnly}
             isNotUseDebounce={elements?.length < 500}
-            backgroundColor={props.disabled ? theme.inactiveBackgroundColor : props?.backgroundColor || theme.mainBackgroundColor}
+            backgroundColor={props.disabled ? cssVariables.inactiveBackgroundColor : props?.backgroundColor || cssVariables.mainBackgroundColor}
             color={props?.color}
             isNotClearable={props?.isNotClearable}
             borderColor={props?.borderColor}
@@ -326,8 +319,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                     textAlign={props?.textAlign || TEXT_ALIGN}
                     fontSize={fontSize}
                     height={props?.height || DEFAULT_HEIGHT}
-                    fontFamily={props?.fontFamily || theme?.fontFamily}
-                    backgroundColor={isNotEmptyString(element?.label) && isNotEmptyString(activeElement?.label) && element.label === activeElement.label ? theme.palette.primary.main : theme.mainBackgroundColor}
+                    fontFamily={props?.fontFamily || cssVariables.fontFamily}
+                    backgroundColor={isNotEmptyString(element?.label) && isNotEmptyString(activeElement?.label) && element.label === activeElement.label ? cssVariables.primaryMainColor : cssVariables.mainBackgroundColor}
                   >
                     {element.label}
                   </ListItem>
@@ -340,7 +333,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                   data-value={label}
                   textAlign={props?.textAlign || TEXT_ALIGN}
                   fontSize={fontSize}
-                  fontFamily={props?.fontFamily || theme?.fontFamily}
+                  fontFamily={props?.fontFamily || cssVariables.fontFamily}
                   height={props?.height || DEFAULT_HEIGHT}
                 >
                   Create new {label}
@@ -351,14 +344,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         )}
       </SelectContainer>
     );
-  };
-
-  if (!Consumer) {
-    console.error('The Select component. You need an initialization provider');
-    return null;
-  }
-
-  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(Select);

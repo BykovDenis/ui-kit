@@ -4,7 +4,7 @@ type TButtonStyled = {
   backgroundColor?: string,
   backgroundImage?: string,
   baseFontSize?: string,
-  borderRadius?: string,
+  borderRadius?: number | string,
   color?: string,
   disabled?: boolean,
   draggable?: boolean,

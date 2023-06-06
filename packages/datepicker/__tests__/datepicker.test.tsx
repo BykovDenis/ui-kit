@@ -6,8 +6,6 @@ import Datepicker from '../src/index';
 import { themes } from '../../styles/src/themes';
 
 it('Checkbox renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
-
   const props: any = {
     type: 'button',
     textMessage: 'text message',
@@ -20,9 +18,9 @@ it('Checkbox renders correctly', () => {
   };
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <>
       <Datepicker {...props} />
-    </ReactThemeContext.Provider>
+    </>
   );
   expect(wrapper.toJSON()).toMatchSnapshot();
 });
