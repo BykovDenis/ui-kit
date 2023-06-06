@@ -33,6 +33,6 @@
     "@types/styled-components": "^5.1.18",
     "rollup": "^2.61.1"
   },
-  "gitHead": "ee2e8a49cf6dc0031e551a8d06ea11af3ff769a2",
+  "gitHead": "12001232e414bd9b80fc2887021dfecc9e0c5a6e",
   "_id": "@dbykov-ui-kit/Button@0.5.28"
 }
