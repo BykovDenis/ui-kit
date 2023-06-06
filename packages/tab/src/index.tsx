@@ -1,35 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import ITheme from '../../styles/types/itheme';
 import TTab from '../types/ttab';
 import TabStyled from './tab.styled';
+import getCssVariables from '../../styles/src/get-css-variables';
 
 const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+    const cssVariables: any = getCssVariables()
 
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+    const color: string = props.disabled ? cssVariables.inactiveFontColor : props.color ?? cssVariables.baseFontColor;
 
-  const componentThemed: any = (theme: ITheme) => {
-    const color: string = props.disabled ? theme?.inactiveColor : props.color ?? theme?.palette?.baseFontColor;
-
-    const borderColor: string = theme.palette.secondary.main;
+    const borderColor: string = cssVariables.secondaryMainColor;
 
     const onTabClick = (evt: React.ChangeEvent<HTMLButtonElement>) => {
       props.onChange(props.tabActive, evt);
     };
 
-    const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : props?.backgroundColor;
+    const backgroundColor: string = props.disabled ? cssVariables.inactiveBackgroundColor : props?.backgroundColor;
 
     return (
       <TabStyled
         {...props}
         className={props?.className}
-        fontFamily={theme?.fontFamily}
+        fontFamily={cssVariables.fontFamily}
         focusColor={color}
         color={props?.color || color}
-        fontSize={props?.fontSize ?? theme?.baseFontSize}
+        fontSize={props?.fontSize ?? cssVariables.baseFontSize}
         fontWeight={props?.fontWeight}
         width={props?.width}
         backgroundColor={backgroundColor}
@@ -47,14 +42,6 @@ const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
         {props.children}
       </TabStyled>
     );
-  };
-
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
-
-  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(Tab);

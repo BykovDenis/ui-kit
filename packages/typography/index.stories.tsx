@@ -1,8 +1,8 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
+
+
 import Typography from './src/index';
 import ITypography from './types/itypography';
 
@@ -20,11 +20,11 @@ export default {
 
 const Template: ComponentStory<typeof Typography> = (args: ITypography) => {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
-  return <ReactThemeContext.Provider value={themes.dark}>
+
+  return <>
     <Typography {...args} >Some text Some text Some text</Typography>
-  </ReactThemeContext.Provider>
+  </>
 }
 
 export const NormalTypography = Template.bind({});

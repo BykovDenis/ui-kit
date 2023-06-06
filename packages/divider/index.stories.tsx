@@ -1,8 +1,8 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
+
+
 import Divider from "./src";
 import TDivider from './types/tdivider';
 import Label from '../label/src';
@@ -22,24 +22,25 @@ export default {
 
 const TemplateDarkTheme: ComponentStory<typeof Label> = (args: TDivider) => {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
-
-  return <ReactThemeContext.Provider value={themes.dark}>
+  return (
+  <>
     <Label {...args} >One line</Label>
-    <Divider />
+      <Divider />
     <Label {...args} >To line</Label>
-  </ReactThemeContext.Provider>
+  </>
+  )
+
 }
 
 const TemplateLightTheme: ComponentStory<typeof Label> = (args: TDivider) => {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
-
-  return <ReactThemeContext.Provider value={themes.loanPricing}>
+  return (
+    <>
     <Label {...args} >One line</Label>
-    <Divider />
+      <Divider />
     <Label {...args} >To line</Label>
-  </ReactThemeContext.Provider>
+    </>
+  )
 }
 
 export const DarkThemeTextField = TemplateDarkTheme.bind({});

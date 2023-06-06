@@ -1,7 +1,7 @@
-enum Variants {
+enum Variant {
   Contained = 'contained',
   Outlined = 'outlined',
   Text = 'text',
 }
 
-export default Variants;
+export default Variant;

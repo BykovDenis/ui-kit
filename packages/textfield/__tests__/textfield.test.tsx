@@ -4,12 +4,10 @@ import renderer from 'react-test-renderer';
 
 import TextField from '../src';
 import ITextField from '../types/itext-field';
-import Variants from '../../enums/variants';
+import Variant from '../../enums/variant';
 import { themes } from '../../styles/src/themes';
 
 it('TextField renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
-
   const props: ITextField = {
     isSeparateNumberFormat: false,
     disabled: false,
@@ -30,9 +28,9 @@ it('TextField renders correctly', () => {
   };
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <>
       <TextField {...props} />
-    </ReactThemeContext.Provider>
+    </>
   );
   expect(wrapper.toJSON()).toMatchSnapshot();
 });

@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
-import ITheme from '../../styles/types/itheme';
 import FormSwitcher from './form-switcher';
 import InputSwitcher from './input-switcher';
 import LabelSwitcher from './label-switcher';
 import ISwitcher from '../types/iswitcher';
+import getCssVariables from '../../styles/src/get-css-variables';
 
 const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
-  const { element1, element2, activeElement, disabled } = props;
+  const [disabled, setDisabled] = useState<boolean>(props?.disabled !== undefined ? props.disabled : false);
+  const cssVariables: any = getCssVariables();
+  const { element1, element2, activeElement } = props;
   const isActiveFirstElement = element1 === activeElement;
   const isActiveSecondElement = element2 === activeElement;
+
+  useEffect(() => {
+    setDisabled(props.disabled);
+  }, [props.disabled])
 
   const checkboxChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt.target;
@@ -25,58 +26,45 @@ const Switcher: React.FunctionComponent<ISwitcher> = (props: ISwitcher) => {
     }
   };
 
-  const componentThemed = (theme: ITheme) => {
-    const color: string = theme?.palette?.baseButtonFontColor;
-    const backgroundColor: string = theme?.palette?.primary?.main;
-    const inactiveBackgroundColor: string = theme?.mainBackgroundColor;
-    const inactiveColor: string = theme?.palette.baseFontColor;
+  const color: string = cssVariables.baseButtonFontColor;
+  const backgroundColor: string = cssVariables.primaryMainColor;
+  const inactiveBackgroundColor: string = cssVariables.backgroundColor;
+  const inactiveColor: string = cssVariables.baseFontColor;
 
-    return (
-      <FormSwitcher method="get">
-        <InputSwitcher
-          name="custom-switcher"
-          data-name={props.element1}
-          id={`custom-switcher-element1-${props.element1}`}
-          type="radio"
-          checked={isActiveFirstElement}
-          onChange={checkboxChangeHandler}
-          disabled={disabled}
-          position="left"
-          color={color}
-          backgroundColor={backgroundColor}
-          inactiveBackgroundColor={inactiveBackgroundColor}
-          inactiveColor={inactiveColor}
-        />
-        <LabelSwitcher htmlFor={`custom-switcher-element1-${props.element1}`}>{props.element1}</LabelSwitcher>
-        <InputSwitcher
-          name="custom-switcher"
-          data-name={props.element2}
-          id={`custom-switcher-element2-${props.element2}`}
-          type="radio"
-          checked={isActiveSecondElement}
-          onChange={checkboxChangeHandler}
-          disabled={disabled}
-          position="right"
-          color={color}
-          backgroundColor={backgroundColor}
-          inactiveBackgroundColor={inactiveBackgroundColor}
-          inactiveColor={inactiveColor}
-        />
-        <LabelSwitcher htmlFor={`custom-switcher-element2-${props.element2}`}>{props.element2}</LabelSwitcher>
-      </FormSwitcher>
-    );
-  };
-
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
-
-  return <Consumer>{componentThemed}</Consumer>;
-};
-
-Switcher.defaultProps = {
-  disabled: false,
+  return (
+    <FormSwitcher method="get">
+      <InputSwitcher
+        name="custom-switcher"
+        data-name={props.element1}
+        id={`custom-switcher-element1-${props.element1}`}
+        type="radio"
+        checked={isActiveFirstElement}
+        onChange={checkboxChangeHandler}
+        disabled={disabled}
+        position="left"
+        color={color}
+        backgroundColor={backgroundColor}
+        inactiveBackgroundColor={inactiveBackgroundColor}
+        inactiveColor={inactiveColor}
+      />
+      <LabelSwitcher htmlFor={`custom-switcher-element1-${props.element1}`}>{props.element1}</LabelSwitcher>
+      <InputSwitcher
+        name="custom-switcher"
+        data-name={props.element2}
+        id={`custom-switcher-element2-${props.element2}`}
+        type="radio"
+        checked={isActiveSecondElement}
+        onChange={checkboxChangeHandler}
+        disabled={disabled}
+        position="right"
+        color={color}
+        backgroundColor={backgroundColor}
+        inactiveBackgroundColor={inactiveBackgroundColor}
+        inactiveColor={inactiveColor}
+      />
+      <LabelSwitcher htmlFor={`custom-switcher-element2-${props.element2}`}>{props.element2}</LabelSwitcher>
+    </FormSwitcher>
+  );
 };
 
 export default React.memo(Switcher);

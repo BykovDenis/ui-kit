@@ -1,36 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState} from 'react';
 
 import Label from '../../label/src/';
-import ITheme from '../../styles/types/itheme';
 import TLabelInteractive from '../types/tlabel-interactive';
 import ButtonStyled from './button.styled';
 import LabelInteractiveStyled from './label-interactive.styled';
+import getCssVariables from '../../styles/src/get-css-variables';
 
 const LabelInteractive: React.FunctionComponent<TLabelInteractive> = (props: TLabelInteractive) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const [ isInteractive, setIsInteractive ] = useState<boolean>(props.isInteractive !== undefined ? props.isInteractive : true);
+  const cssVariables: any = getCssVariables();
 
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
-
-  const componentThemed: any = (theme: ITheme) => {
     const color: string = props?.error
-      ? theme?.palette?.secondary?.main
+      ? cssVariables.secondaryMainColor
       : props?.isFocus
-      ? theme?.palette?.primary?.main
+      ? cssVariables.primaryMainColor
       : props.disabled
-      ? theme?.palette?.baseFontColorOpacity05
-      : theme?.palette?.baseFontColor;
+      ? cssVariables.baseFontColorOpacity05
+      : cssVariables.baseFontColor;
     // @ts-ignore
-    return props?.isInteractive ? (
-      <LabelInteractiveStyled backgroundColor={props?.backgroundColor}>
+    return isInteractive ? (
+      <LabelInteractiveStyled backgroundColor={props?.backgroundColor || cssVariables.mainBackgroundColor}>
         <ButtonStyled minHeight={props?.minHeight} onClick={props?.onClick}>
           <Label
             className={props?.className}
-            fontFamily={theme?.fontFamily}
+            fontFamily={cssVariables.fontFamily}
             focusColor={color}
             color={color}
-            fontSize={props?.fontSize ?? theme?.baseFontSize}
+            fontSize={props?.fontSize ?? cssVariables?.baseFontSize}
             htmlFor={props?.htmlFor}
             fontWeight={props?.fontWeight}
             width={props?.width}
@@ -47,10 +43,10 @@ const LabelInteractive: React.FunctionComponent<TLabelInteractive> = (props: TLa
       <LabelInteractiveStyled backgroundColor={props?.backgroundColor}>
         <Label
           className={props?.className}
-          fontFamily={theme?.fontFamily}
+          fontFamily={cssVariables.fontFamily}
           focusColor={color}
           color={color}
-          fontSize={props?.fontSize ?? theme?.baseFontSize}
+          fontSize={props?.fontSize ?? cssVariables.baseFontSize}
           htmlFor={props?.htmlFor}
           fontWeight={props?.fontWeight}
           width={props?.width}
@@ -63,18 +59,6 @@ const LabelInteractive: React.FunctionComponent<TLabelInteractive> = (props: TLa
         <props.Icon color={color} />
       </LabelInteractiveStyled>
     );
-  };
-
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
-
-  return <Consumer>{componentThemed}</Consumer>;
-};
-
-LabelInteractive.defaultProps = {
-  isInteractive: true,
 };
 
 export default React.memo(LabelInteractive);

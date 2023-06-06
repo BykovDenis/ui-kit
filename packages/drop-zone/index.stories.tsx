@@ -3,8 +3,8 @@ import React from 'react';
 
 import Dropzone from  './src/index';
 import TDropZone from './types/tdrop-zone';
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
+
+
 
 export default {
   title: 'Components/Dropzone',
@@ -18,24 +18,24 @@ export default {
 
 const ThemeDarkTemplate: ComponentStory<typeof Dropzone> = (args: TDropZone) => {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
-  return <ReactThemeContext.Provider value={themes.dark}>
+
+  return <>
     <div style={{ width: '400px' }}>
       <Dropzone {...args}  />
     </div>
-  </ReactThemeContext.Provider>
+  </>
 }
 
 const ThemeLightTemplate: ComponentStory<typeof Dropzone> = (args: TDropZone) => {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  
 
-  return <ReactThemeContext.Provider value={themes.loanPricing}>
+  return <>
     <div style={{ width: '400px' }}>
     <Dropzone {...args}  />
     </div>
-  </ReactThemeContext.Provider>
+  </>
 }
 
 export const DarkThemeDropZone = ThemeDarkTemplate.bind({});

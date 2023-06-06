@@ -1,40 +1,35 @@
-﻿import React, { useEffect, useState } from 'react';
+﻿import React from 'react';
 
 import Label from '../../label/src';
-import ITheme from '../../styles/types/itheme';
 import IRadio from '../types/iradio';
 import FormControl from './form-control.styled';
 import RadioStyled from './radio.styled';
+import getCssVariables from '../../styles/src/get-css-variables';
 
 const Radio: React.FunctionComponent<IRadio> = (props: any) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
-
-  const componentThemed = (theme: ITheme) => (
+  const cssVariables: any = getCssVariables();
+   return (
     <FormControl isExistLabel={props?.label > '' && props?.label !== null}>
       <RadioStyled
         {...props}
         name={props.name}
         id={props.id}
         disabled={props?.disabled}
-        color={theme?.mainBackgroundColor}
-        disabledColor={theme?.palette?.baseFontColor}
-        backgroundColor={theme?.palette?.primary?.main}
+        color={cssVariables.backgroundColor}
+        disabledColor={cssVariables.baseFontColor}
+        backgroundColor={cssVariables.primaryMainColor}
         checked={props.checked}
         onChange={props.onChange}
         isIconDisabled={props?.isIconDisabled}
-        borderColor={theme?.mainOutlinedColor}
+        borderColor={cssVariables.mainOutlinedColor}
       />
       <Label
         htmlFor={props.id}
-        color={theme?.palette?.baseFontColor}
-        fontSize={props.fontSize ?? theme?.baseFontSize}
-        fontFamily={theme?.fontFamily}
+        color={cssVariables.baseFontColor}
+        fontSize={props.fontSize ?? cssVariables.baseFontSize}
+        fontFamily={cssVariables.fontFamily}
         tabIndex={props?.tabIndex}
-        focusColor={theme?.palette?.primary?.main}
+        focusColor={cssVariables.primaryMainColor}
         className={props?.className}
         width={'initial'}
       >
@@ -42,13 +37,6 @@ const Radio: React.FunctionComponent<IRadio> = (props: any) => {
       </Label>
     </FormControl>
   );
-
-  if (!Consumer) {
-    console.error('The Radio component. You need an initialization provider');
-    return null;
-  }
-
-  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(Radio);

@@ -2,8 +2,6 @@ import { action } from '@storybook/addon-actions';
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import getNewReactThemeContext from '../styles/src';
-import { themes } from '../styles/src/themes';
 import Button from  './src/index';
 import TButton from './types/tbutton'
 
@@ -22,14 +20,17 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args: TButton) => {
-
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
-
-  return <ReactThemeContext.Provider value={themes.loanPricing}>
-    <Button  {...args} name="button1" onClick={action('clicked')} >{args.children}</Button>
-  </ReactThemeContext.Provider>
+const ThemeDarkTemplate: ComponentStory<typeof Button> = (args: TButton) => {
+  return (
+    <div style={{ zoom: 5 }}>
+      <Button  {...args} name="button1" onClick={action('clicked')} >{args.children}</Button>
+    </div>);
 }
 
-export const NormalButton = Template.bind({});
+const ThemeLightTemplate: ComponentStory<typeof Button> = (args: TButton) => {
+  return (<Button  {...args} name="button1" onClick={action('clicked')} >{args.children}</Button>);
+}
+
+export const DarkThemeButton = ThemeDarkTemplate.bind({});
+export const LightThemeButton = ThemeLightTemplate.bind({});
 

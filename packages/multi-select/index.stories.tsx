@@ -25,7 +25,7 @@ export default {
 
 const ThemeDarkTemplate: ComponentStory<typeof MultiSelect> = (args: TMultiSelect) => {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
 
   const columns: Array<string> =  ['Request Id', 'Response Id', 'Algo Id', 'Start time', 'Finish time', 'Publishing', 'Comment', 'Request Id 1', 'Response Id 1', 'Algo Id 1', 'Start time 1', 'Finish time 1', 'Publishing 1', 'Comment 1'];
   const columnsSelected: Array<string> = ['Publishing', 'Comment']
@@ -34,14 +34,14 @@ const ThemeDarkTemplate: ComponentStory<typeof MultiSelect> = (args: TMultiSelec
     console.log(columnNames);
   }
 
-  return <ReactThemeContext.Provider value={themes.dark}>
+  return <>
     <MultiSelect {...args} sortDirection={SortDirections.Asc} isUseLocaleStorage={true} id="multi-select-2" label="some-label" name="someColumns" elementNamesDefaultSelected={columnsSelected} elementNames={columns} onChange={onChange}  />
-  </ReactThemeContext.Provider>
+  </>
 }
 
 const ThemeLightTemplate: ComponentStory<typeof MultiSelect> = (args: TMultiSelect) => {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  
 
   const columns: Array<string> =  ['Request Id', 'Response Id', 'Algo Id', 'Start time', 'Finish time', 'Publishing', 'Comment', 'Request Id 1', 'Response Id 1', 'Algo Id 1', 'Start time 1', 'Finish time 1', 'Publishing 1', 'Comment 1'];
   const columnsSelected: Array<string> = ['Publishing', 'Comment']
@@ -50,9 +50,9 @@ const ThemeLightTemplate: ComponentStory<typeof MultiSelect> = (args: TMultiSele
     console.log(columnNames);
   }
 
-  return <ReactThemeContext.Provider value={themes.loanPricing}>
+  return <>
     <MultiSelect {...args} sortDirection={SortDirections.Asc} isUseLocaleStorage={true} id="multi-select-2" label="some-label" name="someColumns" elementNamesDefaultSelected={columnsSelected} elementNames={columns} onChange={onChange}  />
-  </ReactThemeContext.Provider>
+  </>
 }
 
 export const DarkThemeList = ThemeDarkTemplate.bind({});

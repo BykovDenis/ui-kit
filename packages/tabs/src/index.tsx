@@ -4,18 +4,14 @@ import ITheme from '../../styles/types/itheme';
 import TTabs from '../types/ttabs';
 import TabsStyled from './tabs.styled';
 import renderChildren from '../helpers/render-children-with-props';
+import getCssVariables from '../../styles/src/get-css-variables';
 
 const Tabs: React.FunctionComponent<TTabs> = (props: TTabs) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const cssVariables: any = getCssVariables();
 
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
-
-  const componentThemed: any = (theme: ITheme) => {
     const color: string = props.disabled
-      ? theme?.palette?.baseFontColorOpacity05
-      : props.color || theme?.palette?.baseFontColor;
+      ? cssVariables.baseFontColorOpacity05
+      : props.color || cssVariables.baseFontColor;
 
     const children = renderChildren(props.children, props);
 
@@ -23,10 +19,10 @@ const Tabs: React.FunctionComponent<TTabs> = (props: TTabs) => {
       <TabsStyled
         {...props}
         className={props?.className}
-        fontFamily={theme?.fontFamily}
+        fontFamily={cssVariables.fontFamily}
         focusColor={color}
         color={props?.color || color}
-        fontSize={props?.fontSize ?? theme?.baseFontSize}
+        fontSize={props?.fontSize ?? cssVariables.baseFontSize}
         fontWeight={props?.fontWeight}
         width={props?.width}
         backgroundColor={props?.backgroundColor}
@@ -40,14 +36,6 @@ const Tabs: React.FunctionComponent<TTabs> = (props: TTabs) => {
         {children}
       </TabsStyled>
     );
-  };
-
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
-
-  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default React.memo(Tabs);

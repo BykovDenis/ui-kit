@@ -11,12 +11,10 @@ const CheckBoxDisabledIcon: string =
   'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48bWFzayBpZD0icGF0aC0xLWluc2lkZS0xXzE0Nl81MyIgZmlsbD0iIzMzMzMzMyI+PHBhdGggZD0iTTQuNDU0NTUgMTEuMDc0NkwxLjExMzY0IDYuNjg2NTdMMCA4LjE0OTI1TDQuNDU0NTUgMTRMMTQgMS40NjI2OUwxMi44ODY0IDBMNC40NTQ1NSAxMS4wNzQ2WiIgLz48L21hc2s+PHBhdGggZD0iTTQuNDU0NTUgMTEuMDc0NkwxLjExMzY0IDYuNjg2NTdMMCA4LjE0OTI1TDQuNDU0NTUgMTRMMTQgMS40NjI2OUwxMi44ODY0IDBMNC40NTQ1NSAxMS4wNzQ2WiIgZmlsbD0iIzMzMzMzMyIgLz48cGF0aCBkPSJNNC40NTQ1NSAxMS4wNzQ2TDIuMDY3NjMgMTIuODkxOUw0LjQ1NDU0IDE2LjAyN0w2Ljg0MTQ2IDEyLjg5MTlMNC40NTQ1NSAxMS4wNzQ2Wk0xLjExMzY0IDYuNjg2NTdMMy41MDA1NSA0Ljg2OTI2TDEuMTEzNjQgMS43MzQyTC0xLjI3MzI4IDQuODY5MjZMMS4xMTM2NCA2LjY4NjU3Wk0wIDguMTQ5MjVMLTIuMzg2OTIgNi4zMzE5NEwtMy43NzA1NSA4LjE0OTI1TC0yLjM4NjkyIDkuOTY2NTdMMCA4LjE0OTI1Wk00LjQ1NDU1IDE0TDIuMDY3NjMgMTUuODE3M0w0LjQ1NDU1IDE4Ljk1MjRMNi44NDE0NiAxNS44MTczTDQuNDU0NTUgMTRaTTE0IDEuNDYyNjlMMTYuMzg2OSAzLjI4TDE3Ljc3MDYgMS40NjI2OUwxNi4zODY5IC0wLjM1NDYyNUwxNCAxLjQ2MjY5Wk0xMi44ODY0IDBMMTUuMjczMyAtMS44MTczMUwxMi44ODY0IC00Ljk1MjM3TDEwLjQ5OTQgLTEuODE3MzFMMTIuODg2NCAwWk02Ljg0MTQ2IDkuMjU3MzJMMy41MDA1NSA0Ljg2OTI2TC0xLjI3MzI4IDguNTAzODhMMi4wNjc2MyAxMi44OTE5TDYuODQxNDYgOS4yNTczMlpNLTEuMjczMjggNC44NjkyNkwtMi4zODY5MiA2LjMzMTk0TDIuMzg2OTIgOS45NjY1N0wzLjUwMDU1IDguNTAzODhMLTEuMjczMjggNC44NjkyNlpNLTIuMzg2OTIgOS45NjY1N0wyLjA2NzYzIDE1LjgxNzNMNi44NDE0NiAxMi4xODI3TDIuMzg2OTIgNi4zMzE5NEwtMi4zODY5MiA5Ljk2NjU3Wk02Ljg0MTQ2IDE1LjgxNzNMMTYuMzg2OSAzLjI4TDExLjYxMzEgLTAuMzU0NjI1TDIuMDY3NjMgMTIuMTgyN0w2Ljg0MTQ2IDE1LjgxNzNaTTE2LjM4NjkgLTAuMzU0NjI1TDE1LjI3MzMgLTEuODE3MzFMMTAuNDk5NCAxLjgxNzMxTDExLjYxMzEgMy4yOEwxNi4zODY5IC0wLjM1NDYyNVpNMTAuNDk5NCAtMS44MTczMUwyLjA2NzYzIDkuMjU3MzJMNi44NDE0NiAxMi44OTE5TDE1LjI3MzMgMS44MTczMUwxMC40OTk0IC0xLjgxNzMxWiIgbWFzaz0idXJsKCNwYXRoLTEtaW5zaWRlLTFfMTQ2XzUzKSIvPjwvc3ZnPg==';
 
 type TCheckboxStylish = {
-  backgroundColor: string,
   indeterminate: boolean,
   isIconDisabled?: boolean,
   color: string,
   borderColor: string,
-  disabledColor: string,
 };
 
 const Checkbox =
@@ -35,21 +33,21 @@ const Checkbox =
     border: 2px solid ${(props: TCheckboxStylish) => props.borderColor};    
     border-radius: 3px;
     margin-right: 5px;
-    background-color: ${(props: ICheckbox) => (props?.backgroundColor ? props.backgroundColor : '#ffffff')};
+    background-color: var(--primary-main-color);
+    border-color: var(--main-outlined-color);
   }  
   &:disabled + label:before {
     display:  ${(props: TCheckboxStylish) => (props.isIconDisabled === true ? 'none' : 'block')};
     content: '';
     height: 20px;
     width: 20px;
-    background-color: #bdbdbd;
+    background-color: var(--inactive-background-color);
   }
   &:checked + label:before {
     display:  ${(props: TCheckboxStylish) => (props.isIconDisabled === true ? 'none' : 'block')};
     content: '';
     height: 20px;
     width: 20px;
-    background-color: ${(props: ICheckbox) => props.backgroundColor};
     background-image: url('${CheckIcon}');
     background-repeat: no-repeat;
     background-position: center center;
@@ -65,19 +63,19 @@ const Checkbox =
       content: '';
       height: 2px;
       width: 16px;
-      background: ${(props: TCheckboxStylish) => (props.indeterminate ? props.disabledColor : 'none')};
+      background: ${(props: TCheckboxStylish) => (props.indeterminate ? 'var(--main-background-color)' : 'none')};
       left: 2px;
     }
   }
   &:disabled:not(:checked) + label:before {
-    background-color: #bdbdbd;
+    background-color: var(--inactive-background-color);
   }
   &:disabled:checked + label:before {
     display:  ${(props: TCheckboxStylish) => (props.isIconDisabled === true ? 'none' : 'block')};
     content: '';
     height: 20px;
     width: 20px;
-    background-color: #bdbdbd;
+    background-color: var(--inactive-background-color);
     background-image: url('${CheckBoxDisabledIcon}');
     background-repeat: no-repeat;
     background-position: center center;

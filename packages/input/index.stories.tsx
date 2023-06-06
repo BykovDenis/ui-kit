@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 
 import Input from  './src/index';
 import IInput from './types/iinput';
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
+
+
 
 export default {
   title: 'Components/Input',
@@ -43,17 +43,17 @@ const TemplateDarkTheme: ComponentStory<typeof Input> = (args: IInput) => {
     setValue('');
   }
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
 
   return (
-    <ReactThemeContext.Provider value={themes.dark}>
+    <>
       <div style={{ width: '190px' }}>
         <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  />
       </div>
       <div style={{ width: '190px' }}>
         <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  isSeparateNumberFormat={true} />
       </div>
-    </ReactThemeContext.Provider>)
+    </>)
 }
 
 const TemplateLightTheme: ComponentStory<typeof Input> = (args: IInput) => {
@@ -71,17 +71,15 @@ const TemplateLightTheme: ComponentStory<typeof Input> = (args: IInput) => {
     setValue('');
   }
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
-
   return (
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <>
       <div style={{ width: '190px' }}>
         <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  />
       </div>
       <div style={{ width: '190px' }}>
         <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  isSeparateNumberFormat={true} />
       </div>
-    </ReactThemeContext.Provider>)
+    </>)
 }
 
 export const DarkThemeTextField = TemplateDarkTheme.bind({});

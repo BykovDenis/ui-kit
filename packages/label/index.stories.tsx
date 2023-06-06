@@ -3,8 +3,6 @@ import React from 'react';
 
 import Label from  './src/index';
 import ILabel from './types/tlabel';
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
 
 export default {
   title: 'Components/Label',
@@ -19,14 +17,16 @@ export default {
   },
 } as ComponentMeta<typeof Label>;
 
-const Template: ComponentStory<typeof Label> = (args: ILabel) => {
+const TemplateDarkTheme: ComponentStory<typeof Label> = (args: ILabel) => {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
-
-  return <ReactThemeContext.Provider value={themes.dark}>
-    <Label {...args} >{args.children}</Label>
-  </ReactThemeContext.Provider>
+  return <Label {...args} >{args.children}</Label>;
 }
 
-export const NormalLabel = Template.bind({});
+const TemplateLightTheme: ComponentStory<typeof Label> = (args: ILabel) => {
+
+  return <Label {...args} >{args.children}</Label>;
+}
+
+export const DarkThemeTextField = TemplateDarkTheme.bind({});
+export const LightThemeTextField = TemplateLightTheme.bind({});
 

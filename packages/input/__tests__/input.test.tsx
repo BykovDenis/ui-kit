@@ -6,7 +6,7 @@ import Input from '../src';
 import { themes } from '../../styles/src/themes';
 
 it('Input renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  
 
   const props: any = {
     isSeparateNumberFormat: false,
@@ -29,9 +29,9 @@ it('Input renders correctly', () => {
   };
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <>
       <Input {...props} />
-    </ReactThemeContext.Provider>
+    </>
   );
   expect(wrapper.toJSON()).toMatchSnapshot();
 });

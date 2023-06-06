@@ -1,36 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import ListItemType from '../enums/list-item-type';
 import IListElement from '../types/ilist-element';
 import ListItemStyled from './list-item.styled';
 import ListItemButtonStyled from './list-item-button.styled';
 import ListItemContainer from './list-item-container.styled';
-import ITheme from '../../styles/types/itheme';
+import getCssVariables from '../../styles/src/get-css-variables';
 
 const HEIGHT: number = 30;
 const TEXT_ALIGN = 'center';
 
 const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+  const cssVariables: any = getCssVariables();
   const listItemType: string = ListItemType.Text;
 
-  const componentThemed: any = (theme: ITheme) => {
-    const backgroundColor: string = theme.mainBackgroundColor;
+    const backgroundColor: string = cssVariables.backgroundColor;
+    const hoverBackgroundColor: string = cssVariables.primaryMainColor;
+    const activeBackgroundColor: string = cssVariables.primaryLightColor;
 
-    const hoverBackgroundColor: string = theme?.palette?.primary?.lighter;
-    const activeBackgroundColor: string = theme?.palette?.primary?.light;
-
-    const underLineColor: string = theme?.mainGrayColor;
-    const hoverColor: string = props?.colorInverted || theme.palette.baseFontColorInverted;
+    const underLineColor: string = cssVariables.mainGrayColor;
+    const hoverColor: string = props?.colorInverted || cssVariables.baseFontColorInverted;
 
     const color: string =
       props?.colorTheme === 'normal' || !props.colorTheme
-        ? theme?.palette?.baseFontColor
-        : theme?.palette?.secondary?.main;
+        ? cssVariables.baseFontColor
+        : cssVariables.secondaryMainColor;
 
     return props.type === ListItemType.Button ? (
       <ListItemContainer underLineColor={underLineColor} hoverColor={hoverColor}>
@@ -69,9 +63,6 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
         {props.children}
       </ListItemStyled>
     );
-  };
-
-  return <Consumer>{componentThemed}</Consumer>;
 };
 
 export default ListItem;

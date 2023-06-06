@@ -4,8 +4,8 @@ import React, {useState} from 'react';
 import Select from  './src';
 import ISelect from './types/iselect';
 import IOption from './types/ioption';
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
+
+
 
 export default {
   title: 'Components/Select',
@@ -38,9 +38,9 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
     console.log('');
   }
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
-  return <ReactThemeContext.Provider value={themes.dark}>
+
+  return <>
   <div style={{ width: '220px' }}>
     <Select
       {...args}
@@ -53,7 +53,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
       label="Some label"
     >{args.children}</Select>
   </div>
-  </ReactThemeContext.Provider>;
+  </>;
 }
 
 const ThemeLightTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
@@ -72,9 +72,9 @@ const ThemeLightTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
     console.log('');
   }
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  
 
-  return <ReactThemeContext.Provider value={themes.loanPricing}>
+  return <>
     <div style={{ width: '220px' }}>
       <Select
         {...args}
@@ -87,7 +87,7 @@ const ThemeLightTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
         label="Some label"
       >{args.children}</Select>
     </div>
-  </ReactThemeContext.Provider>;
+  </>;
 }
 
 export const DarkThemeList = ThemeDarkTemplate.bind({});

@@ -10,7 +10,7 @@
         Create theme
     </h3>
 <pre><code>
-import { ITheme } from '@sber-risks-ui/core/styles';
+import { ITheme } from '@dbykov-ui-kit/core/styles';
 </code></pre>
 <pre><code>
 const default defaultTheme: ITheme = {

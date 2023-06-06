@@ -3,8 +3,8 @@ import React from 'react';
 
 import FormControl from '../form-control/src';
 import ChevronUpIcon from '../icons-components/24x24/chevron-up-icon';
-import getNewReactThemeContext from '../styles/src';
-import { themes } from '../styles/src/themes';
+
+
 import LabelInterative from './src/index';
 import TLabelInterative from './types/tlabel-interactive';
 import TLabelInteractive from "./types/tlabel-interactive";
@@ -27,13 +27,13 @@ export default {
 
 const Template: ComponentStory<typeof LabelInterative> = (args: TLabelInteractive) => {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
-  return <ReactThemeContext.Provider value={themes.dark}>
+
+  return <>
     <FormControl width="150px">
       <LabelInterative minHeight={30} {...args} >{args.children}</LabelInterative>
     </FormControl>
-  </ReactThemeContext.Provider>
+  </>
 }
 
 export const InteractiveLabel = Template.bind({});

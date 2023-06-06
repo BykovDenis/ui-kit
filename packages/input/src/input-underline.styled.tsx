@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import Variants from '../../enums/variants';
+import Variant from '../../enums/variant';
 
 interface IInputUnderline {
-  variant: Variants;
+  variant: Variant;
   width: number;
   color: string;
   name: string;
@@ -15,7 +15,7 @@ const InputUnderline =
   styled('div') <
   IInputUnderline >
   `
-  display: ${(props: IInputUnderline) => (props?.variant === Variants.Outlined ? 'none' : 'block')} ;
+  display: ${(props: IInputUnderline) => (props?.variant === Variant.Outlined ? 'none' : 'block')} ;
   width: ${(props: IInputUnderline) => (props?.width ? `${props?.width}px` : `100%`)};
   height: 1px;
   background-color: ${(props: IInputUnderline) => props.color};

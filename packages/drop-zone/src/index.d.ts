@@ -1,5 +1,5 @@
 import React from 'react'
-import TLabel from '../types/tlabel';
+import TDropZone from '../types/tdrop-zone';
 
-declare const Label: React.FunctionComponent<TLabel>;
-export default Label;
+declare const DropZone: React.FunctionComponent<TDropZone>;
+export default DropZone;

@@ -6,8 +6,6 @@ import IconButton from '../src';
 import { themes } from '../../styles/src/themes';
 
 it('IconButton renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
-
   const props: any = {
     disabled: false,
     children: 'Click me',
@@ -30,9 +28,9 @@ it('IconButton renders correctly', () => {
   };
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <>
       <IconButton {...props}>Hello world!</IconButton>
-    </ReactThemeContext.Provider>
+    </>
   );
   expect(wrapper.toJSON()).toMatchSnapshot();
 });

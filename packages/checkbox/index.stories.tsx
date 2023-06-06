@@ -4,8 +4,6 @@ import React from 'react';
 
 import Checkbox from  './src/index';
 import ICheckbox from "./types/icheckbox";
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
 
 export default {
   title: 'Components/Checkbox',
@@ -31,13 +29,11 @@ const onCheckboxCheck = () => {
 }
 
 const TemplateLightTheme: ComponentStory<typeof Checkbox> = (args: ICheckbox) => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
-  return <ReactThemeContext.Provider value={themes.loanPricing}> <Checkbox {...args} onChange={onCheckboxCheck} tabIndex="1" /></ReactThemeContext.Provider>
+  return <Checkbox {...args} onChange={onCheckboxCheck} tabIndex="1" />
 }
 
 const TemplateDarkTheme: ComponentStory<typeof Checkbox> = (args: ICheckbox) => {
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
-  return <ReactThemeContext.Provider value={themes.dark}> <Checkbox {...args} onChange={onCheckboxCheck} tabIndex="1" /></ReactThemeContext.Provider>
+  return <Checkbox {...args} onChange={onCheckboxCheck} tabIndex="1" />
 }
 
 export const DarkThemeCheckbox = TemplateDarkTheme.bind({});

@@ -11,12 +11,10 @@ it('Input renders correctly', () => {
     children: 'Label',
   };
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
-
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <>
       <Label {...props} />
-    </ReactThemeContext.Provider>
+    </>
   );
   expect(wrapper.toJSON()).toMatchSnapshot();
 });
