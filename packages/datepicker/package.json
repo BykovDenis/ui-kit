@@ -18,7 +18,7 @@
     "clean-node-modules": "rm -rf node_modules"
   },
   "publishConfig": {
-    "registry": "https://github.com/BykovDenis/ui-kit"
+    "registry": "https://github.com/BykovDenis/@dbykov-ui-kit"
   },
   "gitHead": "12001232e414bd9b80fc2887021dfecc9e0c5a6e",
   "dependencies": {
