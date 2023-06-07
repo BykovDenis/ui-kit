@@ -1,6 +1,6 @@
 {
   "name": "@dbykov-ui-kit/TableBody",
-  "version": "0.0.3",
+  "version": "0.0.2",
   "description": "TableBody react UI",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
