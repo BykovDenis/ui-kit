@@ -1,10 +1,9 @@
-<h1>Library Risks react UI Kit components</h1>
+<h1>Library React UI Kit components</h1>
 
 <h2>GET Starting</h2>
 
-
 <ol>
-    <li>npm i @sber-risks-ui</li>
+    <li>npm i @dbykov-ui-kit/core</li>
     <li>
     <h3>
         Create theme
