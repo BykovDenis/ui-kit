@@ -1,6 +1,6 @@
 {
   "name": "@dbykov-ui-kit/Checkbox",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The checkbox component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
