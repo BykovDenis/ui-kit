@@ -23,6 +23,7 @@ interface IFormControlStyled {
   top?: number | string;
   bottom?: number | string;
   fontSize?: number | string;
+  maxWidth?: number | string;
 }
 
 export default IFormControlStyled;

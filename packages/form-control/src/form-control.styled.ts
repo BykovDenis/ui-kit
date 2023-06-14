@@ -14,7 +14,8 @@ const FormControlStyled =
   justify-content: ${(props: IFormControlStyled) => props?.justifyContent || 'initial'};
   align-items:  ${(props: IFormControlStyled) => props.alignItems};
   width: ${(props: IFormControlStyled) => getMeasureValue(props.width, '100%')};
-  max-width: ${(props: IFormControlStyled) => getMeasureValue(props.width)};
+  max-width: ${(props: IFormControlStyled) =>
+    props?.maxWidth ? getMeasureValue(props.maxWidth) : getMeasureValue(props.width)};
   white-space: ${(props: IFormControlStyled) => props.whiteSpace || 'no-wrap'};
   margin: ${(props: IFormControlStyled) => props.margin || 'initial'};
   padding: ${(props: IFormControlStyled) => props.padding || 'initial'};
