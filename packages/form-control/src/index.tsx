@@ -32,6 +32,7 @@ const FormControl: React.FunctionComponent<IFormControl> = (props: IFormControl)
         whiteSpace={props.whiteSpace}
         textAlign={props.textAlign}
         maxHeight={props.maxHeight}
+        maxWidth={props.maxWidth}
         overflowY={props.overflowY}
         color={props.color}
         position={props.position}
