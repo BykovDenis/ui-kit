@@ -6,11 +6,11 @@
 0 silly argv }
 1 notice cli v6.5.1
 2 verbose rootPath /Users/16783656-mobile/www/sber-risks-ui
-3 verbose session dae700e3b2d0c202
+3 verbose session d79f4d8fda1e6848
 4 verbose user-agent lerna/6.5.1/node@v17.5.0+x64 (darwin)
 5 silly argv { _: [ 'publish' ], composed: 'publish', lernaVersion: '6.5.1' }
 6 verbose rootPath /Users/16783656-mobile/www/sber-risks-ui
-7 info current version 0.10.9
+7 info current version 0.10.10-alpha.0
 8 silly isAnythingCommitted
 9 verbose isAnythingCommitted 1
 10 silly getCurrentBranch
@@ -20,8 +20,8 @@
 14 silly isBehindUpstream feature/list is behind origin/feature/list by 0 commit(s) and ahead by 0
 15 silly hasTags
 16 verbose hasTags true
-17 silly git-describe.sync "v0.10.9-3-g82d1e961" => {"lastTagName":"v0.10.9","lastVersion":"v0.10.9","refCount":"3","sha":"82d1e961","isDirty":false}
-18 info Looking for changed packages since v0.10.9
+17 silly git-describe.sync "v0.10.10-alpha.0-2-g40708747" => {"lastTagName":"v0.10.10-alpha.0","lastVersion":"v0.10.10-alpha.0","refCount":"2","sha":"40708747","isDirty":false}
+18 info Looking for changed packages since v0.10.10-alpha.0
 19 silly checking diff packages/button
 20 silly found diff in packages/button/package.json
 21 verbose filtered diff [ 'packages/button/package.json' ]
@@ -37,15 +37,7 @@
 31 silly no diff found in @sber-risks-ui/Example
 32 silly checking diff packages/form-control
 33 silly found diff in packages/form-control/package.json
-33 silly found diff in packages/form-control/src/form-control.styled.ts
-33 silly found diff in packages/form-control/src/index.tsx
-33 silly found diff in packages/form-control/types/iform-control-styled.d.ts
-34 verbose filtered diff [
-34 verbose filtered diff   'packages/form-control/package.json',
-34 verbose filtered diff   'packages/form-control/src/form-control.styled.ts',
-34 verbose filtered diff   'packages/form-control/src/index.tsx',
-34 verbose filtered diff   'packages/form-control/types/iform-control-styled.d.ts'
-34 verbose filtered diff ]
+34 verbose filtered diff [ 'packages/form-control/package.json' ]
 35 silly checking diff packages/icon-button
 36 silly found diff in packages/icon-button/package.json
 37 verbose filtered diff [ 'packages/icon-button/package.json' ]
@@ -108,12 +100,20 @@
 94 verbose filtered diff [ 'packages/textfield/package.json' ]
 95 silly checking diff packages/typography
 96 silly found diff in packages/typography/package.json
-96 silly found diff in packages/typography/src/index.tsx
-96 silly found diff in packages/typography/types/iheader.ts
+96 silly found diff in packages/typography/src/h1.styled.ts
+96 silly found diff in packages/typography/src/h2.styled.ts
+96 silly found diff in packages/typography/src/h3.styled.ts
+96 silly found diff in packages/typography/src/h4.styled.ts
+96 silly found diff in packages/typography/src/h5.styled.ts
+96 silly found diff in packages/typography/src/h6.styled.ts
 97 verbose filtered diff [
 97 verbose filtered diff   'packages/typography/package.json',
-97 verbose filtered diff   'packages/typography/src/index.tsx',
-97 verbose filtered diff   'packages/typography/types/iheader.ts'
+97 verbose filtered diff   'packages/typography/src/h1.styled.ts',
+97 verbose filtered diff   'packages/typography/src/h2.styled.ts',
+97 verbose filtered diff   'packages/typography/src/h3.styled.ts',
+97 verbose filtered diff   'packages/typography/src/h4.styled.ts',
+97 verbose filtered diff   'packages/typography/src/h5.styled.ts',
+97 verbose filtered diff   'packages/typography/src/h6.styled.ts'
 97 verbose filtered diff ]
 98 silly checking diff packages/warning-panel
 99 silly no diff found in @sber-risks-ui/Warning-panel
@@ -138,8 +138,8 @@
 118 verbose updated @sber-risks-ui/Tabs
 119 verbose updated @sber-risks-ui/Textfield
 120 verbose updated @sber-risks-ui/Typography
-121 verbose git-describe undefined => "v0.10.9-3-g82d1e961"
-122 silly git-describe parsed => {"lastTagName":"v0.10.9","lastVersion":"v0.10.9","refCount":"3","sha":"82d1e961","isDirty":false}
+121 verbose git-describe undefined => "v0.10.10-alpha.0-2-g40708747"
+122 silly git-describe parsed => {"lastTagName":"v0.10.10-alpha.0","lastVersion":"v0.10.10-alpha.0","refCount":"2","sha":"40708747","isDirty":false}
 123 info execute Skipping releases
 124 silly lifecycle No script for "preversion" in "root", continuing
 125 silly lifecycle No script for "preversion" in "@sber-risks-ui/Button", continuing
@@ -155,120 +155,120 @@
 135 silly lifecycle No script for "preversion" in "@sber-risks-ui/Select", continuing
 136 silly lifecycle No script for "preversion" in "@sber-risks-ui/StickyBottomPanel", continuing
 137 verbose version @sber-risks-ui/Button has no lockfile. Skipping lockfile update.
-138 verbose version @sber-risks-ui/IconButton has no lockfile. Skipping lockfile update.
+138 verbose version @sber-risks-ui/Divider has no lockfile. Skipping lockfile update.
 139 verbose version @sber-risks-ui/Input has no lockfile. Skipping lockfile update.
-140 verbose version @sber-risks-ui/Label has no lockfile. Skipping lockfile update.
-141 verbose version @sber-risks-ui/Divider has no lockfile. Skipping lockfile update.
-142 verbose version @sber-risks-ui/StickyBottomPanel has no lockfile. Skipping lockfile update.
-143 verbose version @sber-risks-ui/ListItem has no lockfile. Skipping lockfile update.
-144 silly lifecycle No script for "version" in "@sber-risks-ui/List", continuing
+140 verbose version @sber-risks-ui/ListItem has no lockfile. Skipping lockfile update.
+141 verbose version @sber-risks-ui/IconButton has no lockfile. Skipping lockfile update.
+142 verbose version @sber-risks-ui/Label has no lockfile. Skipping lockfile update.
+143 verbose version @sber-risks-ui/StickyBottomPanel has no lockfile. Skipping lockfile update.
+144 silly lifecycle No script for "version" in "@sber-risks-ui/Button", continuing
 145 silly lifecycle No script for "preversion" in "@sber-risks-ui/styles", continuing
-146 silly lifecycle No script for "version" in "@sber-risks-ui/Button", continuing
+146 silly lifecycle No script for "version" in "@sber-risks-ui/FormControl", continuing
 147 silly lifecycle No script for "preversion" in "@sber-risks-ui/Switcher", continuing
-148 silly lifecycle No script for "version" in "@sber-risks-ui/IconButton", continuing
+148 silly lifecycle No script for "version" in "@sber-risks-ui/Datepicker", continuing
 149 silly lifecycle No script for "preversion" in "@sber-risks-ui/Tab", continuing
-150 silly lifecycle No script for "version" in "@sber-risks-ui/Label", continuing
+150 silly lifecycle No script for "version" in "@sber-risks-ui/Divider", continuing
 151 silly lifecycle No script for "preversion" in "@sber-risks-ui/TableBody", continuing
-152 silly lifecycle No script for "version" in "@sber-risks-ui/Divider", continuing
+152 silly lifecycle No script for "version" in "@sber-risks-ui/IconButton", continuing
 153 silly lifecycle No script for "preversion" in "@sber-risks-ui/TableCell", continuing
-154 silly lifecycle No script for "version" in "@sber-risks-ui/FormControl", continuing
+154 silly lifecycle No script for "version" in "@sber-risks-ui/Input", continuing
 155 silly lifecycle No script for "preversion" in "@sber-risks-ui/TableRow", continuing
-156 silly lifecycle No script for "version" in "@sber-risks-ui/StickyBottomPanel", continuing
+156 silly lifecycle No script for "version" in "@sber-risks-ui/Label", continuing
 157 silly lifecycle No script for "preversion" in "@sber-risks-ui/Tabs", continuing
-158 silly lifecycle No script for "version" in "@sber-risks-ui/Select", continuing
+158 silly lifecycle No script for "version" in "@sber-risks-ui/List", continuing
 159 silly lifecycle No script for "preversion" in "@sber-risks-ui/Textfield", continuing
 160 silly lifecycle No script for "version" in "@sber-risks-ui/ListItem", continuing
 161 silly lifecycle No script for "preversion" in "@sber-risks-ui/Typography", continuing
-162 silly lifecycle No script for "version" in "@sber-risks-ui/Datepicker", continuing
-163 silly lifecycle No script for "version" in "@sber-risks-ui/Input", continuing
-164 silly lifecycle No script for "version" in "@sber-risks-ui/MultiSelect", continuing
+162 silly lifecycle No script for "version" in "@sber-risks-ui/MultiSelect", continuing
+163 silly lifecycle No script for "version" in "@sber-risks-ui/Select", continuing
+164 silly lifecycle No script for "version" in "@sber-risks-ui/StickyBottomPanel", continuing
 165 verbose version @sber-risks-ui/TableBody has no lockfile. Skipping lockfile update.
 166 verbose version @sber-risks-ui/styles has no lockfile. Skipping lockfile update.
 167 verbose version @sber-risks-ui/TableCell has no lockfile. Skipping lockfile update.
 168 verbose version @sber-risks-ui/Textfield has no lockfile. Skipping lockfile update.
-169 silly lifecycle No script for "version" in "@sber-risks-ui/TableBody", continuing
-170 silly lifecycle No script for "version" in "@sber-risks-ui/Typography", continuing
-171 silly lifecycle No script for "version" in "@sber-risks-ui/Tab", continuing
-172 silly lifecycle No script for "version" in "@sber-risks-ui/styles", continuing
-173 silly lifecycle No script for "version" in "@sber-risks-ui/Tabs", continuing
-174 silly lifecycle No script for "version" in "@sber-risks-ui/TableCell", continuing
-175 silly lifecycle No script for "version" in "@sber-risks-ui/Textfield", continuing
+169 silly lifecycle No script for "version" in "@sber-risks-ui/styles", continuing
+170 silly lifecycle No script for "version" in "@sber-risks-ui/TableBody", continuing
+171 silly lifecycle No script for "version" in "@sber-risks-ui/TableRow", continuing
+172 silly lifecycle No script for "version" in "@sber-risks-ui/Textfield", continuing
+173 silly lifecycle No script for "version" in "@sber-risks-ui/TableCell", continuing
+174 silly lifecycle No script for "version" in "@sber-risks-ui/Typography", continuing
+175 silly lifecycle No script for "version" in "@sber-risks-ui/Tab", continuing
 176 silly lifecycle No script for "version" in "@sber-risks-ui/Switcher", continuing
-177 silly lifecycle No script for "version" in "@sber-risks-ui/TableRow", continuing
+177 silly lifecycle No script for "version" in "@sber-risks-ui/Tabs", continuing
 178 verbose version Updating root package-lock.json
 179 silly lifecycle No script for "version" in "root", continuing
-180 silly version Failed to apply prettier to updated file: packages/list/package.json
-181 silly version Failed to apply prettier to updated file: packages/list/package-lock.json
-182 silly version Failed to apply prettier to updated file: packages/button/package.json
-183 silly version Failed to apply prettier to updated file: packages/icon-button/package.json
-184 silly version Failed to apply prettier to updated file: packages/label/package.json
+180 silly version Failed to apply prettier to updated file: packages/button/package.json
+181 silly version Failed to apply prettier to updated file: packages/form-control/package.json
+182 silly version Failed to apply prettier to updated file: packages/form-control/package-lock.json
+183 silly version Failed to apply prettier to updated file: packages/datepicker/package.json
+184 silly version Failed to apply prettier to updated file: packages/datepicker/package-lock.json
 185 silly version Failed to apply prettier to updated file: packages/divider/package.json
-186 silly version Failed to apply prettier to updated file: packages/form-control/package.json
-187 silly version Failed to apply prettier to updated file: packages/form-control/package-lock.json
-188 silly version Failed to apply prettier to updated file: packages/sticky-bottom-panel/package.json
-189 silly version Failed to apply prettier to updated file: packages/select/package.json
-190 silly version Failed to apply prettier to updated file: packages/select/package-lock.json
+186 silly version Failed to apply prettier to updated file: packages/icon-button/package.json
+187 silly version Failed to apply prettier to updated file: packages/input/package.json
+188 silly version Failed to apply prettier to updated file: packages/label/package.json
+189 silly version Failed to apply prettier to updated file: packages/list/package.json
+190 silly version Failed to apply prettier to updated file: packages/list/package-lock.json
 191 silly version Failed to apply prettier to updated file: packages/list-item/package.json
-192 silly version Failed to apply prettier to updated file: packages/datepicker/package.json
-193 silly version Failed to apply prettier to updated file: packages/datepicker/package-lock.json
-194 silly version Failed to apply prettier to updated file: packages/input/package.json
-195 silly version Failed to apply prettier to updated file: packages/multi-select/package.json
-196 silly version Failed to apply prettier to updated file: packages/multi-select/package-lock.json
-197 silly version Failed to apply prettier to updated file: packages/table-body/package.json
-198 silly version Failed to apply prettier to updated file: packages/typography/package.json
-199 silly version Failed to apply prettier to updated file: packages/typography/package-lock.json
-200 silly version Failed to apply prettier to updated file: packages/tab/package.json
-201 silly version Failed to apply prettier to updated file: packages/tab/package-lock.json
-202 silly version Failed to apply prettier to updated file: packages/styles/package.json
-203 silly version Failed to apply prettier to updated file: packages/tabs/package.json
-204 silly version Failed to apply prettier to updated file: packages/tabs/package-lock.json
-205 silly version Failed to apply prettier to updated file: packages/table-cell/package.json
-206 silly version Failed to apply prettier to updated file: packages/textfield/package.json
+192 silly version Failed to apply prettier to updated file: packages/multi-select/package.json
+193 silly version Failed to apply prettier to updated file: packages/multi-select/package-lock.json
+194 silly version Failed to apply prettier to updated file: packages/select/package.json
+195 silly version Failed to apply prettier to updated file: packages/select/package-lock.json
+196 silly version Failed to apply prettier to updated file: packages/sticky-bottom-panel/package.json
+197 silly version Failed to apply prettier to updated file: packages/styles/package.json
+198 silly version Failed to apply prettier to updated file: packages/table-body/package.json
+199 silly version Failed to apply prettier to updated file: packages/table-row/package.json
+200 silly version Failed to apply prettier to updated file: packages/table-row/package-lock.json
+201 silly version Failed to apply prettier to updated file: packages/textfield/package.json
+202 silly version Failed to apply prettier to updated file: packages/table-cell/package.json
+203 silly version Failed to apply prettier to updated file: packages/typography/package.json
+204 silly version Failed to apply prettier to updated file: packages/typography/package-lock.json
+205 silly version Failed to apply prettier to updated file: packages/tab/package.json
+206 silly version Failed to apply prettier to updated file: packages/tab/package-lock.json
 207 silly version Failed to apply prettier to updated file: packages/switcher/package.json
 208 silly version Failed to apply prettier to updated file: packages/switcher/package-lock.json
-209 silly version Failed to apply prettier to updated file: packages/table-row/package.json
-210 silly version Failed to apply prettier to updated file: packages/table-row/package-lock.json
+209 silly version Failed to apply prettier to updated file: packages/tabs/package.json
+210 silly version Failed to apply prettier to updated file: packages/tabs/package-lock.json
 211 silly version Failed to apply prettier to updated file: lerna.json
 212 silly version Failed to apply prettier to updated file: package-lock.json
 213 silly gitAdd [
-213 silly gitAdd   'packages/list/package.json',
-213 silly gitAdd   'packages/list/package-lock.json',
 213 silly gitAdd   'packages/button/package.json',
-213 silly gitAdd   'packages/icon-button/package.json',
-213 silly gitAdd   'packages/label/package.json',
-213 silly gitAdd   'packages/divider/package.json',
 213 silly gitAdd   'packages/form-control/package.json',
 213 silly gitAdd   'packages/form-control/package-lock.json',
-213 silly gitAdd   'packages/sticky-bottom-panel/package.json',
-213 silly gitAdd   'packages/select/package.json',
-213 silly gitAdd   'packages/select/package-lock.json',
-213 silly gitAdd   'packages/list-item/package.json',
 213 silly gitAdd   'packages/datepicker/package.json',
 213 silly gitAdd   'packages/datepicker/package-lock.json',
+213 silly gitAdd   'packages/divider/package.json',
+213 silly gitAdd   'packages/icon-button/package.json',
 213 silly gitAdd   'packages/input/package.json',
+213 silly gitAdd   'packages/label/package.json',
+213 silly gitAdd   'packages/list/package.json',
+213 silly gitAdd   'packages/list/package-lock.json',
+213 silly gitAdd   'packages/list-item/package.json',
 213 silly gitAdd   'packages/multi-select/package.json',
 213 silly gitAdd   'packages/multi-select/package-lock.json',
+213 silly gitAdd   'packages/select/package.json',
+213 silly gitAdd   'packages/select/package-lock.json',
+213 silly gitAdd   'packages/sticky-bottom-panel/package.json',
+213 silly gitAdd   'packages/styles/package.json',
 213 silly gitAdd   'packages/table-body/package.json',
+213 silly gitAdd   'packages/table-row/package.json',
+213 silly gitAdd   'packages/table-row/package-lock.json',
+213 silly gitAdd   'packages/textfield/package.json',
+213 silly gitAdd   'packages/table-cell/package.json',
 213 silly gitAdd   'packages/typography/package.json',
 213 silly gitAdd   'packages/typography/package-lock.json',
 213 silly gitAdd   'packages/tab/package.json',
 213 silly gitAdd   'packages/tab/package-lock.json',
-213 silly gitAdd   'packages/styles/package.json',
-213 silly gitAdd   'packages/tabs/package.json',
-213 silly gitAdd   'packages/tabs/package-lock.json',
-213 silly gitAdd   'packages/table-cell/package.json',
-213 silly gitAdd   'packages/textfield/package.json',
 213 silly gitAdd   'packages/switcher/package.json',
 213 silly gitAdd   'packages/switcher/package-lock.json',
-213 silly gitAdd   'packages/table-row/package.json',
-213 silly gitAdd   'packages/table-row/package-lock.json',
+213 silly gitAdd   'packages/tabs/package.json',
+213 silly gitAdd   'packages/tabs/package-lock.json',
 213 silly gitAdd   'lerna.json',
 213 silly gitAdd   'package-lock.json'
 213 silly gitAdd ]
-214 silly gitCommit v0.10.10-alpha.0
-215 verbose git [ 'commit', '-m', 'v0.10.10-alpha.0' ]
-216 silly gitTag v0.10.10-alpha.0 git tag %s -m %s
-217 verbose git [ 'tag', 'v0.10.10-alpha.0', '-m', 'v0.10.10-alpha.0' ]
+214 silly gitCommit v0.10.10-alpha.1
+215 verbose git [ 'commit', '-m', 'v0.10.10-alpha.1' ]
+216 silly gitTag v0.10.10-alpha.1 git tag %s -m %s
+217 verbose git [ 'tag', 'v0.10.10-alpha.1', '-m', 'v0.10.10-alpha.1' ]
 218 silly lifecycle No script for "postversion" in "@sber-risks-ui/Button", continuing
 219 silly lifecycle No script for "postversion" in "@sber-risks-ui/Datepicker", continuing
 220 silly lifecycle No script for "postversion" in "@sber-risks-ui/Divider", continuing
@@ -295,7 +295,7 @@
 241 silly gitPush origin feature/list
 242 info publish Publishing packages to npm...
 243 silly getCurrentSHA
-244 verbose getCurrentSHA 25d10d0c1bbfa3d3e345f7c74dda74dad8246170
+244 verbose getCurrentSHA 05a532715a821757a9e5e62b97677ad580430e08
 245 silly lifecycle No script for "prepublish" in "root", continuing
 246 silly lifecycle No script for "prepare" in "root", continuing
 247 silly lifecycle No script for "prepublishOnly" in "root", continuing
@@ -338,32 +338,32 @@
 284 silly lifecycle No script for "prepare" in "@sber-risks-ui/StickyBottomPanel", continuing
 285 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Button", continuing
 286 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Datepicker", continuing
-287 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Divider", continuing
-288 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/IconButton", continuing
-289 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/FormControl", continuing
-290 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/List", continuing
-291 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Input", continuing
-292 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Label", continuing
-293 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/MultiSelect", continuing
-294 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Select", continuing
-295 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/ListItem", continuing
+287 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/FormControl", continuing
+288 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Divider", continuing
+289 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/IconButton", continuing
+290 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Input", continuing
+291 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/ListItem", continuing
+292 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/List", continuing
+293 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Label", continuing
+294 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/MultiSelect", continuing
+295 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Select", continuing
 296 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/StickyBottomPanel", continuing
 297 silly lifecycle No script for "prepack" in "@sber-risks-ui/Button", continuing
-298 silly lifecycle No script for "prepack" in "@sber-risks-ui/Divider", continuing
-299 silly lifecycle No script for "prepack" in "@sber-risks-ui/Datepicker", continuing
-300 silly lifecycle No script for "prepack" in "@sber-risks-ui/IconButton", continuing
-301 silly lifecycle No script for "prepack" in "@sber-risks-ui/FormControl", continuing
-302 silly lifecycle No script for "prepack" in "@sber-risks-ui/List", continuing
-303 silly lifecycle No script for "prepack" in "@sber-risks-ui/Input", continuing
-304 silly lifecycle No script for "prepack" in "@sber-risks-ui/Label", continuing
-305 silly lifecycle No script for "prepack" in "@sber-risks-ui/MultiSelect", continuing
-306 silly lifecycle No script for "prepack" in "@sber-risks-ui/StickyBottomPanel", continuing
-307 silly lifecycle No script for "prepack" in "@sber-risks-ui/ListItem", continuing
-308 silly lifecycle No script for "prepack" in "@sber-risks-ui/Select", continuing
-309 silly lifecycle No script for "postpack" in "@sber-risks-ui/Button", continuing
-310 verbose packed packages/button
-311 silly lifecycle No script for "postpack" in "@sber-risks-ui/IconButton", continuing
-312 verbose packed packages/icon-button
+298 silly lifecycle No script for "prepack" in "@sber-risks-ui/Datepicker", continuing
+299 silly lifecycle No script for "prepack" in "@sber-risks-ui/FormControl", continuing
+300 silly lifecycle No script for "prepack" in "@sber-risks-ui/Divider", continuing
+301 silly lifecycle No script for "prepack" in "@sber-risks-ui/IconButton", continuing
+302 silly lifecycle No script for "prepack" in "@sber-risks-ui/Input", continuing
+303 silly lifecycle No script for "prepack" in "@sber-risks-ui/ListItem", continuing
+304 silly lifecycle No script for "prepack" in "@sber-risks-ui/List", continuing
+305 silly lifecycle No script for "prepack" in "@sber-risks-ui/Label", continuing
+306 silly lifecycle No script for "prepack" in "@sber-risks-ui/MultiSelect", continuing
+307 silly lifecycle No script for "prepack" in "@sber-risks-ui/Select", continuing
+308 silly lifecycle No script for "prepack" in "@sber-risks-ui/StickyBottomPanel", continuing
+309 silly lifecycle No script for "postpack" in "@sber-risks-ui/IconButton", continuing
+310 verbose packed packages/icon-button
+311 silly lifecycle No script for "postpack" in "@sber-risks-ui/Button", continuing
+312 verbose packed packages/button
 313 silly lifecycle No script for "postpack" in "@sber-risks-ui/Datepicker", continuing
 314 verbose packed packages/datepicker
 315 verbose pack-directory packages/styles
@@ -372,27 +372,27 @@
 318 verbose pack-directory packages/switcher
 319 silly lifecycle No script for "prepublish" in "@sber-risks-ui/Switcher", continuing
 320 silly lifecycle No script for "prepare" in "@sber-risks-ui/Switcher", continuing
-321 silly lifecycle No script for "postpack" in "@sber-risks-ui/Divider", continuing
-322 verbose packed packages/divider
-323 verbose pack-directory packages/tab
-324 silly lifecycle No script for "prepublish" in "@sber-risks-ui/Tab", continuing
-325 silly lifecycle No script for "prepare" in "@sber-risks-ui/Tab", continuing
-326 silly lifecycle No script for "postpack" in "@sber-risks-ui/FormControl", continuing
-327 verbose packed packages/form-control
-328 silly lifecycle No script for "postpack" in "@sber-risks-ui/StickyBottomPanel", continuing
-329 verbose packed packages/sticky-bottom-panel
+321 verbose pack-directory packages/tab
+322 silly lifecycle No script for "prepublish" in "@sber-risks-ui/Tab", continuing
+323 silly lifecycle No script for "prepare" in "@sber-risks-ui/Tab", continuing
+324 silly lifecycle No script for "postpack" in "@sber-risks-ui/Divider", continuing
+325 verbose packed packages/divider
+326 silly lifecycle No script for "postpack" in "@sber-risks-ui/StickyBottomPanel", continuing
+327 verbose packed packages/sticky-bottom-panel
+328 silly lifecycle No script for "postpack" in "@sber-risks-ui/FormControl", continuing
+329 verbose packed packages/form-control
 330 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/styles", continuing
-331 verbose pack-directory packages/table-body
-332 silly lifecycle No script for "prepublish" in "@sber-risks-ui/TableBody", continuing
-333 silly lifecycle No script for "prepare" in "@sber-risks-ui/TableBody", continuing
-334 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Switcher", continuing
-335 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Tab", continuing
-336 silly lifecycle No script for "postpack" in "@sber-risks-ui/Label", continuing
-337 verbose packed packages/label
-338 silly lifecycle No script for "postpack" in "@sber-risks-ui/ListItem", continuing
-339 verbose packed packages/list-item
-340 silly lifecycle No script for "postpack" in "@sber-risks-ui/List", continuing
-341 verbose packed packages/list
+331 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Switcher", continuing
+332 silly lifecycle No script for "postpack" in "@sber-risks-ui/Label", continuing
+333 verbose packed packages/label
+334 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Tab", continuing
+335 verbose pack-directory packages/table-body
+336 silly lifecycle No script for "prepublish" in "@sber-risks-ui/TableBody", continuing
+337 silly lifecycle No script for "prepare" in "@sber-risks-ui/TableBody", continuing
+338 silly lifecycle No script for "postpack" in "@sber-risks-ui/List", continuing
+339 verbose packed packages/list
+340 silly lifecycle No script for "postpack" in "@sber-risks-ui/ListItem", continuing
+341 verbose packed packages/list-item
 342 verbose pack-directory packages/table-cell
 343 silly lifecycle No script for "prepublish" in "@sber-risks-ui/TableCell", continuing
 344 silly lifecycle No script for "prepare" in "@sber-risks-ui/TableCell", continuing
@@ -400,35 +400,35 @@
 346 silly lifecycle No script for "prepublish" in "@sber-risks-ui/TableRow", continuing
 347 silly lifecycle No script for "prepare" in "@sber-risks-ui/TableRow", continuing
 348 silly lifecycle No script for "prepack" in "@sber-risks-ui/styles", continuing
-349 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/TableBody", continuing
-350 silly lifecycle No script for "prepack" in "@sber-risks-ui/Switcher", continuing
-351 silly lifecycle No script for "prepack" in "@sber-risks-ui/Tab", continuing
-352 verbose pack-directory packages/tabs
-353 silly lifecycle No script for "prepublish" in "@sber-risks-ui/Tabs", continuing
-354 silly lifecycle No script for "prepare" in "@sber-risks-ui/Tabs", continuing
+349 silly lifecycle No script for "prepack" in "@sber-risks-ui/Switcher", continuing
+350 verbose pack-directory packages/tabs
+351 silly lifecycle No script for "prepublish" in "@sber-risks-ui/Tabs", continuing
+352 silly lifecycle No script for "prepare" in "@sber-risks-ui/Tabs", continuing
+353 silly lifecycle No script for "prepack" in "@sber-risks-ui/Tab", continuing
+354 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/TableBody", continuing
 355 verbose pack-directory packages/textfield
 356 silly lifecycle No script for "prepublish" in "@sber-risks-ui/Textfield", continuing
 357 silly lifecycle No script for "prepare" in "@sber-risks-ui/Textfield", continuing
 358 verbose pack-directory packages/typography
 359 silly lifecycle No script for "prepublish" in "@sber-risks-ui/Typography", continuing
 360 silly lifecycle No script for "prepare" in "@sber-risks-ui/Typography", continuing
-361 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/TableCell", continuing
-362 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/TableRow", continuing
-363 silly lifecycle No script for "prepack" in "@sber-risks-ui/TableBody", continuing
-364 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Tabs", continuing
-365 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Textfield", continuing
-366 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Typography", continuing
-367 silly lifecycle No script for "prepack" in "@sber-risks-ui/TableCell", continuing
-368 silly lifecycle No script for "prepack" in "@sber-risks-ui/TableRow", continuing
-369 silly lifecycle No script for "prepack" in "@sber-risks-ui/Tabs", continuing
-370 silly lifecycle No script for "prepack" in "@sber-risks-ui/Textfield", continuing
-371 silly lifecycle No script for "prepack" in "@sber-risks-ui/Typography", continuing
-372 silly lifecycle No script for "postpack" in "@sber-risks-ui/Select", continuing
-373 verbose packed packages/select
-374 silly lifecycle No script for "postpack" in "@sber-risks-ui/Input", continuing
-375 verbose packed packages/input
-376 silly lifecycle No script for "postpack" in "@sber-risks-ui/MultiSelect", continuing
-377 verbose packed packages/multi-select
+361 silly lifecycle No script for "postpack" in "@sber-risks-ui/Select", continuing
+362 verbose packed packages/select
+363 silly lifecycle No script for "postpack" in "@sber-risks-ui/Input", continuing
+364 verbose packed packages/input
+365 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/TableCell", continuing
+366 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/TableRow", continuing
+367 silly lifecycle No script for "postpack" in "@sber-risks-ui/MultiSelect", continuing
+368 verbose packed packages/multi-select
+369 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Tabs", continuing
+370 silly lifecycle No script for "prepack" in "@sber-risks-ui/TableBody", continuing
+371 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Textfield", continuing
+372 silly lifecycle No script for "prepublishOnly" in "@sber-risks-ui/Typography", continuing
+373 silly lifecycle No script for "prepack" in "@sber-risks-ui/TableCell", continuing
+374 silly lifecycle No script for "prepack" in "@sber-risks-ui/TableRow", continuing
+375 silly lifecycle No script for "prepack" in "@sber-risks-ui/Tabs", continuing
+376 silly lifecycle No script for "prepack" in "@sber-risks-ui/Textfield", continuing
+377 silly lifecycle No script for "prepack" in "@sber-risks-ui/Typography", continuing
 378 silly lifecycle No script for "postpack" in "@sber-risks-ui/Switcher", continuing
 379 verbose packed packages/switcher
 380 silly lifecycle No script for "postpack" in "@sber-risks-ui/Tab", continuing
@@ -437,10 +437,10 @@
 383 verbose packed packages/table-body
 384 silly lifecycle No script for "postpack" in "@sber-risks-ui/styles", continuing
 385 verbose packed packages/styles
-386 silly lifecycle No script for "postpack" in "@sber-risks-ui/TableRow", continuing
-387 verbose packed packages/table-row
-388 silly lifecycle No script for "postpack" in "@sber-risks-ui/TableCell", continuing
-389 verbose packed packages/table-cell
+386 silly lifecycle No script for "postpack" in "@sber-risks-ui/TableCell", continuing
+387 verbose packed packages/table-cell
+388 silly lifecycle No script for "postpack" in "@sber-risks-ui/TableRow", continuing
+389 verbose packed packages/table-row
 390 silly lifecycle No script for "postpack" in "@sber-risks-ui/Tabs", continuing
 391 verbose packed packages/tabs
 392 silly lifecycle No script for "postpack" in "@sber-risks-ui/Textfield", continuing
@@ -460,7 +460,7 @@
 406 verbose publish @sber-risks-ui/MultiSelect
 407 verbose publish @sber-risks-ui/Select
 408 verbose publish @sber-risks-ui/StickyBottomPanel
-409 silly FetchError: request to https://registry.npmjs.org/@sber-risks-ui%2fButton failed, reason: write EPROTO 80F6E450F87F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../deps/openssl/openssl/ssl/statem/extensions.c:908:
+409 silly FetchError: request to https://registry.npmjs.org/@sber-risks-ui%2fIconButton failed, reason: write EPROTO 80F6E450F87F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../deps/openssl/openssl/ssl/statem/extensions.c:908:
 409 silly
 409 silly     at ClientRequest.<anonymous> (/Users/16783656-mobile/.nvm/versions/node/v17.5.0/lib/node_modules/lerna/node_modules/minipass-fetch/lib/index.js:130:14)
 409 silly     at ClientRequest.emit (node:events:526:28)
@@ -469,7 +469,7 @@
 409 silly     at emitErrorNT (node:internal/streams/destroy:164:8)
 409 silly     at emitErrorCloseNT (node:internal/streams/destroy:129:3)
 409 silly     at processTicksAndRejections (node:internal/process/task_queues:83:21)
-409 silly  FetchError: request to https://registry.npmjs.org/@sber-risks-ui%2fButton failed, reason: write EPROTO 80F6E450F87F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../deps/openssl/openssl/ssl/statem/extensions.c:908:
+409 silly  FetchError: request to https://registry.npmjs.org/@sber-risks-ui%2fIconButton failed, reason: write EPROTO 80F6E450F87F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../deps/openssl/openssl/ssl/statem/extensions.c:908:
 409 silly
 409 silly     at ClientRequest.<anonymous> (/Users/16783656-mobile/.nvm/versions/node/v17.5.0/lib/node_modules/lerna/node_modules/minipass-fetch/lib/index.js:130:14)
 409 silly     at ClientRequest.emit (node:events:526:28)
@@ -483,9 +483,9 @@
 409 silly   syscall: 'write',
 409 silly   type: 'system'
 409 silly }
-410 error EPROTO request to https://registry.npmjs.org/@sber-risks-ui%2fButton failed, reason: write EPROTO 80F6E450F87F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../deps/openssl/openssl/ssl/statem/extensions.c:908:
+410 error EPROTO request to https://registry.npmjs.org/@sber-risks-ui%2fIconButton failed, reason: write EPROTO 80F6E450F87F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../deps/openssl/openssl/ssl/statem/extensions.c:908:
 411 verbose publish @sber-risks-ui/styles
-412 error FetchError: request to https://registry.npmjs.org/@sber-risks-ui%2fButton failed, reason: write EPROTO 80F6E450F87F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../deps/openssl/openssl/ssl/statem/extensions.c:908:
+412 error FetchError: request to https://registry.npmjs.org/@sber-risks-ui%2fIconButton failed, reason: write EPROTO 80F6E450F87F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../deps/openssl/openssl/ssl/statem/extensions.c:908:
 412 error
 412 error     at ClientRequest.<anonymous> (/Users/16783656-mobile/.nvm/versions/node/v17.5.0/lib/node_modules/lerna/node_modules/minipass-fetch/lib/index.js:130:14)
 412 error     at ClientRequest.emit (node:events:526:28)
