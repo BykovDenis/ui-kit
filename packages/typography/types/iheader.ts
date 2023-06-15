@@ -6,6 +6,8 @@ interface IHeader {
   fontFamily?: string;
   textDecoration?: 'none' | 'inherit' | 'underline' | 'overline' | 'line-through' | 'blink';
   textTransform?: 'capitalize' | 'lowercase' | 'uppercase' | 'none' | 'inherit';
+  margin?: string;
+  padding?: string;
 }
 
 export default IHeader;

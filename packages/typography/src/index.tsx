@@ -19,6 +19,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
       case 'H1': {
         return (
           <H1Styled
+            {...props}
             color={props?.color ?? color}
             fontSize={props?.fontSize ?? theme.h1FontSize}
             backgroundColor={props?.backgroundColor}
@@ -31,6 +32,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
       case 'H2': {
         return (
           <H2Styled
+            {...props}
             color={props?.color ?? color}
             fontSize={props?.fontSize ?? theme.h2FontSize}
             backgroundColor={props?.backgroundColor}
@@ -43,6 +45,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
       case 'H3': {
         return (
           <H3Styled
+            {...props}
             color={props?.color ?? color}
             fontSize={props?.fontSize ?? theme.h3FontSize}
             backgroundColor={props?.backgroundColor}
@@ -55,6 +58,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
       case 'H4': {
         return (
           <H3Styled
+            {...props}
             color={props?.color ?? color}
             fontSize={props?.fontSize ?? theme.h4FontSize}
             backgroundColor={props?.backgroundColor}
@@ -67,6 +71,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
       case 'H5': {
         return (
           <H3Styled
+            {...props}
             color={props?.color ?? color}
             fontSize={props?.fontSize ?? theme.h5FontSize}
             backgroundColor={props?.backgroundColor}
@@ -79,6 +84,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
       case 'H6': {
         return (
           <H3Styled
+            {...props}
             color={props?.color ?? color}
             fontSize={props?.fontSize ?? theme.h6FontSize}
             backgroundColor={props?.backgroundColor}
@@ -91,6 +97,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
       default: {
         return (
           <H1Styled
+            {...props}
             color={props?.color ?? color}
             fontSize={props?.fontSize ?? theme.h1FontSize}
             backgroundColor={props?.backgroundColor}
