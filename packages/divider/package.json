@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/Divider",
-  "version": "0.10.10-alpha.0",
+  "version": "0.10.10-alpha.1",
   "description": "Risks react UI",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
