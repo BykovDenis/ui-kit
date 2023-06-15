@@ -11,6 +11,8 @@ const H6Styled =
   font-family: ${(props: IHeader) => props.fontFamily};
   text-transform: ${(props: IHeader) => props.textTransform ?? 'none'};
   text-decoration: ${(props: IHeader) => props.textDecoration ?? 'none'};
+  ${(props: IHeader) => (props?.margin ? `margin: ${props.margin};` : '')}
+  ${(props: IHeader) => (props?.padding ? `margin: ${props.padding};` : '')}    
 `;
 
 export default H6Styled;
