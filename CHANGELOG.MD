@@ -95,3 +95,8 @@
     <li>The className added into the Typography</li>
     <li>The max width property into the FormControl added</li>
 </ol>
+<h2>v 0.10.10</h2>
+<h3>Features</h3>
+<ol>
+    <li>padding and margin property added into the Typography component</li>
+</ol>
