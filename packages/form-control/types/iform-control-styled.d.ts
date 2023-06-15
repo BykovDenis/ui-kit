@@ -24,6 +24,8 @@ interface IFormControlStyled {
   bottom?: number | string;
   fontSize?: number | string;
   maxWidth?: number | string;
+  alignSelf?: string;
+  zIndex?: number;
 }
 
 export default IFormControlStyled;

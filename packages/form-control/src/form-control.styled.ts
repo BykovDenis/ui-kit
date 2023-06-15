@@ -1,6 +1,7 @@
 ﻿import styled from 'styled-components';
 import IFormControlStyled from '../types/iform-control-styled';
 import getMeasureValue from '../../helpers/get-measure-value';
+import isNotEmptyNumber from '../../helpers/is-not-empty-number';
 
 const FormControlStyled =
   styled.div <
@@ -33,7 +34,9 @@ const FormControlStyled =
   left: ${(props: IFormControlStyled) => getMeasureValue(props.left, 'auto')};
   top: ${(props: IFormControlStyled) => getMeasureValue(props.top, 'auto')};
   bottom: ${(props: IFormControlStyled) => getMeasureValue(props.bottom, 'auto')};
-  font-size: ${(props: IFormControlStyled) => getMeasureValue(props.fontSize, 'inherit')};
+  font-size: ${(props: IFormControlStyled) => getMeasureValue(props.fontSize, 'inherit')}
+  ${(props: IFormControlStyled) => (props?.alignSelf ? `align-self: ${props.alignSelf};` : '')}
+  ${(props: IFormControlStyled) => (isNotEmptyNumber(props?.zIndex) ? `z-index: ${props.zIndex};` : '')}
 `;
 
 export default FormControlStyled;
