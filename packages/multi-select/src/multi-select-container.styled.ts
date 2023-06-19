@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import getMeasureValue from '../../helpers/get-measure-value';
+import rgbToRgba from '../../helpers/rgb-to-rgba';
 
 type TMultiSelectContainerStyled = {
   width: number | string,
@@ -36,6 +37,9 @@ const MultiSelectContainerStyled =
   &:focus,
   &:active {
     border: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
+    outline: ${(props: TMultiSelectContainerStyled) => rgbToRgba(props?.borderColorFocused, 0.3)};
+    box-shadow: 1px 1px 5px 3px ${(props: TMultiSelectContainerStyled) => rgbToRgba(props?.borderColorFocused, 0.3)};
+    border-color: ${(props: TMultiSelectContainerStyled) => props?.borderColorFocused};
     & button[data-name="button-toggle"] svg path {
       fill: ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
     }

@@ -270,7 +270,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
         data-name="multi-select-container"
         width={props?.width}
         borderColor={outlinedColor}
-        borderColorFocused={theme.palette.primary.light}
+        borderColorFocused={theme.palette.primary.main}
         borderColorHovered={theme.mainOutlinedHoverColor}
         onClick={onBtnElementsClickExpand}
         ref={btnMultiSelect}
