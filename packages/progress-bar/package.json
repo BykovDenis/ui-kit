@@ -1,13 +1,18 @@
 {
-  "name": "@sber-risks-ui/progress-bar",
+  "name": "@sber-risks-ui/Progressbar",
   "version": "0.10.7-alpha.1",
-  "description": "Progressbar react UI",
+  "description": "Risks react UI Progressbar component",
   "keywords": "React, progressbar, progress-bar",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "author": "Denis Bykov",
   "license": "MIT",
+  "jest": {
+    "setupFiles": [
+      "./setupTests.js"
+    ]
+  },
   "scripts": {
     "build": "rollup -c rollup.config.prod.js",
     "build-dev": "rollup -w -c rollup.config.dev.js",

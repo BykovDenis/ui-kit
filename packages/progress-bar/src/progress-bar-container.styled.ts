@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import TProgressBar from '../types/tprogress-bar';
+import getMeasureValue from '../../helpers/get-measure-value';
 
 const ProgressBarContainerStyled =
   styled.div <
@@ -12,7 +13,7 @@ const ProgressBarContainerStyled =
   border-style: ${(props: TProgressBar) => props.borderStyle};
   border-width: ${(props: TProgressBar) => props.borderWidth};
   border-radius: ${(props: TProgressBar) => props.borderRadius};
-  height: ${(props: TProgressBar) => props.height};
+  height: ${(props: TProgressBar) => getMeasureValue(props.height, '30px')};
   font-family: ${(props: TProgressBar) => props?.fontFamily || 'inherit'};
   transform: ${(props: TProgressBar) => (props.direction == 'ltr' ? 'none' : 'rotate(180deg)')};
 `;

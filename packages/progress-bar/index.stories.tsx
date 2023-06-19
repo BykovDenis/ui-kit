@@ -3,6 +3,8 @@ import React from "react";
 
 import TProgressBar from "./types/tprogress-bar";
 import ProgressBar from "./src/index";
+import { themes } from '../styles/src/themes';
+import getNewReactThemeContext from '../styles/src';
 
 export default {
   title: "Components/ProgressBar",
@@ -17,11 +19,15 @@ export default {
 } as ComponentMeta<typeof ProgressBar>;
 
 const Template: ComponentStory<typeof ProgressBar> = (args: TProgressBar) => {
+
+  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
   return (
-    <ProgressBar
+    <ReactThemeContext.Provider value={themes.dark}>
+    <ProgressBar height={15}
       {...args}
-      fillColor="linear-gradient(90deg, #99984b,#409aec,#e40468)"
     />
+    </ReactThemeContext.Provider>
   );
 };
 

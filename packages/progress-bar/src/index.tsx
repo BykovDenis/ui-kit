@@ -4,6 +4,7 @@ import ProgressBarContainerStyled from './progress-bar-container.styled';
 import ProgressBarFillContainerStyled from './progress-bar-fill-container.styled';
 import ProgressValueStyled from './progress-value.styled';
 import ITheme from '../../styles/types/itheme';
+import MiddleEllipseContainer from './middle-ellipse-container';
 
 const ProgressBar: React.FunctionComponent<TProgressBar> = (props: TProgressBar) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
@@ -13,31 +14,40 @@ const ProgressBar: React.FunctionComponent<TProgressBar> = (props: TProgressBar)
   }, [globalThis.ReactThemeContextConsumer]);
 
   const componentThemed: any = (theme: ITheme) => {
-    const color: string = theme?.palette?.primary?.main;
+    const backgroundColor: string = props?.backgroundColor ?? theme.mainBackgroundColor;
+    const fillColor: string = props?.fillColor ?? theme.palette.primary.main;
+    const color: string = props?.fontColor ?? theme?.palette?.primary?.main;
+    const height: number | string = props?.height ?? 40;
+
     return (
       <ProgressBarContainerStyled
-        backgroundColor={props.backgroundColor}
+        backgroundColor={backgroundColor}
         borderColor={props.borderColor}
         borderRadius={props.borderRadius}
         borderStyle={props.borderStyle}
         borderWidth={props.borderWidth}
-        height={props.height}
+        height={height}
         direction={props.direction}
         fontFamily={theme.fontFamily}
       >
         <ProgressBarFillContainerStyled
           progress={props.progress}
-          fillColor={props?.fillColor || color}
+          fillColor={fillColor}
           borderRadius={props.borderRadius}
           isAnimate={props.isAnimate}
         />
         <ProgressValueStyled
           fontSize={props.fontSize}
-          fillColor={props.progress >= 51 ? props.backgroundColor : props?.fillColor || color}
-          backgroundColor={props.progress <= 49 ? props.backgroundColor : props?.fillColor || color}
+          fillColor={props.progress >= 51 ? props.backgroundColor : fillColor || color}
+          backgroundColor={props.progress <= 49 ? props.backgroundColor : fillColor || color}
           direction={props.direction}
         >
-          {props.progress}%
+          <MiddleEllipseContainer
+            backgroundValue={props.progress > 50 && props.progress <= 53 ? backgroundColor : 'transparent'}
+            color={props.progress > 53 ? props.backgroundColor : color}
+          >
+            {props.progress}%
+          </MiddleEllipseContainer>
         </ProgressValueStyled>
       </ProgressBarContainerStyled>
     );
@@ -52,10 +62,10 @@ const ProgressBar: React.FunctionComponent<TProgressBar> = (props: TProgressBar)
 };
 
 ProgressBar.defaultProps = {
-  fillColor: '#2f4699',
-  backgroundColor: '#ffffff',
+  // fillColor: '#2f4699',
+  // backgroundColor: '#ffffff',
   borderColor: '#666666',
-  height: '40px',
+  // height: '40px',
   borderRadius: '15px',
   borderStyle: 'solid',
   borderWidth: '1px',

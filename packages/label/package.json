@@ -1,7 +1,7 @@
 {
   "name": "@sber-risks-ui/Label",
   "version": "0.10.10-alpha.1",
-  "description": "Risks react UI",
+  "description": "Risks react UI Label component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",

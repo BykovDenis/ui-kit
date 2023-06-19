@@ -6,12 +6,13 @@ type TProgressBar = {
   borderWidth?: string,
   borderStyle?: string,
   borderRadius?: string,
-  height?: string,
+  height?: number | string,
   progress?: number,
   isAnimate?: boolean,
   fontSize?: string,
   direction?: 'ltr' | 'rtl',
   fontFamily?: string,
+  fontColor?: string,
 };
 
 export default TProgressBar;
