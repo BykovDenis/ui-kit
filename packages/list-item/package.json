@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/ListItem",
-  "version": "0.10.10-alpha.1",
+  "version": "0.10.10-alpha.2",
   "description": "List item",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
