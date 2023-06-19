@@ -31,16 +31,6 @@ const Input =
   &:hover + .underline {
     background-color: ${(props: IInput) => props?.hoverColor};
   }
-  &:disabled {
-    background-color: ${(props: IInput) => props?.disabledBackgroundColor};
-    color: ${(props: IInput) => props?.color};
-    & + .underline {
-      background-color: ${(props: IInput) => props?.disabledColor};
-    }
-    & ~ .text-message {
-      color: ${(props: IInput) => props?.color};
-    }
-  }
   &:focus {
     color: ${(props: IInput) => props?.focusColor};
     outline: ${(props: IInput) => (props?.variant === Variants.Outlined ? 0 : rgbToRgba(props?.focusColor, 0.3))};
@@ -50,24 +40,6 @@ const Input =
     & + .underline {
       background-color: ${(props: IInput) => props?.focusColor};
     }
-  }
-  &:disabled:focus {
-    border-color: ${(props: IInput) => (props?.variant === Variants.Outlined ? props?.borderColor : 'transparent')};
-    & + .underline {
-      background-color: ${(props: IInput) => props?.disabledColor};
-    }
-    & ~ .text-message {
-      color: ${(props: IInput) => props?.color};
-    }
-  }
-  &:disabled:hover + .underline {
-    background-color: ${(props: IInput) => props?.disabledColor};
-  }
-  &:disabled:hover ~ .text-message {
-    color: ${(props: IInput) => props?.disabledColor};
-  }
-  &:disabled:hover {
-    border-color: ${(props: IInput) => (props?.variant === Variants.Outlined ? props?.disabledColor : 'transparent')};
   }
   &:read-only:focus {
     border-color: ${(props: IInput) => (props?.variant === Variants.Outlined ? props?.borderColor : 'transparent')};

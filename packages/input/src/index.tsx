@@ -136,7 +136,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   };
 
   const componentThemed: any = (theme: ITheme) => {
-    const backgroundColor: string = theme?.mainBackgroundColor;
+    const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : theme?.mainBackgroundColor;
 
     const hoverBackgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : props?.error ? theme?.palette?.secondary?.lighter : theme?.mainBackgroundColor;
     const hoverColor: string = props.disabled ? theme.inactiveColor : props?.error ? theme?.palette?.secondary?.main : theme?.palette.baseFontColor;
@@ -157,7 +157,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
     const borderColor: string = props?.error ? theme?.palette?.secondary?.lighter : props?.borderColor || theme?.mainOutlinedColor;
     const inputColor: string = props.disabled ? theme.inactiveColor : props?.error ? theme?.palette?.secondary?.main : props?.color || color;
-    const underlineColor: string = props?.error ? theme?.palette?.secondary?.main : props?.borderColor || theme?.mainOutlinedColor;
+    const underlineColor: string = props.disabled ? theme.mainOutlinedColor : props?.error ? theme?.palette?.secondary?.main : props?.borderColor || theme?.mainOutlinedColor;
 
     return (
       <InputContainer height={props?.height} width={props?.width}>
