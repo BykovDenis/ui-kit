@@ -9,7 +9,7 @@ const ButtonExpandStyled =
   styled.button <
   TButtonExpandStyled >
   `
-  font-size: ${(props: TButtonExpandStyled) => props.fontSize};
+  font-size: ${(props: TButtonExpandStyled) => props.fontSize}px;
   border: none;
   background: none;
   `;

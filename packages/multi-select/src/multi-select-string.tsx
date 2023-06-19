@@ -229,7 +229,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
         data-name="multi-select-container"
         width={props?.width}
         borderColor={outlinedColor}
-        borderColorFocused={theme.palette.primary.light}
+        borderColorFocused={theme.palette.primary.main}
         borderColorHovered={theme.mainOutlinedHoverColor}
         onClick={onBtnElementsClickExpand}
         ref={btnMultiSelect}
@@ -263,7 +263,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                 borderRadius={5}
                 padding="1px"
                 margin="0 3px 0 0"
-                backgroundColor={theme.palette.primary.light}
+                backgroundColor={theme.palette.primary.main}
               >
                 <Label
                   fontSize={pixelsMeasureToNumber(fontSize) - 2}

@@ -304,7 +304,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                 borderRadius={5}
                 padding="1px"
                 margin="0 3px 0 0"
-                backgroundColor={theme.palette.primary.light}
+                backgroundColor={theme.palette.primary.main}
               >
                 <Label
                   fontSize={pixelsMeasureToNumber(fontSize) - 2}
