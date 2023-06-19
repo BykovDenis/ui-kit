@@ -100,6 +100,7 @@
 <h3>Features</h3>
 <ol>
     <li>padding and margin property added into the Typography component</li>
+    <li>Improve rendering of the half value of the progressbar</li>
 </ol>
 <h3>BugFix</h3>
 <ol>
