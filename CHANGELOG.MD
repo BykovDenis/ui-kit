@@ -106,3 +106,10 @@
 <ol>
     <li> The height attribute into the Switcher fixed </li>
 </ol>
+
+<h2>v 0.11.0</h2>
+
+<h3>Features</h3>
+<ol>
+    <li> The FlexContainer component added into the UI Kit </li>
+</ol>
