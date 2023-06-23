@@ -63,6 +63,7 @@ const Template: ComponentStory<typeof TextField> = (args: ITextField) => {
   const [ value, setValue ] = useState('');
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
+  const regExp: RegExp =  new RegExp('[0-9_]', 'gi');
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
@@ -83,6 +84,7 @@ const Template: ComponentStory<typeof TextField> = (args: ITextField) => {
         value={value}
         onChange={onInputChange}
         onRemove={onInputDelete}
+        regExp={regExp}
       />
     </div>
   </ReactThemeContext.Provider>

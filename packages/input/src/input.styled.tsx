@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Variants from '../../enums/variants';
 import rgbToRgba from '../../helpers/rgb-to-rgba';
 import IInput from '../types/iinput';
+import getMeasureValue from '../../helpers/get-measure-value';
 
 const Input =
   styled.input <
@@ -10,7 +11,7 @@ const Input =
   `
   box-sizing: border-box;
   font-size: ${(props: IInput) => props.fontSize}px;
-  width: 100%;
+  width: ${(props: IInput) => getMeasureValue(props.width, '100%')};
   height: ${(props: IInput) => (props?.variant === Variants.Outlined ? props.height : props.height - 1)}px;
   text-align: ${(props: IInput) => props?.textAlign};   
   padding: 8px 10px;

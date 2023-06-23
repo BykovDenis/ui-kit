@@ -1,7 +1,7 @@
 import {ComponentMeta, ComponentStory } from '@storybook/react';
 import React, {useState} from 'react';
 
-import Select from  './dist';
+import Select from  './src';
 import ISelect from './types/iselect';
 import IOption from './types/ioption';
 import { themes } from '../styles/src/themes';
@@ -55,6 +55,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
   }
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
+  const regExpComplixity: RegExp =  new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
 
 
   return <ReactThemeContext.Provider value={themes.dark}>
@@ -69,6 +70,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
       elements={elements}
       label="Some label"
       isScrollingToSelected={true}
+      regExp={regExpComplixity}
     >{args.children}</Select>
   </div>
   </ReactThemeContext.Provider>;

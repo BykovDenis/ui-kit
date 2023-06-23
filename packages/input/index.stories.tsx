@@ -28,30 +28,33 @@ export default {
   },
 } as ComponentMeta<typeof Input>;
 
+const regExp: RegExp = new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
+
 const TemplateDarkTheme: ComponentStory<typeof Input> = (args: IInput) => {
 
-  const [ value, setValue ] = useState('123');
+  const [ value, setValue ] = useState(6);
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
     const value: string = element?.value;
-    setValue(value);
+    setValue(Number(value));
     console.log(value);
   }
 
   const onInputRemove = () => {
-    setValue('');
+    setValue(null);
   }
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
+  // const regExp: RegExp =  new RegExp('[0-9_]', 'gi'); // new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
 
   return (
     <ReactThemeContext.Provider value={themes.dark}>
-      <div style={{ width: '190px' }}>
-        <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  />
+      <div  style={{ width: '190px', zoom: 5 }}>
+        <Input {...args} name="input" type="number" isNotRunDebounce={true} value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  />
       </div>
       <div style={{ width: '190px' }}>
-        <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  isSeparateNumberFormat={true} />
+        <Input {...args} name="input" type="number" value={value} min={1} max={10} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  isSeparateNumberFormat={true} />
       </div>
     </ReactThemeContext.Provider>)
 }
@@ -75,8 +78,8 @@ const TemplateLightTheme: ComponentStory<typeof Input> = (args: IInput) => {
 
   return (
     <ReactThemeContext.Provider value={themes.loanPricing}>
-      <div style={{ width: '190px' }}>
-        <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  />
+      <div>
+        <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent" regExp={regExp}  />
       </div>
       <div style={{ width: '190px' }}>
         <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} backgroundColor="transparent"  isSeparateNumberFormat={true} />

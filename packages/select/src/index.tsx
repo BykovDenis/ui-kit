@@ -312,6 +312,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             hoverColor={props?.hoverColor}
             focusColor={props?.focusColor}
             inputRef={inputRef}
+            regExp={props?.regExp}
           />
         </SelectHeader>
         {isVisibleList && (

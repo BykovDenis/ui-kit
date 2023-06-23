@@ -1,18 +1,10 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const paths = require('./paths');
 const WebpackBar = require('webpackbar');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-// const { UnusedFilesWebpackPlugin } = require('unused-files-webpack-plugin');
-const { DuplicatesPlugin } = require('inspectpack/plugin');
-// const CircularDependencyPlugin = require('circular-dependency-plugin');
-// const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
-// const TerserPlugin = require("terser-webpack-plugin");
-// var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-// const DeadCodePlugin = require('webpack-deadcode-plugin');
 
 const publicPath = '/'; // paths.servedPath;
 // const smp = new SpeedMeasurePlugin();
