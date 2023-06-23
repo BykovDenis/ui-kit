@@ -1,29 +1,21 @@
 import React from 'react';
+import TBaseStyles from '../../types/tbase-styles';
 
-interface IInput {
+interface IInput extends TBaseStyles {
   ReactThemeContext?: any;
-  backgroundColor?: string;
   backgroundImage?: string;
   baseFontSize?: number;
   borderColor?: string;
-  className?: any;
-  color?: string;
   colorTheme?: string;
-  disabled?: boolean;
   disabledBackgroundColor?: string;
   disabledColor?: string;
   error?: boolean;
   focusBackgroundColor?: string;
   focusColor?: string;
-  fontFamily?: string;
-  fontSize?: number;
-  fontWeight?: number;
   getIsChangingState?: (isChanging: boolean) => void;
-  height?: number;
   hoverBackgroundColor?: string;
   hoverBorderColor?: string;
   hoverColor?: string;
-  id?: string;
   isNotClearable?: boolean;
   isNotUseDebounce?: boolean;
   isReadOnly?: boolean;
@@ -31,7 +23,6 @@ interface IInput {
   mask?: RegExp;
   max?: number;
   min?: number;
-  name: string;
   onBlur?: (evt: any) => void;
   onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onClick?: (evt: any) => void;
@@ -47,12 +38,12 @@ interface IInput {
   type?: string;
   value?: number | string;
   variant?: 'outlined' | 'text' | 'contained';
-  width?: number;
   inputComponent?: any;
   placeholder?: string;
   textAling?: string;
   inputRef?: React.MutableRefObject<HTMLInputElement>;
   isNotRunDebounce?: boolean;
+  height?: number;
 }
 
 export default IInput;

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import rgbToRgba from '../../helpers/rgb-to-rgba';
 import Input from '../../input/src';
 import Label from '../../label/src';
 import ITheme from '../../styles/types/itheme';
@@ -78,34 +77,13 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
         </LabelContainer>
         <Input
           {...props}
-          id={props.id}
-          name={props.name}
-          height={props?.height}
-          width={props?.width}
-          onChange={props.onChange}
           onRemove={onInputDelete}
           onInput={onInput}
-          variant={props?.variant}
-          value={props?.value}
-          textAlign={props?.textAlign}
           fontSize={fontSize}
-          baseFontSize={props?.baseFontSize}
-          fontFamily={props?.fontFamily}
-          textMessage={props?.textMessage}
           onFocus={onInputFocus}
           onBlur={onInputBlur}
-          disabled={props?.disabled}
-          required={props?.required}
-          step={props?.step}
-          min={props?.min}
-          max={props?.max}
-          type={props?.type}
-          fontWeight={props?.fontWeight}
-          isReadOnly={props?.isReadOnly}
-          getIsChangingState={props.getIsChangingState}
-          mask={props?.mask}
-          isNotUseDebounce={props?.isNotUseDebounce}
           color={color}
+          regExp={props.regExp}
         />
       </TextFieldContainer>
     );

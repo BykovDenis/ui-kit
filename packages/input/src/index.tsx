@@ -18,7 +18,7 @@ import InputElementContainer from './input-element-container.styled';
 import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
-
+import parseValue from "./helpers/parse-value";
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(isNotEmptyString(props.value?.toString()) ? props.value : '');
@@ -34,27 +34,48 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   }, [globalThis.ReactThemeContextConsumer]);
 
   const cb = () => {
-    let value: number | string = evtObj.target.value;
-    const evtObjNew = {...evtObj};
-    if (props?.min !== undefined && props?.min !== null) {
-      if (parseFloat(value as string) < props?.min) {
-        value = props?.min;
+    const value = props.inputRef ? props.inputRef?.current?.value : props.inputRef?.current?.value
+    if (isNotEmptyString(value)) {
+      let valueParsed = parseValue(value, props.regExp, props.mask);
+      const evtObjNew = { ...evtObj };
+      if (props?.min !== undefined && props?.min !== null) {
+        if (Number(valueParsed) < props?.min) {
+          valueParsed = props?.min?.toString();
+        }
       }
-    }
-    if (props?.max !== undefined && props?.max !== null) {
-      if (parseFloat(value as string) > props?.max) {
-        value = props?.max;
+      if (props?.max !== undefined && props?.max !== null) {
+        if (Number(valueParsed) > props?.max) {
+          valueParsed = props?.max?.toString();
+        }
       }
+      if (props.inputRef?.current?.value !== valueParsed) {
+        if (props.inputRef) {
+          props.inputRef.current.value = valueParsed?.toString();
+        } else {
+          inputRef.current.value = valueParsed;
+        }
+      }
+      evtObjNew && props?.onChange(evtObjNew);
+      setIsChanging(false);
+      setIsRunDebounce(false);
     }
-    evtObjNew.target.value = value;
-    props?.onChange(evtObjNew);
-    setIsChanging(false);
-    setIsRunDebounce(false);
   };
 
   useEffect(() => {
-    if (inputValue !== props.value) {
-      setInputValue(props.value)
+    let valueParsed: number | string = parseValue(props.value, props.regExp, props.mask);
+    if (props?.min !== undefined && props?.min !== null) {
+      if (Number(valueParsed) < props?.min) {
+        valueParsed = props?.min?.toString();
+      }
+    }
+    if (props?.max !== undefined && props?.max !== null) {
+      if (Number(valueParsed) > props?.max) {
+        valueParsed = props?.max?.toString();
+      }
+    }
+    if (valueParsed !== inputValue) {
+      let value = props.value;
+      setInputValue(valueParsed);
     }
   }, [props.value]);
 
@@ -86,8 +107,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt?.target;
-    const value: string | number = props.mask ? element.value?.replaceAll(props.mask, '') : element.value;
-    setInputValue(value);
+    let value: string= element.value;
+    setInputValue(parseValue(value, props.regExp, props.mask));
     setEvtObject(evt);
     setIsChanging(true);
     if (props?.onInput) {
@@ -165,8 +186,6 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           <InputStyled
             {...props}
             value={value}
-            disabled={props?.disabled}
-            width={props.width}
             height={props.height || DEFAULT_HEIGHT}
             color={inputColor}
             hoverColor={props?.hoverColor || hoverColor}
@@ -176,29 +195,17 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             hoverBackgroundColor={hoverBackgroundColor}
             disabledColor={theme?.palette.baseFontColorOpacity05}
             backgroundColor={props.backgroundColor ?? backgroundColor}
-            backgroundImage={props?.backgroundImage}
             fontSize={props?.fontSize ?? theme?.baseFontSize}
-            className={props?.className}
             fontFamily={theme?.fontFamily}
             textAlign={props?.textAlign || TEXT_ALIGN_RIGHT}
             onChange={onInputChange}
             onFocus={onInputFocus}
             onBlur={onInputBlur}
-            variant={props?.variant}
             borderColor={borderColor}
-            error={props?.error}
-            id={props?.id}
-            name={props?.name}
             inputComponent={ReactInput}
-            isSeparateNumberFormat={props?.isSeparateNumberFormat}
-            required={props?.required}
-            step={props?.step}
             type={props?.type || TYPE_TEXT}
             fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
             ref={props?.inputRef || inputRef}
-            min={props?.min}
-            max={props?.max}
-            readOnly={props?.isReadOnly}
             autoComplete="off"
           />
           {props?.variant !== TYPE_TEXT && <InputUnderline

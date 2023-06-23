@@ -112,4 +112,5 @@
 <h3>Features</h3>
 <ol>
     <li> The FlexContainer component added into the UI Kit </li>
+    <li> Regular expression added into the Select, TextField, Input </li>
 </ol>
