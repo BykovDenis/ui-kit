@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import searchDomChildElement from '../../helpers/search-dom-child-element';
 import Input from '../../input/src';
@@ -13,9 +13,9 @@ import SelectContainer from './select-container.styled';
 import SelectHeader from './select-header.styled';
 import SelectIndicator from './select-indicator.styled';
 import SelectListContainer from './select-list-container.styled';
-import getUniqueIndex from "../../helpers/get-unique-index";
-import onKeyUpEventHandler from "../../helpers/on-key-up-event-handler";
-import isNotEmptyString from "../../helpers/is-not-empty-string";
+import getUniqueIndex from '../../helpers/get-unique-index';
+import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
+import isNotEmptyString from '../../helpers/is-not-empty-string';
 
 const DEFAULT_HEIGHT = 40;
 const TEXT_ALIGN = 'center';
@@ -40,37 +40,37 @@ function getElementsParsed(elements: Array<IOption | string | number>): Array<IO
 function getActiveElementParsed(activeElement: string | number | IOption): IOption {
   const activeElementType: string = typeof activeElement;
   switch (activeElementType) {
-  case 'object': {
-    return activeElement as IOption;
-  }
-  case 'string': {
-    return { label: activeElement, value: activeElement } as IOption;
-  }
-  case 'number': {
-    return { label: activeElement?.toString(), value: activeElement } as IOption;
-  }
-  default: {
-    return activeElement as IOption;
-  }
+    case 'object': {
+      return activeElement as IOption;
+    }
+    case 'string': {
+      return { label: activeElement, value: activeElement } as IOption;
+    }
+    case 'number': {
+      return { label: activeElement?.toString(), value: activeElement } as IOption;
+    }
+    default: {
+      return activeElement as IOption;
+    }
   }
 }
 
 function getElementsFiltered(elements: Array<IOption>, label: string) {
   const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
-  return elements?.filter(
-    (element: IOption) => {
-      const labelParsed: string = element?.label?.toString();
-      const labelParsedUppercase: string = labelParsed?.toLocaleUpperCase();
-      if (labelParsed && label) {
-        return labelParsedUppercase?.indexOf(labelUpperCase) > -1
-      }
-      return true;
-    });
+  return elements?.filter((element: IOption) => {
+    const labelParsed: string = element?.label?.toString();
+    const labelParsedUppercase: string = labelParsed?.toLocaleUpperCase();
+    if (labelParsed && label) {
+      return labelParsedUppercase?.indexOf(labelUpperCase) > -1;
+    }
+    return true;
+  });
 }
 
 const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);
-  const isScrollingToSelected: boolean = props?.isScrollingToSelected !== undefined ? props.isScrollingToSelected : false;
+  const isScrollingToSelected: boolean =
+    props?.isScrollingToSelected !== undefined ? props.isScrollingToSelected : false;
 
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [label, setLabel] = useState<string>(activeElementParsed?.label);
@@ -166,7 +166,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       document.addEventListener('keyup', onKeyUp);
       setIsVisibleList(false);
       setIsFocus(false);
-      setIsFoundValue(false);
+      setIsFoundValue(true);
     };
   }, []);
 
@@ -236,7 +236,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
       const element: any = evt.target;
       setLabel(element.value);
-      setActiveElement({label: null, value: null});
+      setActiveElement({ label: null, value: null });
     };
 
     const onInputBlur = () => {
@@ -260,10 +260,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       <SelectContainer id={props.id} width={props?.width} height={props?.height || DEFAULT_HEIGHT}>
         <SelectHeader height={props?.height || DEFAULT_HEIGHT}>
           {props?.label && (
-            <LabelContainer
-              isExistValue={isExistValue || isFocus}
-              backgroundColor={backgroundColor}
-            >
+            <LabelContainer isExistValue={isExistValue || isFocus} backgroundColor={backgroundColor}>
               <Label
                 htmlFor={props.id}
                 fontSize={labelFontSize}
@@ -318,28 +315,38 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         {isVisibleList && (
           <SelectListContainer ref={selectListContainerRef} id={`${props.id}-list-items`}>
             <List type="list-buttons" onMouseDown={onMouseDown} onKeyUp={onKeyUp} fontSize={props?.fontSize}>
-              {isFoundValue && elements?.map((element: IOption, index: number) => {
-                const isSelectedElement: boolean = element?.value === activeElement?.value;
-                if (isSelectedElement) {
-                  setActiveIndexElement(index);
-                }
-                return (
-                  <ListItem
-                    type="button"
-                    key={`list-item-${index}`}
-                    data-index={element.index}
-                    data-value={element.value}
-                    data-label={element.label}
-                    data-element-selected={`${props.id}-element${element?.value && activeElement?.value && isSelectedElement ? '-selected' : ''}`}
-                    textAlign={props?.textAlign || TEXT_ALIGN}
-                    fontSize={fontSize}
-                    height={props?.height || DEFAULT_HEIGHT}
-                    fontFamily={props?.fontFamily || theme?.fontFamily}
-                    backgroundColor={isNotEmptyString(element?.label) && isNotEmptyString(activeElement?.label) && element.label === activeElement.label ? theme.palette.primary.main : theme.mainBackgroundColor}
-                  >
-                    {element.label}
-                  </ListItem>
-                )})}
+              {isFoundValue &&
+                elements?.map((element: IOption, index: number) => {
+                  const isSelectedElement: boolean = element?.value === activeElement?.value;
+                  if (isSelectedElement) {
+                    setActiveIndexElement(index);
+                  }
+                  return (
+                    <ListItem
+                      type="button"
+                      key={`list-item-${index}`}
+                      data-index={element.index}
+                      data-value={element.value}
+                      data-label={element.label}
+                      data-element-selected={`${props.id}-element${
+                        element?.value && activeElement?.value && isSelectedElement ? '-selected' : ''
+                      }`}
+                      textAlign={props?.textAlign || TEXT_ALIGN}
+                      fontSize={fontSize}
+                      height={props?.height || DEFAULT_HEIGHT}
+                      fontFamily={props?.fontFamily || theme?.fontFamily}
+                      backgroundColor={
+                        isNotEmptyString(element?.label) &&
+                        isNotEmptyString(activeElement?.label) &&
+                        element.label === activeElement.label
+                          ? theme.palette.primary.main
+                          : theme.mainBackgroundColor
+                      }
+                    >
+                      {element.label}
+                    </ListItem>
+                  );
+                })}
               {isNewElement && props?.isCreatable && label > '' && (
                 <ListItem
                   type="button"
