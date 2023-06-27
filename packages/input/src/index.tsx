@@ -1,13 +1,7 @@
 import debounce from 'debounce';
 import React, { useEffect, useRef, useState } from 'react';
 
-import {
-  DEFAULT_HEIGHT,
-  FONT_WEIGHT_REGULAR,
-  TEXT_ALIGN_RIGHT,
-  TIMEOUT,
-  TYPE_TEXT
-} from '../../constants';
+import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, TEXT_ALIGN_RIGHT, TIMEOUT, TYPE_TEXT } from '../../constants';
 import ITheme from '../../styles/types/itheme';
 import IInput from '../types/iinput';
 import ButtonDelete from './button-delete.styled';
@@ -18,7 +12,7 @@ import InputElementContainer from './input-element-container.styled';
 import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
-import parseValue from "./helpers/parse-value";
+import parseValue from './helpers/parse-value';
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(isNotEmptyString(props.value?.toString()) ? props.value : '');
@@ -34,7 +28,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   }, [globalThis.ReactThemeContextConsumer]);
 
   const cb = () => {
-    const value = props.inputRef ? props.inputRef?.current?.value : props.inputRef?.current?.value
+    const value = props.inputRef ? props.inputRef?.current?.value : props.inputRef?.current?.value;
     if (isNotEmptyString(value)) {
       let valueParsed = parseValue(value, props.regExp, props.mask);
       const evtObjNew = { ...evtObj };
@@ -99,7 +93,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     if (props.getIsChangingState) {
       props.getIsChangingState(isChanging);
     }
-  }, [isChanging])
+  }, [isChanging]);
 
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     props?.onInput(evt);
@@ -107,7 +101,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt?.target;
-    let value: string= element.value;
+    let value: string = element.value;
     setInputValue(parseValue(value, props.regExp, props.mask));
     setEvtObject(evt);
     setIsChanging(true);
@@ -149,7 +143,11 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const onInputBlur = (evt: any) => {
     setIsFocus(false);
     if (props?.isSeparateNumberFormat && props?.value !== null) {
-      setInputValue(parseFloat(props.value as string)?.toLocaleString('ru-RU')?.replace(',', '.'))
+      setInputValue(
+        parseFloat(props.value as string)
+          ?.toLocaleString('ru-RU')
+          ?.replace(',', '.')
+      );
     }
     if (props?.onBlur) {
       props.onBlur(evt);
@@ -159,16 +157,23 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : theme?.mainBackgroundColor;
 
-    const hoverBackgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : props?.error ? theme?.palette?.secondary?.lighter : theme?.mainBackgroundColor;
-    const hoverColor: string = props.disabled ? theme.inactiveColor : props?.error ? theme?.palette?.secondary?.main : theme?.palette.baseFontColor;
+    const hoverBackgroundColor: string = props.disabled
+      ? theme.inactiveBackgroundColor
+      : props?.error
+      ? theme?.palette?.secondary?.lighter
+      : theme?.mainBackgroundColor;
+    const hoverColor: string = props.disabled
+      ? theme.inactiveColor
+      : props?.error
+      ? theme?.palette?.secondary?.main
+      : theme?.palette.baseFontColor;
     const hoverBorderColor: string = props?.error ? theme?.palette?.secondary?.main : theme?.mainOutlinedHoverColor;
 
-    const color: string =
-      props?.error
-        ? theme?.palette?.secondary?.main
-        : isFocus && !props?.isReadOnly
-          ? theme?.palette?.primary?.main
-          : theme?.palette?.baseFontColor;
+    const color: string = props?.error
+      ? theme?.palette?.secondary?.main
+      : isFocus && !props?.isReadOnly
+      ? theme?.palette?.primary?.main
+      : theme?.palette?.baseFontColor;
 
     const focusColor: string = props?.error ? theme?.palette?.secondary?.main : theme.palette.primary.main;
 
@@ -176,9 +181,19 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     // const colorInteractive: string = props?.error ? theme?.palette?.secondary?.lighter : isFocus ? theme?.palette?.primary?.main : props?.color;
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
-    const borderColor: string = props?.error ? theme?.palette?.secondary?.lighter : props?.borderColor || theme?.mainOutlinedColor;
-    const inputColor: string = props.disabled ? theme.inactiveColor : props?.error ? theme?.palette?.secondary?.main : props?.color || color;
-    const underlineColor: string = props.disabled ? theme.mainOutlinedColor : props?.error ? theme?.palette?.secondary?.main : props?.borderColor || theme?.mainOutlinedColor;
+    const borderColor: string = props?.error
+      ? theme?.palette?.secondary?.lighter
+      : props?.borderColor || theme?.mainOutlinedColor;
+    const inputColor: string = props.disabled
+      ? theme.inactiveColor
+      : props?.error
+      ? theme?.palette?.secondary?.main
+      : props?.color || color;
+    const underlineColor: string = props.disabled
+      ? theme.mainOutlinedColor
+      : props?.error
+      ? theme?.palette?.secondary?.main
+      : props?.borderColor || theme?.mainOutlinedColor;
 
     return (
       <InputContainer height={props?.height} width={props?.width}>
@@ -208,17 +223,24 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             ref={props?.inputRef || inputRef}
             autoComplete="off"
           />
-          {props?.variant !== TYPE_TEXT && <InputUnderline
-            name={props?.name}
-            className="underline"
-            variant={props?.variant}
-            color={underlineColor}
-            hoverColor={hoverBackgroundColor}
-            disabled={props?.disabled}
-            width={props.width}
-          />}
-          {!props?.isReadOnly && !props.isNotClearable && inputValue !== null && inputValue !== '' && !props?.disabled ? (
+          {props?.variant !== TYPE_TEXT && (
+            <InputUnderline
+              name={props?.name}
+              className="underline"
+              variant={props?.variant}
+              color={underlineColor}
+              hoverColor={hoverBackgroundColor}
+              disabled={props?.disabled}
+              width={props.width}
+            />
+          )}
+          {!props?.isReadOnly &&
+          !props.isNotClearable &&
+          inputValue !== null &&
+          inputValue !== '' &&
+          !props?.disabled ? (
             <ButtonDelete
+              data-test="btn-delete-value"
               onClick={onInputDelete}
               className="delete-button"
               hoverColor={hoverColor}

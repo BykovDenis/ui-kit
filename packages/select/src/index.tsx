@@ -92,7 +92,11 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
   const onSelectChange = (evt: React.ChangeEvent<HTMLElement> | React.MouseEvent<HTMLElement, MouseEvent>) => {
     const element: any = evt.target;
-    const activeElement: IOption = { label: element?.dataset?.label, value: element?.dataset?.value };
+    const isTypeOfValueNumber: boolean = typeof activeElement.value === 'number';
+    const activeElementState: IOption = {
+      label: element?.dataset?.label,
+      value: isTypeOfValueNumber ? Number(element?.dataset?.value) : element?.dataset?.value,
+    };
 
     if (element.tagName !== BUTTON_TAG) {
       return;
@@ -100,13 +104,13 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
     if (props?.onChange) {
       const index: number = element?.dataset?.index ? parseInt(element?.dataset?.index, 10) : null;
-      props.onChange({ name: props.name, index, ...activeElement });
+      props.onChange({ name: props.name, index, ...activeElementState });
     }
 
-    if (activeElement?.label) {
-      setActiveElement(activeElement);
+    if (activeElementState?.label) {
+      setActiveElement(activeElementState);
     }
-    setLabel(activeElement?.label);
+    setLabel(activeElementState?.label);
     setIsEdited(false);
     setIsVisibleList(!isVisibleList);
   };
@@ -179,7 +183,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   useEffect(() => {
     const elementsFiltered: Array<IOption> = getElementsParsed(props.elements);
     setElements(elementsFiltered);
-    setActiveElement({ label: label?.toString(), value: label?.toString() });
+    setActiveElement(activeElementParsed);
   }, [props.elements]);
 
   useEffect(() => {
@@ -276,7 +280,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
           )}
           <SelectIndicator backgroundColor={indicatorColor} />
           <Input
-            id={props.id}
+            id={`${props.id}-input`}
             name={props.name}
             height={props?.height || DEFAULT_HEIGHT}
             width={props?.width}
@@ -314,7 +318,13 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         </SelectHeader>
         {isVisibleList && (
           <SelectListContainer ref={selectListContainerRef} id={`${props.id}-list-items`}>
-            <List type="list-buttons" onMouseDown={onMouseDown} onKeyUp={onKeyUp} fontSize={props?.fontSize}>
+            <List
+              id={`${props.id}-list`}
+              type="list-buttons"
+              onMouseDown={onMouseDown}
+              onKeyUp={onKeyUp}
+              fontSize={props?.fontSize}
+            >
               {isFoundValue &&
                 elements?.map((element: IOption, index: number) => {
                   const isSelectedElement: boolean = element?.value === activeElement?.value;
@@ -324,7 +334,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                   return (
                     <ListItem
                       type="button"
-                      key={`list-item-${index}`}
+                      key={`${props.id}-list-item-${index}`}
                       data-index={element.index}
                       data-value={element.value}
                       data-label={element.label}
@@ -350,7 +360,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
               {isNewElement && props?.isCreatable && label > '' && (
                 <ListItem
                   type="button"
-                  key={`list-item-new`}
+                  key={`${props.id}-list-item-new`}
                   data-label={label}
                   data-value={label}
                   textAlign={props?.textAlign || TEXT_ALIGN}
