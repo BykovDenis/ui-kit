@@ -72,6 +72,7 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
       </ListItemContainer>
     ) : (
       <ListItemStyled
+        {...props}
         color={props?.color || color}
         height={props?.height || HEIGHT}
         textAlign={props?.textAlign || TEXT_ALIGN}
