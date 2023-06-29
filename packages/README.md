@@ -4,7 +4,7 @@
 
 
 <ol>
-    <li>npm i @sber-risks-ui</li>
+    <li>npm i @sber-risks-ui/core</li>
     <li>
     <h3>
         Create theme
