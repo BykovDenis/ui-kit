@@ -30,16 +30,18 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const cb = () => {
     const value = props.inputRef ? props.inputRef?.current?.value : props.inputRef?.current?.value;
     if (isNotEmptyString(value)) {
-      let valueParsed = parseValue(value, props.regExp, props.mask);
+      let valueParsed = parseValue(props.type, value, props.regExp, props.mask);
       const evtObjNew = { ...evtObj };
-      if (props?.min !== undefined && props?.min !== null) {
-        if (Number(valueParsed) < props?.min) {
-          valueParsed = props?.min?.toString();
+      if (props.type === 'number') {
+        if (props?.min !== undefined && props?.min !== null) {
+          if (Number(valueParsed) < props?.min) {
+            valueParsed = props?.min?.toString();
+          }
         }
-      }
-      if (props?.max !== undefined && props?.max !== null) {
-        if (Number(valueParsed) > props?.max) {
-          valueParsed = props?.max?.toString();
+        if (props?.max !== undefined && props?.max !== null) {
+          if (Number(valueParsed) > props?.max) {
+            valueParsed = props?.max?.toString();
+          }
         }
       }
       if (props.inputRef?.current?.value !== valueParsed) {
@@ -56,15 +58,17 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   };
 
   useEffect(() => {
-    let valueParsed: number | string = parseValue(props.value, props.regExp, props.mask);
-    if (props?.min !== undefined && props?.min !== null) {
-      if (Number(valueParsed) < props?.min) {
-        valueParsed = props?.min?.toString();
+    let valueParsed: number | string = parseValue(props.type, props.value, props.regExp, props.mask);
+    if (props.type === 'number') {
+      if (props?.min !== undefined && props?.min !== null) {
+        if (Number(valueParsed) < props?.min) {
+          valueParsed = props?.min?.toString();
+        }
       }
-    }
-    if (props?.max !== undefined && props?.max !== null) {
-      if (Number(valueParsed) > props?.max) {
-        valueParsed = props?.max?.toString();
+      if (props?.max !== undefined && props?.max !== null) {
+        if (Number(valueParsed) > props?.max) {
+          valueParsed = props?.max?.toString();
+        }
       }
     }
     if (valueParsed !== inputValue) {
@@ -102,7 +106,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt?.target;
     let value: string = element.value;
-    setInputValue(parseValue(value, props.regExp, props.mask));
+    setInputValue(parseValue(props.type, value, props.regExp, props.mask));
     setEvtObject(evt);
     setIsChanging(true);
     if (props?.onInput) {
@@ -128,11 +132,17 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const onInputFocus = (evt?: any) => {
     setIsFocus(true);
     const ref = props?.inputRef || inputRef;
-    if (ref?.current && props?.value !== null && props?.isSeparateNumberFormat) {
+    console.log(
+      ref?.current && inputValue !== null && props?.isSeparateNumberFormat,
+      ref?.current,
+      inputValue !== null,
+      props?.isSeparateNumberFormat
+    );
+    if (ref?.current && inputValue !== null && props?.isSeparateNumberFormat) {
       const inputElement = ref?.current;
       if (inputElement) {
-        inputElement.value = props?.value;
-        setInputValue(props?.value);
+        inputElement.value = inputValue;
+        setInputValue(inputValue);
       }
     }
     if (props?.onFocus) {
@@ -142,9 +152,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
   const onInputBlur = (evt: any) => {
     setIsFocus(false);
-    if (props?.isSeparateNumberFormat && props?.value !== null) {
+    if (props?.isSeparateNumberFormat && inputValue !== null) {
       setInputValue(
-        parseFloat(props.value as string)
+        parseFloat(inputValue as string)
           ?.toLocaleString('ru-RU')
           ?.replace(',', '.')
       );
@@ -179,7 +189,6 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     const ReactInput: React.FunctionComponent = (props: any) => <input {...props} />;
 
-    // const colorInteractive: string = props?.error ? theme?.palette?.secondary?.lighter : isFocus ? theme?.palette?.primary?.main : props?.color;
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
     const borderColor: string = props?.error
       ? theme?.palette?.secondary?.lighter

@@ -1,4 +1,4 @@
-function parseValue(value: number | string, regExp, mask): number | string {
+function parseValue(type: string, value: number | string, regExp, mask): number | string {
   let valueParsed = value?.toString();
   if (regExp) {
     valueParsed = valueParsed?.replaceAll(regExp, '');
@@ -6,7 +6,7 @@ function parseValue(value: number | string, regExp, mask): number | string {
   if (mask) {
     valueParsed = valueParsed?.replaceAll(mask, '');
   }
-  return typeof value === 'number' ? Number(valueParsed) : valueParsed;
+  return typeof type === 'number' ? Number(valueParsed) : valueParsed;
 }
 
 export default parseValue;
