@@ -8,6 +8,7 @@ import LabelContainer from './label-container.styled';
 import TextFieldContainer from './text-field-container.styled';
 
 const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
+  const [value, setValue] = useState<string | number>(props.value);
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
@@ -17,6 +18,7 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
   }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
+    setValue(props.value);
     if (props?.value > '') {
       setIsExistValue(true);
     } else {
@@ -31,6 +33,7 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
 
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt.target;
+    setValue(element.value);
     if (element?.value > '') {
       setIsExistValue(true);
     }
@@ -42,7 +45,7 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
 
   const onInputBlur = () => {
     setIsFocus(false);
-    if (props?.value) {
+    if (value) {
       setIsExistValue(true);
     } else {
       setIsExistValue(false);
@@ -84,6 +87,8 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
           onBlur={onInputBlur}
           color={color}
           regExp={props.regExp}
+          value={value}
+          onChange={props.onChange}
         />
       </TextFieldContainer>
     );
