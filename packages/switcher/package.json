@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/Switcher",
-  "version": "0.11.0-alpha.4",
+  "version": "0.11.0-alpha.5",
   "description": "A simple switcher component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
