@@ -28,29 +28,29 @@ import sortObjectData from '../../helpers/sort-object-data';
 import getValuesFromElements from './helpers/get-values-from-elements';
 
 type TMultiSelectObjects = TMultiSelect & {
-  elementNames: Array<{ label: string, value: number | string }>,
+  elementNames: Array<{ label: string; value: number | string }>;
 };
 
 const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelectObjects) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
   const [isExpanded, setExpanded] = useState<boolean>(false);
 
-  const elementNamesSorted: Array<string | { label: string, value: number | string }> = React.useMemo(
+  const elementNamesSorted: Array<string | { label: string; value: number | string }> = React.useMemo(
     () =>
       props?.sortDirection ? sortObjectData(props.elementNames, 'value', props.sortDirection) : props.elementNames,
     [props.elementNames, props.sortDirection]
   );
 
-  const elementNamesMapped: Array<{ label: string, value: string }> = React.useMemo(
+  const elementNamesMapped: Array<{ label: string; value: string }> = React.useMemo(
     () =>
-      elementNamesSorted?.map((element: { label: string, value: number | string }) => ({
+      elementNamesSorted?.map((element: { label: string; value: number | string }) => ({
         label: element?.label,
         value: element?.value?.toString(),
       })),
     [elementNamesSorted]
   );
 
-  const [elementNames, setElementNames] = useState<Array<{ label: string, value: string }>>(elementNamesMapped);
+  const [elementNames, setElementNames] = useState<Array<{ label: string; value: string }>>(elementNamesMapped);
   const [elementNamesSelected, setElementNamesSelected] = useState<Set<string>>(
     new Set(props.elementNamesDefaultSelected)
   );
@@ -120,8 +120,8 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
     if (elementsFromLocaleStorage.size > 0) {
       setElementNamesSelected(elementsFromLocaleStorage);
     } else {
-      const elementNamesMapped: Array<{ label: string, value: string }> = elementNamesSorted?.map(
-        (element: { label: string, value: number | string }) => ({
+      const elementNamesMapped: Array<{ label: string; value: string }> = elementNamesSorted?.map(
+        (element: { label: string; value: number | string }) => ({
           label: element?.label,
           value: element?.value?.toString(),
         })
@@ -152,12 +152,12 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
   }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
-    const elementNamesSorted: Array<string | { label: string, value: number | string }> = props?.sortDirection
+    const elementNamesSorted: Array<string | { label: string; value: number | string }> = props?.sortDirection
       ? sortObjectData(props.elementNames, 'value', props.sortDirection)
       : props.elementNames;
 
-    const elementNamesMapped: Array<{ label: string, value: string }> = elementNamesSorted?.map(
-      (element: { label: string, value: number | string }) => ({
+    const elementNamesMapped: Array<{ label: string; value: string }> = elementNamesSorted?.map(
+      (element: { label: string; value: number | string }) => ({
         label: element?.label,
         value: element?.value?.toString(),
       })
@@ -234,7 +234,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
     const arrElementNames: Array<string> =
       elementNamesSelected && elementNamesSelected.size > 0 ? Array.from(elementNamesSelected) : [];
 
-    const elementLabelsFiltered = elementNames?.filter((elementName: { label: string, value: string }) =>
+    const elementLabelsFiltered = elementNames?.filter((elementName: { label: string; value: string }) =>
       arrElementNames?.some((arrElement: string) => elementName?.value === arrElement)
     );
     const onSearchStringChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -256,9 +256,9 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       }
     };
 
-    const elementNamesFiltered: Array<{ label: string, value: string }> =
+    const elementNamesFiltered: Array<{ label: string; value: string }> =
       elementNames?.filter(
-        (columnName: { label: string, value: string }) =>
+        (columnName: { label: string; value: string }) =>
           !elementNamesSelected?.has(columnName.value) &&
           (searchText?.length > 2 ? columnName?.label?.toUpperCase()?.indexOf(searchText?.toUpperCase()) > -1 : true)
       ) ?? [];
@@ -296,7 +296,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
             isExistLabel={isNotEmptyString(props?.label)}
             borderColor={theme.palette.baseFontColorOpacity05}
           >
-            {elementLabelsFiltered?.map((columnNameElement: { label: string, value: string }, index: number) => (
+            {elementLabelsFiltered?.map((columnNameElement: { label: string; value: string }, index: number) => (
               <FormControl
                 key={`${index}-button`}
                 width="initial"
@@ -365,14 +365,17 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
               placeholder="Search elements"
               variant="outlined"
             />
-            <ListContainerStyled>
+            <ListContainerStyled
+              backgroundColor={theme.mainBackgroundColor}
+              outlinedColor={theme.palette.primary.lighter}
+            >
               <List
                 type="list-buttons"
                 onKeyUp={onKeyUp}
                 backgroundColor={theme.mainBackgroundColor}
                 color={theme.palette.baseFontColor}
               >
-                {elementNamesFiltered?.map((columnElement: { label: string, value: string }, index: number) => (
+                {elementNamesFiltered?.map((columnElement: { label: string; value: string }, index: number) => (
                   <ListItem
                     type="button"
                     key={`${index}-list-item`}

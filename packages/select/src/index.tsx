@@ -317,7 +317,12 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
           />
         </SelectHeader>
         {isVisibleList && (
-          <SelectListContainer ref={selectListContainerRef} id={`${props.id}-list-items`}>
+          <SelectListContainer
+            backgroundColor={backgroundColor}
+            outlinedColor={theme.palette.primary.moreLighter}
+            ref={selectListContainerRef}
+            id={`${props.id}-list-items`}
+          >
             <List
               id={`${props.id}-list`}
               type="list-buttons"

@@ -24,10 +24,9 @@ import ToggleContainer from './toggle-container';
 import LabelContainer from './label-container.styled';
 import MultiSelectContainerStyled from './multi-select-container.styled';
 import { KEY_ESCAPE } from '../../constants';
-import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
 
 type TMultiSelectString = TMultiSelect & {
-  elementNames: Array<string>,
+  elementNames: Array<string>;
 };
 
 const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelectString) => {
@@ -324,7 +323,10 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
               placeholder="Search elements"
               variant="outlined"
             />
-            <ListContainerStyled>
+            <ListContainerStyled
+              backgroundColor={theme.mainBackgroundColor}
+              outlinedColor={theme.palette.primary.lighter}
+            >
               <List
                 type="list-buttons"
                 onKeyUp={onKeyUp}

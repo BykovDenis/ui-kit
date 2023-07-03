@@ -113,4 +113,6 @@
 <ol>
     <li> The FlexContainer component added into the UI Kit </li>
     <li> Regular expression added into the Select, TextField, Input </li>
+    <li> MultiSelect add shadow drop list items</li>
+    <li> Sticky bottom panel z-index parameter added</li>
 </ol>

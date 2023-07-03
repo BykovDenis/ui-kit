@@ -40,15 +40,11 @@ const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: T
 
     return isOpen ? (
       <StickyBottomPanelStyled
-        width={props.width}
+        {...props}
         backgroundColor={backgroundColor}
-        backgroundImage={props.backgroundImage}
-        height={props?.height}
         color={color}
         panelAlign={panelAlign}
         borderColor={theme.mainOutlinedColor}
-        boxShadow={props.boxShadow}
-        filter={props.filter}
       >
         <FormControl height={40} justifyContent="flex-end" position="absolute" top="0" alignItems="flex-start">
           <IconButton onClick={props.onDialogVisibleChange} variant="text">

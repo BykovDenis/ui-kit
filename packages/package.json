@@ -54,6 +54,6 @@
   "peerDependencies": {
     "react": "18.x",
     "react-dom": "18.x",
-    "styled-components": "5.3.4"
+    "styled-components": "5.x"
   }
 }
