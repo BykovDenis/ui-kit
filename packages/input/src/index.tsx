@@ -28,7 +28,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   }, [globalThis.ReactThemeContextConsumer]);
 
   const cb = () => {
-    const value = props.inputRef ? props.inputRef?.current?.value : props.inputRef?.current?.value;
+    const value = props.inputRef ? props.inputRef?.current?.value : inputRef?.current?.value;
     if (isNotEmptyString(value)) {
       let valueParsed = parseValue(props.type, value, props.regExp, props.mask);
       const evtObjNew = { ...evtObj };
