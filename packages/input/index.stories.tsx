@@ -80,7 +80,6 @@ const TemplateLightTheme: ComponentStory<typeof Input> = (args: IInput) => {
     const element = evt?.target;
     const value: string = element?.value;
     setValue(value);
-    console.log(value);
   };
 
   const onInputRemove = () => {

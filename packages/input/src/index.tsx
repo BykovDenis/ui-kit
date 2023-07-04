@@ -132,12 +132,6 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const onInputFocus = (evt?: any) => {
     setIsFocus(true);
     const ref = props?.inputRef || inputRef;
-    console.log(
-      ref?.current && inputValue !== null && props?.isSeparateNumberFormat,
-      ref?.current,
-      inputValue !== null,
-      props?.isSeparateNumberFormat
-    );
     if (ref?.current && inputValue !== null && props?.isSeparateNumberFormat) {
       const inputElement = ref?.current;
       if (inputElement) {
