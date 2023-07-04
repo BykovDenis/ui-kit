@@ -23,25 +23,40 @@ export default {
 } as ComponentMeta<typeof Select>;
 
 const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
-  const [value, setValue] = useState<string>('50');
+  const [value, setValue] = useState<string>('Февраль');
 
-  const elementsState: Array<{ label: string; value: string }> = [
-    { label: 'Январь', value: '0' },
-    { label: 'Февраль', value: '1' },
-    { label: 'Март', value: '2' },
-    { label: 'Апрель', value: '3' },
-    { label: 'Май', value: '4' },
-    { label: 'Июнь', value: '5' },
-    { label: 'Июль', value: '6' },
-    { label: 'Август', value: '7' },
-    { label: 'Сентябрь', value: '8' },
-    { label: 'Октябрь', value: '9' },
-    { label: 'Ноябрь', value: '10' },
-    { label: 'Декабрь', value: '11' },
-  ];
+  // const elementsState: Array<{ label: string; value: string }> = [
+  //   { label: 'Январь', value: '0' },
+  //   { label: 'Февраль', value: '1' },
+  //   { label: 'Март', value: '2' },
+  //   { label: 'Апрель', value: '3' },
+  //   { label: 'Май', value: '4' },
+  //   { label: 'Июнь', value: '5' },
+  //   { label: 'Июль', value: '6' },
+  //   { label: 'Август', value: '7' },
+  //   { label: 'Сентябрь', value: '8' },
+  //   { label: 'Октябрь', value: '9' },
+  //   { label: 'Ноябрь', value: '10' },
+  //   { label: 'Декабрь', value: '11' },
+  // ];
+
+  const elementsState: Array<string> = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май'];
+  //   { label: 'Январь', value: '0' },
+  //   { label: 'Февраль', value: '1' },
+  //   { label: 'Март', value: '2' },
+  //   { label: 'Апрель', value: '3' },
+  //   { label: 'Май', value: '4' },
+  //   { label: 'Июнь', value: '5' },
+  //   { label: 'Июль', value: '6' },
+  //   { label: 'Август', value: '7' },
+  //   { label: 'Сентябрь', value: '8' },
+  //   { label: 'Октябрь', value: '9' },
+  //   { label: 'Ноябрь', value: '10' },
+  //   { label: 'Декабрь', value: '11' },
+  // ];
 
   const elementsEmpty: Array<number> = new Array(150).fill(0);
-  const elements: Array<number> = elementsEmpty.map((element: number, index: number) => `${index}`);
+  // const elements: Array<number> = elementsEmpty.map((element: number, index: number) => `${index}`);
 
   const onInputChange = (option: IOption) => {
     setValue(option);
@@ -54,7 +69,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
   };
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
-  const regExpComplixity: RegExp = new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
+  // const regExpComplixity: RegExp = new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
 
   return (
     <ReactThemeContext.Provider value={themes.dark}>
@@ -65,11 +80,11 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
           onRemove={onInputRemove}
           name="select-custom"
           id="select"
-          activeElement={{ label: 'Сентябрь', value: '8' }}
+          activeElement={value}
           elements={elementsState}
           label="Some label"
           isScrollingToSelected={true}
-          regExp={regExpComplixity}
+          // regExp={regExpComplixity}
         >
           {args.children}
         </Select>

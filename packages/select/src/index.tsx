@@ -92,7 +92,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
   const onSelectChange = (evt: React.ChangeEvent<HTMLElement> | React.MouseEvent<HTMLElement, MouseEvent>) => {
     const element: any = evt.target;
-    const isTypeOfValueNumber: boolean = typeof activeElement.value === 'number';
+    const isTypeOfValueNumber: boolean = typeof activeElement?.value === 'number';
     const activeElementState: IOption = {
       label: element?.dataset?.label,
       value: isTypeOfValueNumber ? Number(element?.dataset?.value) : element?.dataset?.value,
