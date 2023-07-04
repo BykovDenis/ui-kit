@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/FlexContainer",
-  "version": "0.11.0-alpha.6",
+  "version": "0.11.0",
   "description": "The FlexContainer component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
