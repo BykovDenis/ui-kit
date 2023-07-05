@@ -73,7 +73,9 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     props?.isScrollingToSelected !== undefined ? props.isScrollingToSelected : false;
 
   const [isFocus, setIsFocus] = useState<boolean>(false);
-  const [label, setLabel] = useState<string>(activeElementParsed?.label);
+  const [label, setLabel] = useState<string>(
+    props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label
+  );
   const [elements, setElements] = useState<Array<IOption>>(getElementsParsed(props.elements));
   const [isVisibleList, setIsVisibleList] = useState<boolean>(false);
   const [isFoundValue, setIsFoundValue] = useState<boolean>(true);
@@ -110,7 +112,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     if (activeElementState?.label) {
       setActiveElement(activeElementState);
     }
-    setLabel(activeElementState?.label);
+    setLabel(props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label);
     setIsEdited(false);
     setIsVisibleList(!isVisibleList);
   };
@@ -177,7 +179,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   useEffect(() => {
     const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);
     setActiveElement(activeElementParsed);
-    setLabel(activeElementParsed?.label);
+    setLabel(props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label);
   }, [props.activeElement]);
 
   useEffect(() => {
@@ -212,7 +214,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     const elementParsed: string = element.value.trim();
     if (elementParsed === '') {
       setIsVisibleList(true);
-      setLabel(activeElementParsed?.label);
+      setLabel(props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label);
     }
     setIsEdited(true);
   };
@@ -239,7 +241,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
     const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
       const element: any = evt.target;
-      setLabel(element.value);
+      setLabel(props?.regExp ? element?.value?.replaceAll(props.regExp, '') : element?.value);
       setActiveElement({ label: null, value: null });
     };
 
@@ -248,7 +250,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       setIsEdited(false);
       setElements(getElementsParsed(props.elements));
       setActiveElement(activeElementParsed);
-      setLabel(activeElementParsed?.label);
+      setLabel(props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label);
     };
 
     const indicatorColor: string = !props?.isReadOnly
