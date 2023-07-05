@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React, { useState } from 'react';
+import Label from '../label/src';
 
 import Input from './src/index';
 import IInput from './types/iinput';
@@ -69,6 +70,7 @@ const TemplateDarkTheme: ComponentStory<typeof Input> = (args: IInput) => {
           backgroundColor="transparent"
         />
       </div>
+      <Label>{value}</Label>
     </ReactThemeContext.Provider>
   );
 };
