@@ -69,7 +69,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
   };
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
-  // const regExpComplixity: RegExp = new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
+  const regExpComplixity: RegExp = /^(pg_|_|[0-9])|[^а-яА-Я]/gi;
 
   return (
     <ReactThemeContext.Provider value={themes.dark}>
@@ -84,7 +84,8 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
           elements={elementsState}
           label="Some label"
           isScrollingToSelected={true}
-          // regExp={regExpComplixity}
+          isCreatable={true}
+          regExp={regExpComplixity}
         >
           {args.children}
         </Select>
