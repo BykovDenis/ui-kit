@@ -116,3 +116,10 @@
     <li> MultiSelect add shadow drop list items</li>
     <li> Sticky bottom panel z-index parameter added</li>
 </ol>
+
+<h2>v 0.11.1</h2>
+
+<h3>BugFix</h3>
+<ol>
+    <li>The Input component clean without isNotUseDebounce fixed</li>
+</ol>

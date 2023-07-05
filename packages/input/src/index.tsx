@@ -29,9 +29,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
   const cb = () => {
     const value = props.inputRef ? props.inputRef?.current?.value : inputRef?.current?.value;
+    const evtObjNew = { ...evtObj };
     if (isNotEmptyString(value)) {
       let valueParsed = parseValue(props.type, value, props.regExp, props.mask);
-      const evtObjNew = { ...evtObj };
       if (props.type === 'number') {
         if (props?.min !== undefined && props?.min !== null) {
           if (Number(valueParsed) < props?.min) {
@@ -51,10 +51,12 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           inputRef.current.value = valueParsed;
         }
       }
-      evtObjNew && props?.onChange(evtObjNew);
-      setIsChanging(false);
-      setIsRunDebounce(false);
+    } else {
+      inputRef.current.value = '';
     }
+    evtObjNew && props?.onChange(evtObjNew);
+    setIsChanging(false);
+    setIsRunDebounce(false);
   };
 
   useEffect(() => {
