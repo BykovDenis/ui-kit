@@ -1,45 +1,44 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 
-import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, INPUT_TAG, KEY_ESCAPE, TEXT_ALIGN_LEFT } from "../../constants";
-import Divider from "../../divider/src/divider.styled";
-import Locale from "../../enums/locale";
-import searchDomChildElement from "../../helpers/search-dom-child-element";
-import Input from "../../input/src";
-import Label from "../../label/src";
-import Select from "../../select/src";
-import ITheme from "../../styles/types/itheme";
-import monthsElementEn from "../dictionaries/months-en";
-import monthsElementRu from "../dictionaries/months-ru";
-import DateParser from "../helpers/date-parser";
-import IDatepicker from "../types/idatepicker";
-import IOption from "../types/ioption";
-import DatepickerButtonNavigate from "./datepicker-button-navigate";
-import DatepickerContainerStyled from "./datepicker-container.styled";
-import DatepickerDatesContainer from "./datepicker-dates-container.styled";
-import DatepickerHeader from "./datepicker-header.styled";
-import DatepickerNavigateContainerStyled from "./datepicker-navigate-container.styled";
-import DaysOfMonth from "./days-of-month";
-import DaysOfWeek from "./days-of-week";
-import LabelContainer from "./label-container.styled";
-import MonthsYearsRuleContainer from "./months-years-rule-container.styled";
-import sortArray from "../../helpers/sort-array";
-import SortDirection from "../../enums/sort-direction";
-import isNotEmptyString from "../../helpers/is-not-empty-string";
-import parseInputDate from "../helpers/parse-input-date";
-import DatepickerMask from "../enums/datepicker-mask";
-import checkMinMaxDate from "../helpers/check-min-max-date";
-import onKeyUpEventHandler from "../../helpers/on-key-up-event-handler";
-
+import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, INPUT_TAG, KEY_ESCAPE, TEXT_ALIGN_LEFT } from '../../constants';
+import Divider from '../../divider/src/divider.styled';
+import Locale from '../../enums/locale';
+import searchDomChildElement from '../../helpers/search-dom-child-element';
+import Input from '../../input/src';
+import Label from '../../label/src';
+import Select from '../../select/src';
+import ITheme from '../../styles/types/itheme';
+import monthsElementEn from '../dictionaries/months-en';
+import monthsElementRu from '../dictionaries/months-ru';
+import DateParser from '../helpers/date-parser';
+import IDatepicker from '../types/idatepicker';
+import IOption from '../types/ioption';
+import DatepickerButtonNavigate from './datepicker-button-navigate';
+import DatepickerContainerStyled from './datepicker-container.styled';
+import DatepickerDatesContainer from './datepicker-dates-container.styled';
+import DatepickerHeader from './datepicker-header.styled';
+import DatepickerNavigateContainerStyled from './datepicker-navigate-container.styled';
+import DaysOfMonth from './days-of-month';
+import DaysOfWeek from './days-of-week';
+import LabelContainer from './label-container.styled';
+import MonthsYearsRuleContainer from './months-years-rule-container.styled';
+import sortArray from '../../helpers/sort-array';
+import SortDirection from '../../enums/sort-direction';
+import isNotEmptyString from '../../helpers/is-not-empty-string';
+import parseInputDate from '../helpers/parse-input-date';
+import DatepickerMask from '../enums/datepicker-mask';
+import checkMinMaxDate from '../helpers/check-min-max-date';
+import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
 
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
-  const [ dateParsed, setDateParsed ] = useState<DateParser | null>(null);
-  const [ dateParsedOriginal ] = useState<DateParser>(new DateParser(props.value, props.mask as DatepickerMask));
+  const [dateParsed, setDateParsed] = useState<DateParser | null>(null);
+  const [dateParsedOriginal] = useState<DateParser>(new DateParser(props.value, props.mask as DatepickerMask));
 
   // >>> initial values
   const locale: string = props.locale ?? Locale.Ru;
-  const [ months, setMonths ] = useState<Array<IOption>>(locale === Locale.Ru ? monthsElementRu : monthsElementEn);
+  const [months, setMonths] = useState<Array<IOption>>(locale === Locale.Ru ? monthsElementRu : monthsElementEn);
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
@@ -56,15 +55,23 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [isError, setIsError] = useState<boolean>(false);
   const [isMinDateError, setIsMinDateError] = useState<boolean>(false);
   const [isMaxDateError, setIsMaxDateError] = useState<boolean>(false);
-  const [ isErrorMessageDisplay ] = useState(props.isErrorMessageDisplay !== undefined ? props.isErrorMessageDisplay : 'true');
+  const [isErrorMessageDisplay] = useState(
+    props.isErrorMessageDisplay !== undefined ? props.isErrorMessageDisplay : 'true'
+  );
   const [monthName, setMonthName] = useState<IOption | null>(null);
 
-  const minDate: DateParser = isNotEmptyString(props.minDate) ? new DateParser(props.minDate, props.mask as DatepickerMask) : new DateParser(props.mask as DatepickerMask === DatepickerMask.YYYYMMDD ? '1971-01-01' : '01.01.1971', props.mask as DatepickerMask);
-  const maxDate: DateParser = isNotEmptyString(props.maxDate) ? new DateParser(props.maxDate, props.mask as DatepickerMask) : null;
-
+  const minDate: DateParser = isNotEmptyString(props.minDate)
+    ? new DateParser(props.minDate, props.mask as DatepickerMask)
+    : new DateParser(
+        (props.mask as DatepickerMask) === DatepickerMask.YYYYMMDD ? '1971-01-01' : '01.01.1971',
+        props.mask as DatepickerMask
+      );
+  const maxDate: DateParser = isNotEmptyString(props.maxDate)
+    ? new DateParser(props.maxDate, props.mask as DatepickerMask)
+    : null;
 
   useEffect(() => {
-    const dateParsed: DateParser = new DateParser(props.value, props.mask as DatepickerMask)
+    const dateParsed: DateParser = new DateParser(props.value, props.mask as DatepickerMask);
     setDateParsed(dateParsed);
     setActualMonthNumber(dateParsed.getNumberMonth());
     setActualYearNumber(dateParsed?.getNumberYear());
@@ -72,7 +79,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     setActiveMonthNumber(dateParsed?.getNumberMonth());
     setActiveYearNumber(dateParsed?.getNumberYear());
     setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
-    setCountDaysIsMonth(dateParsed?.getCountDaysInMonth())
+    setCountDaysIsMonth(dateParsed?.getCountDaysInMonth());
   }, []);
 
   // >> titles
@@ -82,17 +89,15 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const textMessageError: string = props?.locale === Locale.Ru ? 'Дата не валидна' : 'Date is not valid';
 
-  const minDateMessage: string =
-    props?.locale === Locale.Ru ? 'Дата меньше допустимой' : 'Date is less than allowed';
-  const maxDateMessage: string =
-    props?.locale === Locale.Ru ? 'Дата больше допустимой' : 'Date is more then allowed';
+  const minDateMessage: string = props?.locale === Locale.Ru ? 'Дата меньше допустимой' : 'Date is less than allowed';
+  const maxDateMessage: string = props?.locale === Locale.Ru ? 'Дата больше допустимой' : 'Date is more then allowed';
 
   const textMessage = isError
     ? isMinDateError
       ? minDateMessage
       : isMaxDateError
-        ? maxDateMessage
-        : textMessageError
+      ? maxDateMessage
+      : textMessageError
     : props?.textMessage;
 
   // << titles
@@ -129,14 +134,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   };
 
   const onKeyUp = (evt: any) => {
-
     const cb = () => {
       setIsFocus(false);
       setIsVisibleList(false);
-    }
+    };
 
     onKeyUpEventHandler(evt, cb);
-
   };
 
   const onInputFocus = () => {
@@ -147,15 +150,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt.target;
     setIsVisibleList(false);
-    const datePartitioned: string =
-      isNotEmptyString(element?.value) ? element?.value?.replaceAll(/\D/gi, '') : null;
-    const valueParsed: string = datePartitioned
-      ? parseInputDate(datePartitioned, props.mask as DatepickerMask)
-      : null;
+    const datePartitioned: string = isNotEmptyString(element?.value) ? element?.value?.replaceAll(/\D/gi, '') : null;
+    const valueParsed: string = datePartitioned ? parseInputDate(datePartitioned, props.mask as DatepickerMask) : null;
     if (valueParsed !== value) {
       setValue(valueParsed);
     }
-  }
+  };
 
   const onInputBlur = () => {
     setIsFocus(false);
@@ -173,7 +173,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onMonthNameChange = (option: IOption): void => {
     dateParsed.changeParsedDate(value);
-    dateParsed.changeMonth(parseInt(option.value, 10));
+    dateParsed.changeMonth(parseInt(option.value, 10) - 1);
     setActualMonthNumber(parseInt(option.value, 10));
     const valueParsed: string = dateParsed.formatToString();
     if (valueParsed !== value) {
@@ -227,7 +227,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const onGetPreviousYear = () => {
     dateParsed.changeToThePreviousYear();
     setActualYearNumber(dateParsed.getNumberYear());
-
   };
   const onGetNextYear = () => {
     dateParsed.changeToTheNextYear();
@@ -235,17 +234,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   };
 
   // <<< events handlers
-
-  // >>> helpers
-
-  // function actualizingDate() {
-  //   setActualMonthNumber(dateParsed.getNumberMonth());
-  //   setActualYearNumber(dateParsed.getNumberYear());
-  //   setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
-  //   setCountDaysIsMonth(dateParsed?.getCountDaysInMonth());
-  // }
-
-  // <<< helpers
 
   // >>> useEffects
 
@@ -287,11 +275,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             setMonthName(months[dateParsed.getNumberMonth()]);
           }
           const errors: {
-            isError: boolean,
-            isErrorMinDate: boolean,
-            isErrorMaxDate: boolean,
+            isError: boolean;
+            isErrorMinDate: boolean;
+            isErrorMaxDate: boolean;
           } = checkMinMaxDate(dateParsed, props.minDate ? minDate : null, props.maxDate ? maxDate : null);
-          setIsError(errors.isError)
+          setIsError(errors.isError);
           setIsMinDateError(errors.isErrorMinDate);
           setIsMaxDateError(errors.isErrorMaxDate);
           if (props?.onChange && props.value !== value) {
@@ -308,12 +296,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     setMonths(locale === Locale.Ru ? monthsElementRu : monthsElementEn);
   }, [locale]);
 
-
   useEffect(() => {
     if (months && months?.length > 0) {
       setMonthName(months[actualMonthNumber]);
     }
-  }, [months])
+  }, [months]);
 
   useEffect(() => {
     if (actualMonthNumber !== null && actualMonthNumber !== undefined) {
@@ -338,11 +325,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   // <<< useEffects
 
-
-
-  const years: Array<string> =  sortArray(new Array(100)
-    .fill((actualYearNumber ?? 0) - 50)
-    .map((element: number, index: number) => (element + index)?.toString()), SortDirection.Desc);
+  const years: Array<string> = sortArray(
+    new Array(100)
+      .fill((actualYearNumber ?? 0) - 50)
+      .map((element: number, index: number) => (element + index)?.toString()),
+    SortDirection.Desc
+  );
 
   const componentThemed: any = (theme: ITheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
@@ -384,7 +372,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             fontSize={fontSize}
             baseFontSize={props?.baseFontSize}
             fontFamily={props?.fontFamily || theme?.fontFamily}
-            textMessage={isErrorMessageDisplay  && textMessage}
+            textMessage={isErrorMessageDisplay && textMessage}
             onFocus={onInputFocus}
             onClick={onInputFocus}
             onBlur={onInputBlur}
@@ -400,7 +388,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           />
         </DatepickerHeader>
         {isVisibleList && (
-          <DatepickerDatesContainer backgroundColor={theme.mainBackgroundColor}  onMouseUp={onMouseOutUp} onKeyUp={onKeyUp} ref={dateRef}>
+          <DatepickerDatesContainer
+            backgroundColor={theme.mainBackgroundColor}
+            onMouseUp={onMouseOutUp}
+            onKeyUp={onKeyUp}
+            ref={dateRef}
+          >
             <MonthsYearsRuleContainer>
               <DatepickerNavigateContainerStyled>
                 <DatepickerButtonNavigate
@@ -514,4 +507,4 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default  React.memo(Datepicker);
+export default React.memo(Datepicker);

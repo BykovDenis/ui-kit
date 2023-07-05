@@ -33,6 +33,6 @@
     "@types/styled-components": "^5.1.18",
     "rollup": "^2.61.1"
   },
-  "gitHead": "832fa136da36f4654d73bfd11ab51271e46d9f3d",
+  "gitHead": "0f511f2cf6b8eafc9d9e7e691ac54678aabc84e3",
   "_id": "@sber-risks-ui/Button@0.5.28"
 }

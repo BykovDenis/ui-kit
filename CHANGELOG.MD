@@ -122,4 +122,5 @@
 <h3>BugFix</h3>
 <ol>
     <li>The Input component clean without isNotUseDebounce fixed</li>
+    <li>Month change by select</li>
 </ol>
