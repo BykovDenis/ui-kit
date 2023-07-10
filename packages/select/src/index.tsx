@@ -176,7 +176,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, []);
 
   useEffect(() => {
-    const activeElementParsed: IOption = getActiveElementParsed(props.activeElement?.label);
+    const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);
     setActiveElement(activeElementParsed);
     setLabel(props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label);
   }, [props.activeElement]);

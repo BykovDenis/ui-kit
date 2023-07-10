@@ -6,6 +6,7 @@ import ISelect from './types/iselect';
 import IOption from './types/ioption';
 import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
+import { Button } from '@storybook/react/demo';
 
 export default {
   title: 'Components/Select',
@@ -75,8 +76,12 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
     console.log('');
   };
 
+  const onBtnSelectValueChangeClick = () => {
+    setValue('denis');
+  };
+
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
-  const regExpComplixity: RegExp = /^(pg_|_|[0-9])|[а-яА-Я]/gi;
+  const regExp: RegExp = new RegExp('^(pg_|_)|[^a-z0-9_]', 'gi');
 
   return (
     <ReactThemeContext.Provider value={themes.dark}>
@@ -89,14 +94,14 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
           id="select"
           activeElement={value}
           elements={elementsState}
-          label="Some label"
-          isScrollingToSelected={true}
+          className="import-directories-tools-input-styles"
+          regExp={regExp}
+          variant="outlined"
           isCreatable={true}
-          regExp={regExpComplixity}
-          isNotClearable={false}
         >
           {args.children}
         </Select>
+        <Button onClick={onBtnSelectValueChangeClick}> External change</Button>
       </div>
     </ReactThemeContext.Provider>
   );
