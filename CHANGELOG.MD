@@ -124,3 +124,7 @@
     <li>The Input component clean without isNotUseDebounce fixed</li>
     <li>Month change by select</li>
 </ol>
+<h3>Features</h3>
+<ol>
+    <li>Progressbar add disable status</li>
+</ol>
