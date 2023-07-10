@@ -14,39 +14,55 @@ const ProgressBar: React.FunctionComponent<TProgressBar> = (props: TProgressBar)
   }, [globalThis.ReactThemeContextConsumer]);
 
   const componentThemed: any = (theme: ITheme) => {
+    const isDisabled: boolean = props.disabled || false;
     const backgroundColor: string = props?.backgroundColor ?? theme.mainBackgroundColor;
-    const fillColor: string = props?.fillColor ?? theme.palette.primary.main;
-    const color: string = props?.fontColor ?? theme?.palette?.primary?.main;
+    const fillColor: string = isDisabled
+      ? theme.inactiveBackgroundColor
+      : props?.fillColor ?? theme.palette.primary.main;
+    const color: string = isDisabled
+      ? theme.inactiveBackgroundColor
+      : props?.fontColor ?? theme?.palette?.primary?.main;
     const height: number | string = props?.height ?? 40;
+    const borderColor: string = isDisabled
+      ? theme.inactiveBackgroundColor
+      : props.borderColor ?? theme.palette.primary.main;
+    const borderRadius: number | string = props.borderRadius || 15;
+    const borderStyle: string = props.borderStyle || 'solid';
+    const borderWidth: number | string = props.borderWidth || 1;
+    const progress: number = props.progress || 0;
+    const isAnimate: boolean = props.isAnimate || false;
+    const fontSize: number | string = props.fontSize || theme.palette.baseFontColor;
+    const direction: string = 'ltr';
+    const fontFamily: string = props.fontFamily || theme.fontFamily;
 
     return (
       <ProgressBarContainerStyled
         backgroundColor={backgroundColor}
-        borderColor={props.borderColor}
-        borderRadius={props.borderRadius}
-        borderStyle={props.borderStyle}
-        borderWidth={props.borderWidth}
+        borderColor={borderColor}
+        borderRadius={borderRadius}
+        borderStyle={borderStyle}
+        borderWidth={borderWidth}
         height={height}
-        direction={props.direction}
-        fontFamily={theme.fontFamily}
+        direction={direction}
+        fontFamily={fontFamily}
       >
         <ProgressBarFillContainerStyled
-          progress={props.progress}
+          progress={progress}
           fillColor={fillColor}
-          borderRadius={props.borderRadius}
-          isAnimate={props.isAnimate}
+          borderRadius={borderRadius}
+          isAnimate={isAnimate}
         />
         <ProgressValueStyled
-          fontSize={props.fontSize}
-          fillColor={props.progress >= 51 ? props.backgroundColor : fillColor || color}
-          backgroundColor={props.progress <= 49 ? props.backgroundColor : fillColor || color}
-          direction={props.direction}
+          fontSize={fontSize}
+          fillColor={progress >= 51 ? props.backgroundColor : fillColor || color}
+          backgroundColor={progress <= 49 ? props.backgroundColor : fillColor || color}
+          direction={direction}
         >
           <MiddleEllipseContainer
-            backgroundValue={props.progress > 50 && props.progress <= 53 ? backgroundColor : 'transparent'}
-            color={props.progress > 53 ? props.backgroundColor : color}
+            backgroundValue={progress > 50 && progress <= 53 ? backgroundColor : 'transparent'}
+            color={progress > 53 ? props.backgroundColor : color}
           >
-            {props.progress}%
+            {progress}%
           </MiddleEllipseContainer>
         </ProgressValueStyled>
       </ProgressBarContainerStyled>
@@ -62,16 +78,6 @@ const ProgressBar: React.FunctionComponent<TProgressBar> = (props: TProgressBar)
 };
 
 ProgressBar.defaultProps = {
-  // fillColor: '#2f4699',
-  // backgroundColor: '#ffffff',
-  borderColor: '#666666',
-  // height: '40px',
-  borderRadius: '15px',
-  borderStyle: 'solid',
-  borderWidth: '1px',
-  progress: 40,
-  isAnimate: false,
-  fontSize: '12px',
   direction: 'ltr',
 };
 
