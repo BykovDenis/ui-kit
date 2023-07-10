@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/Select",
-  "version": "0.11.2-alpha.3",
+  "version": "0.11.2-alpha.4",
   "description": "Simple react component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
