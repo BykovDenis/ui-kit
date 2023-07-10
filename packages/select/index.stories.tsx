@@ -23,7 +23,7 @@ export default {
 } as ComponentMeta<typeof Select>;
 
 const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
-  const [value, setValue] = useState<string>('Февраль');
+  const [value, setValue] = useState<string>(null);
 
   // const elementsState: Array<{ label: string; value: string }> = [
   //   { label: 'Январь', value: '0' },
@@ -40,20 +40,27 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
   //   { label: 'Декабрь', value: '11' },
   // ];
 
-  const elementsState: Array<string> = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май'];
-  //   { label: 'Январь', value: '0' },
-  //   { label: 'Февраль', value: '1' },
-  //   { label: 'Март', value: '2' },
-  //   { label: 'Апрель', value: '3' },
-  //   { label: 'Май', value: '4' },
-  //   { label: 'Июнь', value: '5' },
-  //   { label: 'Июль', value: '6' },
-  //   { label: 'Август', value: '7' },
-  //   { label: 'Сентябрь', value: '8' },
-  //   { label: 'Октябрь', value: '9' },
-  //   { label: 'Ноябрь', value: '10' },
-  //   { label: 'Декабрь', value: '11' },
-  // ];
+  const elementsState: Array<string> = [
+    'alex',
+    'alex2',
+    'alex_t',
+    'denis',
+    'evgeniia',
+    'jenya',
+    'jjjjjj',
+    'k006',
+    'k04',
+    'k05',
+    'k1982',
+    'lera',
+    'loan_pricing',
+    'rel2312',
+    'roma_',
+    'romantest',
+    'tradepad_1',
+    'tradepad_2',
+    'tradepad_3',
+  ];
 
   const elementsEmpty: Array<number> = new Array(150).fill(0);
   // const elements: Array<number> = elementsEmpty.map((element: number, index: number) => `${index}`);
@@ -69,11 +76,11 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
   };
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
-  const regExpComplixity: RegExp = /^(pg_|_|[0-9])|[^а-яА-Я]/gi;
+  const regExpComplixity: RegExp = /^(pg_|_|[0-9])|[а-яА-Я]/gi;
 
   return (
     <ReactThemeContext.Provider value={themes.dark}>
-      <div style={{ width: '220px', zoom: 3 }}>
+      <div style={{ width: '220px' }}>
         <Select
           {...args}
           onChange={onInputChange}
@@ -86,6 +93,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
           isScrollingToSelected={true}
           isCreatable={true}
           regExp={regExpComplixity}
+          isNotClearable={false}
         >
           {args.children}
         </Select>

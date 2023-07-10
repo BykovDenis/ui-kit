@@ -43,7 +43,8 @@
     "rollup-pluginutils": "^2.8.2"
   },
   "dependencies": {
-    "debounce": "^1.2.1"
+    "debounce": "^1.2.1",
+    "mini-css-extract-plugin": "2.7.6"
   },
   "peerDependencies": {
     "react": "18.2.0",

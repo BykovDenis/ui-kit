@@ -24,12 +24,13 @@ const FONT_WEIGHT_REGULAR = 400;
 const INPUT_TAG: string = 'INPUT';
 const BUTTON_TAG: string = 'BUTTON';
 
-function getElementsParsed(elements: Array<IOption | string | number>): Array<IOption> {
+function getElementsParsed(elements: Array<IOption | string | number>, name: string): Array<IOption> {
   return elements?.map((element: string | number | IOption) => {
     if (typeof element === 'object') {
       return element;
     }
     return {
+      name,
       index: getUniqueIndex(),
       label: element?.toString(),
       value: element,
@@ -76,7 +77,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [label, setLabel] = useState<string>(
     props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label
   );
-  const [elements, setElements] = useState<Array<IOption>>(getElementsParsed(props.elements));
+  const [elements, setElements] = useState<Array<IOption>>(getElementsParsed(props.elements, props.name));
   const [isVisibleList, setIsVisibleList] = useState<boolean>(false);
   const [isFoundValue, setIsFoundValue] = useState<boolean>(true);
   const [isNewElement, setIsNewElement] = useState<boolean>(false);
@@ -103,16 +104,14 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     if (element.tagName !== BUTTON_TAG) {
       return;
     }
-
+    const index: number = element?.dataset?.index ? parseInt(element?.dataset?.index, 10) : null;
     if (props?.onChange) {
-      const index: number = element?.dataset?.index ? parseInt(element?.dataset?.index, 10) : null;
       props.onChange({ name: props.name, index, ...activeElementState });
     }
-
     if (activeElementState?.label) {
-      setActiveElement(activeElementState);
+      setActiveElement({ name: props.name, index, ...activeElementState });
     }
-    setLabel(props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label);
+    setLabel(props?.regExp ? activeElementState?.label?.replaceAll(props.regExp, '') : activeElementState?.label);
     setIsEdited(false);
     setIsVisibleList(!isVisibleList);
   };
@@ -177,13 +176,13 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, []);
 
   useEffect(() => {
-    const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);
+    const activeElementParsed: IOption = getActiveElementParsed(props.activeElement?.label);
     setActiveElement(activeElementParsed);
     setLabel(props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label);
   }, [props.activeElement]);
 
   useEffect(() => {
-    const elementsFiltered: Array<IOption> = getElementsParsed(props.elements);
+    const elementsFiltered: Array<IOption> = getElementsParsed(props.elements, props.name);
     setElements(elementsFiltered);
     setActiveElement(activeElementParsed);
   }, [props.elements]);
@@ -191,12 +190,15 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   useEffect(() => {
     if (isEdited) {
       const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
-      const elementsFiltered: Array<IOption> = getElementsFiltered(getElementsParsed(props.elements), labelUpperCase);
+      const elementsFiltered: Array<IOption> = getElementsFiltered(
+        getElementsParsed(props.elements, props.name),
+        labelUpperCase
+      );
       setElements(elementsFiltered);
       setIsFoundValue(elementsFiltered?.length > 0);
       setIsNewElement(elementsFiltered?.length === 0);
     } else {
-      setElements(getElementsParsed(props.elements));
+      setElements(getElementsParsed(props.elements, props.name));
     }
   }, [label]);
 
@@ -248,7 +250,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     const onInputBlur = () => {
       setIsFocus(false);
       setIsEdited(false);
-      setElements(getElementsParsed(props.elements));
+      setElements(getElementsParsed(props.elements, props.name));
       setActiveElement(activeElementParsed);
       setLabel(props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label);
     };
