@@ -8,7 +8,7 @@ type TMiddleEllipseContainer = {
 
 const MiddleEllipseContainer = styled.div<TMiddleEllipseContainer>`
   box-sizing: border-box;
-  position: absolute;
+  position: relative;
   top: 50%;
   transform: translateY(-50%);
   display: flex;

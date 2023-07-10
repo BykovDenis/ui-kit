@@ -19,9 +19,7 @@ const ProgressBar: React.FunctionComponent<TProgressBar> = (props: TProgressBar)
     const fillColor: string = isDisabled
       ? theme.inactiveBackgroundColor
       : props?.fillColor ?? theme.palette.primary.main;
-    const color: string = isDisabled
-      ? theme.inactiveBackgroundColor
-      : props?.fontColor ?? theme?.palette?.primary?.main;
+    const color: string = isDisabled ? theme.inactiveBackgroundColor : props?.fontColor ?? fillColor;
     const height: number | string = props?.height ?? 40;
     const borderColor: string = isDisabled
       ? theme.inactiveBackgroundColor
@@ -31,7 +29,7 @@ const ProgressBar: React.FunctionComponent<TProgressBar> = (props: TProgressBar)
     const borderWidth: number | string = props.borderWidth || 1;
     const progress: number = props.progress || 0;
     const isAnimate: boolean = props.isAnimate || false;
-    const fontSize: number | string = props.fontSize || theme.palette.baseFontColor;
+    const fontSize: number | string = props.fontSize || theme.baseFontSize;
     const direction: string = 'ltr';
     const fontFamily: string = props.fontFamily || theme.fontFamily;
 
@@ -55,12 +53,12 @@ const ProgressBar: React.FunctionComponent<TProgressBar> = (props: TProgressBar)
         <ProgressValueStyled
           fontSize={fontSize}
           fillColor={progress >= 51 ? props.backgroundColor : fillColor || color}
-          backgroundColor={progress <= 49 ? props.backgroundColor : fillColor || color}
+          backgroundColor={progress <= 45 ? props.backgroundColor : fillColor || color}
           direction={direction}
         >
           <MiddleEllipseContainer
-            backgroundValue={progress > 50 && progress <= 53 ? backgroundColor : 'transparent'}
-            color={progress > 53 ? props.backgroundColor : color}
+            backgroundValue={progress > 45 && progress <= 51 ? backgroundColor : 'transparent'}
+            color={progress > 51 ? backgroundColor : color}
           >
             {progress}%
           </MiddleEllipseContainer>
