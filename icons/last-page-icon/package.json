@@ -1,7 +1,7 @@
 {
-  "name": "@sber-risks-ui/ChevronDownIcon",
+  "name": "@sber-risks-ui/LastPageIcon",
   "version": "0.0.2",
-  "description": "Risks react UI Icon component ChevronDownIcon",
+  "description": "Risks react UI Icon component LastPageIcon",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
