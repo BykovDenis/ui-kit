@@ -154,7 +154,7 @@ pipeline {
                   if (IS_PUBLISH == 'Yes') {
                       nodejs('node-v17.5.0-linux-x64') {
                           withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
-                              dir("${uiKitPath}") {
+                              dir("${uiIconsPath}") {
                                   withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
                                       sh """
                                           npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
