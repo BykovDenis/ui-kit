@@ -1,36 +1,10 @@
-def rootPath = './ui-kit'
-def uiKitPath = './ui-kit/packages/'
-def buttonPath = './ui-kit/packages/button'
-def iconButtonPath = './ui-kit/packages/icon-button'
-def checkboxPath = './ui-kit/packages/checkbox'
-def datepickerPath = './ui-kit/packages/datepicker'
-def dividerPath = './ui-kit/packages/divider'
-def inputPath = './ui-kit/packages/input'
-def labelPath = './ui-kit/packages/label'
-def labelInteractivePath = './ui-kit/packages/label-interactive'
-def listPath = './ui-kit/packages/list'
-def listItemPath = './ui-kit/packages/list-item'
-def radioPath = './ui-kit/packages/radio'
-def selectPath = './ui-kit/packages/select'
-def textFieldPath = './ui-kit/packages/textfield'
-def warningPath = './ui-kit/packages/warning-panel'
-def switcherPath = './ui-kit/packages/switcher';
-def stylesPath = './ui-kit/packages/styles';
-def typographyPath = './ui-kit/packages/typography';
-def formControlPath = './ui-kit/packages/form-control';
-def tablePath = './ui-kit/packages/table';
-def tableHeadPath = './ui-kit/packages/table-head';
-def tableBodyPath = './ui-kit/packages/table-body';
-def tableRowPath = './ui-kit/packages/table-row';
-def tableCellPath = './ui-kit/packages/table-cell';
-def tableColumnsVisiblePath = './ui-kit/packages/table-columns-visible';
-def progressBarPath = './ui-kit/packages/progress-bar';
-def multiSelectPath = './ui-kit/packages/multi-select';
-def stickyBottomPanelPath = './ui-kit/packages/sticky-bottom-panel';
-def tabsPath = './ui-kit/packages/tabs';
-def tabPath = './ui-kit/packages/tab';
-def flexContainerPath = './ui-kit/packages/flex-container';
-
+def rootPath = './icons'
+def uiIconsPath = './icons/packages'
+def chevronDownIconPath = './icons/chevron-down-icon'
+def firstPagePath = './icons/first-page-icon'
+def lastPagePath = './icons/last-page-icon'
+def keyboardArrowLeftIconPath = './icons/keyboard-arrow-left-icon'
+def keyboardArrowRightIconPath = './icons/keyboard-arrow-right-icon'
 
 pipeline {
     agent {
@@ -40,7 +14,7 @@ pipeline {
     }
 
     environment {
-        PROJECT_NAME = 'Risks react UI Kit'
+        PROJECT_NAME = 'Risks react UI icons'
         OWNER_NAME = 'Denis Bykov'
     }
     options { timeout(time: 60, unit: 'MINUTES') }
@@ -62,9 +36,9 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${uiKitPath}") {
+                            dir("${uiIconsPath}") {
                                 script {
-                                    echo 'Core packages installing'
+                                    echo 'Icons packages installing'
                                     sh 'npm i'
                                 }
                             }
@@ -73,7 +47,7 @@ pipeline {
                 }
             }
         }
-        stage('Styles theme deploy') {
+        stage('Root icons deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -82,7 +56,7 @@ pipeline {
                 nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${stylesPath}") {
+                            dir("${uiIconsPath}") {
                                 script {
                                     echo 'Packages installing'
                                     sh 'npm i'
@@ -97,7 +71,7 @@ pipeline {
                 }
             }
         }
-        stage('Typography deploy') {
+        stage('Icons deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -106,449 +80,47 @@ pipeline {
                 nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${typographyPath}") {
+                            dir("${chevronDownIconPath}") {
                                 script {
                                     echo 'Packages installing'
                                     sh 'npm i'
-                                }
-                            }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/typography/__tests__'
-//                                 }
-//                             }
-                            dir("${typographyPath}") {
-                                script {
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
                                     sh 'npm run clean-node-modules'
                                 }
                             }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Datepicker deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${datepickerPath}") {
+                            dir("${firstPagePath}") {
                                 script {
                                     echo 'Packages installing'
                                     sh 'npm i'
-                                }
-                            }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/datepicker/__tests__'
-//                                 }
-//                             }
-                            dir("${datepickerPath}") {
-                                script {
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
                                     sh 'npm run clean-node-modules'
                                 }
                             }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Checkbox deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${checkboxPath}") {
+                            dir("${lastPagePath}") {
                                 script {
                                     echo 'Packages installing'
                                     sh 'npm i'
-                                }
-                            }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/checkbox/__tests__'
-//                                 }
-//                             }
-                            dir("${checkboxPath}") {
-                                script {
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
                                     sh 'npm run clean-node-modules'
                                 }
                             }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Button deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${buttonPath}") {
+                            dir("${keyboardArrowLeftIconPath}") {
                                 script {
                                     echo 'Packages installing'
                                     sh 'npm i'
-                                }
-                            }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/button/__tests__'
-//                                 }
-//                             }
-                            dir("${buttonPath}") {
-                                script {
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
                                     sh 'npm run clean-node-modules'
                                 }
                             }
-                        }
-                    }
-                }
-            }
-        }
-        stage('IconButton deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${iconButtonPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/icon-button/__tests__'
-//                                 }
-//                             }
-                            dir("${iconButtonPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Input deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${inputPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/input/__tests__'
-//                                 }
-//                             }
-                            dir("${inputPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Label deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${labelPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/label/__tests__'
-//                                 }
-//                             }
-                            dir("${labelPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Label interactive deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${labelInteractivePath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/label/__tests__'
-//                                 }
-//                             }
-                            dir("${labelInteractivePath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('ListItem deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${listItemPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/list-item/__tests__'
-//                                 }
-//                             }
-                            dir("${listItemPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('List deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${listPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/list/__tests__'
-//                                 }
-//                             }
-                            dir("${listPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Radio deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${radioPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/radio/__tests__'
-//                                 }
-//                             }
-                            dir("${radioPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Select deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${selectPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/select/__tests__'
-//                                 }
-//                             }
-                            dir("${selectPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Textfield deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${textFieldPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/switcher/__tests__'
-//                                 }
-//                             }
-                            dir("${textFieldPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Switcher deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${switcherPath}") {
+                            dir("${keyboardArrowRightIconPath}") {
                                 script {
                                     echo 'Packages installing'
                                     sh 'npm i'
@@ -563,287 +135,7 @@ pipeline {
                 }
             }
         }
-        stage('FormControl deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${formControlPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('FlexContainer deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${flexContainerPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('TableColumnsVisible deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${tableColumnsVisiblePath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('ProgressBar deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${progressBarPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('MultiSelect deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${multiSelectPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('StickyBottomPanel deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${stickyBottomPanelPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Tabs deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${tabsPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Tab deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${tabPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Divider deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${dividerPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Table deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${tablePath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                            dir("${tableHeadPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                            dir("${tableBodyPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                            dir("${tableRowPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                            dir("${tableCellPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage("UI Kit PUBLISH") {
+         stage("UI Icons PUBLISH") {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -852,17 +144,17 @@ pipeline {
                 script {
 
                   def IS_PUBLISH = input(
-                    message: 'Publish library UI KIt?',
+                    message: 'Publish library UI Icons?',
                     ok: 'Yes',
                     no: 'No',
                     parameters: [
-                      string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Publish library UI KIt?')
+                      string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Publish library UI Icons?')
                     ]
                   )
                   if (IS_PUBLISH == 'Yes') {
                       nodejs('node-v17.5.0-linux-x64') {
                           withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
-                              dir("${uiKitPath}") {
+                              dir("${uiIconsPath}") {
                                   withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
                                       sh """
                                           npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/

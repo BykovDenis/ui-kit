@@ -1,5 +1,5 @@
-def rootPath = '.'
-def uiIconsPath = './icons/'
+def rootPath = './icons'
+def uiIconsPath = './icons/packages'
 def chevronDownIconPath = './icons/chevron-down-icon'
 def firstPagePath = './icons/first-page-icon'
 def lastPagePath = './icons/last-page-icon'
