@@ -36,9 +36,9 @@ pipeline {
                                     sh 'npm ci'
                                 }
                             }
-                            dir("${uiKitPath}") {
+                            dir("${uiIconsPath}") {
                                 script {
-                                    echo 'Core packages installing'
+                                    echo 'Icons packages installing'
                                     sh 'npm ci'
                                 }
                             }
@@ -135,7 +135,7 @@ pipeline {
                 }
             }
         }
-         stage("UI Kit PUBLISH") {
+         stage("UI Icons PUBLISH") {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -144,11 +144,11 @@ pipeline {
                 script {
 
                   def IS_PUBLISH = input(
-                    message: 'Publish library UI KIt?',
+                    message: 'Publish library UI Icons?',
                     ok: 'Yes',
                     no: 'No',
                     parameters: [
-                      string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Publish library UI KIt?')
+                      string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Publish library UI Icons?')
                     ]
                   )
                   if (IS_PUBLISH == 'Yes') {

@@ -1,7 +1,0 @@
-registry = https://nexus-ci.delta.sbrf.ru/repository/npm-all/
-audit=false
-always-auth=true
-fetch-retries=5
-strict-ssl=false
-save-exact=true
-_auth = "c2Etc2R2bzAwMDAwNDY3Oj9AMDlBWmZzZ1pvYlNneGhveTN4M3hvRW9oSGVoY3QyNEMyd3ZsWWFHa292dFRWWjZHNEVpdmJsTk5PckRhNWI="
