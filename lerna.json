@@ -1,8 +1,0 @@
-{
-  "version": "0.0.2",
-  "packages": [
-    "icons/*"
-  ],
-  "npmClient": "npm",
-  "useWorkspaces": true
-}
