@@ -111,7 +111,7 @@
   "todo": "TODO for publish comments this lines 71,72,73 for publish npm registry",
   "private": "false",
   "workspaces": [
-    "packages/*"
+    "icons/*"
   ],
   "eslintConfig": {
     "overrides": [
