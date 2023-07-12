@@ -1,4 +1,4 @@
-def rootPath = '.'
+def rootPath = './ui-kit'
 def uiKitPath = './packages/'
 def buttonPath = './packages/button'
 def iconButtonPath = './packages/icon-button'
