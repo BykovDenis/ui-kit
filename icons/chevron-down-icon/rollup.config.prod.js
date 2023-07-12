@@ -1,5 +1,4 @@
 import cleaner from 'rollup-plugin-cleaner';
-import postcss from 'rollup-plugin-postcss';
 import typescript from 'rollup-plugin-typescript2';
 import { terser } from 'rollup-plugin-terser';
 
@@ -30,15 +29,6 @@ export default [
         targets: ['./dist'],
       }),
       typescript({ objectHashIgnoreUnknownHack: false }),
-      postcss({
-        autoModules: true,
-        modules: {
-          generateScopedName: '[hash:base64:8]',
-        },
-        options: {
-          autoprefixer: true,
-        },
-      }),
       terser(),
     ],
     external: ['react', 'react-dom'],

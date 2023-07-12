@@ -1,5 +1,4 @@
 import cleaner from 'rollup-plugin-cleaner';
-import postcss from 'rollup-plugin-postcss';
 import svg from 'rollup-plugin-svg';
 import typescript from 'rollup-plugin-typescript2';
 
@@ -29,12 +28,6 @@ export default {
     }),
     typescript({ objectHashIgnoreUnknownHack: false, inlineSourceMap: true, sourceMap: true }),
     svg(),
-    postcss({
-      autoModules: true,
-      modules: {
-        generateScopedName: '[hash:base64:8]',
-      },
-    }),
   ],
   external: ['react', 'react-dom', 'styled-components'],
 };
