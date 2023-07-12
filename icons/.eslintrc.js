@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     browser: true,
+    node: true,
   },
   parser: '@typescript-eslint/parser',
   extends: [
@@ -11,17 +12,17 @@ module.exports = {
     'plugin:typescript-enum/recommended',
   ],
   parserOptions: {
-    project: './tsconfig.eslint.json',
+    project: ['tsconfig.eslint.json'],
     sourceType: 'module',
   },
   plugins: [
-    'react',
     'prettier',
     'simple-import-sort',
     'import',
     'typescript-sort-keys',
     'react-hooks',
     '@typescript-eslint',
+    'typescript-enum',
   ],
   rules: {
     indent: ['error', 2],
@@ -30,10 +31,11 @@ module.exports = {
     'typescript-sort-keys/interface': 'error',
     'typescript-sort-keys/string-enum': 'error',
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/exhaustive-deps': 'error',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-inferrable-types': 0,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/prefer-readonly': 'error',
+    'no-empty-pattern': 0,
   },
 };
