@@ -1,6 +1,10 @@
 def rootPath = '.'
 def uiIconsPath = './icons/'
 def chevronDownIconPath = './icons/chevron-down-icon'
+def firstPagePath = './icons/first-page-icon'
+def lastPagePath = './icons/last-page-icon'
+def keyboardArrowLeftIconPath = './icons/keyboard-arrow-left-icon'
+def keyboardArrowRightIconPath = './icons/keyboard-arrow-right-icon'
 
 pipeline {
     agent {
@@ -10,7 +14,7 @@ pipeline {
     }
 
     environment {
-        PROJECT_NAME = 'Risks react UI Kit'
+        PROJECT_NAME = 'Risks react UI icons'
         OWNER_NAME = 'Denis Bykov'
     }
     options { timeout(time: 60, unit: 'MINUTES') }
@@ -67,7 +71,7 @@ pipeline {
                 }
             }
         }
-        stage('ChevronDownIcon deploy') {
+        stage('Icons deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -80,10 +84,46 @@ pipeline {
                                 script {
                                     echo 'Packages installing'
                                     sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
                                 }
                             }
-                            dir("${chevronDownIconPath}") {
+                            dir("${firstPagePath}") {
                                 script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                            dir("${lastPagePath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                            dir("${keyboardArrowLeftIconPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                            dir("${keyboardArrowRightIconPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
