@@ -2,8 +2,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import LastPageIcon from './last-page-icon/src';
 import FirstPageIcon from './first-page-icon/src';
-import KeyboardArrowLeftIcon from './keyboard-arrow-left-icon';
-import TIcon from '../icons/types/ticon';
+import KeyboardArrowLeftIcon from './keyboard-arrow-left-icon/src';
+import TIcon from './types/ticon';
 import KeyboardArrowRightIcon from './keyboard-arrow-right-icon/src';
 import ChevronDownIcon from './chevron-down-icon/src/index';
 

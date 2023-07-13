@@ -18,11 +18,11 @@ module.exports = {
   //   paths.appIndexScss,
   // ],
   entry: {
-    'loan-pricing-js': {
+    'ui-kit-js': {
       import: paths.appIndexJs,
       dependOn: 'shared',
     },
-    'loan-pricing-css': {
+    'ui-kit-css': {
       import: paths.appIndexScss,
     },
     shared: ['react', 'react-dom'],

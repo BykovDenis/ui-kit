@@ -7,13 +7,8 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --config webpack.prod.config.js",
-    "start-demo": "webpack serve --open --config webpack.config.js",
-    "start": "webpack serve --open --config webpack.config.js",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "bootstrap": "lerna bootstrap",
-    "test": "jest",
-    "cypress:open": "cypress open"
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -55,7 +50,6 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.18.6",
-    "@cypress/react": "5.12.5",
     "@lopatnov/rollup-plugin-uglify": "2.1.5",
     "@storybook/addon-actions": "6.5.15",
     "@storybook/addon-docs": "6.5.15",
@@ -79,7 +73,6 @@
     "babel-plugin-styled-components": "^2.0.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
-    "cypress": "12.13.0",
     "eslint": "^8.10.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
