@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const paths = require('./paths');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
@@ -74,10 +73,6 @@ module.exports = {
             plugins: ['@babel/plugin-proposal-object-rest-spread'],
           },
         },
-      },
-      {
-        test: /\.(sa|sc|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
       },
       {
         test: /\.svg/,
