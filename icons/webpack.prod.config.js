@@ -1,11 +1,9 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const paths = require('./paths');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const publicPath = paths.servedPath;
 
@@ -107,16 +105,9 @@ module.exports = {
     maxAssetSize: 512000,
   },
   plugins: [
-    // new CopyPlugin({
-    //   patterns: [
-    //     { from: 'src/html/manifest.json', to: 'manifest.json' }]
-    // }),
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|hu/),
-    // new DashboardPlugin({ port: 3002 }),
     new ForkTsCheckerWebpackPlugin(),
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin(),
-    // new BundleAnalyzerPlugin(),
     new WebpackBar(),
     new webpack.DefinePlugin({
       'process.env': {
