@@ -1,6 +1,6 @@
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const paths = require('./paths');
+const paths = require('./paths.js');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
@@ -9,18 +9,10 @@ const publicPath = paths.servedPath;
 
 module.exports = {
   mode: 'production',
-  // entry: [
-  //   paths.appIndexJs,
-  //   paths.appIndexHtml,
-  //   paths.appIndexScss,
-  // ],
   entry: {
-    'loan-pricing-js': {
+    'icons-js': {
       import: paths.appIndexJs,
       dependOn: 'shared',
-    },
-    'loan-pricing-css': {
-      import: paths.appIndexScss,
     },
     shared: ['react', 'react-dom'],
   },

@@ -2,17 +2,11 @@ const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
-const paths = require('./paths');
+import paths from './paths';
 const WebpackBar = require('webpackbar');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const publicPath = '/'; // paths.servedPath;
-// const smp = new SpeedMeasurePlugin();
-
-// замер производительности сборки
-// module.exports = smp.wrap({
-//   /* ... */
-// });
 
 module.exports = {
   mode: 'development',
