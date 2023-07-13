@@ -1,9 +1,9 @@
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const paths = require('./paths.js');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
+import paths from './paths.js';
 
 const publicPath = paths.servedPath;
 
