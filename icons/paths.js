@@ -50,7 +50,7 @@ const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
 
 module.exports = {
   dotenv: resolveApp('.env'),
-  appPath: resolveApp('./packages'),
+  appPath: resolveApp('.'),
   appBuild: path.resolve("build"), // resolveApp('build'),
   appIndexJs: resolveApp('packages/index.ts'),
   appPackageJson: resolveApp('package.json'),
@@ -59,8 +59,5 @@ module.exports = {
   appTsConfig: resolveApp('tsconfig.json'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
-  // These properties only exist before ejecting:
-  ownPath: resolveOwn('.'),
-  ownNodeModules: resolveOwn('node_modules'), // This is empty on npm 3
 };
 
