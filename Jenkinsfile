@@ -37,12 +37,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                            dir("${uiIconsPath}") {
-                                script {
-                                    echo 'Icons packages installing'
-                                    sh 'npm i'
-                                }
-                            }
                         }
                     }
                 }
@@ -63,8 +57,6 @@ pipeline {
                                     sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
                                 }
                             }
                         }
