@@ -80,7 +80,7 @@ pipeline {
                 nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                        echo 'ChevronDownIcon'
+                            echo 'ChevronDownIcon'
                             dir("${chevronDownIconPath}") {
                                 script {
                                     echo 'Packages installing'
