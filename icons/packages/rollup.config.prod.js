@@ -7,7 +7,7 @@ import pkg from './package.json';
 
 export default [
   {
-    input: 'src/index.ts',
+    input: 'index.ts',
     output: [
       {
         file: pkg.main,
@@ -32,10 +32,5 @@ export default [
       terser(),
     ],
     external: ['react', 'react-dom'],
-  },
-  {
-    input: './src/index.d.ts',
-    output: [{ file: './dist/index.d.ts', format: 'es' }],
-    plugins: [dts()],
-  },
+  }
 ];
