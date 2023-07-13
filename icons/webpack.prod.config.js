@@ -3,8 +3,49 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
-// @ts-ignore
-const paths = require('./paths.js');
+const path = require("path");
+const fs = require("fs");
+const url = require("url");
+
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+
+const envPublicUrl = process.env.PUBLIC_URL;
+
+function ensureSlash(path, needsSlash) {
+  const hasSlash = path.endsWith('/');
+  if (hasSlash && !needsSlash) {
+    return path.substr(path, path.length - 1);
+  } else if (!hasSlash && needsSlash) {
+    return `${path}/`;
+  } else {
+    return path;
+  }
+}
+
+const getPublicUrl = appPackageJson =>
+  envPublicUrl || require(appPackageJson).homepage;
+
+function getServedPath(appPackageJson) {
+  const publicUrl = getPublicUrl(appPackageJson);
+  const servedUrl = envPublicUrl ||
+    (publicUrl ? url.parse(publicUrl).pathname : '/');
+  return ensureSlash(servedUrl, true);
+}
+
+
+const paths = {
+  dotenv: resolveApp('.env'),
+  appPath: resolveApp('.'),
+  appBuild: path.resolve("build"),
+  appIndexJs: resolveApp('packages/index.ts'),
+  appPackageJson: resolveApp('package.json'),
+  appSrc: resolveApp('packages'),
+  appNodeModules: resolveApp('node_modules'),
+  appTsConfig: resolveApp('tsconfig.json'),
+  publicUrl: getPublicUrl(resolveApp('package.json')),
+  servedPath: getServedPath(resolveApp('package.json')),
+}
 
 const publicPath = paths.servedPath;
 
