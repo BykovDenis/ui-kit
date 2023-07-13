@@ -80,6 +80,7 @@ pipeline {
                 nodejs('node-v17.5.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                        echo 'ChevronDownIcon'
                             dir("${chevronDownIconPath}") {
                                 script {
                                     echo 'Packages installing'
@@ -90,6 +91,7 @@ pipeline {
                                     sh 'npm run clean-node-modules'
                                 }
                             }
+                            echo 'FirstPageIcon'
                             dir("${firstPagePath}") {
                                 script {
                                     echo 'Packages installing'
@@ -100,6 +102,7 @@ pipeline {
                                     sh 'npm run clean-node-modules'
                                 }
                             }
+                            echo 'LastPageIcon'
                             dir("${lastPagePath}") {
                                 script {
                                     echo 'Packages installing'
@@ -110,6 +113,7 @@ pipeline {
                                     sh 'npm run clean-node-modules'
                                 }
                             }
+                            echo 'KeyboardArrowLeftIcon'
                             dir("${keyboardArrowLeftIconPath}") {
                                 script {
                                     echo 'Packages installing'
@@ -120,6 +124,7 @@ pipeline {
                                     sh 'npm run clean-node-modules'
                                 }
                             }
+                            echo 'KeyboardArrowRightIcon'
                             dir("${keyboardArrowRightIconPath}") {
                                 script {
                                     echo 'Packages installing'
