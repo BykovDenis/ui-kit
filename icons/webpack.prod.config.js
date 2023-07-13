@@ -3,7 +3,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
-import paths from './paths.js';
+// @ts-ignore
+const paths = require('./paths.js');
 
 const publicPath = paths.servedPath;
 
