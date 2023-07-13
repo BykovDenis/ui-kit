@@ -29,6 +29,7 @@ pipeline {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
                         sh 'node -v'
+                        sh '''Root packages --color '''
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${rootPath}") {
                                 script {
