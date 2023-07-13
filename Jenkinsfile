@@ -2,7 +2,7 @@ def rootPath = './icons'
 def uiIconsPath = './icons/packages'
 def chevronDownIconPath = './icons/packages/chevron-down-icon'
 def firstPagePath = './icons/packages/first-page-icon'
-def lastPagePath = './icons//packageslast-page-icon'
+def lastPagePath = './icons//packages/last-page-icon'
 def keyboardArrowLeftIconPath = './icons/packages/keyboard-arrow-left-icon'
 def keyboardArrowRightIconPath = './icons/packages/keyboard-arrow-right-icon'
 
