@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-furwcr gNVNEy"
+  >
+    <div
+      class="sc-iCfMLu bFeWsF"
+    >
+      <label
+        class="sc-gKclnd gEuJur"
+        color="#333333"
+        font-family="Roboto, Arial, sans-serif"
+        font-size="14"
+        font-weight="400"
+        for="textfield1"
+      >
+        label
+      </label>
+    </div>
+    <div
+      class="sc-dkPtRN bbOemD"
+    >
+      <p
+        class="sc-hKwDye jiFsKN"
+      >
+        <input
+          autocomplete="off"
+          class="sc-gsDKAQ jCbeDc"
+          color="#333333"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="14"
+          font-weight="400"
+          height="40"
+          id="textfield1"
+          label="label"
+          name="textfield1"
+          type="text"
+          value=""
+        />
+      </p>
+      <div
+        class="sc-eCImPb jAsBIb underline"
+        color="#333333"
+        name="textfield1"
+      />
+      <p />
+      <p
+        class="sc-jRQBWg bjqfZv text-message"
+        color="#333333"
+        font-family="Roboto, Arial, sans-serif"
+        font-size="14"
+      >
+        text message
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

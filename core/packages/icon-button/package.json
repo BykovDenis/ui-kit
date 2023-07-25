@@ -1,0 +1,39 @@
+{
+  "name": "@sber-risks-ui/IconButton",
+  "version": "0.11.2-alpha.0",
+  "description": "The icon button component",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c rollup.config.prod.js",
+    "build-dev": "rollup -w -c rollup.config.dev.js",
+    "clean-node-modules": "rm -rf node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "button"
+  ],
+  "author": "DenisBykov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://nexus-ci.delta.sbrf.ru/repository/npm-all/issues"
+  },
+  "homepage": "/",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@lopatnov/rollup-plugin-uglify": "^2.1.2",
+    "@types/styled-components": "^5.1.18",
+    "rollup": "^2.61.1",
+    "rollup-plugin-cleaner": "^1.0.0"
+  },
+  "gitHead": "a56d1e400be0c2bd045bda163ff749ddafc47f70",
+  "_id": "@sber-risks-ui/Button@0.5.28"
+}

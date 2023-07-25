@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-dkPtRN bbOemD"
+  >
+    <p
+      class="sc-hKwDye jiFsKN"
+    >
+      <input
+        autocomplete="off"
+        class="sc-gsDKAQ jBcAkF"
+        color="#ffffff"
+        font-family="Roboto, Arial, sans-serif"
+        font-size="14"
+        font-weight="400"
+        height="40"
+        name="input"
+        type="text"
+        value="123"
+      />
+    </p>
+    <div
+      class="sc-eCImPb eCJDEY underline"
+      color="#ffffff"
+      name="input"
+    />
+    <button
+      class="sc-bdvvtL deugBQ delete-button"
+    >
+      <svg
+        class="delete-icon"
+        height="14"
+        version="1.1"
+        viewBox="5 5 14 14"
+        width="14"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+          fill="#ffffff"
+          stroke="#ffffff"
+        />
+      </svg>
+    </button>
+    <p />
+    <p
+      class="sc-jRQBWg rJBuH text-message"
+      color="#ffffff"
+      font-family="Roboto, Arial, sans-serif"
+      font-size="14"
+    >
+      text message
+    </p>
+  </div>
+</DocumentFragment>
+`;

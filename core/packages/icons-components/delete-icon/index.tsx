@@ -1,0 +1,30 @@
+import React from 'react';
+
+const DeleteIcon: React.FunctionComponent<{ className: string, color: string }> = ({
+  className,
+  color,
+}: {
+  className?: string,
+  color?: string,
+}) => (
+  <svg
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+    version="1.1"
+    width="14"
+    height="14"
+    viewBox="5 5 14 14"
+  >
+    <path
+      stroke={color}
+      fill={color}
+      d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+    />
+  </svg>
+);
+
+DeleteIcon.defaultProps = {
+  color: '#333333',
+};
+
+export default DeleteIcon;

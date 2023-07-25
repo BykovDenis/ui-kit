@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox renders correctly 1`] = `
+<DocumentFragment>
+  <p
+    class="sc-dkPtRN ffbVmP"
+  >
+    <input
+      class="sc-gsDKAQ enJJeq"
+      color="#333333"
+      id="label1"
+      label="Label for the Checkbox"
+      tabindex="1"
+      type="checkbox"
+    />
+    <label
+      class="sc-bdvvtL dmaWdk"
+      color="#333333"
+      font-family="Roboto, Arial, sans-serif"
+      font-size="14"
+      font-weight="400"
+      for="label1"
+    >
+      Label for the Checkbox
+    </label>
+  </p>
+</DocumentFragment>
+`;

@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Radio renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-gsDKAQ dieCOK"
+  >
+    <input
+      checked=""
+      class="sc-dkPtRN JyuOZ"
+      color="#ffffff"
+      id="radio1"
+      name="radio1"
+      tabindex="0"
+      type="radio"
+    />
+    <label
+      class="sc-bdvvtL dmaWdk"
+      color="#333333"
+      font-family="Roboto, Arial, sans-serif"
+      font-size="14"
+      font-weight="400"
+      for="radio1"
+    />
+  </div>
+  <div
+    class="sc-gsDKAQ dieCOK"
+  >
+    <input
+      class="sc-dkPtRN JyuOZ"
+      color="#ffffff"
+      id="radio2"
+      name="radio1"
+      tabindex="1"
+      type="radio"
+    />
+    <label
+      class="sc-bdvvtL dmaWdk"
+      color="#333333"
+      font-family="Roboto, Arial, sans-serif"
+      font-size="14"
+      font-weight="400"
+      for="radio2"
+    />
+  </div>
+</DocumentFragment>
+`;
