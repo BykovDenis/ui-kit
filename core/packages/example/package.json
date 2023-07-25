@@ -1,0 +1,24 @@
+{
+  "name": "@sber-risks-ui/Example",
+  "version": "0.11.2-alpha.0",
+  "description": "Risks react UI",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Denis Bykov",
+  "license": "MIT",
+  "jest": {
+    "setupFiles": [
+      "./setupTests.js"
+    ]
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.prod.js",
+    "build-dev": "rollup -w -c rollup.config.dev.js",
+    "clean-node-modules": "rm -rf node_modules"
+  },
+  "publishConfig": {
+    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
+  },
+  "gitHead": "a56d1e400be0c2bd045bda163ff749ddafc47f70"
+}

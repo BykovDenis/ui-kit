@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-crHmcD fHkUOt"
+    height="40"
+  >
+    <div
+      class="sc-egiyK dZrZsc"
+      height="40"
+    >
+      <div
+        class="sc-iqseJM fVQZBA"
+      >
+        <label
+          class="sc-gKclnd flTAPJ"
+          color="#333333"
+          font-family="Roboto, Arial, sans-serif"
+          font-size="12"
+          font-weight="400"
+          for="select"
+        >
+          Select 1
+        </label>
+      </div>
+      <div
+        class="sc-bqiRlB fOrgoJ"
+      />
+      <div
+        class="sc-dkPtRN bAtqlE"
+        height="40"
+      >
+        <p
+          class="sc-hKwDye jiFsKN"
+        >
+          <input
+            autocomplete="off"
+            class="sc-gsDKAQ gVeiVo"
+            color="#ffffff"
+            font-family="Roboto, Arial, sans-serif"
+            font-size="14"
+            font-weight="400"
+            height="40"
+            id="select"
+            name="select-custom"
+            type="list-buttons"
+            value="List item 1"
+          />
+        </p>
+        <div
+          class="sc-eCImPb bXKVtT underline"
+          color="#ffffff"
+          name="select-custom"
+        />
+        <button
+          class="sc-bdvvtL deugBQ delete-button"
+        >
+          <svg
+            class="delete-icon"
+            height="14"
+            version="1.1"
+            viewBox="5 5 14 14"
+            width="14"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+              fill="#ffffff"
+              stroke="#ffffff"
+            />
+          </svg>
+        </button>
+        <p />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

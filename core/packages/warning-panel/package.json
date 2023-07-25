@@ -1,0 +1,37 @@
+{
+  "name": "@sber-risks-ui/Warning-panel",
+  "version": "0.11.2-alpha.0",
+  "description": "A warning panel component",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.prod.js",
+    "build-dev": "rollup -w -c rollup.config.dev.js",
+    "clean-node-modules": "rm -rf node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
+  },
+  "keywords": [
+    "react",
+    "react-component"
+  ],
+  "author": "DenisBykov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://nexus-ci.delta.sbrf.ru/repository/npm-all/issues"
+  },
+  "homepage": "/",
+  "files": [
+    "dist"
+  ],
+  "gitHead": "a56d1e400be0c2bd045bda163ff749ddafc47f70",
+  "devDependencies": {
+    "@types/styled-components": "^5.1.18"
+  }
+}

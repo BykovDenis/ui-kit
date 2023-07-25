@@ -1,0 +1,56 @@
+import { action } from '@storybook/addon-actions';
+import {ComponentMeta, ComponentStory } from '@storybook/react';
+import React, {Fragment } from 'react';
+
+import Radio from  './src/index';
+import Iradio from "./types/iradio";
+import { themes } from '../styles/src/themes';
+import getNewReactThemeContext from '../styles/src';
+
+export default {
+  title: 'Components/Radio',
+  component: Radio,
+  argTypes: {
+    disabled: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
+    fontSize: { control: { type: 'select', options: [ '10px', '12px', '14px', '16px' ] }  },
+    isIconDisabled: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
+  },
+  args: {
+    id: 'label1',
+    disabled: false,
+    label: 'Label for the Radio',
+  }
+} as ComponentMeta<typeof Radio>;
+
+const ThemeDarkTemplate: ComponentStory<typeof Radio> = (args: Iradio) => {
+
+  const onCheckboxCheck = () => {
+    action('checked');
+  }
+
+  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
+  return (<ReactThemeContext.Provider value={themes.dark}><Fragment>
+    <Radio {...args} id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} tabIndex="0" />
+    <Radio {...args} id="radio2" name="radio1" onChange={onCheckboxCheck}  tabIndex="1" />
+  </Fragment></ReactThemeContext.Provider>)
+}
+
+const ThemeLightTemplate: ComponentStory<typeof Radio> = (args: Iradio) => {
+
+  const onCheckboxCheck = () => {
+    action('checked');
+  }
+
+  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+
+  return (<ReactThemeContext.Provider value={themes.loanPricing}><Fragment>
+    <Radio {...args} id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} tabIndex="0" />
+    <Radio {...args} id="radio2" name="radio1" onChange={onCheckboxCheck}  tabIndex="1" />
+  </Fragment></ReactThemeContext.Provider>)
+}
+
+export const DarkThemeRadio = ThemeDarkTemplate.bind({});
+export const LightThemeRadio = ThemeLightTemplate.bind({});
+
+
