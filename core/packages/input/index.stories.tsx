@@ -24,7 +24,6 @@ export default {
     onChange: { action: 'changed' },
   },
   args: {
-    // value: 'The input',
     textMessage: 'text message',
   },
 } as ComponentMeta<typeof Input>;
@@ -50,7 +49,7 @@ const TemplateDarkTheme: ComponentStory<typeof Input> = (args: IInput) => {
 
   return (
     <ReactThemeContext.Provider value={themes.dark}>
-      <div style={{ width: '190px', zoom: 5 }}>
+      <div style={{ width: '190px' }}>
         <Input
           {...args}
           name="input"
@@ -58,6 +57,7 @@ const TemplateDarkTheme: ComponentStory<typeof Input> = (args: IInput) => {
           onChange={onInputChange}
           onRemove={onInputRemove}
           backgroundColor="transparent"
+          padding="0 10px 0 0"
         />
       </div>
       <div style={{ width: '190px' }}>
