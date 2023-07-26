@@ -1,47 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Radio renders correctly 1`] = `
-<DocumentFragment>
+Array [
   <div
-    class="sc-gsDKAQ dieCOK"
+    className="sc-gsMHZj dubEgc"
+    isExistLabel={false}
   >
     <input
-      checked=""
-      class="sc-dkPtRN JyuOZ"
+      backgroundColor="rgb(8, 166, 82)"
+      borderColor="rgba(0, 0, 0, 0.6)"
+      checked={true}
+      className="sc-dkHyXG lneheb"
       color="#ffffff"
+      disabledColor="#333333"
       id="radio1"
       name="radio1"
-      tabindex="0"
+      onChange={[MockFunction]}
+      tabIndex="0"
       type="radio"
     />
     <label
-      class="sc-bdvvtL dmaWdk"
+      className="sc-bcHOTY gagqbh"
       color="#333333"
-      font-family="Roboto, Arial, sans-serif"
-      font-size="14"
-      font-weight="400"
-      for="radio1"
+      focusColor="#333333"
+      fontFamily="Roboto, Arial, sans-serif"
+      fontSize={14}
+      htmlFor="radio1"
+      tabIndex="0"
+      width="initial"
     />
-  </div>
+  </div>,
   <div
-    class="sc-gsDKAQ dieCOK"
+    className="sc-gsMHZj dubEgc"
+    isExistLabel={false}
   >
     <input
-      class="sc-dkPtRN JyuOZ"
+      backgroundColor="rgb(8, 166, 82)"
+      borderColor="rgba(0, 0, 0, 0.6)"
+      className="sc-dkHyXG lneheb"
       color="#ffffff"
+      disabledColor="#333333"
       id="radio2"
       name="radio1"
-      tabindex="1"
+      onChange={[MockFunction]}
+      tabIndex="1"
       type="radio"
     />
     <label
-      class="sc-bdvvtL dmaWdk"
+      className="sc-bcHOTY gagqbh"
       color="#333333"
-      font-family="Roboto, Arial, sans-serif"
-      font-size="14"
-      font-weight="400"
-      for="radio2"
+      focusColor="#333333"
+      fontFamily="Roboto, Arial, sans-serif"
+      fontSize={14}
+      htmlFor="radio2"
+      tabIndex="1"
+      width="initial"
     />
-  </div>
-</DocumentFragment>
+  </div>,
+]
 `;

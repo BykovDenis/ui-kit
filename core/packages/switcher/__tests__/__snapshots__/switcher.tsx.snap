@@ -1,40 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Switcher renders correctly 1`] = `
-<DocumentFragment>
-  <form
-    class="sc-bdvvtL IjPKj"
-    method="get"
+<form
+  backgroundColor="#ffffff"
+  borderColor="rgba(0, 0, 0, 0.6)"
+  className="sc-bcHOTY eAJoDQ"
+  method="get"
+>
+  <input
+    backgroundColor="rgb(8, 166, 82)"
+    checked={true}
+    className="sc-gsMHZj kgePlE"
+    color="#ffffff"
+    data-name="Native"
+    disabled={false}
+    id="custom-switcher-element1-Native"
+    inactiveBackgroundColor="#ffffff"
+    inactiveColor="#333333"
+    name="custom-switcher"
+    onChange={[Function]}
+    position="left"
+    type="radio"
+  />
+  <label
+    className="sc-dkHyXG jOkNby"
+    color="#333333"
+    fontFamily="Roboto, Arial, sans-serif"
+    fontSize={14}
+    htmlFor="custom-switcher-element1-Native"
   >
-    <input
-      checked=""
-      class="sc-gsDKAQ dHwjgB"
-      color="#ffffff"
-      data-name="Native"
-      id="custom-switcher-element1-Native"
-      name="custom-switcher"
-      type="radio"
-    />
-    <label
-      class="sc-dkPtRN XvgAA"
-      for="custom-switcher-element1-Native"
-    >
-      Native
-    </label>
-    <input
-      class="sc-gsDKAQ dkImrV"
-      color="#ffffff"
-      data-name="RUB"
-      id="custom-switcher-element2-RUB"
-      name="custom-switcher"
-      type="radio"
-    />
-    <label
-      class="sc-dkPtRN XvgAA"
-      for="custom-switcher-element2-RUB"
-    >
-      RUB
-    </label>
-  </form>
-</DocumentFragment>
+    Native
+  </label>
+  <input
+    backgroundColor="rgb(8, 166, 82)"
+    checked={false}
+    className="sc-gsMHZj dLnEbw"
+    color="#ffffff"
+    data-name="RUB"
+    disabled={false}
+    id="custom-switcher-element2-RUB"
+    inactiveBackgroundColor="#ffffff"
+    inactiveColor="#333333"
+    name="custom-switcher"
+    onChange={[Function]}
+    position="right"
+    type="radio"
+  />
+  <label
+    className="sc-dkHyXG jOkNby"
+    color="#333333"
+    fontFamily="Roboto, Arial, sans-serif"
+    fontSize={14}
+    htmlFor="custom-switcher-element2-RUB"
+  >
+    RUB
+  </label>
+</form>
 `;

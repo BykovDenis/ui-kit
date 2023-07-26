@@ -1,15 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Input renders correctly 1`] = `
-<DocumentFragment>
-  <label
-    class="sc-bdvvtL dmaWdk"
-    color="#333333"
-    font-family="Roboto, Arial, sans-serif"
-    font-size="14"
-    font-weight="400"
-  >
-    Label
-  </label>
-</DocumentFragment>
+<label
+  className="sc-bcHOTY dfNeAP"
+  color="#333333"
+  error={false}
+  focusColor="#333333"
+  fontFamily="Roboto, Arial, sans-serif"
+  fontSize={14}
+>
+  Label
+</label>
 `;

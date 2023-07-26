@@ -1,52 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`List renders correctly 1`] = `
-<DocumentFragment>
-  <div
-    class="sc-eCImPb eFfiYR"
+<div
+  backgroundColor="rgb(8, 166, 82)"
+  className="sc-eDgayY kjpKvS"
+  color="#333333"
+  fontFamily="Roboto, Arial, sans-serif"
+  hoverBackgroundColor="rgba(8, 166, 82, 0.3)"
+  hoverColor="#333333"
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  underlineColor="rgb(8, 166, 82)"
+>
+  <li
+    backgroundColor="#ffffff"
+    className="sc-bcHOTY jWgpsy"
     color="#333333"
-    font-family="Roboto, Arial, sans-serif"
+    height={30}
+    onClick={[Function]}
+    textAlign="center"
+    type="text"
+    underLineColor="#e3e3e3"
   >
-    <li
-      class="sc-bdvvtL coeJmL"
-      color="#333333"
-      height="30"
-      type="text"
-    >
-      List item 1
-    </li>
-    <li
-      class="sc-bdvvtL coeJmL"
-      color="#333333"
-      height="30"
-      type="text"
-    >
-      List item 2
-    </li>
-    <li
-      class="sc-bdvvtL coeJmL"
-      color="#333333"
-      height="30"
-      type="text"
-    >
-      List item 3
-    </li>
-    <li
-      class="sc-bdvvtL coeJmL"
-      color="#333333"
-      height="30"
-      type="text"
-    >
-      List item 4
-    </li>
-    <li
-      class="sc-bdvvtL coeJmL"
-      color="#333333"
-      height="30"
-      type="text"
-    >
-      List item 5
-    </li>
-  </div>
-</DocumentFragment>
+    List item 1
+  </li>
+  <li
+    backgroundColor="#ffffff"
+    className="sc-bcHOTY jWgpsy"
+    color="#333333"
+    height={30}
+    onClick={[Function]}
+    textAlign="center"
+    type="text"
+    underLineColor="#e3e3e3"
+  >
+    List item 2
+  </li>
+  <li
+    backgroundColor="#ffffff"
+    className="sc-bcHOTY jWgpsy"
+    color="#333333"
+    height={30}
+    onClick={[Function]}
+    textAlign="center"
+    type="text"
+    underLineColor="#e3e3e3"
+  >
+    List item 3
+  </li>
+  <li
+    backgroundColor="#ffffff"
+    className="sc-bcHOTY jWgpsy"
+    color="#333333"
+    height={30}
+    onClick={[Function]}
+    textAlign="center"
+    type="text"
+    underLineColor="#e3e3e3"
+  >
+    List item 4
+  </li>
+  <li
+    backgroundColor="#ffffff"
+    className="sc-bcHOTY jWgpsy"
+    color="#333333"
+    height={30}
+    onClick={[Function]}
+    textAlign="center"
+    type="text"
+    underLineColor="#e3e3e3"
+  >
+    List item 5
+  </li>
+</div>
 `;
