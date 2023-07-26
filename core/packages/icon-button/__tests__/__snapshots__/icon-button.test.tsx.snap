@@ -1,15 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IconButton renders correctly 1`] = `
-<DocumentFragment>
-  <button
-    class="sc-bdvvtL ekXVaT"
-    color="#ffffff"
-    font-family="Roboto, Arial, sans-serif"
-    font-size="14"
-    type="button"
-  >
-    Hello world!
-  </button>
-</DocumentFragment>
+<button
+  backgroundColor="rgb(8, 166, 82)"
+  className="sc-bcHOTY dWWbSN"
+  color="#ffffff"
+  disabled={false}
+  focusColor="rgb(8, 166, 82)"
+  fontFamily="Roboto, Arial, sans-serif"
+  fontSize={14}
+  onClick={[MockFunction]}
+  type="button"
+>
+  Hello world!
+</button>
 `;

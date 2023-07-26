@@ -1,4 +1,4 @@
-0import React from 'react';
+import React from 'react';
 import getNewReactThemeContext from '../../styles/src';
 import renderer from 'react-test-renderer';
 

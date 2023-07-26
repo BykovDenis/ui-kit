@@ -1,28 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Checkbox renders correctly 1`] = `
-<DocumentFragment>
-  <p
-    class="sc-dkPtRN ffbVmP"
+<p
+  className="sc-dkHyXG fVVrpV"
+  isExistLabel={true}
+>
+  <input
+    backgroundColor="rgb(8, 166, 82)"
+    borderColor="rgba(0, 0, 0, 0.6)"
+    checked={false}
+    className="sc-gsMHZj hVidzs"
+    color="#333333"
+    disabled={false}
+    disabledColor="#333333"
+    id="label1"
+    indeterminate={false}
+    label="Label for the Checkbox"
+    onChange={[MockFunction]}
+    tabIndex="1"
+    type="checkbox"
+  />
+  <label
+    className="sc-bcHOTY gagqbh"
+    color="#333333"
+    focusColor="#333333"
+    fontFamily="Roboto, Arial, sans-serif"
+    fontSize={14}
+    htmlFor="label1"
+    tabIndex="1"
+    width="initial"
   >
-    <input
-      class="sc-gsDKAQ enJJeq"
-      color="#333333"
-      id="label1"
-      label="Label for the Checkbox"
-      tabindex="1"
-      type="checkbox"
-    />
-    <label
-      class="sc-bdvvtL dmaWdk"
-      color="#333333"
-      font-family="Roboto, Arial, sans-serif"
-      font-size="14"
-      font-weight="400"
-      for="label1"
-    >
-      Label for the Checkbox
-    </label>
-  </p>
-</DocumentFragment>
+    Label for the Checkbox
+  </label>
+</p>
 `;
