@@ -12,7 +12,7 @@ const H3Styled =
   text-transform: ${(props: IHeader) => props.textTransform ?? 'none'};
   text-decoration: ${(props: IHeader) => props.textDecoration ?? 'none'};
   ${(props: IHeader) => (props?.margin ? `margin: ${props.margin};` : '')}
-  ${(props: IHeader) => (props?.padding ? `margin: ${props.padding};` : '')}
+  ${(props: IHeader) => (props?.padding ? `padding: ${props.padding};` : '')}
 `;
 
 export default H3Styled;

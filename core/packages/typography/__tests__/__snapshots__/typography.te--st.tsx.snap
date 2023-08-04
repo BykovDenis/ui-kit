@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Typography renders correctly 1`] = `
+<h1
+  className="sc-bcHOTY wQQza"
+  color="#333333"
+  fontSize={28}
+  variant="H1"
+>
+  Some text
+</h1>
+`;
