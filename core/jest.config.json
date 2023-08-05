@@ -1,5 +1,5 @@
 {
-  "verbose": true,
+  "verbose": false,
   "preset": "ts-jest",
   "testEnvironment": "jsdom",
   "globals": {
@@ -15,6 +15,6 @@
     "\\.(css|less|scss|sass)$": "identity-obj-proxy"
   },
   "moduleDirectories": ["<rootDir>", "node_modules"],
-  "collectCoverage": true,
+  "collectCoverage": false,
   "coverageDirectory": "<rootDir>/coverage/jest"
 }
