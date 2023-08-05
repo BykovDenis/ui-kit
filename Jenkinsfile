@@ -115,7 +115,7 @@ pipeline {
                              dir("${rootPath}") {
                                  script {
                                      echo 'Testing'
-                                     sh 'npm test /packages/typography/__tests__'
+                                     sh 'npm test /packages/typography'
                                  }
                              }
                             dir("${typographyPath}") {
