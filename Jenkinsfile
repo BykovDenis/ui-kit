@@ -112,12 +112,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/typography/__tests__'
-//                                 }
-//                             }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/typography/__tests__'
+                                 }
+                             }
                             dir("${typographyPath}") {
                                 script {
                                     echo 'Building'
