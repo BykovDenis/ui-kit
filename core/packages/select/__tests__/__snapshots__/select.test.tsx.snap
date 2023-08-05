@@ -1,63 +1,96 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Select renders correctly 1`] = `
-<DocumentFragment>
+<div
+  className="sc-cseZMA chJbSq"
+  height={40}
+  id="select"
+>
   <div
-    class="sc-crHmcD fHkUOt"
-    height="40"
+    className="sc-eodsR khtDJm"
+    height={40}
   >
     <div
-      class="sc-egiyK dZrZsc"
-      height="40"
+      backgroundColor="#ffffff"
+      className="sc-ipUqZP gMQsCx"
+      isExistValue={true}
+    >
+      <label
+        className="sc-gLfKCG BchhI"
+        color="#333333"
+        focusColor="#333333"
+        fontFamily="Roboto, Arial, sans-serif"
+        fontSize={12}
+        htmlFor="select"
+        isFocus={false}
+      >
+        Select 1
+      </label>
+    </div>
+    <div
+      backgroundColor="#ffffff"
+      className="sc-brmqBe feGqWc"
+    />
+    <div
+      className="sc-dkHyXG itBUld"
+      height={40}
     >
       <div
-        class="sc-iqseJM fVQZBA"
+        backgroundColor="#ffffff"
+        className="sc-hLljAB iMPlNY"
       >
-        <label
-          class="sc-gKclnd flTAPJ"
-          color="#333333"
-          font-family="Roboto, Arial, sans-serif"
-          font-size="12"
-          font-weight="400"
-          for="select"
-        >
-          Select 1
-        </label>
-      </div>
-      <div
-        class="sc-bqiRlB fOrgoJ"
-      />
-      <div
-        class="sc-dkPtRN bAtqlE"
-        height="40"
-      >
-        <p
-          class="sc-hKwDye jiFsKN"
-        >
-          <input
-            autocomplete="off"
-            class="sc-gsDKAQ gVeiVo"
-            color="#ffffff"
-            font-family="Roboto, Arial, sans-serif"
-            font-size="14"
-            font-weight="400"
-            height="40"
-            id="select"
-            name="select-custom"
-            type="list-buttons"
-            value="List item 1"
-          />
-        </p>
-        <div
-          class="sc-eCImPb bXKVtT underline"
+        <input
+          autoComplete="off"
+          backgroundColor="#ffffff"
+          borderColor="#ffffff"
+          className="sc-gsMHZj hTxdQV"
           color="#ffffff"
+          disabledBackgroundColor="#e3e3e3"
+          disabledColor="rgba(51, 51, 51, 0.5)"
+          focusColor="#0000ff"
+          fontFamily="Roboto, Arial, sans-serif"
+          fontSize={14}
+          fontWeight={400}
+          height={40}
+          hoverBackgroundColor="#ffffff"
+          hoverBorderColor="#ff0000"
+          hoverColor="#ff0000"
+          id="select-input"
+          inputComponent={[Function]}
+          inputRef={
+            Object {
+              "current": null,
+            }
+          }
+          isNotUseDebounce={true}
           name="select-custom"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onInput={[Function]}
+          onRemove={[Function]}
+          textAlign="center"
+          type="list-buttons"
+          value="List item 1"
+          variant="outlined"
+        />
+        <div
+          className="sc-eDgayY cpIPTG underline"
+          color="#ffffff"
+          hoverColor="#ffffff"
+          name="select-custom"
+          variant="outlined"
         />
         <button
-          class="sc-bdvvtL deugBQ delete-button"
+          className="sc-bcHOTY cHXlsB delete-button"
+          data-test="btn-delete-value"
+          focusColor="rgb(8, 166, 82)"
+          hoverColor="#333333"
+          onClick={[Function]}
         >
           <svg
-            class="delete-icon"
+            className="delete-icon"
             height="14"
             version="1.1"
             viewBox="5 5 14 14"
@@ -71,9 +104,8 @@ exports[`Select renders correctly 1`] = `
             />
           </svg>
         </button>
-        <p />
       </div>
     </div>
   </div>
-</DocumentFragment>
+</div>
 `;

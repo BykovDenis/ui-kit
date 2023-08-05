@@ -1,60 +1,91 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TextField renders correctly 1`] = `
-<DocumentFragment>
+<div
+  className="sc-ftDPCE hWScPa"
+>
   <div
-    class="sc-furwcr gNVNEy"
+    backgroundColor="#ffffff"
+    className="sc-iBIYEh ePNzcH"
+    isExistTextMessageHelper={true}
+    isExistValue={false}
+  >
+    <label
+      className="sc-gLfKCG jXpwgr"
+      color="#333333"
+      disabled={false}
+      error={false}
+      focusColor="#333333"
+      fontFamily="Roboto, Arial, sans-serif"
+      fontSize={14}
+      fontWeight={400}
+      htmlFor="textfield1"
+      isFocus={false}
+      isReadOnly={false}
+    >
+      label
+    </label>
+  </div>
+  <div
+    className="sc-dkHyXG fbiuwq"
   >
     <div
-      class="sc-iCfMLu bFeWsF"
+      backgroundColor="#ffffff"
+      className="sc-hLljAB iMPlNY"
     >
-      <label
-        class="sc-gKclnd gEuJur"
+      <input
+        autoComplete="off"
+        backgroundColor="#ffffff"
+        borderColor="rgba(0, 0, 0, 0.6)"
+        className="sc-gsMHZj bxFGXA"
         color="#333333"
-        font-family="Roboto, Arial, sans-serif"
-        font-size="14"
-        font-weight="400"
-        for="textfield1"
-      >
-        label
-      </label>
-    </div>
-    <div
-      class="sc-dkPtRN bbOemD"
-    >
-      <p
-        class="sc-hKwDye jiFsKN"
-      >
-        <input
-          autocomplete="off"
-          class="sc-gsDKAQ jCbeDc"
-          color="#333333"
-          font-family="Roboto, Arial, sans-serif"
-          font-size="14"
-          font-weight="400"
-          height="40"
-          id="textfield1"
-          label="label"
-          name="textfield1"
-          type="text"
-          value=""
-        />
-      </p>
-      <div
-        class="sc-eCImPb jAsBIb underline"
-        color="#333333"
+        disabled={false}
+        disabledBackgroundColor="#e3e3e3"
+        disabledColor="rgba(51, 51, 51, 0.5)"
+        error={false}
+        focusColor="rgb(8, 166, 82)"
+        fontFamily="Roboto, Arial, sans-serif"
+        fontSize={14}
+        fontWeight={400}
+        height={40}
+        hoverBackgroundColor="#ffffff"
+        hoverBorderColor="rgba(0, 0, 0, 0.4)"
+        hoverColor="#333333"
+        id="textfield1"
+        inputComponent={[Function]}
+        isNotClearable={false}
+        isReadOnly={false}
+        isSeparateNumberFormat={false}
+        label="label"
         name="textfield1"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onInput={[Function]}
+        onRemove={[Function]}
+        textAlign="right"
+        textMessage="text message"
+        type="text"
+        value=""
+        variant="outlined"
       />
-      <p />
-      <p
-        class="sc-jRQBWg bjqfZv text-message"
-        color="#333333"
-        font-family="Roboto, Arial, sans-serif"
-        font-size="14"
-      >
-        text message
-      </p>
+      <div
+        className="sc-eDgayY QmSme underline"
+        color="rgba(0, 0, 0, 0.6)"
+        disabled={false}
+        hoverColor="#ffffff"
+        name="textfield1"
+        variant="outlined"
+      />
     </div>
+    <p
+      className="sc-jTkTEj jtkEFy text-message"
+      color="#333333"
+      fontFamily="Roboto, Arial, sans-serif"
+      fontSize={14}
+    >
+      text message
+    </p>
   </div>
-</DocumentFragment>
+</div>
 `;
