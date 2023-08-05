@@ -1,36 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Input renders correctly 1`] = `
-<DocumentFragment>
+<div
+  className="sc-dkHyXG fbiuwq"
+>
   <div
-    class="sc-dkPtRN bbOemD"
+    backgroundColor="#ffffff"
+    className="sc-hLljAB iMPlNY"
   >
-    <p
-      class="sc-hKwDye jiFsKN"
-    >
-      <input
-        autocomplete="off"
-        class="sc-gsDKAQ jBcAkF"
-        color="#ffffff"
-        font-family="Roboto, Arial, sans-serif"
-        font-size="14"
-        font-weight="400"
-        height="40"
-        name="input"
-        type="text"
-        value="123"
-      />
-    </p>
-    <div
-      class="sc-eCImPb eCJDEY underline"
+    <input
+      autoComplete="off"
+      backgroundColor="transparent"
+      borderColor="#ffffff"
+      className="sc-gsMHZj kRhBcv"
       color="#ffffff"
+      disabled={false}
+      disabledBackgroundColor="#e3e3e3"
+      disabledColor="rgba(51, 51, 51, 0.5)"
+      error={false}
+      focusColor="rgb(8, 166, 82)"
+      fontFamily="Roboto, Arial, sans-serif"
+      fontSize={14}
+      fontWeight={400}
+      height={40}
+      hoverBackgroundColor="#ffffff"
+      hoverBorderColor="rgba(0, 0, 0, 0.4)"
+      hoverColor="#333333"
+      inputComponent={[Function]}
+      isNotClearable={false}
+      isReadOnly={false}
+      isSeparateNumberFormat={false}
       name="input"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onRemove={[MockFunction]}
+      textAlign="right"
+      textMessage="text message"
+      type="text"
+      value="123"
+      variant="outline"
+    />
+    <div
+      className="sc-eDgayY ghRnMV underline"
+      color="#ffffff"
+      disabled={false}
+      hoverColor="#ffffff"
+      name="input"
+      variant="outline"
     />
     <button
-      class="sc-bdvvtL deugBQ delete-button"
+      className="sc-bcHOTY cHXlsB delete-button"
+      data-test="btn-delete-value"
+      disabled={false}
+      focusColor="rgb(8, 166, 82)"
+      hoverColor="#333333"
+      onClick={[Function]}
     >
       <svg
-        class="delete-icon"
+        className="delete-icon"
         height="14"
         version="1.1"
         viewBox="5 5 14 14"
@@ -44,15 +72,14 @@ exports[`Input renders correctly 1`] = `
         />
       </svg>
     </button>
-    <p />
-    <p
-      class="sc-jRQBWg rJBuH text-message"
-      color="#ffffff"
-      font-family="Roboto, Arial, sans-serif"
-      font-size="14"
-    >
-      text message
-    </p>
   </div>
-</DocumentFragment>
+  <p
+    className="sc-jTkTEj duEdjG text-message"
+    color="#ffffff"
+    fontFamily="Roboto, Arial, sans-serif"
+    fontSize={14}
+  >
+    text message
+  </p>
+</div>
 `;
