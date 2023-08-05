@@ -384,12 +384,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/list-item/__tests__'
-//                                 }
-//                             }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/list-item/__tests__'
+                                 }
+                             }
                             dir("${listItemPath}") {
                                 script {
                                     echo 'Building'
@@ -418,12 +418,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/list/__tests__'
-//                                 }
-//                             }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/list/__tests__'
+                                 }
+                             }
                             dir("${listPath}") {
                                 script {
                                     echo 'Building'
@@ -452,12 +452,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/radio/__tests__'
-//                                 }
-//                             }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/radio/__tests__'
+                                 }
+                             }
                             dir("${radioPath}") {
                                 script {
                                     echo 'Building'
@@ -486,12 +486,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/select/__tests__'
-//                                 }
-//                             }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/select/__tests__'
+                                 }
+                             }
                             dir("${selectPath}") {
                                 script {
                                     echo 'Building'
@@ -520,12 +520,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/switcher/__tests__'
-//                                 }
-//                             }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/switcher/__tests__'
+                                 }
+                             }
                             dir("${textFieldPath}") {
                                 script {
                                     echo 'Building'
