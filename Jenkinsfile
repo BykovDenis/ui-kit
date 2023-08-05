@@ -45,7 +45,7 @@ pipeline {
     }
     options { timeout(time: 60, unit: 'MINUTES') }
     stages {
-        stage('Root packages installing') {
+        stage(' >>>>>>> Root packages installing >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -73,7 +73,7 @@ pipeline {
                 }
             }
         }
-        stage('Styles theme deploy') {
+        stage(' >>>>>>> Styles theme deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -97,7 +97,7 @@ pipeline {
                 }
             }
         }
-        stage('Typography deploy') {
+        stage(' >>>>>>> Typography deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -131,7 +131,7 @@ pipeline {
                 }
             }
         }
-        stage('Datepicker deploy') {
+        stage(' >>>>>>> Datepicker deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -165,7 +165,7 @@ pipeline {
                 }
             }
         }
-        stage('Checkbox deploy') {
+        stage(' >>>>>>> Checkbox deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -199,7 +199,7 @@ pipeline {
                 }
             }
         }
-        stage('Button deploy') {
+        stage(' >>>>>>> Button deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -233,7 +233,7 @@ pipeline {
                 }
             }
         }
-        stage('IconButton deploy') {
+        stage(' >>>>>>> IconButton  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -267,7 +267,7 @@ pipeline {
                 }
             }
         }
-        stage('Input deploy') {
+        stage(' >>>>>>> Input  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -301,7 +301,7 @@ pipeline {
                 }
             }
         }
-        stage('Label deploy') {
+        stage(' >>>>>>> Label  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -335,7 +335,7 @@ pipeline {
                 }
             }
         }
-        stage('Label interactive deploy') {
+        stage(' >>>>>>> Label interactive  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -369,7 +369,7 @@ pipeline {
                 }
             }
         }
-        stage('ListItem deploy') {
+        stage(' >>>>>>> ListItem  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -403,7 +403,7 @@ pipeline {
                 }
             }
         }
-        stage('List deploy') {
+        stage(' >>>>>>> List  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -437,7 +437,7 @@ pipeline {
                 }
             }
         }
-        stage('Radio deploy') {
+        stage(' >>>>>>> Radio  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -471,7 +471,7 @@ pipeline {
                 }
             }
         }
-        stage('Select deploy') {
+        stage(' >>>>>>> Select  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -505,7 +505,7 @@ pipeline {
                 }
             }
         }
-        stage('Textfield deploy') {
+        stage(' >>>>>>> Textfield  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -539,7 +539,7 @@ pipeline {
                 }
             }
         }
-        stage('Switcher deploy') {
+        stage(' >>>>>>> Switcher  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -563,7 +563,7 @@ pipeline {
                 }
             }
         }
-        stage('FormControl deploy') {
+        stage(' >>>>>>> FormControl  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -587,7 +587,7 @@ pipeline {
                 }
             }
         }
-        stage('FlexContainer deploy') {
+        stage(' >>>>>>> FlexContainer  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -611,7 +611,7 @@ pipeline {
                 }
             }
         }
-        stage('TableColumnsVisible deploy') {
+        stage(' >>>>>>> TableColumnsVisible  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -635,7 +635,7 @@ pipeline {
                 }
             }
         }
-        stage('ProgressBar deploy') {
+        stage(' >>>>>>> ProgressBar  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -659,7 +659,7 @@ pipeline {
                 }
             }
         }
-        stage('MultiSelect deploy') {
+        stage(' >>>>>>> MultiSelect  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -683,7 +683,7 @@ pipeline {
                 }
             }
         }
-        stage('StickyBottomPanel deploy') {
+        stage(' >>>>>>> StickyBottomPanel  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -707,7 +707,7 @@ pipeline {
                 }
             }
         }
-        stage('Tabs deploy') {
+        stage(' >>>>>>> Tabs  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -731,7 +731,7 @@ pipeline {
                 }
             }
         }
-        stage('Tab deploy') {
+        stage(' >>>>>>> Tab  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -755,7 +755,7 @@ pipeline {
                 }
             }
         }
-        stage('Divider deploy') {
+        stage(' >>>>>>> Divider  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -779,7 +779,7 @@ pipeline {
                 }
             }
         }
-        stage('Table deploy') {
+        stage(' >>>>>>> Table  deploy >>>>>>>>>>> ') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
