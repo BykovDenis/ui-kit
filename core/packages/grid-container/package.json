@@ -1,7 +1,7 @@
 {
-  "name": "@sber-risks-ui/FlexContainer",
-  "version": "0.11.2-alpha.1",
-  "description": "The FormControl component",
+  "name": "@sber-risks-ui/GridContainer",
+  "version": "0.11.2-alpha.0",
+  "description": "The GridContainer component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
@@ -19,6 +19,5 @@
   },
   "publishConfig": {
     "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
-  },
-  "gitHead": "a56d1e400be0c2bd045bda163ff749ddafc47f70"
+  }
 }

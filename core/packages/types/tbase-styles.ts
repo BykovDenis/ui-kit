@@ -19,7 +19,9 @@ type TBaseStyles = {
   lineHeight?: number,
   minHeight?: number | string,
   maxWidth?: number | string,
-  regExp?: RegExp;
+  regExp?: RegExp,
+  position?: string,
+  textAlign?: string,
 };
 
 export default TBaseStyles;
