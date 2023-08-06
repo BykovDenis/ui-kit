@@ -2,6 +2,7 @@ import IPalette from './ipalette';
 
 interface ITheme {
   baseFontSize: number;
+  baseFontWeight: number;
   fontFamily: string;
   mainBlackColor: string;
   mainGrayColor: string;

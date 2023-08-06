@@ -3,8 +3,10 @@ import getNewReactThemeContext from '@sber-risks-ui/styles/src';
 import { themes } from '@sber-risks-ui/styles/src/themes';
 import InputTesting from './components/input-testing';
 import TextFieldTesting from './components/text-field-testing';
-import Select from '../../packages/select/src';
+// import Select from '../../packages/select/src';
 import SelectTesting from './components/select-testing';
+import GridContainer from "../../packages/grid-container/src";
+import GridContainerTesting from "./components/grid-container-testing";
 
 function App() {
   const [dateValue, setDateValue] = useState<string>('11.05.2022');
@@ -39,9 +41,10 @@ function App() {
   return (
     <ReactThemeContext.Provider value={themes.dark}>
       <div style={{ background: context.mainBackgroundColor, height: '100vh', margin: 0 }}>
-        <SelectTesting />
-        <InputTesting />
-        <TextFieldTesting />
+        {/*<SelectTesting />*/}
+        {/*<InputTesting />*/}
+        {/*<TextFieldTesting />*/}
+        <GridContainerTesting />
       </div>
     </ReactThemeContext.Provider>
   );

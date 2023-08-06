@@ -1,7 +1,7 @@
 {
   "name": "@sber-risks-ui/FormControl",
   "version": "0.11.2-alpha.1",
-  "description": "The FormControl component",
+  "description": "The FlexContainer component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
@@ -20,5 +20,5 @@
   "publishConfig": {
     "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
   },
-  "gitHead": "00900d55b957dd542f1d372a6de06387c465a608"
+  "gitHead": "a56d1e400be0c2bd045bda163ff749ddafc47f70"
 }

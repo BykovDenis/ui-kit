@@ -1,0 +1,40 @@
+﻿import styled from 'styled-components';
+import getMeasureValue from '../../helpers/get-measure-value';
+import isNotEmptyNumber from '../../helpers/is-not-empty-number';
+import TGridContainer from "../types/tgrid-container";
+import TGridContainerStyled from "../types/tgrid-container-styled";
+
+const GridContainerStyled = styled.div<TGridContainerStyled>`
+  ${(props: TGridContainerStyled) => `
+    position: ${(props?.position ? props?.position : 'relative')};
+  display: grid;
+  box-sizing: border-box;
+  color: ${props?.color || 'inherit'};
+  width: ${getMeasureValue(props.width, '100%')};
+  max-width: ${props?.maxWidth ? getMeasureValue(props.maxWidth) : getMeasureValue(props.width)};
+  white-space: ${props.whiteSpace || 'normal'};
+  margin: ${props.margin || 'initial'};
+  padding: ${props.padding || 'initial'};
+  height: ${getMeasureValue(props.height)};
+  background-color: ${props.backgroundColor || 'transparent'};
+  text-align: ${props.textAlign || 'initial'};
+  min-height: ${getMeasureValue(props.minHeight)};
+  overflow-y: ${props.overflowY || 'initial'};
+  outline: ${props?.outline || 'none'};
+  border-radius: ${getMeasureValue(props?.borderRadius, '0')};
+  right: ${getMeasureValue(props.right, 'auto')};
+  left: ${getMeasureValue(props.left, 'auto')};
+  top: ${getMeasureValue(props.top, 'auto')};
+  bottom: ${getMeasureValue(props.bottom, 'auto')};
+  font-size: ${getMeasureValue(props.fontSize, 'inherit')};
+  font-weight: ${props.fontWeight || 400};
+  grid-template-columns: ${props.gridTemplateColumns};
+  grid-template-rows:  ${props.gridTemplateRows};
+  ${(isNotEmptyNumber(props?.zIndex) ? `z-index: ${props.zIndex};` : '')}
+  ${props.gridGap ? `grid-gap: ${props.gridGap};` : ''}
+  ${props.gridColumnGap ? `grid-column-gap: ${props.gridColumnGap};` : ''}
+  ${props.gridRowGap ? `grid-row-gap: ${props.gridRowGap};` : ''}
+`}
+`;
+
+export default GridContainerStyled;
