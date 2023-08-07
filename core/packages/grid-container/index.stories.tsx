@@ -22,7 +22,9 @@ export default {
     rows: 3,
     columns: 3,
     gridTemplateRows: '',
-    gridTemplateColumns: ''
+    gridTemplateColumns: '',
+    gridRowGap: '',
+    gridColumnGap: '',
   }
 } as ComponentMeta<typeof GridContainer>;
 
