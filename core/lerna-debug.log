@@ -1,6 +1,6 @@
-73 error Error: Command failed with exit code 128: git tag v0.0.2 -m v0.0.2
-73 error fatal: tag 'v0.0.2' already exists
-73 error     at makeError (/Users/16783656-mobile/.nvm/versions/node/v17.5.0/lib/node_modules/lerna/node_modules/execa/lib/error.js:59:11)
-73 error     at handlePromise (/Users/16783656-mobile/.nvm/versions/node/v17.5.0/lib/node_modules/lerna/node_modules/execa/index.js:114:26)
-73 error     at processTicksAndRejections (node:internal/process/task_queues:96:5)
-73 error     at async Promise.all (index 0)
+289 error Error: Command failed with exit code 128: git tag v0.11.2 -m v0.11.2
+289 error fatal: tag 'v0.11.2' already exists
+289 error     at makeError (/Users/16783656-mobile/.nvm/versions/node/v16.18.1/lib/node_modules/lerna/node_modules/execa/lib/error.js:59:11)
+289 error     at handlePromise (/Users/16783656-mobile/.nvm/versions/node/v16.18.1/lib/node_modules/lerna/node_modules/execa/index.js:114:26)
+289 error     at processTicksAndRejections (node:internal/process/task_queues:96:5)
+289 error     at async Promise.all (index 0)
