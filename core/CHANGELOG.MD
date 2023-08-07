@@ -128,3 +128,11 @@
 <ol>
     <li>Progressbar add disable status</li>
 </ol>
+
+<h2>v 0.11.2</h2>
+
+<h3>BugFix</h3>
+<h3>Features</h3>
+<ol>
+    <li>GridContainer added into the library</li>
+</ol>
