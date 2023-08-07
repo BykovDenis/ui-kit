@@ -30,6 +30,7 @@ def stickyBottomPanelPath = './core/packages/sticky-bottom-panel';
 def tabsPath = './core/packages/tabs';
 def tabPath = './core/packages/tab';
 def flexContainerPath = './core/packages/flex-container';
+def gridContainerPath = './core/packages/grid-container'
 
 
 pipeline {
@@ -45,7 +46,7 @@ pipeline {
     }
     options { timeout(time: 60, unit: 'MINUTES') }
     stages {
-        stage(' >>>>>>> Root packages installing >>>>>>>>>>> ') {
+        stage('Root packages installing') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -73,7 +74,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Styles theme deploy >>>>>>>>>>> ') {
+        stage('Styles theme deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -97,7 +98,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Typography deploy >>>>>>>>>>> ') {
+        stage('Typography deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -131,7 +132,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Datepicker deploy >>>>>>>>>>> ') {
+        stage('Datepicker deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -146,12 +147,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/datepicker/__tests__'
-//                                 }
-//                             }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/datepicker/__tests__'
+                                 }
+                             }
                             dir("${datepickerPath}") {
                                 script {
                                     echo 'Building'
@@ -165,7 +166,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Checkbox deploy >>>>>>>>>>> ') {
+        stage('Checkbox deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -180,12 +181,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/checkbox/__tests__'
-//                                 }
-//                             }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/checkbox/__tests__'
+                                 }
+                             }
                             dir("${checkboxPath}") {
                                 script {
                                     echo 'Building'
@@ -199,7 +200,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Button deploy >>>>>>>>>>> ') {
+        stage('Button deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -214,12 +215,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/button/__tests__'
-//                                 }
-//                             }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/button/__tests__'
+                                 }
+                             }
                             dir("${buttonPath}") {
                                 script {
                                     echo 'Building'
@@ -233,7 +234,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> IconButton  deploy >>>>>>>>>>> ') {
+        stage('IconButton  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -248,12 +249,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/icon-button/__tests__'
-//                                 }
-//                             }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/icon-button/__tests__'
+                                 }
+                             }
                             dir("${iconButtonPath}") {
                                 script {
                                     echo 'Building'
@@ -267,7 +268,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Input  deploy >>>>>>>>>>> ') {
+        stage('Input  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -282,12 +283,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/input/__tests__'
-//                                 }
-//                             }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/input/__tests__'
+                                 }
+                             }
                             dir("${inputPath}") {
                                 script {
                                     echo 'Building'
@@ -301,7 +302,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Label  deploy >>>>>>>>>>> ') {
+        stage('Label  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -316,12 +317,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/label/__tests__'
-//                                 }
-//                             }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/label/__tests__'
+                                 }
+                             }
                             dir("${labelPath}") {
                                 script {
                                     echo 'Building'
@@ -335,7 +336,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Label interactive  deploy >>>>>>>>>>> ') {
+        stage('Label interactive  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -350,12 +351,12 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-//                             dir("${rootPath}") {
-//                                 script {
-//                                     echo 'Testing'
-//                                     sh 'npm test /packages/label/__tests__'
-//                                 }
-//                             }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/label/__tests__'
+                                 }
+                             }
                             dir("${labelInteractivePath}") {
                                 script {
                                     echo 'Building'
@@ -369,7 +370,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> ListItem  deploy >>>>>>>>>>> ') {
+        stage('ListItem  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -403,7 +404,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> List  deploy >>>>>>>>>>> ') {
+        stage('List  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -437,7 +438,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Radio  deploy >>>>>>>>>>> ') {
+        stage('Radio  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -471,7 +472,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Select  deploy >>>>>>>>>>> ') {
+        stage('Select  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -505,7 +506,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Textfield  deploy >>>>>>>>>>> ') {
+        stage('Textfield  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -539,7 +540,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Switcher  deploy >>>>>>>>>>> ') {
+        stage('Switcher  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -563,7 +564,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> FormControl  deploy >>>>>>>>>>> ') {
+        stage('FormControl  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -587,7 +588,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> FlexContainer  deploy >>>>>>>>>>> ') {
+        stage('FlexContainer  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -611,7 +612,31 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> TableColumnsVisible  deploy >>>>>>>>>>> ') {
+        stage('GridContainer  deploy') {
+            tools
+            {
+                nodejs 'node-v17.5.0-linux-x64'
+            }
+            steps {
+                nodejs('node-v17.5.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${gridContainerPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('TableColumnsVisible  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -635,7 +660,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> ProgressBar  deploy >>>>>>>>>>> ') {
+        stage('ProgressBar  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -659,7 +684,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> MultiSelect  deploy >>>>>>>>>>> ') {
+        stage('MultiSelect  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -683,7 +708,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> StickyBottomPanel  deploy >>>>>>>>>>> ') {
+        stage('StickyBottomPanel  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -707,7 +732,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Tabs  deploy >>>>>>>>>>> ') {
+        stage('Tabs  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -731,7 +756,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Tab  deploy >>>>>>>>>>> ') {
+        stage('Tab  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -755,7 +780,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Divider  deploy >>>>>>>>>>> ') {
+        stage('Divider  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -779,7 +804,7 @@ pipeline {
                 }
             }
         }
-        stage(' >>>>>>> Table  deploy >>>>>>>>>>> ') {
+        stage('Table  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
