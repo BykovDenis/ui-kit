@@ -6,7 +6,7 @@ type TMultiSelect = {
   className?: string,
   disabled?: boolean,
   fontFamily?: string,
-  elementNames: Array<number | string | TMultiSelectOption>,
+  elementNames: Array<number | string>,
   keyName?: string,
   fontSize?: number | string,
   name: string,

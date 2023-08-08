@@ -210,7 +210,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
       const buttonToggle = rootElement?.dataset?.name;
       const id = rootElement.dataset.id;
       // @ts-ignore-next-line
-      if (props.id === id && (buttonToggle === BUTTON_TOGGLE_NAME || buttonToggle === BUTTON_MULTI_SELECT_CONTAINER) && evt.target.tagName !== 'LABEL') {
+      if (props.id === id && (buttonToggle === BUTTON_TOGGLE_NAME || buttonToggle === BUTTON_MULTI_SELECT_CONTAINER) && evt.target.tagName !== 'LABEL'  && evt.target.tagName !== 'INPUT') {
         setExpanded(!isExpanded);
       }
     };
