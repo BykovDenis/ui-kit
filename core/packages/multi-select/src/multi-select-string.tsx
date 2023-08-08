@@ -25,6 +25,9 @@ import LabelContainer from './label-container.styled';
 import MultiSelectContainerStyled from './multi-select-container.styled';
 import { KEY_ESCAPE } from '../../constants';
 
+const BUTTON_TOGGLE_NAME = 'button-toggle';
+const BUTTON_MULTI_SELECT_CONTAINER = 'multi-select-container';
+
 type TMultiSelectString = TMultiSelect & {
   elementNames: Array<string>;
 };
@@ -138,22 +141,26 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
     };
 
     const onColumnNameRemove = (evt: React.ChangeEvent<HTMLButtonElement>) => {
+      evt.stopPropagation();
       const element = evt.currentTarget;
-      const columnName: string = element?.dataset?.name;
-      if (columnName) {
-        const elementNamesEdited: Set<string> = isUseLocaleStorage
-          ? getElementsFromLocalStorage(props.name, ',')
-          : elementNamesSelected;
-        elementNamesEdited.delete(columnName);
-        if (isUseLocaleStorage) {
-          const elementNamesSelectedText: string = Array.from(elementNamesEdited).join(',');
-          localStorage.setItem(props.name, elementNamesSelectedText);
-        }
-        setElementNamesSelected(
-          isUseLocaleStorage ? getElementsFromLocalStorage(props.name, ',') : new Set(elementNamesEdited)
-        );
-        if (props?.onChange) {
-          props.onChange(Array.from(elementNamesEdited));
+      const id: string = element?.dataset?.id;
+      if (id === props.id) {
+        const columnName: string = element?.dataset?.name;
+        if (columnName) {
+          const elementNamesEdited: Set<string> = isUseLocaleStorage
+            ? getElementsFromLocalStorage(props.name, ',')
+            : elementNamesSelected;
+          elementNamesEdited.delete(columnName);
+          if (isUseLocaleStorage) {
+            const elementNamesSelectedText: string = Array.from(elementNamesEdited).join(',');
+            localStorage.setItem(props.name, elementNamesSelectedText);
+          }
+          setElementNamesSelected(
+            isUseLocaleStorage ? getElementsFromLocalStorage(props.name, ',') : new Set(elementNamesEdited)
+          );
+          if (props?.onChange) {
+            props.onChange(Array.from(elementNamesEdited));
+          }
         }
       }
     };
@@ -200,10 +207,10 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
 
     const onBtnElementsClickExpand = (evt: React.ChangeEvent<HTMLButtonElement>) => {
       const rootElement = evt.currentTarget;
-      const element = evt.target;
-      const btnToggleContainerElement = btnToggleContainer?.current;
+      const buttonToggle = rootElement?.dataset?.name;
+      const id = rootElement.dataset.id;
       // @ts-ignore-next-line
-      if (element === rootElement || !btnToggleContainerElement?.contains(element)) {
+      if (props.id === id && (buttonToggle === BUTTON_TOGGLE_NAME || buttonToggle === BUTTON_MULTI_SELECT_CONTAINER) && evt.target.tagName !== 'LABEL') {
         setExpanded(!isExpanded);
       }
     };
@@ -225,7 +232,8 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
 
     return (
       <MultiSelectContainerStyled
-        data-name="multi-select-container"
+        data-name={BUTTON_MULTI_SELECT_CONTAINER}
+        data-id={props.id}
         width={props?.width}
         borderColor={outlinedColor}
         borderColorFocused={theme.palette.primary.main}
@@ -266,7 +274,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
               >
                 <Label
                   fontSize={pixelsMeasureToNumber(fontSize) - 2}
-                  htmlFor={`${index}-button`}
+                  htmlFor={`${props.id}-${index}-button`}
                   whiteSpace="normal"
                   wordBreak="break-all"
                   lineHeight={1}
@@ -275,7 +283,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                 >
                   {columnNameElement}
                 </Label>{' '}
-                <ButtonStyled id={`${index}-button`} onClick={onColumnNameRemove} data-name={columnNameElement}>
+                <ButtonStyled id={`${props.id}-${index}-button`} onClick={onColumnNameRemove} data-name={columnNameElement} data-id={props.id}>
                   <CrossIcon color={theme.palette.baseFontColor} />
                 </ButtonStyled>
               </FormControl>
@@ -283,6 +291,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
           </MultiSelectStyled>
           <ButtonExpandStyled
             data-name="button-toggle"
+            data-id={props.id}
             onClick={onListExpanded}
             fontSize={pixelsMeasureToNumber(fontSize) - 2}
             borderColor={outlinedColor}
