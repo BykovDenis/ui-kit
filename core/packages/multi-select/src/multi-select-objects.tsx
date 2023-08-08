@@ -26,12 +26,13 @@ import MultiSelectContainerStyled from './multi-select-container.styled';
 import { KEY_ESCAPE } from '../../constants';
 import sortObjectData from '../../helpers/sort-object-data';
 import getValuesFromElements from './helpers/get-values-from-elements';
+import TMultiSelectOption from "../types/tmulti-select-option";
 
 const BUTTON_TOGGLE_NAME = 'button-toggle';
 const BUTTON_MULTI_SELECT_CONTAINER = 'multi-select-container';
 
 type TMultiSelectObjects = TMultiSelect & {
-  elementNames: Array<{ label: string; value: number | string }>;
+  elementNames: Array<TMultiSelectOption>,
 };
 
 const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelectObjects) => {
@@ -121,8 +122,8 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       ? new Set(props.elementNamesDefaultSelected)
       : new Set();
     if (elementsFromLocaleStorage.size > 0) {
-      const elementFiltered: Array<string> = props.elementNames.filter((elementName) => elementsFromLocaleStorage.has(elementName.value?.toString())).map((elementMapped => elementMapped.value?.toString()))
-      const setElementFiltered: Set<string> = new Set(new Set(elementFiltered));
+      const elementFiltered: Array<string> = props.elementNames?.filter((elementName: TMultiSelectOption) => elementsFromLocaleStorage.has(elementName?.value?.toString())).map((elementMapped => elementMapped?.value?.toString())) ?? []
+      const setElementFiltered: Set<string> = new Set(elementFiltered);
       setElementNamesSelected(setElementFiltered);
       console.log('elementNamesSelected =', elementNamesSelected);
     } else {
@@ -269,7 +270,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       const buttonToggle = rootElement?.dataset?.name;
       const id = rootElement.dataset.id;
       // @ts-ignore-next-line
-      if (props.id === id && (buttonToggle === BUTTON_TOGGLE_NAME || buttonToggle === BUTTON_MULTI_SELECT_CONTAINER) && evt.target.tagName !== 'LABEL') {
+      if (props.id === id && (buttonToggle === BUTTON_TOGGLE_NAME || buttonToggle === BUTTON_MULTI_SELECT_CONTAINER) && evt.target.tagName !== 'LABEL'  && evt.target.tagName !== 'INPUT') {
         setExpanded(!isExpanded);
       }
     };
