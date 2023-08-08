@@ -7,6 +7,7 @@ import TextFieldTesting from './components/text-field-testing';
 import SelectTesting from './components/select-testing';
 import GridContainer from "../../packages/grid-container/src";
 import GridContainerTesting from "./components/grid-container-testing";
+import MultiSelectTesting from "./components/multi-select-testing";
 
 function App() {
   const [dateValue, setDateValue] = useState<string>('11.05.2022');
@@ -44,7 +45,8 @@ function App() {
         {/*<SelectTesting />*/}
         {/*<InputTesting />*/}
         {/*<TextFieldTesting />*/}
-        <GridContainerTesting />
+        {/*<GridContainerTesting />*/}
+        <MultiSelectTesting />
       </div>
     </ReactThemeContext.Provider>
   );

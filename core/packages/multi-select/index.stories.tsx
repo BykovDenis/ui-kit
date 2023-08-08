@@ -65,7 +65,7 @@ const ThemeLightTemplate: ComponentStory<typeof MultiSelect> = (args: TMultiSele
   }
 
   return <ReactThemeContext.Provider value={themes.loanPricing}>
-    <MultiSelect {...args} sortDirection={SortDirections.Asc} isUseLocaleStorage={true} id="multi-select-2" label="some-label" name="someColumns" elementNamesDefaultSelected={columnsSelected} elementNames={columns} onChange={onChange}  />
+    <MultiSelect {...args} sortDirection="asc" isUseLocaleStorage={true} id="multi-select-2" label="some-label" name="someColumns" elementNamesDefaultSelected={columnsSelected} elementNames={columns} onChange={onChange}  />
   </ReactThemeContext.Provider>
 }
 
