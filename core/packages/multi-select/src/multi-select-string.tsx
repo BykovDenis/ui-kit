@@ -331,6 +331,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
               onRemove={onSearchStringClean}
               placeholder="Search elements"
               variant="outlined"
+              isNotClearable={true}
             />
             <ListContainerStyled
               backgroundColor={theme.mainBackgroundColor}

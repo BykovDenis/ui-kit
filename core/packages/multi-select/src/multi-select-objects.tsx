@@ -302,7 +302,6 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
               disabled={props.disabled}
               fontFamily={props?.fontFamily || theme?.fontFamily}
               backgroundColor={theme.mainBackgroundColor}
-              data-label="multiselect-label"
             >
               {props?.label}
             </Label>
@@ -325,6 +324,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                 padding="1px"
                 margin="0 3px 0 0"
                 backgroundColor={theme.palette.primary.main}
+                alignItems="stretch"
               >
                 <Label
                   fontSize={pixelsMeasureToNumber(fontSize) - 2}
@@ -334,6 +334,8 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                   lineHeight={1}
                   color={theme.palette.baseFontColor}
                   backgroundColor="transparent"
+                  data-label="multiselect-label"
+                  display="inline-flex"
                 >
                   {columnNameElement.label}
                 </Label>{' '}
@@ -385,6 +387,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
               onRemove={onSearchStringClean}
               placeholder="Search elements"
               variant="outlined"
+              isNotClearable={true}
             />
             <ListContainerStyled
               backgroundColor={theme.mainBackgroundColor}
@@ -400,13 +403,13 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                   <ListItem
                     type="button"
                     key={`${index}-list-item`}
-                    padding="5px 0"
+                    padding="0"
                     justifyContent="space-between"
                     color={theme.palette.baseFontColor}
                     data-value={columnElement.value}
                     onClick={onElementNameSelect}
                   >
-                    <Label backgroundColor="transparent" data-value={columnElement.value}>
+                    <Label backgroundColor="transparent" data-value={columnElement.value} display="inline-flex" height="100%">
                       {columnElement.label}
                       <FormControl position="absolute" right={5} width="initial" data-value={columnElement.value}>
                         <CirclePlusIcon color={theme.palette.baseFontColor} />
