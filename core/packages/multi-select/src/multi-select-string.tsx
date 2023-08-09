@@ -63,7 +63,8 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
   const onElementNameSelect = (evt: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const element: any = evt.currentTarget;
     const columnName: string = element?.dataset?.value;
-    if (isNotEmptyString(columnName)) {
+    const id: string = element?.dataset?.id;
+    if (isNotEmptyString(columnName) && props.id === id) {
       setElementNamesSelected((elementNamesSelected: Set<string>) => {
         const elementNamesSelectedModified: Set<string> = new Set(elementNamesSelected);
         elementNamesSelectedModified.add(columnName);
@@ -271,6 +272,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                 padding="1px"
                 margin="0 3px 0 0"
                 backgroundColor={theme.palette.primary.main}
+                alignItems="stretch"
               >
                 <Label
                   fontSize={pixelsMeasureToNumber(fontSize) - 2}
@@ -280,6 +282,8 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                   lineHeight={1}
                   color={theme.palette.baseFontColor}
                   backgroundColor="transparent"
+                  data-label="multiselect-label"
+                  display="inline-flex"
                 >
                   {columnNameElement}
                 </Label>{' '}
@@ -351,6 +355,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                     justifyContent="space-between"
                     color={theme.palette.baseFontColor}
                     data-value={columnNameElement}
+                    data-id={props.id}
                     onClick={onElementNameSelect}
                   >
                     <Label backgroundColor="transparent" data-value={columnNameElement}>
