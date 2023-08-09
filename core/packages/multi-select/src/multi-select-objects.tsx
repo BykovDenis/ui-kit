@@ -82,7 +82,8 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
   const onElementNameSelect = (evt: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const element: any = evt.currentTarget;
     const columnName: string = element?.dataset?.value;
-    if (isNotEmptyString(columnName)) {
+    const id: string = element?.dataset?.id;
+    if (isNotEmptyString(columnName) && props.id === id) {
       setElementNamesSelected((elementNamesSelected: Set<string>) => {
         const elementNamesSelectedModified: Set<string> = new Set(elementNamesSelected);
         elementNamesSelectedModified.add(columnName);
@@ -407,6 +408,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                     justifyContent="space-between"
                     color={theme.palette.baseFontColor}
                     data-value={columnElement.value}
+                    data-id={props.id}
                     onClick={onElementNameSelect}
                   >
                     <Label backgroundColor="transparent" data-value={columnElement.value} display="inline-flex" height="100%">

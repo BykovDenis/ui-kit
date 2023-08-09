@@ -36,7 +36,7 @@ const MultiSelectTesting: React.FunctionComponent = () => {
   return <GridContainer columns={2} rows={2} gap="40px" padding="50px">
     <MultiSelect sortDirection="asc" height={100} isUseLocaleStorage={true} id="multi-select-1" label="some-label" name="someColumns1" elementNamesDefaultSelected={columnsSelected1} elementNames={columns} onChange={onMultiSelect1Change}  />
     <MultiSelect sortDirection="asc" height={100}  isUseLocaleStorage={true} id="multi-select-2" label="some-label" name="someColumns2" elementNamesDefaultSelected={columnsSelected2} elementNames={columns} onChange={onMultiSelect2Change}  />
-    <MultiSelect sortDirection="asc" height={100}  isUseLocaleStorage={true} id="multi-select-2" label="some-label" name="someColumns3" elementNamesDefaultSelected={columnsSelected3} elementNames={columns1} onChange={onMultiSelect2Change}  />
+    <MultiSelect sortDirection="asc" height={100}  isUseLocaleStorage={true} id="multi-select-3" label="some-label" name="someColumns3" elementNamesDefaultSelected={columnsSelected3} elementNames={columns1} onChange={onMultiSelect3Change}  />
   </GridContainer>
 }
 
