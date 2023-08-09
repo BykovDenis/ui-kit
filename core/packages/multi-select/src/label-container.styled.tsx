@@ -11,7 +11,8 @@ const LabelContainer =
   background-color: ${(props: ILabelContainer) => props.backgroundColor};
   padding-left: 4px;
   padding-right: 4px;
-  display: block;
+  display: flex;
+  align-items: stretch;  
   position: absolute;
   top: 0;
   left: 5px;

@@ -30,9 +30,6 @@ const MultiSelectContainerStyled =
     & div[data-id="multi-select-border-right"] {
       border-right: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorHovered};
     }
-    & label[data-label="multiselect-label"] {
-      color: ${(props: TMultiSelectContainerStyled) => props.borderColorHovered};
-    }
   }
   &:focus,
   &:active {
@@ -45,9 +42,6 @@ const MultiSelectContainerStyled =
     }
     & div[data-id="multi-select-border-right"] {
       border-right: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
-    }
-    & label[data-label="multiselect-label"] {
-      color: ${(props: TMultiSelectContainerStyled) => props.borderColorFocused};
     }
   }
   `;

@@ -136,3 +136,11 @@
 <ol>
     <li>GridContainer added into the library</li>
 </ol>
+
+<h2>v 0.11.3</h2>
+
+<h3>BugFix</h3>
+<h3>Features</h3>
+<ol>
+    <li>The multi select some UX improved</li>
+</ol>
