@@ -10,7 +10,7 @@ const Label =
   `
       position: relative;
       display: ${(props: TLabel) => (props?.display ? props.display : 'inline-flex')};
-      vertical-align: center;
+      vertical-align: middle;
       flex-direction: row;
       align-items: center;
       justify-content: ${(props: TLabel) => (props?.justifyContent ? props.justifyContent : 'center')};
