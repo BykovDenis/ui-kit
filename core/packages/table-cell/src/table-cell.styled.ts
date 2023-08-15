@@ -13,6 +13,8 @@ const TableCellStyled =
   border-right: ${(props: TTableCell) => (props?.borderColor ? `1px solid ${props.borderColor}` : 'none')};
   border-bottom: ${(props: TTableCell) => (props?.borderColor ? `1px solid ${props.borderColor}` : 'none')};
   vertical-align: middle;
+  ${(props: TTableCell) => props?.textAlign ? `text-align: ${props.textAlign};` : ''}
+  ${(props: TTableCell) => props?.fontSize ? `font-size: ${getMeasureValue(props.fontSize, 'inherit')};` : ''}    
 `;
 
 export default TableCellStyled;

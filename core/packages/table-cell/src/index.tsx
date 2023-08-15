@@ -20,10 +20,8 @@ const TableCell: React.FunctionComponent<TTableCell> = (props: TTableCell) => {
       </TableCellStyled>
     ) : (
       <TableCellStyled {...props} borderColor={borderColor}>
-        <div>
-          {props.children}
-          <ChevronDownIcon color={theme.palette.baseFontColor} />
-        </div>
+        {props.children}
+        <ChevronDownIcon color={theme.palette.baseFontColor} />
       </TableCellStyled>
     );
   };
