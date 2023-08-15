@@ -65,7 +65,7 @@ const TemplateDarkTableSortable: ComponentStory<typeof Table> = (args: TTable) =
       <TableHead>
         <TableRow isHeader={true}>
           <TableCell width={200}>
-            <LabelInteractive Icon={ChevronDownIcon}>Наименование</LabelInteractive>
+            <LabelInteractive variant="text" Icon={ChevronDownIcon}>Наименование</LabelInteractive>
           </TableCell>
           <TableCell>Дата</TableCell>
           <TableCell>CrmId</TableCell>
@@ -74,7 +74,7 @@ const TemplateDarkTableSortable: ComponentStory<typeof Table> = (args: TTable) =
       <tbody>
         {items?.map((item: any, index: number) => (
           <TableRow key={index}>
-            <TableCell>{item.data.name}</TableCell>
+            <TableCell textAlign="left">{item.data.name}</TableCell>
             <TableCell>{item.metadata.startDate}</TableCell>
             <TableCell>{item.data.crmId}</TableCell>
           </TableRow>
@@ -101,7 +101,7 @@ const TemplateDarkTable: ComponentStory<typeof Table> = (args: TTable) => {
       <tbody>
         {items?.map((item: any, index: number) => (
           <TableRow key={index}>
-            <TableCell>{item.data.name}</TableCell>
+            <TableCell textAlign="left">{item.data.name}</TableCell>
             <TableCell>{item.metadata.startDate}</TableCell>
             <TableCell>{item.data.crmId}</TableCell>
           </TableRow>
@@ -127,7 +127,7 @@ const TemplateLightTable: ComponentStory<typeof Table> = (args: TTable) => {
       <tbody>
         {items?.map((item: any, index: number) => (
           <TableRow key={index}>
-            <TableCell>{item.data.name}</TableCell>
+            <TableCell textAlign="left">{item.data.name}</TableCell>
             <TableCell>{item.metadata.startDate}</TableCell>
             <TableCell>{item.data.crmId}</TableCell>
           </TableRow>
