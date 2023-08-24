@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/Warning-panel",
-  "version": "0.10.3-alpha.3",
+  "version": "0.10.3-alpha.4",
   "description": "A warning panel component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
