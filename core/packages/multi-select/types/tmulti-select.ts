@@ -17,6 +17,7 @@ type TMultiSelect = {
   label?: string,
   id: string,
   isSelectAll?: boolean,
+  variant?: string | null,
 };
 
 export default TMultiSelect;

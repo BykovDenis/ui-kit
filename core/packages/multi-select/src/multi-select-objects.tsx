@@ -27,6 +27,7 @@ import { KEY_ESCAPE } from '../../constants';
 import sortObjectData from '../../helpers/sort-object-data';
 import getValuesFromElements from './helpers/get-values-from-elements';
 import TMultiSelectOption from "../types/tmulti-select-option";
+import MultiSelectVariant from "../enums/multi-select-variant";
 
 const BUTTON_TOGGLE_NAME = 'button-toggle';
 const BUTTON_MULTI_SELECT_CONTAINER = 'multi-select-container';
@@ -38,6 +39,7 @@ type TMultiSelectObjects = TMultiSelect & {
 const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelectObjects) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
   const [isExpanded, setExpanded] = useState<boolean>(false);
+  const [variant] = useState<string | null>(props.variant || MultiSelectVariant.Normal);
 
   const elementNamesSorted: Array<string | { label: string; value: number | string }> = React.useMemo(
     () =>
@@ -194,7 +196,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       setExpanded((isExpanded: boolean) => !isExpanded);
     };
 
-    const onColumnNameRemove = (evt: React.ChangeEvent<HTMLButtonElement>) => {
+    const onColumnNameRemove = (evt: React.ChangeEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement>) => {
       evt.stopPropagation();
       const element = evt.currentTarget;
       const id: string = element?.dataset?.id;
@@ -316,7 +318,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
             isExistLabel={isNotEmptyString(props?.label)}
             borderColor={theme.palette.baseFontColorOpacity05}
           >
-            {elementLabelsFiltered?.map((columnNameElement: { label: string; value: string }, index: number) => (
+            {variant === MultiSelectVariant.Normal ? elementLabelsFiltered?.map((columnNameElement: { label: string; value: string }, index: number) => (
               <FormControl
                 key={`${index}-button`}
                 width="initial"
@@ -344,7 +346,10 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                   <CrossIcon color={theme.palette.baseFontColor} />
                 </ButtonStyled>
               </FormControl>
-            ))}
+            ))
+              : (
+              <Label>{elementLabelsFiltered?.length ?? 0} of {elementNames?.length ?? 0} elements selected</Label>
+          )}
           </MultiSelectStyled>
           <ButtonExpandStyled
             data-name="button-toggle"
@@ -400,6 +405,27 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                 backgroundColor={theme.mainBackgroundColor}
                 color={theme.palette.baseFontColor}
               >
+                {variant === MultiSelectVariant.Atlas && elementLabelsFiltered?.map((columnElement: { label: string; value: string }, index: number) => (
+                  <ListItem
+                    type="button"
+                    key={`${index}-list-item`}
+                    padding="0"
+                    justifyContent="space-between"
+                    color={theme.palette.baseFontColor}
+                    data-value={columnElement.value}
+                    data-id={props.id}
+                    onClick={onColumnNameRemove}
+                    backgroundColor={theme.palette.primary.lighter}
+                    data-name={columnElement.value}
+                  >
+                    <Label backgroundColor="transparent" data-value={columnElement.value} display="inline-flex" height="100%">
+                      {columnElement.label}
+                      <FormControl position="absolute" right={5} width="initial" data-value={columnElement.value}>
+                        <CircleCrossIcon color={theme.palette.baseFontColor} />
+                      </FormControl>
+                    </Label>
+                  </ListItem>
+                ))}
                 {elementNamesFiltered?.map((columnElement: { label: string; value: string }, index: number) => (
                   <ListItem
                     type="button"

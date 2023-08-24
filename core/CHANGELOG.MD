@@ -143,4 +143,5 @@
 <h3>Features</h3>
 <ol>
     <li>The multi select some UX improved</li>
+    <li>The multi select some UX variant added atlas</li>
 </ol>

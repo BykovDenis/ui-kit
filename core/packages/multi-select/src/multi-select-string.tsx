@@ -24,6 +24,7 @@ import ToggleContainer from './toggle-container';
 import LabelContainer from './label-container.styled';
 import MultiSelectContainerStyled from './multi-select-container.styled';
 import { KEY_ESCAPE } from '../../constants';
+import MultiSelectVariant from "../enums/multi-select-variant";
 
 const BUTTON_TOGGLE_NAME = 'button-toggle';
 const BUTTON_MULTI_SELECT_CONTAINER = 'multi-select-container';
@@ -43,6 +44,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
   const [isUseLocaleStorage] = useState<boolean>(
     props?.isUseLocaleStorage !== undefined ? props.isUseLocaleStorage : false
   );
+  const [variant] = useState<string | null>(props.variant || MultiSelectVariant.Normal);
 
   const btnMultiSelect = useRef();
   const btnToggleContainer = useRef();
@@ -141,7 +143,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
       setExpanded((isExpanded: boolean) => !isExpanded);
     };
 
-    const onColumnNameRemove = (evt: React.ChangeEvent<HTMLButtonElement>) => {
+    const onColumnNameRemove = (evt: React.ChangeEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement>) => {
       evt.stopPropagation();
       const element = evt.currentTarget;
       const id: string = element?.dataset?.id;
@@ -263,7 +265,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
             isExistLabel={isNotEmptyString(props?.label)}
             borderColor={theme.palette.baseFontColorOpacity05}
           >
-            {arrElementNames?.map((columnNameElement: string, index: number) => (
+            {variant === MultiSelectVariant.Normal ? arrElementNames?.map((columnNameElement: string, index: number) => (
               <FormControl
                 key={`${index}-button`}
                 width="initial"
@@ -291,7 +293,9 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                   <CrossIcon color={theme.palette.baseFontColor} />
                 </ButtonStyled>
               </FormControl>
-            ))}
+            )) : (
+              <Label>{arrElementNames?.length ?? 0} of {elementNames?.length ?? 0} elements selected</Label>
+            )}
           </MultiSelectStyled>
           <ButtonExpandStyled
             data-name="button-toggle"
@@ -347,6 +351,27 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                 backgroundColor={theme.mainBackgroundColor}
                 color={theme.palette.baseFontColor}
               >
+                {variant === MultiSelectVariant.Atlas && arrElementNames?.map((columnNameElement: string, index: number) => (
+                  <ListItem
+                    type="button"
+                    key={`${index}-list-item`}
+                    padding="5px 0"
+                    justifyContent="space-between"
+                    color={theme.palette.baseFontColor}
+                    data-value={columnNameElement}
+                    data-name={columnNameElement}
+                    data-id={props.id}
+                    onClick={onColumnNameRemove}
+                    backgroundColor={theme.palette.primary.moreLighter}
+                  >
+                    <Label backgroundColor="transparent" data-value={columnNameElement}>
+                      {columnNameElement}
+                      <FormControl position="absolute" right={5} width="initial" data-value={columnNameElement}>
+                        <CircleCrossIcon color={theme.palette.baseFontColor} />
+                      </FormControl>
+                    </Label>
+                  </ListItem>
+                ))}
                 {elementNamesFiltered?.map((columnNameElement: string, index: number) => (
                   <ListItem
                     type="button"
