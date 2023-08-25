@@ -7,7 +7,8 @@ interface IListElement {
   colorTheme?: string;
   fontFamily?: string;
   fontSize?: number | string;
-  height?: number;
+  height?: number | string;
+  minHeight?: number | string;
   hoverBackgroundColor?: string;
   hoverColor?: string;
   key?: string | number;

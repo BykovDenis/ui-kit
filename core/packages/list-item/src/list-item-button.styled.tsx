@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import getMeasureValue from '../../helpers/get-measure-value';
 
 interface IListItemButton {
-  height?: number;
+  height?: number | string;
+  minHeight?: number | string;
   color?: string;
   hoverColor?: string;
   textAlign?: string;
@@ -26,7 +27,6 @@ const ListItemButton =
   align-items: center;
   justify-content: center;  
   width: 100%;
-  height: ${(props: IListItemButton) => props.height}px;
   color: ${(props: IListItemButton) => props.color};
   font-family: inherit;
   font-size: ${(props: IListItemButton) => getMeasureValue(props.fontSize, 'inherit')};
@@ -37,6 +37,8 @@ const ListItemButton =
   cursor: pointer;
   background-color: ${(props: IListItemButton) => props.backgroundColor || 'transparent'};
   padding: ${(props: IListItemButton) => props.padding || 'initial'};
+  ${(props: IListItemButton) => props?.height ? `height: ${getMeasureValue(props.height)};` : ''}
+  ${(props: IListItemButton) => props?.minHeight ? `min-height: ${getMeasureValue(props.minHeight)};` : ''}
   &:hover {
     background-color: ${(props: IListItemButton) => props.hoverBackgroundColor};
     color: ${(props: IListItemButton) => props.hoverColor};

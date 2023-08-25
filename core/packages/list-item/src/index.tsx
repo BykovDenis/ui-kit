@@ -34,10 +34,10 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
 
     const underLineColor: string = theme?.mainGrayColor;
     const hoverColor: string = props.isSelected
-      ? theme.palette.baseFontColor
+      ? theme.palette.baseFontColorOpacity05
       : props.isDisable
       ? theme.inactiveColor
-      : props?.colorInverted || theme.palette.baseFontColorInverted;
+      : props?.colorInverted || theme.palette.baseFontColorOpacity05;
 
     const color: string = props.isSelected
       ? theme.palette.baseFontColor
@@ -53,7 +53,8 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
           {...props}
           color={props?.color || color}
           hoverColor={hoverColor}
-          height={props?.height || HEIGHT}
+          height={props?.height}
+          minHeight={props?.minHeight || HEIGHT}
           textAlign={props?.textAlign || TEXT_ALIGN}
           hoverBackgroundColor={props?.hoverBackgroundColor || hoverBackgroundColor}
           activeBackgroundColor={props?.hoverBackgroundColor || activeBackgroundColor}
@@ -74,7 +75,8 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
       <ListItemStyled
         {...props}
         color={props?.color || color}
-        height={props?.height || HEIGHT}
+        height={props?.height}
+        minHeight={props?.minHeight || HEIGHT}
         textAlign={props?.textAlign || TEXT_ALIGN}
         underLineColor={underLineColor}
         type={props?.type || listItemType}

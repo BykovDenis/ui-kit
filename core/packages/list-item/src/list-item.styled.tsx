@@ -13,7 +13,6 @@ const ListItem =
     align-items: center;
     justify-content: ${(props: IListElement) => (props.justifyContent ? 'flex-start' : 'center')};  
     width: 100%;
-    height: ${(props: IListElement) => props.height}px;
     color: ${(props: IListElement) => props.color};
     font-family: inherit;
     font-size: ${(props: IListElement) => getMeasureValue(props.fontSize, 'inherit')};
@@ -23,6 +22,8 @@ const ListItem =
     background-color: ${(props: IListElement) => props.backgroundColor || 'transparent'};
     border-radius: 4px;
     padding: ${(props: IListElement) => props.padding || 'initial'};
+    ${(props: IListElement) => props?.height ? `height: ${getMeasureValue(props.height)};` : ''}
+    ${(props: IListElement) => props?.minHeight ? `min-height: ${getMeasureValue(props.minHeight)};` : ''}
     &:after {
       display: block;
       position: absolute;
