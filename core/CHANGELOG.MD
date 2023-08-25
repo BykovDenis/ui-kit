@@ -144,4 +144,5 @@
 <ol>
     <li>The multi select some UX improved</li>
     <li>The multi select some UX variant added atlas</li>
+    <li>Minimal height attribute added into the list-item element</li>
 </ol>
