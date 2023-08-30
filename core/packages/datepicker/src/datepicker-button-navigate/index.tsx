@@ -20,6 +20,7 @@ const DatepickerButtonNavigate: React.FunctionComponent<IDatepickerButtonNavigat
   return (
     <Button
       id={props.id}
+      type="button"
       fontSize={props.fontSize}
       fontFamily={props.fontFamily}
       className="button"
