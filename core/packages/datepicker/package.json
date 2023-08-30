@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/Datepicker",
-  "version": "0.10.3-alpha.6",
+  "version": "0.10.3",
   "description": "The datepicker component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
