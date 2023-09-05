@@ -1,7 +1,8 @@
 import IInput from '../../input/types/iinput';
 import ILabel from '../../label/types/tlabel';
+import TBaseStyles from "../../types/tbase-styles";
 
-export default interface IDatepicker extends IInput, ILabel {
+export default interface IDatepicker extends IInput, ILabel, TBaseStyles {
   baseFontSize?: number;
   children?: any;
   disabled?: boolean;

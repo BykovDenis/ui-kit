@@ -342,6 +342,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       <DatepickerContainerStyled
         backgroundImage={props?.backgroundImage}
         width={props?.width}
+        minWidth={props?.minWidth}
         height={props?.height || DEFAULT_HEIGHT}
       >
         <DatepickerHeader>
