@@ -79,7 +79,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker)
 
   return <ReactThemeContext.Provider value={themes.dark}>
     <div style={{ width: '250px', zoom: 2 }}>
-      <Datepicker {...args} variant="outlined" name="someDatepicker" value={value} locale={Locale.Ru} onChange={onDatepickerValueChange} onRemove={onDatepickerRemove} isErrorMessageDisplay={false} />
+      <Datepicker {...args} width={170} variant="outlined" name="someDatepicker" value={value} locale={Locale.Ru} onChange={onDatepickerValueChange} onRemove={onDatepickerRemove} isErrorMessageDisplay={false} />
     </div>
   </ReactThemeContext.Provider>
 }

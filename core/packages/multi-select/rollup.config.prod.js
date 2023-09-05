@@ -14,14 +14,14 @@ export default [
         file: pkg.main,
         format: 'cjs',
         exports: 'named',
-        sourcemap: false,
+        sourcemap: true,
         strict: true,
       },
       {
         file: pkg.module,
         format: 'esm',
         exports: 'named',
-        sourcemap: false,
+        sourcemap: true,
         strict: true,
       },
     ],
@@ -46,6 +46,5 @@ export default [
   {
     input: './src/index.d.ts',
     output: [{ file: pkg.types, format: 'es' }],
-    plugins: [dts()],
   },
 ];
