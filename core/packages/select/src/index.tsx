@@ -398,4 +398,4 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(Select);
+export default Select;

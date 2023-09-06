@@ -13,4 +13,4 @@ const MultiSelect: React.FunctionComponent<TMultiSelect> = (props: TMultiSelect)
   return null;
 };
 
-export default React.memo(MultiSelect);
+export default MultiSelect;

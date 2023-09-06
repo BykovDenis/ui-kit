@@ -34,9 +34,7 @@
     "rollup-plugin-react-svg": "^3.0.3",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.1",
-    "rollup-pluginutils": "^2.8.2"
-  },
-  "peerDependencies": {
+    "rollup-pluginutils": "^2.8.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   }
