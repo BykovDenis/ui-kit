@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@sber-risks-ui/ChevronDownIcon": "file:icons/packages/24x24/chevron-down-icon"
+  }
+}
