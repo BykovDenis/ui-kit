@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TIcon from '../../../types/ticon';
+import TIcon from '../../types/ticon';
 
 const FirstPageIcon: React.FunctionComponent<TIcon> = (props: TIcon) => (
   <svg

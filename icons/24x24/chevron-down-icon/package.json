@@ -1,5 +1,5 @@
 {
-  "name": "@sber-risks-ui/ChevronDownIcon/24x24",
+  "name": "@sber-risks-ui/ChevronDownIcon",
   "version": "0.0.2",
   "description": "Risks react UI Icon component ChevronDownIcon",
   "main": "dist/index.js",
