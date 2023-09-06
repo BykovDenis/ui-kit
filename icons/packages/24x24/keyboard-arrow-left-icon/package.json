@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/KeyboardArrowLeftIcon",
-  "version": "0.0.2",
+  "version": "0.0.2.1",
   "description": "Risks react UI Icon component KeyboardArrowLeftIcon",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",

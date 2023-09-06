@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/ChevronDownIcon",
-  "version": "0.0.2",
+  "version": "0.0.2.1",
   "description": "Risks react UI Icon component ChevronDownIcon",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
