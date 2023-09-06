@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/LastPageIcon",
-  "version": "0.0.2.1",
+  "version": "0.0.2",
   "description": "Risks react UI Icon component LastPageIcon",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",

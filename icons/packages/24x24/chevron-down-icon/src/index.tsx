@@ -7,8 +7,8 @@ const ChevronDownIcon: React.FunctionComponent<TIcon> = (props: TIcon) => (
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
     role="img"
-    width="1em"
-    height="1em"
+    width="24px"
+    height="24px"
     preserveAspectRatio="xMidYMid meet"
     viewBox="0 0 24 24"
     className={props.className}

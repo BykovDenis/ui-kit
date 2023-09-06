@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "root-core",
   "version": "0.0.1",
   "description": "Library of components ui components",
   "main": "index.js",
