@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import TIcon from "../../types/ticon";
+import TIcon from "../types/ticon";
 
 const AddIcon: React.FunctionComponent<TIcon> = (props: TIcon) => (
   <svg

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TIcon from '../../../types/ticon';
+import TIcon from '../../types/ticon';
 
 const KeyboardArrowLeftIcon: React.FunctionComponent<TIcon> = (props: TIcon) => (
   <svg
