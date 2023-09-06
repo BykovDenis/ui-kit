@@ -1,7 +1,7 @@
 {
-  "name": "root",
+  "name": "root-icons",
   "version": "0.0.1",
-  "description": "Library of components ui components",
+  "description": "Library of components ui icons",
   "main": "index.js",
   "author": "Bykov Denis Stanislavovich",
   "license": "MIT",
