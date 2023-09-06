@@ -1,10 +1,10 @@
 def rootPath = './icons'
-def uiIconsPath = './icons/packages/24x24'
-def chevronDownIconPath = './icons/packages/24x24/chevron-down-icon'
-def firstPagePath = './icons/packages/24x24/first-page-icon'
-def lastPagePath = './icons/packages/24x24/last-page-icon'
-def keyboardArrowLeftIconPath = './icons/packages/24x24/keyboard-arrow-left-icon'
-def keyboardArrowRightIconPath = './icons/packages/24x24/keyboard-arrow-right-icon'
+def uiIconsPath = './icons/24x24'
+def chevronDownIconPath = './icons/24x24/chevron-down-icon'
+def firstPagePath = './icons/24x24/first-page-icon'
+def lastPagePath = './icons/24x24/last-page-icon'
+def keyboardArrowLeftIconPath = './icons/24x24/keyboard-arrow-left-icon'
+def keyboardArrowRightIconPath = './icons/24x24/keyboard-arrow-right-icon'
 
 pipeline {
     agent {
