@@ -1,10 +1,10 @@
 def rootPath = './icons'
-def uiIconsPath = './icons/packages/24x24'
-def chevronDownIconPath = './icons/packages/24x24/chevron-down-icon'
-def firstPagePath = './icons/packages/24x24/first-page-icon'
-def lastPagePath = './icons/packages/24x24/last-page-icon'
-def keyboardArrowLeftIconPath = './icons/packages/24x24/keyboard-arrow-left-icon'
-def keyboardArrowRightIconPath = './icons/packages/24x24/keyboard-arrow-right-icon'
+def uiIconsPath = './icons/24x24'
+def chevronDownIconPath = './icons/24x24/chevron-down-icon'
+def firstPagePath = './icons/24x24/first-page-icon'
+def lastPagePath = './icons/24x24/last-page-icon'
+def keyboardArrowLeftIconPath = './icons/24x24/keyboard-arrow-left-icon'
+def keyboardArrowRightIconPath = './icons/24x24/keyboard-arrow-right-icon'
 
 pipeline {
     agent {
@@ -22,10 +22,10 @@ pipeline {
         stage('Root packages installing') {
             tools
             {
-                nodejs 'node-v17.5.0-linux-x64'
+                nodejs 'node-v16.20.0-linux-x64'
             }
             steps {
-                nodejs('node-v17.5.0-linux-x64') {
+                nodejs('node-v16.20.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
                         sh 'node -v'
@@ -33,13 +33,13 @@ pipeline {
                             dir("${rootPath}") {
                                 script {
                                     echo 'Root packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i --legacy-peer-deps'
                                 }
                             }
                             dir("${uiIconsPath}") {
                                 script {
                                     echo 'Icons packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i --legacy-peer-deps'
                                 }
                             }
                         }
@@ -50,10 +50,10 @@ pipeline {
         stage('Root icons deploy') {
             tools
             {
-                nodejs 'node-v17.5.0-linux-x64'
+                nodejs 'node-v16.20.0-linux-x64'
             }
             steps {
-                nodejs('node-v17.5.0-linux-x64') {
+                nodejs('node-v16.20.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${uiIconsPath}") {
@@ -74,10 +74,10 @@ pipeline {
         stage('Icons deploy') {
             tools
             {
-                nodejs 'node-v17.5.0-linux-x64'
+                nodejs 'node-v16.20.0-linux-x64'
             }
             steps {
-                nodejs('node-v17.5.0-linux-x64') {
+                nodejs('node-v16.20.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${chevronDownIconPath}") {
@@ -138,7 +138,7 @@ pipeline {
          stage("UI Icons PUBLISH") {
             tools
             {
-                nodejs 'node-v17.5.0-linux-x64'
+                nodejs 'node-v16.20.0-linux-x64'
             }
             steps {
                 script {
@@ -152,7 +152,7 @@ pipeline {
                     ]
                   )
                   if (IS_PUBLISH == 'Yes') {
-                      nodejs('node-v17.5.0-linux-x64') {
+                      nodejs('node-v16.20.0-linux-x64') {
                           withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                               dir("${uiIconsPath}") {
                                   withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
