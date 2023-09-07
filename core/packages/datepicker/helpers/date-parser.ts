@@ -120,7 +120,12 @@ class DateParser implements IDateParser {
     return this.isValid;
 	}
   setToday() {
-    this.dateParsed = dayjs();
+    const date: Dayjs = dayjs();
+    this.dateParsed = date;
+  }
+  getTodayPartitionedDate() {
+    const date: Dayjs = dayjs();
+    return { year: date.year(), month: date.month(), day: date.date()};
   }
 }
 

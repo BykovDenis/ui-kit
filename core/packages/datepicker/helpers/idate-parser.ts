@@ -1,4 +1,5 @@
 import { Dayjs } from 'dayjs';
+import TPatritionDate from "../types/tpatrition-date";
 
 interface IDateParser {
   changeDay: (day: number) => void;
@@ -19,6 +20,8 @@ interface IDateParser {
   checkIsNotExistErrorDate: () => boolean;
   locale?: string;
   changeParsedDate: (date: string) => void;
+  setToday: () => void;
+  getTodayPartitionedDate: () => TPatritionDate;
 }
 
 export default IDateParser;
