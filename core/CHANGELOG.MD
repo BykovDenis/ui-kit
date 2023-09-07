@@ -146,3 +146,10 @@
     <li>The multi select some UX variant added atlas</li>
     <li>Minimal height attribute added into the list-item element</li>
 </ol>
+
+<h2>v 0.11.4</h2>
+
+<h3>Features</h3>
+<ol>
+    <li>Datepicker design some improved</li>
+</ol>
