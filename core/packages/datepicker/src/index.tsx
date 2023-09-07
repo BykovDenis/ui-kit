@@ -29,7 +29,10 @@ import parseInputDate from '../helpers/parse-input-date';
 import DatepickerMask from '../enums/datepicker-mask';
 import checkMinMaxDate from '../helpers/check-min-max-date';
 import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
-
+import IconButton from '../../icon-button/src';
+import CalendarIcon from "../../icons-components/24x24/calendar-icon";
+import FormControl from '../../form-control/src';
+import CrossIcon from "../../icons-components/24x24/cross-icon";
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -377,7 +380,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             onFocus={onInputFocus}
             onClick={onInputFocus}
             onBlur={onInputBlur}
-            onRemove={onInputDelete}
             onChange={onInputChange}
             disabled={props?.disabled}
             required={props?.required}
@@ -386,7 +388,18 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             isNotUseDebounce={true}
             error={isError}
             inputRef={inputRef}
+            isNotClearable={true}
           />
+          <FormControl position="absolute" top={1} right={0} width="initial">{
+            isNotEmptyString(value) ?
+            <IconButton variant="text" onClick={onInputDelete}>
+              <CrossIcon color={theme.palette.baseFontColor} />
+            </IconButton> :
+            <IconButton variant="text">
+              <CalendarIcon color={theme.palette.baseFontColor} />
+            </IconButton>
+          }
+          </FormControl>
         </DatepickerHeader>
         {isVisibleList && (
           <DatepickerDatesContainer

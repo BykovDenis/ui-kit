@@ -119,6 +119,9 @@ class DateParser implements IDateParser {
 	checkIsNotExistErrorDate() {
     return this.isValid;
 	}
+  setToday() {
+    this.dateParsed = dayjs();
+  }
 }
 
 export default DateParser;
