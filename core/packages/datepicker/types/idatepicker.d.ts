@@ -24,6 +24,7 @@ export default interface IDatepicker extends IInput, ILabel, TBaseStyles {
   variant?: 'contained' | 'outlined' | 'text';
   mask?: string;
   isErrorMessageDisplay?: boolean,
+  setToday?: () => void;
 }
 
 

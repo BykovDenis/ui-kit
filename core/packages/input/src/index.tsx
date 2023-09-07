@@ -5,7 +5,7 @@ import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, TEXT_ALIGN_RIGHT, TIMEOUT, TYPE_TE
 import ITheme from '../../styles/types/itheme';
 import IInput from '../types/iinput';
 import ButtonDelete from './button-delete.styled';
-import DeleteIcon from '../../icons-components/delete-icon';
+import CrossIcon from '../../icons-components/24x24/cross-icon';
 import InputStyled from './input.styled';
 import InputContainer from './input-container.styled';
 import InputElementContainer from './input-element-container.styled';
@@ -252,7 +252,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
               focusColor={focusColor}
               disabled={props?.disabled}
             >
-              <DeleteIcon color={inputColor} className="delete-icon" />
+              <CrossIcon color={inputColor} className="delete-icon" />
             </ButtonDelete>
           ) : null}
         </InputElementContainer>
