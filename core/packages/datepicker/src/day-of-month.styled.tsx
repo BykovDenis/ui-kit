@@ -10,6 +10,7 @@ interface IDayOfMonth {
   backgroundColor: string;
   borderColor: string;
   color: string;
+  primaryColor: string;
   fontFamily: string;
   fontSize: number;
   hoverBackgroundColor: string;
@@ -17,41 +18,45 @@ interface IDayOfMonth {
   numberDayInWeek: number;
   name: string;
   disabled: boolean;
+  isToday: boolean;
+  isSameDate: boolean;
 }
 
 const DayOfMonth =
   styled('button') <
   IDayOfMonth >
   `
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  width: 25px;
-  height: 25px;
-  margin: 5px;
-  padding: 0;
-  border: 1px solid ${(props: IDayOfMonth) => props.borderColor};  
-  font-size: ${(props: IDayOfMonth) => props.fontSize}px;
-  font-family: ${(props: IDayOfMonth) => props.fontFamily};
-  border-radius: 50%;
-  color: ${(props: IDayOfMonth) => props.color};
-  background-color: ${(props: IDayOfMonth) => props.backgroundColor};
-  opacity: 1;  
-  &:hover {
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.25);
-    background-color: ${(props: IDayOfMonth) => props.hoverBackgroundColor};
-    color: ${(props: IDayOfMonth) => props.activeColor};
-  }
-  &:active {
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.25);
-    background-color: ${(props: IDayOfMonth) => props.activeBackgroundColor};
-    color: ${(props: IDayOfMonth) => props.activeColor};
-  }
-  &:disabled {
-    opacity: 0.4;
-  }  
+    ${(props: IDayOfMonth) => `
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      width: 25px;
+      height: 25px;
+      margin: 5px;
+      padding: 0;
+      border: 1px solid ${props.isSameDate || props.isToday ? props.primaryColor : props.backgroundColor};  
+      font-size: ${props.fontSize}px;
+      font-family: ${props.fontFamily};
+      border-radius: 50%;
+      color: ${props.isSameDate ? props.backgroundColor : props.color};
+      background-color: ${props.isSameDate ? props.primaryColor : props.backgroundColor};
+      opacity: 1;  
+      &:hover {
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.25);
+        background-color: ${props.hoverBackgroundColor};
+        color: ${props.color};
+      }
+      &:active {
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.25);
+        background-color: ${props.activeBackgroundColor};
+        color: ${props.color};
+      }
+      &:disabled {
+        opacity: 0.4;
+      } 
+    `}
 `;
 
 export default DayOfMonth;

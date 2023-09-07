@@ -8,6 +8,7 @@ import DayOfMonth from './day-of-month.styled';
 import DaysOfMonthStyled from './days-of-month.styled';
 import getUniqueIndex from '../../helpers/get-unique-index';
 import DatepickerMask from '../enums/datepicker-mask';
+import TPatritionDate from "../types/tpatrition-date";
 
 interface IDaysOfMonth {
   activeDayNumber: number;
@@ -18,6 +19,7 @@ interface IDaysOfMonth {
   countDaysIsMonth: number;
   actualMonthNumber: number;
   actualYearNumber: number;
+  todayPartitioned: TPatritionDate;
   fontFamily: string;
   fontSize: number;
   maxDate?: IDateParser;
@@ -25,6 +27,9 @@ interface IDaysOfMonth {
   numberDayInWeek: number;
   onDayChange: (day: number) => void;
   mask: DatepickerMask;
+  primaryColor: string;
+  hoverBackgroundColor: string;
+  activeBackgroundColor: string;
 }
 
 const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth) => {
@@ -66,21 +71,30 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
           props.activeMonthNumber === props.actualMonthNumber &&
           props.activeYearNumber === props.actualYearNumber;
 
+        const isToday: boolean =
+          dayValue === props.todayPartitioned.day &&
+          props.actualMonthNumber === props.todayPartitioned.month &&
+          props.actualYearNumber === props.todayPartitioned.year;
+
         return (
           <DayOfMonth
             fontFamily={props.fontFamily}
-            hoverBackgroundColor={rgbToRgba(props.color, 0.85)}
-            activeBackgroundColor={rgbToRgba(props.color, 0.5)}
+            hoverBackgroundColor={props.hoverBackgroundColor}
+            activeBackgroundColor={props.activeBackgroundColor}
             activeColor={props.backgroundColor}
-            backgroundColor={isSameDate ? props.color : props.backgroundColor}
-            color={isSameDate ? props.backgroundColor : props.color}
+            isToday={isToday}
+            isSameDate={isSameDate}
+            // backgroundColor={isSameDate ? props.color : props.backgroundColor}
+            // color={isSameDate ? props.backgroundColor : props.color}
+            color={props.color}
+            backgroundColor={props.backgroundColor}
             fontSize={props.fontSize}
-            borderColor={isSameDate ? props.color : props.backgroundColor}
             numberDayInWeek={props.numberDayInWeek}
             key={`day-number-${dayValue}-${index}-${dayValueParsed}`}
             onClick={onDayChange}
             name={dayValueParsed}
             disabled={disabled}
+            primaryColor={props.primaryColor}
           >
             {dayValueParsed}
           </DayOfMonth>

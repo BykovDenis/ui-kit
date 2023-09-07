@@ -33,6 +33,8 @@ import IconButton from '../../icon-button/src';
 import CalendarIcon from "../../icons-components/24x24/calendar-icon";
 import FormControl from '../../form-control/src';
 import CrossIcon from "../../icons-components/24x24/cross-icon";
+import TpatritionDate from "../types/tpatrition-date";
+import TPatritionDate from "../types/tpatrition-date";
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -46,7 +48,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState<string>(props.value);
-  const [valueState, setValueState] = useState<string>();
   const [isVisibleList, setIsVisibleList] = useState(false);
   const [actualMonthNumber, setActualMonthNumber] = useState<number | null>(null);
   const [actualYearNumber, setActualYearNumber] = useState<number | null>(null);
@@ -236,6 +237,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     setActualYearNumber(dateParsed.getNumberYear());
   };
 
+  const onBtnCurrentDateSetClick = () => {
+    dateParsed.setToday();
+    const valueParsed: string = dateParsed.formatToString();
+    if (valueParsed !== value) {
+      setValue(valueParsed);
+    }
+  }
+
   // <<< events handlers
 
   // >>> useEffects
@@ -308,7 +317,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   useEffect(() => {
     if (actualMonthNumber !== null && actualMonthNumber !== undefined) {
       setMonthName(months[dateParsed.getNumberMonth()]);
-      setValueState(dateParsed.formatToString());
       setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
       setActualYearNumber(dateParsed.getNumberYear());
       setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
@@ -318,7 +326,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   useEffect(() => {
     if (actualYearNumber !== null && actualYearNumber !== undefined) {
-      setValueState(dateParsed.formatToString());
       setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
       setActualMonthNumber(dateParsed.getNumberMonth());
       setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
@@ -340,6 +347,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
 
     const actualYearNumberString: string = actualYearNumber?.toString();
+    const todayPartitioned: TPatritionDate = dateParsed?.getTodayPartitionedDate();
 
     return (
       <DatepickerContainerStyled
@@ -395,7 +403,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             <IconButton variant="text" onClick={onInputDelete}>
               <CrossIcon color={theme.palette.baseFontColor} />
             </IconButton> :
-            <IconButton variant="text">
+            <IconButton variant="text" onClick={onBtnCurrentDateSetClick}>
               <CalendarIcon color={theme.palette.baseFontColor} />
             </IconButton>
           }
@@ -497,10 +505,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
               actualMonthNumber={actualMonthNumber}
               actualYearNumber={actualYearNumber}
               activeDayNumber={activeDayNumber}
-              color={theme.palette.primary.main}
+              todayPartitioned={todayPartitioned}
+              color={theme.palette.baseFontColor}
+              primaryColor={theme.palette.primary.main}
               fontSize={fontSize}
               fontFamily={props?.fontFamily || theme?.fontFamily}
               backgroundColor={theme.mainBackgroundColor}
+              hoverBackgroundColor={theme.palette.primary.lighter}
+              activeBackgroundColor={theme.palette.primary.light}
               numberDayInWeek={numberDayInWeek}
               onDayChange={onDayChange}
               minDate={minDate}

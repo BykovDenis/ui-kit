@@ -63,7 +63,7 @@ const ThemeLightTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker
 }
 
 const ThemeDarkTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
-  const [value, setValue] = useState('03.11.2023');
+  const [value, setValue] = useState('03.09.2023');
 
   const onDatepickerValueChange = (name: string, value: string, isValid: boolean) => {
     setValue(value);
