@@ -9,6 +9,7 @@ const List =
   `
   list-style: none;
   padding: 0;
+  width: ${(props: IList) => props?.width ? getMeasureValue(props.width)  : '100%'};
   font-family: ${(props: IList) => props.fontFamily};
   font-size: ${(props: IList) => getMeasureValue(props.fontSize, 'inherit')};   
 `;

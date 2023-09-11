@@ -28,7 +28,7 @@ const ThemeDarkTemplate: ComponentStory<typeof List> = (args: IList) => {
   const ReactThemeContext = getNewReactThemeContext(themes?.dark);
 
   return <ReactThemeContext.Provider value={themes?.dark}>
-    <div style={{ width: '220px' }}>
+    <div style={{ width: '600px' }}>
     <List type={ListType.Buttons} >
       {elements.map((element: string, index: number) => (
         <ListItem
@@ -37,6 +37,7 @@ const ThemeDarkTemplate: ComponentStory<typeof List> = (args: IList) => {
           onClick={action('clicked')}
           isDisable={index === 2}
           isSelected={index === 3 || index === 1}
+          width={400}
         >
           {element}
         </ListItem>))}

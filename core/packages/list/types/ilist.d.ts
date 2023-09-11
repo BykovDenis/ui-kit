@@ -15,6 +15,7 @@ interface IList extends TBaseStyles {
   type?: string;
   underlineColor?: string;
   onMouseDown?: (evt?: React.MouseEvent<HTMLElement, MouseEvent>, listRef?: React.Ref<any>) => void;
+  width?: number | string;
 }
 
 export default IList;
