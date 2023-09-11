@@ -128,7 +128,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       const elementFiltered: Array<string> = props.elementNames?.filter((elementName: TMultiSelectOption) => elementsFromLocaleStorage.has(elementName?.value?.toString())).map((elementMapped => elementMapped?.value?.toString())) ?? []
       const setElementFiltered: Set<string> = new Set(elementFiltered);
       setElementNamesSelected(setElementFiltered);
-      console.log('elementNamesSelected =', elementNamesSelected);
+      // console.log('elementNamesSelected =', elementNamesSelected);
     } else {
       const elementNamesMapped: Array<{ label: string; value: string }> = elementNamesSorted?.map(
         (element: { label: string; value: number | string }) => ({
@@ -158,7 +158,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
   }, []);
 
   useEffect(() => {
-    console.log('elementNamesSelected =', elementNamesSelected);
+    // console.log('elementNamesSelected =', elementNamesSelected);
     setConsumer(globalThis.ReactThemeContextConsumer);
   }, [globalThis.ReactThemeContextConsumer]);
 
@@ -178,15 +178,21 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
   }, [props.elementNames]);
 
   useEffect(() => {
-    console.log('elementNamesSelected =', elementNamesSelected);
+    // console.log('elementNamesSelected =', elementNamesSelected);
     if (elementNamesSelected?.size === 0) {
       setElementNamesSelected(new Set(props.elementNamesDefaultSelected));
     }
   }, [props.elementNamesDefaultSelected]);
 
   useEffect(() => {
-    console.log('hook elementNamesSelected', elementNamesSelected);
+    // console.log('hook elementNamesSelected', elementNamesSelected);
   }, [elementNamesSelected])
+
+  useEffect(() => {
+    if (props.elementNamesDefaultSelected?.length === 0) {
+      setElementNamesSelected(new Set());
+    }
+  }, [props.elementNamesDefaultSelected]);
 
   const componentThemed: any = (theme: ITheme) => {
     const color: string = props.disabled ? theme?.palette?.baseFontColorOpacity05 : theme?.palette?.baseFontColor;

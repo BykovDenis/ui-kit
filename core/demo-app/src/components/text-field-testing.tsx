@@ -23,6 +23,10 @@ const TextFieldTesting: React.FunctionComponent = () => {
   </TableRow>
   </TableHead>
   <TableBody>
+    <TableRow>
+      <TableCell><TextField label="Number values" id="text-field-0" onChange={onInputChange} data-test="text-field-digits" variant="outlined" name="text-field-number" isSeparateNumberFormat={true} isNotRunDebounce={true} /></TableCell>
+      <TableCell>Masked formatted input</TableCell>
+    </TableRow>
   <TableRow>
     <TableCell><TextField label="Number values" id="text-field-1" onChange={onInputChange} data-test="text-field-digits" variant="outlined" type="number" name="text-field-number" /></TableCell>
     <TableCell>The component contain only digits</TableCell>

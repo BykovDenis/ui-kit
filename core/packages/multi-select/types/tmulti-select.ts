@@ -18,6 +18,7 @@ type TMultiSelect = {
   id: string,
   isSelectAll?: boolean,
   variant?: string | null,
+  onSelectedOptionsClean: () => void,
 };
 
 export default TMultiSelect;
