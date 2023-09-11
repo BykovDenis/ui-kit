@@ -6,6 +6,7 @@ import ITheme from '../../styles/types/itheme';
 import ITextField from '../types/itext-field';
 import LabelContainer from './label-container.styled';
 import TextFieldContainer from './text-field-container.styled';
+import isNotEmptyString from "../../helpers/is-not-empty-string";
 
 const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
   const [value, setValue] = useState<string | number>(props.value);
@@ -44,8 +45,13 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
   };
 
   const onInputBlur = () => {
+    if (isNotEmptyString(value as string) && props?.isSeparateNumberFormat) {
+      setValue(parseFloat(value as string)
+        ?.toLocaleString('ru-RU')
+        ?.replace(',', '.'))
+    }
     setIsFocus(false);
-    if (value) {
+    if (isNotEmptyString(value as string)) {
       setIsExistValue(true);
     } else {
       setIsExistValue(false);

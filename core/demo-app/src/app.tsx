@@ -8,6 +8,7 @@ import SelectTesting from './components/select-testing';
 import GridContainer from "../../packages/grid-container/src";
 import GridContainerTesting from "./components/grid-container-testing";
 import MultiSelectTesting from "./components/multi-select-testing";
+import DatepickerTesting from "./components/datepicker-testing";
 
 function App() {
   const [dateValue, setDateValue] = useState<string>('11.05.2022');
@@ -43,8 +44,9 @@ function App() {
     <ReactThemeContext.Provider value={themes.dark}>
       <div style={{ background: context.mainBackgroundColor, height: '100vh', margin: 0 }}>
         {/*<SelectTesting />*/}
-        {/*<InputTesting />*/}
-        {/*<TextFieldTesting />*/}
+        <DatepickerTesting />
+        <InputTesting />
+        <TextFieldTesting />
         {/*<GridContainerTesting />*/}
         <MultiSelectTesting />
       </div>

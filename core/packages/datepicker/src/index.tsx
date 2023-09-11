@@ -398,7 +398,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             inputRef={inputRef}
             isNotClearable={true}
           />
-          <FormControl position="absolute" top={1} right={0} width="initial">{
+          <FormControl position="absolute" top="50%" right={0} width="initial" transform="translateY(-50%)">{
             isNotEmptyString(value) ?
             <IconButton variant="text" onClick={onInputDelete}>
               <CrossIcon color={theme.palette.baseFontColor} />

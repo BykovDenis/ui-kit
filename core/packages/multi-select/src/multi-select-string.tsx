@@ -135,6 +135,13 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
     setElementNames(props?.sortDirection ? sortArray(props.elementNames, props.sortDirection) : props.elementNames);
   }, [props.elementNames]);
 
+  useEffect(() => {
+    if (props.elementNamesDefaultSelected?.length === 0) {
+      setElementNamesSelected(new Set());
+    }
+  }, [props.elementNamesDefaultSelected]);
+
+
   const componentThemed: any = (theme: ITheme) => {
     const color: string = props.disabled ? theme?.palette?.baseFontColorOpacity05 : theme?.palette?.baseFontColor;
     const outlinedColor: string = theme.mainOutlinedColor;

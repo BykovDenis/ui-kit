@@ -137,8 +137,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     if (ref?.current && inputValue !== null && props?.isSeparateNumberFormat) {
       const inputElement = ref?.current;
       if (inputElement) {
-        inputElement.value = inputValue;
-        setInputValue(inputValue);
+        let inputValueParsed: string = inputValue?.toString()?.replaceAll(' ', '');
+        inputElement.value = inputValueParsed;
+        setInputValue(inputValueParsed);
       }
     }
     if (props?.onFocus) {
@@ -148,9 +149,10 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
   const onInputBlur = (evt: any) => {
     setIsFocus(false);
-    if (props?.isSeparateNumberFormat && inputValue !== null) {
+    const inputValueParsed: string = inputValue?.toString();
+    if (props?.isSeparateNumberFormat && isNotEmptyString(inputValueParsed)) {
       setInputValue(
-        parseFloat(inputValue as string)
+         parseFloat(inputValue as string)
           ?.toLocaleString('ru-RU')
           ?.replace(',', '.')
       );

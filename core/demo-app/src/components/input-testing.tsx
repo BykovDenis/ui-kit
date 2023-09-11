@@ -27,6 +27,19 @@ const InputTesting: React.FunctionComponent = () => {
             <Input
               isNotUseDebounce={true}
               onChange={onInputChange}
+              data-test="digits-formatted"
+              variant="outlined"
+              isSeparateNumberFormat={true}
+              isNotRunDebounce={true}
+              />
+          </TableCell>
+          <TableCell>Masked formatted input</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <Input
+              isNotUseDebounce={true}
+              onChange={onInputChange}
               data-test="digits"
               variant="outlined"
               type="number"
