@@ -154,4 +154,5 @@
     <li>Datepicker design some improved</li>
     <li>Multiselect filters can be extern changed</li>
     <li>The input props isSeparateNumberFormat some improved without use debounce</li>
+    <li>List component can be change width attribute</li>
 </ol>
