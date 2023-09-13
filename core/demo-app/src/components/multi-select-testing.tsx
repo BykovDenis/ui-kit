@@ -8,16 +8,20 @@ import FormControl from "@sber-risks-ui/FlexContainer";
 
 const MultiSelectTesting: React.FunctionComponent = () => {
   const [columnsSelected0, setColumnNamesSelected0] = useState<Array<TMultiSelectOption> | []>([]);
-  const [columnsSelected1, setColumnNamesSelected1] = useState<Array<TMultiSelectOption> | []>([{ label: 'one', value: 1 }]);
-  const [columnsSelected2, setColumnNamesSelected2] = useState<Array<TMultiSelectOption> | []>([]);
+  const [columnsSelected1, setColumnNamesSelected1] = useState<Array<TMultiSelectOption> | []>(['2', '1']);
+  const [columnsSelected2, setColumnNamesSelected2] = useState<Array<TMultiSelectOption> | []>([    { label: 'five', value: 5 },
+    { label: 'three', value: 3 },
+    { label: 'twofff', value: 2 },]);
   const [columnsSelected3, setColumnNamesSelected3] = useState<Array<TMultiSelectOption> | []>([]);
 
   const columns: Array<TMultiSelectOption> = [
     { label: 'one', value: 1 },
+    { label: 'someeee', value: 88 },
     { label: 'five', value: 5 },
     { label: 'three', value: 3 },
-    { label: 'two', value: 2 },
-    { label: 'four', value: 4 },
+    { label: 'twofff', value: 2 },
+    { label: 'twwwwo', value: 22 },
+    { label: 'fffour', value: 4 },
     { label: 'some', value: 8 }
   ];
 
@@ -52,11 +56,11 @@ const MultiSelectTesting: React.FunctionComponent = () => {
       <FormControl width="initial" margin="0 0 15px 0">
       <Button onClick={onMultiSelect1Clean}>Clear filters</Button>
       </FormControl>
-      <MultiSelect variant="atlas" sortDirection="asc" height={30} isUseLocaleStorage={false} id="multi-select-1" label="multi-select-atlas" name="someColumns1" elementNamesDefaultSelected={columnsSelected1} elementNames={columns} onChange={onMultiSelect1Change}  />
+      <MultiSelect disabled={false} sortDirection="asc" height={50} isUseLocaleStorage={false} id="multi-select-1" label="multi-select-atlas" name="someColumns1" elementNamesDefaultSelected={columnsSelected1} elementNames={columns1} onChange={onMultiSelect1Change}  />
     </FlexContainer>
     <GridContainer columns={2} rows={2} gap="40px" padding="50px">
-    <MultiSelect sortDirection="asc" height={100}  isUseLocaleStorage={true} id="multi-select-2" label="some-label" name="someColumns2" elementNamesDefaultSelected={columnsSelected2} elementNames={columns1} onChange={onMultiSelect2Change}  />
-  {/*  <MultiSelect sortDirection="asc" height={100}  isUseLocaleStorage={true} id="multi-select-3" label="some-label" name="someColumns3" elementNamesDefaultSelected={columnsSelected3} elementNames={columns1} onChange={onMultiSelect3Change}  />*/}
+    <MultiSelect disabled={false} sortDirection="asc" height={100}  isUseLocaleStorage={false} id="multi-select-2" label="some-label" name="someColumns2" elementNamesDefaultSelected={columnsSelected2} elementNames={columns} onChange={onMultiSelect2Change}  />
+    {/*<MultiSelect sortDirection="asc" height={100}  isUseLocaleStorage={true} id="multi-select-3" label="some-label" name="someColumns3" elementNamesDefaultSelected={columnsSelected3} elementNames={columns1} onChange={onMultiSelect3Change}  />*/}
   </GridContainer>
   </>
 }

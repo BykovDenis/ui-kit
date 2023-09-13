@@ -250,6 +250,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
         borderColorHovered={theme.mainOutlinedHoverColor}
         onClick={onBtnElementsClickExpand}
         ref={btnMultiSelect}
+        backgroundColor={props.disabled ? theme.inactiveBackgroundColor : 'transparent'}
       >
         {props?.label && (
           <LabelContainer backgroundColor={theme.mainBackgroundColor}>
@@ -296,7 +297,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                 >
                   {columnNameElement}
                 </Label>{' '}
-                <ButtonStyled id={`${props.id}-${index}-button`} onClick={onColumnNameRemove} data-name={columnNameElement} data-id={props.id}>
+                <ButtonStyled id={`${props.id}-${index}-button`} onClick={onColumnNameRemove} data-name={columnNameElement} data-id={props.id} disabled={props.disabled}>
                   <CrossIcon color={theme.palette.baseFontColor} />
                 </ButtonStyled>
               </FormControl>

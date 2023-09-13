@@ -52,7 +52,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
         }
       }
     } else {
-      inputRef.current.value = '';
+      if (inputRef.current?.value !== undefined) {
+        inputRef.current.value = '';
+      }
     }
     evtObjNew && props?.onChange(evtObjNew);
     setIsChanging(false);
@@ -88,7 +90,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
       if (ref?.current) {
         const inputElement = ref?.current;
         if (inputElement) {
-          inputElement.value = props?.value;
+          inputElement.value = props?.value ?? '';
           setInputValue(props?.value);
         }
       }
