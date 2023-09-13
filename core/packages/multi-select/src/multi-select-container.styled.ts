@@ -7,6 +7,7 @@ type TMultiSelectContainerStyled = {
   borderColor: string,
   borderColorFocused: string,
   borderColorHovered: string,
+  backgroundColor: string,
 };
 
 const MultiSelectContainerStyled =
@@ -20,7 +21,7 @@ const MultiSelectContainerStyled =
   border: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColor};
   border-radius: 4px;
   width: ${(props: TMultiSelectContainerStyled) => getMeasureValue(props.width, '100%')};
-  background: none;
+  background-color: ${(props: TMultiSelectContainerStyled) => props.backgroundColor};
   padding: 5px;
   &:hover {
     border: 1px solid ${(props: TMultiSelectContainerStyled) => props.borderColorHovered};

@@ -1,4 +1,4 @@
 
 
-type TMultiSelectOption = { label: string, value: number } | { label: string, value: string } | null;
+type TMultiSelectOption = { label: string, value: number | string };
 export default TMultiSelectOption;

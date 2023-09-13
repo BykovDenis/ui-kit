@@ -1,5 +1,3 @@
-import TMultiSelectOption from "./tmulti-select-option";
-
 type TMultiSelect = {
   width?: number | string,
   height?: number | string,

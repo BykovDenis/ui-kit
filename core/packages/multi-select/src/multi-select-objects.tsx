@@ -1,5 +1,4 @@
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
-import TMultiSelect from '../types/tmulti-select';
 import ITheme from '../../styles/types/itheme';
 import MultiSelectStyled from './multi-select-styled';
 import Label from '../../label/src';
@@ -11,7 +10,6 @@ import ChevronDownIcon from '../../icons-components/24x24/chevron-down-icon';
 import List from '../../list/src';
 import ListItem from '../../list-item/src';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
-import getElementsFromLocalStorage from '../../helpers/get-elements-from-localstorage';
 import ListContainerStyled from './list-container.styled';
 import CirclePlusIcon from '../../icons-components/24x24/circle-plus-icon';
 import CircleCrossIcon from '../../icons-components/24x24/circle-cross-icon';
@@ -19,29 +17,28 @@ import ButtonStyled from './button.styled';
 import pixelsMeasureToNumber from '../../helpers/pixels-measure-to-number';
 import Input from '../../input/src';
 import ButtonExpandStyled from './button-expand.styled';
-import sortArray from '../../helpers/sort-array';
 import ToggleContainer from './toggle-container';
 import LabelContainer from './label-container.styled';
 import MultiSelectContainerStyled from './multi-select-container.styled';
-import { KEY_ESCAPE } from '../../constants';
 import sortObjectData from '../../helpers/sort-object-data';
-import getValuesFromElements from './helpers/get-values-from-elements';
 import TMultiSelectOption from "../types/tmulti-select-option";
 import MultiSelectVariant from "../enums/multi-select-variant";
+import onKeyUpEventHandler from "../../helpers/on-key-up-event-handler";
+import optionsToArray from "../helpers/options-to-array";
+import TMultiSelectObjects from "../types/tmulti-select-objects";
+import TMapMultiSelectObjects from "../types/tmap-multi-select-objects";
+import convertArrayToMap from "../../helpers/convert-array-to-map";
+import getObjectsElementsFromLocalStorage from "../helpers/get-objects-elements-from-localstorage";
 
 const BUTTON_TOGGLE_NAME = 'button-toggle';
 const BUTTON_MULTI_SELECT_CONTAINER = 'multi-select-container';
 
-type TMultiSelectObjects = TMultiSelect & {
-  elementNames: Array<TMultiSelectOption>,
-};
-
-const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelectObjects) => {
+const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelectObjects>> = (props: TMultiSelectObjects) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
   const [isExpanded, setExpanded] = useState<boolean>(false);
   const [variant] = useState<string | null>(props.variant || MultiSelectVariant.Normal);
 
-  const elementNamesSorted: Array<string | { label: string; value: number | string }> = React.useMemo(
+  const elementNamesSorted: Array<TMultiSelectOption> = React.useMemo(
     () =>
       props?.sortDirection ? sortObjectData(props.elementNames, 'value', props.sortDirection) : props.elementNames,
     [props.elementNames, props.sortDirection]
@@ -49,16 +46,20 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
 
   const elementNamesMapped: Array<{ label: string; value: string }> = React.useMemo(
     () =>
-      elementNamesSorted?.map((element: { label: string; value: number | string }) => ({
+      elementNamesSorted?.map((element: TMultiSelectOption) => ({
         label: element?.label,
         value: element?.value?.toString(),
       })),
     [elementNamesSorted]
   );
 
-  const [elementNames, setElementNames] = useState<Array<{ label: string; value: string }>>(elementNamesMapped);
-  const [elementNamesSelected, setElementNamesSelected] = useState<Set<string>>(
-    new Set(props.elementNamesDefaultSelected)
+  const mapElementsSelected: Map<string, number | string > = React.useMemo(() => {
+    return convertArrayToMap(props.elementNamesDefaultSelected)
+  }, [props.elementNamesDefaultSelected])
+
+  const [elementNames, setElementNames] = useState<Array<TMultiSelectOption>>(elementNamesMapped);
+  const [elementNamesSelected, setElementNamesSelected] = useState<TMapMultiSelectObjects>(
+    mapElementsSelected
   );
   const [searchText, setSearchText] = useState<string>(null);
   const [isUseLocaleStorage] = useState<boolean>(
@@ -83,28 +84,24 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
 
   const onElementNameSelect = (evt: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const element: any = evt.currentTarget;
-    const columnName: string = element?.dataset?.value;
+    const columnName: string = element?.dataset?.label;
+    const columnValue: string = element?.dataset?.value;
     const id: string = element?.dataset?.id;
     if (isNotEmptyString(columnName) && props.id === id) {
-      setElementNamesSelected((elementNamesSelected: Set<string>) => {
-        const elementNamesSelectedModified: Set<string> = new Set(elementNamesSelected);
-        elementNamesSelectedModified.add(columnName);
+      // @ts-ignore-next-line
+      setElementNamesSelected((elementNamesSelected: TMapMultiSelectObjects) => {
+        const elementNamesSelectedModified: Map< string, number | string> = elementNamesSelected;
+        elementNamesSelectedModified.set(columnName, columnValue);
 
-        const elementNamesSelectedModifiedSorted: Set<string> = props?.sortDirection
-          ? new Set(sortArray(Array.from(elementNamesSelectedModified), props.sortDirection))
-          : elementNamesSelectedModified;
+        // @ts-ignore-next-line
+        const elementNamesSelectedModifiedSorted: TMapMultiSelectObjects = elementNamesSelectedModified; // convertArrayToMap(sortObjectData(optionsToArray(elementNamesSelectedModified), 'key', 'asc' ));
 
         if (isUseLocaleStorage) {
-          const elementNamesSelectedText: string = Array.from(elementNamesSelectedModifiedSorted).join(',');
+          const elementNamesSelectedText: string = JSON.stringify(optionsToArray(elementNamesSelectedModifiedSorted));
           localStorage.setItem(props.name, elementNamesSelectedText);
-          const elementNamesEditedNew: Set<string> = getElementsFromLocalStorage(props.name, ',');
-          if (props?.onChange) {
-            props.onChange(Array.from(elementNamesEditedNew));
-          }
-        } else {
-          if (props?.onChange) {
-            props.onChange(Array.from(elementNamesSelectedModifiedSorted));
-          }
+         }
+        if (props?.onChange) {
+          props.onChange(optionsToArray(elementNamesSelectedModifiedSorted));
         }
         setSearchText('');
         return elementNamesSelectedModifiedSorted;
@@ -113,42 +110,18 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
   };
 
   const onKeyUp = (evt: any) => {
-    if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
-      onListItemsCloseByKey();
-    }
+    onKeyUpEventHandler(evt, onListItemsCloseByKey);
   };
 
   useEffect(() => {
-    const elementsFromLocaleStorage: Set<string> = isUseLocaleStorage
-      ? getElementsFromLocalStorage(props.name, ',')
-      : props?.elementNamesDefaultSelected?.length > 0
-      ? new Set(props.elementNamesDefaultSelected)
-      : new Set();
-    if (elementsFromLocaleStorage.size > 0) {
-      const elementFiltered: Array<string> = props.elementNames?.filter((elementName: TMultiSelectOption) => elementsFromLocaleStorage.has(elementName?.value?.toString())).map((elementMapped => elementMapped?.value?.toString())) ?? []
-      const setElementFiltered: Set<string> = new Set(elementFiltered);
-      setElementNamesSelected(setElementFiltered);
-      // console.log('elementNamesSelected =', elementNamesSelected);
-    } else {
-      const elementNamesMapped: Array<{ label: string; value: string }> = elementNamesSorted?.map(
-        (element: { label: string; value: number | string }) => ({
-          label: element?.label,
-          value: element?.value?.toString(),
-        })
-      );
-
-      const columns: Array<string> =
-        props?.elementNamesDefaultSelected?.length > 0
-          ? props.elementNamesDefaultSelected
-          : props?.isSelectAll
-          ? getValuesFromElements(elementNamesMapped)
-          : [];
-      if (isUseLocaleStorage) {
-        const elementNamesSelectedText: string = columns?.join(',');
-        localStorage.setItem(props.name, elementNamesSelectedText);
-      }
-      setElementNamesSelected(new Set(columns));
+    const elementsSelected: TMapMultiSelectObjects = isUseLocaleStorage
+      ? getObjectsElementsFromLocalStorage(props.name)
+      : convertArrayToMap(props?.elementNamesDefaultSelected);
+    if (isUseLocaleStorage) {
+      const elementNamesSelectedText: string = JSON.stringify(optionsToArray(elementsSelected));
+      localStorage.setItem(props.name, elementNamesSelectedText);
     }
+    setElementNamesSelected(elementsSelected);
     document.addEventListener('mouseup', multiSelectVisibleChange);
     document.addEventListener('keyup', onKeyUp);
     return () => {
@@ -163,36 +136,35 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
   }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
-    const elementNamesSorted: Array<string | { label: string; value: number | string }> = props?.sortDirection
+    const elementNamesSorted: Array<TMultiSelectOption> = props?.sortDirection
       ? sortObjectData(props.elementNames, 'value', props.sortDirection)
       : props.elementNames;
 
-    const elementNamesMapped: Array<{ label: string; value: string }> = elementNamesSorted?.map(
+    const elementNamesMapped: Array<TMultiSelectOption> = elementNamesSorted?.map(
       (element: { label: string; value: number | string }) => ({
         label: element?.label,
         value: element?.value?.toString(),
       })
     );
-
     setElementNames(elementNamesMapped);
   }, [props.elementNames]);
 
   useEffect(() => {
     // console.log('elementNamesSelected =', elementNamesSelected);
-    if (elementNamesSelected?.size === 0) {
-      setElementNamesSelected(new Set(props.elementNamesDefaultSelected));
-    }
-  }, [props.elementNamesDefaultSelected]);
-
-  useEffect(() => {
-    // console.log('hook elementNamesSelected', elementNamesSelected);
-  }, [elementNamesSelected])
-
-  useEffect(() => {
     if (props.elementNamesDefaultSelected?.length === 0) {
-      setElementNamesSelected(new Set());
+      setElementNamesSelected(new Map());
     }
   }, [props.elementNamesDefaultSelected]);
+
+  // useEffect(() => {
+    // console.log('hook elementNamesSelected', elementNamesSelected);
+  // }, [elementNamesSelected])
+
+  // useEffect(() => {
+  //   if (props.elementNamesDefaultSelected?.length === 0) {
+  //     setElementNamesSelected(new Map());
+  //   }
+  // }, [props.elementNamesDefaultSelected]);
 
   const componentThemed: any = (theme: ITheme) => {
     const color: string = props.disabled ? theme?.palette?.baseFontColorOpacity05 : theme?.palette?.baseFontColor;
@@ -207,64 +179,58 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       const element = evt.currentTarget;
       const id: string = element?.dataset?.id;
       if (id === props.id) {
-        const columnName: string = element?.dataset?.name;
+        const columnName: string = element?.dataset?.label;
         if (columnName) {
-          const elementNamesEdited: Set<string> = isUseLocaleStorage
-            ? getElementsFromLocalStorage(props.name, ',')
+          const elementNamesEdited: TMapMultiSelectObjects = isUseLocaleStorage
+            ? getObjectsElementsFromLocalStorage(props.name)
             : elementNamesSelected;
           elementNamesEdited.delete(columnName);
           if (isUseLocaleStorage) {
-            const elementNamesSelectedText: string = Array.from(elementNamesEdited).join(',');
+            const elementNamesSelectedText: string = JSON.stringify(optionsToArray(elementNamesEdited));
             localStorage.setItem(props.name, elementNamesSelectedText);
           }
-          setElementNamesSelected(
-            isUseLocaleStorage ? getElementsFromLocalStorage(props.name, ',') : new Set(elementNamesEdited)
-          );
+          setElementNamesSelected(elementNamesEdited);
           if (props?.onChange) {
-            props.onChange(Array.from(elementNamesEdited));
+            props.onChange(optionsToArray(elementNamesEdited));
           }
         }
       }
     };
 
     const onAllElementsSelected = () => {
-      const elementsValuesSelected: Array<string> = getValuesFromElements(elementNames);
-      const elementNamesSelectedParsed: Set<string> = new Set([
-        ...elementsValuesSelected,
-        ...Array.from(elementNamesSelected),
-      ]);
-      setElementNamesSelected(elementNamesSelectedParsed);
+      // const elementsValuesSelected: Array<string> = getValue sFromElements(elementNames);
+      // const elementNamesSelectedParsed: TMapMultiSelectObjects = new Map([
+      //   ...elementsValuesSelected,
+      //   ...Array.from(elementNamesSelected),
+      // ]);
+      const allElementSelected: TMapMultiSelectObjects = convertArrayToMap(elementNames);
+
+      setElementNamesSelected(allElementSelected);
 
       if (isUseLocaleStorage) {
-        const elementNamesSelectedText: string = Array.from(elementNamesSelectedParsed).join(',');
+        const elementNamesSelectedText: string = JSON.stringify(optionsToArray(allElementSelected));
         localStorage.setItem(props.name, elementNamesSelectedText);
       }
       if (props?.onChange) {
-        props.onChange(Array.from(elementNamesSelectedParsed));
+        props.onChange(optionsToArray(allElementSelected));
       }
       setExpanded(false);
     };
 
     const onAllElementsUnselected = () => {
-      const elementNamesSelectedParsed: Set<string> = new Set();
+      const elementNamesSelectedParsed: TMapMultiSelectObjects = new Map();
       setElementNamesSelected(elementNamesSelectedParsed);
 
       if (isUseLocaleStorage) {
-        const elementNamesSelectedText: string = Array.from(elementNamesSelectedParsed).join(',');
+        const elementNamesSelectedText: string = JSON.stringify(optionsToArray(elementNamesSelectedParsed));
         localStorage.setItem(props.name, elementNamesSelectedText);
       }
       if (props?.onChange) {
-        props.onChange(Array.from(elementNamesSelectedParsed));
+        props.onChange(optionsToArray(elementNamesSelectedParsed));
       }
       setExpanded(false);
     };
 
-    const arrElementNames: Array<string> =
-      elementNamesSelected && elementNamesSelected.size > 0 ? Array.from(elementNamesSelected) : [];
-
-    const elementLabelsFiltered = elementNames?.filter((elementName: { label: string; value: string }) =>
-      arrElementNames?.some((arrElement: string) => elementName?.value === arrElement)
-    );
     const onSearchStringChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
       const element = evt.target;
       setSearchText(element.value);
@@ -279,15 +245,22 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       const buttonToggle = rootElement?.dataset?.name;
       const id = rootElement.dataset.id;
       // @ts-ignore-next-line
-      if (props.id === id && (buttonToggle === BUTTON_TOGGLE_NAME || buttonToggle === BUTTON_MULTI_SELECT_CONTAINER) && evt.target.tagName !== 'LABEL'  && evt.target.tagName !== 'INPUT') {
+      if (!props.disabled && props.id === id && (buttonToggle === BUTTON_TOGGLE_NAME || buttonToggle === BUTTON_MULTI_SELECT_CONTAINER) && evt.target.tagName !== 'LABEL'  && evt.target.tagName !== 'INPUT') {
         setExpanded(!isExpanded);
       }
     };
 
-    const elementNamesFiltered: Array<{ label: string; value: string }> =
+    const arrElementNames: Array<TMultiSelectOption> =
+      elementNamesSelected && elementNamesSelected.size > 0 ? optionsToArray(elementNamesSelected) : [];
+
+    const elementLabelsFiltered = elementNames?.filter((elementName: TMultiSelectOption) =>
+      arrElementNames?.some((arrElement: TMultiSelectOption) => elementName?.label === arrElement.label)
+    );
+
+    const elementNamesFiltered: Array<TMultiSelectOption> =
       elementNames?.filter(
         (columnName: { label: string; value: string }) =>
-          !elementNamesSelected?.has(columnName.value) &&
+          !elementNamesSelected?.has(columnName.label) &&
           (searchText?.length > 2 ? columnName?.label?.toUpperCase()?.indexOf(searchText?.toUpperCase()) > -1 : true)
       ) ?? [];
 
@@ -303,6 +276,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
         borderColorHovered={theme.mainOutlinedHoverColor}
         onClick={onBtnElementsClickExpand}
         ref={btnMultiSelect}
+        backgroundColor={props.disabled ? theme.inactiveBackgroundColor : 'transparent'}
       >
         {props?.label && (
           <LabelContainer backgroundColor={theme.mainBackgroundColor}>
@@ -348,7 +322,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                 >
                   {columnNameElement.label}
                 </Label>{' '}
-                <ButtonStyled id={`${props.id}-${index}-button`} onClick={onColumnNameRemove} data-name={columnNameElement.value} data-id={props.id}>
+                <ButtonStyled id={`${props.id}-${index}-button`} onClick={onColumnNameRemove} data-label={columnNameElement.label} data-id={props.id} disabled={props.disabled}>
                   <CrossIcon color={theme.palette.baseFontColor} />
                 </ButtonStyled>
               </FormControl>
@@ -364,6 +338,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
             fontSize={pixelsMeasureToNumber(fontSize) - 2}
             borderColor={outlinedColor}
             borderColorFocused={theme.palette.primary.light}
+            disabled={props.disabled}
           >
             {isExpanded ? <ChevronUpIcon color={color} /> : <ChevronDownIcon color={color} />}
           </ButtonExpandStyled>
@@ -378,6 +353,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                 fontSize={pixelsMeasureToNumber(fontSize) - 2}
                 color={theme.palette.baseFontColor}
                 backgroundColor={theme.palette.primary.light}
+                disabled={props.disabled}
               >
                 Select all <CirclePlusIcon color={theme.palette.baseFontColor} />
               </Button>
@@ -388,6 +364,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                 fontSize={pixelsMeasureToNumber(fontSize) - 2}
                 color={theme.palette.baseFontColor}
                 backgroundColor={theme.palette.primary.light}
+                disabled={props.disabled}
               >
                 Unselect all <CircleCrossIcon color={theme.palette.baseFontColor} />
               </Button>
@@ -400,6 +377,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
               placeholder="Search elements"
               variant="outlined"
               isNotClearable={true}
+              disabled={props.disabled}
             />
             <ListContainerStyled
               backgroundColor={theme.mainBackgroundColor}
@@ -411,7 +389,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                 backgroundColor={theme.mainBackgroundColor}
                 color={theme.palette.baseFontColor}
               >
-                {variant === MultiSelectVariant.Atlas && elementLabelsFiltered?.map((columnElement: { label: string; value: string }, index: number) => (
+                {!props.disabled && variant === MultiSelectVariant.Atlas && elementLabelsFiltered?.map((columnElement: TMultiSelectOption, index: number) => (
                   <ListItem
                     type="button"
                     key={`${index}-list-item`}
@@ -419,26 +397,27 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                     justifyContent="space-between"
                     color={theme.palette.baseFontColor}
                     data-value={columnElement.value}
+                    data-label={columnElement.label}
                     data-id={props.id}
                     onClick={onColumnNameRemove}
                     backgroundColor={theme.palette.primary.lighter}
-                    data-name={columnElement.value}
                   >
-                    <Label backgroundColor="transparent" data-value={columnElement.value} display="inline-flex" height="100%">
+                    <Label backgroundColor="transparent" data-label={columnElement.label} display="inline-flex" height="100%">
                       {columnElement.label}
-                      <FormControl position="absolute" right={5} width="initial" data-value={columnElement.value}>
+                      <FormControl position="absolute" right={5} width="initial" data-value={columnElement.value} >
                         <CircleCrossIcon color={theme.palette.baseFontColor} />
                       </FormControl>
                     </Label>
                   </ListItem>
                 ))}
-                {elementNamesFiltered?.map((columnElement: { label: string; value: string }, index: number) => (
+                {!props.disabled && elementNamesFiltered?.map((columnElement: { label: string; value: string }, index: number) => (
                   <ListItem
                     type="button"
                     key={`${index}-list-item`}
                     padding="0"
                     justifyContent="space-between"
                     color={theme.palette.baseFontColor}
+                    data-label={columnElement.label}
                     data-value={columnElement.value}
                     data-id={props.id}
                     onClick={onElementNameSelect}
