@@ -16,20 +16,14 @@ import parseValue from './helpers/parse-value';
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(isNotEmptyString(props.value?.toString()) ? props.value : '');
-  const [evtObj, setEvtObject] = useState(null);
-  const [isNotRunDebounce, setIsRunDebounce] = useState(props?.isNotRunDebounce || false);
+  const [isNotRunDebounce, setIsRunDebounce] = useState(props?.isNotRunDebounce !== undefined ? props.isNotRunDebounce : false);
   const [isFocus, setIsFocus] = useState(false);
   const [isChanging, setIsChanging] = useState(false);
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
 
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
-
-  const cb = () => {
+  const cb = (evt: any) => {
     const value = props.inputRef ? props.inputRef?.current?.value : inputRef?.current?.value;
-    const evtObjNew = { ...evtObj };
     if (isNotEmptyString(value)) {
       let valueParsed = parseValue(props.type, value, props.regExp, props.mask);
       if (props.type === 'number') {
@@ -51,15 +45,24 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           inputRef.current.value = valueParsed;
         }
       }
+      if (props?.onChange) {
+        props.onChange(evt, props.name, valueParsed);
+      }
     } else {
       if (inputRef.current?.value !== undefined) {
         inputRef.current.value = '';
       }
+      if (props?.onChange) {
+        props.onChange(evt, props.name, value);
+      }
     }
-    evtObjNew && props?.onChange(evtObjNew);
     setIsChanging(false);
     setIsRunDebounce(false);
   };
+
+  useEffect(() => {
+    setConsumer(globalThis.ReactThemeContextConsumer);
+  }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
     let valueParsed: number | string = parseValue(props.type, props.value, props.regExp, props.mask);
@@ -81,21 +84,21 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
   }, [props.value]);
 
-  useEffect(() => {
-    if (isNotRunDebounce && !props.isNotUseDebounce) {
-      const executeDebounce = debounce(cb, TIMEOUT);
-      executeDebounce();
-    } else {
-      const ref = props?.inputRef || inputRef;
-      if (ref?.current) {
-        const inputElement = ref?.current;
-        if (inputElement) {
-          inputElement.value = props?.value ?? '';
-          setInputValue(props?.value);
-        }
-      }
-    }
-  }, [isNotRunDebounce]);
+  // useEffect(() => {
+  //   if (!isNotRunDebounce) {
+  //     const executeDebounce = debounce(cb, TIMEOUT);
+  //     executeDebounce();
+  //   } else {
+  //     const ref = props?.inputRef || inputRef;
+  //     if (ref?.current) {
+  //       const inputElement = ref?.current;
+  //       if (inputElement) {
+  //         inputElement.value = props?.value ?? '';
+  //         setInputValue(props?.value);
+  //       }
+  //     }
+  //   }
+  // }, [isNotRunDebounce]);
 
   useEffect(() => {
     if (props.getIsChangingState) {
@@ -104,29 +107,35 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   }, [isChanging]);
 
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    props?.onInput(evt);
+    if (props?.onInput) {
+      props.onInput(evt);
+    }
   };
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt?.target;
     let value: string = element.value;
-    setInputValue(parseValue(props.type, value, props.regExp, props.mask));
-    setEvtObject(evt);
+    const valueParsed: string | number = parseValue(props.type, value, props.regExp, props.mask);
+    setInputValue(valueParsed);
     setIsChanging(true);
     if (props?.onInput) {
       onInput(evt);
     }
-    if (!isNotRunDebounce && !props.isNotUseDebounce) {
-      setIsRunDebounce(true);
-    }
-    if (props.isNotUseDebounce && props?.onChange) {
-      props.onChange(evt);
+    if (isNotRunDebounce) {
+      if (props?.onChange) {
+        props.onChange(evt, props.name, valueParsed);
+      }
+    } else {
+      const cbEvent = () => {
+        cb(evt);
+      }
+      const executeDebounce = debounce(cbEvent, TIMEOUT);
+      executeDebounce();
     }
   };
 
   const onInputDelete = (evt: React.MouseEvent<HTMLButtonElement>) => {
     setInputValue('');
-    setEvtObject(null);
     setIsChanging(false);
     if (props?.onRemove) {
       props.onRemove(props?.name, '', evt);

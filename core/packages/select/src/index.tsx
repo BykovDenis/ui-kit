@@ -221,6 +221,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsEdited(true);
   };
 
+  const onLabelClick = (evt: React.MouseEvent<HTMLLabelElement>) => {
+    setIsVisibleList(true);
+  }
+
   const onInputFocus = () => {
     setIsFocus(true);
     setIsVisibleList(true);
@@ -234,6 +238,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       }
     }
   };
+
+
 
   const isExistValue: boolean = label > '';
 
@@ -280,12 +286,13 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                 fontWeight={props?.fontWeight}
                 disabled={props.disabled}
                 fontFamily={props?.fontFamily || theme?.fontFamily}
+                onClick={onLabelClick}
               >
                 {props?.label}
               </Label>
             </LabelContainer>
           )}
-          <SelectIndicator backgroundColor={indicatorColor} />
+          {!props.isNotVisibleIndicator && <SelectIndicator backgroundColor={indicatorColor} />}
           <Input
             id={`${props.id}-input`}
             name={props.name}

@@ -15,6 +15,8 @@ interface IFormControlStyled {
   textAlign?: string;
   whiteSpace?: string;
   width?: number | string;
+  maxWidth?: number | string;
+  minWidth?: number | string;
   flexWrap?: string;
   outline?: string;
   borderRadius?: number | string;
@@ -23,7 +25,6 @@ interface IFormControlStyled {
   top?: number | string;
   bottom?: number | string;
   fontSize?: number | string;
-  maxWidth?: number | string;
   alignSelf?: string;
   zIndex?: number;
   transform?: string;
