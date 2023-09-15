@@ -155,4 +155,6 @@
     <li>Multiselect filters can be extern changed</li>
     <li>The input props isSeparateNumberFormat some improved without use debounce</li>
     <li>List component can be change width attribute</li>
+    <li>Select can be disable of the color indicator</li>
+    <li>FormControl and FlexContainer added min-width properties</li>
 </ol>

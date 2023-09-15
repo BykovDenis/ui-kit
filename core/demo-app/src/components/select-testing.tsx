@@ -5,8 +5,7 @@ import Table from '@sber-risks-ui/Table';
 import TableBody from '@sber-risks-ui/TableBody';
 import IOption from '@sber-risks-ui/Select/types/ioption';
 import { useState } from 'react';
-import Select from '../../../packages/select/src';
-import FormControl from '../../../packages/form-control/src';
+import Select from '@sber-risks-ui/Select';
 
 const SelectTesting: React.FunctionComponent = () => {
   const [numberValue, setNumberValue] = useState<number | null>(4);
@@ -64,6 +63,7 @@ const SelectTesting: React.FunctionComponent = () => {
               <Select
                 onChange={onInputChange2}
                 onRemove={onInputRemove2}
+                label="Some select"
                 data-test="select-object"
                 activeElement={objectValue}
                 elements={elementsState}
@@ -71,6 +71,7 @@ const SelectTesting: React.FunctionComponent = () => {
                 id="select-object"
                 name="selectObject"
                 isCreatable={true}
+                isNotVisibleIndicator={true}
               />
             </TableCell>
             <TableCell>The component Select contain only digits</TableCell>

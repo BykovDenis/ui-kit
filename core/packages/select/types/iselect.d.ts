@@ -24,6 +24,7 @@ interface ISelect extends IInput, ILabel {
   variant?: 'contained' | 'text' | 'outlined';
   isMulti?: boolean;
   isScrollingToSelected?: boolean;
+  isNotVisibleIndicator?: boolean;
 }
 
 export default ISelect;

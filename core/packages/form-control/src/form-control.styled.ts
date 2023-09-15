@@ -13,8 +13,6 @@ const FormControlStyled = styled.div<IFormControlStyled>`
   justify-content: ${(props: IFormControlStyled) => props?.justifyContent || 'initial'};
   align-items: ${(props: IFormControlStyled) => props.alignItems};
   width: ${(props: IFormControlStyled) => getMeasureValue(props.width, '100%')};
-  max-width: ${(props: IFormControlStyled) =>
-    props?.maxWidth ? getMeasureValue(props.maxWidth) : getMeasureValue(props.width)};
   white-space: ${(props: IFormControlStyled) => props.whiteSpace || 'no-wrap'};
   margin: ${(props: IFormControlStyled) => props.margin || 'initial'};
   padding: ${(props: IFormControlStyled) => props.padding || 'initial'};
@@ -36,6 +34,8 @@ const FormControlStyled = styled.div<IFormControlStyled>`
   ${(props: IFormControlStyled) => (props?.alignSelf ? `align-self: ${props.alignSelf};` : '')}
   ${(props: IFormControlStyled) => (isNotEmptyNumber(props?.zIndex) ? `z-index: ${props.zIndex};` : '')}
   ${(props: IFormControlStyled) => (isNotEmptyString(props?.transform) ? `transform: ${props.transform};` : '')}
+  ${(props: IFormControlStyled) => props.maxWidth ? `max-width: ${getMeasureValue(props.maxWidth)};` : ''}
+  ${(props: IFormControlStyled) => props.minWidth ? `min-width: ${getMeasureValue(props.minWidth)};` : ''}
 `;
 
 export default FormControlStyled;

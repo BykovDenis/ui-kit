@@ -3,15 +3,23 @@ import TableHead from "@sber-risks-ui/TableHead";
 import TableRow from "@sber-risks-ui/TableRow";
 import TableCell from "@sber-risks-ui/TableCell";
 import TableBody from "@sber-risks-ui/TableBody";
-import TextField from "@sber-risks-ui/Textfield/src";
+import TextField from "../../../packages/textfield/src";
+import { useState } from "react";
 
 
 const TextFieldTesting: React.FunctionComponent = () => {
   const regExp: RegExp =  new RegExp('[0-9_]', 'gi');
   const regExpComplixity: RegExp =  new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
+  const [textField1, setTextField1] = useState<number>(null);
 
-  const onInputChange = (evt: any) => {
+  const onInputChange = (evt: any, name: string, value: number | string) => {
     const element = evt.target;
+    console.log(element?.value);
+    setTextField1(Number(value));
+  }
+
+  const onInputRemove = (name: string) => {
+    console.log(name);
   }
 
   return (
@@ -24,11 +32,11 @@ const TextFieldTesting: React.FunctionComponent = () => {
   </TableHead>
   <TableBody>
     <TableRow>
-      <TableCell><TextField label="Number values" id="text-field-0" onChange={onInputChange} data-test="text-field-digits" variant="outlined" name="text-field-number" isSeparateNumberFormat={true} isNotRunDebounce={true} /></TableCell>
+      <TableCell><TextField label="Number values" id="text-field-0" onChange={onInputChange} data-test="text-field-digits" variant="outlined" name="text-field-number" isSeparateNumberFormat={false} isNotRunDebounce={false} /></TableCell>
       <TableCell>Masked formatted input</TableCell>
     </TableRow>
   <TableRow>
-    <TableCell><TextField label="Number values" id="text-field-1" onChange={onInputChange} data-test="text-field-digits" variant="outlined" type="number" name="text-field-number" /></TableCell>
+    <TableCell><TextField label="Number values" id="text-field-1" value={textField1} onChange={onInputChange} onRemove={onInputRemove} data-test="text-field-digits" variant="outlined" type="number" name="text-field-number" /></TableCell>
     <TableCell>The component contain only digits</TableCell>
   </TableRow>
   <TableRow>

@@ -24,7 +24,7 @@ interface IInput extends TBaseStyles {
   max?: number;
   min?: number;
   onBlur?: (evt: any) => void;
-  onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (evt: React.ChangeEvent<HTMLInputElement>, name?: string, value?: number | string) => void;
   onClick?: (evt: any) => void;
   onFocus?: (evt: any) => void;
   onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;

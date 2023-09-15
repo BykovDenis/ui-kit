@@ -4,14 +4,26 @@ import TableRow from '@sber-risks-ui/TableRow';
 import TableCell from '@sber-risks-ui/TableCell';
 import TableBody from '@sber-risks-ui/TableBody';
 import Input from '../../../packages/input/src';
+import { useState } from "react";
 
 const InputTesting: React.FunctionComponent = () => {
+  const [ inputValue, setInputValue ] = useState();
   const regExp: RegExp = new RegExp('[0-9_]', 'gi');
   const regExpComplixity: RegExp = new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
 
   const onInputChange = (evt: any) => {
     const element = evt.target;
   };
+
+  const onInputValueChange = (evt: any, name: string, value: number | string) => {
+    const element = evt.target;
+    setInputValue(element.value);
+    console.log(Number(value));
+  }
+
+  const onInputValueRemove = () => {
+    setInputValue(undefined);
+  }
 
   return (
     <Table>
@@ -38,8 +50,9 @@ const InputTesting: React.FunctionComponent = () => {
         <TableRow>
           <TableCell>
             <Input
-              isNotUseDebounce={true}
-              onChange={onInputChange}
+              isNotUseDebounce={false}
+              value={inputValue}
+              onChange={onInputValueChange}
               data-test="digits"
               variant="outlined"
               type="number"

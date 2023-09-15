@@ -12,6 +12,7 @@ type TLabel = TBaseStyles & {
   tabIndex?: string,
   theme?: any,
   whiteSpace?: string,
+  onClick?: (evt: any) => void,
 };
 
 export default TLabel;
