@@ -4,25 +4,75 @@ import TableRow from '@sber-risks-ui/TableRow';
 import TableCell from '@sber-risks-ui/TableCell';
 import TableBody from '@sber-risks-ui/TableBody';
 import Input from '../../../packages/input/src';
-import { useState } from "react";
+import React, { useState } from "react";
 
 const InputTesting: React.FunctionComponent = () => {
-  const [ inputValue, setInputValue ] = useState();
+  const [ inputValue, setInputValue ] = useState<string | undefined>();
+
+  const [ digitsFormatted, setDigitsFormatted ] = useState<string | undefined>();
+  const [ digits, setDigits ] = useState<string>();
+  const [ regularExpression, setRegularExpression ] = useState<string | undefined>();
+  const [ inputRegExprCompixity, setInputRegExprCompixity] = useState<string | undefined>();
+
   const regExp: RegExp = new RegExp('[0-9_]', 'gi');
-  const regExpComplixity: RegExp = new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
+  const regExpComplixity: RegExp = new RegExp('^(pg_|_|[0-9])|[^а-яa-z0-9_]', 'gi');
 
-  const onInputChange = (evt: any) => {
-    const element = evt.target;
-  };
 
-  const onInputValueChange = (evt: any, name: string, value: number | string) => {
+  const onInputValueChange = (evt: React.ChangeEvent<HTMLInputElement>, name?: string, value?: number | string) => {
     const element = evt.target;
-    setInputValue(element.value);
-    console.log(Number(value));
+    switch (element.name) {
+      case 'text': {
+        setInputValue(value?.toString());
+        break;
+      }
+      case 'digits-formatted': {
+        setDigitsFormatted(element.value);
+        break;
+      }
+      case 'digits': {
+        setDigitsFormatted(element.value);
+        break;
+      }
+      case 'input-reg-expr': {
+        setRegularExpression(element.value);
+        break;
+      }
+      case 'input-reg-expr-compixity': {
+        setInputRegExprCompixity(element.value);
+        break;
+      }
+      default: {
+        setInputValue(element.value);
+      }
+    }
   }
 
-  const onInputValueRemove = () => {
-    setInputValue(undefined);
+  const onInputValueRemove = (name: string) => {
+    switch (name) {
+      case 'text': {
+        setInputValue(undefined);
+        break;
+      }
+      case 'digits-formatted': {
+        setDigitsFormatted(undefined);
+        break;
+      }
+      case 'digits': {
+        setDigitsFormatted(undefined);
+        break;
+      }
+      case 'input-reg-expr': {
+        setRegularExpression(undefined);
+        break;
+      }
+      case 'input-reg-expr-compixity': {
+        setInputRegExprCompixity(undefined);
+        break;
+      }
+      default: {
+        setInputValue(undefined);
+      }
+    }
   }
 
   return (
@@ -38,11 +88,29 @@ const InputTesting: React.FunctionComponent = () => {
           <TableCell>
             <Input
               isNotUseDebounce={true}
-              onChange={onInputChange}
+              onChange={onInputValueChange}
+              onRemove={onInputValueRemove}
+              data-test="text"
+              name="text"
+              variant="outlined"
+              isNotRunDebounce={true}
+              value={inputValue}
+            />
+          </TableCell>
+          <TableCell>Typing text</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <Input
+              isNotUseDebounce={true}
+              onChange={onInputValueChange}
+              onRemove={onInputValueRemove}
               data-test="digits-formatted"
+              name="digits-formatted"
               variant="outlined"
               isSeparateNumberFormat={true}
               isNotRunDebounce={true}
+              value={digitsFormatted}
               />
           </TableCell>
           <TableCell>Masked formatted input</TableCell>
@@ -51,8 +119,9 @@ const InputTesting: React.FunctionComponent = () => {
           <TableCell>
             <Input
               isNotUseDebounce={false}
-              value={inputValue}
+              value={digits}
               onChange={onInputValueChange}
+              onRemove={onInputValueRemove}
               data-test="digits"
               variant="outlined"
               type="number"
@@ -64,11 +133,13 @@ const InputTesting: React.FunctionComponent = () => {
         <TableRow>
           <TableCell>
             <Input
-              onChange={onInputChange}
+              onChange={onInputValueChange}
+              onRemove={onInputValueRemove}
               data-test="regular-expressions"
               variant="outlined"
               regExp={regExp}
               name="input-reg-expr"
+              value={regularExpression}
             />
           </TableCell>
           <TableCell>The component contain regular expressions</TableCell>
@@ -76,11 +147,13 @@ const InputTesting: React.FunctionComponent = () => {
         <TableRow>
           <TableCell>
             <Input
-              onChange={onInputChange}
+              onChange={onInputValueChange}
+              onRemove={onInputValueRemove}
               data-test="regular-expressions-complixity"
               variant="outlined"
               regExp={regExpComplixity}
               name="input-reg-expr-compixity"
+              value={inputRegExprCompixity}
             />
           </TableCell>
           <TableCell>The component contain regular expressions</TableCell>
