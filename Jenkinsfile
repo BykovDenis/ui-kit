@@ -322,7 +322,7 @@ pipeline {
                 }
             }
         }
-        stage('Label  deploy') {
+        stage('Label, Label interactive  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -344,6 +344,26 @@ pipeline {
                                  }
                              }
                             dir("${labelPath}") {
+                                script {
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                            dir("${labelInteractivePath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                }
+                            }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/label-interactive/__tests__'
+                                 }
+                             }
+                            dir("${labelInteractivePath}") {
                                 script {
                                     echo 'Building'
                                     sh 'npm run build'
@@ -352,39 +372,6 @@ pipeline {
                                 }
                             }
                         }
-                    }
-                }
-            }
-        }
-        stage('Label interactive  deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${labelInteractivePath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/label/__tests__'
-                                 }
-                             }
-                            dir("${labelInteractivePath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
                         }
                     }
                 }
