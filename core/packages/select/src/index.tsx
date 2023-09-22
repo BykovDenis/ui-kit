@@ -274,7 +274,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       : props?.backgroundColor || theme.mainBackgroundColor;
 
     return (
-      <SelectContainer id={props.id} width={props?.width} height={props?.height || DEFAULT_HEIGHT}>
+      <SelectContainer id={props.id} width={props?.width} height={props?.height || DEFAULT_HEIGHT} margin={props.margin}>
         <SelectHeader height={props?.height || DEFAULT_HEIGHT}>
           {props?.label && (
             <LabelContainer isExistValue={isExistValue || isFocus} backgroundColor={backgroundColor}>

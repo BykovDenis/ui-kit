@@ -1,7 +1,7 @@
 import IThemes from '../types/ithemes';
 
 export const themes: IThemes = {
-  loanPricing: {
+  light: {
     palette: {
       primary: {
         main: 'rgb(8, 166, 82)',

@@ -26,7 +26,7 @@ const DatepickerButtonNavigate: React.FunctionComponent<IDatepickerButtonNavigat
       className="button"
       color={props.color}
       width={17}
-      height={17}
+      height={20}
       onClick={props?.onClick}
       children={props?.children}
     />

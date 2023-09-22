@@ -33,16 +33,17 @@ import IconButton from '../../icon-button/src';
 import CalendarIcon from "../../icons-components/24x24/calendar-icon";
 import FormControl from '../../form-control/src';
 import CrossIcon from "../../icons-components/24x24/cross-icon";
-import TpatritionDate from "../types/tpatrition-date";
 import TPatritionDate from "../types/tpatrition-date";
+import Button from "../../button/src";
+import ChevronBtnLeftIcon from "./icons/chevron-btn-left-icon";
+import ChevronBtnRightIcon from "./icons/chevron-btn-right-icon";
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
   const [dateParsed, setDateParsed] = useState<DateParser | null>(null);
-  const [dateParsedOriginal] = useState<DateParser>(new DateParser(props.value, props.mask as DatepickerMask));
+  const [ locale, setLocale ] = useState<string>(props.locale ?? Locale.Ru);
 
   // >>> initial values
-  const locale: string = props.locale ?? Locale.Ru;
   const [months, setMonths] = useState<Array<IOption>>(locale === Locale.Ru ? monthsElementRu : monthsElementEn);
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
   const [isExistValue, setIsExistValue] = useState(false);
@@ -263,6 +264,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   }, []);
 
   useEffect(() => {
+    setLocale(props.locale);
+  }, [props.locale]);
+
+  useEffect(() => {
     if (props.value !== value) {
       setValue(props.value);
     }
@@ -400,7 +405,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           />
           <FormControl position="absolute" top="50%" right={0} width="initial" transform="translateY(-50%)">{
             isNotEmptyString(value) ?
-            <IconButton variant="text" onClick={onInputDelete}>
+              !props.isNotClearable && <IconButton variant="text" onClick={onInputDelete}>
               <CrossIcon color={theme.palette.baseFontColor} />
             </IconButton> :
             <IconButton variant="text" onClick={onBtnCurrentDateSetClick}>
@@ -416,77 +421,84 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             onKeyUp={onKeyUp}
             ref={dateRef}
           >
+            <FormControl justifyContent="center" margin="0 0 3px 0">
+            <Button height={15} variant="text" textDecoration="underline" onClick={onBtnCurrentDateSetClick}>{locale === Locale.Ru ? 'Установить сегодня' : 'Set today'}</Button>
+            </FormControl>
             <MonthsYearsRuleContainer>
               <DatepickerNavigateContainerStyled>
                 <DatepickerButtonNavigate
                   id={`get-previous-month-${props.id}`}
-                  fontSize={fontSize}
+                  fontSize={18}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   color={theme.palette.primary.main}
                   onClick={onGetPreviousMonth}
                 >
-                  {'<'}
+                  <ChevronBtnLeftIcon color={theme.palette.baseFontColor} />
                 </DatepickerButtonNavigate>
                 <Select
                   id={`datepicker-month-${props.id}`}
                   name="month"
-                  label={monthTitle}
                   onChange={onMonthNameChange}
                   onRemove={onMonthRemove}
                   activeElement={monthName}
                   elements={months}
                   isNotClearable={true}
                   isCreatable={false}
+                  isNotVisibleIndicator={true}
                   baseFontSize={props?.baseFontSize}
                   fontSize={fontSize}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
-                  height={props?.height || DEFAULT_HEIGHT}
+                  height={30}
+                  width={95}
                   isScrollingToSelected={true}
+                  margin="0 2px"
                 />
                 <DatepickerButtonNavigate
                   id={`get-next-month-${props.id}`}
-                  fontSize={fontSize}
+                  fontSize={18}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   color={theme.palette.primary.main}
                   onClick={onGetNextMonth}
                 >
-                  {'>'}
+                  <ChevronBtnRightIcon color={theme.palette.baseFontColor} />
                 </DatepickerButtonNavigate>
               </DatepickerNavigateContainerStyled>
               <DatepickerNavigateContainerStyled>
                 <DatepickerButtonNavigate
                   id={`get-previous-year-${props.id}`}
-                  fontSize={fontSize}
+                  fontSize={18}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   color={theme.palette.primary.main}
                   onClick={onGetPreviousYear}
                 >
-                  {'<'}
+                  <ChevronBtnLeftIcon color={theme.palette.baseFontColor} />
                 </DatepickerButtonNavigate>
                 <Select
                   id={`datepicker-year-${props.id}`}
                   name="year"
-                  label={yearTitle}
                   onChange={onYearNameChange}
                   onRemove={onYearRemove}
                   activeElement={actualYearNumberString}
                   elements={years}
                   isNotClearable={true}
                   isCreatable={false}
+                  isNotVisibleIndicator={true}
                   baseFontSize={props?.baseFontSize}
                   fontSize={fontSize}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
-                  height={props?.height || DEFAULT_HEIGHT}
+                  height={30}
+                  width={60}
+                  margin="0 2px"
                   isScrollingToSelected={true}
                 />
                 <DatepickerButtonNavigate
                   id={`get-next-year-${props.id}`}
-                  fontSize={fontSize}
+                  fontSize={18}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   color={theme.palette.primary.main}
                   onClick={onGetNextYear}
                 >
-                  {'>'}
+                  <ChevronBtnRightIcon color={theme.palette.baseFontColor} />
                 </DatepickerButtonNavigate>
               </DatepickerNavigateContainerStyled>
             </MonthsYearsRuleContainer>

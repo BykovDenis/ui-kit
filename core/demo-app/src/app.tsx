@@ -11,46 +11,24 @@ import MultiSelectTesting from "./components/multi-select-testing";
 import DatepickerTesting from "./components/datepicker-testing";
 
 function App() {
-  const [dateValue, setDateValue] = useState<string>('11.05.2022');
-  const [value, setValue] = useState<number>(null);
 
-  const onDatepickerValueChange = (name: string, value: string, isValid: boolean) => {
-    console.log(value);
-    if (isValid) {
-      setDateValue(value);
-    } else {
-      console.log('Ошибка');
-    }
-  };
-
-  const onDateRemove = () => {
-    setDateValue(null);
-    console.log('дата очищена');
-  };
-
-  // const onValueSelectChange = (option: IOption) => {
-  //   setValue(option.value);
-  // };
-
-  const onInputChange = (evt: any) => {
-    setValue(evt.target?.value);
-  };
-
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
-
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
   const context: any = useContext(ReactThemeContext);
 
   return (
-    <ReactThemeContext.Provider value={themes.dark}>
+    <>
+    <ReactThemeContext.Provider value={themes.light}>
       <div style={{ background: context.mainBackgroundColor, height: '100vh', margin: 0 }}>
-        <SelectTesting />
         <DatepickerTesting />
-        <InputTesting />
-        <TextFieldTesting />
+        {/*<SelectTesting />*/}
+        {/*<InputTesting />*/}
+        {/*<TextFieldTesting />*/}
         {/*<GridContainerTesting />*/}
-        <MultiSelectTesting />
+        {/*<MultiSelectTesting />*/}
       </div>
     </ReactThemeContext.Provider>
+
+    </>
   );
 }
 

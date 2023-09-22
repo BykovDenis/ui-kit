@@ -19,7 +19,7 @@ const DatepickerDatesContainer =
   border-radius: 4px;
   box-shadow: rgb(0 0 0 / 10%) 0px 0px 0px 1px, rgb(0 0 0 / 10%) 0px 4px 11px;
   margin-bottom: 5px;
-  margin-top: 5px;
+  margin-top: -3px;
   position: absolute;
   width: 250px;
   height: 305px;

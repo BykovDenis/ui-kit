@@ -12,7 +12,7 @@ import DayOfWeek from './day-of-week.styled';
 const DaysOfWeek: React.FunctionComponent<IDayOfWeek> = (props: IDayOfWeek) => {
   const daysOfWeekElements: Array<string> = props.locale === Locale.Ru ? daysOfWeekRu : daysOfWeekEn;
   return (
-    <List className="list" fontFamily={props.fontFamily}>
+    <List className="list" fontFamily={props.fontFamily} width={230}>
       {daysOfWeekElements.map((element: string, index: number) => {
         const color: string = index < 5 ? props.primaryColor : props.secondaryColor;
 
