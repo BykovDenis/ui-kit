@@ -66,7 +66,7 @@ pipeline {
                             dir("${uiKitPath}") {
                                 script {
                                     echo 'Core packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                 }
                             }
                         }
