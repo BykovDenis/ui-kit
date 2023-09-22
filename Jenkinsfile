@@ -392,6 +392,7 @@ pipeline {
                                     echo 'Packages installing'
                                     sh 'npm ci'
                                 }
+                            }
                             dir("${radioPath}") {
                                 script {
                                     echo 'Building'
