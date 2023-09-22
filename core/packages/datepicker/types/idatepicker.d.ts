@@ -14,7 +14,7 @@ export default interface IDatepicker extends IInput, ILabel, TBaseStyles {
   isCreatable?: boolean;
   isExistValue?: boolean;
   label?: string | React.ReactNode;
-  locale?: string;
+  locale?: 'EN' | 'RU' | undefined;
   maxDate?: string;
   minDate?: string;
   name: string;
@@ -22,7 +22,7 @@ export default interface IDatepicker extends IInput, ILabel, TBaseStyles {
   textAlign?: string;
   value?: string;
   variant?: 'contained' | 'outlined' | 'text';
-  mask?: string;
+  mask?: 'dd.MM.yyyy' | 'yyyy-MM-dd' | undefined;
   isErrorMessageDisplay?: boolean,
   setToday?: () => void;
 }

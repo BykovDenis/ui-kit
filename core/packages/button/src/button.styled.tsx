@@ -43,6 +43,8 @@ const ButtonStyled =
     width: ${(props: TButton) => getMeasureValue(props?.width)};
     height: ${(props: TButton) => getMeasureValue(props?.height)};
     margin: 0;
+    ${(props: TButton) => props?.textTransform ? `text-transform: ${props.textTransform};` : ''};
+    ${(props: TButton) => props?.textDecoration ? `text-decoration: ${props.textDecoration};` : ''};
     &:focus {
       outline: 1px solid ${(props: TButton) => rgbToRgba(props?.focusColor, 0.3)};
       box-shadow: 1px 1px 5px 3px ${(props: TButton) => rgbToRgba(props?.focusColor, 0.3)};

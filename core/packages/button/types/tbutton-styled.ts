@@ -16,6 +16,8 @@ type TButtonStyled = {
   padding?: number | string,
   type?: string,
   width?: number | string,
+  textDecoration?: string,
+  textTransform?: string,
 };
 
 export default TButtonStyled;

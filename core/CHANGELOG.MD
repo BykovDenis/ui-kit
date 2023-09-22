@@ -158,3 +158,10 @@
     <li>Select can be disable of the color indicator</li>
     <li>FormControl and FlexContainer added min-width properties</li>
 </ol>
+
+<h2>v 0.11.5</h2>
+
+<h3>Features</h3>
+<ol>
+    <li>Datepicker design and functionality some improved</li>
+</ol>
