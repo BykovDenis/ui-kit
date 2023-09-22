@@ -12,12 +12,12 @@ import DatepickerTesting from "./components/datepicker-testing";
 
 function App() {
 
-  const ReactThemeContext = getNewReactThemeContext(themes.light);
+  const ReactThemeContext = getNewReactThemeContext(themes.dark);
   const context: any = useContext(ReactThemeContext);
 
   return (
     <>
-    <ReactThemeContext.Provider value={themes.light}>
+    <ReactThemeContext.Provider value={themes.dark}>
       <div style={{ background: context.mainBackgroundColor, height: '100vh', margin: 0 }}>
         <DatepickerTesting />
         {/*<SelectTesting />*/}
