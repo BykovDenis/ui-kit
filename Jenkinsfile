@@ -268,7 +268,7 @@ pipeline {
                 }
             }
         }
-        stage('Input  deploy') {
+        stage('Input, TextField  deploy') {
             tools
             {
                 nodejs 'node-v17.5.0-linux-x64'
@@ -290,6 +290,26 @@ pipeline {
                                  }
                              }
                             dir("${inputPath}") {
+                                script {
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                            dir("${textFieldPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                }
+                            }
+                             dir("${rootPath}") {
+                                 script {
+                                     echo 'Testing'
+                                     sh 'npm test /packages/textfield/__tests__'
+                                 }
+                             }
+                            dir("${textFieldPath}") {
                                 script {
                                     echo 'Building'
                                     sh 'npm run build'
@@ -494,40 +514,6 @@ pipeline {
                                  }
                              }
                             dir("${selectPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Textfield  deploy') {
-            tools
-            {
-                nodejs 'node-v17.5.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v17.5.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${textFieldPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/switcher/__tests__'
-                                 }
-                             }
-                            dir("${textFieldPath}") {
                                 script {
                                     echo 'Building'
                                     sh 'npm run build'
