@@ -66,7 +66,7 @@ pipeline {
                             dir("${uiKitPath}") {
                                 script {
                                     echo 'Core packages installing'
-                                    sh 'npm i'
+                                    sh 'npm ci'
                                 }
                             }
                         }
@@ -86,7 +86,7 @@ pipeline {
                             dir("${stylesPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -110,7 +110,7 @@ pipeline {
                             dir("${typographyPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                 }
                             }
                              dir("${rootPath}") {
@@ -144,7 +144,7 @@ pipeline {
                             dir("${datepickerPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                 }
                             }
                              dir("${rootPath}") {
