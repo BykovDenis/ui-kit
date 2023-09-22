@@ -166,7 +166,7 @@ pipeline {
                             dir("${checkboxPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                 }
                             }
                             dir("${checkboxPath}") {
@@ -194,7 +194,7 @@ pipeline {
                             dir("${buttonPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                 }
                             }
                             dir("${buttonPath}") {
@@ -222,7 +222,7 @@ pipeline {
                             dir("${iconButtonPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                 }
                             }
                             dir("${iconButtonPath}") {
@@ -250,7 +250,7 @@ pipeline {
                             dir("${inputPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                 }
                             }
                             dir("${inputPath}") {
@@ -264,7 +264,7 @@ pipeline {
                             dir("${textFieldPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                 }
                             }
                             dir("${textFieldPath}") {
@@ -292,7 +292,7 @@ pipeline {
                             dir("${labelPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                 }
                             }
                             dir("${labelPath}") {
@@ -306,7 +306,7 @@ pipeline {
                             dir("${labelInteractivePath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                 }
                             }
                             dir("${labelInteractivePath}") {
@@ -334,7 +334,7 @@ pipeline {
                             dir("${listItemPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                 }
                             }
                             dir("${listItemPath}") {
@@ -362,7 +362,7 @@ pipeline {
                             dir("${listPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                 }
                             }
                             dir("${listPath}") {
@@ -390,7 +390,7 @@ pipeline {
                             dir("${radioPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                 }
                             }
                             dir("${radioPath}") {
@@ -418,7 +418,7 @@ pipeline {
                             dir("${selectPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                 }
                             }
                             dir("${selectPath}") {
@@ -446,7 +446,7 @@ pipeline {
                             dir("${switcherPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -470,7 +470,7 @@ pipeline {
                             dir("${formControlPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -494,7 +494,7 @@ pipeline {
                             dir("${flexContainerPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -518,7 +518,7 @@ pipeline {
                             dir("${gridContainerPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -542,7 +542,7 @@ pipeline {
                             dir("${tableColumnsVisiblePath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -566,7 +566,7 @@ pipeline {
                             dir("${progressBarPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -590,7 +590,7 @@ pipeline {
                             dir("${multiSelectPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -614,7 +614,7 @@ pipeline {
                             dir("${stickyBottomPanelPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -638,7 +638,7 @@ pipeline {
                             dir("${tabsPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -662,7 +662,7 @@ pipeline {
                             dir("${tabPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -686,7 +686,7 @@ pipeline {
                             dir("${dividerPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -710,7 +710,7 @@ pipeline {
                             dir("${tablePath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -720,7 +720,7 @@ pipeline {
                             dir("${tableHeadPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -730,7 +730,7 @@ pipeline {
                             dir("${tableBodyPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -740,7 +740,7 @@ pipeline {
                             dir("${tableRowPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -750,7 +750,7 @@ pipeline {
                             dir("${tableCellPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm ci'
+                                    sh 'npm i'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
