@@ -111,9 +111,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   // >>> events handlers
 
-  const onInputDelete = (name: string) => {
+  const onInputDelete = () => {
     if (props?.onRemove) {
-      props?.onRemove(name, null);
+      props?.onRemove(props.name, null);
     }
     setIsExistValue(false);
     setIsVisibleList(false);
@@ -149,8 +149,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onInputFocus = () => {
     setIsFocus(true);
-    setIsVisibleList(true);
   };
+
+  const onInputClick = () => {
+    setIsVisibleList((isVisibleList: boolean) => !isVisibleList);
+  }
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt.target;
@@ -164,6 +167,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onInputBlur = () => {
     setIsFocus(false);
+    setIsVisibleList(false);
   };
 
   const onDatesContainerClose = (isSearchResult: boolean, evt?: React.ChangeEvent<HTMLElement>) => {
@@ -391,7 +395,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             fontFamily={props?.fontFamily || theme?.fontFamily}
             textMessage={isErrorMessageDisplay && textMessage}
             onFocus={onInputFocus}
-            onClick={onInputFocus}
+            onClick={onInputClick}
             onBlur={onInputBlur}
             onChange={onInputChange}
             disabled={props?.disabled}
