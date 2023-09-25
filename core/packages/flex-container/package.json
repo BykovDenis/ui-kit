@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/FormControl",
-  "version": "0.11.5",
+  "version": "0.11.6-alpha.0",
   "description": "The FlexContainer component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
