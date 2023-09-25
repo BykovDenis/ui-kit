@@ -20,7 +20,7 @@ function App() {
     <ReactThemeContext.Provider value={themes.dark}>
       <div style={{ background: context.mainBackgroundColor, height: '100vh', margin: 0 }}>
         <DatepickerTesting />
-        <SelectTesting />
+        {/*<SelectTesting />*/}
         {/*<InputTesting />*/}
         {/*<TextFieldTesting />*/}
         {/*<GridContainerTesting />*/}
