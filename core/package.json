@@ -91,6 +91,7 @@
     "inspectpack": "^4.0.1",
     "jest": "^27.5.1",
     "jest-styled-components": "^7.0.8",
+    "p-locate": "6.0.0",
     "react-test-renderer": "18.1.0",
     "regenerator-runtime": "0.13.9",
     "rollup-plugin-cleaner": "1.0.0",
