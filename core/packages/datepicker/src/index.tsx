@@ -152,7 +152,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   };
 
   const onInputClick = () => {
-    setIsVisibleList((isVisibleList: boolean) => !isVisibleList);
+    setIsVisibleList(!isVisibleList);
   }
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -167,7 +167,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onInputBlur = () => {
     setIsFocus(false);
-    setIsVisibleList(false);
   };
 
   const onDatesContainerClose = (isSearchResult: boolean, evt?: React.ChangeEvent<HTMLElement>) => {
@@ -395,8 +394,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             fontFamily={props?.fontFamily || theme?.fontFamily}
             textMessage={isErrorMessageDisplay && textMessage}
             onFocus={onInputFocus}
-            onClick={onInputClick}
             onBlur={onInputBlur}
+            onClick={onInputClick}
             onChange={onInputChange}
             disabled={props?.disabled}
             required={props?.required}

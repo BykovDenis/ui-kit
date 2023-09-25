@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 const DatepickerTesting = () => {
   const [date, setDate] = useState('2023-08-25');
   const [date1, setDate1] = useState('25.08.2023');
-  const [date2, setDate2] = useState<string | null>('2023-08-25');
+  const [date2, setDate2] = useState<string>('2023-08-25');
   const [date3, setDate3] = useState('25.08.2023');
 
   const onDateChange = (name: string, value: string) => {
