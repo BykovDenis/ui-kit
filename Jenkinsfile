@@ -781,14 +781,14 @@ pipeline {
                     if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes') {
 
                         def IS_RELEASE = input(
-                          message: 'Is it release?',
+                          message: 'Is it release or development build?',
                           ok: 'Yes',
                           no: 'No',
                           parameters: [
                             string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Publish library UI KIt?')
                           ]
                         )
-                        if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes') {
+                        if (IS_RELEASE == 'Yes' || IS_RELEASE == 'yes') {
                             nodejs('node-v17.5.0-linux-x64') {
                                 withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                                     dir("${uiKitPath}") {

@@ -165,3 +165,10 @@
 <ol>
     <li>Datepicker design and functionality some improved</li>
 </ol>
+
+<h2>v 0.11.6</h2>
+
+<h3>Features</h3>
+<ol>
+    <li>Datepicker can be use onInput event</li>
+</ol>

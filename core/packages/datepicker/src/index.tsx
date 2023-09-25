@@ -89,13 +89,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   // >> titles
 
-  const monthTitle: string = props?.locale === Locale.Ru || !props?.locale ? 'Месяц' : 'Month';
-  const yearTitle: string = props?.locale === Locale.Ru || !props?.locale ? 'Год' : 'Year';
-
   const textMessageError: string = props?.locale === Locale.Ru ? 'Дата не валидна' : 'Date is not valid';
 
   const minDateMessage: string = props?.locale === Locale.Ru ? 'Дата меньше допустимой' : 'Date is less than allowed';
   const maxDateMessage: string = props?.locale === Locale.Ru ? 'Дата больше допустимой' : 'Date is more then allowed';
+
+  const isUseOnInputChange: boolean = props.isUseOnInputChange !== undefined ? props.isUseOnInputChange : false;
 
   const textMessage = isError
     ? isMinDateError
@@ -281,6 +280,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       setIsExistValue(true);
       if (value && value.length !== 10) {
         setIsError(true);
+        if (isUseOnInputChange) {
+          dateParsed.changeParsedDate(value);
+          if (props?.onChange && props.value !== value) {
+            props.onChange(props.name, value, true);
+          }
+        }
       } else if (dateParsed) {
         dateParsed.changeParsedDate(value);
         if (dateParsed.checkIsNotExistErrorDate()) {
@@ -401,9 +406,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             required={props?.required}
             fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
             isReadOnly={props?.isReadOnly}
-            isNotUseDebounce={true}
             error={isError}
             inputRef={inputRef}
+            isNotUseDebounce={true}
             isNotClearable={true}
           />
           <FormControl position="absolute" top="50%" right={0} width="initial" transform="translateY(-50%)">{

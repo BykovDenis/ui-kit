@@ -10,6 +10,7 @@ const DatepickerTesting = () => {
   const [date3, setDate3] = useState('25.08.2023');
 
   const onDateChange = (name: string, value: string) => {
+    console.log(value);
     setDate(value);
   }
 
