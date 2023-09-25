@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/Table",
-  "version": "0.11.6-alpha.0",
+  "version": "0.11.6-alpha.1",
   "description": "Table react UI",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
