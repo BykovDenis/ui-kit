@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, INPUT_TAG, KEY_ESCAPE, TEXT_ALIGN_LEFT } from '../../constants';
+import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, INPUT_TAG, TEXT_ALIGN_LEFT } from '../../constants';
 import Divider from '../../divider/src/divider.styled';
 import Locale from '../../enums/locale';
 import searchDomChildElement from '../../helpers/search-dom-child-element';
@@ -60,8 +60,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [isError, setIsError] = useState<boolean>(false);
   const [isMinDateError, setIsMinDateError] = useState<boolean>(false);
   const [isMaxDateError, setIsMaxDateError] = useState<boolean>(false);
-  const [isErrorMessageDisplay] = useState(
-    props.isErrorMessageDisplay !== undefined ? props.isErrorMessageDisplay : 'true'
+  const [isErrorMessageDisplayed] = useState(
+    props.isErrorMessageDisplayed !== undefined ? props.isErrorMessageDisplayed : 'true'
   );
   const [monthName, setMonthName] = useState<IOption | null>(null);
 
@@ -94,7 +94,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const minDateMessage: string = props?.locale === Locale.Ru ? 'Дата меньше допустимой' : 'Date is less than allowed';
   const maxDateMessage: string = props?.locale === Locale.Ru ? 'Дата больше допустимой' : 'Date is more then allowed';
 
-  const isUseOnInputChange: boolean = props.isUseOnInputChange !== undefined ? props.isUseOnInputChange : false;
+  const isOnInputChangeUsed: boolean = props.isOnInputChangeUsed !== undefined ? props.isOnInputChangeUsed : false;
 
   const textMessage = isError
     ? isMinDateError
@@ -280,7 +280,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       setIsExistValue(true);
       if (value && value.length !== 10) {
         setIsError(true);
-        if (isUseOnInputChange) {
+        if (isOnInputChangeUsed) {
           dateParsed.changeParsedDate(value);
           if (props?.onChange && props.value !== value) {
             props.onChange(props.name, value, true);
@@ -397,7 +397,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             fontSize={fontSize}
             baseFontSize={props?.baseFontSize}
             fontFamily={props?.fontFamily || theme?.fontFamily}
-            textMessage={isErrorMessageDisplay && textMessage}
+            textMessage={isErrorMessageDisplayed && textMessage}
             onFocus={onInputFocus}
             onBlur={onInputBlur}
             onClick={onInputClick}

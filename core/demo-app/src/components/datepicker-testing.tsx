@@ -34,7 +34,7 @@ const DatepickerTesting = () => {
 
   return (
     <FlexContainer justifyContent="flex-start">
-      <FlexContainer width={250}  margin="20px 10px"><Datepicker isNotClearable={true} value={date} onChange={onDateChange} mask="yyyy-MM-dd" variant="outlined" label="Datepicker1 EN" id="datepicker1" name="datepicker1" locale="EN" height={60} /></FlexContainer>
+      <FlexContainer width={250}  margin="20px 10px"><Datepicker isErrorMessageDisplayed={false} isOnInputChangeUsed={true} isNotClearable={true}  value={date} onChange={onDateChange} mask="yyyy-MM-dd" variant="outlined" label="Datepicker1 EN" id="datepicker1" name="datepicker1" locale="EN" height={60} /></FlexContainer>
       <FlexContainer width={250}  margin="20px 10px"><Datepicker value={date1} onRemove={onDateRemove} onChange={onDate1Change} mask="dd.MM.yyyy" variant="outlined" label="Datepicker2 RU" id="datepicker2" name="datepicker2" locale="RU" height={60} /></FlexContainer>
       <FlexContainer width={250}  margin="20px 10px"><Datepicker value={date2} onChange={onDate2Change} mask="yyyy-MM-dd" variant="outlined" label="Datepicker1 RU" id="datepicker3" name="datepicker1" locale="RU" height={60} /></FlexContainer>
       <FlexContainer width={250}  margin="20px 10px"><Datepicker value={date3} onChange={onDate3Change} mask="dd.MM.yyyy" variant="outlined" label="Datepicker2 locale undefined" id="datepicker4" name="datepicker2" height={60} /></FlexContainer>
