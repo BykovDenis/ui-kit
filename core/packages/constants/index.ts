@@ -9,3 +9,10 @@ export const KEY_ESCAPE: string = 'ESCAPE';
 export const COLOR_THEME: string = 'normal';
 export const COLOR_TRANSPARENT: string = 'transparent';
 export const SVG_FORMAT_FILE: string = 'svg';
+
+export const TAG_NAME_BUTTON = 'BUTTON';
+export const TAG_NAME_LABEL = 'LABEL';
+export const TAG_NAME_INPUT = 'INPUT';
+export const TAG_NAME_DIV = 'DIV';
+export const TAG_NAME_SVG = 'svg';
+export const TAG_NAME_PATH = 'path';

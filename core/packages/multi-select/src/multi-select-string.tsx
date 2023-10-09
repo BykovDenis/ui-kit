@@ -23,8 +23,16 @@ import sortArray from '../../helpers/sort-array';
 import ToggleContainer from './toggle-container';
 import LabelContainer from './label-container.styled';
 import MultiSelectContainerStyled from './multi-select-container.styled';
-import { KEY_ESCAPE } from '../../constants';
-import MultiSelectVariant from "../enums/multi-select-variant";
+import {
+  KEY_ESCAPE,
+  TAG_NAME_BUTTON,
+  TAG_NAME_DIV,
+  TAG_NAME_INPUT,
+  TAG_NAME_LABEL,
+  TAG_NAME_PATH,
+  TAG_NAME_SVG,
+} from '../../constants';
+import MultiSelectVariant from '../enums/multi-select-variant';
 
 const BUTTON_TOGGLE_NAME = 'button-toggle';
 const BUTTON_MULTI_SELECT_CONTAINER = 'multi-select-container';
@@ -141,7 +149,6 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
     }
   }, [props.elementNamesDefaultSelected]);
 
-
   const componentThemed: any = (theme: ITheme) => {
     const color: string = props.disabled ? theme?.palette?.baseFontColorOpacity05 : theme?.palette?.baseFontColor;
     const outlinedColor: string = theme.mainOutlinedColor;
@@ -217,11 +224,35 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
 
     const onBtnElementsClickExpand = (evt: React.ChangeEvent<HTMLButtonElement>) => {
       const rootElement = evt.currentTarget;
+      const element = evt.target;
       const buttonToggle = rootElement?.dataset?.name;
       const id = rootElement.dataset.id;
-      // @ts-ignore-next-line
-      if (props.id === id && (buttonToggle === BUTTON_TOGGLE_NAME || buttonToggle === BUTTON_MULTI_SELECT_CONTAINER) && evt.target.tagName !== 'LABEL'  && evt.target.tagName !== 'INPUT') {
-        setExpanded(!isExpanded);
+      if (
+        !props.disabled &&
+        props.id === id &&
+        (buttonToggle === BUTTON_TOGGLE_NAME || buttonToggle === BUTTON_MULTI_SELECT_CONTAINER)
+      ) {
+        if (element.tagName === TAG_NAME_DIV) {
+          const children: any = element?.children[0];
+          if (children) {
+            if (
+              (children?.tagName === TAG_NAME_BUTTON && children?.dataset?.dataListItem === 'true') ||
+              children?.tagName !== TAG_NAME_BUTTON
+            ) {
+              setExpanded(!isExpanded);
+            }
+          } else {
+            setExpanded(!isExpanded);
+          }
+        } else if (
+          element.tagName !== TAG_NAME_LABEL &&
+          element.tagName !== TAG_NAME_INPUT &&
+          element.tagName !== TAG_NAME_BUTTON &&
+          element.tagName !== TAG_NAME_SVG &&
+          element.tagName !== TAG_NAME_PATH
+        ) {
+          setExpanded(!isExpanded);
+        }
       }
     };
 
@@ -273,36 +304,46 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
             isExistLabel={isNotEmptyString(props?.label)}
             borderColor={theme.palette.baseFontColorOpacity05}
           >
-            {variant === MultiSelectVariant.Normal ? arrElementNames?.map((columnNameElement: string, index: number) => (
-              <FormControl
-                key={`${index}-button`}
-                width="initial"
-                outline={`1px solid ${theme?.palette?.baseFontColorOpacity05}`}
-                borderRadius={5}
-                padding="1px"
-                margin="0 3px 0 0"
-                backgroundColor={theme.palette.primary.main}
-                alignItems="stretch"
-              >
-                <Label
-                  fontSize={pixelsMeasureToNumber(fontSize) - 2}
-                  htmlFor={`${props.id}-${index}-button`}
-                  whiteSpace="normal"
-                  wordBreak="break-all"
-                  lineHeight={1}
-                  color={theme.palette.baseFontColor}
-                  backgroundColor="transparent"
-                  data-label="multiselect-label"
-                  display="inline-flex"
+            {variant === MultiSelectVariant.Normal ? (
+              arrElementNames?.map((columnNameElement: string, index: number) => (
+                <FormControl
+                  key={`${index}-button`}
+                  width="initial"
+                  outline={`1px solid ${theme?.palette?.baseFontColorOpacity05}`}
+                  borderRadius={5}
+                  padding="1px"
+                  margin="0 3px 0 0"
+                  backgroundColor={theme.palette.primary.main}
+                  alignItems="stretch"
                 >
-                  {columnNameElement}
-                </Label>{' '}
-                <ButtonStyled id={`${props.id}-${index}-button`} onClick={onColumnNameRemove} data-name={columnNameElement} data-id={props.id} disabled={props.disabled}>
-                  <CrossIcon color={theme.palette.baseFontColor} />
-                </ButtonStyled>
-              </FormControl>
-            )) : (
-              <Label>{arrElementNames?.length ?? 0} of {elementNames?.length ?? 0} elements selected</Label>
+                  <Label
+                    fontSize={pixelsMeasureToNumber(fontSize) - 2}
+                    htmlFor={`${props.id}-${index}-button`}
+                    whiteSpace="normal"
+                    wordBreak="break-all"
+                    lineHeight={1}
+                    color={theme.palette.baseFontColor}
+                    backgroundColor="transparent"
+                    data-label="multiselect-label"
+                    display="inline-flex"
+                  >
+                    {columnNameElement}
+                  </Label>{' '}
+                  <ButtonStyled
+                    id={`${props.id}-${index}-button`}
+                    onClick={onColumnNameRemove}
+                    data-name={columnNameElement}
+                    data-id={props.id}
+                    disabled={props.disabled}
+                  >
+                    <CrossIcon color={theme.palette.baseFontColor} />
+                  </ButtonStyled>
+                </FormControl>
+              ))
+            ) : (
+              <Label>
+                {arrElementNames?.length ?? 0} of {elementNames?.length ?? 0} elements selected
+              </Label>
             )}
           </MultiSelectStyled>
           <ButtonExpandStyled
@@ -359,27 +400,28 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                 backgroundColor={theme.mainBackgroundColor}
                 color={theme.palette.baseFontColor}
               >
-                {variant === MultiSelectVariant.Atlas && arrElementNames?.map((columnNameElement: string, index: number) => (
-                  <ListItem
-                    type="button"
-                    key={`${index}-list-item`}
-                    padding="5px 0"
-                    justifyContent="space-between"
-                    color={theme.palette.baseFontColor}
-                    data-value={columnNameElement}
-                    data-name={columnNameElement}
-                    data-id={props.id}
-                    onClick={onColumnNameRemove}
-                    backgroundColor={theme.palette.primary.moreLighter}
-                  >
-                    <Label backgroundColor="transparent" data-value={columnNameElement}>
-                      {columnNameElement}
-                      <FormControl position="absolute" right={5} width="initial" data-value={columnNameElement}>
-                        <CircleCrossIcon color={theme.palette.baseFontColor} />
-                      </FormControl>
-                    </Label>
-                  </ListItem>
-                ))}
+                {variant === MultiSelectVariant.Atlas &&
+                  arrElementNames?.map((columnNameElement: string, index: number) => (
+                    <ListItem
+                      type="button"
+                      key={`${index}-list-item`}
+                      padding="5px 0"
+                      justifyContent="space-between"
+                      color={theme.palette.baseFontColor}
+                      data-value={columnNameElement}
+                      data-name={columnNameElement}
+                      data-id={props.id}
+                      onClick={onColumnNameRemove}
+                      backgroundColor={theme.palette.primary.moreLighter}
+                    >
+                      <Label backgroundColor="transparent" data-value={columnNameElement}>
+                        {columnNameElement}
+                        <FormControl position="absolute" right={5} width="initial" data-value={columnNameElement}>
+                          <CircleCrossIcon color={theme.palette.baseFontColor} />
+                        </FormControl>
+                      </Label>
+                    </ListItem>
+                  ))}
                 {elementNamesFiltered?.map((columnNameElement: string, index: number) => (
                   <ListItem
                     type="button"
