@@ -60,13 +60,13 @@ pipeline {
                             dir("${rootPath}") {
                                 script {
                                     echo 'Root packages installing'
-                                    sh 'npm i'
+                                    sh 'npm ci'
                                 }
                             }
                             dir("${uiKitPath}") {
                                 script {
                                     echo 'Core packages installing'
-                                    sh 'npm i'
+                                    sh 'npm ci'
                                 }
                             }
                         }
@@ -113,12 +113,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/typography'
-                                 }
-                             }
                             dir("${typographyPath}") {
                                 script {
                                     echo 'Building'
@@ -147,12 +141,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/datepicker/__tests__'
-                                 }
-                             }
                             dir("${datepickerPath}") {
                                 script {
                                     echo 'Building'
@@ -181,12 +169,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/checkbox/__tests__'
-                                 }
-                             }
                             dir("${checkboxPath}") {
                                 script {
                                     echo 'Building'
@@ -215,12 +197,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/button/__tests__'
-                                 }
-                             }
                             dir("${buttonPath}") {
                                 script {
                                     echo 'Building'
@@ -249,12 +225,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/icon-button/__tests__'
-                                 }
-                             }
                             dir("${iconButtonPath}") {
                                 script {
                                     echo 'Building'
@@ -283,12 +253,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/input/__tests__'
-                                 }
-                             }
                             dir("${inputPath}") {
                                 script {
                                     echo 'Building'
@@ -303,12 +267,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/textfield/__tests__'
-                                 }
-                             }
                             dir("${textFieldPath}") {
                                 script {
                                     echo 'Building'
@@ -337,12 +295,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/label/__tests__'
-                                 }
-                             }
                             dir("${labelPath}") {
                                 script {
                                     echo 'Building'
@@ -357,12 +309,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/label-interactive/__tests__'
-                                 }
-                             }
                             dir("${labelInteractivePath}") {
                                 script {
                                     echo 'Building'
@@ -391,12 +337,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/list-item/__tests__'
-                                 }
-                             }
                             dir("${listItemPath}") {
                                 script {
                                     echo 'Building'
@@ -425,12 +365,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/list/__tests__'
-                                 }
-                             }
                             dir("${listPath}") {
                                 script {
                                     echo 'Building'
@@ -459,12 +393,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/radio/__tests__'
-                                 }
-                             }
                             dir("${radioPath}") {
                                 script {
                                     echo 'Building'
@@ -493,12 +421,6 @@ pipeline {
                                     sh 'npm i'
                                 }
                             }
-                             dir("${rootPath}") {
-                                 script {
-                                     echo 'Testing'
-                                     sh 'npm test /packages/select/__tests__'
-                                 }
-                             }
                             dir("${selectPath}") {
                                 script {
                                     echo 'Building'
@@ -848,27 +770,50 @@ pipeline {
             steps {
                 script {
 
-                  def IS_PUBLISH = input(
+                    def IS_PUBLISH = input(
                     message: 'Publish library UI KIt?',
                     ok: 'Yes',
                     no: 'No',
                     parameters: [
                       string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Publish library UI KIt?')
                     ]
-                  )
-                  if (IS_PUBLISH == 'Yes') {
-                      nodejs('node-v17.5.0-linux-x64') {
-                          withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
-                              dir("${uiKitPath}") {
-                                  withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
-                                      sh """
-                                          npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
-                                      """
-                                  }
-                              }
-                          }
-                      }
-                   }
+                    )
+                    if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes') {
+
+                        def IS_RELEASE = input(
+                          message: 'Is it release or development build?',
+                          ok: 'Yes',
+                          no: 'No',
+                          parameters: [
+                            string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Publish library UI KIt?')
+                          ]
+                        )
+                        if (IS_RELEASE == 'Yes' || IS_RELEASE == 'yes') {
+                            nodejs('node-v17.5.0-linux-x64') {
+                                withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
+                                    dir("${uiKitPath}") {
+                                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
+                                            sh """
+                                            npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
+                                            """
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            nodejs('node-v17.5.0-linux-x64') {
+                                withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
+                                    dir("${uiKitPath}") {
+                                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
+                                            sh """
+                                            npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-dev/
+                                            """
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

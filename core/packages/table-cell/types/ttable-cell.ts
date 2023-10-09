@@ -1,13 +1,16 @@
 import TTableRow from '../../table-row/types/ttable-row';
 
 type TTableCell = TTableRow & {
-  border?: string,
-  borderColor?: string,
-  borderStyle?: string,
-  borderWidth?: string,
-  color?: string,
-  padding?: string,
-  width?: number | string,
+  border?: string;
+  borderColor?: string;
+  borderStyle?: string;
+  borderWidth?: string;
+  color?: string;
+  padding?: string;
+  width?: number | string;
+  colSpan?: number;
+  rowSpan?: number;
+  verticalAlign?: string;
 };
 
 export default TTableCell;
