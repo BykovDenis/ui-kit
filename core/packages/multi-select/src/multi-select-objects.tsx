@@ -21,19 +21,29 @@ import ToggleContainer from './toggle-container';
 import LabelContainer from './label-container.styled';
 import MultiSelectContainerStyled from './multi-select-container.styled';
 import sortObjectData from '../../helpers/sort-object-data';
-import TMultiSelectOption from "../types/tmulti-select-option";
-import MultiSelectVariant from "../enums/multi-select-variant";
-import onKeyUpEventHandler from "../../helpers/on-key-up-event-handler";
-import optionsToArray from "../helpers/options-to-array";
-import TMultiSelectObjects from "../types/tmulti-select-objects";
-import TMapMultiSelectObjects from "../types/tmap-multi-select-objects";
-import convertArrayToMap from "../../helpers/convert-array-to-map";
-import getObjectsElementsFromLocalStorage from "../helpers/get-objects-elements-from-localstorage";
+import TMultiSelectOption from '../types/tmulti-select-option';
+import MultiSelectVariant from '../enums/multi-select-variant';
+import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
+import optionsToArray from '../helpers/options-to-array';
+import TMultiSelectObjects from '../types/tmulti-select-objects';
+import TMapMultiSelectObjects from '../types/tmap-multi-select-objects';
+import convertArrayToMap from '../../helpers/convert-array-to-map';
+import getObjectsElementsFromLocalStorage from '../helpers/get-objects-elements-from-localstorage';
+import {
+  TAG_NAME_BUTTON,
+  TAG_NAME_DIV,
+  TAG_NAME_INPUT,
+  TAG_NAME_LABEL,
+  TAG_NAME_PATH,
+  TAG_NAME_SVG,
+} from '../../constants';
 
 const BUTTON_TOGGLE_NAME = 'button-toggle';
 const BUTTON_MULTI_SELECT_CONTAINER = 'multi-select-container';
 
-const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelectObjects>> = (props: TMultiSelectObjects) => {
+const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelectObjects>> = (
+  props: TMultiSelectObjects
+) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
   const [isExpanded, setExpanded] = useState<boolean>(false);
   const [variant] = useState<string | null>(props.variant || MultiSelectVariant.Normal);
@@ -53,14 +63,12 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
     [elementNamesSorted]
   );
 
-  const mapElementsSelected: Map<string, number | string > = React.useMemo(() => {
-    return convertArrayToMap(props.elementNamesDefaultSelected)
-  }, [props.elementNamesDefaultSelected])
+  const mapElementsSelected: Map<string, number | string> = React.useMemo(() => {
+    return convertArrayToMap(props.elementNamesDefaultSelected);
+  }, [props.elementNamesDefaultSelected]);
 
   const [elementNames, setElementNames] = useState<Array<TMultiSelectOption>>(elementNamesMapped);
-  const [elementNamesSelected, setElementNamesSelected] = useState<TMapMultiSelectObjects>(
-    mapElementsSelected
-  );
+  const [elementNamesSelected, setElementNamesSelected] = useState<TMapMultiSelectObjects>(mapElementsSelected);
   const [searchText, setSearchText] = useState<string>(null);
   const [isUseLocaleStorage] = useState<boolean>(
     props?.isUseLocaleStorage !== undefined ? props.isUseLocaleStorage : false
@@ -90,7 +98,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
     if (isNotEmptyString(columnName) && props.id === id) {
       // @ts-ignore-next-line
       setElementNamesSelected((elementNamesSelected: TMapMultiSelectObjects) => {
-        const elementNamesSelectedModified: Map< string, number | string> = elementNamesSelected;
+        const elementNamesSelectedModified: Map<string, number | string> = elementNamesSelected;
         elementNamesSelectedModified.set(columnName, columnValue);
 
         // @ts-ignore-next-line
@@ -99,7 +107,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
         if (isUseLocaleStorage) {
           const elementNamesSelectedText: string = JSON.stringify(optionsToArray(elementNamesSelectedModifiedSorted));
           localStorage.setItem(props.name, elementNamesSelectedText);
-         }
+        }
         if (props?.onChange) {
           props.onChange(optionsToArray(elementNamesSelectedModifiedSorted));
         }
@@ -157,7 +165,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
   }, [props.elementNamesDefaultSelected]);
 
   // useEffect(() => {
-    // console.log('hook elementNamesSelected', elementNamesSelected);
+  // console.log('hook elementNamesSelected', elementNamesSelected);
   // }, [elementNamesSelected])
 
   // useEffect(() => {
@@ -242,11 +250,35 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
 
     const onBtnElementsClickExpand = (evt: React.ChangeEvent<HTMLButtonElement>) => {
       const rootElement = evt.currentTarget;
-      const buttonToggle = rootElement?.dataset?.name;
+      const element = evt.target;
       const id = rootElement.dataset.id;
-      // @ts-ignore-next-line
-      if (!props.disabled && props.id === id && (buttonToggle === BUTTON_TOGGLE_NAME || buttonToggle === BUTTON_MULTI_SELECT_CONTAINER) && evt.target.tagName !== 'LABEL'  && evt.target.tagName !== 'INPUT') {
-        setExpanded(!isExpanded);
+      const buttonToggle = rootElement?.dataset?.name;
+      if (
+        !props.disabled &&
+        props.id === id &&
+        (buttonToggle === BUTTON_TOGGLE_NAME || buttonToggle === BUTTON_MULTI_SELECT_CONTAINER)
+      ) {
+        if (element.tagName === TAG_NAME_DIV) {
+          const children: any = element?.children[0];
+          if (children) {
+            if (
+              (children?.tagName === TAG_NAME_BUTTON && children?.dataset?.dataListItem === 'true') ||
+              children?.tagName !== TAG_NAME_BUTTON
+            ) {
+              setExpanded(!isExpanded);
+            }
+          } else {
+            setExpanded(!isExpanded);
+          }
+        } else if (
+          element.tagName !== TAG_NAME_LABEL &&
+          element.tagName !== TAG_NAME_INPUT &&
+          element.tagName !== TAG_NAME_BUTTON &&
+          element.tagName !== TAG_NAME_SVG &&
+          element.tagName !== TAG_NAME_PATH
+        ) {
+          setExpanded(!isExpanded);
+        }
       }
     };
 
@@ -298,38 +330,47 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
             isExistLabel={isNotEmptyString(props?.label)}
             borderColor={theme.palette.baseFontColorOpacity05}
           >
-            {variant === MultiSelectVariant.Normal ? elementLabelsFiltered?.map((columnNameElement: { label: string; value: string }, index: number) => (
-              <FormControl
-                key={`${index}-button`}
-                width="initial"
-                outline={`1px solid ${theme?.palette?.baseFontColorOpacity05}`}
-                borderRadius={5}
-                padding="1px"
-                margin="0 3px 0 0"
-                backgroundColor={theme.palette.primary.main}
-                alignItems="stretch"
-              >
-                <Label
-                  fontSize={pixelsMeasureToNumber(fontSize) - 2}
-                  htmlFor={`${props.id}-${index}-button`}
-                  whiteSpace="normal"
-                  wordBreak="break-all"
-                  lineHeight={1}
-                  color={theme.palette.baseFontColor}
-                  backgroundColor="transparent"
-                  data-label="multiselect-label"
-                  display="inline-flex"
+            {variant === MultiSelectVariant.Normal ? (
+              elementLabelsFiltered?.map((columnNameElement: { label: string; value: string }, index: number) => (
+                <FormControl
+                  key={`${index}-button`}
+                  width="initial"
+                  outline={`1px solid ${theme?.palette?.baseFontColorOpacity05}`}
+                  borderRadius={5}
+                  padding="1px"
+                  margin="0 3px 0 0"
+                  backgroundColor={theme.palette.primary.main}
+                  alignItems="stretch"
                 >
-                  {columnNameElement.label}
-                </Label>{' '}
-                <ButtonStyled id={`${props.id}-${index}-button`} onClick={onColumnNameRemove} data-label={columnNameElement.label} data-id={props.id} disabled={props.disabled}>
-                  <CrossIcon color={theme.palette.baseFontColor} />
-                </ButtonStyled>
-              </FormControl>
-            ))
-              : (
-              <Label>{elementLabelsFiltered?.length ?? 0} of {elementNames?.length ?? 0} elements selected</Label>
-          )}
+                  <Label
+                    fontSize={pixelsMeasureToNumber(fontSize) - 2}
+                    htmlFor={`${props.id}-${index}-button`}
+                    whiteSpace="normal"
+                    wordBreak="break-all"
+                    lineHeight={1}
+                    color={theme.palette.baseFontColor}
+                    backgroundColor="transparent"
+                    data-label="multiselect-label"
+                    display="inline-flex"
+                  >
+                    {columnNameElement.label}
+                  </Label>{' '}
+                  <ButtonStyled
+                    id={`${props.id}-${index}-button`}
+                    onClick={onColumnNameRemove}
+                    data-label={columnNameElement.label}
+                    data-id={props.id}
+                    disabled={props.disabled}
+                  >
+                    <CrossIcon color={theme.palette.baseFontColor} />
+                  </ButtonStyled>
+                </FormControl>
+              ))
+            ) : (
+              <Label>
+                {elementLabelsFiltered?.length ?? 0} of {elementNames?.length ?? 0} elements selected
+              </Label>
+            )}
           </MultiSelectStyled>
           <ButtonExpandStyled
             data-name="button-toggle"
@@ -389,47 +430,61 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                 backgroundColor={theme.mainBackgroundColor}
                 color={theme.palette.baseFontColor}
               >
-                {!props.disabled && variant === MultiSelectVariant.Atlas && elementLabelsFiltered?.map((columnElement: TMultiSelectOption, index: number) => (
-                  <ListItem
-                    type="button"
-                    key={`${index}-list-item`}
-                    padding="0"
-                    justifyContent="space-between"
-                    color={theme.palette.baseFontColor}
-                    data-value={columnElement.value}
-                    data-label={columnElement.label}
-                    data-id={props.id}
-                    onClick={onColumnNameRemove}
-                    backgroundColor={theme.palette.primary.lighter}
-                  >
-                    <Label backgroundColor="transparent" data-label={columnElement.label} display="inline-flex" height="100%">
-                      {columnElement.label}
-                      <FormControl position="absolute" right={5} width="initial" data-value={columnElement.value} >
-                        <CircleCrossIcon color={theme.palette.baseFontColor} />
-                      </FormControl>
-                    </Label>
-                  </ListItem>
-                ))}
-                {!props.disabled && elementNamesFiltered?.map((columnElement: { label: string; value: string }, index: number) => (
-                  <ListItem
-                    type="button"
-                    key={`${index}-list-item`}
-                    padding="0"
-                    justifyContent="space-between"
-                    color={theme.palette.baseFontColor}
-                    data-label={columnElement.label}
-                    data-value={columnElement.value}
-                    data-id={props.id}
-                    onClick={onElementNameSelect}
-                  >
-                    <Label backgroundColor="transparent" data-value={columnElement.value} display="inline-flex" height="100%">
-                      {columnElement.label}
-                      <FormControl position="absolute" right={5} width="initial" data-value={columnElement.value}>
-                        <CirclePlusIcon color={theme.palette.baseFontColor} />
-                      </FormControl>
-                    </Label>
-                  </ListItem>
-                ))}
+                {!props.disabled &&
+                  variant === MultiSelectVariant.Atlas &&
+                  elementLabelsFiltered?.map((columnElement: TMultiSelectOption, index: number) => (
+                    <ListItem
+                      type="button"
+                      key={`${index}-list-item`}
+                      padding="0"
+                      justifyContent="space-between"
+                      color={theme.palette.baseFontColor}
+                      data-value={columnElement.value}
+                      data-label={columnElement.label}
+                      data-id={props.id}
+                      data-list-item={true}
+                      onClick={onColumnNameRemove}
+                      backgroundColor={theme.palette.primary.lighter}
+                    >
+                      <Label
+                        backgroundColor="transparent"
+                        data-label={columnElement.label}
+                        display="inline-flex"
+                        height="100%"
+                      >
+                        {columnElement.label}
+                        <FormControl position="absolute" right={5} width="initial" data-value={columnElement.value}>
+                          <CircleCrossIcon color={theme.palette.baseFontColor} />
+                        </FormControl>
+                      </Label>
+                    </ListItem>
+                  ))}
+                {!props.disabled &&
+                  elementNamesFiltered?.map((columnElement: { label: string; value: string }, index: number) => (
+                    <ListItem
+                      type="button"
+                      key={`${index}-list-item`}
+                      padding="0"
+                      justifyContent="space-between"
+                      color={theme.palette.baseFontColor}
+                      data-label={columnElement.label}
+                      data-value={columnElement.value}
+                      data-id={props.id}
+                      onClick={onElementNameSelect}
+                    >
+                      <Label
+                        backgroundColor="transparent"
+                        data-value={columnElement.value}
+                        display="inline-flex"
+                        height="100%"
+                      >
+                        {columnElement.label}
+                        <FormControl position="absolute" right={5} width="initial" data-value={columnElement.value}>
+                          <CirclePlusIcon color={theme.palette.baseFontColor} />
+                        </FormControl>
+                      </Label>
+                    </ListItem>
+                  ))}
               </List>
             </ListContainerStyled>
           </ToggleContainer>
