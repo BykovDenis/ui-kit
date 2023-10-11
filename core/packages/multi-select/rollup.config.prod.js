@@ -14,14 +14,14 @@ export default [
         file: pkg.main,
         format: 'cjs',
         exports: 'named',
-        sourcemap: false,
+        sourcemap: true,
         strict: true,
       },
       {
         file: pkg.module,
         format: 'esm',
         exports: 'named',
-        sourcemap: false,
+        sourcemap: true,
         strict: true,
       },
     ],
@@ -29,7 +29,7 @@ export default [
       cleaner({
         targets: ['./dist'],
       }),
-      typescript({ objectHashIgnoreUnknownHack: false }),
+      typescript({ objectHashIgnoreUnknownHack: false, inlineSourceMap: true, sourceMap: true }),
       postcss({
         autoModules: true,
         modules: {
@@ -39,7 +39,7 @@ export default [
           autoprefixer: true,
         },
       }),
-      terser(),
+      // terser(),
     ],
     external: ['react', 'react-dom'],
   },

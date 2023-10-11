@@ -239,9 +239,10 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       setExpanded(false);
     };
 
-    const onSearchStringChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-      const element = evt.target;
-      setSearchText(element.value);
+    const onSearchStringChange = (evt: React.ChangeEvent<HTMLInputElement>, name: string, value: string) => {
+      if (value !== undefined) {
+        setSearchText(value);
+      }
     };
 
     const onSearchStringClean = () => {
