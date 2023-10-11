@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MultiSelect from '../../../packages/multi-select/src';
+import MultiSelect from '@sber-risks-ui/MultiSelect';
 import TMultiSelectOption from '@sber-risks-ui/MultiSelect/types/tmulti-select-option';
 import GridContainer from '@sber-risks-ui/GridContainer';
 import FlexContainer from '@sber-risks-ui/FormControl';
@@ -16,15 +16,30 @@ const MultiSelectTesting: React.FunctionComponent = () => {
   ]);
   const [columnsSelected3, setColumnNamesSelected3] = useState<Array<TMultiSelectOption> | []>([]);
 
+  // const columns: Array<TMultiSelectOption> = [
+  //   { label: 'one', value: 1 },
+  //   { label: 'someeee', value: 88 },
+  //   { label: 'five', value: 5 },
+  //   { label: 'three', value: 3 },
+  //   { label: 'twofff', value: 2 },
+  //   { label: 'twwwwo', value: 22 },
+  //   { label: 'fffour', value: 4 },
+  //   { label: 'some', value: 8 },
+  // ];
+
   const columns: Array<TMultiSelectOption> = [
-    { label: 'one', value: 1 },
-    { label: 'someeee', value: 88 },
-    { label: 'five', value: 5 },
-    { label: 'three', value: 3 },
-    { label: 'twofff', value: 2 },
-    { label: 'twwwwo', value: 22 },
-    { label: 'fffour', value: 4 },
-    { label: 'some', value: 8 },
+    { value: 'B1_EA_UK', label: 'B1_EA_UK' },
+    { value: 'B1_ES_UK', label: 'B1_ES_UK' },
+    { value: 'B1_OL_UK', label: 'B1_OL_UK' },
+    { value: 'B1_SC_UK', label: 'B1_SC_UK' },
+    { value: 'B1_SH_UK', label: 'B1_SH_UK' },
+    { value: 'B1_SS1PRUK', label: 'B1_SS1PRUK' },
+    { value: 'B1_SS1_UK', label: 'B1_SS1_UK' },
+    { value: 'B2_AB_UK', label: 'B2_AB_UK' },
+    { value: 'BOOK-UA', label: 'BOOK-UA' },
+    { value: 'BOOK1_CP', label: 'BOOK1_CP' },
+    { value: 'BOOK1_GP', label: 'BOOK1_GP' },
+    { value: 'BOOK2_NUC', label: 'BOOK2_NUC' },
   ];
 
   const columns1: Array<string> = ['1', '5', '7', '9', '4', '32', '43', '3232323232323', '4234'];

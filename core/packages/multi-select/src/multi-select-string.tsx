@@ -213,9 +213,10 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
     const arrElementNames: Array<string> =
       elementNamesSelected && elementNamesSelected.size > 0 ? Array.from(elementNamesSelected) : [];
 
-    const onSearchStringChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-      const element = evt.target;
-      setSearchText(element.value);
+    const onSearchStringChange = (evt: React.ChangeEvent<HTMLInputElement>, name: string, value: string) => {
+      if (value !== undefined) {
+        setSearchText(value);
+      }
     };
 
     const onSearchStringClean = () => {
