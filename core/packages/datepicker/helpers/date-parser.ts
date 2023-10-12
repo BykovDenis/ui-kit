@@ -3,9 +3,9 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import utc from 'dayjs/plugin/utc';
 
 import parseZone from '../helpers/dayjs-parse-zone';
-import IDateParser from "./idate-parser";
-import DatepickerMask from "../enums/datepicker-mask";
-import checkFormatDate from "./check-format-date";
+import IDateParser from './idate-parser';
+import DatepickerMask from '../enums/datepicker-mask';
+import checkFormatDate from './check-format-date';
 
 dayjs.extend(parseZone);
 dayjs.extend(utc);
@@ -36,7 +36,10 @@ class DateParser implements IDateParser {
         month = parseInt(datePartition[1], 10);
         year = parseInt(datePartition[2], 10);
       }
-      this.dateParsed = dayjs(`${year < 1000 ? `0${year}` : year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`, 'YYYY-MM-DD');
+      this.dateParsed = dayjs(
+        `${year < 1000 ? `0${year}` : year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`,
+        'YYYY-MM-DD'
+      );
       this.isValid = checkFormatDate(day, month, year);
     }
     const month: number = this.dateParsed.get('month') + 1;
@@ -56,7 +59,10 @@ class DateParser implements IDateParser {
   }
   changeDay(day: number) {
     const month: number = this.dateParsed.get('month') + 1;
-    this.dateParsed = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day ?? 7}`, 'YYYY-MM-DD');
+    this.dateParsed = dayjs(
+      `${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day ?? 7}`,
+      'YYYY-MM-DD'
+    );
   }
   changeMonth(month: number) {
     if (month === null) {
@@ -72,7 +78,7 @@ class DateParser implements IDateParser {
       this.dateParsed = this.dateParsed.year(year);
     }
   }
-  getDate(){
+  getDate() {
     return this.dateParsed;
   }
   formatToString(): string {
@@ -116,16 +122,22 @@ class DateParser implements IDateParser {
     const month: number = this.dateParsed.get('month') + 1;
     this.firstDayOnMonth = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-01`, 'YYYY-MM-DD');
   }
-	checkIsNotExistErrorDate() {
+  checkIsNotExistErrorDate() {
     return this.isValid;
-	}
+  }
   setToday() {
-    const date: Dayjs = dayjs();
-    this.dateParsed = date;
+    try {
+      const date: Dayjs = dayjs();
+      this.changeParsedDate(date?.format(this.mask));
+      return true;
+    } catch (error: any) {
+      console.log(`Set today is error ${error?.toString()}`);
+      return false;
+    }
   }
   getTodayPartitionedDate() {
     const date: Dayjs = dayjs();
-    return { year: date.year(), month: date.month(), day: date.date()};
+    return { year: date.year(), month: date.month(), day: date.date() };
   }
 }
 

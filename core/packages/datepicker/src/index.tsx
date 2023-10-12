@@ -30,18 +30,18 @@ import DatepickerMask from '../enums/datepicker-mask';
 import checkMinMaxDate from '../helpers/check-min-max-date';
 import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
 import IconButton from '../../icon-button/src';
-import CalendarIcon from "../../icons-components/24x24/calendar-icon";
+import CalendarIcon from '../../icons-components/24x24/calendar-icon';
 import FormControl from '../../form-control/src';
-import CrossIcon from "../../icons-components/24x24/cross-icon";
-import TPatritionDate from "../types/tpatrition-date";
-import Button from "../../button/src";
-import ChevronBtnLeftIcon from "./icons/chevron-btn-left-icon";
-import ChevronBtnRightIcon from "./icons/chevron-btn-right-icon";
+import CrossIcon from '../../icons-components/24x24/cross-icon';
+import TPatritionDate from '../types/tpatrition-date';
+import Button from '../../button/src';
+import ChevronBtnLeftIcon from './icons/chevron-btn-left-icon';
+import ChevronBtnRightIcon from './icons/chevron-btn-right-icon';
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
   const [dateParsed, setDateParsed] = useState<DateParser | null>(null);
-  const [ locale, setLocale ] = useState<string>(props.locale ?? Locale.Ru);
+  const [locale, setLocale] = useState<string>(props.locale ?? Locale.Ru);
 
   // >>> initial values
   const [months, setMonths] = useState<Array<IOption>>(locale === Locale.Ru ? monthsElementRu : monthsElementEn);
@@ -75,17 +75,18 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     ? new DateParser(props.maxDate, props.mask as DatepickerMask)
     : null;
 
-  useEffect(() => {
-    const dateParsed: DateParser = new DateParser(props.value, props.mask as DatepickerMask);
-    setDateParsed(dateParsed);
-    setActualMonthNumber(dateParsed.getNumberMonth());
-    setActualYearNumber(dateParsed?.getNumberYear());
-    setActiveDayNumber(dateParsed?.getNumberCurrentDateOfMonth());
-    setActiveMonthNumber(dateParsed?.getNumberMonth());
-    setActiveYearNumber(dateParsed?.getNumberYear());
-    setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
-    setCountDaysIsMonth(dateParsed?.getCountDaysInMonth());
-  }, []);
+  const syncDataParaemters = (date: DateParser) => {
+    setDateParsed(date);
+    setActualMonthNumber(date.getNumberMonth());
+    setActualYearNumber(date?.getNumberYear());
+    setActiveDayNumber(date?.getNumberCurrentDateOfMonth());
+    setActiveMonthNumber(date?.getNumberMonth());
+    setActiveYearNumber(date?.getNumberYear());
+    setNumberDayInWeek(date?.getNumberDayInWeek());
+    setCountDaysIsMonth(date?.getCountDaysInMonth());
+  };
+
+  // <<< initial values
 
   // >> titles
 
@@ -104,9 +105,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       : textMessageError
     : props?.textMessage;
 
-  // << titles
+  const setTodayTitle: string = locale === Locale.Ru ? 'Установить сегодня' : 'Set today';
 
-  // <<< initial values
+  // << titles
 
   // >>> events handlers
 
@@ -133,6 +134,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
         if (input?.blur) {
           input.blur();
         }
+        if (element?.dataset?.btnSetToday) {
+          onBtnCurrentDateSetClick();
+        }
       }
     }
   };
@@ -152,7 +156,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onInputClick = () => {
     setIsVisibleList(!isVisibleList);
-  }
+  };
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt.target;
@@ -241,22 +245,21 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   };
 
   const onBtnCurrentDateSetClick = () => {
-    dateParsed.setToday();
-    const valueParsed: string = dateParsed.formatToString();
-    if (valueParsed !== value) {
+    dateParsed?.setToday();
+    const valueParsed: string = dateParsed?.formatToString();
+    if (valueParsed) {
+      syncDataParaemters(dateParsed);
       setValue(valueParsed);
     }
-  }
+  };
 
   // <<< events handlers
 
   // >>> useEffects
 
   useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
-
-  useEffect(() => {
+    const dateParsed: DateParser = new DateParser(props.value, props.mask as DatepickerMask);
+    syncDataParaemters(dateParsed);
     document.addEventListener('mouseup', onMouseOutUp);
     document.addEventListener('keyup', onKeyUp);
     return () => {
@@ -264,6 +267,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       document.removeEventListener('keyup', onKeyUp);
     };
   }, []);
+
+  useEffect(() => {
+    setConsumer(globalThis.ReactThemeContextConsumer);
+  }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
     setLocale(props.locale);
@@ -411,15 +418,18 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             isNotUseDebounce={true}
             isNotClearable={true}
           />
-          <FormControl position="absolute" top="50%" right={0} width="initial" transform="translateY(-50%)">{
-            isNotEmptyString(value) ?
-              !props.isNotClearable && <IconButton variant="text" onClick={onInputDelete}>
-              <CrossIcon color={theme.palette.baseFontColor} />
-            </IconButton> :
-            <IconButton variant="text" onClick={onBtnCurrentDateSetClick}>
-              <CalendarIcon color={theme.palette.baseFontColor} />
-            </IconButton>
-          }
+          <FormControl position="absolute" top="50%" right={0} width="initial" transform="translateY(-50%)">
+            {isNotEmptyString(value) ? (
+              !props.isNotClearable && (
+                <IconButton variant="text" onClick={onInputDelete}>
+                  <CrossIcon color={theme.palette.baseFontColor} />
+                </IconButton>
+              )
+            ) : (
+              <IconButton variant="text" onClick={onBtnCurrentDateSetClick}>
+                <CalendarIcon color={theme.palette.baseFontColor} />
+              </IconButton>
+            )}
           </FormControl>
         </DatepickerHeader>
         {isVisibleList && (
@@ -430,7 +440,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             ref={dateRef}
           >
             <FormControl justifyContent="center" margin="0 0 3px 0">
-            <Button height={15} variant="text" textDecoration="underline" onClick={onBtnCurrentDateSetClick}>{locale === Locale.Ru ? 'Установить сегодня' : 'Set today'}</Button>
+              <Button height={15} variant="text" textDecoration="underline" data-btn-set-today="1">
+                {setTodayTitle}
+              </Button>
             </FormControl>
             <MonthsYearsRuleContainer>
               <DatepickerNavigateContainerStyled>
