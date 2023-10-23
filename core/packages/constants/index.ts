@@ -1,6 +1,7 @@
 export const DEFAULT_HEIGHT = 40;
 export const TEXT_ALIGN_RIGHT = 'right';
 export const TEXT_ALIGN_LEFT = 'left';
+export const TEXT_ALIGN_CENTER = 'center';
 export const TIMEOUT = 1000;
 export const TYPE_TEXT = 'text';
 export const FONT_WEIGHT_REGULAR = 400;

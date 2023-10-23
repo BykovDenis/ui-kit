@@ -6,7 +6,7 @@ interface IListItemButton {
   minHeight?: number | string;
   color?: string;
   hoverColor?: string;
-  textAlign?: string;
+  justifyContent?: string;
   backgroundColor?: string;
   hoverBackgroundColor?: string;
   activeBackgroundColor?: string;
@@ -17,36 +17,33 @@ interface IListItemButton {
   fontSize?: number | string;
 }
 
-const ListItemButton =
-  styled('button') <
-  IListItemButton >
-  `  
-  box-sizing: border-box;  
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;  
-  width: 100%;
-  color: ${(props: IListItemButton) => props.color};
-  font-family: inherit;
-  font-size: ${(props: IListItemButton) => getMeasureValue(props.fontSize, 'inherit')};
-  line-height: 1;  
-  text-align: ${(props: IListItemButton) => props.textAlign};
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: ${(props: IListItemButton) => props.backgroundColor || 'transparent'};
-  padding: ${(props: IListItemButton) => props.padding || 'initial'};
-  ${(props: IListItemButton) => props?.height ? `height: ${getMeasureValue(props.height)};` : ''}
-  ${(props: IListItemButton) => props?.minHeight ? `min-height: ${getMeasureValue(props.minHeight)};` : ''}
-  &:hover {
-    background-color: ${(props: IListItemButton) => props.hoverBackgroundColor};
-    color: ${(props: IListItemButton) => props.hoverColor};
-  }
-  &:active {
-    background-color: ${(props: IListItemButton) => props.activeBackgroundColor};
-    color: ${(props: IListItemButton) => props.hoverColor};
-  }
-  `;
+const ListItemButton = styled('button')<IListItemButton>`
+  ${(props: IListItemButton) => `
+    box-sizing: border-box;  
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: ${props.justifyContent};  
+    width: 100%;
+    color: ${props.color};
+    font-family: inherit;
+    font-size: ${getMeasureValue(props.fontSize, 'inherit')};
+    line-height: 1;  
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: ${props.backgroundColor || 'transparent'};
+    padding: ${props.padding || 'initial'};
+    ${props?.height ? `height: ${getMeasureValue(props.height)};` : ''}
+    ${props?.minHeight ? `min-height: ${getMeasureValue(props.minHeight)};` : ''}
+    &:hover {
+      background-color: ${props.hoverBackgroundColor};
+      color: ${props.hoverColor};
+    }
+    &:active {
+      background-color: ${props.activeBackgroundColor};
+      color: ${props.hoverColor};
+    }`}
+`;
 
 export default ListItemButton;
