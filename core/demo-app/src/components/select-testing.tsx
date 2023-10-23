@@ -5,7 +5,7 @@ import Table from '@sber-risks-ui/Table';
 import TableBody from '@sber-risks-ui/TableBody';
 import IOption from '@sber-risks-ui/Select/types/ioption';
 import { useState } from 'react';
-import Select from '@sber-risks-ui/Select';
+import Select from '../../../packages/select/src';
 
 const SelectTesting: React.FunctionComponent = () => {
   const [numberValue, setNumberValue] = useState<number | null>(4);
@@ -79,6 +79,7 @@ const SelectTesting: React.FunctionComponent = () => {
           <TableRow>
             <TableCell>
               <Select
+                label="Some label"
                 onChange={onInputChange}
                 onRemove={onInputRemove}
                 data-test="select-digits-1"
@@ -88,6 +89,62 @@ const SelectTesting: React.FunctionComponent = () => {
                 id="select-digits"
                 name="selectDigits"
                 isCreatable={true}
+              />
+            </TableCell>
+            <TableCell>The component Select contain complexity data</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Select
+                label="Some label 1"
+                onChange={onInputChange}
+                onRemove={onInputRemove}
+                data-test="select-digits-1"
+                activeElement={numberValue}
+                elements={numbersElement}
+                variant="outlined"
+                id="select-digits1"
+                name="selectDigits"
+                isCreatable={true}
+                textAlign="left"
+                isNotVisibleIndicator={true}
+              />
+            </TableCell>
+            <TableCell>The component Select contain complexity data</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Select
+                label="Some label"
+                onChange={onInputChange}
+                onRemove={onInputRemove}
+                data-test="select-digits-1"
+                activeElement={numberValue}
+                elements={numbersElement}
+                variant="outlined"
+                id="select-digits2"
+                name="selectDigits"
+                isCreatable={true}
+                textAlign="right"
+              />
+            </TableCell>
+            <TableCell>The component Select contain complexity data</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Select
+                label="Some label"
+                onChange={onInputChange}
+                onRemove={onInputRemove}
+                data-test="select-digits-1"
+                activeElement={numberValue}
+                elements={numbersElement}
+                variant="outlined"
+                id="select-digits2"
+                name="selectDigits"
+                isCreatable={true}
+                isNotClearable={true}
+                textAlign="right"
               />
             </TableCell>
             <TableCell>The component Select contain complexity data</TableCell>

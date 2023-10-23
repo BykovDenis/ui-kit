@@ -1,4 +1,5 @@
 import IPalette from './ipalette';
+import { TEXT_ALIGN_CENTER, TEXT_ALIGN_LEFT, TEXT_ALIGN_RIGHT } from '../../constants';
 
 interface ITheme {
   baseFontSize: number;
@@ -19,6 +20,11 @@ interface ITheme {
   mainOutlinedHoverColor: string;
   inactiveBackgroundColor: string;
   inactiveColor: string;
+  components?: {
+    Select?: {
+      textAlign?: TEXT_ALIGN_CENTER | TEXT_ALIGN_LEFT | TEXT_ALIGN_RIGHT;
+    };
+  };
 }
 
 export default ITheme;

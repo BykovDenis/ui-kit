@@ -172,3 +172,17 @@
 <ol>
     <li>Datepicker can be use onInput event</li>
 </ol>
+
+<h2>v 0.11.7</h2>
+
+<h3>Features</h3>
+<ol>
+    <li>Datepicker set today logic some improved</li>
+</ol>
+
+<h2>v 0.11.8</h2>
+
+<h3>Features</h3>
+<ol>
+    <li>Select. textAlign attribute added into the search line and list items </li>
+</ol>

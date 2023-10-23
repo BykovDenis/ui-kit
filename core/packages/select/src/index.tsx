@@ -16,9 +16,10 @@ import SelectListContainer from './select-list-container.styled';
 import getUniqueIndex from '../../helpers/get-unique-index';
 import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
+import calculationPaddingByTextAlign from './helpers/calculation-padding-by-text-align';
+import { TEXT_ALIGN_CENTER } from '../../constants';
 
 const DEFAULT_HEIGHT = 40;
-const TEXT_ALIGN = 'center';
 const TYPE_TEXT = 'text';
 const FONT_WEIGHT_REGULAR = 400;
 const INPUT_TAG: string = 'INPUT';
@@ -223,7 +224,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
   const onLabelClick = (evt: React.MouseEvent<HTMLLabelElement>) => {
     setIsVisibleList(true);
-  }
+  };
 
   const onInputFocus = () => {
     setIsFocus(true);
@@ -238,8 +239,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       }
     }
   };
-
-
 
   const isExistValue: boolean = label > '';
 
@@ -273,8 +272,20 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       ? theme.inactiveBackgroundColor
       : props?.backgroundColor || theme.mainBackgroundColor;
 
+    const textAlign: string = props?.textAlign || theme?.components?.Select?.textAlign || TEXT_ALIGN_CENTER;
+    const paddingCalculated: string = calculationPaddingByTextAlign(
+      textAlign,
+      props.isNotVisibleIndicator,
+      props?.isNotClearable
+    );
+
     return (
-      <SelectContainer id={props.id} width={props?.width} height={props?.height || DEFAULT_HEIGHT} margin={props.margin}>
+      <SelectContainer
+        id={props.id}
+        width={props?.width}
+        height={props?.height || DEFAULT_HEIGHT}
+        margin={props.margin}
+      >
         <SelectHeader height={props?.height || DEFAULT_HEIGHT}>
           {props?.label && (
             <LabelContainer isExistValue={isExistValue || isFocus} backgroundColor={backgroundColor}>
@@ -303,7 +314,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             onInput={onInput}
             variant={props?.variant}
             value={label}
-            textAlign={props?.textAlign || TEXT_ALIGN}
+            textAlign={textAlign}
             fontSize={fontSize}
             baseFontSize={props?.baseFontSize}
             fontFamily={props?.fontFamily || theme?.fontFamily}
@@ -316,7 +327,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             step={props?.step}
             min={props?.min}
             max={props?.max}
-            type={props?.type || TYPE_TEXT}
+            type={props?.type}
             fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
             isReadOnly={props?.isReadOnly}
             isNotUseDebounce={elements?.length < 500}
@@ -328,6 +339,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             focusColor={props?.focusColor}
             inputRef={inputRef}
             regExp={props?.regExp}
+            padding={paddingCalculated}
           />
         </SelectHeader>
         {isVisibleList && (
@@ -360,10 +372,11 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                       data-element-selected={`${props.id}-element${
                         element?.value && activeElement?.value && isSelectedElement ? '-selected' : ''
                       }`}
-                      textAlign={props?.textAlign || TEXT_ALIGN}
+                      textAlign={textAlign}
                       fontSize={fontSize}
                       height={props?.height || DEFAULT_HEIGHT}
                       fontFamily={props?.fontFamily || theme?.fontFamily}
+                      padding={paddingCalculated}
                       backgroundColor={
                         isNotEmptyString(element?.label) &&
                         isNotEmptyString(activeElement?.label) &&
@@ -382,10 +395,11 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                   key={`${props.id}-list-item-new`}
                   data-label={label}
                   data-value={label}
-                  textAlign={props?.textAlign || TEXT_ALIGN}
+                  textAlign={textAlign}
                   fontSize={fontSize}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   height={props?.height || DEFAULT_HEIGHT}
+                  padding={paddingCalculated}
                 >
                   Create new {label}
                 </ListItem>

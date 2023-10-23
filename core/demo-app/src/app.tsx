@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import getNewReactThemeContext from '@sber-risks-ui/styles/src';
-import { themes } from '@sber-risks-ui/styles/src/themes';
+import themeDark from './themes/theme-dark';
 import InputTesting from './components/input-testing';
 import TextFieldTesting from './components/text-field-testing';
 // import Select from '../../packages/select/src';
@@ -12,16 +12,16 @@ import DatepickerTesting from './components/datepicker-testing';
 import JsonToTable from './components/json-to-table';
 
 function App() {
-  const ReactThemeContext = getNewReactThemeContext(themes.light);
+  const ReactThemeContext = getNewReactThemeContext(themeDark);
   const context: any = useContext(ReactThemeContext);
 
   return (
     <>
-      <ReactThemeContext.Provider value={themes.light}>
+      <ReactThemeContext.Provider value={themeDark}>
         <div style={{ background: context.mainBackgroundColor, height: '100vh', margin: 0 }}>
           {/*<JsonToTable />*/}
-          <DatepickerTesting />
-          {/*<SelectTesting />*/}
+          {/*<DatepickerTesting />*/}
+          <SelectTesting />
           {/*<InputTesting />*/}
           {/*<TextFieldTesting />*/}
           {/*<GridContainerTesting />*/}
