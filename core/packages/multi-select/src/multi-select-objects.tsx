@@ -294,7 +294,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       elementNames?.filter(
         (columnName: { label: string; value: string }) =>
           !elementNamesSelected?.has(columnName.label) &&
-          (searchText?.length > 2 ? columnName?.label?.toUpperCase()?.indexOf(searchText?.toUpperCase()) > -1 : true)
+          (searchText?.length >= 1 ? columnName?.label?.toUpperCase()?.indexOf(searchText?.toUpperCase()) > -1 : true)
       ) ?? [];
 
     const fontSize: number | string = props.fontSize ?? theme.baseFontSize;
