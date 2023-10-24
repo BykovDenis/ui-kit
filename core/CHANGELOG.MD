@@ -178,11 +178,13 @@
 <h3>Features</h3>
 <ol>
     <li>Datepicker set today logic some improved</li>
+    <li>Select. textAlign attribute added into the search line and list items </li>
 </ol>
 
 <h2>v 0.11.8</h2>
 
 <h3>Features</h3>
 <ol>
-    <li>Select. textAlign attribute added into the search line and list items </li>
+   <li>Multiselect. Search input can be clean</li>
+   <li>Multiselect. Search doesn't clean after select</li>
 </ol>

@@ -111,7 +111,6 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
         if (props?.onChange) {
           props.onChange(optionsToArray(elementNamesSelectedModifiedSorted));
         }
-        setSearchText('');
         return elementNamesSelectedModifiedSorted;
       });
     }
@@ -223,6 +222,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
         props.onChange(optionsToArray(allElementSelected));
       }
       setExpanded(false);
+      setSearchText('');
     };
 
     const onAllElementsUnselected = () => {
