@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MultiSelect from '@sber-risks-ui/MultiSelect';
+import MultiSelect from '../../../packages/multi-select/src';
 import TMultiSelectOption from '@sber-risks-ui/MultiSelect/types/tmulti-select-option';
 import GridContainer from '@sber-risks-ui/GridContainer';
 import FlexContainer from '@sber-risks-ui/FormControl';

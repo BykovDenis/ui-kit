@@ -95,7 +95,6 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
             props.onChange(Array.from(elementNamesSelectedModifiedSorted));
           }
         }
-        setSearchText('');
         return elementNamesSelectedModifiedSorted;
       });
     }
@@ -194,6 +193,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
         props.onChange(Array.from(elementNamesSelectedParsed));
       }
       setExpanded(false);
+      setSearchText('');
     };
 
     const onAllElementsUnselected = () => {
@@ -267,7 +267,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
       elementNames?.filter(
         (columnName: string) =>
           !elementNamesSelected?.has(columnName) &&
-          (searchText?.length > 2 ? columnName?.toUpperCase()?.indexOf(searchText?.toUpperCase()) > -1 : true)
+          (searchText?.length >= 1 ? columnName?.toUpperCase()?.indexOf(searchText?.toUpperCase()) > -1 : true)
       ) ?? [];
 
     const fontSize: number | string = props.fontSize ?? theme.baseFontSize;
@@ -389,7 +389,6 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
               onRemove={onSearchStringClean}
               placeholder="Search elements"
               variant="outlined"
-              isNotClearable={true}
             />
             <ListContainerStyled
               backgroundColor={theme.mainBackgroundColor}

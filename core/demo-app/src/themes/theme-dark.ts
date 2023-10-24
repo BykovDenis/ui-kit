@@ -40,7 +40,7 @@ const theme: ITheme = {
   h6FontSize: 14,
   components: {
     Select: {
-      textAlign: 'right',
+      textAlign: 'center',
     },
   },
 };
