@@ -24,10 +24,10 @@ function App() {
           {/*<JsonToTable />*/}
           {/*<DatepickerTesting />*/}
           {/*<SelectTesting />*/}
-          {/*<InputTesting />*/}
+          <InputTesting />
           {/*<TextFieldTesting />*/}
           {/*<GridContainerTesting />*/}
-          <MultiSelectTesting />
+          {/*<MultiSelectTesting />*/}
         </div>
       </ReactThemeContext.Provider>
     </>
