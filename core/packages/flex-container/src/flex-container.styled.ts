@@ -2,6 +2,7 @@
 import IFormControlStyled from '../types/tflex-container-styled';
 import getMeasureValue from '../../helpers/get-measure-value';
 import isNotEmptyNumber from '../../helpers/is-not-empty-number';
+import isNotEmptyString from '../../helpers/is-not-empty-string';
 
 const FlexContainerStyled = styled.div<IFormControlStyled>`
   position: ${(props: IFormControlStyled) => (props?.position ? props?.position : 'relative')};
@@ -32,8 +33,9 @@ const FlexContainerStyled = styled.div<IFormControlStyled>`
   font-size: ${(props: IFormControlStyled) => getMeasureValue(props.fontSize, 'inherit')};
   ${(props: IFormControlStyled) => (props?.alignSelf ? `align-self: ${props.alignSelf};` : '')}
   ${(props: IFormControlStyled) => (isNotEmptyNumber(props?.zIndex) ? `z-index: ${props.zIndex};` : '')}
-  ${(props: IFormControlStyled) => props.maxWidth ? `max-width: ${getMeasureValue(props.maxWidth)};` : ''}
-  ${(props: IFormControlStyled) => props.minWidth ? `min-width: ${getMeasureValue(props.minWidth)};` : ''}
+  ${(props: IFormControlStyled) => (isNotEmptyString(props?.transform) ? `transform: ${props.transform};` : '')}
+  ${(props: IFormControlStyled) => (props.maxWidth ? `max-width: ${getMeasureValue(props.maxWidth)};` : '')}
+  ${(props: IFormControlStyled) => (props.minWidth ? `min-width: ${getMeasureValue(props.minWidth)};` : '')}
 `;
 
 export default FlexContainerStyled;
