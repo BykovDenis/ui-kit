@@ -16,7 +16,9 @@ import parseValue from './helpers/parse-value';
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(isNotEmptyString(props.value?.toString()) ? props.value : '');
-  const [isNotRunDebounce, setIsRunDebounce] = useState(props?.isNotRunDebounce !== undefined ? props.isNotRunDebounce : false);
+  const [isNotRunDebounce, setIsRunDebounce] = useState(
+    props?.isNotRunDebounce !== undefined ? props.isNotRunDebounce : false
+  );
   const [isFocus, setIsFocus] = useState(false);
   const [isChanging, setIsChanging] = useState(false);
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -38,12 +40,10 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           }
         }
       }
-      if (props.inputRef?.current?.value !== valueParsed) {
-        if (props.inputRef) {
-          props.inputRef.current.value = valueParsed?.toString();
-        } else {
-          inputRef.current.value = valueParsed;
-        }
+      if (props.inputRef && props.inputRef?.current?.value !== valueParsed) {
+        props.inputRef.current.value = valueParsed?.toString();
+      } else {
+        inputRef.current.value = valueParsed;
       }
       if (props?.onChange) {
         props.onChange(evt, props.name, valueParsed);
@@ -78,7 +78,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
         }
       }
     }
-    if (valueParsed !== inputValue) {
+    if (valueParsed !== inputValue && props.isNotRunDebounce) {
       let value = props.value;
       setInputValue(valueParsed);
     }
@@ -128,7 +128,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     } else {
       const cbEvent = () => {
         cb(evt);
-      }
+      };
       const executeDebounce = debounce(cbEvent, TIMEOUT);
       executeDebounce();
     }
@@ -163,7 +163,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     const inputValueParsed: string = inputValue?.toString();
     if (props?.isSeparateNumberFormat && isNotEmptyString(inputValueParsed)) {
       setInputValue(
-         parseFloat(inputValue as string)
+        parseFloat(inputValue as string)
           ?.toLocaleString('ru-RU')
           ?.replace(',', '.')
       );
