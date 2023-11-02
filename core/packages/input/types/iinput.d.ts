@@ -17,7 +17,6 @@ interface IInput extends TBaseStyles {
   hoverBorderColor?: string;
   hoverColor?: string;
   isNotClearable?: boolean;
-  isNotUseDebounce?: boolean;
   isReadOnly?: boolean;
   isSeparateNumberFormat?: boolean;
   mask?: RegExp;
