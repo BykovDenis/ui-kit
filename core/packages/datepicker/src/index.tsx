@@ -1,6 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, INPUT_TAG, TEXT_ALIGN_LEFT } from '../../constants';
+import {
+  DEFAULT_HEIGHT,
+  FONT_WEIGHT_REGULAR,
+  INPUT_TAG,
+  TAG_NAME_PATH,
+  TAG_NAME_SVG,
+  TEXT_ALIGN_LEFT,
+} from '../../constants';
 import Divider from '../../divider/src/divider.styled';
 import Locale from '../../enums/locale';
 import searchDomChildElement from '../../helpers/search-dom-child-element';
@@ -37,6 +44,7 @@ import TPatritionDate from '../types/tpatrition-date';
 import Button from '../../button/src';
 import ChevronBtnLeftIcon from './icons/chevron-btn-left-icon';
 import ChevronBtnRightIcon from './icons/chevron-btn-right-icon';
+import ButtonDelete from '../../customs-styled-components/button-delete.styled';
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -158,6 +166,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     setIsVisibleList(!isVisibleList);
   };
 
+  const onCalendarPanelToggle = (evt: any) => {
+    evt.stopPropagation();
+    setIsVisibleList((isVisibleList: boolean) => !isVisibleList);
+  };
+
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt.target;
     setIsVisibleList(false);
@@ -174,7 +187,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onDatesContainerClose = (isSearchResult: boolean, evt?: React.ChangeEvent<HTMLElement>) => {
     const element = evt.target;
-    if (element?.tagName !== INPUT_TAG) {
+    if (
+      element?.tagName !== INPUT_TAG &&
+      element?.dataset?.name !== 'datepicker-calendar-btn-close' &&
+      element?.tagName !== TAG_NAME_SVG &&
+      element?.tagName !== TAG_NAME_PATH
+    ) {
       if (!isSearchResult) {
         setIsFocus(false);
         setIsVisibleList(false);
@@ -369,6 +387,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const actualYearNumberString: string = actualYearNumber?.toString();
     const todayPartitioned: TPatritionDate = dateParsed?.getTodayPartitionedDate();
 
+    const hoverColor: string = props.disabled
+      ? theme.inactiveColor
+      : props?.error
+      ? theme?.palette?.secondary?.main
+      : theme?.palette.baseFontColor;
+
+    const focusColor: string = props?.error ? theme?.palette?.secondary?.main : theme.palette.primary.main;
+
     return (
       <DatepickerContainerStyled
         backgroundImage={props?.backgroundImage}
@@ -415,19 +441,34 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             isReadOnly={props?.isReadOnly}
             error={isError}
             inputRef={inputRef}
-            isNotUseDebounce={true}
+            isNotRunDebounce={true}
             isNotClearable={true}
           />
-          <FormControl position="absolute" top="50%" right={0} width="initial" transform="translateY(-50%)">
+          <FormControl position="absolute" top="48%" right={0} width="initial" transform="translateY(-50%)">
             {isNotEmptyString(value) ? (
               !props.isNotClearable && (
-                <IconButton variant="text" onClick={onInputDelete}>
+                <ButtonDelete
+                  data-test="btn-delete-value"
+                  onClick={onInputDelete}
+                  className="delete-button"
+                  hoverColor={hoverColor}
+                  focusColor={focusColor}
+                  disabled={props?.disabled}
+                >
                   <CrossIcon color={theme.palette.baseFontColor} />
-                </IconButton>
+                </ButtonDelete>
               )
             ) : (
-              <IconButton variant="text" onClick={onBtnCurrentDateSetClick}>
-                <CalendarIcon color={theme.palette.baseFontColor} />
+              <IconButton
+                data-name="datepicker-calendar-btn-close"
+                variant="text"
+                onClick={
+                  theme.components.Datepicker?.isIconCanBeTodaySelected || props?.isIconCanBeTodaySelected
+                    ? onBtnCurrentDateSetClick
+                    : onCalendarPanelToggle
+                }
+              >
+                <CalendarIcon color={theme.palette.baseFontColor} data-name="datepicker-calendar-btn-close" />
               </IconButton>
             )}
           </FormControl>
@@ -565,4 +606,4 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(Datepicker);
+export default Datepicker;

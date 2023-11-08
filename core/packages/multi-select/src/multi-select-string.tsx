@@ -457,4 +457,4 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(MultiSelectString);
+export default MultiSelectString;

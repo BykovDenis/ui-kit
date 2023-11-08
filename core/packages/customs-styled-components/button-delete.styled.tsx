@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import Variants from '../../enums/variants';
-import rgbToRgba from '../../helpers/rgb-to-rgba';
+import Variants from '../enums/variants';
+import rgbToRgba from '../helpers/rgb-to-rgba';
 
 interface IButtonDelete {
   variant?: Variants;
@@ -12,10 +12,7 @@ interface IButtonDelete {
   disabled?: boolean;
 }
 
-const ButtonDelete =
-  styled('button') <
-  IButtonDelete >
-  `
+const ButtonDelete = styled('button')<IButtonDelete>`
   position: absolute;
   right: 5px;
   top: 50%;

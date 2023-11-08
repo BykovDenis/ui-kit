@@ -118,4 +118,4 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(Typography);
+export default Typography;

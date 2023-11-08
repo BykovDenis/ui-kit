@@ -25,4 +25,4 @@ const Divider: React.FunctionComponent<TDivider> = (props: TDivider) => {
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(Divider);
+export default Divider;

@@ -20,10 +20,10 @@ import calculationPaddingByTextAlign from './helpers/calculation-padding-by-text
 import { TEXT_ALIGN_CENTER } from '../../constants';
 
 const DEFAULT_HEIGHT = 40;
-const TYPE_TEXT = 'text';
 const FONT_WEIGHT_REGULAR = 400;
 const INPUT_TAG: string = 'INPUT';
 const BUTTON_TAG: string = 'BUTTON';
+const IS_NOT_USE_DEBOUNCE_COUNT: number = 500;
 
 function getElementsParsed(elements: Array<IOption | string | number>, name: string): Array<IOption> {
   return elements?.map((element: string | number | IOption) => {
@@ -330,7 +330,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             type={props?.type}
             fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
             isReadOnly={props?.isReadOnly}
-            isNotUseDebounce={elements?.length < 500}
+            isNotRunDebounce={elements?.length < IS_NOT_USE_DEBOUNCE_COUNT}
             backgroundColor={backgroundColor}
             color={props?.color}
             isNotClearable={props?.isNotClearable}

@@ -8,7 +8,7 @@ import DayOfMonth from './day-of-month.styled';
 import DaysOfMonthStyled from './days-of-month.styled';
 import getUniqueIndex from '../../helpers/get-unique-index';
 import DatepickerMask from '../enums/datepicker-mask';
-import TPatritionDate from "../types/tpatrition-date";
+import TPatritionDate from '../types/tpatrition-date';
 
 interface IDaysOfMonth {
   activeDayNumber: number;
@@ -57,8 +57,8 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
 
         const actualDateValue =
           props.mask === DatepickerMask.YYYYMMDD
-            ? `${props.actualYearNumber}-${props.actualMonthNumber}-${dayValueParsed}`
-            : `${dayValueParsed}.${props.actualMonthNumber}.${props.actualYearNumber}`;
+            ? `${props.actualYearNumber}-${props.actualMonthNumber + 1}-${dayValueParsed}`
+            : `${dayValueParsed}.${props.actualMonthNumber + 1}.${props.actualYearNumber}`;
 
         const actualDateParsed: IDateParser = new DateParser(actualDateValue, props.mask);
 
@@ -84,8 +84,6 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
             activeColor={props.backgroundColor}
             isToday={isToday}
             isSameDate={isSameDate}
-            // backgroundColor={isSameDate ? props.color : props.backgroundColor}
-            // color={isSameDate ? props.backgroundColor : props.color}
             color={props.color}
             backgroundColor={props.backgroundColor}
             fontSize={props.fontSize}
@@ -104,4 +102,4 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
   );
 };
 
-export default React.memo(DaysOfMonth);
+export default DaysOfMonth;

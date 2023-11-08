@@ -26,6 +26,7 @@ interface IFormControlStyled {
   bottom?: number | string;
   fontSize?: number | string;
   alignSelf?: string;
+  fontStyle?: string;
   zIndex?: number;
   transform?: string;
 }

@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, TEXT_ALIGN_RIGHT, TIMEOUT, TYPE_TEXT } from '../../constants';
 import ITheme from '../../styles/types/itheme';
 import IInput from '../types/iinput';
-import ButtonDelete from './button-delete.styled';
 import CrossIcon from '../../icons-components/24x24/cross-icon';
 import InputStyled from './input.styled';
 import InputContainer from './input-container.styled';
@@ -13,6 +12,7 @@ import InputUnderline from './input-underline.styled';
 import TextMessage from './text-message.styled';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import parseValue from './helpers/parse-value';
+import ButtonDelete from '../../customs-styled-components/button-delete.styled';
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(isNotEmptyString(props.value?.toString()) ? props.value : '');
@@ -291,4 +291,4 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(Input);
+export default Input;

@@ -37,4 +37,4 @@ const FormControl: React.FunctionComponent<IFormControl> = (props: IFormControl)
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(FormControl);
+export default FormControl;

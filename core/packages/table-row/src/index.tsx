@@ -31,4 +31,4 @@ const TableRow: React.FunctionComponent<TTableRow> = (props: TTableRow) => {
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(TableRow);
+export default TableRow;

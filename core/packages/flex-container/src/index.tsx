@@ -37,4 +37,4 @@ const FlexContainer: React.FunctionComponent<TFlexContainer> = (props: TFlexCont
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(FlexContainer);
+export default FlexContainer;

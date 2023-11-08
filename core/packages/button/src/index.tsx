@@ -45,4 +45,4 @@ const Button: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TBut
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(Button);
+export default Button;

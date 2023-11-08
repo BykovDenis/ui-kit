@@ -22,9 +22,9 @@ function App() {
         <div style={{ background: context.mainBackgroundColor, height: '100vh', margin: 0 }}>
           {/*<ReactContext />*/}
           {/*<JsonToTable />*/}
-          {/*<DatepickerTesting />*/}
-          {/*<SelectTesting />*/}
-          <InputTesting />
+          <DatepickerTesting />
+          <SelectTesting />
+          {/*<InputTesting />*/}
           {/*<TextFieldTesting />*/}
           {/*<GridContainerTesting />*/}
           {/*<MultiSelectTesting />*/}

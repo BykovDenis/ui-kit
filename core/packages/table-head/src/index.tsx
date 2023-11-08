@@ -24,4 +24,4 @@ const TableHead: React.FunctionComponent<TTableHead> = (props: TTableHead) => {
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(TableHead);
+export default TableHead;

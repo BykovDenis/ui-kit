@@ -66,4 +66,4 @@ const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: T
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(StickyBottomPanel);
+export default StickyBottomPanel;

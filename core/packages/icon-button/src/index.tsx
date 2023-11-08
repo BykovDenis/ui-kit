@@ -55,4 +55,4 @@ const IconButton: React.FunctionComponent<PropsWithChildren<any>> = (props: any)
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(IconButton);
+export default IconButton;

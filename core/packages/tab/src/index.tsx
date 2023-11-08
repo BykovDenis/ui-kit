@@ -57,4 +57,4 @@ const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(Tab);
+export default Tab;

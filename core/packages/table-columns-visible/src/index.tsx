@@ -28,8 +28,9 @@ const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColum
     if (elementsFromLocaleStorage.size > 0) {
       setColumnNamesSelected(elementsFromLocaleStorage);
     } else {
-      const columns: Array<string> = props?.columnNamesDefaultSelected?.length > 0 ? props.columnNamesDefaultSelected : props.columnNames;
-      const columnNamesSelectedText: string =  columns?.join(',');
+      const columns: Array<string> =
+        props?.columnNamesDefaultSelected?.length > 0 ? props.columnNamesDefaultSelected : props.columnNames;
+      const columnNamesSelectedText: string = columns?.join(',');
       localStorage.setItem(props.name, columnNamesSelectedText);
       setColumnNamesSelected(new Set(columns));
     }
@@ -145,4 +146,4 @@ TableColumnsVisible.defaultProps = {
   name: new Date()?.valueOf()?.toString(),
 };
 
-export default React.memo(TableColumnsVisible);
+export default TableColumnsVisible;
