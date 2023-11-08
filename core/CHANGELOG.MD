@@ -131,7 +131,6 @@
 
 <h2>v 0.11.2</h2>
 
-<h3>BugFix</h3>
 <h3>Features</h3>
 <ol>
     <li>GridContainer added into the library</li>
@@ -140,7 +139,6 @@
 <h2>v 0.11.3</h2>
 
 <h3>BugFix</h3>
-<h3>Features</h3>
 <ol>
     <li>The multi select some UX improved</li>
     <li>The multi select some UX variant added atlas</li>
@@ -188,4 +186,10 @@
    <li>Multiselect. Search input can be clean</li>
    <li>Multiselect. Search doesn't clean after select</li>
    <li>FlexContainer. The property transform added</li>
+</ol>
+
+<h3>BugFix</h3>
+<ol>
+    <li>Datepicker. minDate and maxDate fixed </li>
+    <li>Select. Filter fixed for the large sequence </li>
 </ol>
