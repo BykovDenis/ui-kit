@@ -43,7 +43,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
       if (props.inputRef && props.inputRef?.current?.value !== valueParsed) {
         props.inputRef.current.value = valueParsed?.toString();
       } else {
-        inputRef.current.value = valueParsed;
+        if (inputRef?.current) {
+          inputRef.current.value = valueParsed;
+        }
       }
       if (props?.onChange) {
         props.onChange(evt, props.name, valueParsed);
