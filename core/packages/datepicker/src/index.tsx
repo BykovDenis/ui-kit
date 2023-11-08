@@ -463,7 +463,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 data-name="datepicker-calendar-btn-close"
                 variant="text"
                 onClick={
-                  theme.components.Datepicker?.isIconCanBeTodaySelected || props?.isIconCanBeTodaySelected
+                  theme.components?.Datepicker?.isIconCanBeTodaySelected || props?.isIconCanBeTodaySelected
                     ? onBtnCurrentDateSetClick
                     : onCalendarPanelToggle
                 }
