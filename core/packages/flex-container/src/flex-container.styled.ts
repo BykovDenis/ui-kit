@@ -36,6 +36,7 @@ const FlexContainerStyled = styled.div<IFormControlStyled>`
   ${(props: IFormControlStyled) => (isNotEmptyString(props?.transform) ? `transform: ${props.transform};` : '')}
   ${(props: IFormControlStyled) => (props.maxWidth ? `max-width: ${getMeasureValue(props.maxWidth)};` : '')}
   ${(props: IFormControlStyled) => (props.minWidth ? `min-width: ${getMeasureValue(props.minWidth)};` : '')}
+  ${(props: IFormControlStyled) => (props?.fontStyle ? `font-style: ${props.fontStyle};` : '')}
 `;
 
 export default FlexContainerStyled;

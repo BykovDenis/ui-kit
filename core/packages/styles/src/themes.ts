@@ -39,6 +39,14 @@ export const themes: IThemes = {
     h4FontSize: 18,
     h5FontSize: 16,
     h6FontSize: 14,
+    components: {
+      Select: {
+        textAlign: 'center',
+      },
+      Datepicker: {
+        isIconCanBeTodaySelected: false,
+      },
+    },
   },
   dark: {
     palette: {
@@ -78,5 +86,13 @@ export const themes: IThemes = {
     h4FontSize: 18,
     h5FontSize: 16,
     h6FontSize: 14,
+    components: {
+      Select: {
+        textAlign: 'center',
+      },
+      Datepicker: {
+        isIconCanBeTodaySelected: false,
+      },
+    },
   },
 };

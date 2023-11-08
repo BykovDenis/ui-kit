@@ -42,6 +42,9 @@ const theme: ITheme = {
     Select: {
       textAlign: 'center',
     },
+    Datepicker: {
+      isIconCanBeTodaySelected: true,
+    },
   },
 };
 

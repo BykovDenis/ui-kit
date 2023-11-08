@@ -53,4 +53,4 @@ const Label: React.FunctionComponent<TLabel> = (props: TLabel) => {
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(Label);
+export default Label;

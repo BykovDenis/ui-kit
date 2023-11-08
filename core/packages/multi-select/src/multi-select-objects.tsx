@@ -502,4 +502,4 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(MultiSelectObjects);
+export default MultiSelectObjects;

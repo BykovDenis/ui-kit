@@ -34,4 +34,4 @@ const TableCell: React.FunctionComponent<TTableCell> = (props: TTableCell) => {
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(TableCell);
+export default TableCell;

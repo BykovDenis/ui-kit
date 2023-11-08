@@ -61,11 +61,7 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
         {props.children}
       </ListDivStyled>
     ) : (
-      <ListStyled
-        {...props}
-        id={props.id}
-        fontFamily={theme?.fontFamily}
-      >
+      <ListStyled {...props} id={props.id} fontFamily={theme?.fontFamily}>
         {props.children}
       </ListStyled>
     );
@@ -79,4 +75,4 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(List);
+export default List;

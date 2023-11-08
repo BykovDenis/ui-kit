@@ -11,13 +11,7 @@ const TableBody: React.FunctionComponent<TTableBody> = (props: TTableBody) => {
   }, [globalThis.ReactThemeContextConsumer]);
 
   const componentThemed: any = () => {
-    return (
-      <TableBodyStyled
-        className={props?.className}
-      >
-        {props.children}
-      </TableBodyStyled>
-    );
+    return <TableBodyStyled className={props?.className}>{props.children}</TableBodyStyled>;
   };
 
   if (!Consumer) {
@@ -28,4 +22,4 @@ const TableBody: React.FunctionComponent<TTableBody> = (props: TTableBody) => {
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(TableBody);
+export default TableBody;

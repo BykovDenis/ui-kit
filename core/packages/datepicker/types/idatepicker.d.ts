@@ -1,6 +1,6 @@
 import IInput from '../../input/types/iinput';
 import ILabel from '../../label/types/tlabel';
-import TBaseStyles from "../../types/tbase-styles";
+import TBaseStyles from '../../types/tbase-styles';
 
 export default interface IDatepicker extends IInput, ILabel, TBaseStyles {
   baseFontSize?: number;
@@ -23,10 +23,8 @@ export default interface IDatepicker extends IInput, ILabel, TBaseStyles {
   value?: string;
   variant?: 'contained' | 'outlined' | 'text';
   mask?: 'dd.MM.yyyy' | 'yyyy-MM-dd' | undefined;
-  isErrorMessageDisplayed?: boolean,
+  isErrorMessageDisplayed?: boolean;
   setToday?: () => void;
   isOnInputChangeUsed?: boolean;
+  isIconCanBeTodaySelected?: boolean;
 }
-
-
-

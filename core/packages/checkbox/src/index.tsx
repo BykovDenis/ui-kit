@@ -52,4 +52,4 @@ const Checkbox: React.FunctionComponent<ICheckbox> = (props: ICheckbox) => {
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(Checkbox);
+export default Checkbox;

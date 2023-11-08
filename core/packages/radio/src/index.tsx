@@ -51,4 +51,4 @@ const Radio: React.FunctionComponent<IRadio> = (props: any) => {
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(Radio);
+export default Radio;

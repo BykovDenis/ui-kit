@@ -77,4 +77,4 @@ LabelInteractive.defaultProps = {
   isInteractive: true,
 };
 
-export default React.memo(LabelInteractive);
+export default LabelInteractive;

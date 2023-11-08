@@ -102,4 +102,4 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
   return <Consumer>{componentThemed}</Consumer>;
 };
 
-export default React.memo(Switcher);
+export default Switcher;
