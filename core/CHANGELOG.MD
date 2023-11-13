@@ -186,6 +186,7 @@
    <li>Multiselect. Search input can be clean</li>
    <li>Multiselect. Search doesn't clean after select</li>
    <li>FlexContainer. The property transform added</li>
+   <li>Datepicker. Dates container can be align left or right </li>
 </ol>
 
 <h3>BugFix</h3>

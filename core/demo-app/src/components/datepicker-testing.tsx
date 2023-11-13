@@ -88,6 +88,7 @@ const DatepickerTesting = () => {
           id="datepicker4"
           name="datepicker2"
           height={60}
+          width={110}
         />
       </FlexContainer>
     </FlexContainer>
