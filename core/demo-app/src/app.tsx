@@ -23,7 +23,7 @@ function App() {
           {/*<ReactContext />*/}
           {/*<JsonToTable />*/}
           <DatepickerTesting />
-          <SelectTesting />
+          {/*<SelectTesting />*/}
           {/*<InputTesting />*/}
           {/*<TextFieldTesting />*/}
           {/*<GridContainerTesting />*/}

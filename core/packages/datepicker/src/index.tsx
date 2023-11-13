@@ -475,10 +475,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
         </DatepickerHeader>
         {isVisibleList && (
           <DatepickerDatesContainer
+            outlineColor={theme.mainOutlinedColor}
             backgroundColor={theme.mainBackgroundColor}
             onMouseUp={onMouseOutUp}
             onKeyUp={onKeyUp}
             ref={dateRef}
+            datesContainerAlign={props.datesContainerAlign || 'right'}
           >
             <FormControl justifyContent="center" margin="0 0 3px 0">
               <Button height={15} variant="text" textDecoration="underline" data-btn-set-today="1">

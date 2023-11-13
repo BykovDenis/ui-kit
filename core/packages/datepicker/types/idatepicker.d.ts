@@ -27,4 +27,5 @@ export default interface IDatepicker extends IInput, ILabel, TBaseStyles {
   setToday?: () => void;
   isOnInputChangeUsed?: boolean;
   isIconCanBeTodaySelected?: boolean;
+  datesContainerAlign?: 'left' | 'right';
 }

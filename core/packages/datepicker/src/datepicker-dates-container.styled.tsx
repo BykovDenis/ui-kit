@@ -1,31 +1,30 @@
 import styled from 'styled-components';
 
-import Idatepicker from '../types/idatepicker';
 import React from 'react';
 
-interface IDatepickerDatesContainer {
+type TDatepickerDatesContainer = {
   ref?: any;
   onMouseUp: (evt: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onKeyUp: (evt: React.KeyboardEvent<HTMLElement>) => void;
   backgroundColor?: string;
-}
+  outlineColor: string;
+  datesContainerAlign?: 'left' | 'right';
+};
 
-const DatepickerDatesContainer =
-  styled('div') <
-  IDatepickerDatesContainer >
-  `
-  top: 100%;
-  background-color: ${(props: IDatepickerDatesContainer) => props.backgroundColor};
-  border-radius: 4px;
-  box-shadow: rgb(0 0 0 / 10%) 0px 0px 0px 1px, rgb(0 0 0 / 10%) 0px 4px 11px;
+const DatepickerDatesContainer = styled('div')<TDatepickerDatesContainer>`
+  position: absolute;
   margin-bottom: 5px;
   margin-top: -3px;
-  position: absolute;
+  top: 100%;
+  background-color: ${(props: TDatepickerDatesContainer) => props.backgroundColor};
+  border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 10%) 0 0 0 1px, rgb(0 0 0 / 10%) 0 4px 11px;
   width: 250px;
   height: 305px;
   z-index: 10001;
   box-sizing: border-box;
-  border: 1px solid #666666; 
+  border: 1px solid ${(props: TDatepickerDatesContainer) => props.outlineColor};
+  ${(props: TDatepickerDatesContainer) => (props.datesContainerAlign === 'right' ? 'right: 0;' : 'left: 0;')}
 `;
 
 export default DatepickerDatesContainer;
