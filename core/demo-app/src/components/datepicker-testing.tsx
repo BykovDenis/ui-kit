@@ -3,8 +3,8 @@ import FlexContainer from '../../../packages/flex-container/src';
 import { useContext, useState } from 'react';
 
 const DatepickerTesting = () => {
-  const [date, setDate] = useState('2023-10-25');
-  const [date1, setDate1] = useState('25.10.2023');
+  const [date, setDate] = useState('2023-11-20');
+  const [date1, setDate1] = useState('25.11.2023');
   const [date2, setDate2] = useState<string>('2023-10-25');
   const [date3, setDate3] = useState('25.10.2023');
 
