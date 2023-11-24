@@ -223,9 +223,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onDayChange = (day: number): void => {
     dateParsed.changeParsedDate(value);
-    dateParsed.changeDay(day);
-    dateParsed.changeMonth(actualMonthNumber - 1);
     dateParsed.changeYear(actualYearNumber);
+    dateParsed.changeMonth(actualMonthNumber - 1);
+    dateParsed.changeDay(day);
+
     const valueParsed: string = dateParsed.formatToString();
     if (valueParsed !== value) {
       setValue(valueParsed);
