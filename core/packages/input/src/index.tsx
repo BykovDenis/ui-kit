@@ -80,7 +80,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
         }
       }
     }
-    if (valueParsed !== inputValue && props.isNotRunDebounce) {
+    if (valueParsed !== inputValue) {
       let value = props.value;
       setInputValue(valueParsed);
     }
