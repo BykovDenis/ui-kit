@@ -20,14 +20,14 @@ function App() {
     <>
       <ReactThemeContext.Provider value={themeDark}>
         <div style={{ background: context.mainBackgroundColor, height: '100vh', margin: 0 }}>
-          {/*<ReactContext />*/}
+          <ReactContext />
           {/*<JsonToTable />*/}
           <DatepickerTesting />
-          {/*<SelectTesting />*/}
-          {/*<InputTesting />*/}
-          {/*<TextFieldTesting />*/}
+          <SelectTesting />
+          <InputTesting />
+          <TextFieldTesting />
           {/*<GridContainerTesting />*/}
-          {/*<MultiSelectTesting />*/}
+          <MultiSelectTesting />
         </div>
       </ReactThemeContext.Provider>
     </>
