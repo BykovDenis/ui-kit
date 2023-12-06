@@ -37,6 +37,7 @@ const FormControlStyled = styled.div<IFormControlStyled>`
   ${(props: IFormControlStyled) => (props?.maxWidth ? `max-width: ${getMeasureValue(props.maxWidth)};` : '')}
   ${(props: IFormControlStyled) => (props?.minWidth ? `min-width: ${getMeasureValue(props.minWidth)};` : '')}
   ${(props: IFormControlStyled) => (props?.fontStyle ? `font-style: ${props.fontStyle};` : '')}
+  ${(props: IFormControlStyled) => (props?.gap ? `gap: ${getMeasureValue(props.gap)};` : '')}
 `;
 
 export default FormControlStyled;

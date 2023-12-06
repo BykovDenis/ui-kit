@@ -194,3 +194,10 @@
     <li>Datepicker. minDate and maxDate fixed </li>
     <li>Select. Filter fixed for the large sequence </li>
 </ol>
+
+<h2>v 0.11.9</h2>
+
+<h3>Features</h3>
+<ol>
+   <li>FlexContainer, FormControl. GAP property added into the components</li>
+</ol>

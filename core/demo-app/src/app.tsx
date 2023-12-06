@@ -11,6 +11,7 @@ import MultiSelectTesting from './components/multi-select-testing';
 import DatepickerTesting from './components/datepicker-testing';
 import JsonToTable from './components/json-to-table';
 import ReactContext from './components/react-context';
+import FlexContainerTesting from './components/flex-container-testing';
 
 function App() {
   const ReactThemeContext = getNewReactThemeContext(themeDark);
@@ -25,9 +26,10 @@ function App() {
           {/*<DatepickerTesting />*/}
           {/*<SelectTesting />*/}
           {/*<InputTesting />*/}
-          <TextFieldTesting />
+          {/*<TextFieldTesting />*/}
           {/*<GridContainerTesting />*/}
           {/*<MultiSelectTesting />*/}
+          <FlexContainerTesting />
         </div>
       </ReactThemeContext.Provider>
     </>
