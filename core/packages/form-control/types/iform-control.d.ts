@@ -11,6 +11,7 @@ interface IFormControl extends IFormControlStyled {
   left?: number | string;
   top?: number | string;
   bottom?: number | string;
+  gap?: number | string;
 }
 
 export default IFormControl;

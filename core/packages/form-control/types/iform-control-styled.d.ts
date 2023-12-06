@@ -29,6 +29,7 @@ interface IFormControlStyled {
   fontStyle?: string;
   zIndex?: number;
   transform?: string;
+  gap?: number | string;
 }
 
 export default IFormControlStyled;
