@@ -63,6 +63,7 @@ const DatepickerTesting = () => {
           isIconCanBeTodaySelected={true}
           minDate="15.10.2023"
           maxDate="15.11.2023"
+          width="98%"
         />
       </FlexContainer>
       <FlexContainer width={250} margin="20px 10px">

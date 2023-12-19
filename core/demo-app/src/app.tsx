@@ -23,13 +23,13 @@ function App() {
         <div style={{ background: context.mainBackgroundColor, height: '100vh', margin: 0 }}>
           {/*<ReactContext />*/}
           {/*<JsonToTable />*/}
-          {/*<DatepickerTesting />*/}
+          <DatepickerTesting />
           {/*<SelectTesting />*/}
           {/*<InputTesting />*/}
           {/*<TextFieldTesting />*/}
           {/*<GridContainerTesting />*/}
           {/*<MultiSelectTesting />*/}
-          <FlexContainerTesting />
+          {/*<FlexContainerTesting />*/}
         </div>
       </ReactThemeContext.Provider>
     </>
