@@ -4,5 +4,7 @@
     "packages/*"
   ],
   "npmClient": "npm",
-  "useWorkspaces": true
+  "workspaces": [
+    "packages/*"
+  ]
 }
