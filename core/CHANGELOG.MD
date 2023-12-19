@@ -199,5 +199,6 @@
 
 <h3>Features</h3>
 <ol>
-   <li>FlexContainer, FormControl. GAP property added into the components</li>
+   <li> FlexContainer, FormControl. GAP property added into the components </li>
+   <li> Datepicker. Width attribute can be type of string or number </li>
 </ol>
