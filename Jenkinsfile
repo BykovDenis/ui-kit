@@ -34,11 +34,7 @@ def gridContainerPath = './core/packages/grid-container'
 
 
 pipeline {
-    agent {
-        node {
-            agent { label 'rhel8' }
-        }
-    }
+    agent { label 'rhel8' }
 
     environment {
         PROJECT_NAME = 'Risks react UI Kit'
