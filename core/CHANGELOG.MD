@@ -201,4 +201,6 @@
 <ol>
    <li> FlexContainer, FormControl. GAP property added into the components </li>
    <li> Datepicker. Width attribute can be type of string or number </li>
+   <li> Datepicker. Invalid data can be returned with flag isValid </li>
+   <li> Datepicker. The Button click setCurrentDate to disable list days of month </li>
 </ol>

@@ -11,7 +11,7 @@ type TDatepickerDatesContainer = {
   datesContainerAlign?: 'left' | 'right';
 };
 
-const DatepickerDatesContainer = styled('div')<TDatepickerDatesContainer>`
+const DatepickerDatesContainer = styled.div.attrs({ 'data-days-on-month': true })<TDatepickerDatesContainer>`
   position: absolute;
   margin-bottom: 5px;
   margin-top: -3px;
