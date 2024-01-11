@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import getNewReactThemeContext from '@sber-risks-ui/styles/src';
+import getNewReactThemeContext from '../../packages/styles/src';
 import themeDark from './themes/theme-dark';
 import InputTesting from './components/input-testing';
 import TextFieldTesting from './components/text-field-testing';

@@ -144,6 +144,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
         }
         if (element?.dataset?.btnSetToday) {
           onBtnCurrentDateSetClick();
+          setIsVisibleList(false);
         }
       }
     }
@@ -190,6 +191,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     if (
       element?.tagName !== INPUT_TAG &&
       element?.dataset?.name !== 'datepicker-calendar-btn-close' &&
+      element?.dataset?.daysOnMonth !== 'true' &&
       element?.tagName !== TAG_NAME_SVG &&
       element?.tagName !== TAG_NAME_PATH
     ) {
@@ -311,6 +313,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           if (props?.onChange && props.value !== value) {
             props.onChange(props.name, value, true);
           }
+        } else {
+          props.onChange(props.name, value, false);
         }
       } else if (dateParsed) {
         dateParsed.changeParsedDate(value);

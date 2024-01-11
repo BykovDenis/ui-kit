@@ -13,8 +13,9 @@ const DatepickerTesting = () => {
     setDate(value);
   };
 
-  const onDate1Change = (name: string, value: string) => {
+  const onDate1Change = (name: string, value: string, isValid: boolean) => {
     setDate1(value);
+    console.log(value, isValid);
   };
 
   const onDateRemove = (name: string) => {
@@ -32,22 +33,22 @@ const DatepickerTesting = () => {
 
   return (
     <FlexContainer justifyContent="flex-start">
-      <FlexContainer width={250} margin="20px 10px">
-        <Datepicker
-          isErrorMessageDisplayed={false}
-          isOnInputChangeUsed={true}
-          isNotClearable={true}
-          value={date}
-          onChange={onDateChange}
-          mask="yyyy-MM-dd"
-          variant="outlined"
-          label="Datepicker1 EN"
-          id="datepicker1"
-          name="datepicker1"
-          locale="EN"
-          height={60}
-        />
-      </FlexContainer>
+      {/*<FlexContainer width={250} margin="20px 10px">*/}
+      {/*  <Datepicker*/}
+      {/*    isErrorMessageDisplayed={false}*/}
+      {/*    isOnInputChangeUsed={true}*/}
+      {/*    isNotClearable={true}*/}
+      {/*    value={date}*/}
+      {/*    onChange={onDateChange}*/}
+      {/*    mask="yyyy-MM-dd"*/}
+      {/*    variant="outlined"*/}
+      {/*    label="Datepicker1 EN"*/}
+      {/*    id="datepicker1"*/}
+      {/*    name="datepicker1"*/}
+      {/*    locale="EN"*/}
+      {/*    height={60}*/}
+      {/*  />*/}
+      {/*</FlexContainer>*/}
       <FlexContainer width={250} margin="20px 10px">
         <Datepicker
           value={date1}
@@ -62,36 +63,36 @@ const DatepickerTesting = () => {
           height={60}
           isIconCanBeTodaySelected={true}
           minDate="15.10.2023"
-          maxDate="15.11.2023"
+          maxDate="15.11.2024"
           width="98%"
         />
       </FlexContainer>
-      <FlexContainer width={250} margin="20px 10px">
-        <Datepicker
-          value={date2}
-          onChange={onDate2Change}
-          mask="yyyy-MM-dd"
-          variant="outlined"
-          label="Datepicker1 RU"
-          id="datepicker3"
-          name="datepicker1"
-          locale="RU"
-          height={60}
-        />
-      </FlexContainer>
-      <FlexContainer width={250} margin="20px 10px">
-        <Datepicker
-          value={date3}
-          onChange={onDate3Change}
-          mask="dd.MM.yyyy"
-          variant="outlined"
-          label="Datepicker2 locale undefined"
-          id="datepicker4"
-          name="datepicker2"
-          height={60}
-          width={110}
-        />
-      </FlexContainer>
+      {/*<FlexContainer width={250} margin="20px 10px">*/}
+      {/*  <Datepicker*/}
+      {/*    value={date2}*/}
+      {/*    onChange={onDate2Change}*/}
+      {/*    mask="yyyy-MM-dd"*/}
+      {/*    variant="outlined"*/}
+      {/*    label="Datepicker1 RU"*/}
+      {/*    id="datepicker3"*/}
+      {/*    name="datepicker1"*/}
+      {/*    locale="RU"*/}
+      {/*    height={60}*/}
+      {/*  />*/}
+      {/*</FlexContainer>*/}
+      {/*<FlexContainer width={250} margin="20px 10px">*/}
+      {/*  <Datepicker*/}
+      {/*    value={date3}*/}
+      {/*    onChange={onDate3Change}*/}
+      {/*    mask="dd.MM.yyyy"*/}
+      {/*    variant="outlined"*/}
+      {/*    label="Datepicker2 locale undefined"*/}
+      {/*    id="datepicker4"*/}
+      {/*    name="datepicker2"*/}
+      {/*    height={60}*/}
+      {/*    width={110}*/}
+      {/*  />*/}
+      {/*</FlexContainer>*/}
     </FlexContainer>
   );
 };
