@@ -1,4 +1,5 @@
 ﻿import TestRenderer from 'react-test-renderer';
+import React from 'react';
 
 import CrossIcon from './index';
 

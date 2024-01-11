@@ -67,7 +67,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
   // const elements: Array<number> = elementsEmpty.map((element: number, index: number) => `${index}`);
 
   const onInputChange = (option: IOption) => {
-    setValue(option);
+    setValue(option.value.toString());
     console.log(option.value?.toString());
   };
 
@@ -758,7 +758,7 @@ const ThemeLightTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
   ];
 
   const onInputChange = (option: IOption) => {
-    setValue(option);
+    setValue(option.value?.toString());
     console.log(option.value?.toString());
   };
 
