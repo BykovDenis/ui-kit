@@ -1,12 +1,12 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React, { useState } from 'react';
-import Table from '@sber-risks-ui/Table';
-import TableHead from '@sber-risks-ui/TableHead';
-import TableRow from '@sber-risks-ui/TableRow';
-import TableCell from '@sber-risks-ui/TableCell';
-import TableBody from '@sber-risks-ui/TableBody';
-import Button from '@sber-risks-ui/Button';
-import FormControl from '@sber-risks-ui/FormControl';
+import Table from '../table/src';
+import TableHead from '../table-head/src';
+import TableRow from 'table-row/src';
+import TableCell from '../table-cell/src';
+import TableBody from '../table-body/src';
+import Button from '../button/src';
+import FormControl from '../form-control/src';
 
 import StickyBottomPanel from './src/index';
 import TStickyBottomPanel from './types/tsticky-bottom-panel';

@@ -53,7 +53,7 @@ const TemplateLightTheme: ComponentStory<typeof TextField> = (args: ITextField) 
           value={value}
           onChange={onInputChange}
           onRemove={onInputDelete}
-          isNotUseDebounce={true}
+          isNotRunDebounce={true}
         />
       </div>
     </ReactThemeContext.Provider>

@@ -1,4 +1,5 @@
-﻿import TIcon from '../../types/ticon';
+﻿import React from 'react';
+import TIcon from '../../types/ticon';
 
 const SettingsIcon: React.FunctionComponent<TIcon> = (props: TIcon) => {
   return (
