@@ -45,7 +45,7 @@ pipeline {
         stage('Root packages installing') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-v18.18.2-linux-x64'
             }
             steps {
                 nodejs('node-v20.9.0-linux-x64') {
