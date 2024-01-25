@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/FileUploader",
-  "version": "0.11.10-alpha.0",
+  "version": "0.11.10-alpha.1",
   "description": "Risks react UI File uploader component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
