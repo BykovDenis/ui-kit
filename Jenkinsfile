@@ -31,6 +31,7 @@ def tabsPath = './core/packages/tabs';
 def tabPath = './core/packages/tab';
 def flexContainerPath = './core/packages/flex-container';
 def gridContainerPath = './core/packages/grid-container'
+def fileUploaderPath = './core/packages/file-uploader'
 
 
 pipeline {
@@ -512,6 +513,30 @@ pipeline {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${gridContainerPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('FileUploader  deploy') {
+            tools
+            {
+                nodejs 'node-v16.20.2-linux-x64'
+            }
+            steps {
+                nodejs('node-v16.20.2-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${fileUploaderPath}") {
                                 script {
                                     echo 'Packages installing'
                                     sh 'npm i'
