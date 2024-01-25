@@ -1,0 +1,24 @@
+{
+  "name": "@sber-risks-ui/FileUploader",
+  "version": "0.11.9",
+  "description": "Risks react UI File uploader component",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Denis Bykov",
+  "license": "MIT",
+  "jest": {
+    "setupFiles": [
+      "./setupTests.js"
+    ]
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.prod.js",
+    "build-dev": "rollup -w -c rollup.config.dev.js",
+    "clean-node-modules": "rm -rf node_modules"
+  },
+  "publishConfig": {
+    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
+  },
+  "gitHead": "7162c678b9b97e213a242ad432660d47b7d97775"
+}

@@ -204,3 +204,10 @@
    <li> Datepicker. Invalid data can be returned with flag isValid </li>
    <li> Datepicker. The Button click setCurrentDate to disable list days of month </li>
 </ol>
+
+<h2>v 0.12.0</h2>
+
+<h3>Features</h3>
+<ol>
+   <li> FileUploader component added. </li>
+</ol>
