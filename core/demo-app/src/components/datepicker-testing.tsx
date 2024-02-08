@@ -1,5 +1,6 @@
 import Datepicker from '../../../packages/datepicker/src';
 import FlexContainer from '../../../packages/flex-container/src';
+import FormControl from '../../../packages/form-control/src';
 import { useContext, useState } from 'react';
 
 const DatepickerTesting = () => {
@@ -14,8 +15,9 @@ const DatepickerTesting = () => {
   };
 
   const onDate1Change = (name: string, value: string, isValid: boolean) => {
-    setDate1(value);
-    console.log(value, isValid);
+    if (isValid) {
+      setDate1(value);
+    }
   };
 
   const onDateRemove = (name: string) => {
@@ -49,23 +51,45 @@ const DatepickerTesting = () => {
       {/*    height={60}*/}
       {/*  />*/}
       {/*</FlexContainer>*/}
-      <FlexContainer width={250} margin="20px 10px">
-        <Datepicker
-          value={date1}
-          onRemove={onDateRemove}
-          onChange={onDate1Change}
-          mask="dd.MM.yyyy"
-          variant="outlined"
-          label="Datepicker2 RU"
-          id="datepicker2"
-          name="datepicker2"
-          locale="RU"
-          height={60}
-          isIconCanBeTodaySelected={true}
-          minDate="15.10.2023"
-          maxDate="15.11.2024"
-          width="98%"
-        />
+      <FlexContainer
+        id="datepicker-flex-container"
+        width={250}
+        marginTop="20px"
+        marginBottom={20}
+        marginLeft="15px"
+        marginRight={17}
+        paddingTop={5}
+        paddingRight={6}
+        paddingBottom={7}
+        paddingLeft="8px"
+      >
+        <FormControl
+          marginTop="30px"
+          marginBottom={28}
+          marginLeft="20px"
+          marginRight={45}
+          paddingTop={1}
+          paddingRight={2}
+          paddingBottom={3}
+          paddingLeft="4px"
+        >
+          <Datepicker
+            value={date1}
+            onRemove={onDateRemove}
+            onChange={onDate1Change}
+            mask="dd.MM.yyyy"
+            variant="outlined"
+            label="Datepicker2 RU"
+            id="datepicker2"
+            name="datepicker2"
+            locale="EN"
+            height={60}
+            minDate="15.10.2023"
+            maxDate="15.11.2024"
+            width="98%"
+            datesContainerAlign="left"
+          />
+        </FormControl>
       </FlexContainer>
       {/*<FlexContainer width={250} margin="20px 10px">*/}
       {/*  <Datepicker*/}

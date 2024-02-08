@@ -2,7 +2,7 @@ import IOption from '../types/ioption';
 
 const monthsElementEn: Array<IOption> = [
   { label: 'January', value: '0' },
-  { label: 'Fabruary', value: '1' },
+  { label: 'February', value: '1' },
   { label: 'March', value: '2' },
   { label: 'April', value: '3' },
   { label: 'May', value: '4' },
