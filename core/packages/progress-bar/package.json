@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/Progressbar",
-  "version": "0.11.10-alpha.1",
+  "version": "0.11.10",
   "description": "Risks react UI Progressbar component",
   "keywords": "React, progressbar, progress-bar",
   "main": "dist/index.js",
