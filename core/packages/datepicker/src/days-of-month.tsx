@@ -1,6 +1,5 @@
 import React from 'react';
 
-import rgbToRgba from '../../helpers/rgb-to-rgba';
 import DateParser from '../helpers/date-parser';
 import IDateParser from '../helpers/idate-parser';
 import DayEmptyOfMonth from './day-empty-of-month.styled';
@@ -41,7 +40,7 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
   const numberDayInWeek: number = props.numberDayInWeek === 0 ? 7 : props.numberDayInWeek;
 
   const daysElements: Array<number> =
-    props.countDaysIsMonth && props.numberDayInWeek !== null
+    props.countDaysIsMonth && props.numberDayInWeek !== null && !isNaN(props.numberDayInWeek)
       ? new Array(props?.countDaysIsMonth + numberDayInWeek)?.fill(null)
       : null;
 

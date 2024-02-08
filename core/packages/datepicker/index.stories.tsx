@@ -64,10 +64,10 @@ const ThemeLightTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker
     setValue(value);
   };
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   return (
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <div style={{ width: '250px', zoom: 3 }}>
         <Datepicker {...args} variant="outlined" value={value} locale={Locale.Ru} onChange={onDatepickerValueChange} />
       </div>
@@ -100,6 +100,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker)
           name="someDatepicker"
           value={value}
           locale={Locale.Ru}
+          mask={DatepickerMask.DDMMYYYY}
           onChange={onDatepickerValueChange}
           onRemove={onDatepickerRemove}
           isErrorMessageDisplayed={false}

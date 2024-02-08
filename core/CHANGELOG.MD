@@ -203,11 +203,17 @@
    <li> Datepicker. Width attribute can be type of string or number </li>
    <li> Datepicker. Invalid data can be returned with flag isValid </li>
    <li> Datepicker. The Button click setCurrentDate to disable list days of month </li>
+   <li> FileUploader component added. </li>
 </ol>
 
 <h2>v 0.12.0</h2>
 
 <h3>Features</h3>
 <ol>
-   <li> FileUploader component added. </li>
+   <li> FlexContainer. Add attributes: margin(top/right/bottom/left) </li>
+   <li> FormControl. Add attributes: margin(top/right/bottom/left) </li>
+</ol>
+<h3>BugFix</h3>
+<ol>
+   <li> Datepicker. Month name corrected. Fabruary -> February </li>
 </ol>
