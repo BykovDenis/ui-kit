@@ -216,4 +216,5 @@
 <h3>BugFix</h3>
 <ol>
    <li> Datepicker. Month name corrected. Fabruary -> February </li>
+   <li> ProgressBar. Tag p -> div. Fixed to specification </li>
 </ol>

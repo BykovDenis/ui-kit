@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import TProgressBarProgressValue from '../types/tprogress-bar-progress-value';
 import getMeasureValue from '../../helpers/get-measure-value';
 
-const ProgressValueStyled = styled.p<TProgressBarProgressValue>`
+const ProgressValueStyled = styled.div<TProgressBarProgressValue>`
   position: absolute;
   left: 50%;
   top: 50%;
