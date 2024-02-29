@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 
 import TProgressBar from './types/tprogress-bar';
@@ -17,9 +17,9 @@ export default {
   args: {
     progress: 50,
   },
-} as ComponentMeta<typeof ProgressBar>;
+} as Meta<typeof ProgressBar>;
 
-const DarkThemeTemplate: ComponentStory<typeof ProgressBar> = (args: TProgressBar) => {
+const DarkThemeTemplate: StoryFn<typeof ProgressBar> = (args: TProgressBar) => {
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   return (
@@ -29,7 +29,7 @@ const DarkThemeTemplate: ComponentStory<typeof ProgressBar> = (args: TProgressBa
   );
 };
 
-const LightThemeTemplate: ComponentStory<typeof ProgressBar> = (args: TProgressBar) => {
+const LightThemeTemplate: StoryFn<typeof ProgressBar> = (args: TProgressBar) => {
   const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   return (

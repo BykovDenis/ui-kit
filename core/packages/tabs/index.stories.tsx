@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 
 import Tabs from './src/index';
@@ -19,9 +19,9 @@ export default {
   args: {
     width: 700,
   },
-} as ComponentMeta<typeof Tabs>;
+} as Meta<typeof Tabs>;
 
-const ThemeDarkTemplate: ComponentStory<typeof Tabs> = (args: TTabs) => {
+const ThemeDarkTemplate: StoryFn<typeof Tabs> = (args: TTabs) => {
   const [tabActive, setTabActive] = useState<number | string>('tab2');
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
@@ -49,7 +49,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Tabs> = (args: TTabs) => {
   );
 };
 
-const ThemeLightTemplate: ComponentStory<typeof Tabs> = (args: TTabs) => {
+const ThemeLightTemplate: StoryFn<typeof Tabs> = (args: TTabs) => {
   const [tabActive, setTabActive] = useState<number>(0);
 
   const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);

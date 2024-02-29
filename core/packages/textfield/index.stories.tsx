@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 
 import TextField from './src';
@@ -26,9 +26,9 @@ export default {
     label: 'label',
     textMessage: 'text message',
   },
-} as ComponentMeta<typeof TextField>;
+} as Meta<typeof TextField>;
 
-const TemplateLightTheme: ComponentStory<typeof TextField> = (args: ITextField) => {
+const TemplateLightTheme: StoryFn<typeof TextField> = (args: ITextField) => {
   const [value, setValue] = useState('');
 
   const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
@@ -60,7 +60,7 @@ const TemplateLightTheme: ComponentStory<typeof TextField> = (args: ITextField) 
   );
 };
 
-const Template: ComponentStory<typeof TextField> = (args: ITextField) => {
+const Template: StoryFn<typeof TextField> = (args: ITextField) => {
   const [value, setValue] = useState('');
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);

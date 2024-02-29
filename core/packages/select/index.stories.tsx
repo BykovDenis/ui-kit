@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 
 import Select from './src';
@@ -21,9 +21,9 @@ export default {
   args: {
     children: 'Label',
   },
-} as ComponentMeta<typeof Select>;
+} as Meta<typeof Select>;
 
-const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
+const ThemeDarkTemplate: StoryFn<typeof Select> = (args: ISelect) => {
   const [value, setValue] = useState<string>(null);
 
   // const elementsState: Array<{ label: string; value: string }> = [
@@ -107,7 +107,7 @@ const ThemeDarkTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
   );
 };
 
-const ThemeLightTemplate: ComponentStory<typeof Select> = (args: ISelect) => {
+const ThemeLightTemplate: StoryFn<typeof Select> = (args: ISelect) => {
   const [value, setValue] = useState<string>('ELKTE');
 
   const elementsState: Array<string> = [

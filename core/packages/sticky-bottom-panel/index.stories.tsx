@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 import Table from '../table/src';
 import TableHead from '../table-head/src';
@@ -22,11 +22,11 @@ export default {
     error: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
     panelAlign: { control: { type: 'select', options: ['left', 'right', 'center'] }, defaultValue: 'center' },
   },
-} as ComponentMeta<typeof StickyBottomPanel>;
+} as Meta<typeof StickyBottomPanel>;
 
 const elements: Array<number> = new Array(100).fill(1000);
 
-const ThemeDarkTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStickyBottomPanel) => {
+const ThemeDarkTemplate: StoryFn<typeof StickyBottomPanel> = (args: TStickyBottomPanel) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const onBtnClick = () => {
@@ -125,7 +125,7 @@ const ThemeDarkTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStic
   );
 };
 
-const ThemeLightTemplate: ComponentStory<typeof StickyBottomPanel> = (args: TStickyBottomPanel) => {
+const ThemeLightTemplate: StoryFn<typeof StickyBottomPanel> = (args: TStickyBottomPanel) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const onBtnClick = () => {
