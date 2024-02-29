@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 
 import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
-import GridContainer from "./src/index";
+import GridContainer from './src/index';
 import TGridContainer from './types/tgrid-container';
 import FlexContainer from '../flex-container/src';
 
@@ -25,10 +25,10 @@ export default {
     gridTemplateColumns: '',
     gridRowGap: '',
     gridColumnGap: '',
-  }
-} as ComponentMeta<typeof GridContainer>;
+  },
+} as Meta<typeof GridContainer>;
 
-const TemplateDarkTheme: ComponentStory<typeof GridContainer> = (args: TGridContainer) => {
+const TemplateDarkTheme: StoryFn<typeof GridContainer> = (args: TGridContainer) => {
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   return (

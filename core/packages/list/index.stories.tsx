@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
@@ -19,9 +19,9 @@ export default {
     textMessage: 'text message',
     label: 'label',
   },
-} as ComponentMeta<typeof List>;
+} as Meta<typeof List>;
 
-const ThemeDarkTemplate: ComponentStory<typeof List> = (args: IList) => {
+const ThemeDarkTemplate: StoryFn<typeof List> = (args: IList) => {
   const elements: Array<string> = ['List item 1', 'List item 2', 'List item 3', 'List item 4', 'List item 5'];
   const ReactThemeContext = getNewReactThemeContext(themes?.dark);
 
@@ -46,7 +46,7 @@ const ThemeDarkTemplate: ComponentStory<typeof List> = (args: IList) => {
   );
 };
 
-const ThemeLightTemplate: ComponentStory<typeof List> = (args: IList) => {
+const ThemeLightTemplate: StoryFn<typeof List> = (args: IList) => {
   const elements: Array<string> = ['List item 1', 'List item 2', 'List item 3', 'List item 4', 'List item 5'];
   const ReactThemeContext = getNewReactThemeContext(themes?.loanPricing);
 

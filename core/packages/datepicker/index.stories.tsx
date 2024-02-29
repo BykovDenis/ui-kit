@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 
 import Datepicker from './src';
@@ -22,9 +22,9 @@ export default {
     // minDate: '01.04.2023',
     // maxDate: '05.04.2023'
   },
-} as ComponentMeta<typeof Datepicker>;
+} as Meta<typeof Datepicker>;
 
-const ThemeDarkTemplateYYYYMMDD: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
+const ThemeDarkTemplateYYYYMMDD: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
   const [value, setValue] = useState('2022-05-11');
 
   const onDatepickerValueChange = (name: string, value: string, isValid: boolean) => {
@@ -57,7 +57,7 @@ const ThemeDarkTemplateYYYYMMDD: ComponentStory<typeof Datepicker> = (args: Idat
   );
 };
 
-const ThemeLightTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
+const ThemeLightTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
   const [value, setValue] = useState('03.11.2023');
 
   const onDatepickerValueChange = (name: string, value: string) => {
@@ -75,7 +75,7 @@ const ThemeLightTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker
   );
 };
 
-const ThemeDarkTemplate: ComponentStory<typeof Datepicker> = (args: Idatepicker) => {
+const ThemeDarkTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
   const [value, setValue] = useState('03.09.2023');
 
   const onDatepickerValueChange = (name: string, value: string, isValid: boolean) => {

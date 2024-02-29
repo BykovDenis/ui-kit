@@ -4,13 +4,7 @@ module.exports = {
     node: true,
   },
   parser: '@typescript-eslint/parser',
-  extends: [
-    'eslint:recommended',
-    'prettier',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:typescript-enum/recommended',
-  ],
+  extends: ['eslint:recommended', 'prettier', 'plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended', 'plugin:typescript-enum/recommended', 'plugin:storybook/recommended'],
   parserOptions: {
     project: ['tsconfig.eslint.json'],
     sourceType: 'module',

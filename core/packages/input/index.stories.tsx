@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 import Label from '../label/src';
 
@@ -26,11 +26,11 @@ export default {
   args: {
     textMessage: 'text message',
   },
-} as ComponentMeta<typeof Input>;
+} as Meta<typeof Input>;
 
 const regExp: RegExp = new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
 
-const TemplateDarkTheme: ComponentStory<typeof Input> = (args: IInput) => {
+const TemplateDarkTheme: StoryFn<typeof Input> = (args: IInput) => {
   const [value, setValue] = useState('');
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +75,7 @@ const TemplateDarkTheme: ComponentStory<typeof Input> = (args: IInput) => {
   );
 };
 
-const TemplateLightTheme: ComponentStory<typeof Input> = (args: IInput) => {
+const TemplateLightTheme: StoryFn<typeof Input> = (args: IInput) => {
   const [value, setValue] = useState('123');
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {

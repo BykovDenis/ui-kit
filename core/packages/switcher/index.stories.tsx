@@ -1,11 +1,11 @@
 import { action } from '@storybook/addon-actions';
-import {ComponentMeta, ComponentStory } from '@storybook/react';
-import React, {useState} from 'react';
+import { Meta, StoryFn } from '@storybook/react';
+import React, { useState } from 'react';
 import getNewReactThemeContext from '../styles/src';
 
-import Switcher from  './src/index';
+import Switcher from './src/index';
 import { themes } from '../styles/src/themes';
-import TSwitcher from "./types/tswitcher";
+import TSwitcher from './types/tswitcher';
 
 export default {
   title: 'Components/Switcher',
@@ -13,11 +13,11 @@ export default {
   parameters: { actions: { argTypesRegex: '.+' } },
   argTypes: {
     disabled: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    fontSize: { control: { type: 'select', options: [ 10,12,14,16 ] }, defaultValue: 14  },
+    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] }, defaultValue: 14 },
   },
-} as ComponentMeta<typeof Switcher>;
+} as Meta<typeof Switcher>;
 
-const TemplateDarkTheme: ComponentStory<typeof Switcher> = (args: TSwitcher) => {
+const TemplateDarkTheme: StoryFn<typeof Switcher> = (args: TSwitcher) => {
   const [activeElement, setActiveElement] = useState('Native');
   const element1: string = 'Native';
   const element2: string = 'RUB';
@@ -32,12 +32,20 @@ const TemplateDarkTheme: ComponentStory<typeof Switcher> = (args: TSwitcher) => 
       setActiveElement('RUB');
       action('The new value RUB');
     }
-  }
-  return <Switcher {...args} height={56} onSwitcherChange={onSwitcherChange} element1={element1} element2={element2}
-    activeElement={activeElement}/>;
-}
+  };
+  return (
+    <Switcher
+      {...args}
+      height={56}
+      onSwitcherChange={onSwitcherChange}
+      element1={element1}
+      element2={element2}
+      activeElement={activeElement}
+    />
+  );
+};
 
-const TemplateLightTheme: ComponentStory<typeof Switcher> = (args: TSwitcher)  => {
+const TemplateLightTheme: StoryFn<typeof Switcher> = (args: TSwitcher) => {
   const [activeElement, setActiveElement] = useState('Native');
   const element1: string = 'Native';
   const element2: string = 'RUB';
@@ -52,10 +60,17 @@ const TemplateLightTheme: ComponentStory<typeof Switcher> = (args: TSwitcher)  =
       setActiveElement('RUB');
       action('The new value RUB');
     }
-  }
-  return <Switcher {...args} onSwitcherChange={onSwitcherChange} element1={element1} element2={element2}
-                                                            activeElement={activeElement}/>;
-}
+  };
+  return (
+    <Switcher
+      {...args}
+      onSwitcherChange={onSwitcherChange}
+      element1={element1}
+      element2={element2}
+      activeElement={activeElement}
+    />
+  );
+};
 
 export const DarkThemeTextField = TemplateDarkTheme.bind({});
 export const LightThemeTextField = TemplateLightTheme.bind({});

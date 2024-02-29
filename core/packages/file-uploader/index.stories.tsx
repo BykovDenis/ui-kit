@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 
 import FileUploader from './src/index';
@@ -17,9 +17,9 @@ export default {
   args: {
     children: 'Label',
   },
-} as ComponentMeta<typeof FileUploader>;
+} as Meta<typeof FileUploader>;
 
-const Template: ComponentStory<typeof FileUploader> = (args: FileUploaderProps) => {
+const Template: StoryFn<typeof FileUploader> = (args: FileUploaderProps) => {
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   return (

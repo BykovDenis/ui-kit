@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React, { useEffect, useState } from 'react';
 
 import { themes } from '../styles/src/themes';
@@ -20,9 +20,9 @@ export default {
     width: 300,
     height: 150,
   },
-} as ComponentMeta<typeof MultiSelect>;
+} as Meta<typeof MultiSelect>;
 
-const ThemeDarkTemplate: ComponentStory<typeof MultiSelect> = (args: TMultiSelect) => {
+const ThemeDarkTemplate: StoryFn<typeof MultiSelect> = (args: TMultiSelect) => {
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
   const [columnsSelected, setColumnNamesSelected] = useState<Array<string>>([]);
 
@@ -60,7 +60,7 @@ const ThemeDarkTemplate: ComponentStory<typeof MultiSelect> = (args: TMultiSelec
   );
 };
 
-const ThemeLightTemplate: ComponentStory<typeof MultiSelect> = (args: TMultiSelect) => {
+const ThemeLightTemplate: StoryFn<typeof MultiSelect> = (args: TMultiSelect) => {
   const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
 
   const columns: Array<string> = [

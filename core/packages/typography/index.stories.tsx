@@ -1,4 +1,4 @@
-import {ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 
 import { themes } from '../styles/src/themes';
@@ -11,21 +11,21 @@ export default {
   component: Typography,
   argTypes: {
     variant: { control: { type: 'select', options: ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'] }, defaultValue: 'H1' },
-    error: { control: { type: 'radio', options: [ true, false ] }, defaultValue: false  },
+    error: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
   },
   args: {
-    children: 'Typography'
+    children: 'Typography',
   },
-} as ComponentMeta<typeof Typography>;
+} as Meta<typeof Typography>;
 
-const Template: ComponentStory<typeof Typography> = (args: ITypography) => {
-
+const Template: StoryFn<typeof Typography> = (args: ITypography) => {
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
-  return <ReactThemeContext.Provider value={themes.dark}>
-    <Typography {...args} >Some text Some text Some text</Typography>
-  </ReactThemeContext.Provider>
-}
+  return (
+    <ReactThemeContext.Provider value={themes.dark}>
+      <Typography {...args}>Some text Some text Some text</Typography>
+    </ReactThemeContext.Provider>
+  );
+};
 
 export const NormalTypography = Template.bind({});
-
