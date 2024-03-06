@@ -210,6 +210,7 @@
 
 <h3>Features</h3>
 <ol>
+   <li> Builder vite added to storybook instead webpack </li>
    <li> FlexContainer. Add attributes: margin(top/right/bottom/left) </li>
    <li> FormControl. Add attributes: margin(top/right/bottom/left) </li>
 </ol>

@@ -6,7 +6,7 @@ import ISelect from './types/iselect';
 import IOption from './types/ioption';
 import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
-import { Button } from '@storybook/react/demo';
+import Button from '../button/src';
 
 export default {
   title: 'Components/Select',
