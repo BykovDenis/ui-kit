@@ -67,7 +67,7 @@ const ThemeDarkTemplate: StoryFn<typeof Select> = (args: ISelect) => {
   // const elements: Array<number> = elementsEmpty.map((element: number, index: number) => `${index}`);
 
   const onInputChange = (option: IOption) => {
-    setValue(option.value.toString());
+    setValue(option.value?.toString());
     console.log(option.value?.toString());
   };
 
