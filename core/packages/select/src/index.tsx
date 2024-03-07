@@ -191,10 +191,9 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   useEffect(() => {
     if (isEdited) {
       const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
-      const elementsFiltered: Array<IOption> = getElementsFiltered(
-        getElementsParsed(props.elements, props.name),
-        labelUpperCase
-      );
+      const elementsFiltered: Array<IOption> = isNotEmptyString(labelUpperCase)
+        ? getElementsFiltered(getElementsParsed(props.elements, props.name), labelUpperCase)
+        : getElementsParsed(props.elements, props.name);
       setElements(elementsFiltered);
       setIsFoundValue(elementsFiltered?.length > 0);
       setIsNewElement(elementsFiltered?.length === 0);
@@ -210,6 +209,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsEdited(false);
     setActiveElement({ label: null, value: null });
     props.onChange({ name: name, label: null, value: null, index: null });
+    setElements(getElementsParsed(props.elements, props.name));
+    setIsFoundValue(true);
   };
 
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -255,13 +256,13 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     const onInputBlur = () => {
       setIsFocus(false);
       setIsEdited(false);
-      setElements(getElementsParsed(props.elements, props.name));
-      setActiveElement(activeElementParsed);
-      setLabel(props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label);
+      setActiveElement(isFoundValue ? activeElementParsed : null);
+      // setElements(getElementsParsed(props.elements, props.name));
+      // setLabel(props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label);
     };
 
     const indicatorColor: string = !props?.isReadOnly
-      ? isExistValue
+      ? isExistValue && isFoundValue
         ? isEdited
           ? theme?.mainGrayColor
           : props?.indicatorColor || theme?.palette?.primary?.main

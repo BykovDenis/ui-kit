@@ -1,5 +1,5 @@
 import debounce from 'debounce';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, TEXT_ALIGN_RIGHT, TIMEOUT, TYPE_TEXT } from '../../constants';
 import ITheme from '../../styles/types/itheme';
@@ -150,7 +150,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     if (ref?.current && inputValue !== null && props?.isSeparateNumberFormat) {
       const inputElement = ref?.current;
       if (inputElement) {
-        let inputValueParsed: string = inputValue?.toString()?.replaceAll(' ', '');
+        let inputValueParsed: string = inputValue?.toString()?.replaceAll(' ', '') ?? '';
         inputElement.value = inputValueParsed;
         setInputValue(inputValueParsed);
       }
@@ -162,7 +162,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
   const onInputBlur = (evt: any) => {
     setIsFocus(false);
-    const inputValueParsed: string = inputValue?.toString();
+    const inputValueParsed: string = inputValue?.toString() || '';
     if (props?.isSeparateNumberFormat && isNotEmptyString(inputValueParsed)) {
       setInputValue(
         parseFloat(inputValue as string)

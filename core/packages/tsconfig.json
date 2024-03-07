@@ -3,7 +3,7 @@
     "rootDir": "./",
     "baseUrl": "./",
     "outDir": "dist",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "target": "es5",
     "module": "esnext",
     "noImplicitAny": false,
