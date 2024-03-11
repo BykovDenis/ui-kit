@@ -98,10 +98,12 @@ const ThemeDarkTemplate: StoryFn<typeof Select> = (args: ISelect) => {
           regExp={regExp}
           isCreatable={true}
           textAlign="right"
+          textMessage="some text"
+          variant="outlined"
         >
           {args.children}
         </Select>
-        <Button onClick={onBtnSelectValueChangeClick}> External change</Button>
+        {/*<Button onClick={onBtnSelectValueChangeClick}> External change</Button>*/}
       </div>
     </ReactThemeContext.Provider>
   );

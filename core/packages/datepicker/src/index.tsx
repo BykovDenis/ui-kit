@@ -1,6 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { FONT_WEIGHT_REGULAR, INPUT_TAG, TAG_NAME_PATH, TAG_NAME_SVG, TEXT_ALIGN_LEFT } from '../../constants';
+import {
+  FONT_WEIGHT_REGULAR,
+  INPUT_TAG,
+  TAG_NAME_PATH,
+  TAG_NAME_SVG,
+  TEXT_ALIGN_LEFT,
+  DEFAULT_HEIGHT,
+} from '../../constants';
 import Divider from '../../divider/src/divider.styled';
 import Locale from '../../enums/locale';
 import searchDomChildElement from '../../helpers/search-dom-child-element';
@@ -479,6 +486,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             onKeyUp={onKeyUp}
             ref={dateRef}
             datesContainerAlign={props.datesContainerAlign || 'right'}
+            top={props?.height || DEFAULT_HEIGHT}
           >
             <FormControl justifyContent="center" margin="0 0 3px 0">
               <Button height={15} variant="text" textDecoration="underline" data-btn-set-today="1">

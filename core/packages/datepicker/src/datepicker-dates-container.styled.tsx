@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import React from 'react';
+import getMeasureValue from '../../helpers/get-measure-value';
 
 type TDatepickerDatesContainer = {
   ref?: any;
@@ -9,13 +10,14 @@ type TDatepickerDatesContainer = {
   backgroundColor?: string;
   outlineColor: string;
   datesContainerAlign?: 'left' | 'right';
+  top: number;
 };
 
 const DatepickerDatesContainer = styled.div.attrs({ 'data-days-on-month': true })<TDatepickerDatesContainer>`
   position: absolute;
   margin-bottom: 5px;
   margin-top: -3px;
-  top: 100%;
+  top: ${(props: TDatepickerDatesContainer) => getMeasureValue(props?.top + 4, '100%')};
   background-color: ${(props: TDatepickerDatesContainer) => props.backgroundColor};
   border-radius: 4px;
   box-shadow: rgb(0 0 0 / 10%) 0 0 0 1px, rgb(0 0 0 / 10%) 0 4px 11px;
