@@ -51,6 +51,7 @@ const ThemeDarkTemplateYYYYMMDD: StoryFn<typeof Datepicker> = (args: Idatepicker
           onChange={onDatepickerValueChange}
           onRemove={onDatepickerRemove}
           isErrorMessageDisplayed={false}
+          datesContainerAlign="right"
         />
       </div>
     </ReactThemeContext.Provider>
@@ -68,8 +69,17 @@ const ThemeLightTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
 
   return (
     <ReactThemeContext.Provider value={themes.light}>
-      <div style={{ width: '250px', zoom: 3 }}>
-        <Datepicker {...args} variant="outlined" value={value} locale={Locale.Ru} onChange={onDatepickerValueChange} />
+      <div style={{ width: '250px', zoom: 2 }}>
+        <Datepicker
+          {...args}
+          width={170}
+          variant="outlined"
+          name="someDatepickerLight"
+          value={value}
+          locale={Locale.Ru}
+          onChange={onDatepickerValueChange}
+          datesContainerAlign="left"
+        />
       </div>
     </ReactThemeContext.Provider>
   );
@@ -88,10 +98,10 @@ const ThemeDarkTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
     // console.log(null);
   };
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   return (
-    <ReactThemeContext.Provider value={themes.dark}>
+    <ReactThemeContext.Provider value={themes.light}>
       <div style={{ width: '250px', zoom: 2 }}>
         <Datepicker
           {...args}
@@ -103,7 +113,9 @@ const ThemeDarkTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
           mask={DatepickerMask.DDMMYYYY}
           onChange={onDatepickerValueChange}
           onRemove={onDatepickerRemove}
-          isErrorMessageDisplayed={false}
+          // isErrorMessageDisplayed={false}
+          datesContainerAlign="left"
+          textMessage="text message"
         />
       </div>
     </ReactThemeContext.Provider>

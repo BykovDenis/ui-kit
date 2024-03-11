@@ -17,9 +17,8 @@ import getUniqueIndex from '../../helpers/get-unique-index';
 import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import calculationPaddingByTextAlign from './helpers/calculation-padding-by-text-align';
-import { TEXT_ALIGN_CENTER } from '../../constants';
+import { DEFAULT_HEIGHT, TEXT_ALIGN_CENTER } from '../../constants';
 
-const DEFAULT_HEIGHT = 40;
 const FONT_WEIGHT_REGULAR = 400;
 const INPUT_TAG: string = 'INPUT';
 const BUTTON_TAG: string = 'BUTTON';
