@@ -213,6 +213,8 @@
    <li> Builder vite added to storybook instead webpack </li>
    <li> FlexContainer. Add attributes: margin(top/right/bottom/left) </li>
    <li> FormControl. Add attributes: margin(top/right/bottom/left) </li>
+   <li> Input. Padding calculation changed </li>
+   <li> Datepicker, Select. Default height changed to 40px </li>
 </ol>
 <h3>BugFix</h3>
 <ol>

@@ -56,19 +56,13 @@ const TemplateDarkTheme: StoryFn<typeof Input> = (args: IInput) => {
           value={value}
           onChange={onInputChange}
           onRemove={onInputRemove}
-          backgroundColor="transparent"
-          padding="0 10px 0 0"
+          textAlign="right"
+          isNotClearable={false}
+          isNotRunDebounce={true}
         />
       </div>
       <div style={{ width: '190px' }}>
-        <Input
-          {...args}
-          name="input"
-          value={value}
-          onChange={onInputChange}
-          onRemove={onInputRemove}
-          backgroundColor="transparent"
-        />
+        <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} />
       </div>
       <Label>{value}</Label>
     </ReactThemeContext.Provider>
@@ -101,6 +95,7 @@ const TemplateLightTheme: StoryFn<typeof Input> = (args: IInput) => {
           onRemove={onInputRemove}
           backgroundColor="transparent"
           regExp={regExp}
+          variant="text"
         />
       </div>
       <div style={{ width: '190px' }}>

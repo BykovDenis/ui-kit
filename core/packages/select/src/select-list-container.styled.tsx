@@ -1,13 +1,15 @@
 import styled from 'styled-components';
+import getMeasureValue from '../../helpers/get-measure-value';
 
 type TSelectListContainer = {
   backgroundColor: string;
   outlinedColor: string;
+  top: number;
 };
 
 const SelectListContainer = styled('div')<TSelectListContainer>`
   ${(props: TSelectListContainer) => `
-  top: 100%;
+  top: ${getMeasureValue(props?.top + 4, '100%')};
   background-color: ${props.backgroundColor};
   border-radius: 4px;
   box-shadow: 0px 0px 0px 1px ${props.outlinedColor}, 0px 4px 11px ${props.outlinedColor};
