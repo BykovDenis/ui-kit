@@ -13,7 +13,7 @@ const SelectContainer = styled('div')<ISelectContainer>`
   margin: ${(props: ISelectContainer) => props?.margin ?? 0};
   padding: 0;
   width: ${(props: ISelectContainer) => getMeasureValue(props.width, '100%')};
-  height: ${(props: ISelectContainer) => (props?.height ? `${props?.height + 5}px` : 'calc(100% + 5px)')};
+  height: ${(props: ISelectContainer) => (props?.height ? `${props?.height + 5}px` : 'initial')};
   line-height: 1;
 `;
 

@@ -13,6 +13,7 @@ import TextMessage from './text-message.styled';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import parseValue from './helpers/parse-value';
 import ButtonDelete from '../../customs-styled-components/button-delete.styled';
+import calculationPaddingByTextAlign from './helpers/calculation-padding-by-text-align';
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(isNotEmptyString(props.value?.toString()) ? props.value : '');
@@ -85,22 +86,6 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
       setInputValue(valueParsed);
     }
   }, [props.value]);
-
-  // useEffect(() => {
-  //   if (!isNotRunDebounce) {
-  //     const executeDebounce = debounce(cb, TIMEOUT);
-  //     executeDebounce();
-  //   } else {
-  //     const ref = props?.inputRef || inputRef;
-  //     if (ref?.current) {
-  //       const inputElement = ref?.current;
-  //       if (inputElement) {
-  //         inputElement.value = props?.value ?? '';
-  //         setInputValue(props?.value);
-  //       }
-  //     }
-  //   }
-  // }, [isNotRunDebounce]);
 
   useEffect(() => {
     if (props.getIsChangingState) {
@@ -215,6 +200,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
       ? theme?.palette?.secondary?.main
       : props?.borderColor || theme?.mainOutlinedColor;
 
+    const paddingCalculated = calculationPaddingByTextAlign(props.textAlign, props.isNotClearable);
+
     return (
       <InputContainer height={props?.height} width={props?.width}>
         <InputElementContainer backgroundColor={backgroundColor}>
@@ -242,6 +229,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
             ref={props?.inputRef || inputRef}
             autoComplete="off"
+            padding={props?.padding || paddingCalculated}
           />
           {props?.variant !== TYPE_TEXT && (
             <InputUnderline

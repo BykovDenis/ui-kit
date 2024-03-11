@@ -223,7 +223,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsEdited(true);
   };
 
-  const onLabelClick = (evt: React.MouseEvent<HTMLLabelElement>) => {
+  const onLabelClick = () => {
     setIsVisibleList(true);
   };
 
@@ -281,12 +281,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     );
 
     return (
-      <SelectContainer
-        id={props.id}
-        width={props?.width}
-        height={props?.height || DEFAULT_HEIGHT}
-        margin={props.margin}
-      >
+      <SelectContainer id={props.id} width={props?.width} height={props?.height} margin={props.margin}>
         <SelectHeader height={props?.height || DEFAULT_HEIGHT}>
           {props?.label && (
             <LabelContainer isExistValue={isExistValue || isFocus} backgroundColor={backgroundColor}>
@@ -308,7 +303,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
           <Input
             id={`${props.id}-input`}
             name={props.name}
-            height={props?.height || DEFAULT_HEIGHT}
+            height={props?.height}
             width={props?.width}
             onChange={onInputChange}
             onRemove={onInputDelete}
@@ -348,6 +343,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             backgroundColor={backgroundColor}
             outlinedColor={theme.palette.primary.moreLighter}
             ref={selectListContainerRef}
+            top={props?.height || DEFAULT_HEIGHT}
             id={`${props.id}-list-items`}
           >
             <List

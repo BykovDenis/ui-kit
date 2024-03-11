@@ -63,7 +63,7 @@ const ThemeDarkTemplate: StoryFn<typeof Select> = (args: ISelect) => {
     'tradepad_3',
   ];
 
-  const elementsEmpty: Array<number> = new Array(150).fill(0);
+  // const elementsEmpty: Array<number> = new Array(150).fill(0);
   // const elements: Array<number> = elementsEmpty.map((element: number, index: number) => `${index}`);
 
   const onInputChange = (option: IOption) => {
@@ -96,8 +96,8 @@ const ThemeDarkTemplate: StoryFn<typeof Select> = (args: ISelect) => {
           elements={elementsState}
           className="import-directories-tools-input-styles"
           regExp={regExp}
-          variant="outlined"
           isCreatable={true}
+          textAlign="right"
         >
           {args.children}
         </Select>

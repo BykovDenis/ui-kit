@@ -1,8 +1,8 @@
-import Table from '@sber-risks-ui/Table';
-import TableHead from '@sber-risks-ui/TableHead';
-import TableRow from '@sber-risks-ui/TableRow';
-import TableCell from '@sber-risks-ui/TableCell';
-import TableBody from '@sber-risks-ui/TableBody';
+import Table from '../../../packages/table/src';
+import TableHead from '../../../packages/table-head/src';
+import TableRow from '../../../packages/table-row/src';
+import TableCell from '../../../packages/table-cell/src';
+import TableBody from '../../../packages/table-body/src';
 import Input from '../../../packages/input/src';
 import React, { useState } from 'react';
 
@@ -105,6 +105,7 @@ const InputTesting: React.FunctionComponent = () => {
               variant="outlined"
               value={inputValue}
               isNotRunDebounce={false}
+              textAlign="right"
             />
           </TableCell>
           <TableCell>Typing text</TableCell>

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import Idatepicker from '../types/idatepicker';
-import getMeasureValue from "../../helpers/get-measure-value";
+import getMeasureValue from '../../helpers/get-measure-value';
 
 interface IDatepickerContainer {
   minWidth?: number | string;
@@ -10,17 +9,14 @@ interface IDatepickerContainer {
   backgroundImage?: string;
 }
 
-const DatepickerContainer =
-  styled('div') <
-  IDatepickerContainer >
-  `
+const DatepickerContainer = styled('div')<IDatepickerContainer>`
   position: relative;
   display: block;
   margin: 0;
   padding: 0;
-  min-width: ${(props: IDatepickerContainer) => (getMeasureValue(props?.minWidth ?? props.width, `250px`))};
-  width: ${(props: IDatepickerContainer) => (getMeasureValue(props.width, '100%'))};
-  height: ${(props: IDatepickerContainer) => (props?.height ? `${props?.height + 5}px` : 'calc(100% + 5px)')};
+  min-width: ${(props: IDatepickerContainer) => getMeasureValue(props?.minWidth ?? props.width, `250px`)};
+  width: ${(props: IDatepickerContainer) => getMeasureValue(props.width, '100%')};
+  height: ${(props: IDatepickerContainer) => (props?.height ? `${props?.height + 5}px` : 'initial')};
   line-height: 1;
 `;
 

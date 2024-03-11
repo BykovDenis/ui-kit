@@ -1,8 +1,8 @@
-import Table from '@sber-risks-ui/Table';
-import TableHead from '@sber-risks-ui/TableHead';
-import TableRow from '@sber-risks-ui/TableRow';
-import TableCell from '@sber-risks-ui/TableCell';
-import TableBody from '@sber-risks-ui/TableBody';
+import Table from '../../../packages/table/src';
+import TableHead from '../../../packages/table-head/src';
+import TableRow from '../../../packages/table-row/src';
+import TableCell from '../../../packages/table-cell/src';
+import TableBody from '../../../packages/table-body/src';
 import TextField from '../../../packages/textfield/src';
 import { useState } from 'react';
 
@@ -18,10 +18,10 @@ const TextFieldTesting: React.FunctionComponent = () => {
     setTextField1(Number(value));
   };
 
-  const onInputChange2 = (evt: any, name: string, value: number | string) => {
+  const onInputChange2 = (evt: any) => {
     const element = evt.target;
     console.log(element?.value);
-    setTextField2(Number(value));
+    setTextField2(Number(element.value));
   };
 
   const onInputRemove = (name: string) => {

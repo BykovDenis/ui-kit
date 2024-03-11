@@ -1,13 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import {
-  DEFAULT_HEIGHT,
-  FONT_WEIGHT_REGULAR,
-  INPUT_TAG,
-  TAG_NAME_PATH,
-  TAG_NAME_SVG,
-  TEXT_ALIGN_LEFT,
-} from '../../constants';
+import { FONT_WEIGHT_REGULAR, INPUT_TAG, TAG_NAME_PATH, TAG_NAME_SVG, TEXT_ALIGN_LEFT } from '../../constants';
 import Divider from '../../divider/src/divider.styled';
 import Locale from '../../enums/locale';
 import searchDomChildElement from '../../helpers/search-dom-child-element';
@@ -405,7 +398,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
         backgroundImage={props?.backgroundImage}
         width={props?.width}
         minWidth={props?.minWidth}
-        height={props?.height || DEFAULT_HEIGHT}
+        height={props?.height}
       >
         <DatepickerHeader>
           {props?.label && (
@@ -427,7 +420,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           <Input
             id={props.id}
             name={props.name}
-            height={props?.height || DEFAULT_HEIGHT}
+            height={props?.height}
             width={props?.width}
             variant={props?.variant}
             value={value}
