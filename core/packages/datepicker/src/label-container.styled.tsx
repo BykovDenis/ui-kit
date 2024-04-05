@@ -5,16 +5,13 @@ interface ILabelContainer {
   backgroundColor: string;
 }
 
-const LabelContainer =
-  styled('div') <
-  ILabelContainer >
-  `
+const LabelContainer = styled('div')<ILabelContainer>`
   background-color: ${(props: ILabelContainer) => (props.isExistValue ? props.backgroundColor : 'transparent')};
   padding-left: 4px;
   padding-right: 4px;
   display: block;
   position: absolute;
-  top: ${(props: ILabelContainer) => (props.isExistValue ? '-10px' : 'calc(50% - 3px)')};
+  top: ${(props: ILabelContainer) => (props.isExistValue ? '-10px' : '50%')};
   left: 5px;
   z-index: 1;
   transform: translateY(${(props: ILabelContainer) => (props.isExistValue ? 0 : '-50%')}) rotate(360deg);

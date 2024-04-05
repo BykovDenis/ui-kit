@@ -15,8 +15,7 @@ interface IButtonDelete {
 const ButtonDelete = styled('button')<IButtonDelete>`
   position: absolute;
   right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
   display: flex;
   flex-direction: row;
   align-items: center;

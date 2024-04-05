@@ -130,10 +130,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onMouseOutUp = (evt: any) => {
     const element: any = evt.target;
+    const dataId: string = element?.dataset?.id;
     if (dateRef) {
       const listElement: any = dateRef?.current;
       if (listElement) {
         onDatesContainerClose(searchDomChildElement(listElement, element), evt);
+      }
+      if (dataId && element.id !== props.id) {
+        setIsVisibleList(false);
       }
     }
     if (inputRef) {
@@ -427,6 +431,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           <Input
             id={props.id}
             name={props.name}
+            data-id={props.id}
             height={props?.height}
             width={props?.width}
             variant={props?.variant}
@@ -449,7 +454,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             isNotRunDebounce={true}
             isNotClearable={true}
           />
-          <FormControl position="absolute" top="48%" right={0} width="initial" transform="translateY(-50%)">
+          <FormControl
+            height={20}
+            width={20}
+            position="absolute"
+            right={0}
+            top={props?.height ? Math.round(props?.height / 2) - 10 : '50%'}
+            transform={props?.height ? 'none' : 'translateY(-50%)'}
+          >
             {isNotEmptyString(value) ? (
               !props.isNotClearable && (
                 <ButtonDelete
@@ -464,8 +476,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 </ButtonDelete>
               )
             ) : (
-              <IconButton
+              <ButtonDelete
                 data-name="datepicker-calendar-btn-close"
+                className="delete-button"
+                hoverColor={hoverColor}
+                focusColor={focusColor}
+                disabled={props?.disabled}
                 variant="text"
                 onClick={
                   theme.components?.Datepicker?.isIconCanBeTodaySelected || props?.isIconCanBeTodaySelected
@@ -474,7 +490,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 }
               >
                 <CalendarIcon color={theme.palette.baseFontColor} data-name="datepicker-calendar-btn-close" />
-              </IconButton>
+              </ButtonDelete>
             )}
           </FormControl>
         </DatepickerHeader>
