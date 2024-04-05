@@ -25,7 +25,7 @@ export default {
   args: {
     fontSize: 14,
     error: false,
-    panelAlign: 'canter',
+    panelAlign: 'center',
   },
 } as Meta<typeof StickyBottomPanel>;
 
