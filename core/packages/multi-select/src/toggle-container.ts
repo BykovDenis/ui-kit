@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
-const ToggleContainer = styled.div`
-  background-color: var(--main-background-color);
+type ToggleContainerProps = {
+  backgroundColor: string;
+};
+
+const ToggleContainer = styled.div<ToggleContainerProps>`
+  background-color: ${(props: ToggleContainerProps) => props.backgroundColor};
   position: absolute;
   z-index: 10001;
   top: 100%;
