@@ -14,12 +14,15 @@ export default {
   argTypes: {
     type: { control: { type: 'select' }, options: ['button', 'text'] },
     locale: { control: { type: 'select' }, options: ['RU', 'EN'] },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
   },
   args: {
     textMessage: 'text message',
     label: 'label',
     isReadOnly: false,
     locale: Locale.En,
+    fontSize: 14,
+    height: 60,
   },
 } as Meta<typeof Datepicker>;
 
@@ -43,6 +46,7 @@ const ThemeDarkTemplateYYYYMMDD: StoryFn<typeof Datepicker> = (args: Idatepicker
       <div style={{ width: '250px', zoom: 2 }}>
         <Datepicker
           {...args}
+          id="datepicker1"
           mask={DatepickerMask.YYYYMMDD}
           variant="outlined"
           name="someDatepicker"
