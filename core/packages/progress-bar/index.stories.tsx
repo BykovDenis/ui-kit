@@ -11,13 +11,13 @@ export default {
   component: ProgressBar,
   argTypes: {
     isAnimate: { control: { type: 'radio' }, options: [true, false] },
-    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+    fontSize: { control: { type: 'select' }, options: ['10px', '12px', '14px', '16px'] },
     disabled: { control: { type: 'radio' }, options: [true, false] },
   },
   args: {
     progress: 50,
     isAnimate: false,
-    fontSize: 14,
+    fontSize: '14px',
     disabled: false,
   },
 } as Meta<typeof ProgressBar>;
