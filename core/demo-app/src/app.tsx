@@ -8,7 +8,7 @@ import TextFieldTesting from './components/text-field-testing';
 // import GridContainer from '../../packages/grid-container/src';
 // import GridContainerTesting from './components/grid-container-testing';
 // import MultiSelectTesting from './components/multi-select-testing';
-// import DatepickerTesting from './components/datepicker-testing';
+import DatepickerTesting from './components/datepicker-testing';
 // import JsonToTable from './components/json-to-table';
 // import ReactContext from './components/react-context';
 // import FlexContainerTesting from './components/flex-container-testing';
@@ -24,10 +24,10 @@ function App() {
         <div style={{ background: context.mainBackgroundColor, height: '100vh', margin: 0 }}>
           {/*<ReactContext />*/}
           {/*<JsonToTable />*/}
-          {/*<DatepickerTesting />*/}
+          <DatepickerTesting />
           {/*<SelectTesting />*/}
           {/*<InputTesting />*/}
-          <TextFieldTesting />
+          {/*<TextFieldTesting />*/}
           {/*<GridContainerTesting />*/}
           {/*<MultiSelectTesting />*/}
           {/*<FlexContainerTesting />*/}

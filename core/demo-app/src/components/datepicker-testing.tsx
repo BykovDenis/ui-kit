@@ -35,22 +35,6 @@ const DatepickerTesting = () => {
 
   return (
     <FlexContainer justifyContent="flex-start">
-      {/*<FlexContainer width={250} margin="20px 10px">*/}
-      {/*  <Datepicker*/}
-      {/*    isErrorMessageDisplayed={false}*/}
-      {/*    isOnInputChangeUsed={true}*/}
-      {/*    isNotClearable={true}*/}
-      {/*    value={date}*/}
-      {/*    onChange={onDateChange}*/}
-      {/*    mask="yyyy-MM-dd"*/}
-      {/*    variant="outlined"*/}
-      {/*    label="Datepicker1 EN"*/}
-      {/*    id="datepicker1"*/}
-      {/*    name="datepicker1"*/}
-      {/*    locale="EN"*/}
-      {/*    height={60}*/}
-      {/*  />*/}
-      {/*</FlexContainer>*/}
       <FlexContainer
         id="datepicker-flex-container"
         width={250}
@@ -83,7 +67,6 @@ const DatepickerTesting = () => {
             id="datepicker2"
             name="datepicker2"
             locale="EN"
-            height={60}
             minDate="15.10.2023"
             maxDate="15.11.2024"
             width="98%"
