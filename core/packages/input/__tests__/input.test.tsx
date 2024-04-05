@@ -6,7 +6,7 @@ import Input from '../src';
 import { themes } from '../../styles/src/themes';
 
 it('Input renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   const props: any = {
     isSeparateNumberFormat: false,
@@ -29,7 +29,7 @@ it('Input renders correctly', () => {
   };
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <Input {...props} />
     </ReactThemeContext.Provider>
   );

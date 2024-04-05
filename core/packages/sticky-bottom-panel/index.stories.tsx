@@ -17,10 +17,15 @@ export default {
   title: 'Components/StickyBottomPanel',
   component: StickyBottomPanel,
   argTypes: {
-    disabled: { control: { type: 'radio', options: [true, false] } },
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] }, defaultValue: 14 },
-    error: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    panelAlign: { control: { type: 'select', options: ['left', 'right', 'center'] }, defaultValue: 'center' },
+    disabled: { control: { type: 'radio' }, options: [true, false] },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+    error: { control: { type: 'radio' }, options: [true, false] },
+    panelAlign: { control: { type: 'select' }, options: ['left', 'right', 'center'] },
+  },
+  args: {
+    fontSize: 14,
+    error: false,
+    panelAlign: 'canter',
   },
 } as Meta<typeof StickyBottomPanel>;
 
@@ -132,14 +137,14 @@ const ThemeLightTemplate: StoryFn<typeof StickyBottomPanel> = (args: TStickyBott
     setIsOpen(!isOpen);
   };
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   const onDialogVisibleChange = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <Table>
         <TableHead>
           <TableRow isHeader={true}>

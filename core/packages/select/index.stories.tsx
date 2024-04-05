@@ -6,20 +6,32 @@ import ISelect from './types/iselect';
 import IOption from './types/ioption';
 import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
-import Button from '../button/src';
 
 export default {
   title: 'Components/Select',
   component: Select,
   argTypes: {
-    disabled: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] } },
-    error: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    variant: { control: { type: 'select', options: ['normal', 'outlined', 'text'] }, defaultValue: 'outline' },
-    isNotClearable: { control: { type: 'radio', options: [true, false] }, defaultValue: true },
+    disabled: {
+      control: { type: 'radio' },
+      options: [true, false],
+    },
+    fontSize: {
+      control: { type: 'select' },
+      options: [10, 12, 14, 16],
+    },
+    error: { control: { type: 'radio' }, options: [true, false] },
+    variant: {
+      control: { type: 'select' },
+      options: ['normal', 'outlined', 'text'],
+    },
+    isNotClearable: { control: { type: 'radio' }, options: [true, false] },
   },
   args: {
-    children: 'Label',
+    disabled: false,
+    error: false,
+    fontSize: 14,
+    variant: 'outlined',
+    isNotClearable: true,
   },
 } as Meta<typeof Select>;
 
@@ -769,10 +781,10 @@ const ThemeLightTemplate: StoryFn<typeof Select> = (args: ISelect) => {
     console.log('');
   };
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   return (
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <div style={{ width: '220px' }}>
         <Select
           {...args}

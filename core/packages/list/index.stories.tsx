@@ -13,11 +13,12 @@ export default {
   title: 'Components/List',
   component: List,
   argTypes: {
-    type: { control: { type: 'select', options: ['button', 'text'] }, defaultValue: 'button' },
+    type: { control: { type: 'select' }, options: ['button', 'text'] },
   },
   args: {
     textMessage: 'text message',
     label: 'label',
+    type: 'button',
   },
 } as Meta<typeof List>;
 

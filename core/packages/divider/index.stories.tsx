@@ -11,12 +11,14 @@ export default {
   title: 'Components/Divider',
   component: Divider,
   argTypes: {
-    disabled: { control: { type: 'radio', options: [true, false] } },
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] }, defaultValue: 14 },
-    error: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
+    disabled: { control: { type: 'radio' }, options: [true, false] },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+    error: { control: { type: 'radio' }, options: [true, false] },
   },
   args: {
     children: 'Label',
+    fontSize: 14,
+    error: false,
   },
 } as Meta<typeof Label>;
 
@@ -33,10 +35,10 @@ const TemplateDarkTheme: StoryFn<typeof Label> = (args: TDivider) => {
 };
 
 const TemplateLightTheme: StoryFn<typeof Label> = (args: TDivider) => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   return (
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <Label {...args}>One line</Label>
       <Divider />
       <Label {...args}>To line</Label>

@@ -7,7 +7,7 @@ import ISwitcher from '../types/tswitcher';
 import { themes } from '../../styles/src/themes';
 
 it('Switcher renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   const props: ISwitcher = {
     onSwitcherChange: jest.fn(),
@@ -17,7 +17,7 @@ it('Switcher renders correctly', () => {
   };
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <Switcher {...props} />
     </ReactThemeContext.Provider>
   );

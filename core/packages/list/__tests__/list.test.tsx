@@ -8,7 +8,7 @@ import { action } from '@storybook/addon-actions';
 import { themes } from '../../styles/src/themes';
 
 it('List renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   const props: any = {
     type: 'list-buttons',
@@ -16,7 +16,7 @@ it('List renders correctly', () => {
   };
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <List {...props}>
         {props.elements.map((element: string, index: number) => (
           <ListItem onClick={action('clicked')} type="text" key={index}>

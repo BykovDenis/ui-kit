@@ -5,19 +5,20 @@ import Tabs from './src/index';
 import TTabs from './types/ttabs';
 import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
-import Label from '../label/src';
 import Tab from '../tab/src';
 
 export default {
   title: 'Components/Tabs',
   component: Tabs,
   argTypes: {
-    disabled: { control: { type: 'radio', options: [true, false] } },
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] }, defaultValue: 14 },
-    error: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
+    disabled: { control: { type: 'radio' }, options: [true, false] },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+    error: { control: { type: 'radio' }, options: [true, false] },
   },
   args: {
     width: 700,
+    error: false,
+    fontSize: 14,
   },
 } as Meta<typeof Tabs>;
 
@@ -31,8 +32,6 @@ const ThemeDarkTemplate: StoryFn<typeof Tabs> = (args: TTabs) => {
   };
 
   const Tab1Title = () => <p>Исторические данные</p>;
-
-  const i: number = 4;
 
   return (
     <ReactThemeContext.Provider value={themes.dark}>
@@ -52,14 +51,14 @@ const ThemeDarkTemplate: StoryFn<typeof Tabs> = (args: TTabs) => {
 const ThemeLightTemplate: StoryFn<typeof Tabs> = (args: TTabs) => {
   const [tabActive, setTabActive] = useState<number>(0);
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   const onTabChange = (tabIndex: number) => {
     setTabActive(tabIndex);
   };
 
   return (
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <Tabs {...args} value={tabActive} onChange={onTabChange}>
         {/*<Tab>Tab 1</Tab>*/}
         {/*<Tab disabled={true}>Tab 2</Tab>*/}

@@ -6,10 +6,10 @@ import { themes } from '../../styles/src/themes';
 import Typography from '../src';
 
 it('Typography renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <Typography variant="H1">Some text</Typography>
     </ReactThemeContext.Provider>
   );

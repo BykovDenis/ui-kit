@@ -10,28 +10,37 @@ export default {
   title: 'Components/TextField',
   component: TextField,
   argTypes: {
-    isSeparateNumberFormat: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    disabled: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    error: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    isReadOnly: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    isNotClearable: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    type: { control: { type: 'select', options: ['number', 'text', 'date', 'file'] }, defaultValue: 'text' },
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] }, defaultValue: 14 },
-    fontWeight: { control: { type: 'select', options: [100, 400, 600, 900] }, defaultValue: 400 },
-    textAlign: { control: { type: 'select', options: ['right', 'left', 'center'] } },
-    variant: { control: { type: 'select', options: ['normal', 'outlined', 'text'] }, defaultValue: 'outline' },
+    isSeparateNumberFormat: { control: { type: 'radio' }, options: [true, false] },
+    disabled: { control: { type: 'radio' }, options: [true, false] },
+    error: { control: { type: 'radio' }, options: [true, false] },
+    isReadOnly: { control: { type: 'radio' }, options: [true, false] },
+    isNotClearable: { control: { type: 'radio' }, options: [true, false] },
+    type: { control: { type: 'select' }, options: ['number', 'text', 'date', 'file'] },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+    fontWeight: { control: { type: 'select' }, options: [100, 400, 600, 900] },
+    textAlign: { control: { type: 'select' }, options: ['right', 'left', 'center'] },
+    variant: { control: { type: 'select' }, options: ['normal', 'outlined', 'text'] },
     onChange: { action: 'changed' },
   },
   args: {
+    isSeparateNumberFormat: false,
+    disabled: false,
     label: 'label',
     textMessage: 'text message',
+    error: false,
+    isReadOnly: false,
+    isNotClearable: false,
+    type: 'text',
+    fontSize: 14,
+    fontWeight: 400,
+    variant: 'outlined',
   },
 } as Meta<typeof TextField>;
 
 const TemplateLightTheme: StoryFn<typeof TextField> = (args: ITextField) => {
   const [value, setValue] = useState('');
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
@@ -44,7 +53,7 @@ const TemplateLightTheme: StoryFn<typeof TextField> = (args: ITextField) => {
   };
 
   return (
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <div style={{ width: '190px' }}>
         <TextField
           {...args}
@@ -64,7 +73,7 @@ const Template: StoryFn<typeof TextField> = (args: ITextField) => {
   const [value, setValue] = useState('');
 
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
-  const regExp: RegExp = new RegExp('[0-9_]', 'gi');
+  const regExp: RegExp = /[a-z_]/gi; // new RegExp('[0-9_]', 'gi');
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;

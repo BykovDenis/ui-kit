@@ -11,11 +11,13 @@ export default {
   title: 'Components/GridContainer',
   component: GridContainer,
   argTypes: {
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] }, defaultValue: 14 },
-    fontWeight: { control: { type: 'select', options: [100, 400, 600, 900] }, defaultValue: 400 },
-    textAlign: { control: { type: 'select', options: ['right', 'left', 'center'] } },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+    fontWeight: { control: { type: 'select' }, options: [100, 400, 600, 900] },
+    textAlign: { control: { type: 'select' }, options: ['right', 'left', 'center'] },
   },
   args: {
+    fontSize: 14,
+    fontWeight: 400,
     columnWidth: '100px',
     rowHeight: '100px',
     gap: '30px',

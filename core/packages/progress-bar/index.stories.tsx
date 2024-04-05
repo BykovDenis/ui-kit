@@ -10,12 +10,15 @@ export default {
   title: 'Components/ProgressBar',
   component: ProgressBar,
   argTypes: {
-    isAnimate: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] } },
-    disabled: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
+    isAnimate: { control: { type: 'radio' }, options: [true, false] },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+    disabled: { control: { type: 'radio' }, options: [true, false] },
   },
   args: {
     progress: 50,
+    isAnimate: false,
+    fontSize: 14,
+    disabled: false,
   },
 } as Meta<typeof ProgressBar>;
 
@@ -30,10 +33,10 @@ const DarkThemeTemplate: StoryFn<typeof ProgressBar> = (args: TProgressBar) => {
 };
 
 const LightThemeTemplate: StoryFn<typeof ProgressBar> = (args: TProgressBar) => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   return (
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <ProgressBar height={40} {...args} />
     </ReactThemeContext.Provider>
   );

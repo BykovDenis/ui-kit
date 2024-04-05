@@ -6,19 +6,20 @@ import getNewReactThemeContext from '../styles/src';
 import MultiSelect from './src';
 import SortDirections from '../enums/sort-direction';
 import TMultiSelect from './types/tmulti-select';
-import TMultiSelectOption from './types/tmulti-select-option';
 
 export default {
   title: 'Components/MultiSelect',
   component: MultiSelect,
   argTypes: {
-    disabled: { control: { type: 'radio', options: [true, false] } },
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] }, defaultValue: 14 },
-    isUseLocaleStorage: { control: { type: 'radio', options: [true, false], defaultValue: false } },
+    disabled: { control: { type: 'radio' }, options: [true, false] },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+    isUseLocaleStorage: { control: { type: 'radio' }, options: [true, false] },
   },
   args: {
     width: 300,
     height: 150,
+    isUseLocaleStorage: false,
+    fontSize: 14,
   },
 } as Meta<typeof MultiSelect>;
 
@@ -61,7 +62,7 @@ const ThemeDarkTemplate: StoryFn<typeof MultiSelect> = (args: TMultiSelect) => {
 };
 
 const ThemeLightTemplate: StoryFn<typeof MultiSelect> = (args: TMultiSelect) => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   const columns: Array<string> = [
     'Request Id',
@@ -86,7 +87,7 @@ const ThemeLightTemplate: StoryFn<typeof MultiSelect> = (args: TMultiSelect) => 
   };
 
   return (
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <MultiSelect
         {...args}
         sortDirection="asc"

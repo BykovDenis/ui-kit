@@ -10,12 +10,14 @@ export default {
   title: 'Components/TableColumnsVisible',
   component: TableColumnsVisible,
   argTypes: {
-    disabled: { control: { type: 'radio', options: [true, false] } },
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] }, defaultValue: 14 },
+    disabled: { control: { type: 'radio' }, options: [true, false] },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
   },
   args: {
     width: 300,
     minHeight: 200,
+    fontSize: 14,
+    disabled: false,
   },
 } as Meta<typeof TableColumnsVisible>;
 

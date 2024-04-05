@@ -10,22 +10,35 @@ export default {
   title: 'Components/Typography',
   component: Typography,
   argTypes: {
-    variant: { control: { type: 'select', options: ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'] }, defaultValue: 'H1' },
-    error: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
+    variant: { control: { type: 'select' }, options: ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'] },
+    error: { control: { type: 'radio' }, options: [true, false] },
   },
   args: {
-    children: 'Typography',
+    children: 'Typography dsdsd',
+    variant: 'H1',
+    error: false,
   },
 } as Meta<typeof Typography>;
 
-const Template: StoryFn<typeof Typography> = (args: ITypography) => {
+const DarkThemeTemplate: StoryFn<typeof Typography> = (args: ITypography) => {
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   return (
     <ReactThemeContext.Provider value={themes.dark}>
-      <Typography {...args}>Some text Some text Some text</Typography>
+      <Typography {...args} />
     </ReactThemeContext.Provider>
   );
 };
 
-export const NormalTypography = Template.bind({});
+const LightThemeTemplate: StoryFn<typeof Typography> = (args: ITypography) => {
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
+
+  return (
+    <ReactThemeContext.Provider value={themes.light}>
+      <Typography {...args} />
+    </ReactThemeContext.Provider>
+  );
+};
+
+export const DarkThemeTypography = DarkThemeTemplate.bind({});
+export const LightThemeTypography = LightThemeTemplate.bind({});

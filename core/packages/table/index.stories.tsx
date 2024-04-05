@@ -15,12 +15,14 @@ export default {
   title: 'Components/Table',
   component: Table,
   argTypes: {
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] }, defaultValue: 14 },
-    isStrippedColumn: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+    isStrippedColumn: { control: { type: 'radio' }, options: [true, false] },
   },
   args: {
     fontFamily: 'Helvetica, Arial, sans-serif',
     children: 'Table',
+    fontSize: 14,
+    isStrippedColumn: false,
   },
 } as Meta<typeof Table>;
 
@@ -1601,10 +1603,10 @@ const TemplateDarkTable: StoryFn<typeof Table> = (args: TTable) => {
 };
 
 const TemplateLightTable: StoryFn<typeof Table> = (args: TTable) => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   return (
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <Table {...args}>
         <TableHead>
           <TableRow isHeader={true}>
