@@ -207,7 +207,6 @@
 </ol>
 
 <h2>v 0.12.0</h2>
-
 <h3>Features</h3>
 <ol>
    <li> Builder vite added to storybook instead webpack </li>
@@ -220,4 +219,11 @@
 <ol>
    <li> Datepicker. Month name corrected. Fabruary -> February </li>
    <li> ProgressBar. Tag p -> div. Fixed to specification </li>
+</ol>
+
+<h2>v 0.12.1</h2>
+<h3>Features</h3>
+<ol>
+  <li>Stories adapted for the new version of the storybook</li>
+  <li>PSCVA-1094 Multiselect. Margin-top attribute reduced to 0</li>
 </ol>
