@@ -359,7 +359,11 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
           </ButtonExpandStyled>
         </FormControl>
         {isExpanded && (
-          <ToggleContainer data-name="toggle-container" ref={btnToggleContainer}>
+          <ToggleContainer
+            data-name="toggle-container"
+            ref={btnToggleContainer}
+            backgroundColor={theme.mainBackgroundColor}
+          >
             <FormControl>
               <Button
                 padding="2px"
