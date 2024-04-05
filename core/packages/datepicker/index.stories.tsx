@@ -12,15 +12,14 @@ export default {
   title: 'Components/Datepicker',
   component: Datepicker,
   argTypes: {
-    type: { control: { type: 'select', options: ['button', 'text'] }, defaultValue: 'button' },
-    locale: { control: { type: 'select', options: ['RU', 'EN'] }, defaultValue: 'EN' },
+    type: { control: { type: 'select' }, options: ['button', 'text'] },
+    locale: { control: { type: 'select' }, options: ['RU', 'EN'] },
   },
   args: {
     textMessage: 'text message',
     label: 'label',
     isReadOnly: false,
-    // minDate: '01.04.2023',
-    // maxDate: '05.04.2023'
+    locale: Locale.En,
   },
 } as Meta<typeof Datepicker>;
 
@@ -78,6 +77,7 @@ const ThemeLightTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
           value={value}
           locale={Locale.Ru}
           onChange={onDatepickerValueChange}
+          isErrorMessageDisplayed={false}
           datesContainerAlign="left"
         />
       </div>
@@ -113,7 +113,7 @@ const ThemeDarkTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
           mask={DatepickerMask.DDMMYYYY}
           onChange={onDatepickerValueChange}
           onRemove={onDatepickerRemove}
-          // isErrorMessageDisplayed={false}
+          isErrorMessageDisplayed={false}
           datesContainerAlign="left"
           textMessage="text message"
         />

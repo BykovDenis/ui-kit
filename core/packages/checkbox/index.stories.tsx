@@ -11,16 +11,20 @@ export default {
   title: 'Components/Checkbox',
   component: Checkbox,
   argTypes: {
-    disabled: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] } },
-    checked: { control: { type: 'select', options: [true, false] }, defaultValue: false },
-    indeterminate: { control: { type: 'select', options: [true, false] }, defaultValue: false },
-    isIconDisabled: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
+    disabled: { control: { type: 'radio' }, options: [true, false] },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+    checked: { control: { type: 'select' }, options: [true, false] },
+    indeterminate: { control: { type: 'select' }, options: [true, false] },
+    isIconDisabled: { control: { type: 'radio' }, options: [true, false] },
   },
   args: {
     id: 'label1',
     disabled: false,
     label: 'Label for the Checkbox',
+    checked: false,
+    indeterminate: false,
+    isIconDisabled: false,
+    fontSize: 14,
   },
 } as Meta<typeof Checkbox>;
 
@@ -29,9 +33,9 @@ const onCheckboxCheck = () => {
 };
 
 const TemplateLightTheme: StoryFn<typeof Checkbox> = (args: ICheckbox) => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
   return (
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       {' '}
       <Checkbox {...args} onChange={onCheckboxCheck} tabIndex="1" />
     </ReactThemeContext.Provider>

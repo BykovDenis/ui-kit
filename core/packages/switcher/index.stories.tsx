@@ -12,8 +12,12 @@ export default {
   component: Switcher,
   parameters: { actions: { argTypesRegex: '.+' } },
   argTypes: {
-    disabled: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] }, defaultValue: 14 },
+    disabled: { control: { type: 'radio' }, options: [true, false] },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+  },
+  args: {
+    disabled: false,
+    fontSize: 14,
   },
 } as Meta<typeof Switcher>;
 
@@ -34,14 +38,16 @@ const TemplateDarkTheme: StoryFn<typeof Switcher> = (args: TSwitcher) => {
     }
   };
   return (
-    <Switcher
-      {...args}
-      height={56}
-      onSwitcherChange={onSwitcherChange}
-      element1={element1}
-      element2={element2}
-      activeElement={activeElement}
-    />
+    <ReactThemeContext.Provider value={themes.dark}>
+      <Switcher
+        {...args}
+        height={56}
+        onSwitcherChange={onSwitcherChange}
+        element1={element1}
+        element2={element2}
+        activeElement={activeElement}
+      />
+    </ReactThemeContext.Provider>
   );
 };
 
@@ -50,7 +56,7 @@ const TemplateLightTheme: StoryFn<typeof Switcher> = (args: TSwitcher) => {
   const element1: string = 'Native';
   const element2: string = 'RUB';
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   const onSwitcherChange = (elementName: string) => {
     if (elementName === 'Native' && activeElement !== 'Native') {
@@ -62,13 +68,15 @@ const TemplateLightTheme: StoryFn<typeof Switcher> = (args: TSwitcher) => {
     }
   };
   return (
-    <Switcher
-      {...args}
-      onSwitcherChange={onSwitcherChange}
-      element1={element1}
-      element2={element2}
-      activeElement={activeElement}
-    />
+    <ReactThemeContext.Provider value={themes.light}>
+      <Switcher
+        {...args}
+        onSwitcherChange={onSwitcherChange}
+        element1={element1}
+        element2={element2}
+        activeElement={activeElement}
+      />
+    </ReactThemeContext.Provider>
   );
 };
 

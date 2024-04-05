@@ -11,20 +11,29 @@ export default {
   title: 'Components/Input',
   component: Input,
   argTypes: {
-    isSeparateNumberFormat: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    disabled: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    error: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    isReadOnly: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    isNotClearable: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    type: { control: { type: 'select', options: ['number', 'text', 'date', 'file'] }, defaultValue: 'text' },
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] }, defaultValue: 14 },
-    fontWeight: { control: { type: 'select', options: [100, 400, 600, 900] }, defaultValue: 400 },
-    textAlign: { control: { type: 'select', options: ['right', 'left', 'center'] } },
-    variant: { control: { type: 'select', options: ['normal', 'outlined', 'text'] }, defaultValue: 'outline' },
+    isSeparateNumberFormat: { control: { type: 'radio' }, options: [true, false] },
+    disabled: { control: { type: 'radio' }, options: [true, false] },
+    error: { control: { type: 'radio' }, options: [true, false] },
+    isReadOnly: { control: { type: 'radio' }, options: [true, false] },
+    isNotClearable: { control: { type: 'radio' }, options: [true, false] },
+    type: { control: { type: 'select' }, options: ['number', 'text', 'date', 'file'] },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+    fontWeight: { control: { type: 'select' }, options: [100, 400, 600, 900] },
+    textAlign: { control: { type: 'select' }, options: ['right', 'left', 'center'] },
+    variant: { control: { type: 'select' }, options: ['normal', 'outlined', 'text'] },
     onChange: { action: 'changed' },
   },
   args: {
     textMessage: 'text message',
+    isSeparateNumberFormat: false,
+    disabled: false,
+    error: false,
+    isReadOnly: false,
+    isNotClearable: false,
+    type: 'text',
+    fontSize: 14,
+    fontWeight: 400,
+    variant: 'outlined',
   },
 } as Meta<typeof Input>;
 
@@ -82,10 +91,10 @@ const TemplateLightTheme: StoryFn<typeof Input> = (args: IInput) => {
     setValue('');
   };
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   return (
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <div>
         <Input
           {...args}

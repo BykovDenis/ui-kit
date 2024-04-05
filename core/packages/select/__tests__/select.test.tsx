@@ -7,7 +7,7 @@ import Select from '../src';
 import { themes } from '../../styles/src/themes';
 
 it('Select renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   const props: ISelect = {
     activeElement: 'List item 1',
@@ -28,7 +28,7 @@ it('Select renders correctly', () => {
   };
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <Select {...props} />
     </ReactThemeContext.Provider>
   );

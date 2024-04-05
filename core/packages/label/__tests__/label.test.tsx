@@ -11,10 +11,10 @@ it('Input renders correctly', () => {
     children: 'Label',
   };
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <Label {...props} />
     </ReactThemeContext.Provider>
   );

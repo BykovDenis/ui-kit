@@ -11,10 +11,10 @@ export default {
   title: 'Components/Button',
   component: Button,
   argTypes: {
-    variant: { control: { type: 'select', options: [null, 'text', 'outlined', 'contained'] } },
-    disabled: { control: { type: 'radio', options: [true, false] } },
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] } },
-    colorTheme: { control: { type: 'select', options: [null, 'normal', 'warning'] } },
+    variant: { control: { type: 'select' }, options: [null, 'text', 'outlined', 'contained'] },
+    disabled: { control: { type: 'radio' }, options: [true, false] },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+    colorTheme: { control: { type: 'select' }, options: [null, 'normal', 'warning'] },
   },
   args: {
     disabled: false,
@@ -23,10 +23,10 @@ export default {
 } as Meta<typeof Button>;
 
 const ThemeLightTemplate: StoryFn<typeof Button> = (args: TButton) => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   return (
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <Button {...args} name="button1" onClick={action('clicked')}>
         {args.children}
       </Button>

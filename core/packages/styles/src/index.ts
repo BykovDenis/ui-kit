@@ -3,7 +3,7 @@ import ITheme from '../types/itheme';
 import { themes } from './themes';
 
 function getNewReactThemeContext(theme?: ITheme): { Consumer: any; Provider: any } {
-  const ReactThemeContext: any = React.createContext(theme || themes.loanPricing);
+  const ReactThemeContext: any = React.createContext(theme || themes.light);
   globalThis.ReactThemeContextConsumer = ReactThemeContext.Consumer;
   return ReactThemeContext;
 }

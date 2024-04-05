@@ -10,12 +10,14 @@ export default {
   title: 'Components/Label',
   component: Label,
   argTypes: {
-    disabled: { control: { type: 'radio', options: [true, false] } },
-    fontSize: { control: { type: 'select', options: [10, 12, 14, 16] }, defaultValue: 14 },
-    error: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
+    disabled: { control: { type: 'radio' }, options: [true, false] },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+    error: { control: { type: 'radio' }, options: [true, false] },
   },
   args: {
     children: 'Label',
+    fontSize: 14,
+    error: false,
   },
 } as Meta<typeof Label>;
 

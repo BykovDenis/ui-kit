@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import getNewReactThemeContext from '../../styles/src';
 import renderer from 'react-test-renderer';
@@ -18,10 +17,10 @@ it('Checkbox renders correctly', () => {
     tabIndex: '1',
   };
 
-  const ReactThemeContext: any = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext: any = getNewReactThemeContext(themes.light);
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <Checkbox {...props} tabIndex="1" />
     </ReactThemeContext.Provider>
   );

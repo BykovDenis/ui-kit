@@ -6,7 +6,7 @@ import ListItem from '../src';
 import { themes } from '../../styles/src/themes';
 
 it('ListItem renders correctly', () => {
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   const props: any = {
     onClick: jest.fn(),
@@ -14,7 +14,7 @@ it('ListItem renders correctly', () => {
   };
 
   const wrapper = renderer.create(
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <ListItem {...props}>{props.children}</ListItem>
     </ReactThemeContext.Provider>
   );

@@ -11,14 +11,15 @@ export default {
   title: 'Components/Radio',
   component: Radio,
   argTypes: {
-    disabled: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
-    fontSize: { control: { type: 'select', options: ['10px', '12px', '14px', '16px'] } },
-    isIconDisabled: { control: { type: 'radio', options: [true, false] }, defaultValue: false },
+    disabled: { control: { type: 'radio' }, options: [true, false] },
+    fontSize: { control: { type: 'select' }, options: ['10px', '12px', '14px', '16px'] },
+    isIconDisabled: { control: { type: 'radio' }, options: [true, false] },
   },
   args: {
     id: 'label1',
     disabled: false,
     label: 'Label for the Radio',
+    isIconDisabled: false,
   },
 } as Meta<typeof Radio>;
 
@@ -44,10 +45,10 @@ const ThemeLightTemplate: StoryFn<typeof Radio> = (args: Iradio) => {
     action('checked');
   };
 
-  const ReactThemeContext = getNewReactThemeContext(themes.loanPricing);
+  const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   return (
-    <ReactThemeContext.Provider value={themes.loanPricing}>
+    <ReactThemeContext.Provider value={themes.light}>
       <Fragment>
         <Radio {...args} id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} tabIndex="0" />
         <Radio {...args} id="radio2" name="radio1" onChange={onCheckboxCheck} tabIndex="1" />
