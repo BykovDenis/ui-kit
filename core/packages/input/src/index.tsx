@@ -14,6 +14,7 @@ import isNotEmptyString from '../../helpers/is-not-empty-string';
 import parseValue from './helpers/parse-value';
 import ButtonDelete from '../../customs-styled-components/button-delete.styled';
 import calculationPaddingByTextAlign from './helpers/calculation-padding-by-text-align';
+import FormControl from '@sber-risks-ui/FlexContainer';
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(isNotEmptyString(props.value?.toString()) ? props.value : '');
@@ -247,16 +248,18 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           inputValue !== null &&
           inputValue !== '' &&
           !props?.disabled ? (
-            <ButtonDelete
-              data-test="btn-delete-value"
-              onClick={onInputDelete}
-              className="delete-button"
-              hoverColor={hoverColor}
-              focusColor={focusColor}
-              disabled={props?.disabled}
-            >
-              <CrossIcon color={inputColor} className="delete-icon" />
-            </ButtonDelete>
+            <FormControl position="absolute" top="50%" transform="translateY(-50%)" right={0} width={20} height={20}>
+              <ButtonDelete
+                data-test="btn-delete-value"
+                onClick={onInputDelete}
+                className="delete-button"
+                hoverColor={hoverColor}
+                focusColor={focusColor}
+                disabled={props?.disabled}
+              >
+                <CrossIcon color={inputColor} className="delete-icon" />
+              </ButtonDelete>
+            </FormControl>
           ) : null}
         </InputElementContainer>
         {props?.textMessage ? (
