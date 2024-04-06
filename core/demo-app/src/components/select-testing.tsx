@@ -1,9 +1,9 @@
-import TableHead from '@sber-risks-ui/TableHead';
-import TableRow from '@sber-risks-ui/TableRow';
-import TableCell from '@sber-risks-ui/TableCell';
-import Table from '@sber-risks-ui/Table';
-import TableBody from '@sber-risks-ui/TableBody';
-import IOption from '@sber-risks-ui/Select/types/ioption';
+import TableHead from '../../../packages/table-head/src/';
+import TableRow from '../../../packages/table-row/src';
+import TableCell from '../../../packages/table-cell/src';
+import Table from '../../../packages/table/src';
+import TableBody from '../../../packages/table-body/src';
+import IOption from '../../../packages/select/types/ioption';
 import { useState } from 'react';
 import Select from '../../../packages/select/src';
 

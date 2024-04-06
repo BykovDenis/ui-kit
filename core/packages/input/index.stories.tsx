@@ -103,7 +103,6 @@ const TemplateLightTheme: StoryFn<typeof Input> = (args: IInput) => {
           onChange={onInputChange}
           onRemove={onInputRemove}
           backgroundColor="transparent"
-          regExp={regExp}
           variant="text"
         />
       </div>
@@ -116,6 +115,7 @@ const TemplateLightTheme: StoryFn<typeof Input> = (args: IInput) => {
           onRemove={onInputRemove}
           backgroundColor="transparent"
           isSeparateNumberFormat={true}
+          type="number"
         />
       </div>
     </ReactThemeContext.Provider>
