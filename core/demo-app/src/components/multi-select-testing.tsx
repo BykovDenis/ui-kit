@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import MultiSelect from '../../../packages/multi-select/src';
-import TMultiSelectOption from '@sber-risks-ui/MultiSelect/types/tmulti-select-option';
-import GridContainer from '@sber-risks-ui/GridContainer';
-import FlexContainer from '@sber-risks-ui/FormControl';
-import Button from '@sber-risks-ui/Button';
-import FormControl from '@sber-risks-ui/FlexContainer';
+import TMultiSelectOption from '../../../packages/multi-select/types/tmulti-select-option';
+import GridContainer from '../../../packages/grid-container/src';
+import Button from '../../../packages/button/src';
+import FormControl from '../../../packages/form-control/src';
+import FlexContainer from '../../../packages/flex-container/src';
 
 const MultiSelectTesting: React.FunctionComponent = () => {
   const [columnsSelected0, setColumnNamesSelected0] = useState<Array<TMultiSelectOption> | []>([]);

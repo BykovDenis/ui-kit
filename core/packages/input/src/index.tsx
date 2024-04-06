@@ -14,7 +14,7 @@ import isNotEmptyString from '../../helpers/is-not-empty-string';
 import parseValue from './helpers/parse-value';
 import ButtonDelete from '../../customs-styled-components/button-delete.styled';
 import calculationPaddingByTextAlign from './helpers/calculation-padding-by-text-align';
-import FormControl from '@sber-risks-ui/FlexContainer';
+import FormControl from '../../form-control/src';
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(isNotEmptyString(props.value?.toString()) ? props.value : '');
