@@ -243,11 +243,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
               width={props.width}
             />
           )}
-          {!props?.isReadOnly &&
-          !props.isNotClearable &&
-          inputValue !== null &&
-          inputValue !== '' &&
-          !props?.disabled ? (
+          {!props?.isReadOnly && !props.isNotClearable && isNotEmptyString(inputValue as string) && !props?.disabled ? (
             <FormControl position="absolute" top="50%" transform="translateY(-50%)" right={0} width={20} height={20}>
               <ButtonDelete
                 data-test="btn-delete-value"
