@@ -3,7 +3,7 @@
 236 error npm ERR! Invalid auth configuration found: `_auth` must be renamed to `//nexus-ci.delta.sbrf.ru/repository/npm-all/:_auth` in project config
 236 error npm ERR! Please run `npm config fix` to repair your configuration.`
 236 error
-236 error npm ERR! A complete log of this run can be found in: /Users/16783656-mobile/.npm/_logs/2024-03-06T10_12_37_063Z-debug-0.log
+236 error npm ERR! A complete log of this run can be found in: /Users/16783656-mobile/.npm/_logs/2024-04-08T13_32_36_454Z-debug-0.log
 236 error     at makeError (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/node_modules/execa/lib/error.js:59:11)
 236 error     at handlePromise (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/node_modules/execa/index.js:114:26)
 236 error     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
