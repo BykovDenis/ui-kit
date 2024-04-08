@@ -413,7 +413,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       >
         <DatepickerHeader>
           {props?.label && (
-            <LabelContainer backgroundColor={theme.mainBackgroundColor} isExistValue={isExistValue || isFocus}>
+            <LabelContainer
+              height={props?.height}
+              backgroundColor={theme.mainBackgroundColor}
+              isExistValue={isExistValue || isFocus}
+            >
               <Label
                 htmlFor={props.id}
                 fontSize={labelFontSize}
