@@ -228,4 +228,5 @@
   <li>PSCVA-1094 Multiselect. Margin-top attribute reduced to 0</li>
   <li>Datepicker. The positions of the delete button and calendar button have been recalculated</li>
   <li>PSCVA-1139 Datepicker. Removed layering of calendars</li>
+  <li>PSCVA-859 Datepicker. onBlur event handler implemented </li>
 </ol>
