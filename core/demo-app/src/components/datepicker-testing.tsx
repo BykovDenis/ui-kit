@@ -2,10 +2,11 @@ import Datepicker from '../../../packages/datepicker/src';
 import FlexContainer from '../../../packages/flex-container/src';
 import FormControl from '../../../packages/form-control/src';
 import { useContext, useState } from 'react';
+import { warning, success } from '../utils/dev-utils-theme';
 
 const DatepickerTesting = () => {
   const [date, setDate] = useState('2023-11-20');
-  const [date1, setDate1] = useState('25.11.2023');
+  const [date1, setDate1] = useState('25.03.2024');
   const [date2, setDate2] = useState<string>('2023-10-25');
   const [date3, setDate3] = useState('25.10.2023');
 
@@ -17,6 +18,9 @@ const DatepickerTesting = () => {
   const onDate1Change = (name: string, value: string, isValid: boolean) => {
     if (isValid) {
       setDate1(value);
+      console.log(success(value));
+    } else {
+      console.log(warning(value));
     }
   };
 
@@ -27,6 +31,7 @@ const DatepickerTesting = () => {
   };
   const onDate2Change = (name: string, value: string) => {
     setDate2(value);
+    console.log(success(value));
   };
 
   const onDate3Change = (name: string, value: string) => {
@@ -34,7 +39,7 @@ const DatepickerTesting = () => {
   };
 
   return (
-    <FlexContainer justifyContent="flex-start">
+    <FlexContainer justifyContent="flex-start" flexDirection="column">
       <FlexContainer
         id="datepicker-flex-container"
         width={250}
@@ -60,33 +65,33 @@ const DatepickerTesting = () => {
           <Datepicker
             value={date1}
             onRemove={onDateRemove}
-            onChange={onDate1Change}
+            onBlur={onDate1Change}
             mask="dd.MM.yyyy"
             variant="outlined"
             label="Datepicker2 RU"
             id="datepicker2"
             name="datepicker2"
-            locale="EN"
-            minDate="15.10.2023"
-            maxDate="15.11.2024"
+            locale="RU"
+            minDate="15.03.2024"
+            maxDate="15.05.2024"
             width="98%"
             datesContainerAlign="left"
           />
         </FormControl>
       </FlexContainer>
-      {/*<FlexContainer width={250} margin="20px 10px">*/}
-      {/*  <Datepicker*/}
-      {/*    value={date2}*/}
-      {/*    onChange={onDate2Change}*/}
-      {/*    mask="yyyy-MM-dd"*/}
-      {/*    variant="outlined"*/}
-      {/*    label="Datepicker1 RU"*/}
-      {/*    id="datepicker3"*/}
-      {/*    name="datepicker1"*/}
-      {/*    locale="RU"*/}
-      {/*    height={60}*/}
-      {/*  />*/}
-      {/*</FlexContainer>*/}
+      <FlexContainer width={250} margin="20px 10px">
+        <Datepicker
+          value={date2}
+          onBlur={onDate2Change}
+          mask="yyyy-MM-dd"
+          variant="outlined"
+          label="Datepicker1 RU"
+          id="datepicker3"
+          name="datepicker1"
+          locale="RU"
+          height={60}
+        />
+      </FlexContainer>
       {/*<FlexContainer width={250} margin="20px 10px">*/}
       {/*  <Datepicker*/}
       {/*    value={date3}*/}

@@ -31,7 +31,7 @@ const ThemeDarkTemplateYYYYMMDD: StoryFn<typeof Datepicker> = (args: Idatepicker
 
   const onDatepickerValueChange = (name: string, value: string, isValid: boolean) => {
     setValue(value);
-    // console.log(name, value, isValid);
+    console.log(name, value, isValid);
   };
 
   const onDatepickerRemove = () => {
@@ -43,7 +43,7 @@ const ThemeDarkTemplateYYYYMMDD: StoryFn<typeof Datepicker> = (args: Idatepicker
 
   return (
     <ReactThemeContext.Provider value={themes.dark}>
-      <div style={{ width: '250px', zoom: 2 }}>
+      <div style={{ width: '250px', zoom: 4 }}>
         <Datepicker
           {...args}
           id="datepicker1"
