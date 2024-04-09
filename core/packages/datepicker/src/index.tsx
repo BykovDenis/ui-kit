@@ -36,7 +36,6 @@ import parseInputDate from '../helpers/parse-input-date';
 import DatepickerMask from '../enums/datepicker-mask';
 import checkMinMaxDate from '../helpers/check-min-max-date';
 import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
-import IconButton from '../../icon-button/src';
 import CalendarIcon from '../../icons-components/24x24/calendar-icon';
 import FormControl from '../../form-control/src';
 import CrossIcon from '../../icons-components/24x24/cross-icon';
@@ -188,6 +187,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onInputBlur = () => {
     setIsFocus(false);
+    const errors: {
+      isError: boolean;
+      isErrorMinDate: boolean;
+      isErrorMaxDate: boolean;
+    } = checkMinMaxDate(dateParsed, props.minDate ? minDate : null, props.maxDate ? maxDate : null);
+    if (props?.onBlur) {
+      props.onBlur(props.name, value, !errors.isError);
+    }
   };
 
   const onDatesContainerClose = (isSearchResult: boolean, evt?: React.ChangeEvent<HTMLElement>) => {
@@ -317,7 +324,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           if (props?.onChange && props.value !== value) {
             props.onChange(props.name, value, true);
           }
-        } else {
+        } else if (props?.onChange) {
           props.onChange(props.name, value, false);
         }
       } else if (dateParsed) {
@@ -462,7 +469,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             height={20}
             width={20}
             position="absolute"
-            right={0}
+            right={3}
             top={props?.height ? Math.round(props?.height / 2) - 10 : '50%'}
             transform={props?.height ? 'none' : 'translateY(-50%)'}
           >
