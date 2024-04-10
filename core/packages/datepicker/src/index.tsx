@@ -192,7 +192,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       isErrorMinDate: boolean;
       isErrorMaxDate: boolean;
     } = checkMinMaxDate(dateParsed, props.minDate ? minDate : null, props.maxDate ? maxDate : null);
-    if (props?.onBlur) {
+    if (props?.onBlur && props?.value !== value) {
       props.onBlur(props.name, value, !errors.isError);
     }
   };
@@ -315,6 +315,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   }, [props.value]);
 
   useEffect(() => {
+    const onDateValueChange: (name: string, value: string, isValid: boolean) => void =
+      props?.onChange || props?.onBlur || null;
     if (value) {
       setIsExistValue(true);
       if (value && value.length !== 10) {
@@ -348,8 +350,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           setIsError(errors.isError);
           setIsMinDateError(errors.isErrorMinDate);
           setIsMaxDateError(errors.isErrorMaxDate);
-          if (props?.onChange && props.value !== value) {
-            props.onChange(props.name, value, !errors.isError);
+          if (onDateValueChange && props.value !== value) {
+            if (props?.onChange) {
+              props.onChange(props.name, value, !errors.isError);
+            } else if (!isFocus && props?.onBlur) {
+              props.onBlur(props.name, value, !errors.isError);
+            }
           }
         } else {
           setIsError(true);
