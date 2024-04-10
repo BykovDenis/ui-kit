@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/LabelInteractive",
-  "version": "0.12.2-alpha.6",
+  "version": "0.12.2-alpha.7",
   "description": "Label interactive element",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
