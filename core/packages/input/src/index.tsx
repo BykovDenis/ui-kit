@@ -252,6 +252,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
                 hoverColor={hoverColor}
                 focusColor={focusColor}
                 disabled={props?.disabled}
+                type="button"
               >
                 <CrossIcon color={inputColor} className="delete-icon" />
               </ButtonDelete>
