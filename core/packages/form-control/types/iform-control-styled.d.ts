@@ -1,11 +1,13 @@
+import * as CSS from 'csstype';
+
 interface IFormControlStyled {
-  alignItems?: string;
+  alignItems?: CSS.Property.AlignItems;
   backgroundColor?: string;
   color?: string;
-  flexDirection?: string;
+  flexDirection?: CSS.Property.FlexDirection;
   flexGrow?: number;
   height?: number | string;
-  justifyContent?: string;
+  justifyContent?: CSS.Property.JustifyContent;
   margin?: string;
   marginTop?: number | string;
   marginBottom?: number | string;
@@ -25,7 +27,7 @@ interface IFormControlStyled {
   width?: number | string;
   maxWidth?: number | string;
   minWidth?: number | string;
-  flexWrap?: string;
+  flexWrap?: CSS.Property.FlexWrap;
   outline?: string;
   borderRadius?: number | string;
   right?: number | string;

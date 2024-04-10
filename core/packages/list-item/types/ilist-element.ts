@@ -1,3 +1,5 @@
+import * as CSS from 'csstype';
+
 interface IListElement {
   activeBackgroundColor?: string;
   backgroundColor?: string;
@@ -17,7 +19,7 @@ interface IListElement {
   type?: 'text' | 'button';
   underLineColor?: string;
   width?: number;
-  justifyContent?: string;
+  justifyContent?: CSS.Property.JustifyContent;
   colorInverted?: string;
   padding?: string;
   isDisable?: boolean;
