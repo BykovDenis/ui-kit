@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import getMeasureValue from '../../helpers/get-measure-value';
+import * as CSS from 'csstype';
 
 interface IListItemButton {
   height?: number | string;
   minHeight?: number | string;
   color?: string;
   hoverColor?: string;
-  justifyContent?: string;
+  justifyContent?: CSS.Property.JustifyContent;
   backgroundColor?: string;
   hoverBackgroundColor?: string;
   activeBackgroundColor?: string;

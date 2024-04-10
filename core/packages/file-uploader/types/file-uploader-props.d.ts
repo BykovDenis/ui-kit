@@ -1,4 +1,5 @@
 import TBaseStyles from '../../types/tbase-styles';
+import * as CSS from 'csstype';
 
 type FileUploaderProps = TBaseStyles & {
   id: string;
@@ -9,7 +10,7 @@ type FileUploaderProps = TBaseStyles & {
   htmlFor?: string;
   isFocus?: boolean;
   isReadOnly?: boolean;
-  justifyContent?: string;
+  justifyContent?: CSS.Property.JustifyContent;
   tabIndex?: string;
   theme?: any;
   whiteSpace?: string;
