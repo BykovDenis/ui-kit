@@ -488,6 +488,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                   hoverColor={hoverColor}
                   focusColor={focusColor}
                   disabled={props?.disabled}
+                  type="button"
                 >
                   <CrossIcon color={theme.palette.baseFontColor} />
                 </ButtonDelete>
@@ -500,6 +501,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 focusColor={focusColor}
                 disabled={props?.disabled}
                 variant="text"
+                type="button"
                 onClick={
                   theme.components?.Datepicker?.isIconCanBeTodaySelected || props?.isIconCanBeTodaySelected
                     ? onBtnCurrentDateSetClick
