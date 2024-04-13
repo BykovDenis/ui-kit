@@ -6,8 +6,8 @@ import { warning, success } from '../utils/dev-utils-theme';
 
 const DatepickerTesting = () => {
   const [date, setDate] = useState('2024-04-02');
-  const [date1, setDate1] = useState('2024-04-02');
-  const [date2, setDate2] = useState<string>('2024-04-02');
+  const [date1, setDate1] = useState<string | null>(null);
+  const [date2, setDate2] = useState<string | null>(null);
   const [date3, setDate3] = useState('25.10.2023');
 
   const onDateChange = (name: string, value: string) => {
@@ -33,9 +33,13 @@ const DatepickerTesting = () => {
     console.log(date2);
   };
 
-  const onDate2Change = (name: string, value: string) => {
+  const onDate2Change = (name: string, value: string, isValid: boolean) => {
     setDate2(value);
-    console.log(success(value));
+    if (isValid) {
+      console.log(success(value));
+    } else {
+      console.log(warning(value));
+    }
   };
 
   const onDate3Change = (name: string, value: string) => {
@@ -69,12 +73,11 @@ const DatepickerTesting = () => {
           margin="20px 10px"
         >
           <Datepicker
-            value={date1}
+            value={date1 as string}
             onBlur={onDate1Change}
             onRemove={onDate1Remove}
-            mask="yyyy-MM-dd"
             variant="outlined"
-            label="Datepicker2 EN"
+            label="Datepicker1 EN"
             id="datepicker1"
             name="datepicker1"
             locale="RU"
@@ -86,15 +89,14 @@ const DatepickerTesting = () => {
       </FlexContainer>
       <FlexContainer width={200} margin="20px 10px">
         <Datepicker
-          value={date2}
+          value={date2 as string}
           onChange={onDate2Change}
           onRemove={onDate2Remove}
           mask="yyyy-MM-dd"
           variant="outlined"
-          label="Datepicker1 EN"
-          id="datepicker3"
+          label="Datepicker2 EN"
+          id="datepicker2"
           name="datepicker1"
-          locale="RU"
           height={60}
         />
       </FlexContainer>
