@@ -8,7 +8,7 @@ import { useState } from 'react';
 import Select from '../../../packages/select/src';
 
 const SelectTesting: React.FunctionComponent = () => {
-  const [numberValue, setNumberValue] = useState<number | null>(4);
+  const [numberValue, setNumberValue] = useState<number | null>(null);
   const [objectValue, setObjectValue] = useState<IOption | null>({ label: 'Сентябрь', value: '8' });
   const [textValue, setTextValue] = useState<string | null>(null);
 

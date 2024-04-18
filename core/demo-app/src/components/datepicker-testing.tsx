@@ -1,8 +1,9 @@
 import Datepicker from '../../../packages/datepicker/src';
 import FlexContainer from '../../../packages/flex-container/src';
 import FormControl from '../../../packages/form-control/src';
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { warning, success } from '../utils/dev-utils-theme';
+import Typography from '../../../packages/typography/src';
 
 const DatepickerTesting = () => {
   const [date, setDate] = useState('2024-04-02');
@@ -47,73 +48,78 @@ const DatepickerTesting = () => {
   };
 
   return (
-    <FlexContainer justifyContent="flex-start" width={500}>
-      <FlexContainer
-        id="datepicker-flex-container"
-        width={250}
-        marginTop="20px"
-        marginBottom={20}
-        marginLeft="15px"
-        marginRight={17}
-        paddingTop={5}
-        paddingRight={6}
-        paddingBottom={7}
-        paddingLeft="8px"
-      >
-        <FormControl
-          marginTop="30px"
-          marginBottom={28}
-          marginLeft="20px"
-          marginRight={45}
-          paddingTop={1}
-          paddingRight={2}
-          paddingBottom={3}
-          paddingLeft="4px"
-          width={200}
-          margin="20px 10px"
+    <>
+      <Typography variant="H1" textAlign="center">
+        Testing Datepickers components
+      </Typography>
+      <FlexContainer justifyContent="flex-start" width={500}>
+        <FlexContainer
+          id="datepicker-flex-container"
+          width={250}
+          marginTop="20px"
+          marginBottom={20}
+          marginLeft="15px"
+          marginRight={17}
+          paddingTop={5}
+          paddingRight={6}
+          paddingBottom={7}
+          paddingLeft="8px"
         >
+          <FormControl
+            marginTop="30px"
+            marginBottom={28}
+            marginLeft="20px"
+            marginRight={45}
+            paddingTop={1}
+            paddingRight={2}
+            paddingBottom={3}
+            paddingLeft="4px"
+            width={200}
+            margin="20px 10px"
+          >
+            <Datepicker
+              value={date1 as string}
+              onBlur={onDate1Change}
+              onRemove={onDate1Remove}
+              variant="outlined"
+              label="Datepicker1 EN"
+              id="datepicker1"
+              name="datepicker1"
+              locale="RU"
+              width="200px"
+              height={60}
+              datesContainerAlign="left"
+            />
+          </FormControl>
+        </FlexContainer>
+        <FlexContainer width={200} margin="20px 10px">
           <Datepicker
-            value={date1 as string}
-            onBlur={onDate1Change}
-            onRemove={onDate1Remove}
+            value={date2 as string}
+            onChange={onDate2Change}
+            onRemove={onDate2Remove}
+            mask="yyyy-MM-dd"
             variant="outlined"
-            label="Datepicker1 EN"
-            id="datepicker1"
+            label="Datepicker2 EN"
+            id="datepicker2"
             name="datepicker1"
-            locale="RU"
-            width="200px"
             height={60}
-            datesContainerAlign="left"
           />
-        </FormControl>
+        </FlexContainer>
+        {/*<FlexContainer width={250} margin="20px 10px">*/}
+        {/*  <Datepicker*/}
+        {/*    value={date3}*/}
+        {/*    onChange={onDate3Change}*/}
+        {/*    mask="dd.MM.yyyy"*/}
+        {/*    variant="outlined"*/}
+        {/*    label="Datepicker2 locale undefined"*/}
+        {/*    id="datepicker4"*/}
+        {/*    name="datepicker2"*/}
+        {/*    height={60}*/}
+        {/*    width={110}*/}
+        {/*  />*/}
+        {/*</FlexContainer>*/}
       </FlexContainer>
-      <FlexContainer width={200} margin="20px 10px">
-        <Datepicker
-          value={date2 as string}
-          onChange={onDate2Change}
-          onRemove={onDate2Remove}
-          mask="yyyy-MM-dd"
-          variant="outlined"
-          label="Datepicker2 EN"
-          id="datepicker2"
-          name="datepicker1"
-          height={60}
-        />
-      </FlexContainer>
-      {/*<FlexContainer width={250} margin="20px 10px">*/}
-      {/*  <Datepicker*/}
-      {/*    value={date3}*/}
-      {/*    onChange={onDate3Change}*/}
-      {/*    mask="dd.MM.yyyy"*/}
-      {/*    variant="outlined"*/}
-      {/*    label="Datepicker2 locale undefined"*/}
-      {/*    id="datepicker4"*/}
-      {/*    name="datepicker2"*/}
-      {/*    height={60}*/}
-      {/*    width={110}*/}
-      {/*  />*/}
-      {/*</FlexContainer>*/}
-    </FlexContainer>
+    </>
   );
 };
 

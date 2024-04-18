@@ -22,8 +22,12 @@ interface IInput extends TBaseStyles {
   mask?: RegExp;
   max?: number;
   min?: number;
-  onBlur?: (evt: any) => void;
-  onChange?: (evt: React.ChangeEvent<HTMLInputElement>, name?: string, value?: number | string) => void;
+  onBlur?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (
+    evt: React.ChangeEvent<HTMLInputElement>,
+    name: string,
+    value?: number | string | null | undefined
+  ) => void;
   onClick?: (evt: any) => void;
   onFocus?: (evt: any) => void;
   onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
@@ -35,7 +39,7 @@ interface IInput extends TBaseStyles {
   textMessage?: string;
   theme?: any;
   type?: string;
-  value?: number | string;
+  value?: number | string | null | undefined;
   variant?: 'outlined' | 'text' | 'contained';
   inputComponent?: any;
   placeholder?: string;

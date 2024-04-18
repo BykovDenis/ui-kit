@@ -18,7 +18,6 @@ export default {
   args: {
     textMessage: 'text message',
     label: 'label',
-    type: 'button',
   },
 } as Meta<typeof List>;
 

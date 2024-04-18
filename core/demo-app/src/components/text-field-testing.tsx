@@ -4,15 +4,20 @@ import TableRow from '../../../packages/table-row/src';
 import TableCell from '../../../packages/table-cell/src';
 import TableBody from '../../../packages/table-body/src';
 import TextField from '../../../packages/textfield/src';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import Typography from '../../../packages/typography/src';
 
 const TextFieldTesting: React.FunctionComponent = () => {
   const regExp: RegExp = new RegExp('[0-9_]', 'gi');
   const regExpComplixity: RegExp = new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
-  const [textField1, setTextField1] = useState<number>(null);
-  const [textField2, setTextField2] = useState<number>(null);
+  const [textField1, setTextField1] = useState<number | null>(null);
+  const [textField2, setTextField2] = useState<number | null>(null);
 
-  const onInputChange = (evt: any, name: string, value: number | string) => {
+  const onInputChange = (
+    evt: React.ChangeEvent<HTMLInputElement>,
+    name: string,
+    value: number | string | null | undefined
+  ) => {
     const element = evt.target;
     console.log(element?.value);
     setTextField1(Number(value));
@@ -29,76 +34,81 @@ const TextFieldTesting: React.FunctionComponent = () => {
   };
 
   return (
-    <Table>
-      <TableHead>
-        <TableRow isHeader={true}>
-          <TableCell>Component</TableCell>
-          <TableCell>Component description</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        <TableRow>
-          <TableCell>
-            <TextField
-              label="Number values"
-              id="text-field-0"
-              value={textField2}
-              onChange={onInputChange2}
-              data-test="text-field-digits"
-              variant="outlined"
-              name="text-field-number"
-              isSeparateNumberFormat={false}
-              isNotRunDebounce={false}
-            />
-          </TableCell>
-          <TableCell>Masked formatted input</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <TextField
-              label="Number values"
-              id="text-field-1"
-              value={textField1}
-              onChange={onInputChange}
-              onRemove={onInputRemove}
-              data-test="text-field-digits"
-              variant="outlined"
-              type="number"
-              name="text-field-number"
-            />
-          </TableCell>
-          <TableCell>The component contain only digits</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <TextField
-              label="Text with regExp"
-              id="text-field-2"
-              onChange={onInputChange}
-              data-test="text-field-regular-expressions"
-              variant="outlined"
-              regExp={regExp}
-              name="text-field-reg-expr"
-            />
-          </TableCell>
-          <TableCell>The component contain regular expressions</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <TextField
-              label="Text with regExp compplixity"
-              id="text-field-3"
-              onChange={onInputChange}
-              data-test="text-field-regular-expressions-complixity"
-              variant="outlined"
-              regExp={regExpComplixity}
-              name="text-field-reg-expr-compixity"
-            />
-          </TableCell>
-          <TableCell>The component contain regular expressions</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+    <>
+      <Typography variant="H1" textAlign="center">
+        Testing TextField components
+      </Typography>
+      <Table>
+        <TableHead>
+          <TableRow isHeader={true}>
+            <TableCell>Component</TableCell>
+            <TableCell>Component description</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>
+              <TextField
+                label="Number values"
+                id="text-field-0"
+                value={textField2}
+                onChange={onInputChange2}
+                data-test="text-field-digits"
+                variant="outlined"
+                name="text-field-number"
+                isSeparateNumberFormat={false}
+                isNotRunDebounce={false}
+              />
+            </TableCell>
+            <TableCell>Masked formatted input</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <TextField
+                label="Number values"
+                id="text-field-1"
+                value={textField1}
+                onChange={onInputChange}
+                onRemove={onInputRemove}
+                data-test="text-field-digits"
+                variant="outlined"
+                type="number"
+                name="text-field-number"
+              />
+            </TableCell>
+            <TableCell>The component contain only digits</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <TextField
+                label="Text with regExp"
+                id="text-field-2"
+                onChange={onInputChange}
+                data-test="text-field-regular-expressions"
+                variant="outlined"
+                regExp={regExp}
+                name="text-field-reg-expr"
+              />
+            </TableCell>
+            <TableCell>The component contain regular expressions</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <TextField
+                label="Text with regExp compplixity"
+                id="text-field-3"
+                onChange={onInputChange}
+                data-test="text-field-regular-expressions-complixity"
+                variant="outlined"
+                regExp={regExpComplixity}
+                name="text-field-reg-expr-compixity"
+              />
+            </TableCell>
+            <TableCell>The component contain regular expressions</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </>
   );
 };
 

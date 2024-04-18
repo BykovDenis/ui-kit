@@ -230,4 +230,6 @@
   <li>PSCVA-1139 Datepicker. Removed layering of calendars</li>
   <li>PSCVA-859 Datepicker. onBlur event handler implemented </li>
   <li>Csstype library added for typecheking css properties</li>
+  <li>Typography. Css properties extended</li>
+  <li>Typography. variant "Phrase" added</li>
 </ol>
