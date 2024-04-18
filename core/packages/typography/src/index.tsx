@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import ITypography from '../types/itypography';
+import TTypography from '../types/ttypography';
 import H1Styled from './h1.styled';
 import H2Styled from './h2.styled';
 import H3Styled from './h3.styled';
 import ITheme from '../../styles/types/itheme';
+import PhraseStyled from './phrase.styled';
 
-const Typography: React.FunctionComponent<ITypography> = (props: ITypography) => {
+const Typography: React.FunctionComponent<TTypography> = (props: TTypography) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
 
   useEffect(() => {
@@ -24,6 +25,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
             fontSize={props?.fontSize ?? theme.h1FontSize}
             backgroundColor={props?.backgroundColor}
             className={props?.className}
+            fontFamily={props.fontFamily || theme.fontFamily}
           >
             {props.children}
           </H1Styled>
@@ -37,6 +39,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
             fontSize={props?.fontSize ?? theme.h2FontSize}
             backgroundColor={props?.backgroundColor}
             className={props?.className}
+            fontFamily={props.fontFamily || theme.fontFamily}
           >
             {props.children}
           </H2Styled>
@@ -50,6 +53,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
             fontSize={props?.fontSize ?? theme.h3FontSize}
             backgroundColor={props?.backgroundColor}
             className={props?.className}
+            fontFamily={props.fontFamily || theme.fontFamily}
           >
             {props.children}
           </H3Styled>
@@ -63,6 +67,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
             fontSize={props?.fontSize ?? theme.h4FontSize}
             backgroundColor={props?.backgroundColor}
             className={props?.className}
+            fontFamily={props.fontFamily || theme.fontFamily}
           >
             {props.children}
           </H3Styled>
@@ -76,6 +81,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
             fontSize={props?.fontSize ?? theme.h5FontSize}
             backgroundColor={props?.backgroundColor}
             className={props?.className}
+            fontFamily={props.fontFamily || theme.fontFamily}
           >
             {props.children}
           </H3Styled>
@@ -89,9 +95,24 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
             fontSize={props?.fontSize ?? theme.h6FontSize}
             backgroundColor={props?.backgroundColor}
             className={props?.className}
+            fontFamily={props.fontFamily || theme.fontFamily}
           >
             {props.children}
           </H3Styled>
+        );
+      }
+      case 'Phrase': {
+        return (
+          <PhraseStyled
+            {...props}
+            color={props?.color ?? color}
+            fontSize={props?.fontSize ?? theme.h6FontSize}
+            backgroundColor={props?.backgroundColor}
+            className={props?.className}
+            fontFamily={props.fontFamily || theme.fontFamily}
+          >
+            {props.children}
+          </PhraseStyled>
         );
       }
       default: {
@@ -102,6 +123,7 @@ const Typography: React.FunctionComponent<ITypography> = (props: ITypography) =>
             fontSize={props?.fontSize ?? theme.h1FontSize}
             backgroundColor={props?.backgroundColor}
             className={props?.className}
+            fontFamily={props.fontFamily || theme.fontFamily}
           >
             {props.children}
           </H1Styled>

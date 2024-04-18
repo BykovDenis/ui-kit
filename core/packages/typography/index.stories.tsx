@@ -4,7 +4,7 @@ import React from 'react';
 import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
 import Typography from './src/index';
-import ITypography from './types/itypography';
+import TTypography from './types/ttypography';
 
 export default {
   title: 'Components/Typography',
@@ -20,7 +20,7 @@ export default {
   },
 } as Meta<typeof Typography>;
 
-const DarkThemeTemplate: StoryFn<typeof Typography> = (args: ITypography) => {
+const DarkThemeTemplate: StoryFn<typeof Typography> = (args: TTypography) => {
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   return (
@@ -30,7 +30,7 @@ const DarkThemeTemplate: StoryFn<typeof Typography> = (args: ITypography) => {
   );
 };
 
-const LightThemeTemplate: StoryFn<typeof Typography> = (args: ITypography) => {
+const LightThemeTemplate: StoryFn<typeof Typography> = (args: TTypography) => {
   const ReactThemeContext = getNewReactThemeContext(themes.light);
 
   return (

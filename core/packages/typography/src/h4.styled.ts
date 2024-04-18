@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 import IHeader from '../types/iheader';
 
-const H4Styled =
-  styled.h3 <
-  IHeader >
-  `
+const H4Styled = styled.h3<IHeader>`
   color: ${(props: IHeader) => (props.color ? props.color : 'transparent')};
   font-size: ${(props: IHeader) => props.fontSize}px;
   background-color: ${(props: IHeader) => props.backgroundColor};
@@ -12,7 +9,8 @@ const H4Styled =
   text-transform: ${(props: IHeader) => props.textTransform ?? 'none'};
   text-decoration: ${(props: IHeader) => props.textDecoration ?? 'none'};
   ${(props: IHeader) => (props?.margin ? `margin: ${props.margin};` : '')}
-  ${(props: IHeader) => (props?.padding ? `margin: ${props.padding};` : '')}    
+  ${(props: IHeader) => (props?.padding ? `padding: ${props.padding};` : '')}
+  ${(props: IHeader) => (props?.textAlign ? `text-align: ${props.textAlign};` : '')}
 `;
 
 export default H4Styled;
