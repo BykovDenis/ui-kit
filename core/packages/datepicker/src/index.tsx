@@ -44,6 +44,7 @@ import Button from '../../button/src';
 import ChevronBtnLeftIcon from './icons/chevron-btn-left-icon';
 import ChevronBtnRightIcon from './icons/chevron-btn-right-icon';
 import ButtonDelete from '../../customs-styled-components/button-delete.styled';
+import dayjs, { Dayjs } from 'dayjs';
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -81,6 +82,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const maxDate: DateParser = isNotEmptyString(props.maxDate)
     ? new DateParser(props.maxDate, props.mask as DatepickerMask)
     : null;
+
+  const today: Dayjs = dayjs();
+
+  const isValidByMinDate: boolean = props.minDate ? today > minDate.getDate() : true;
+  const isValidByMaxDate: boolean = props.maxDate ? today < maxDate.getDate() : true;
 
   const syncDataParaemters = (date: DateParser) => {
     setDateParsed(date);
@@ -417,6 +423,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
     const focusColor: string = props?.error ? theme?.palette?.secondary?.main : theme.palette.primary.main;
 
+    const isSetTodayButtonDisabled: boolean = !isValidByMinDate || !isValidByMaxDate;
+
     return (
       <DatepickerContainerStyled
         backgroundImage={props?.backgroundImage}
@@ -524,7 +532,13 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             top={props?.height || DEFAULT_HEIGHT}
           >
             <FormControl justifyContent="center" margin="0 0 3px 0">
-              <Button height={15} variant="text" textDecoration="underline" data-btn-set-today="1">
+              <Button
+                height={15}
+                variant="text"
+                textDecoration="underline"
+                data-btn-set-today="1"
+                disabled={isSetTodayButtonDisabled}
+              >
                 {setTodayTitle}
               </Button>
             </FormControl>

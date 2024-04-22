@@ -90,7 +90,7 @@ const ThemeLightTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
 };
 
 const ThemeDarkTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
-  const [value, setValue] = useState('03.09.2023');
+  const [value, setValue] = useState(null);
 
   const onDatepickerValueChange = (name: string, value: string, isValid: boolean) => {
     setValue(value);
@@ -102,14 +102,14 @@ const ThemeDarkTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
     // console.log(null);
   };
 
-  const ReactThemeContext = getNewReactThemeContext(themes.light);
+  const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
   return (
-    <ReactThemeContext.Provider value={themes.light}>
-      <div style={{ width: '250px', zoom: 2 }}>
+    <ReactThemeContext.Provider value={themes.dark}>
+      <div style={{ width: '250px', zoom: 1 }}>
         <Datepicker
           {...args}
-          width={170}
+          width={200}
           variant="outlined"
           name="someDatepicker"
           value={value}
@@ -120,6 +120,8 @@ const ThemeDarkTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
           isErrorMessageDisplayed={false}
           datesContainerAlign="left"
           textMessage="text message"
+          minDate="22.04.2024"
+          maxDate="30.04.2024"
         />
       </div>
     </ReactThemeContext.Provider>
