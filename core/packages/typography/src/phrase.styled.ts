@@ -14,8 +14,10 @@ const PhraseStyled = styled.p<TTypography>`
   height: ${(props: TTypography) => getMeasureValue(props?.height)};
   background-color: ${(props: TTypography) => (props.backgroundColor ? props.backgroundColor : 'inherit')};
   word-break: ${(props: TTypography) => props.wordBreak ?? 'initial'};
-  padding: ${(props: TTypography) => props.padding || 'initial'};
   ${(props: TTypography) => (props?.textAlign ? `text-align: ${props.textAlign}` : '')};
+  ${(props: TTypography) => (props?.opacity ? `opacity: ${props.opacity};` : '')}
+  ${(props: TTypography) => (props?.padding ? `padding: ${props.padding};` : '')}
+  ${(props: TTypography) => (props?.margin ? `margin: ${props.margin};` : '')}
 `;
 
 export default PhraseStyled;

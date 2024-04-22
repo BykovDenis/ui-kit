@@ -115,3 +115,7 @@ cd warning-panel/
 echo 29. WarningPanel building...
 npm run build
 cd ..
+cd datepicker/
+echo 30. Datepicker building...
+npm run build
+cd ..

@@ -1,65 +1,44 @@
 describe('Testing Select component', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000');
+    cy.visit('http://localhost:3000/select');
   });
-  it('Test 1. Select number value 1', () => {
-    cy.get('#select-digits-input')
+  it('Test 1. Select text value', () => {
+    cy.get('#select-text-input')
       .focus()
+      .type('thr')
       .then(() => {
-        cy.get('#select-digits-list div:first button')
+        cy.get('#select-text-list div:first button')
           .as('btn')
-          .parent()
+          .click()
           .then(() => {
-            cy.get('#select-digits-input').should('value', 1);
+            cy.get('#select-text-input').should('value', 'three');
           });
       });
   });
-  // it('Test 2. Select number value 0', () => {
-  //   cy.get('#select-digits-input')
-  //     .click()
-  //     .then(() => {
-  //       cy.get('#select-digits-list div:last button')
-  //         .as('btn')
-  //         .parent()
-  //         .then(() => {
-  //           cy.get('#select-digits-input').should('have.value', 0);
-  //         });
-  //     });
-  // });
-  // it('Test 3. Select number value 5', () => {
-  //   cy.get('#select-digits-input')
-  //     .click()
-  //     .then(() => {
-  //       cy.get('#select-digits-list div:nth-child(5) button')
-  //         .click()
-  //         .then(() => {
-  //           cy.get('#select-digits-input').should('have.value', 5);
-  //         });
-  //     });
-  // });
-  // it('Test 4. Clean value', () => {
-  //   cy.get('#select-digits button[data-test="btn-delete-value"]')
-  //     .click()
-  //     .then(() => {
-  //       cy.get('#select-digits-input').should('have.value', '');
-  //     });
-  // });
-  // it('Test 5. Create new value', () => {
-  //   cy.get('#select-digits button[data-test="btn-delete-value"]')
-  //     .click()
-  //     .then(() => {
-  //       cy.get('#select-digits-input').should('have.value', '');
-  //     })
-  //     .then(() => {
-  //       cy.get('#select-digits-input')
-  //         .type('333')
-  //         .then(() => {
-  //           cy.get('#select-digits-list div:first button')
-  //             .click()
-  //             .then(() => {
-  //               cy.get('#select-digits-input').should('have.value', 333);
-  //             });
-  //         });
-  //     });
-  // });
+  it('Test 2. Select number value', () => {
+    cy.get('#select-digits-input')
+      .focus()
+      .type(32)
+      .then(() => {
+        cy.get('#select-digits-list div:first button')
+          .as('btn')
+          .click()
+          .then(() => {
+            cy.get('#select-digits-input').should('value', 532);
+          });
+      });
+  });
+  it('Test 3. Select object value', () => {
+    cy.get('#select-object-input')
+      .focus()
+      .type('юль')
+      .then(() => {
+        cy.get('#select-object-list div:first button')
+          .as('btn')
+          .click()
+          .then(() => {
+            cy.get('#select-object-input').should('value', 'Июль');
+          });
+      });
+  });
 });

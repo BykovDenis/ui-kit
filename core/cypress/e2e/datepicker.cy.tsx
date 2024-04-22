@@ -1,6 +1,6 @@
 describe('The Datepicker component', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000');
+    cy.visit('http://localhost:3000/datepicker');
   });
   it('Test1. Selection by click text. Testing input value changing attributes by onChange event handler. Mask dd.MM.yyyy', () => {
     // Typing value

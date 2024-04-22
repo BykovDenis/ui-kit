@@ -6,14 +6,15 @@ import { useContext } from 'react';
 import { ReactThemeContext } from '../app';
 import { ITheme } from '@sber-risks-ui/core/styles';
 import ListItemLinkStyled from './common/list-item-link.styled';
-import TextField from '@sber-risks-ui/core/textfield';
 
 const Sidebar: React.FunctionComponent = () => {
   const pathname: string = document.location.pathname;
 
-  const isDatepickerActive: boolean = pathname?.indexOf('datepickers') > -1;
-  const isInputsActive: boolean = pathname?.indexOf('inputs') > -1;
-  const isTextFieldsActive: boolean = pathname?.indexOf('textfields') > -1;
+  const isDatepickerActive: boolean = pathname?.indexOf('datepicker') > -1;
+  const isInputActive: boolean = pathname?.indexOf('input') > -1;
+  const isTextFieldActive: boolean = pathname?.indexOf('textfield') > -1;
+  const isMultiSelectActive: boolean = pathname?.indexOf('/multi-select') > -1;
+  const isSelectActive: boolean = pathname?.indexOf('select') > -1 && pathname?.indexOf('multi') === -1;
 
   const theme: ITheme = useContext(ReactThemeContext);
 
@@ -26,19 +27,19 @@ const Sidebar: React.FunctionComponent = () => {
         <List type="list" width={250}>
           <ListItem
             type="text"
-            backgroundColor={isInputsActive ? theme.palette.primary.main : theme.mainBackgroundColor}
+            backgroundColor={isInputActive ? theme.palette.primary.main : theme.mainBackgroundColor}
             height={60}
           >
-            <ListItemLinkStyled color={theme.palette.baseFontColor} fontFamily={theme.fontFamily} href="/inputs">
-              Inputs
+            <ListItemLinkStyled color={theme.palette.baseFontColor} fontFamily={theme.fontFamily} href="/input">
+              Input
             </ListItemLinkStyled>
           </ListItem>
           <ListItem
             type="text"
-            backgroundColor={isTextFieldsActive ? theme.palette.primary.main : theme.mainBackgroundColor}
+            backgroundColor={isTextFieldActive ? theme.palette.primary.main : theme.mainBackgroundColor}
             height={60}
           >
-            <ListItemLinkStyled color={theme.palette.baseFontColor} fontFamily={theme.fontFamily} href="/textfields">
+            <ListItemLinkStyled color={theme.palette.baseFontColor} fontFamily={theme.fontFamily} href="/textfield">
               TextField
             </ListItemLinkStyled>
           </ListItem>
@@ -47,8 +48,26 @@ const Sidebar: React.FunctionComponent = () => {
             backgroundColor={isDatepickerActive ? theme.palette.primary.main : theme.mainBackgroundColor}
             height={60}
           >
-            <ListItemLinkStyled color={theme.palette.baseFontColor} fontFamily={theme.fontFamily} href="/datepickers">
-              Datepickers
+            <ListItemLinkStyled color={theme.palette.baseFontColor} fontFamily={theme.fontFamily} href="/datepicker">
+              Datepicker
+            </ListItemLinkStyled>
+          </ListItem>
+          <ListItem
+            type="text"
+            backgroundColor={isSelectActive ? theme.palette.primary.main : theme.mainBackgroundColor}
+            height={60}
+          >
+            <ListItemLinkStyled color={theme.palette.baseFontColor} fontFamily={theme.fontFamily} href="/select">
+              Select
+            </ListItemLinkStyled>
+          </ListItem>
+          <ListItem
+            type="text"
+            backgroundColor={isMultiSelectActive ? theme.palette.primary.main : theme.mainBackgroundColor}
+            height={60}
+          >
+            <ListItemLinkStyled color={theme.palette.baseFontColor} fontFamily={theme.fontFamily} href="/multi-select">
+              Multi select
             </ListItemLinkStyled>
           </ListItem>
         </List>

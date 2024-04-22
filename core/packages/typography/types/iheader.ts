@@ -11,6 +11,7 @@ interface IHeader {
   textAlign?: CSS.Property.TextAlign;
   margin?: string;
   padding?: string;
+  opacity?: number;
 }
 
 export default IHeader;

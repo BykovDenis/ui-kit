@@ -11,6 +11,7 @@ const H2Styled = styled.h2<IHeader>`
   ${(props: IHeader) => (props?.margin ? `margin: ${props.margin};` : '')}
   ${(props: IHeader) => (props?.padding ? `padding: ${props.padding};` : '')}
   ${(props: IHeader) => (props?.textAlign ? `text-align: ${props.textAlign};` : '')}
+  ${(props: IHeader) => (props?.opacity ? `opacity: ${props.opacity};` : '')}
 `;
 
 export default H2Styled;

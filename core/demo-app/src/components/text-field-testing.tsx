@@ -6,31 +6,60 @@ import TableBody from '../../../packages/table-body/src';
 import TextField from '../../../packages/textfield/src';
 import React, { useState } from 'react';
 import Typography from '../../../packages/typography/src';
+import { success } from '../utils/dev-utils-theme';
 
 const TextFieldTesting: React.FunctionComponent = () => {
   const regExp: RegExp = new RegExp('[0-9_]', 'gi');
   const regExpComplixity: RegExp = new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
   const [textField1, setTextField1] = useState<number | null>(null);
   const [textField2, setTextField2] = useState<number | null>(null);
+  const [textFieldRegularExpression, setTextFieldRegularExpression] = useState<string | null>(null);
+  const [textFieldRegularExpressionComplixity, setTextFieldRegularExpressionComplixity] = useState<string | null>(null);
 
-  const onInputChange = (
+  const onInputNumberChange = (
     evt: React.ChangeEvent<HTMLInputElement>,
     name: string,
     value: number | string | null | undefined
   ) => {
     const element = evt.target;
-    console.log(element?.value);
-    setTextField1(Number(value));
+    console.log(success(element?.value));
+    setTextField2(Number(value));
   };
 
-  const onInputChange2 = (evt: any) => {
+  const onInputChange1 = (evt: any) => {
     const element = evt.target;
-    console.log(element?.value);
-    setTextField2(Number(element.value));
+    console.log(success(element?.value));
+    setTextField1(element.value);
   };
 
-  const onInputRemove = (name: string) => {
+  const onInputRemove1 = (name: string) => {
     console.log(name);
+    setTextField1(null);
+  };
+
+  const onInputNumberRemove = (name: string) => {
+    console.log(name);
+    setTextField1(null);
+  };
+
+  const onTextFieldRegularExpressionChange = (evt: any) => {
+    const element = evt.target;
+    console.log(success(element?.value));
+    setTextFieldRegularExpression(element.value);
+  };
+
+  const onTextFieldRegularExpressionRemove = (name: string) => {
+    setTextFieldRegularExpression(null);
+  };
+
+  const onTextFieldRegularExpressionComplixityChange = (evt: any) => {
+    const element = evt.target;
+    console.log(success(element?.value));
+    setTextFieldRegularExpressionComplixity(element.value);
+  };
+
+  const onTextFieldRegularExpressionComplixityRemove = (name: string) => {
+    setTextFieldRegularExpressionComplixity(null);
   };
 
   return (
@@ -50,13 +79,14 @@ const TextFieldTesting: React.FunctionComponent = () => {
             <TableCell>
               <TextField
                 label="Number values"
-                id="text-field-0"
-                value={textField2}
-                onChange={onInputChange2}
+                id="text-field-digits-separated"
+                value={textField1}
+                onChange={onInputChange1}
+                onRemove={onInputRemove1}
                 data-test="text-field-digits"
                 variant="outlined"
                 name="text-field-number"
-                isSeparateNumberFormat={false}
+                isSeparateNumberFormat={true}
                 isNotRunDebounce={false}
               />
             </TableCell>
@@ -66,10 +96,10 @@ const TextFieldTesting: React.FunctionComponent = () => {
             <TableCell>
               <TextField
                 label="Number values"
-                id="text-field-1"
-                value={textField1}
-                onChange={onInputChange}
-                onRemove={onInputRemove}
+                id="text-field-digits"
+                value={textField2}
+                onChange={onInputNumberChange}
+                onRemove={onInputNumberRemove}
                 data-test="text-field-digits"
                 variant="outlined"
                 type="number"
@@ -83,11 +113,13 @@ const TextFieldTesting: React.FunctionComponent = () => {
               <TextField
                 label="Text with regExp"
                 id="text-field-2"
-                onChange={onInputChange}
+                onChange={onTextFieldRegularExpressionChange}
+                onRemove={onTextFieldRegularExpressionRemove}
                 data-test="text-field-regular-expressions"
                 variant="outlined"
                 regExp={regExp}
                 name="text-field-reg-expr"
+                value={textFieldRegularExpression}
               />
             </TableCell>
             <TableCell>The component contain regular expressions</TableCell>
@@ -96,12 +128,14 @@ const TextFieldTesting: React.FunctionComponent = () => {
             <TableCell>
               <TextField
                 label="Text with regExp compplixity"
-                id="text-field-3"
-                onChange={onInputChange}
+                id="text-field-regular-expressions-complixity"
+                onChange={onTextFieldRegularExpressionComplixityChange}
+                onRemove={onTextFieldRegularExpressionComplixityRemove}
                 data-test="text-field-regular-expressions-complixity"
                 variant="outlined"
                 regExp={regExpComplixity}
                 name="text-field-reg-expr-compixity"
+                value={textFieldRegularExpressionComplixity}
               />
             </TableCell>
             <TableCell>The component contain regular expressions</TableCell>
