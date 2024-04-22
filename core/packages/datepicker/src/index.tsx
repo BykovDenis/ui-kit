@@ -85,8 +85,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const today: Dayjs = dayjs();
 
-  const isValidByMinDate: boolean = props.minDate ? today > minDate.getDate() : true;
-  const isValidByMaxDate: boolean = props.maxDate ? today < maxDate.getDate() : true;
+  const isValidByMinDate: boolean = props.minDate ? today >= minDate.getDate() : true;
+  const isValidByMaxDate: boolean = props.maxDate ? today <= maxDate.getDate() : true;
 
   const syncDataParaemters = (date: DateParser) => {
     setDateParsed(date);
