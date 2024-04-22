@@ -1,12 +1,11 @@
 ﻿import styled from 'styled-components';
 import getMeasureValue from '../../helpers/get-measure-value';
 import isNotEmptyNumber from '../../helpers/is-not-empty-number';
-import TGridContainer from "../types/tgrid-container";
-import TGridContainerStyled from "../types/tgrid-container-styled";
+import TGridContainerStyled from '../types/tgrid-container-styled';
 
 const GridContainerStyled = styled.div<TGridContainerStyled>`
   ${(props: TGridContainerStyled) => `
-    position: ${(props?.position ? props?.position : 'relative')};
+    position: ${props?.position ? props?.position : 'relative'};
   display: grid;
   box-sizing: border-box;
   color: ${props?.color || 'inherit'};
@@ -30,10 +29,12 @@ const GridContainerStyled = styled.div<TGridContainerStyled>`
   font-weight: ${props.fontWeight || 400};
   grid-template-columns: ${props.gridTemplateColumns};
   grid-template-rows:  ${props.gridTemplateRows};
-  ${(isNotEmptyNumber(props?.zIndex) ? `z-index: ${props.zIndex};` : '')}
+  ${isNotEmptyNumber(props?.zIndex) ? `z-index: ${props.zIndex};` : ''}
   ${props.gridGap ? `grid-gap: ${props.gridGap};` : ''}
   ${props.gridColumnGap ? `grid-column-gap: ${props.gridColumnGap};` : ''}
   ${props.gridRowGap ? `grid-row-gap: ${props.gridRowGap};` : ''}
+  ${props.justifyContent ? `justify-content: ${props.justifyContent};` : ''}
+  ${props.alignItems ? `align-items: ${props.alignItems};` : ''}
 `}
 `;
 

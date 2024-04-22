@@ -2,7 +2,7 @@ import React from 'react';
 
 describe('The Input component', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000');
+    cy.visit('http://localhost:3000/input');
   });
   it('Test1. Typing text. Testing name and value attributes', () => {
     // mount(<Input type="number" name="input name" value="123" />)

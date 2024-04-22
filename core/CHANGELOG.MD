@@ -232,4 +232,5 @@
   <li>Csstype library added for typecheking css properties</li>
   <li>Typography. Css properties extended</li>
   <li>Typography. variant "Phrase" added</li>
+  <li>Datepicker. Doesn't set today when maxDate < today </li>
 </ol>

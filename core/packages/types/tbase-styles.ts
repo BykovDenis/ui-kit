@@ -1,29 +1,30 @@
 type TBaseStyles = {
-  name?: string,
-  id?: string,
-  backgroundColor?: string,
-  children?: any | Array<React.ReactNode>, // React.ReactNode | number | string | Array<React.ReactNode>,
-  className?: any,
-  color?: string,
-  disabled?: boolean,
-  fontFamily?: string,
-  fontSize?: number,
-  fontWeight?: number,
-  whiteSpace?: string,
-  padding?: string,
-  margin?: string,
-  wordBreak?: string,
-  display?: string,
-  lineHeight?: number,
-  height?: number | string,
-  minHeight?: number | string,
-  maxHeight?: number | string,
-  maxWidth?: number | string,
-  minWidth?: number | string,
-  width?: number | string,
-  regExp?: RegExp,
-  position?: string,
-  textAlign?: string,
+  name?: string;
+  id?: string;
+  backgroundColor?: string;
+  children?: any | Array<React.ReactNode>; // React.ReactNode | number | string | Array<React.ReactNode>,
+  className?: any;
+  color?: string;
+  disabled?: boolean;
+  fontFamily?: string;
+  fontSize?: number;
+  fontWeight?: number;
+  whiteSpace?: string;
+  padding?: string;
+  margin?: string;
+  wordBreak?: string;
+  display?: string;
+  lineHeight?: number;
+  height?: number | string;
+  minHeight?: number | string;
+  maxHeight?: number | string;
+  maxWidth?: number | string;
+  minWidth?: number | string;
+  width?: number | string;
+  regExp?: RegExp;
+  position?: string;
+  textAlign?: string;
+  opacity?: number;
 };
 
 export default TBaseStyles;

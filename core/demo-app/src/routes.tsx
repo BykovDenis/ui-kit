@@ -3,6 +3,8 @@ import DatepickerTesting from './components/datepicker-testing';
 import App from './app';
 import InputTesting from './components/input-testing';
 import TextFieldTesting from './components/text-field-testing';
+import SelectTesting from './components/select-testing';
+import MultiSelectTesting from './components/multi-select-testing';
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -11,16 +13,24 @@ const Routes = () => {
       element: <></>,
     },
     {
-      path: '/datepickers',
+      path: '/datepicker',
       element: <DatepickerTesting />,
     },
     {
-      path: '/inputs',
+      path: '/input',
       element: <InputTesting />,
     },
     {
-      path: '/textfields',
+      path: '/textfield',
       element: <TextFieldTesting />,
+    },
+    {
+      path: '/select',
+      element: <SelectTesting />,
+    },
+    {
+      path: '/multi-select',
+      element: <MultiSelectTesting />,
     },
   ]);
 
