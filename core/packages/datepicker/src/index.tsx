@@ -72,21 +72,27 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     props.isErrorMessageDisplayed !== undefined ? props.isErrorMessageDisplayed : 'true'
   );
   const [monthName, setMonthName] = useState<IOption | null>(null);
+  const [mask] = useState<DatepickerMask>((props.mask as DatepickerMask) || DatepickerMask.DDMMYYYY);
 
   const minDate: DateParser = isNotEmptyString(props.minDate)
     ? new DateParser(props.minDate, props.mask as DatepickerMask)
     : new DateParser(
-        (props.mask as DatepickerMask) === DatepickerMask.YYYYMMDD ? '1971-01-01' : '01.01.1971',
-        props.mask as DatepickerMask
+        (mask as DatepickerMask) === DatepickerMask.YYYYMMDD ? '1971-01-01' : '01.01.1971',
+        mask as DatepickerMask
       );
   const maxDate: DateParser = isNotEmptyString(props.maxDate)
-    ? new DateParser(props.maxDate, props.mask as DatepickerMask)
+    ? new DateParser(props.maxDate, mask as DatepickerMask)
     : null;
 
   const today: Dayjs = dayjs();
+  const todayParsed: string = today.format(DatepickerMask.YYYYMMDD);
 
-  const isValidByMinDate: boolean = props.minDate ? today >= minDate.getDate() : true;
-  const isValidByMaxDate: boolean = props.maxDate ? today <= maxDate.getDate() : true;
+  const isValidByMinDate: boolean = props.minDate
+    ? todayParsed >= minDate.getDate().format(DatepickerMask.YYYYMMDD)
+    : true;
+  const isValidByMaxDate: boolean = props.maxDate
+    ? todayParsed <= maxDate.getDate().format(DatepickerMask.YYYYMMDD)
+    : true;
 
   const syncDataParaemters = (date: DateParser) => {
     setDateParsed(date);
@@ -185,7 +191,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const element: any = evt.target;
     setIsVisibleList(false);
     const datePartitioned: string = isNotEmptyString(element?.value) ? element?.value?.replaceAll(/\D/gi, '') : null;
-    const valueParsed: string = datePartitioned ? parseInputDate(datePartitioned, props.mask as DatepickerMask) : null;
+    const valueParsed: string = datePartitioned ? parseInputDate(datePartitioned, mask as DatepickerMask) : null;
     if (valueParsed !== value) {
       setValue(valueParsed);
     }
@@ -296,7 +302,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   // >>> useEffects
 
   useEffect(() => {
-    const dateParsed: DateParser = new DateParser(props.value, props.mask as DatepickerMask);
+    const dateParsed: DateParser = new DateParser(props.value, mask as DatepickerMask);
     syncDataParaemters(dateParsed);
     document.addEventListener('mouseup', onMouseOutUp);
     document.addEventListener('keyup', onKeyUp);
@@ -538,6 +544,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 textDecoration="underline"
                 data-btn-set-today="1"
                 disabled={isSetTodayButtonDisabled}
+                data-test-name="setToday"
               >
                 {setTodayTitle}
               </Button>
@@ -647,7 +654,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
               onDayChange={onDayChange}
               minDate={minDate}
               maxDate={maxDate}
-              mask={props.mask as DatepickerMask}
+              mask={mask as DatepickerMask}
             />
           </DatepickerDatesContainer>
         )}

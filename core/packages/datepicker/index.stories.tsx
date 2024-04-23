@@ -120,8 +120,8 @@ const ThemeDarkTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
           isErrorMessageDisplayed={false}
           datesContainerAlign="left"
           textMessage="text message"
-          minDate="22.04.2024"
-          maxDate="30.04.2024"
+          minDate=""
+          maxDate="23.04.2024"
         />
       </div>
     </ReactThemeContext.Provider>

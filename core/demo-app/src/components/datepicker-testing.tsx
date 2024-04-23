@@ -9,7 +9,7 @@ const DatepickerTesting = () => {
   const [date, setDate] = useState('2024-04-02');
   const [date1, setDate1] = useState<string | null>(null);
   const [date2, setDate2] = useState<string | null>(null);
-  const [date3, setDate3] = useState('25.10.2023');
+  const [date3, setDate3] = useState<string | null>(null);
 
   const onDateChange = (name: string, value: string) => {
     console.log(value);
@@ -47,15 +47,18 @@ const DatepickerTesting = () => {
     setDate3(value);
   };
 
+  const onDate3Remove = (name: string) => {
+    setDate3(null);
+  };
+
   return (
-    <>
+    <FlexContainer width={900} flexDirection="column">
       <Typography variant="H1" textAlign="center">
         Testing Datepickers components
       </Typography>
-      <FlexContainer justifyContent="flex-start" width={500}>
+      <FlexContainer justifyContent="space-between">
         <FlexContainer
           id="datepicker-flex-container"
-          width={250}
           marginTop="20px"
           marginBottom={20}
           marginLeft="15px"
@@ -64,33 +67,20 @@ const DatepickerTesting = () => {
           paddingRight={6}
           paddingBottom={7}
           paddingLeft="8px"
+          width={200}
         >
-          <FormControl
-            marginTop="30px"
-            marginBottom={28}
-            marginLeft="20px"
-            marginRight={45}
-            paddingTop={1}
-            paddingRight={2}
-            paddingBottom={3}
-            paddingLeft="4px"
-            width={200}
-            margin="20px 10px"
-          >
-            <Datepicker
-              value={date1 as string}
-              onBlur={onDate1Change}
-              onRemove={onDate1Remove}
-              variant="outlined"
-              label="Datepicker1 EN"
-              id="datepicker1"
-              name="datepicker1"
-              locale="RU"
-              width="200px"
-              height={60}
-              datesContainerAlign="left"
-            />
-          </FormControl>
+          <Datepicker
+            value={date1 as string}
+            onBlur={onDate1Change}
+            onRemove={onDate1Remove}
+            variant="outlined"
+            label="Datepicker1 EN"
+            id="datepicker1"
+            name="datepicker1"
+            locale="RU"
+            height={60}
+            datesContainerAlign="left"
+          />
         </FlexContainer>
         <FlexContainer width={200} margin="20px 10px">
           <Datepicker
@@ -105,21 +95,23 @@ const DatepickerTesting = () => {
             height={60}
           />
         </FlexContainer>
-        {/*<FlexContainer width={250} margin="20px 10px">*/}
-        {/*  <Datepicker*/}
-        {/*    value={date3}*/}
-        {/*    onChange={onDate3Change}*/}
-        {/*    mask="dd.MM.yyyy"*/}
-        {/*    variant="outlined"*/}
-        {/*    label="Datepicker2 locale undefined"*/}
-        {/*    id="datepicker4"*/}
-        {/*    name="datepicker2"*/}
-        {/*    height={60}*/}
-        {/*    width={110}*/}
-        {/*  />*/}
-        {/*</FlexContainer>*/}
+        <FlexContainer width={200} margin="20px 10px">
+          <Datepicker
+            value={date3 as string}
+            onChange={onDate3Change}
+            onRemove={onDate3Remove}
+            mask="dd.MM.yyyy"
+            variant="outlined"
+            label="Datepicker3"
+            id="datepicker3"
+            name="datepicker3"
+            height={60}
+            minDate="24.04.2024"
+            maxDate="24.04.2024"
+          />
+        </FlexContainer>
       </FlexContainer>
-    </>
+    </FlexContainer>
   );
 };
 

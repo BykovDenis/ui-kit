@@ -1,6 +1,7 @@
 describe('The Datepicker component', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/datepicker');
+    cy.viewport(1920, 1080);
   });
   it('Test1. Selection by click text. Testing input value changing attributes by onChange event handler. Mask dd.MM.yyyy', () => {
     // Typing value
@@ -36,5 +37,9 @@ describe('The Datepicker component', () => {
     cy.get('#datepicker2').focus().click();
     cy.get('button[name="13"]').as('btn').click();
     cy.get('#datepicker2').should('value', '2024-02-13');
+  });
+  it('Test5. Test min-max date', () => {
+    cy.get('#datepicker3').focus().click();
+    cy.get('button[data-test-name="setToday"]').should('be.disabled');
   });
 });
