@@ -36,11 +36,12 @@ class DateParser implements IDateParser {
         month = parseInt(datePartition[1], 10);
         year = parseInt(datePartition[2], 10);
       }
-      this.dateParsed = dayjs(
-        `${year < 1000 ? `0${year}` : year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`,
-        'YYYY-MM-DD'
-      );
-      this.isValid = checkFormatDate(day, month, year);
+      const dateStringForparsing: string = `${year < 1000 ? `0${year}` : year}-${month < 10 ? `0${month}` : month}-${
+        day < 10 ? `0${day}` : day
+      }`;
+      const isValid: boolean = dayjs(dateStringForparsing, 'YYYY-MM-DD', true).isValid();
+      this.dateParsed = dayjs(dateStringForparsing, 'YYYY-MM-DD', true);
+      this.isValid = isValid && checkFormatDate(day, month, year);
     }
     const month: number = this.dateParsed.get('month') + 1;
     this.firstDayOnMonth = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-01`, 'YYYY-MM-DD');

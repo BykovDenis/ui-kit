@@ -1,9 +1,9 @@
 import Datepicker from '../../../packages/datepicker/src';
 import FlexContainer from '../../../packages/flex-container/src';
-import FormControl from '../../../packages/form-control/src';
 import React, { useContext, useState } from 'react';
 import { warning, success } from '../utils/dev-utils-theme';
 import Typography from '../../../packages/typography/src';
+import isNotEmptyString from '../../../packages/helpers/is-not-empty-string';
 
 const DatepickerTesting = () => {
   const [date, setDate] = useState('2024-04-02');
@@ -34,12 +34,12 @@ const DatepickerTesting = () => {
     console.log(date2);
   };
 
-  const onDate2Change = (name: string, value: string, isValid: boolean) => {
-    setDate2(value);
+  const onDate2Change = (name: string, newDateValue: string, isValid: boolean) => {
+    if (isNotEmptyString(newDateValue) && date2 !== newDateValue && !isValid) setDate2(newDateValue);
     if (isValid) {
-      console.log(success(value));
+      console.log(success(newDateValue));
     } else {
-      console.log(warning(value));
+      console.log(warning(newDateValue));
     }
   };
 
@@ -85,7 +85,7 @@ const DatepickerTesting = () => {
         <FlexContainer width={200} margin="20px 10px">
           <Datepicker
             value={date2 as string}
-            onChange={onDate2Change}
+            onBlur={onDate2Change}
             onRemove={onDate2Remove}
             mask="yyyy-MM-dd"
             variant="outlined"
