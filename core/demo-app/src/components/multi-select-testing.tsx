@@ -83,6 +83,7 @@ const MultiSelectTesting: React.FunctionComponent = () => {
           elementNamesDefaultSelected={columnsSelected1}
           elementNames={columns1}
           onChange={onMultiSelect1Change}
+          fontSize={14}
         />
       </FlexContainer>
       <GridContainer columns={2} rows={2} gap="40px" padding="50px">
@@ -97,6 +98,7 @@ const MultiSelectTesting: React.FunctionComponent = () => {
           elementNamesDefaultSelected={columnsSelected2}
           elementNames={columns}
           onChange={onMultiSelect2Change}
+          fontSize={14}
         />
         {/*<MultiSelect sortDirection="asc" height={100}  isUseLocaleStorage={true} id="multi-select-3" label="some-label" name="someColumns3" elementNamesDefaultSelected={columnsSelected3} elementNames={columns1} onChange={onMultiSelect3Change}  />*/}
       </GridContainer>

@@ -234,4 +234,5 @@
   <li>Typography. variant "Phrase" added</li>
   <li>Datepicker. Doesn't set today when maxDate < today </li>
   <li>Datepicker. Strict mode validation turned on (Library DayJS) </li>
+  <li>Multiselect. Using fontSize without calculation -2 </li>
 </ol>

@@ -344,7 +344,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                   alignItems="stretch"
                 >
                   <Label
-                    fontSize={pixelsMeasureToNumber(fontSize) - 2}
+                    fontSize={pixelsMeasureToNumber(fontSize)}
                     htmlFor={`${props.id}-${index}-button`}
                     whiteSpace="normal"
                     wordBreak="break-all"
@@ -377,7 +377,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
             data-name="button-toggle"
             data-id={props.id}
             onClick={onListExpanded}
-            fontSize={pixelsMeasureToNumber(fontSize) - 2}
+            fontSize={pixelsMeasureToNumber(fontSize)}
             borderColor={outlinedColor}
             borderColorFocused={theme.palette.primary.light}
             disabled={props.disabled}
@@ -396,7 +396,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                 padding="2px"
                 width="50%"
                 onClick={onAllElementsSelected}
-                fontSize={pixelsMeasureToNumber(fontSize) - 2}
+                fontSize={pixelsMeasureToNumber(fontSize)}
                 color={theme.palette.baseFontColor}
                 backgroundColor={theme.palette.primary.light}
                 disabled={props.disabled}
@@ -407,7 +407,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                 padding="2px"
                 width="50%"
                 onClick={onAllElementsUnselected}
-                fontSize={pixelsMeasureToNumber(fontSize) - 2}
+                fontSize={pixelsMeasureToNumber(fontSize)}
                 color={theme.palette.baseFontColor}
                 backgroundColor={theme.palette.primary.light}
                 disabled={props.disabled}
