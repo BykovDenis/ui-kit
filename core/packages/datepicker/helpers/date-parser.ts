@@ -94,9 +94,6 @@ class DateParser implements IDateParser {
   getNumberYear() {
     return this.dateParsed.year();
   }
-  checkIsValidateDate() {
-    return this.dateParsed.isValid();
-  }
   getSplittedParamsByDate() {
     return this.dateParamsSeparate;
   }
@@ -123,7 +120,7 @@ class DateParser implements IDateParser {
     const month: number = this.dateParsed.get('month') + 1;
     this.firstDayOnMonth = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-01`, 'YYYY-MM-DD');
   }
-  checkIsNotExistErrorDate() {
+  checkIsValidDate() {
     return this.isValid;
   }
   setToday() {

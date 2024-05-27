@@ -233,6 +233,11 @@
   <li>Typography. Css properties extended</li>
   <li>Typography. variant "Phrase" added</li>
   <li>Datepicker. Doesn't set today when maxDate < today </li>
-  <li>Datepicker. Strict mode validation turned on (Library DayJS) </li>
+  <li>PSCVA-1193 Datepicker. Strict mode validation turned on (Library DayJS) </li>
   <li>Multiselect. Using fontSize without calculation -2 </li>
+  <li>Datepicker. Text message can be pass </li>
+</ol>
+<h3>BugFix</h3>
+<ol>
+  <li>PSCVA-1193 Datepicker. Date validation some improved.</li>
 </ol>

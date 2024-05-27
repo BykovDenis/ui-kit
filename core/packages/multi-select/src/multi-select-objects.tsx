@@ -424,6 +424,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
               variant="outlined"
               isNotClearable={true}
               disabled={props.disabled}
+              fontSize={pixelsMeasureToNumber(fontSize)}
             />
             <ListContainerStyled
               backgroundColor={theme.mainBackgroundColor}
@@ -456,6 +457,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                         data-label={columnElement.label}
                         display="inline-flex"
                         height="100%"
+                        fontSize={pixelsMeasureToNumber(fontSize)}
                       >
                         {columnElement.label}
                         <FormControl position="absolute" right={5} width="initial" data-value={columnElement.value}>
@@ -482,6 +484,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                         data-value={columnElement.value}
                         display="inline-flex"
                         height="100%"
+                        fontSize={pixelsMeasureToNumber(fontSize)}
                       >
                         {columnElement.label}
                         <FormControl position="absolute" right={5} width="initial" data-value={columnElement.value}>
