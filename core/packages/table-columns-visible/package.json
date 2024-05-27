@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/TableColumnsVisible",
-  "version": "0.12.1-alpha.10",
+  "version": "0.12.1-alpha.11",
   "description": "Risks react UI",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
