@@ -393,6 +393,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
               onRemove={onSearchStringClean}
               placeholder="Search elements"
               variant="outlined"
+              fontSize={pixelsMeasureToNumber(fontSize)}
             />
             <ListContainerStyled
               backgroundColor={theme.mainBackgroundColor}
@@ -418,7 +419,11 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                       onClick={onColumnNameRemove}
                       backgroundColor={theme.palette.primary.moreLighter}
                     >
-                      <Label backgroundColor="transparent" data-value={columnNameElement}>
+                      <Label
+                        backgroundColor="transparent"
+                        data-value={columnNameElement}
+                        fontSize={pixelsMeasureToNumber(fontSize)}
+                      >
                         {columnNameElement}
                         <FormControl position="absolute" right={5} width="initial" data-value={columnNameElement}>
                           <CircleCrossIcon color={theme.palette.baseFontColor} />
@@ -437,7 +442,11 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                     data-id={props.id}
                     onClick={onElementNameSelect}
                   >
-                    <Label backgroundColor="transparent" data-value={columnNameElement}>
+                    <Label
+                      backgroundColor="transparent"
+                      data-value={columnNameElement}
+                      fontSize={pixelsMeasureToNumber(fontSize)}
+                    >
                       {columnNameElement}
                       <FormControl position="absolute" right={5} width="initial" data-value={columnNameElement}>
                         <CirclePlusIcon color={theme.palette.baseFontColor} />

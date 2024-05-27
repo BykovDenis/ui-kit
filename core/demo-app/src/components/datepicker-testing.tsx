@@ -1,9 +1,8 @@
 import Datepicker from '../../../packages/datepicker/src';
 import FlexContainer from '../../../packages/flex-container/src';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { warning, success } from '../utils/dev-utils-theme';
 import Typography from '../../../packages/typography/src';
-import isNotEmptyString from '../../../packages/helpers/is-not-empty-string';
 
 const DatepickerTesting = () => {
   const [date, setDate] = useState('2024-04-02');
@@ -35,7 +34,9 @@ const DatepickerTesting = () => {
   };
 
   const onDate2Change = (name: string, newDateValue: string, isValid: boolean) => {
-    if (isNotEmptyString(newDateValue) && date2 !== newDateValue && !isValid) setDate2(newDateValue);
+    if (isValid) {
+      setDate2(newDateValue);
+    }
     if (isValid) {
       console.log(success(newDateValue));
     } else {
@@ -71,7 +72,7 @@ const DatepickerTesting = () => {
         >
           <Datepicker
             value={date1 as string}
-            onBlur={onDate1Change}
+            onChange={onDate1Change}
             onRemove={onDate1Remove}
             variant="outlined"
             label="Datepicker1 EN"
@@ -80,6 +81,8 @@ const DatepickerTesting = () => {
             locale="RU"
             height={60}
             datesContainerAlign="left"
+            error={!date1}
+            textMessage={(!date1 && 'Date is empty') || ''}
           />
         </FlexContainer>
         <FlexContainer width={200} margin="20px 10px">
@@ -93,6 +96,8 @@ const DatepickerTesting = () => {
             id="datepicker2"
             name="datepicker1"
             height={60}
+            error={!date2}
+            textMessage={(!date2 && 'Date is empty') || ''}
           />
         </FlexContainer>
         <FlexContainer width={200} margin="20px 10px">

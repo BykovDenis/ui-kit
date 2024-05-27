@@ -65,7 +65,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [activeYearNumber, setActiveYearNumber] = useState<number | null>(null);
   const [numberDayInWeek, setNumberDayInWeek] = useState<number | null>(null);
   const [countDaysIsMonth, setCountDaysIsMonth] = useState<number | null>(null);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(props?.error !== undefined ? props.error : false);
   const [isMinDateError, setIsMinDateError] = useState<boolean>(false);
   const [isMaxDateError, setIsMaxDateError] = useState<boolean>(false);
   const [isErrorMessageDisplayed] = useState(
@@ -75,14 +75,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [mask] = useState<DatepickerMask>((props.mask as DatepickerMask) || DatepickerMask.DDMMYYYY);
 
   const minDate: DateParser = isNotEmptyString(props.minDate)
-    ? new DateParser(props.minDate, props.mask as DatepickerMask)
-    : new DateParser(
-        (mask as DatepickerMask) === DatepickerMask.YYYYMMDD ? '1971-01-01' : '01.01.1971',
-        mask as DatepickerMask
-      );
-  const maxDate: DateParser = isNotEmptyString(props.maxDate)
-    ? new DateParser(props.maxDate, mask as DatepickerMask)
-    : null;
+    ? new DateParser(props.minDate, mask)
+    : new DateParser((mask as DatepickerMask) === DatepickerMask.YYYYMMDD ? '1971-01-01' : '01.01.1971', mask);
+  const maxDate: DateParser = isNotEmptyString(props.maxDate) ? new DateParser(props.maxDate, mask) : null;
 
   const today: Dayjs = dayjs();
   const todayParsed: string = today.format(DatepickerMask.YYYYMMDD);
@@ -116,7 +111,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const isOnInputChangeUsed: boolean = props.isOnInputChangeUsed !== undefined ? props.isOnInputChangeUsed : false;
 
-  const textMessage = isError
+  const errorMessage = isError
     ? isMinDateError
       ? minDateMessage
       : isMaxDateError
@@ -199,13 +194,13 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onInputBlur = () => {
     setIsFocus(false);
-    const errors: {
-      isError: boolean;
+    const validationDate: {
+      isValid: boolean;
       isErrorMinDate: boolean;
       isErrorMaxDate: boolean;
     } = checkMinMaxDate(dateParsed, props.minDate ? minDate : null, props.maxDate ? maxDate : null);
     if (props?.onBlur && props?.value !== value) {
-      props.onBlur(props.name, value, dateParsed.checkIsValidateDate() && !errors.isError);
+      props.onBlur(props.name, value, validationDate.isValid);
     }
   };
 
@@ -247,10 +242,16 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   };
 
   const onDayChange = (day: number): void => {
-    dateParsed.changeParsedDate(value);
-    dateParsed.changeYear(actualYearNumber);
-    dateParsed.changeMonth(actualMonthNumber - 1);
-    dateParsed.changeDay(day);
+    // dateParsed.changeYear(activeYearNumber);
+    // dateParsed.changeMonth(activeMonthNumber - 1);
+    // dateParsed.changeDay(day);
+    // dateParsed.changeParsedDate(value);
+    const dateParsed: DateParser = new DateParser(
+      mask === DatepickerMask.YYYYMMDD
+        ? `${activeYearNumber}-${activeMonthNumber + 1}-${day}`
+        : `${day}.${activeMonthNumber + 1}.${activeYearNumber}`,
+      mask
+    );
 
     const valueParsed: string = dateParsed.formatToString();
     if (valueParsed !== value) {
@@ -313,6 +314,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   }, []);
 
   useEffect(() => {
+    setIsError(props?.error !== undefined ? props.error : false);
+  }, [props.error]);
+
+  useEffect(() => {
     setConsumer(globalThis.ReactThemeContextConsumer);
   }, [globalThis.ReactThemeContextConsumer]);
 
@@ -320,11 +325,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     setLocale(props.locale);
   }, [props.locale]);
 
-  useEffect(() => {
-    if (props.value !== value) {
-      setValue(props.value);
-    }
-  }, [props.value]);
+  // useEffect(() => {
+  //   if (props.value !== value) {
+  //     setValue(props.value);
+  //   }
+  // }, [props.value]);
 
   useEffect(() => {
     const onDateValueChange: (name: string, value: string, isValid: boolean) => void =
@@ -343,7 +348,15 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
         }
       } else if (dateParsed) {
         dateParsed.changeParsedDate(value);
-        if (dateParsed.checkIsNotExistErrorDate()) {
+        const validationDate: {
+          isValid: boolean;
+          isErrorMinDate: boolean;
+          isErrorMaxDate: boolean;
+        } = checkMinMaxDate(dateParsed, props.minDate ? minDate : null, props.maxDate ? maxDate : null);
+        setIsError(!validationDate.isValid);
+        setIsMinDateError(validationDate.isErrorMinDate);
+        setIsMaxDateError(validationDate.isErrorMaxDate);
+        if (validationDate.isValid) {
           setActiveDayNumber(dateParsed.getNumberCurrentDateOfMonth());
           setActiveMonthNumber(dateParsed.getNumberMonth());
           setActiveYearNumber(dateParsed.getNumberYear());
@@ -354,25 +367,21 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           if (months && months?.length > 0) {
             setMonthName(months[dateParsed.getNumberMonth()]);
           }
-          const errors: {
-            isError: boolean;
-            isErrorMinDate: boolean;
-            isErrorMaxDate: boolean;
-          } = checkMinMaxDate(dateParsed, props.minDate ? minDate : null, props.maxDate ? maxDate : null);
-          setIsError(errors.isError);
-          setIsMinDateError(errors.isErrorMinDate);
-          setIsMaxDateError(errors.isErrorMaxDate);
           if (onDateValueChange && props.value !== value) {
             if (props?.onChange) {
-              props.onChange(props.name, value, dateParsed.checkIsValidateDate() && !errors.isError);
+              props.onChange(props.name, value, validationDate.isValid);
             } else if (!isFocus && props?.onBlur) {
-              props.onBlur(props.name, value, dateParsed.checkIsValidateDate() && !errors.isError);
+              props.onBlur(props.name, value, validationDate.isValid);
             }
           }
         } else {
           setIsError(true);
         }
       }
+    } else {
+      setIsError(false);
+      setIsMinDateError(false);
+      setIsMaxDateError(false);
     }
   }, [value]);
 
@@ -471,7 +480,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             fontSize={fontSize}
             baseFontSize={props?.baseFontSize}
             fontFamily={props?.fontFamily || theme?.fontFamily}
-            textMessage={isErrorMessageDisplayed && textMessage}
+            textMessage={props.textMessage || (isErrorMessageDisplayed && errorMessage)}
             onFocus={onInputFocus}
             onBlur={onInputBlur}
             onClick={onInputClick}

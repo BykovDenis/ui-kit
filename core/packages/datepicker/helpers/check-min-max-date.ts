@@ -5,29 +5,30 @@ function checkMinMaxDate(
   minDate: DateParser | null,
   maxDate: DateParser | null
 ): {
-  isError: boolean,
-  isErrorMinDate: boolean,
-  isErrorMaxDate: boolean,
+  isValid: boolean;
+  isErrorMinDate: boolean;
+  isErrorMaxDate: boolean;
 } {
-  const errors: {
-    isError: boolean,
-    isErrorMinDate: boolean,
-    isErrorMaxDate: boolean,
+  const validation: {
+    isValid: boolean;
+    isErrorMinDate: boolean;
+    isErrorMaxDate: boolean;
   } = {
-    isError: false,
+    isValid: true,
     isErrorMinDate: false,
     isErrorMaxDate: false,
   };
   const dateParsedToTimestamp: number = dateValue.getTimestamp();
   if (minDate && dateParsedToTimestamp < minDate.getTimestamp()) {
-    errors.isErrorMinDate = true;
-    errors.isError = true;
+    validation.isErrorMinDate = true;
+    validation.isValid = false;
   }
   if (maxDate && dateParsedToTimestamp > maxDate.getTimestamp()) {
-    errors.isErrorMaxDate = true;
-    errors.isError = true;
+    validation.isErrorMaxDate = true;
+    validation.isValid = false;
   }
-  return errors;
+  validation.isValid = validation.isValid && dateValue.checkIsValidDate();
+  return validation;
 }
 
 export default checkMinMaxDate;
