@@ -200,7 +200,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       isErrorMaxDate: boolean;
     } = checkMinMaxDate(dateParsed, props.minDate ? minDate : null, props.maxDate ? maxDate : null);
     if (props?.onBlur && props?.value !== value) {
-      props.onBlur(props.name, value, validationDate.isValid);
+      props.onBlur(props.name, value, validationDate.isValid && !isError);
     }
   };
 
@@ -356,7 +356,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
         setIsError(!validationDate.isValid);
         setIsMinDateError(validationDate.isErrorMinDate);
         setIsMaxDateError(validationDate.isErrorMaxDate);
-        if (validationDate.isValid) {
+        if (validationDate.isValid && !isError) {
           setActiveDayNumber(dateParsed.getNumberCurrentDateOfMonth());
           setActiveMonthNumber(dateParsed.getNumberMonth());
           setActiveYearNumber(dateParsed.getNumberYear());
