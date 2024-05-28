@@ -2,6 +2,7 @@ describe('The Datepicker component', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/datepicker');
     cy.viewport(1920, 1080);
+    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
   });
   it('Test1. Selection by click text. Testing input value changing attributes by onChange event handler. Mask dd.MM.yyyy', () => {
     // Typing value
@@ -47,6 +48,7 @@ describe('The Datepicker component', () => {
     cy.get('#datepicker1').focus().type('03.04.2024').blur().should('value', '03.04.2024');
     cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
     cy.get('#datepicker1').focus().type('55.03.2024').blur().should('value', '55.03.2024');
+    cy.get('[data-test-id=datepicker1-text-message]').should('have.text', 'Дата не валидна');
     cy.get('#datepicker1')
       .focus()
       .click()
@@ -66,5 +68,23 @@ describe('The Datepicker component', () => {
         cy.get('button[name="1"]').as('btn').click();
         cy.get('#datepicker2').should('value', '2024-04-01');
       });
+  });
+  it('Test8. Input invalid date event handler onChange', () => {
+    cy.get('#datepicker1').focus().type('03.04.2024').blur().should('value', '03.04.2024');
+    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
+    cy.get('#datepicker1').focus().type('03.04').blur().should('value', '03.04.');
+    cy.get('[data-test-id=datepicker1-text-message]').should('have.text', 'Дата не валидна');
+  });
+  it('Test9. Input invalid date event handler onBlur', () => {
+    cy.get('#datepicker2').focus().type('2024-04-03').blur().should('value', '2024-04-03');
+    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
+    cy.get('#datepicker2').focus().type('2024-03-5').blur().should('value', '2024-03-5');
+    cy.get('[data-test-id=datepicker2-text-message]').should('have.text', 'Date is not valid');
+  });
+  it('Test10. Input invalid date event handler onBlur', () => {
+    cy.get('#datepicker2').focus().type('2024-04-03').blur().should('value', '2024-04-03');
+    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
+    cy.get('#datepicker2').focus().type('2024-03').blur().should('value', '2024-03-');
+    cy.get('[data-test-id=datepicker2-text-message]').should('have.text', 'Date is not valid');
   });
 });
