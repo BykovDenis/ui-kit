@@ -6,7 +6,7 @@ import Typography from '../../../packages/typography/src';
 
 const DatepickerTesting = () => {
   const [date, setDate] = useState('2024-04-02');
-  const [date1, setDate1] = useState<string | null>(null);
+  const [date1, setDate1] = useState<string | null>('12.05.2024');
   const [date2, setDate2] = useState<string | null>(null);
   const [date3, setDate3] = useState<string | null>(null);
 
@@ -22,6 +22,7 @@ const DatepickerTesting = () => {
     } else {
       console.log(warning(value));
     }
+    console.log('date1', date1);
   };
 
   const onDate1Remove = (name: string) => {
@@ -34,9 +35,7 @@ const DatepickerTesting = () => {
   };
 
   const onDate2Change = (name: string, newDateValue: string, isValid: boolean) => {
-    if (isValid) {
-      setDate2(newDateValue);
-    }
+    setDate2(newDateValue);
     if (isValid) {
       console.log(success(newDateValue));
     } else {
@@ -52,6 +51,7 @@ const DatepickerTesting = () => {
     setDate3(null);
   };
 
+  console.log(warning(date1));
   return (
     <FlexContainer width={900} flexDirection="column">
       <Typography variant="H1" textAlign="center">

@@ -242,10 +242,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   };
 
   const onDayChange = (day: number): void => {
-    // dateParsed.changeYear(activeYearNumber);
-    // dateParsed.changeMonth(activeMonthNumber - 1);
-    // dateParsed.changeDay(day);
-    // dateParsed.changeParsedDate(value);
     const dateParsed: DateParser = new DateParser(
       mask === DatepickerMask.YYYYMMDD
         ? `${activeYearNumber}-${activeMonthNumber + 1}-${day}`
@@ -257,9 +253,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     if (valueParsed !== value) {
       setValue(valueParsed);
     }
-    // if (props?.onChange) {
-    //   props.onChange(props.name, valueParsed, true);
-    // }
     setIsVisibleList(false);
     setIsExistValue(true);
   };
@@ -314,7 +307,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   }, []);
 
   useEffect(() => {
-    setIsError(props?.error !== undefined ? props.error : false);
+    if (!isError) {
+      setIsError(props?.error !== undefined ? props.error : false);
+    }
   }, [props.error]);
 
   useEffect(() => {
@@ -325,15 +320,13 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     setLocale(props.locale);
   }, [props.locale]);
 
-  // useEffect(() => {
-  //   if (props.value !== value) {
-  //     setValue(props.value);
-  //   }
-  // }, [props.value]);
+  useEffect(() => {
+    if (props.value !== value) {
+      setValue(props.value);
+    }
+  }, [props.value]);
 
   useEffect(() => {
-    const onDateValueChange: (name: string, value: string, isValid: boolean) => void =
-      props?.onChange || props?.onBlur || null;
     if (value) {
       setIsExistValue(true);
       if (value && value.length !== 10) {
@@ -356,7 +349,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
         setIsError(!validationDate.isValid);
         setIsMinDateError(validationDate.isErrorMinDate);
         setIsMaxDateError(validationDate.isErrorMaxDate);
-        if (validationDate.isValid && !isError) {
+        if (validationDate.isValid) {
           setActiveDayNumber(dateParsed.getNumberCurrentDateOfMonth());
           setActiveMonthNumber(dateParsed.getNumberMonth());
           setActiveYearNumber(dateParsed.getNumberYear());
@@ -367,21 +360,23 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           if (months && months?.length > 0) {
             setMonthName(months[dateParsed.getNumberMonth()]);
           }
-          if (onDateValueChange && props.value !== value) {
-            if (props?.onChange) {
-              props.onChange(props.name, value, validationDate.isValid);
-            } else if (!isFocus && props?.onBlur) {
-              props.onBlur(props.name, value, validationDate.isValid);
-            }
+          if (!isFocus && props?.onBlur && props.value !== value) {
+            props.onBlur(props.name, value, validationDate.isValid);
           }
         } else {
           setIsError(true);
         }
+        if (props?.onChange && props.value !== value) {
+          props.onChange(props.name, value, validationDate.isValid);
+        }
       }
     } else {
-      setIsError(false);
+      setIsExistValue(false);
       setIsMinDateError(false);
       setIsMaxDateError(false);
+      if (props?.onChange) {
+        props.onChange(props.name, value, props.error !== undefined ? props.error : true);
+      }
     }
   }, [value]);
 
