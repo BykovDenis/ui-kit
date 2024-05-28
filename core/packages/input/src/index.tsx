@@ -261,6 +261,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
         </InputElementContainer>
         {props?.textMessage ? (
           <TextMessage
+            data-test-id={`${props.id}-text-message`}
             className="text-message"
             fontSize={props?.fontSize ?? theme?.baseFontSize}
             fontFamily={theme?.fontFamily}
