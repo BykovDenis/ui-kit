@@ -87,4 +87,52 @@ describe('The Datepicker component', () => {
     cy.get('#datepicker2').focus().type('2024-03').blur().should('value', '2024-03-');
     cy.get('[data-test-id=datepicker2-text-message]').should('have.text', 'Date is not valid');
   });
+  it('Test10. Change to previous month', () => {
+    cy.get('#datepicker2').focus().type('2024-04-03').blur().should('value', '2024-04-03');
+    cy.get('#datepicker2')
+      .focus()
+      .click()
+      .then(() => {
+        cy.get('#get-previous-month-datepicker2').as('btn').click();
+        cy.get('#get-previous-month-datepicker2').as('btn').click();
+        cy.get('button[name="5"]').as('btn').click();
+        cy.get('#datepicker2').should('value', '2024-02-05');
+      });
+  });
+  it('Test11. Change to next month', () => {
+    cy.get('#datepicker2').focus().type('2024-04-03').blur().should('value', '2024-04-03');
+    cy.get('#datepicker2')
+      .focus()
+      .click()
+      .then(() => {
+        cy.get('#get-next-month-datepicker2').as('btn').click();
+        cy.get('#get-next-month-datepicker2').as('btn').click();
+        cy.get('button[name="20"]').as('btn').click();
+        cy.get('#datepicker2').should('value', '2024-06-20');
+      });
+  });
+  it('Test12. Change to previous year', () => {
+    cy.get('#datepicker2').focus().type('2024-04-03').blur().should('value', '2024-04-03');
+    cy.get('#datepicker2')
+      .focus()
+      .click()
+      .then(() => {
+        cy.get('#get-previous-year-datepicker2').as('btn').click();
+        cy.get('#get-previous-year-datepicker2').as('btn').click();
+        cy.get('button[name="5"]').as('btn').click();
+        cy.get('#datepicker2').should('value', '2022-04-05');
+      });
+  });
+  it('Test13. Change to next year', () => {
+    cy.get('#datepicker2').focus().type('2024-04-03').blur().should('value', '2024-04-03');
+    cy.get('#datepicker2')
+      .focus()
+      .click()
+      .then(() => {
+        cy.get('#get-next-year-datepicker2').as('btn').click();
+        cy.get('#get-next-year-datepicker2').as('btn').click();
+        cy.get('button[name="20"]').as('btn').click();
+        cy.get('#datepicker2').should('value', '2026-04-20');
+      });
+  });
 });

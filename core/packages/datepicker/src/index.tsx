@@ -244,8 +244,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const onDayChange = (day: number): void => {
     const dateParsed: DateParser = new DateParser(
       mask === DatepickerMask.YYYYMMDD
-        ? `${activeYearNumber}-${activeMonthNumber + 1}-${day}`
-        : `${day}.${activeMonthNumber + 1}.${activeYearNumber}`,
+        ? `${actualYearNumber}-${actualMonthNumber + 1}-${day}`
+        : `${day}.${actualMonthNumber + 1}.${actualYearNumber}`,
       mask
     );
 
