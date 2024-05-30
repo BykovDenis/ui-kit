@@ -531,7 +531,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             )}
           </FormControl>
         </DatepickerHeader>
-        {isVisibleList && dateParsed.checkIsValidDate() && (
+        {isVisibleList && (dateParsed.checkIsValidDate() || !value) && (
           <DatepickerDatesContainer
             outlineColor={theme.mainOutlinedColor}
             backgroundColor={theme.mainBackgroundColor}
