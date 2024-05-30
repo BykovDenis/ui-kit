@@ -131,7 +131,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     }
     setIsExistValue(false);
     setIsVisibleList(false);
-    setValue('');
+    // setValue('');
   };
 
   const onMouseOutUp = (evt: any) => {
