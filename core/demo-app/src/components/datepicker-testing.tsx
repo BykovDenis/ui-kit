@@ -6,7 +6,7 @@ import Typography from '../../../packages/typography/src';
 
 const DatepickerTesting = () => {
   const [date, setDate] = useState('2024-04-02');
-  const [date1, setDate1] = useState<string | null>('12.05.2024');
+  const [date1, setDate1] = useState<string | null>(null);
   const [date2, setDate2] = useState<string | null>(null);
   const [date3, setDate3] = useState<string | null>(null);
 
