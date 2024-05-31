@@ -1,15 +1,15 @@
 import cleaner from 'rollup-plugin-cleaner';
 import typescript from 'rollup-plugin-typescript2';
 // import { terser } from 'rollup-plugin-terser';
-import copy from 'rollup-plugin-copy';
+// import copy from 'rollup-plugin-copy';
 // import svgr from '@svgr/rollup';
-import alias from '@rollup/plugin-alias';
-import * as path from 'node:path';
-import url from '@rollup/plugin-url';
+//import alias from '@rollup/plugin-alias';
+// import * as path from 'node:path';
+// import url from '@rollup/plugin-url';
 import svg from 'rollup-plugin-svg';
-import requireContext from 'rollup-plugin-require-context';
+// import requireContext from 'rollup-plugin-require-context';
 import pkg from './package.json';
-import dts from 'rollup-plugin-dts';
+// import dts from 'rollup-plugin-dts';
 
 export default [
   {
@@ -35,12 +35,12 @@ export default [
         targets: ['./dist'],
       }),
       // dts(),
-      copy({
-        targets: [
-          { src: 'src/img/24/**/*', dest: './dist/img/24' },
-          { src: 'src/img/24/**/*', dest: './dist/esm/img/24' },
-        ],
-      }),
+      // copy({
+      //   targets: [
+      //     { src: 'src/img/24/**/*', dest: './dist/img/24' },
+      //     { src: 'src/img/24/**/*', dest: './dist/esm/img/24' },
+      //   ],
+      // }),
       typescript({ objectHashIgnoreUnknownHack: false, inlineSourceMap: true, sourceMap: true }),
       svg(),
       // url(),
