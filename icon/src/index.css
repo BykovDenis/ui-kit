@@ -1,0 +1,15 @@
+.icon {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0;
+}
+
+.icon-size-24 {
+    width: 24px;
+    height: 24px;
+}
+
+.icon-size-36 {
+    width: 24px;
+    height: 24px;
+}
