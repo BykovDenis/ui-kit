@@ -16,7 +16,7 @@
     "clean-node-modules": "rm -rf node_modules"
   },
   "publishConfig": {
-    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
+    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-release"
   },
   "gitHead": "b29a487d3b4b9a512f91e847967f75288a73048f",
   "devDependencies": {
