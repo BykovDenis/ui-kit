@@ -27,8 +27,12 @@ pipeline {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${rootPath}") {
                                 script {
-                                    echo 'Root packages installing'
-                                    sh 'npm ci'
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
                                 }
                             }
                         }
