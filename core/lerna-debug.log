@@ -1,17 +1,11 @@
-17 error Error: Command failed with exit code 1: git remote update
-17 error kex_exchange_identification: read: Connection reset by peer
-17 error Connection reset by 140.82.121.3 port 22
-17 error fatal: Could not read from remote repository.
-17 error
-17 error Please make sure you have the correct access rights
-17 error and the repository exists.
-17 error error: could not fetch origin1
-17 error Fetching origin
-17 error Fetching origin1
-17 error     at makeError (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/node_modules/execa/lib/error.js:59:11)
-17 error     at Function.module.exports.sync (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/node_modules/execa/index.js:186:17)
-17 error     at Object.execSync (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/node_modules/@lerna/child-process/index.js:39:16)
-17 error     at updateRemote (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/dist/index.js:7601:18)
-17 error     at isBehindUpstream (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/dist/index.js:7591:3)
-17 error     at VersionCommand.initialize (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/dist/index.js:7898:57)
-17 error     at VersionCommand.runCommand (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/dist/index.js:1755:36)
+236 error Error: Command failed with exit code 1: npm install --package-lock-only --ignore-scripts
+236 error npm ERR! code ERR_INVALID_AUTH
+236 error npm ERR! Invalid auth configuration found: `_auth` must be renamed to `//nexus-ci.delta.sbrf.ru/repository/npm-all/:_auth` in project config
+236 error npm ERR! Please run `npm config fix` to repair your configuration.`
+236 error
+236 error npm ERR! A complete log of this run can be found in: /Users/16783656-mobile/.npm/_logs/2024-06-03T08_44_41_048Z-debug-0.log
+236 error     at makeError (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/node_modules/execa/lib/error.js:59:11)
+236 error     at handlePromise (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/node_modules/execa/index.js:114:26)
+236 error     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+236 error     at async VersionCommand.updatePackageVersions (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/dist/index.js:8291:13)
+236 error     at async Promise.all (index 0)
