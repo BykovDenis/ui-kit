@@ -16,4 +16,7 @@ export default {
       },
     });
   },
+  docs: {
+    autodocs: true,
+  },
 };
