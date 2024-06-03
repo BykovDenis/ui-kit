@@ -241,3 +241,9 @@
 <ol>
   <li>PSCVA-1193 Datepicker. Date validation some improved.</li>
 </ol>
+
+<h2>v 0.12.2</h2>
+<h3>Features</h3>
+<ol>
+  <li>Datepicker. Delete a date digit without resetting the cursor position. </li>
+</ol>
