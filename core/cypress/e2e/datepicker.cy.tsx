@@ -122,7 +122,8 @@ describe('The Datepicker component', () => {
         cy.get('button[name="20"]').as('btn').click();
         cy.get('#datepicker2').should('value', '2026-04-20');
       });
-  });  it('Test1. Selection by click text. Testing input value changing attributes by onChange event handler. Mask dd.MM.yyyy (onChange)', () => {
+  });
+  it('Test1. Selection by click text. Testing input value changing attributes by onChange event handler. Mask dd.MM.yyyy (onChange)', () => {
     // Typing value
     cy.get('#datepicker1').focus().type('01.04.2024').blur().should('value', '01.04.2024');
     // Remove values
@@ -260,5 +261,21 @@ describe('The Datepicker component', () => {
     cy.get('#datepicker-year-datepicker2-input').click().focus();
     cy.get('button[data-value="2028"]').as('btn').click();
     cy.get('#datepicker2').should('value', '2028-09-19');
+  });
+  it('Test16. Delete a date digit without resetting the cursor position dd.MM.yyyy', () => {
+    cy.get('#datepicker2').focus().type('2024-02-19').blur().should('value', '2024-02-19');
+    cy.get('#datepicker2')
+      .focus()
+      .type('{home}{rightarrow}{rightarrow}{rightarrow}{rightarrow}{rightarrow}{del}1')
+      .blur()
+      .should('value', '2024-12-19');
+  });
+  it('Test17. Delete a date digit without resetting the cursor position yyyy.MM.dd', () => {
+    cy.get('#datepicker1').focus().type('19.02.2024').blur().should('value', '19.02.2024');
+    cy.get('#datepicker1')
+      .focus()
+      .type('{home}{rightarrow}{rightarrow}{rightarrow}{del}1')
+      .blur()
+      .should('value', '19.12.2024');
   });
 });

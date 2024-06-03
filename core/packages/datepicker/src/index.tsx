@@ -185,7 +185,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const element: any = evt.target;
     setIsVisibleList(false);
     const datePartitioned: string = isNotEmptyString(element?.value) ? element?.value?.replaceAll(/\D/gi, '') : null;
-    const valueParsed: string = datePartitioned ? parseInputDate(datePartitioned, mask as DatepickerMask) : null;
+    const valueParsed: string =
+      element?.value?.length === 10 || element?.value?.length > value?.length
+        ? datePartitioned
+          ? parseInputDate(datePartitioned, mask as DatepickerMask)
+          : null
+        : element?.value;
     if (valueParsed !== value) {
       setValue(valueParsed);
     }
@@ -331,7 +336,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       if (value && value.length !== 10) {
         setIsError(true);
         if (isOnInputChangeUsed) {
-          dateParsed.changeParsedDate(value);
           if (props?.onChange && props.value !== value) {
             props.onChange(props.name, value, true);
           }
