@@ -1,4 +1,4 @@
-function calculateColSpan(usageDetails) {
+function calculateColSpan(usageDetails: any): number {
   const breakdown = usageDetails?.breakdown;
 
   if (breakdown !== undefined && breakdown.length > 0) {

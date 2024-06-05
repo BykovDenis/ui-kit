@@ -1,4 +1,4 @@
-import GridContainer from '../../../packages/grid-container/src';
+import GridContainer from '@sber-risks-ui/core/grid-container';
 import Datepicker from '@sber-risks-ui/core/datepicker';
 import { useState } from 'react';
 

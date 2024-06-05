@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import getNewReactThemeContext from '../../packages/styles/src';
+import getNewReactThemeContext from '../../packages/styles';
 import themeDark from './themes/theme-dark';
 import InputTesting from './components/input-testing';
 import TextFieldTesting from './components/text-field-testing';
-// import Select from '../../packages/select/src';
+// import Select from '../../packages/select';
 import SelectTesting from './components/select-testing';
-// import GridContainer from '../../packages/grid-container/src';
+// import GridContainer from '../../packages/grid-container';
 // import GridContainerTesting from './components/grid-container-testing';
 // import MultiSelectTesting from './components/multi-select-testing';
 import DatepickerTesting from './components/datepicker-testing';
@@ -14,7 +14,7 @@ import Sidebar from './components/sidebar';
 // import ReactContext from './components/react-context';
 // import FlexContainerTesting from './components/flex-container-testing';
 // import FileUploaderTesting from './components/file-uploader-testing';
-import GridContainer from '../../packages/grid-container/src';
+import GridContainer from '../../packages/grid-container';
 
 type AppProps = {
   children: React.ReactNode;

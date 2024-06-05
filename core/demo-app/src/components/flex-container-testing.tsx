@@ -1,5 +1,5 @@
-import FlexContainer from '../../../packages/flex-container/src';
-import FormControl from '../../../packages/form-control/src';
+import FlexContainer from '@sber-risks-ui/core/flex-container';
+import FormControl from '@sber-risks-ui/core/form-control';
 
 const FlexContainerTesting = () => {
   return (

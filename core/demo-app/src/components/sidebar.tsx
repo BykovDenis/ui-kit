@@ -1,6 +1,6 @@
-import List from '../../../packages/list/src';
-import ListItem from '../../../packages/list-item/src';
-import Typography from '../../../packages/typography/src';
+import List from '@sber-risks-ui/core/list';
+import ListItem from '@sber-risks-ui/core/list-item';
+import Typography from '@sber-risks-ui/core/typography';
 import FlexContainer from '@sber-risks-ui/core/flex-container';
 import { useContext } from 'react';
 import { ReactThemeContext } from '../app';
