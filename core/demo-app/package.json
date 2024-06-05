@@ -9,7 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@sber-risks-ui/core": "0.12.1-alpha.7",
+    "@sber-risks-ui/core": "0.12.1",
+    "dayjs": "1.11.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "6.23.0-pre.0",

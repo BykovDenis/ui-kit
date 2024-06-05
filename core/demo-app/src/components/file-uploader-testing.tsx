@@ -1,5 +1,5 @@
-import FlexContainer from '../../../packages/flex-container/src';
-import FileUploader from '../../../packages/file-uploader/src';
+import FlexContainer from '@sber-risks-ui/core/flex-container';
+import FileUploader from '@sber-risks-ui/core/file-uploader';
 
 const FileUploaderTesting: React.FunctionComponent = () => {
   const onFileUpload = (files: Array<File>, evt: any) => {

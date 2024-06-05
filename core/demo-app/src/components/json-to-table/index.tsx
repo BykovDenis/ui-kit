@@ -1,8 +1,8 @@
 import usages from './usages';
-import Table from '@sber-risks-ui/Table';
-import TableBody from '@sber-risks-ui/TableBody';
-import TableCell from '../../../../packages/table-cell/src';
-import TableRow from '@sber-risks-ui/TableRow';
+import Table from '@sber-risks-ui/core/table';
+import TableBody from '@sber-risks-ui/core/table-body';
+import TableCell from '@sber-risks-ui/core/table-cell';
+import TableRow from '@sber-risks-ui/core/table-row';
 import calculateRowSpan from './helpers/calculate-row-span';
 import calculateColSpan from './helpers/calculate-col-span';
 

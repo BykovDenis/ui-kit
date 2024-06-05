@@ -1,11 +1,11 @@
-import Table from '../../../packages/table/src';
-import TableHead from '../../../packages/table-head/src';
-import TableRow from '../../../packages/table-row/src';
-import TableCell from '../../../packages/table-cell/src';
-import TableBody from '../../../packages/table-body/src';
-import Input from '../../../packages/input/src';
+import Table from '@sber-risks-ui/core/table';
+import TableHead from '@sber-risks-ui/core/table-head';
+import TableRow from '@sber-risks-ui/core/table-row';
+import TableCell from '@sber-risks-ui/core/table-cell';
+import TableBody from '@sber-risks-ui/core/table-body';
+import Input from '@sber-risks-ui/core/input';
 import React, { useState } from 'react';
-import Typography from '../../../packages/typography/src';
+import Typography from '@sber-risks-ui/core/typography';
 
 const InputTesting: React.FunctionComponent = () => {
   const [inputValue, setInputValue] = useState<string | undefined>();

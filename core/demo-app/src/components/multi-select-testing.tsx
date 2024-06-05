@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import MultiSelect from '../../../packages/multi-select/src';
-import TMultiSelectOption from '../../../packages/multi-select/types/tmulti-select-option';
-import GridContainer from '../../../packages/grid-container/src';
-import Button from '../../../packages/button/src';
-import FormControl from '../../../packages/form-control/src';
-import FlexContainer from '../../../packages/flex-container/src';
+import MultiSelect from '@sber-risks-ui/core/multi-select';
+import { TMultiSelectOption } from '@sber-risks-ui/core/multi-select';
+import GridContainer from '@sber-risks-ui/core/grid-container';
+import Button from '@sber-risks-ui/core/button';
+import FormControl from '@sber-risks-ui/core/form-control';
+import FlexContainer from '@sber-risks-ui/core/flex-container';
 
 const MultiSelectTesting: React.FunctionComponent = () => {
   const [columnsSelected0, setColumnNamesSelected0] = useState<Array<TMultiSelectOption> | []>([]);
-  const [columnsSelected1, setColumnNamesSelected1] = useState<Array<TMultiSelectOption> | []>(['2', '1']);
-  const [columnsSelected2, setColumnNamesSelected2] = useState<Array<TMultiSelectOption> | []>([
+  const [columnsSelected1, setColumnNamesSelected1] = useState<Array<string> | []>(['2', '1']);
+  const [columnsSelected2, setColumnNamesSelected2] = useState<Array<any> | []>([
     { label: 'five', value: 5 },
     { label: 'three', value: 3 },
     { label: 'twofff', value: 2 },
@@ -27,7 +27,7 @@ const MultiSelectTesting: React.FunctionComponent = () => {
   //   { label: 'some', value: 8 },
   // ];
 
-  const columns: Array<TMultiSelectOption> = [
+  const columns: Array<any> = [
     { value: 'B1_EA_UK', label: 'B1_EA_UK' },
     { value: 'B1_ES_UK', label: 'B1_ES_UK' },
     { value: 'B1_OL_UK', label: 'B1_OL_UK' },
@@ -49,7 +49,7 @@ const MultiSelectTesting: React.FunctionComponent = () => {
     setColumnNamesSelected0(columnNames);
   };
 
-  const onMultiSelect1Change = (columnNames: Array<TMultiSelectOption>) => {
+  const onMultiSelect1Change = (columnNames: Array<string>) => {
     setColumnNamesSelected1(columnNames);
   };
 
@@ -58,7 +58,7 @@ const MultiSelectTesting: React.FunctionComponent = () => {
     setColumnNamesSelected2([]);
   };
 
-  const onMultiSelect2Change = (columnNames: Array<TMultiSelectOption>) => {
+  const onMultiSelect2Change = (columnNames: Array<string>) => {
     setColumnNamesSelected2(columnNames);
   };
 

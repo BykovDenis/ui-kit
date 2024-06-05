@@ -1,11 +1,11 @@
-import TableHead from '../../../packages/table-head/src/';
-import TableRow from '../../../packages/table-row/src';
-import TableCell from '../../../packages/table-cell/src';
-import Table from '../../../packages/table/src';
-import TableBody from '../../../packages/table-body/src';
-import IOption from '../../../packages/select/types/ioption';
+import TableHead from '@sber-risks-ui/core/table-head';
+import TableRow from '@sber-risks-ui/core/table-row';
+import TableCell from '@sber-risks-ui/core/table-cell';
+import Table from '@sber-risks-ui/core/table';
+import TableBody from '@sber-risks-ui/core/table-body';
+import { IOption } from '@sber-risks-ui/core/select';
 import { useState } from 'react';
-import Select from '../../../packages/select/src';
+import Select from '@sber-risks-ui/core/select';
 
 const SelectTesting: React.FunctionComponent = () => {
   const [textValue, setTextValue] = useState<string | null>(null);
