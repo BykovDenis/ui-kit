@@ -170,14 +170,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     onKeyUpEventHandler(evt, cb);
   };
 
-  const onInputFocus = () => {
+  const onInputFocus = (evt: any) => {
+    evt.preventDefault();
     setIsFocus(true);
-    // setIsVisibleList(!isVisibleList);
   };
 
   const onInputClick = (evt: any) => {
-    // evt.preventDefault();
-    // setIsVisibleList(!isVisibleList);
+    evt.preventDefault();
+    setIsVisibleList(!isVisibleList);
   };
 
   const onCalendarPanelToggle = (evt: any) => {
@@ -315,6 +315,17 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       document.removeEventListener('keyup', onKeyUp);
     };
   }, []);
+
+  useEffect(() => {
+    if (isVisibleList) {
+      setTimeout(() => {
+        const input = document.getElementById(props.id);
+        if (input) {
+          input.focus();
+        }
+      }, 0);
+    }
+  }, [isVisibleList]);
 
   useEffect(() => {
     if (!isError) {
@@ -488,7 +499,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             onFocus={onInputFocus}
             onBlur={onInputChange}
             onClick={onInputClick}
-            // onChange={onInputChange}
+            onChange={onInputChange}
             disabled={props?.disabled}
             required={props?.required}
             fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}

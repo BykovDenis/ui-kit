@@ -251,7 +251,6 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     const InputStyledMasked = IMaskMixin(({ inputRef, ref, ...props }) => (
       <InputStyled
         {...propsExtended}
-        {...props}
         height={propsExtended.height || DEFAULT_HEIGHT}
         color={inputColor}
         hoverColor={propsExtended?.hoverColor || hoverColor}
@@ -264,6 +263,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
         fontSize={propsExtended?.fontSize ?? theme?.baseFontSize}
         fontFamily={theme?.fontFamily}
         textAlign={propsExtended?.textAlign || TEXT_ALIGN_RIGHT}
+        onChange={onInputChange}
         onAccept={onInputChangeAccept}
         onFocus={onInputFocus}
         onBlur={onInputBlur}
@@ -274,6 +274,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
         // innerRef={propsExtended.inputRef || ref}
         ref={inputRef}
         unmask="typed"
+        autofocus="true"
       />
     ));
 
