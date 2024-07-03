@@ -20,5 +20,9 @@
   "publishConfig": {
     "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
   },
-  "gitHead": "d941525474c4d091eee4506c089087aa70dcf267"
+  "gitHead": "d941525474c4d091eee4506c089087aa70dcf267",
+  "dependencies": {
+    "imask": "7.6.1",
+    "react-imask": "7.6.1"
+  }
 }

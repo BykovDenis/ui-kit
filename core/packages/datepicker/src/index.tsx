@@ -45,6 +45,8 @@ import ChevronBtnLeftIcon from './icons/chevron-btn-left-icon';
 import ChevronBtnRightIcon from './icons/chevron-btn-right-icon';
 import ButtonDelete from '../../customs-styled-components/button-delete.styled';
 import dayjs, { Dayjs } from 'dayjs';
+import dateMaskOptions from './helpers/date-mask-options';
+import InputType from '../../enums/input-type';
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -170,10 +172,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onInputFocus = () => {
     setIsFocus(true);
+    // setIsVisibleList(!isVisibleList);
   };
 
-  const onInputClick = () => {
-    setIsVisibleList(!isVisibleList);
+  const onInputClick = (evt: any) => {
+    // evt.preventDefault();
+    // setIsVisibleList(!isVisibleList);
   };
 
   const onCalendarPanelToggle = (evt: any) => {
@@ -184,13 +188,15 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt.target;
     setIsVisibleList(false);
-    const datePartitioned: string = isNotEmptyString(element?.value) ? element?.value?.replaceAll(/\D/gi, '') : null;
-    const valueParsed: string =
-      element?.value?.length === 10 || element?.value?.length > value?.length
-        ? datePartitioned
-          ? parseInputDate(datePartitioned, mask as DatepickerMask)
-          : null
-        : element?.value;
+    const valueParsed: string = element?.value;
+    // TODO Analyze of code fragment before push
+    // const datePartitioned: string = isNotEmptyString(element?.value) ? element?.value?.replaceAll(/\D/gi, '') : null;
+    // const valueParsed: string =
+    //   element?.value?.length === 10 || element?.value?.length > value?.length
+    //     ? datePartitioned
+    //       ? parseInputDate(datePartitioned, mask as DatepickerMask)
+    //       : null
+    //     : element?.value;
     if (valueParsed !== value) {
       setValue(valueParsed);
     }
@@ -480,9 +486,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             fontFamily={props?.fontFamily || theme?.fontFamily}
             textMessage={props.textMessage || (isErrorMessageDisplayed && errorMessage)}
             onFocus={onInputFocus}
-            onBlur={onInputBlur}
+            onBlur={onInputChange}
             onClick={onInputClick}
-            onChange={onInputChange}
+            // onChange={onInputChange}
             disabled={props?.disabled}
             required={props?.required}
             fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
@@ -491,6 +497,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             inputRef={inputRef}
             isNotRunDebounce={true}
             isNotClearable={true}
+            // maskOptions={dateMaskOptions}
+            type={InputType.date}
           />
           <FormControl
             height={20}

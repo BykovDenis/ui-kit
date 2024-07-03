@@ -6,6 +6,8 @@ import Input from './src/index';
 import IInput from './types/iinput';
 import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
+import dateMaskOptions from '../datepicker/src/helpers/date-mask-options';
+import InputType from '../enums/input-type';
 
 export default {
   title: 'Components/Input',
@@ -16,7 +18,7 @@ export default {
     error: { control: { type: 'radio' }, options: [true, false] },
     isReadOnly: { control: { type: 'radio' }, options: [true, false] },
     isNotClearable: { control: { type: 'radio' }, options: [true, false] },
-    type: { control: { type: 'select' }, options: ['number', 'text', 'date', 'file'] },
+    type: { control: { type: 'select' }, options: [InputType.number, InputType.text, InputType.date, InputType.file] },
     fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
     fontWeight: { control: { type: 'select' }, options: [100, 400, 600, 900] },
     textAlign: { control: { type: 'select' }, options: ['right', 'left', 'center'] },
@@ -68,10 +70,11 @@ const TemplateDarkTheme: StoryFn<typeof Input> = (args: IInput) => {
           textAlign="right"
           isNotClearable={false}
           isNotRunDebounce={true}
+          maskOptions={dateMaskOptions}
         />
       </div>
       <div style={{ width: '190px' }}>
-        <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} />
+        {/*<Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} />*/}
       </div>
       <Label>{value}</Label>
     </ReactThemeContext.Provider>
@@ -104,19 +107,20 @@ const TemplateLightTheme: StoryFn<typeof Input> = (args: IInput) => {
           onRemove={onInputRemove}
           backgroundColor="transparent"
           variant="text"
+          isNotRunDebounce={true}
         />
       </div>
       <div style={{ width: '190px' }}>
-        <Input
-          {...args}
-          name="input"
-          value={value}
-          onChange={onInputChange}
-          onRemove={onInputRemove}
-          backgroundColor="transparent"
-          isSeparateNumberFormat={true}
-          type="number"
-        />
+        {/*<Input*/}
+        {/*  {...args}*/}
+        {/*  name="input"*/}
+        {/*  value={value}*/}
+        {/*  onChange={onInputChange}*/}
+        {/*  onRemove={onInputRemove}*/}
+        {/*  backgroundColor="transparent"*/}
+        {/*  isSeparateNumberFormat={true}*/}
+        {/*  type="number"*/}
+        {/*/>*/}
       </div>
     </ReactThemeContext.Provider>
   );

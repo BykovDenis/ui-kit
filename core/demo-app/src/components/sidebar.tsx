@@ -12,6 +12,7 @@ const Sidebar: React.FunctionComponent = () => {
 
   const isDatepickerActive: boolean = pathname?.indexOf('datepicker') > -1;
   const isInputActive: boolean = pathname?.indexOf('input') > -1;
+  const isInputMaskedActive: boolean = pathname?.indexOf('inpu-t-masked') > -1;
   const isTextFieldActive: boolean = pathname?.indexOf('textfield') > -1;
   const isMultiSelectActive: boolean = pathname?.indexOf('/multi-select') > -1;
   const isSelectActive: boolean = pathname?.indexOf('select') > -1 && pathname?.indexOf('multi') === -1;
@@ -32,6 +33,15 @@ const Sidebar: React.FunctionComponent = () => {
           >
             <ListItemLinkStyled color={theme.palette.baseFontColor} fontFamily={theme.fontFamily} href="/input">
               Input
+            </ListItemLinkStyled>
+          </ListItem>
+          <ListItem
+            type="text"
+            backgroundColor={isInputMaskedActive ? theme.palette.primary.main : theme.mainBackgroundColor}
+            height={60}
+          >
+            <ListItemLinkStyled color={theme.palette.baseFontColor} fontFamily={theme.fontFamily} href="/inpu-t-masked">
+              Input masked
             </ListItemLinkStyled>
           </ListItem>
           <ListItem

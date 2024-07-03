@@ -6,7 +6,7 @@ type LabelContainer = {
   height?: number;
 };
 
-const LabelContainer = styled('div')<LabelContainer>`
+const LabelContainer = styled.div<LabelContainer>`
   background-color: ${(props: LabelContainer) => (props.isExistValue ? props.backgroundColor : 'transparent')};
   padding-left: 4px;
   padding-right: 4px;

@@ -3,7 +3,7 @@ import TableHead from '@sber-risks-ui/core/table-head';
 import TableRow from '@sber-risks-ui/core/table-row';
 import TableCell from '@sber-risks-ui/core/table-cell';
 import TableBody from '@sber-risks-ui/core/table-body';
-import TextField from '@sber-risks-ui/core/textfield';
+import TextField from '../../../packages/textfield/src'; // '@sber-risks-ui/core/textfield';
 import React, { useState } from 'react';
 import Typography from '@sber-risks-ui/core/typography';
 import { success } from '../utils/dev-utils-theme';

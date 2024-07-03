@@ -1,7 +1,7 @@
 import debounce from 'debounce';
 import { useEffect, useRef, useState } from 'react';
 
-import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, TEXT_ALIGN_RIGHT, TIMEOUT, TYPE_TEXT } from '../../constants';
+import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, TEXT_ALIGN_RIGHT, TIMEOUT } from '../../constants';
 import ITheme from '../../styles/types/itheme';
 import IInput from '../types/iinput';
 import CrossIcon from '../../icons-components/24x24/cross-icon';
@@ -15,6 +15,12 @@ import parseValue from './helpers/parse-value';
 import ButtonDelete from '../../customs-styled-components/button-delete.styled';
 import calculationPaddingByTextAlign from './helpers/calculation-padding-by-text-align';
 import FormControl from '../../form-control/src';
+import inputMask from './helpers/input-mask';
+import { IMaskMixin } from 'react-imask';
+import InputType from '../../enums/input-type';
+import dayjs, { Dayjs } from 'dayjs';
+import DatepickerMask from '../../datepicker/enums/datepicker-mask';
+import getConfigDate from './helpers/get-config-date';
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(isNotEmptyString(props.value?.toString()) ? props.value : '');
@@ -30,7 +36,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     const value = props.inputRef ? props.inputRef?.current?.value : inputRef?.current?.value;
     if (isNotEmptyString(value)) {
       let valueParsed = parseValue(props.type, value, props.regExp, props.mask);
-      if (props.type === 'number') {
+      if (props.type === InputType.number) {
         if (props?.min !== undefined && props?.min !== null) {
           if (Number(valueParsed) < props?.min) {
             valueParsed = props?.min?.toString();
@@ -70,7 +76,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
   useEffect(() => {
     let valueParsed: number | string = parseValue(props.type, props.value, props.regExp, props.mask);
-    if (props.type === 'number') {
+    if (props.type === InputType.number) {
       if (props?.min !== undefined && props?.min !== null) {
         if (Number(valueParsed) < props?.min) {
           valueParsed = props?.min?.toString();
@@ -120,6 +126,37 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
       const executeDebounce = debounce(cbEvent, TIMEOUT);
       executeDebounce();
     }
+  };
+
+  const onInputChangeAccept = (value, mask, ...rest) => {
+    const valueParsed: string | number = parseValue(props.type, value, props.regExp, props.mask);
+    setInputValue(valueParsed);
+    setIsChanging(true);
+
+    const evt: any = {
+      target: {
+        id: props.id,
+        type: props.type,
+        name: props.name,
+        value: valueParsed,
+      },
+    };
+
+    if (props?.onInput) {
+      onInput(evt);
+    }
+    if (isNotRunDebounce) {
+      if (props?.onChange) {
+        props.onChange(evt, props.name, valueParsed);
+      }
+    } else {
+      const cbEvent = () => {
+        cb(evt);
+      };
+      const executeDebounce = debounce(cbEvent, TIMEOUT);
+      executeDebounce();
+    }
+    console.log('valueParsed ', valueParsed);
   };
 
   const onInputDelete = (evt: React.MouseEvent<HTMLButtonElement>) => {
@@ -184,8 +221,6 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     const focusColor: string = props?.error ? theme?.palette?.secondary?.main : theme.palette.primary.main;
 
-    const ReactInput: React.FunctionComponent = (props: any) => <input {...props} />;
-
     const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
     const borderColor: string = props?.error
       ? theme?.palette?.secondary?.lighter
@@ -203,36 +238,103 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
     const paddingCalculated = calculationPaddingByTextAlign(props.textAlign, props.isNotClearable);
 
+    if (props.maskOptions) {
+      inputMask(props?.inputRef || inputRef, props.maskOptions);
+    }
+
+    const isDate: boolean = props?.type?.toLowerCase() === InputType.date;
+    // input type date to convert string
+    const inputType: string = isDate ? InputType.text : props?.type || InputType.text;
+
+    const propsExtended: IInput = { ...props };
+
+    const InputStyledMasked = IMaskMixin(({ inputRef, ref, ...props }) => (
+      <InputStyled
+        {...propsExtended}
+        {...props}
+        height={propsExtended.height || DEFAULT_HEIGHT}
+        color={inputColor}
+        hoverColor={propsExtended?.hoverColor || hoverColor}
+        focusColor={propsExtended.focusColor || focusColor}
+        disabledBackgroundColor={theme?.mainGrayColor}
+        hoverBorderColor={propsExtended?.hoverColor || hoverBorderColor}
+        hoverBackgroundColor={hoverBackgroundColor}
+        disabledColor={theme?.palette.baseFontColorOpacity05}
+        backgroundColor={propsExtended.backgroundColor ?? backgroundColor}
+        fontSize={propsExtended?.fontSize ?? theme?.baseFontSize}
+        fontFamily={theme?.fontFamily}
+        textAlign={propsExtended?.textAlign || TEXT_ALIGN_RIGHT}
+        onAccept={onInputChangeAccept}
+        onFocus={onInputFocus}
+        onBlur={onInputBlur}
+        borderColor={borderColor}
+        type={inputType}
+        fontWeight={propsExtended?.fontWeight || FONT_WEIGHT_REGULAR}
+        padding={propsExtended?.padding || paddingCalculated}
+        // innerRef={propsExtended.inputRef || ref}
+        ref={inputRef}
+        unmask="typed"
+      />
+    ));
+
+    const InputStyledParsed: JSX.Element | null = !isDate ? (
+      <InputStyled
+        {...props}
+        value={value}
+        height={props.height || DEFAULT_HEIGHT}
+        color={inputColor}
+        hoverColor={props?.hoverColor || hoverColor}
+        focusColor={props.focusColor || focusColor}
+        disabledBackgroundColor={theme?.mainGrayColor}
+        hoverBorderColor={props?.hoverColor || hoverBorderColor}
+        hoverBackgroundColor={hoverBackgroundColor}
+        disabledColor={theme?.palette.baseFontColorOpacity05}
+        backgroundColor={props.backgroundColor ?? backgroundColor}
+        fontSize={props?.fontSize ?? theme?.baseFontSize}
+        fontFamily={theme?.fontFamily}
+        textAlign={props?.textAlign || TEXT_ALIGN_RIGHT}
+        onChange={onInputChange}
+        onFocus={onInputFocus}
+        onBlur={onInputBlur}
+        borderColor={borderColor}
+        type={inputType}
+        fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
+        ref={props?.inputRef || inputRef}
+        autoComplete="off"
+        padding={props?.padding || paddingCalculated}
+      />
+    ) : null;
+
+    const dateMask: DatepickerMask | string = props.dateMask || DatepickerMask.DDMMYYYY;
+    const dateMaskParsed: DatepickerMask | string = dateMask === DatepickerMask.DDMMYYYY ? 'DD.MM.YYYY' : 'YYYY-MM-DD';
+    const pattern: string = dateMask === DatepickerMask.DDMMYYYY ? 'd.m.Y' : 'Y-m-d';
+    const dateFormat: string = dateMask === DatepickerMask.DDMMYYYY ? 'd.m.Y' : 'Y-m-d';
+
+    const dateConfig = getConfigDate();
+
+    const dateBlocks = {
+      ...dateConfig,
+      separator: dateMask === DatepickerMask.DDMMYYYY ? '.' : '-',
+    };
+
     return (
       <InputContainer height={props?.height} width={props?.width}>
         <InputElementContainer backgroundColor={backgroundColor}>
-          <InputStyled
-            {...props}
-            value={value}
-            height={props.height || DEFAULT_HEIGHT}
-            color={inputColor}
-            hoverColor={props?.hoverColor || hoverColor}
-            focusColor={props.focusColor || focusColor}
-            disabledBackgroundColor={theme?.mainGrayColor}
-            hoverBorderColor={props?.hoverColor || hoverBorderColor}
-            hoverBackgroundColor={hoverBackgroundColor}
-            disabledColor={theme?.palette.baseFontColorOpacity05}
-            backgroundColor={props.backgroundColor ?? backgroundColor}
-            fontSize={props?.fontSize ?? theme?.baseFontSize}
-            fontFamily={theme?.fontFamily}
-            textAlign={props?.textAlign || TEXT_ALIGN_RIGHT}
-            onChange={onInputChange}
-            onFocus={onInputFocus}
-            onBlur={onInputBlur}
-            borderColor={borderColor}
-            inputComponent={ReactInput}
-            type={props?.type || TYPE_TEXT}
-            fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
-            ref={props?.inputRef || inputRef}
-            autoComplete="off"
-            padding={props?.padding || paddingCalculated}
-          />
-          {props?.variant !== TYPE_TEXT && (
+          {InputStyledParsed}
+          {isDate && (
+            <InputStyledMasked
+              mask={Date}
+              value={value}
+              blocks={dateBlocks}
+              lazy={false}
+              pattern={pattern}
+              autofix={false}
+              dateFormat={dateFormat}
+              format={(date: Date): string => dayjs(date)?.format(dateMaskParsed)}
+              parse={(value: string): Dayjs => dayjs(value, dateMaskParsed)}
+            />
+          )}
+          {props?.variant !== InputType.text && (
             <InputUnderline
               name={props?.name}
               className="underline"

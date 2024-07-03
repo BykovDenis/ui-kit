@@ -1,5 +1,6 @@
 import React from 'react';
 import TBaseStyles from '../../types/tbase-styles';
+import DatepickerMask from '../../datepicker/enums/datepicker-mask';
 
 interface IInput extends TBaseStyles {
   ReactThemeContext?: any;
@@ -20,6 +21,7 @@ interface IInput extends TBaseStyles {
   isReadOnly?: boolean;
   isSeparateNumberFormat?: boolean;
   mask?: RegExp;
+  dateMask?: DatepickerMask | string;
   max?: number;
   min?: number;
   onBlur?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
@@ -47,6 +49,7 @@ interface IInput extends TBaseStyles {
   inputRef?: React.MutableRefObject<HTMLInputElement>;
   isNotRunDebounce?: boolean;
   height?: number;
+  maskOptions?: any;
 }
 
 export default IInput;

@@ -5,6 +5,7 @@ import InputTesting from './components/input-testing';
 import TextFieldTesting from './components/text-field-testing';
 import SelectTesting from './components/select-testing';
 import MultiSelectTesting from './components/multi-select-testing';
+import InputMaskedTesting from './components/input-masked-testing';
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -19,6 +20,10 @@ const Routes = () => {
     {
       path: '/input',
       element: <InputTesting />,
+    },
+    {
+      path: '/inpu-t-masked',
+      element: <InputMaskedTesting />,
     },
     {
       path: '/textfield',
