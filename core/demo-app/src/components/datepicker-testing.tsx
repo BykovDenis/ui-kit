@@ -1,4 +1,4 @@
-import Datepicker from '@sber-risks-ui/core/datepicker';
+import Datepicker from '../../../packages/datepicker/src';
 import FlexContainer from '@sber-risks-ui/core/flex-container';
 import React, { useState } from 'react';
 import { warning, success } from '../utils/dev-utils-theme';

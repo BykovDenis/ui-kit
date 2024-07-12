@@ -45,6 +45,7 @@ import ChevronBtnLeftIcon from './icons/chevron-btn-left-icon';
 import ChevronBtnRightIcon from './icons/chevron-btn-right-icon';
 import ButtonDelete from '../../customs-styled-components/button-delete.styled';
 import dayjs, { Dayjs } from 'dayjs';
+import parseStringInsteadDate from '../helpers/parse-string-instead-date';
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -185,14 +186,17 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const element: any = evt.target;
     setIsVisibleList(false);
     const datePartitioned: string = isNotEmptyString(element?.value) ? element?.value?.replaceAll(/\D/gi, '') : null;
-    const valueParsed: string =
-      element?.value?.length === 10 || element?.value?.length > value?.length
-        ? datePartitioned
-          ? parseInputDate(datePartitioned, mask as DatepickerMask)
-          : null
-        : element?.value;
-    if (valueParsed !== value) {
+
+    // const valueParsed: string =
+    //   element?.value?.length === 10
+    //     ? datePartitioned
+    //       ? parseInputDate(datePartitioned, mask as DatepickerMask)
+    //       : null
+    //     : parseStringInsteadDate(element?.value, mask);
+    const valueParsed: string = parseStringInsteadDate(element.value, mask);
+    if (value !== valueParsed || value !== element.value || datePartitioned === '') {
       setValue(valueParsed);
+      // inputRef.current.value = valueParsed;
     }
   };
 
