@@ -77,7 +77,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const minDate: DateParser = isNotEmptyString(props.minDate)
     ? new DateParser(props.minDate, mask)
-    : new DateParser((mask as DatepickerMask) === DatepickerMask.YYYYMMDD ? '1971-01-01' : '01.01.1971', mask);
+    : new DateParser((mask as DatepickerMask) === DatepickerMask.YYYYMMDD ? '1900-01-01' : '01.01.1900', mask);
   const maxDate: DateParser = isNotEmptyString(props.maxDate) ? new DateParser(props.maxDate, mask) : null;
 
   const today: Dayjs = dayjs();

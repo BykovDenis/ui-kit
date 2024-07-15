@@ -135,9 +135,19 @@ describe('Test function parseStringInsteadDate', () => {
     const exprectedValue: string = '2021-10-1';
     expect(parseStringInsteadDate(dateValue, maskYYYYMMDD)).toEqual(exprectedValue);
   });
-  test('Test 25. Mask is YYYYMMDD. dateValue is invalid date', () => {
+  test('Test 26. Mask is YYYYMMDD. dateValue is invalid date', () => {
     const dateValue: string = '202-10-23';
     const exprectedValue: string = '202-10-23';
+    expect(parseStringInsteadDate(dateValue, maskYYYYMMDD)).toEqual(exprectedValue);
+  });
+  test('Test 27. Mask is YYYYMMDD. dateValue is invalid date', () => {
+    const dateValue: string = '-10-23';
+    const exprectedValue: string = '-10-23';
+    expect(parseStringInsteadDate(dateValue, maskYYYYMMDD)).toEqual(exprectedValue);
+  });
+  test('Test 28. Mask is YYYYMMDD. dateValue is invalid date', () => {
+    const dateValue: string = '2020-';
+    const exprectedValue: string = '2020-';
     expect(parseStringInsteadDate(dateValue, maskYYYYMMDD)).toEqual(exprectedValue);
   });
 });
