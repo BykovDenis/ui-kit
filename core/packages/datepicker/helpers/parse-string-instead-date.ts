@@ -17,7 +17,7 @@ function parseStringInsteadDateYYYYMMDD(dateValue: string): string {
     (dateParsedElement: string) => dateParsedElement
   );
   const stringLength = dateParsedElementsFiltered?.length > 3 ? 3 : dateParsedElementsFiltered?.length;
-  if (stringLength === 1) {
+  if (dateParsedElements.length === 1) {
     dateParsedResultElements.push(dateValueParsed.substring(0, 4));
     if (dateValueParsed?.length >= 5) {
       dateParsedResultElements.push(dateValueParsed.substring(4, 6));
@@ -33,16 +33,19 @@ function parseStringInsteadDateYYYYMMDD(dateValue: string): string {
           dateParsedResultElements.push(dateParsedElement.substring(0, 4));
           dateParsedResultElements.push(dateParsedElement.substring(4, 6));
         } else {
+          if (!dateParsedElements[i]) {
+            dateParsedResultElements.push('');
+          }
           dateParsedResultElements.push(dateParsedElement);
+          if (!dateParsedElements[i + 1]) {
+            dateParsedResultElements.push('');
+          }
         }
       } else if (i === 1) {
         if (dateParsedElements.length === 2 && dateParsedElement.length > 2) {
           dateParsedResultElements.push(dateParsedElement.substring(0, 2));
           dateParsedResultElements.push(dateParsedElement.substring(2, 4));
         } else {
-          if (dateParsedElements[1] === '') {
-            dateParsedResultElements.push('');
-          }
           dateParsedResultElements.push(dateParsedElement);
         }
       } else if (i === 2) {
