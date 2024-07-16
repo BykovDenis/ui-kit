@@ -64,7 +64,7 @@ function parseStringInsteadDateDDMMYYYY(dateValue: string): string {
     (dateParsedElement: string) => dateParsedElement
   );
   const stringLength = dateParsedElementsFiltered?.length > 3 ? 3 : dateParsedElementsFiltered?.length;
-  if (stringLength === 1) {
+  if (dateParsedElements.length === 1) {
     dateParsedResultElements.push(dateValueParsed?.substring(0, 2));
     if (dateValueParsed?.length >= 3) {
       dateParsedResultElements.push(dateValueParsed?.substring(2, 4));
@@ -81,6 +81,9 @@ function parseStringInsteadDateDDMMYYYY(dateValue: string): string {
             dateParsedResultElements.push('');
           }
           dateParsedResultElements.push(dateParsedElement);
+          if (!dateParsedElements[i + 1]) {
+            dateParsedResultElements.push('');
+          }
         } else if (dateParsedElement?.length < 5 && dateParsedElements?.length === 1) {
           dateParsedResultElements.push(dateParsedElement?.substring(0, 2));
           dateParsedResultElements.push(dateParsedElement?.substring(2, 4));
@@ -102,7 +105,7 @@ function parseStringInsteadDateDDMMYYYY(dateValue: string): string {
             dateParsedResultElements.push('');
           }
           dateParsedResultElements.push(dateParsedElement);
-        } else if (dateParsedElement?.length && (dateParsedElement?.length === 3 || dateParsedElement?.length === 4)) {
+        } else if (dateParsedElement?.length && dateParsedElement?.length >= 3 && dateParsedElement?.length < 5) {
           const middleValue: number = Number(dateParsedElement?.substring(0, 2));
           if (middleValue > 12) {
             // if first element of date is empty and dateParsedResultElements consist of one element
@@ -115,10 +118,10 @@ function parseStringInsteadDateDDMMYYYY(dateValue: string): string {
             dateParsedResultElements.push(dateParsedElement);
           } else {
             dateParsedResultElements.push(dateParsedElement?.substring(0, 2));
-            dateParsedResultElements.push(dateParsedElement?.substring(2, 4));
+            dateParsedResultElements.push(dateParsedElement?.substring(2));
           }
         }
-      } else if (i === 2 && dateParsedElement) {
+      } else if (i === 2 && dateParsedElement && dateParsedElements[i - 1].length < 5) {
         dateParsedResultElements.push(dateParsedElement.substring(0, 4));
       }
     }
