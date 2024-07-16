@@ -1,11 +1,8 @@
-236 error Error: Command failed with exit code 1: npm install --package-lock-only --ignore-scripts
-236 error npm ERR! code ERR_INVALID_AUTH
-236 error npm ERR! Invalid auth configuration found: `_auth` must be renamed to `//nexus-ci.delta.sbrf.ru/repository/npm-all/:_auth` in project config
-236 error npm ERR! Please run `npm config fix` to repair your configuration.`
-236 error
-236 error npm ERR! A complete log of this run can be found in: /Users/16783656-mobile/.npm/_logs/2024-06-03T08_44_41_048Z-debug-0.log
-236 error     at makeError (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/node_modules/execa/lib/error.js:59:11)
-236 error     at handlePromise (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/node_modules/execa/index.js:114:26)
-236 error     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-236 error     at async VersionCommand.updatePackageVersions (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/dist/index.js:8291:13)
-236 error     at async Promise.all (index 0)
+242 error Error: Command failed with exit code 128: git tag v0.12.2-alpha.3 -m v0.12.2-alpha.3
+242 error fatal: tag 'v0.12.2-alpha.3' already exists
+242 error     at makeError (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/node_modules/execa/lib/error.js:59:11)
+242 error     at handlePromise (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/node_modules/execa/index.js:114:26)
+242 error     at processTicksAndRejections (node:internal/process/task_queues:96:5)
+242 error     at async VersionCommand.gitCommitAndTagVersion (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/dist/index.js:8365:9)
+242 error     at async VersionCommand.commitAndTagUpdates (/usr/local/Cellar/lerna/7.3.0/libexec/lib/node_modules/lerna/dist/index.js:8330:18)
+242 error     at async Promise.all (index 0)
