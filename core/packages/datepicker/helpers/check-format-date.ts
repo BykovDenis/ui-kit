@@ -1,5 +1,5 @@
 function checkFormatDate(day: number, month: number, year: number): boolean {
-  if (
+  return !(
     day <= 0 ||
     month > 12 ||
     month < 1 ||
@@ -10,10 +10,7 @@ function checkFormatDate(day: number, month: number, year: number): boolean {
     (month % 2 !== 0 && day > 31 && month < 7) ||
     (month % 2 !== 0 && day > 30 && month > 7) ||
     (month % 2 === 0 && day > 31 && month > 7)
-  ) {
-    return false;
-  }
-  return true;
+  );
 }
 
 export default checkFormatDate;
