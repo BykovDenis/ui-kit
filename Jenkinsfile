@@ -36,7 +36,7 @@ def gridContainerPath = './core/packages/grid-container'
 pipeline {
     agent {
         node {
-            label 'Linux_Default' //Сборка должна происходить на централизованных агентах из пула Linux_Default
+            label 'rhel8' //Сборка должна происходить на централизованных агентах из пула Linux_Default
         }
     }
 
