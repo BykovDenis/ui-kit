@@ -30,8 +30,12 @@ function parseStringInsteadDateYYYYMMDD(dateValue: string): string {
       let dateParsedElement: string = dateParsedElementsFiltered[i];
       if (i === 0 && dateParsedElement) {
         if (dateParsedElement?.length > 4) {
-          dateParsedResultElements.push(dateParsedElement.substring(0, 4));
-          dateParsedResultElements.push(dateParsedElement.substring(4, 6));
+          if (dateParsedElementsFiltered.length < 3) {
+            dateParsedResultElements.push(dateParsedElement.substring(0, 4));
+            dateParsedResultElements.push(dateParsedElement.substring(4, 6));
+          } else {
+            dateParsedResultElements.push(`${dateParsedElement.substring(0, 3)}${dateParsedElement.substring(4, 5)}`);
+          }
         } else {
           if (!dateParsedElements[i]) {
             dateParsedResultElements.push('');
@@ -45,11 +49,17 @@ function parseStringInsteadDateYYYYMMDD(dateValue: string): string {
         if (dateParsedElements.length === 2 && dateParsedElement.length > 2) {
           dateParsedResultElements.push(dateParsedElement.substring(0, 2));
           dateParsedResultElements.push(dateParsedElement.substring(2, 4));
+        } else if (dateParsedElementsFiltered.length === 3 && dateParsedElement.length > 2) {
+          dateParsedResultElements.push(`${dateParsedElement.substring(0, 1)}${dateParsedElement.substring(2)}`);
         } else {
           dateParsedResultElements.push(dateParsedElement);
         }
       } else if (i === 2) {
-        dateParsedResultElements.push(dateParsedElement.substring(0, 2));
+        if (dateParsedElementsFiltered.length === 3 && dateParsedElement.length > 2) {
+          dateParsedResultElements.push(`${dateParsedElement.substring(0, 1)}${dateParsedElement.substring(2)}`);
+        } else {
+          dateParsedResultElements.push(dateParsedElement.substring(0, 2));
+        }
       }
     }
   }
@@ -87,6 +97,8 @@ function parseStringInsteadDateDDMMYYYY(dateValue: string): string {
         } else if (dateParsedElement?.length < 5 && dateParsedElements?.length === 1) {
           dateParsedResultElements.push(dateParsedElement?.substring(0, 2));
           dateParsedResultElements.push(dateParsedElement?.substring(2, 4));
+        } else if (dateParsedElementsFiltered.length === 3) {
+          dateParsedResultElements.push(`${dateParsedElement.substring(0, 1)}${dateParsedElement.substring(2)}`);
         } else if (dateParsedElement?.length < 9 && dateParsedElements?.length === 1) {
           dateParsedResultElements.push(dateParsedElement?.substring(0, 2));
           dateParsedResultElements.push(dateParsedElement?.substring(2, 4));
@@ -106,23 +118,31 @@ function parseStringInsteadDateDDMMYYYY(dateValue: string): string {
           }
           dateParsedResultElements.push(dateParsedElement);
         } else if (dateParsedElement?.length && dateParsedElement?.length >= 3 && dateParsedElement?.length < 5) {
-          const middleValue: number = Number(dateParsedElement?.substring(0, 2));
-          if (middleValue > 12) {
-            // if first element of date is empty and dateParsedResultElements consist of one element
-            if (
-              (dateParsedElements[i] === '' || dateParsedElements.length === 2) &&
-              dateParsedResultElements.length === 1
-            ) {
-              dateParsedResultElements.push('');
-            }
-            dateParsedResultElements.push(dateParsedElement);
+          if (dateParsedElementsFiltered.length === 3 && dateParsedElement.length > 2) {
+            dateParsedResultElements.push(`${dateParsedElement.substring(0, 1)}${dateParsedElement.substring(2)}`);
           } else {
-            dateParsedResultElements.push(dateParsedElement?.substring(0, 2));
-            dateParsedResultElements.push(dateParsedElement?.substring(2));
+            const middleValue: number = Number(dateParsedElement?.substring(0, 2));
+            if (middleValue > 12) {
+              // if first element of date is empty and dateParsedResultElements consist of one element
+              if (
+                (dateParsedElements[i] === '' || dateParsedElements.length === 2) &&
+                dateParsedResultElements.length === 1
+              ) {
+                dateParsedResultElements.push('');
+              }
+              dateParsedResultElements.push(dateParsedElement);
+            } else {
+              dateParsedResultElements.push(dateParsedElement?.substring(0, 2));
+              dateParsedResultElements.push(dateParsedElement?.substring(2));
+            }
           }
         }
       } else if (i === 2 && dateParsedElement && dateParsedElements[i - 1].length < 5) {
-        dateParsedResultElements.push(dateParsedElement.substring(0, 4));
+        if (dateParsedElement?.length > 4) {
+          dateParsedResultElements.push(`${dateParsedElement.substring(0, 3)}${dateParsedElement.substring(4, 5)}`);
+        } else {
+          dateParsedResultElements.push(dateParsedElement.substring(0, 4));
+        }
       }
     }
   }
