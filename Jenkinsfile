@@ -57,15 +57,15 @@ pipeline {
                         sh 'npm -v'
                         sh 'node -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Root packages installing'
-                                    sh 'npm ci'
-                                }
-                            }
                             dir("${uiKitPath}") {
                                 script {
                                     echo 'Core packages installing'
+                                    sh 'npm ci'
+                                }
+                            }
+                            dir("${rootPath}") {
+                                script {
+                                    echo 'Root packages installing'
                                     sh 'npm ci'
                                 }
                             }
