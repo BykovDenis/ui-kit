@@ -36,7 +36,7 @@ def gridContainerPath = './core/packages/grid-container'
 pipeline {
     agent {
         node {
-            label 'rhel8' // Clean builder agent
+            label 'rhel8&&!delta4' // Clean builder agent
         }
     }
 
