@@ -160,4 +160,39 @@ describe('Test function parseStringInsteadDate', () => {
     const exprectedValue: string = '16.11.2023';
     expect(parseStringInsteadDate(dateValue, maskDDMMYYYY)).toEqual(exprectedValue);
   });
+  test('Test 31. Mask is DDMMYYYY. dateValue is valid date', () => {
+    const dateValue: string = '161.12.2023';
+    const exprectedValue: string = '11.12.2023';
+    expect(parseStringInsteadDate(dateValue, maskDDMMYYYY)).toEqual(exprectedValue);
+  });
+  test('Test 32. Mask is YYYYMMDD. dateValue is valid date', () => {
+    const dateValue: string = '20241-01-12';
+    const exprectedValue: string = '2021-01-12';
+    expect(parseStringInsteadDate(dateValue, maskYYYYMMDD)).toEqual(exprectedValue);
+  });
+  test('Test 33. Mask is YYYYMMDD. dateValue is valid date', () => {
+    const dateValue: string = '20214-07-14';
+    const exprectedValue: string = '2024-07-14';
+    expect(parseStringInsteadDate(dateValue, maskYYYYMMDD)).toEqual(exprectedValue);
+  });
+  test('Test 34. Mask is YYYYMMDD. dateValue is valid date', () => {
+    const dateValue: string = '2024-071-14';
+    const exprectedValue: string = '2024-01-14';
+    expect(parseStringInsteadDate(dateValue, maskYYYYMMDD)).toEqual(exprectedValue);
+  });
+  test('Test 35. Mask is YYYYMMDD. dateValue is valid date', () => {
+    const dateValue: string = '2024-01-147';
+    const exprectedValue: string = '2024-01-17';
+    expect(parseStringInsteadDate(dateValue, maskYYYYMMDD)).toEqual(exprectedValue);
+  });
+  test('Test 36. Mask is DDMMYYYY. dateValue is valid date', () => {
+    const dateValue: string = '16.121.2023';
+    const exprectedValue: string = '16.11.2023';
+    expect(parseStringInsteadDate(dateValue, maskDDMMYYYY)).toEqual(exprectedValue);
+  });
+  test('Test 37. Mask is DDMMYYYY. dateValue is valid date', () => {
+    const dateValue: string = '16.11.20232';
+    const exprectedValue: string = '16.11.2022';
+    expect(parseStringInsteadDate(dateValue, maskDDMMYYYY)).toEqual(exprectedValue);
+  });
 });
