@@ -185,18 +185,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt.target;
     setIsVisibleList(false);
-    const datePartitioned: string = isNotEmptyString(element?.value) ? element?.value?.replaceAll(/\D/gi, '') : null;
-
-    // const valueParsed: string =
-    //   element?.value?.length === 10
-    //     ? datePartitioned
-    //       ? parseInputDate(datePartitioned, mask as DatepickerMask)
-    //       : null
-    //     : parseStringInsteadDate(element?.value, mask);
     const valueParsed: string = parseStringInsteadDate(element.value, mask);
-    if (value !== valueParsed || value !== element.value || datePartitioned === '') {
+    if (value !== valueParsed || value !== element.value) {
       setValue(valueParsed);
-      // inputRef.current.value = valueParsed;
+      inputRef.current.value = valueParsed;
     }
   };
 
@@ -441,7 +433,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const focusColor: string = props?.error ? theme?.palette?.secondary?.main : theme.palette.primary.main;
 
     const isSetTodayButtonDisabled: boolean = !isValidByMinDate || !isValidByMaxDate;
-
+    const regExpOnlyDigits: RegExp = new RegExp('[^0-9_]', 'gi');
     return (
       <DatepickerContainerStyled
         backgroundImage={props?.backgroundImage}
@@ -495,6 +487,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             inputRef={inputRef}
             isNotRunDebounce={true}
             isNotClearable={true}
+            regExp={new RegExp('[a-zа-я]', 'gi')}
           />
           <FormControl
             height={20}
