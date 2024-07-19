@@ -33,4 +33,4 @@ yarn-error.log*
 .npmrc
 **/coverage
 **/.storybook
-**/analyze.html
+**/analize.html
