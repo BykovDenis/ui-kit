@@ -3,7 +3,7 @@ import TableHead from '@sber-risks-ui/core/table-head';
 import TableRow from '@sber-risks-ui/core/table-row';
 import TableCell from '@sber-risks-ui/core/table-cell';
 import TableBody from '@sber-risks-ui/core/table-body';
-import Input from '@sber-risks-ui/core/input';
+import Input from '../../../packages/input/src';
 import React, { useState } from 'react';
 import Typography from '@sber-risks-ui/core/typography';
 
@@ -11,7 +11,7 @@ const InputTesting: React.FunctionComponent = () => {
   const [inputValue, setInputValue] = useState<string | undefined>();
 
   const [digitsFormatted, setDigitsFormatted] = useState<string | undefined>();
-  const [digits, setDigits] = useState<string>();
+  const [digits] = useState<string>();
   const [regularExpression, setRegularExpression] = useState<string | undefined>();
   const [inputRegExprCompixity, setInputRegExprCompixity] = useState<string | undefined>();
 
