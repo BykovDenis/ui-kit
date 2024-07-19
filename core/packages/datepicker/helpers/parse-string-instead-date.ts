@@ -56,7 +56,7 @@ function parseStringInsteadDateYYYYMMDD(dateValue: string): string {
         }
       } else if (i === 2) {
         if (dateParsedElementsFiltered.length === 3 && dateParsedElement.length > 2) {
-          dateParsedResultElements.push(`${dateParsedElement.substring(0, 1)}${dateParsedElement.substring(2)}`);
+          dateParsedResultElements.push(`${dateParsedElement.substring(0, 1)}${dateParsedElement.substring(2, 3)}`);
         } else {
           dateParsedResultElements.push(dateParsedElement.substring(0, 2));
         }

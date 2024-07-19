@@ -32,7 +32,6 @@ import MonthsYearsRuleContainer from './months-years-rule-container.styled';
 import sortArray from '../../helpers/sort-array';
 import SortDirection from '../../enums/sort-direction';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
-import parseInputDate from '../helpers/parse-input-date';
 import DatepickerMask from '../enums/datepicker-mask';
 import checkMinMaxDate from '../helpers/check-min-max-date';
 import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
@@ -323,6 +322,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   useEffect(() => {
     if (props.value !== value) {
       setValue(props.value);
+      inputRef.current.value = props.value;
     }
   }, [props.value]);
 
@@ -433,7 +433,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const focusColor: string = props?.error ? theme?.palette?.secondary?.main : theme.palette.primary.main;
 
     const isSetTodayButtonDisabled: boolean = !isValidByMinDate || !isValidByMaxDate;
-    const regExpOnlyDigits: RegExp = new RegExp('[^0-9_]', 'gi');
     return (
       <DatepickerContainerStyled
         backgroundImage={props?.backgroundImage}
@@ -479,6 +478,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             onBlur={onInputBlur}
             onClick={onInputClick}
             onChange={onInputChange}
+            onInput={onInputChange}
             disabled={props?.disabled}
             required={props?.required}
             fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}

@@ -3,7 +3,7 @@ import TableHead from '@sber-risks-ui/core/table-head';
 import TableRow from '@sber-risks-ui/core/table-row';
 import TableCell from '@sber-risks-ui/core/table-cell';
 import TableBody from '@sber-risks-ui/core/table-body';
-import TextField from '@sber-risks-ui/core/textfield';
+import TextField from '../../../packages/textfield/src';
 import React, { useState } from 'react';
 import Typography from '@sber-risks-ui/core/typography';
 import { success } from '../utils/dev-utils-theme';
@@ -48,7 +48,7 @@ const TextFieldTesting: React.FunctionComponent = () => {
     setTextFieldRegularExpression(element.value);
   };
 
-  const onTextFieldRegularExpressionRemove = (name: string) => {
+  const onTextFieldRegularExpressionRemove = () => {
     setTextFieldRegularExpression(null);
   };
 
@@ -58,7 +58,7 @@ const TextFieldTesting: React.FunctionComponent = () => {
     setTextFieldRegularExpressionComplixity(element.value);
   };
 
-  const onTextFieldRegularExpressionComplixityRemove = (name: string) => {
+  const onTextFieldRegularExpressionComplixityRemove = () => {
     setTextFieldRegularExpressionComplixity(null);
   };
 
