@@ -246,4 +246,6 @@
 <h3>Features</h3>
 <ol>
   <li>Datepicker. Delete a date digit without resetting the cursor position. </li>
+  <li>Switcher. Interface extended. </li>
+  <li>ListItem. Interface extended. </li>
 </ol>
