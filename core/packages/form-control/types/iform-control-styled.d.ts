@@ -16,12 +16,12 @@ interface IFormControlStyled {
   maxHeight?: number | string;
   minHeight?: number | string;
   overflowY?: string;
-  padding?: string;
+  padding?: CSS.Property.Padding;
   paddingTop?: number | string;
   paddingBottom?: number | string;
   paddingRight?: number | string;
   paddingLeft?: number | string;
-  position?: string;
+  position?: CSS.Property.Position;
   textAlign?: string;
   whiteSpace?: string;
   width?: number | string;
@@ -35,7 +35,7 @@ interface IFormControlStyled {
   top?: number | string;
   bottom?: number | string;
   fontSize?: number | string;
-  alignSelf?: string;
+  alignSelf?: CSS.Property.AlignSelf;
   fontStyle?: string;
   zIndex?: number;
   transform?: string;

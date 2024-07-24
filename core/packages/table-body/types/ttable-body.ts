@@ -1,8 +1,10 @@
+import CSS from "csstype";
+
 type TTableBody = {
-  position?: string,
+  position?: CSS.Property.Position,
   className?: string,
   children?: React.ReactNode,
-  backgroundColor?: string,
+  backgroundColor?: CSS.Property.BackgroundColor,
 };
 
 export default TTableBody;

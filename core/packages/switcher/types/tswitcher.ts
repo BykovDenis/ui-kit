@@ -1,12 +1,14 @@
+import CSS from "csstype";
+
 type TSwitcher = {
-  activeElement?: string,
-  backgroundColor?: string,
+  activeElement?: string | undefined,
+  backgroundColor?: CSS.Property.BackgroundColor,
   classes?: any,
-  color?: string,
+  color?: CSS.Property.Color,
   disabled?: boolean,
   element1: string,
   element2: string,
-  onSwitcherChange?: (datasetName: string) => void,
+  onSwitcherChange?: (value: string) => void,
   height?: number | string,
   fontSize?: number | string,
 };

@@ -1,25 +1,9 @@
 import styled from 'styled-components';
 import getMeasureValue from '../../helpers/get-measure-value';
-import * as CSS from 'csstype';
+import IListElement from "../types/ilist-element";
 
-interface IListItemButton {
-  height?: number | string;
-  minHeight?: number | string;
-  color?: string;
-  hoverColor?: string;
-  justifyContent?: CSS.Property.JustifyContent;
-  backgroundColor?: string;
-  hoverBackgroundColor?: string;
-  activeBackgroundColor?: string;
-  className?: string;
-  type?: any;
-  onClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;
-  padding?: string;
-  fontSize?: number | string;
-}
-
-const ListItemButton = styled('button')<IListItemButton>`
-  ${(props: IListItemButton) => `
+const ListItemButton = styled('button')<IListElement>`
+  ${(props: IListElement) => `
     box-sizing: border-box;  
     display: flex;
     flex-direction: row;
@@ -36,6 +20,8 @@ const ListItemButton = styled('button')<IListItemButton>`
     background-color: ${props.backgroundColor || 'transparent'};
     padding: ${props.padding || 'initial'};
     ${props?.height ? `height: ${getMeasureValue(props.height)};` : ''}
+    ${props?.alignItems ? `align-items: ${props.alignItems};` : ''}
+    ${props?.alignSelf ? `align-items: ${props.alignSelf};` : ''}
     ${props?.minHeight ? `min-height: ${getMeasureValue(props.minHeight)};` : ''}
     &:hover {
       background-color: ${props.hoverBackgroundColor};

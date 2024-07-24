@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import getMeasureValue from '../../helpers/get-measure-value';
+import CSS from "csstype";
 
 type TLabelSwitcher = {
-  fontFamily: string,
+  fontFamily: CSS.Property.FontFamily,
   height?: number | string,
   fontSize: number | string,
-  color: string,
+  color: CSS.Property.Color,
 };
 
 const LabelSwitcher =

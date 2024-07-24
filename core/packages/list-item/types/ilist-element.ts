@@ -1,13 +1,13 @@
-import * as CSS from 'csstype';
+import CSS from 'csstype';
 
 interface IListElement {
   activeBackgroundColor?: string;
   backgroundColor?: string;
   children: any;
   className?: string;
-  color?: string;
+  color?: CSS.Property.Color;
   colorTheme?: string;
-  fontFamily?: string;
+  fontFamily?: CSS.Property.FontFamily;
   fontSize?: number | string;
   height?: number | string;
   minHeight?: number | string;
@@ -20,8 +20,11 @@ interface IListElement {
   underLineColor?: string;
   width?: number;
   justifyContent?: CSS.Property.JustifyContent;
+  alignItems?: CSS.Property.AlignItems;
+  alignSelf?: CSS.Property.AlignSelf;
+  border?: CSS.Property.Border;
   colorInverted?: string;
-  padding?: string;
+  padding?: CSS.Property.Padding;
   isDisable?: boolean;
   id?: string;
   isSelected?: boolean;

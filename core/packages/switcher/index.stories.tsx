@@ -10,7 +10,6 @@ import TSwitcher from './types/tswitcher';
 export default {
   title: 'Components/Switcher',
   component: Switcher,
-  parameters: { actions: { argTypesRegex: '.+' } },
   argTypes: {
     disabled: { control: { type: 'radio' }, options: [true, false] },
     fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },

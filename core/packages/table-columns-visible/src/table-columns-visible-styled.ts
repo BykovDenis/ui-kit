@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import getMeasureValue from '../../helpers/get-measure-value';
+import CSS from "csstype";
 
 type TTableColumnsVisibleStyled = {
-  color: string,
-  width?: number | string,
+  color: CSS.Property.Color,
+  width?: CSS.Property.Width,
   minHeight?: number | string,
   height?: number | string,
 };

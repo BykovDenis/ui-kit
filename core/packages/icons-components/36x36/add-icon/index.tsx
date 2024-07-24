@@ -1,11 +1,12 @@
 import React from 'react';
+import CSS from "csstype";
 
 const AddIcon: React.FunctionComponent<{ className?: string, color?: string }> = ({
   className,
   color,
 }: {
   className: string,
-  color: string,
+  color: CSS.Property.Color,
 }) => (
   <svg className={className} width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path

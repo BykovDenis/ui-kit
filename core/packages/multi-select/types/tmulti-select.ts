@@ -1,9 +1,11 @@
+import CSS from "csstype";
+
 type TMultiSelect = {
   width?: number | string,
   height?: number | string,
   className?: string,
   disabled?: boolean,
-  fontFamily?: string,
+  fontFamily?: CSS.Property.FontFamily,
   elementNames: Array<number | string>,
   keyName?: string,
   fontSize?: number | string,

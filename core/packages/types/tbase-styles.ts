@@ -1,19 +1,21 @@
+import CSS from "csstype";
+
 type TBaseStyles = {
   name?: string;
   id?: string;
   backgroundColor?: string;
-  children?: any | Array<React.ReactNode>; // React.ReactNode | number | string | Array<React.ReactNode>,
+  children?: any | Array<React.ReactNode>;
   className?: any;
   color?: string;
   disabled?: boolean;
-  fontFamily?: string;
+  fontFamily?: CSS.Property.FontFamily;
   fontSize?: number;
   fontWeight?: number;
-  whiteSpace?: string;
-  padding?: string;
-  margin?: string;
-  wordBreak?: string;
-  display?: string;
+  whiteSpace?: CSS.Property.WhiteSpace;
+  padding?: CSS.Property.Padding;
+  margin?: CSS.Property.Margin;
+  wordBreak?: CSS.Property.WordBreak;
+  display?: CSS.Property.Display;
   lineHeight?: number;
   height?: number | string;
   minHeight?: number | string;
@@ -22,9 +24,9 @@ type TBaseStyles = {
   minWidth?: number | string;
   width?: number | string;
   regExp?: RegExp;
-  position?: string;
-  textAlign?: string;
-  opacity?: number;
+  position?: CSS.Property.Position;
+  textAlign?: CSS.Property.TextAlign;
+  opacity?: CSS.Property.Opacity;
 };
 
 export default TBaseStyles;

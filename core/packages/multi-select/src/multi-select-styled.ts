@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import getMeasureValue from '../../helpers/get-measure-value';
+import CSS from "csstype";
 
 type TMultiSelectStyled = {
-  width?: number | string,
+  width?: CSS.Property.Width,
   height?: number | string,
   isExistLabel?: boolean,
   borderColor?: string,
