@@ -248,4 +248,5 @@
   <li>Datepicker. Delete a date digit without resetting the cursor position. </li>
   <li>Switcher. Interface extended. </li>
   <li>ListItem. Interface extended. </li>
+  <li>CSS. Some css types extended by csstype library. </li>
 </ol>

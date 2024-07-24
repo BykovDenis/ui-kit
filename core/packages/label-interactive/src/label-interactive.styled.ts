@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 import isNotEmptyString from '../../helpers/is-not-empty-string';
-import TLabelInteractive from '../types/tlabel-interactive';
+import CSS from "csstype";
 
 type TLabelInteractiveStyled = {
-  backgroundColor?: string,
+  backgroundColor?: CSS.Property.BackgroundColor,
   children?: any | Array<any>, // React.ReactNode | number | string | Array<React.ReactNode>,
 };
 

@@ -1,23 +1,23 @@
-import React from 'react';
+import CSS from 'csstype';
 
 type TButtonStyled = {
-  backgroundColor?: string,
-  backgroundImage?: string,
+  backgroundColor?: CSS.Property.BackgroundColor,
+  backgroundImage?: CSS.Property.BackgroundImage,
   baseFontSize?: string,
-  borderRadius?: string,
-  color?: string,
+  borderRadius?: CSS.Property.BorderRadius,
+  color?: CSS.Property.Color,
   disabled?: boolean,
   draggable?: boolean,
   focusColor?: string,
-  fontFamily?: string,
+  fontFamily?: CSS.Property.FontFamily,
   fontSize?: number,
-  fontWeight?: number,
+  fontWeight?: CSS.Property.FontWeight,
   height?: number | string,
-  padding?: number | string,
+  padding?: CSS.Property.Padding,
   type?: string,
   width?: number | string,
-  textDecoration?: string,
-  textTransform?: string,
+  textDecoration?: CSS.Property.TextDecoration,
+  textTransform?: CSS.Property.TextTransform,
 };
 
 export default TButtonStyled;

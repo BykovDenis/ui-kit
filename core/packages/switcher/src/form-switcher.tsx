@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import CSS from "csstype";
 
 type TFormSwitcher = {
-  backgroundColor?: string,
+  backgroundColor?: CSS.Property.BackgroundColor,
   borderColor: string,
 };
 

@@ -1,6 +1,8 @@
+import CSS from "csstype";
+
 type TDivider = {
-  color?: string,
-  width?: number | string,
+  color?: CSS.Property.Color,
+  width?: CSS.Property.Width,
   className?: string,
 };
 

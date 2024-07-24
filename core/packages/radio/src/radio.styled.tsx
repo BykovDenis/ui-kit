@@ -1,14 +1,11 @@
 ﻿import styled from 'styled-components';
-
-import hexToRgb from '../../helpers/hex-to-rgba';
-import IRadio from '../types/iradio';
-import rgbToRgba from '../../helpers/rgb-to-rgba';
+import CSS from "csstype";
 
 type TRadioStylish = {
   backgroundColor: string,
   indeterminate: boolean,
   isIconDisabled?: boolean,
-  color: string,
+  color: CSS.Property.Color,
   borderColor: string,
   disabledColor: string,
 };

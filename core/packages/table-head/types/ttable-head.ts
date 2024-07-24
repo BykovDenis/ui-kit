@@ -1,5 +1,7 @@
+import CSS from "csstype";
+
 type TTableHead = {
-  position?: string,
+  position?: CSS.Property.Position,
   className?: string,
   children?: React.ReactNode,
 }

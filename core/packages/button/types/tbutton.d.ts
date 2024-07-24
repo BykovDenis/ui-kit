@@ -17,7 +17,7 @@ type TButton = TButtonStyled & {
   variant?: TButtonVariants;
   justifyContent?: CSS.Property.JustifyContent;
   alignItems?: CSS.Property.AlignItems;
-  padding?: string;
+  padding?: CSS.Property.Padding;
 };
 
 export default TButton;

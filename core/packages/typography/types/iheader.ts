@@ -10,7 +10,7 @@ interface IHeader {
   textTransform?: CSS.Property.TextTransform;
   textAlign?: CSS.Property.TextAlign;
   margin?: string;
-  padding?: string;
+  padding?: CSS.Property.Padding;
   opacity?: number;
 }
 

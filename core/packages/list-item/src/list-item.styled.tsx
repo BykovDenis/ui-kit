@@ -21,6 +21,8 @@ const ListItem = styled('li')<IListElement>`
     border-radius: 4px;
     padding: ${props.padding || 'initial'};
     ${props?.height ? `height: ${getMeasureValue(props.height)};` : ''}
+    ${props?.alignItems ? `align-items: ${props.alignItems};` : ''}
+    ${props?.alignSelf ? `align-items: ${props.alignSelf};` : ''}
     ${props?.minHeight ? `min-height: ${getMeasureValue(props.minHeight)};` : ''}
       &:after {
       display: block;

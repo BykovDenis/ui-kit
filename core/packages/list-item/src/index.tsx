@@ -66,6 +66,8 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
           onClick={props?.onClick}
           className={props?.className}
           justifyContent={justifyContent}
+          alignItems={props?.alignItems}
+          alignSelf={props?.alignSelf}
           padding={props.padding}
           fontSize={props?.fontSize}
           disabled={props.isDisable}
@@ -85,6 +87,8 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
         backgroundColor={props?.backgroundColor || backgroundColor}
         className={props?.className}
         justifyContent={justifyContent}
+        alignItems={props?.alignItems}
+        alignSelf={props?.alignSelf}
         padding={props.padding}
         fontSize={props?.fontSize}
         isSelected={props.isSelected}

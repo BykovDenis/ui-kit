@@ -1,4 +1,5 @@
 import TTableRow from '../../table-row/types/ttable-row';
+import CSS from "csstype";
 
 type TTableCell = TTableRow & {
   border?: string;
@@ -6,7 +7,7 @@ type TTableCell = TTableRow & {
   borderStyle?: string;
   borderWidth?: string;
   color?: string;
-  padding?: string;
+  padding?: CSS.Property.Padding;
   width?: number | string;
   colSpan?: number;
   rowSpan?: number;
