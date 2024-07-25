@@ -18,6 +18,7 @@ const ListItemContainer =
       height: 1px;
       content: '';
       background-color: ${(props: IListElement) => props.underLineColor};
+      opacity: ${(props: IListElement) => props.isVisibleTextUnderline ? 0.15 : 0};
     }
     &:hover:after {
       background-color: ${(props: IListElement) => props.hoverColor};

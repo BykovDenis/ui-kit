@@ -19,10 +19,13 @@ const ListItemButton = styled('button')<IListElement>`
     cursor: pointer;
     background-color: ${props.backgroundColor || 'transparent'};
     padding: ${props.padding || 'initial'};
+    ${props?.margin ? `margin: ${props.margin};` : ''}
     ${props?.height ? `height: ${getMeasureValue(props.height)};` : ''}
     ${props?.alignItems ? `align-items: ${props.alignItems};` : ''}
-    ${props?.alignSelf ? `align-items: ${props.alignSelf};` : ''}
+    ${props?.alignSelf ? `align-self: ${props.alignSelf};` : ''}
     ${props?.minHeight ? `min-height: ${getMeasureValue(props.minHeight)};` : ''}
+    ${props?.border ? `border: ${props.border};` : ''}
+    ${props?.borderBottom ? `border-bottom: ${props.borderBottom};` : ''}
     &:hover {
       background-color: ${props.hoverBackgroundColor};
       color: ${props.hoverColor};

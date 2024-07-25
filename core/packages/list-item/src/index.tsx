@@ -13,6 +13,7 @@ const HEIGHT: number = 30;
 
 const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const [isVisibleTextUnderline] = useState<boolean>(props?.isVisibleTextUnderline !== undefined ? props.isVisibleTextUnderline : true);
 
   useEffect(() => {
     setConsumer(globalThis.ReactThemeContextConsumer);
@@ -33,7 +34,7 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
       ? theme.inactiveBackgroundColor
       : theme?.palette?.primary?.light;
 
-    const underLineColor: string = theme?.mainGrayColor;
+    const underLineColor: string = theme?.palette.baseFontColor;
     const hoverColor: string = props.isSelected
       ? theme.palette.baseFontColorOpacity05
       : props.isDisable
@@ -49,10 +50,10 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
       : theme?.palette?.secondary?.main;
 
     const textAlign: string = props?.textAlign || TEXT_ALIGN_CENTER;
-    const justifyContent: string = calculationJustifyContent(textAlign);
+    const justifyContent: string = props?.justifyContent || calculationJustifyContent(textAlign);
 
     return props.type === ListItemType.Button ? (
-      <ListItemContainer underLineColor={underLineColor} hoverColor={hoverColor}>
+      <ListItemContainer underLineColor={underLineColor} hoverColor={hoverColor} isVisibleTextUnderline={isVisibleTextUnderline}>
         <ListItemButtonStyled
           {...props}
           color={props?.color || color}
@@ -92,6 +93,7 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
         padding={props.padding}
         fontSize={props?.fontSize}
         isSelected={props.isSelected}
+        isVisibleTextUnderline={isVisibleTextUnderline}
       >
         {props.children}
       </ListItemStyled>

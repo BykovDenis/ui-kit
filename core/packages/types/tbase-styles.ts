@@ -1,8 +1,18 @@
-import CSS from "csstype";
+import CSS from 'csstype';
 
 type TBaseStyles = {
   name?: string;
   id?: string;
+  display?: CSS.Property.Display;
+  alignItems?: CSS.Property.AlignItems;
+  flexDirection?: CSS.Property.FlexDirection;
+  justifyContent?: CSS.Property.JustifyContent;
+  alignSelf?: CSS.Property.AlignSelf;
+  outline?: string;
+  border?: CSS.Property.Border;
+  borderBottom?: CSS.Property.BorderBottom;
+  borderRadius?: number;
+  gap?: number | string;
   backgroundColor?: string;
   children?: any | Array<React.ReactNode>;
   className?: any;
@@ -11,11 +21,21 @@ type TBaseStyles = {
   fontFamily?: CSS.Property.FontFamily;
   fontSize?: number;
   fontWeight?: number;
+  fontStyle?: string;
   whiteSpace?: CSS.Property.WhiteSpace;
   padding?: CSS.Property.Padding;
+  paddingTop?: number | string;
+  paddingBottom?: number | string;
+  paddingRight?: number | string;
+  paddingLeft?: number | string;
   margin?: CSS.Property.Margin;
-  wordBreak?: CSS.Property.WordBreak;
-  display?: CSS.Property.Display;
+  marginTop?: number | string;
+  marginBottom?: number | string;
+  marginLeft?: number | string;
+  marginRight?: number | string;
+  wordBreak?: number | string;
+  flexGrow?: number;
+  flexWrap?: CSS.Property.FlexWrap;
   lineHeight?: number;
   height?: number | string;
   minHeight?: number | string;
@@ -26,7 +46,14 @@ type TBaseStyles = {
   regExp?: RegExp;
   position?: CSS.Property.Position;
   textAlign?: CSS.Property.TextAlign;
+  right?: number | string;
+  left?: number | string;
+  top?: number | string;
+  bottom?: number | string;
   opacity?: CSS.Property.Opacity;
+  transform?: string;
+  overflowY?: string;
+  zIndex?: number;
 };
 
 export default TBaseStyles;

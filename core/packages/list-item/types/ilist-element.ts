@@ -23,11 +23,14 @@ interface IListElement {
   alignItems?: CSS.Property.AlignItems;
   alignSelf?: CSS.Property.AlignSelf;
   border?: CSS.Property.Border;
+  borderBottom?: CSS.Property.BorderBottom;
   colorInverted?: string;
   padding?: CSS.Property.Padding;
+  margin?: CSS.Property.Margin;
   isDisable?: boolean;
   id?: string;
   isSelected?: boolean;
+  isVisibleTextUnderline?: boolean;
 }
 
 export default IListElement;

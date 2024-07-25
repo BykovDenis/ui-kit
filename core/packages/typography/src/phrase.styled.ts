@@ -18,6 +18,11 @@ const PhraseStyled = styled.p<TTypography>`
   ${(props: TTypography) => (props?.opacity ? `opacity: ${props.opacity};` : '')}
   ${(props: TTypography) => (props?.padding ? `padding: ${props.padding};` : '')}
   ${(props: TTypography) => (props?.margin ? `margin: ${props.margin};` : '')}
+  ${(props: TTypography) => (props?.display ? `display: ${props.display};` : '')}
+  ${(props: TTypography) => (props?.flexDirection ? `flex-direction: ${props.flexDirection};` : '')}
+  ${(props: TTypography) => (props?.justifyContent ? `justify-content: ${props.justifyContent};` : '')}
+  ${(props: TTypography) => (props?.alignItems ? `align-items: ${props.alignItems};` : '')}
+  ${(props: TTypography) => (props?.alignSelf ? `align-self: ${props.alignSelf};` : '')}
 `;
 
 export default PhraseStyled;

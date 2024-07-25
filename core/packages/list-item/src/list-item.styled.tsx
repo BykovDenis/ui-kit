@@ -20,20 +20,24 @@ const ListItem = styled('li')<IListElement>`
     background-color: ${props.backgroundColor || 'transparent'};
     border-radius: 4px;
     padding: ${props.padding || 'initial'};
+    ${props?.margin ? `margin: ${props.margin};` : ''}
     ${props?.height ? `height: ${getMeasureValue(props.height)};` : ''}
     ${props?.alignItems ? `align-items: ${props.alignItems};` : ''}
-    ${props?.alignSelf ? `align-items: ${props.alignSelf};` : ''}
+    ${props?.alignSelf ? `align-self: ${props.alignSelf};` : ''}
     ${props?.minHeight ? `min-height: ${getMeasureValue(props.minHeight)};` : ''}
+    ${props?.border ? `border: ${props.border};` : ''}
+    ${props?.borderBottom ? `border-bottom: ${props.borderBottom};` : ''}
       &:after {
-      display: block;
-      position: absolute;
-      bottom: 0;
-      width: 98%;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 1px;
-      content: '';
-      background-color: ${props.underLineColor || 'transparent'};
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 98%;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 1px;
+        background-color: ${props.underLineColor || 'transparent'};
+        opacity: ${props.isVisibleTextUnderline ? 0.15 : 0};
     }`}
 `;
 

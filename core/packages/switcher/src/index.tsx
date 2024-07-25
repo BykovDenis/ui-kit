@@ -40,9 +40,10 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
 
     return (
       <FormSwitcher
-        method="get"
         backgroundColor={disabled ? theme.inactiveBackgroundColor : props?.backgroundColor ?? theme.mainBackgroundColor}
         borderColor={theme.mainOutlinedColor}
+        width={props?.width}
+        height={props?.height}
       >
         <InputSwitcher
           name="custom-switcher"
@@ -57,6 +58,7 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
           backgroundColor={backgroundColor}
           inactiveBackgroundColor={inactiveBackgroundColor}
           inactiveColor={inactiveColor}
+          height={props?.height}
         />
         <LabelSwitcher
           htmlFor={`custom-switcher-element1-${props.element1}`}
@@ -80,6 +82,7 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
           backgroundColor={backgroundColor}
           inactiveBackgroundColor={inactiveBackgroundColor}
           inactiveColor={inactiveColor}
+          height={props?.height}
         />
         <LabelSwitcher
           htmlFor={`custom-switcher-element2-${props.element2}`}

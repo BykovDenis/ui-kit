@@ -12,6 +12,11 @@ const H2Styled = styled.h2<IHeader>`
   ${(props: IHeader) => (props?.padding ? `padding: ${props.padding};` : '')}
   ${(props: IHeader) => (props?.textAlign ? `text-align: ${props.textAlign};` : '')}
   ${(props: IHeader) => (props?.opacity ? `opacity: ${props.opacity};` : '')}
+  ${(props: IHeader) => (props?.display ? `display: ${props.display};` : '')}
+  ${(props: IHeader) => (props?.flexDirection ? `flex-direction: ${props.flexDirection};` : '')}
+  ${(props: IHeader) => (props?.justifyContent ? `justify-content: ${props.justifyContent};` : '')}
+  ${(props: IHeader) => (props?.alignItems ? `align-items: ${props.alignItems};` : '')}
+  ${(props: IHeader) => (props?.alignSelf ? `align-self: ${props.alignSelf};` : '')}
 `;
 
 export default H2Styled;

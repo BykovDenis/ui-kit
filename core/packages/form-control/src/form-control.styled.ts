@@ -32,6 +32,7 @@ const FormControlStyled = styled.div<IFormControlStyled>`
     top: ${getMeasureValue(props.top, 'auto')};
     bottom: ${getMeasureValue(props.bottom, 'auto')};
     font-size: ${getMeasureValue(props.fontSize, 'inherit')};
+    word-break: ${props.wordBreak || 'normal'};
     ${props?.alignSelf ? `align-self: ${props.alignSelf};` : ''}
     ${isNotEmptyNumber(props?.zIndex) ? `z-index: ${props.zIndex};` : ''}
     ${isNotEmptyString(props?.transform) ? `transform: ${props.transform};` : ''}
@@ -47,6 +48,9 @@ const FormControlStyled = styled.div<IFormControlStyled>`
     ${props?.paddingLeft ? `padding-left: ${getMeasureValue(props.paddingLeft)};` : ''}
     ${props?.paddingRight ? `padding-right: ${getMeasureValue(props.paddingRight)};` : ''}
     ${props?.paddingBottom ? `padding-bottom: ${getMeasureValue(props.paddingBottom)};` : ''}
+    ${props?.border ? `border: ${props.border};` : ''}
+    ${props?.borderBottom ? `border-bottom: ${props.borderBottom};` : ''}
+    ${props?.lineHeight ? `line-height: ${props.lineHeight};` : ''}
   `}
 `;
 

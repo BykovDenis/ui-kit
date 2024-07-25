@@ -51,11 +51,11 @@ const ThemeLightTemplate: StoryFn<typeof List> = (args: IList) => {
   const ReactThemeContext = getNewReactThemeContext(themes?.loanPricing);
 
   return (
-    <ReactThemeContext.Provider value={themes?.loanPricing}>
+    <ReactThemeContext.Provider value={themes?.light}>
       <div style={{ width: '220px' }}>
         <List type="list">
           {elements.map((element: string, index: number) => (
-            <ListItem key={index} onClick={action('clicked')}>
+            <ListItem key={index} onClick={action('clicked')} isVisibleTextUnderline={true}>
               {element}
             </ListItem>
           ))}

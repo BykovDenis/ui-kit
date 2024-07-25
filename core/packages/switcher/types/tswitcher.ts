@@ -10,6 +10,7 @@ type TSwitcher = {
   element2: string,
   onSwitcherChange?: (value: string) => void,
   height?: number | string,
+  width?: number | string,
   fontSize?: number | string,
 };
 

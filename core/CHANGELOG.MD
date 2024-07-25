@@ -250,3 +250,7 @@
   <li>ListItem. Interface extended. </li>
   <li>CSS. Some css types extended by csstype library. </li>
 </ol>
+<h3>BugFix</h3>
+<ol>
+  <li>ListItem. Fix style underline color </li>
+</ol>
