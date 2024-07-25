@@ -119,3 +119,6 @@ cd datepicker/
 echo 30. Datepicker building...
 npm run build
 cd ..
+cd styles/
+echo 31. Datepicker building...
+npm run build

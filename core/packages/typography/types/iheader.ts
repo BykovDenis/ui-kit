@@ -12,6 +12,11 @@ interface IHeader {
   margin?: string;
   padding?: CSS.Property.Padding;
   opacity?: number;
+  display?: CSS.Property.Display;
+  flexDirection?: CSS.Property.FlexDirection;
+  justifyContent?: CSS.Property.JustifyContent;
+  alignItems?: CSS.Property.AlignItems;
+  alignSelf?: CSS.Property.AlignSelf;
 }
 
 export default IHeader;

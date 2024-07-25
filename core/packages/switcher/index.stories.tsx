@@ -17,6 +17,8 @@ export default {
   args: {
     disabled: false,
     fontSize: 14,
+    width: 200,
+    height: 35,
   },
 } as Meta<typeof Switcher>;
 
@@ -40,7 +42,6 @@ const TemplateDarkTheme: StoryFn<typeof Switcher> = (args: TSwitcher) => {
     <ReactThemeContext.Provider value={themes.dark}>
       <Switcher
         {...args}
-        height={56}
         onSwitcherChange={onSwitcherChange}
         element1={element1}
         element2={element2}

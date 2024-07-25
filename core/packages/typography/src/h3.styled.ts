@@ -12,6 +12,11 @@ const H3Styled = styled.h3<IHeader>`
   ${(props: IHeader) => (props?.padding ? `padding: ${props.padding};` : '')}
   ${(props: IHeader) => (props?.textAlign ? `text-align: ${props.textAlign};` : '')}
   ${(props: IHeader) => (props?.opacity ? `opacity: ${props.opacity};` : '')}
+  ${(props: IHeader) => (props?.display ? `display: ${props.display};` : '')}
+  ${(props: IHeader) => (props?.flexDirection ? `display: ${props.flexDirection};` : '')}
+  ${(props: IHeader) => (props?.justifyContent ? `display: ${props.justifyContent};` : '')}
+  ${(props: IHeader) => (props?.alignItems ? `display: ${props.alignItems};` : '')}
+  ${(props: IHeader) => (props?.alignSelf ? `display: ${props.alignSelf};` : '')}  
 `;
 
 export default H3Styled;

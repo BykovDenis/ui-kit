@@ -8,6 +8,7 @@
   "author": "Denis Bykov",
   "license": "MIT",
   "scripts": {
+    "build-pack": "npm pack",
     "build": "rollup -c rollup.config.prod.js",
     "build-dev": "rollup -w -c rollup.config.dev.js",
     "prepare-ui-kit": "lerna bootstrap && lerna run build && git reset --hard",
