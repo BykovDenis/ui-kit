@@ -1,11 +1,11 @@
 ﻿import styled from 'styled-components';
-import IFormControlStyled from '../types/iform-control-styled';
 import getMeasureValue from '../../helpers/get-measure-value';
 import isNotEmptyNumber from '../../helpers/is-not-empty-number';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
+import IFormControl from '../types/iform-control';
 
-const FormControlStyled = styled.div<IFormControlStyled>`
-  ${(props: IFormControlStyled) => `
+const FormControlStyled = styled.div<IFormControl>`
+  ${(props: IFormControl) => `
     position: ${props?.position ? props?.position : 'relative'};
     display: flex;
     box-sizing: border-box;
