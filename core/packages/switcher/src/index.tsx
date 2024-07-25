@@ -28,7 +28,7 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
     const { dataset, checked } = element;
     const datasetName = dataset.name;
     if (checked) {
-      props.onSwitcherChange(datasetName);
+      props.onSwitcherChange(datasetName, props.name, evt);
     }
   };
 
