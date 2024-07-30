@@ -18,7 +18,7 @@ describe('Testing Select component', () => {
   it('Test 2. Select number value', () => {
     cy.get('#select-digits-input')
       .focus()
-      .type(32)
+      .type('32')
       .then(() => {
         cy.get('#select-digits-list div:first button')
           .as('btn')

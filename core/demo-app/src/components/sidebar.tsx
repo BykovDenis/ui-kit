@@ -14,6 +14,7 @@ const Sidebar: React.FunctionComponent = () => {
   const isInputActive: boolean = pathname?.indexOf('input') > -1;
   const isTextFieldActive: boolean = pathname?.indexOf('textfield') > -1;
   const isMultiSelectActive: boolean = pathname?.indexOf('/multi-select') > -1;
+  const isSwitcherActive: boolean = pathname?.indexOf('/switcher') > -1;
   const isSelectActive: boolean = pathname?.indexOf('select') > -1 && pathname?.indexOf('multi') === -1;
 
   const theme: ITheme = useContext(ReactThemeContext);
@@ -68,6 +69,15 @@ const Sidebar: React.FunctionComponent = () => {
           >
             <ListItemLinkStyled color={theme.palette.baseFontColor} fontFamily={theme.fontFamily} href="/multi-select">
               Multi select
+            </ListItemLinkStyled>
+          </ListItem>
+          <ListItem
+            type="text"
+            backgroundColor={isSwitcherActive ? theme.palette.primary.main : theme.mainBackgroundColor}
+            height={60}
+          >
+            <ListItemLinkStyled color={theme.palette.baseFontColor} fontFamily={theme.fontFamily} href="/switcher">
+              Switcher
             </ListItemLinkStyled>
           </ListItem>
         </List>
