@@ -253,4 +253,5 @@
 <h3>BugFix</h3>
 <ol>
   <li>ListItem. Fix style underline color </li>
+  <li>Switcher. The name attribute is unique for each radio button. </li>
 </ol>

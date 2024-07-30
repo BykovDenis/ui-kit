@@ -5,6 +5,7 @@ import InputTesting from './components/input-testing';
 import TextFieldTesting from './components/text-field-testing';
 import SelectTesting from './components/select-testing';
 import MultiSelectTesting from './components/multi-select-testing';
+import SwitcherTesting from './components/switcher-testing';
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const Routes = () => {
     {
       path: '/multi-select',
       element: <MultiSelectTesting />,
+    },
+    {
+      path: '/switcher',
+      element: <SwitcherTesting />,
     },
   ]);
 
