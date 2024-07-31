@@ -6,6 +6,7 @@ import TextFieldTesting from './components/text-field-testing';
 import SelectTesting from './components/select-testing';
 import MultiSelectTesting from './components/multi-select-testing';
 import SwitcherTesting from './components/switcher-testing';
+import ErrorsStateTesting from './components/errors-state-testing';
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -36,6 +37,10 @@ const Routes = () => {
     {
       path: '/switcher',
       element: <SwitcherTesting />,
+    },
+    {
+      path: '/errors-state',
+      element: <ErrorsStateTesting />,
     },
   ]);
 

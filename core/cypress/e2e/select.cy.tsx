@@ -1,6 +1,7 @@
 describe('Testing Select component', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/select');
+    cy.viewport(1920, 1080);
   });
   it('Test 1. Select text value', () => {
     cy.get('#select-text-input')
