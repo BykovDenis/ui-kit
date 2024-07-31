@@ -15,6 +15,7 @@ const Sidebar: React.FunctionComponent = () => {
   const isTextFieldActive: boolean = pathname?.indexOf('textfield') > -1;
   const isMultiSelectActive: boolean = pathname?.indexOf('/multi-select') > -1;
   const isSwitcherActive: boolean = pathname?.indexOf('/switcher') > -1;
+  const isErrorsStateActive: boolean = pathname?.indexOf('/errors-state') > -1;
   const isSelectActive: boolean = pathname?.indexOf('select') > -1 && pathname?.indexOf('multi') === -1;
 
   const theme: ITheme = useContext(ReactThemeContext);
@@ -78,6 +79,15 @@ const Sidebar: React.FunctionComponent = () => {
           >
             <ListItemLinkStyled color={theme.palette.baseFontColor} fontFamily={theme.fontFamily} href="/switcher">
               Switcher
+            </ListItemLinkStyled>
+          </ListItem>
+          <ListItem
+            type="text"
+            backgroundColor={isErrorsStateActive ? theme.palette.primary.main : theme.mainBackgroundColor}
+            height={60}
+          >
+            <ListItemLinkStyled color={theme.palette.baseFontColor} fontFamily={theme.fontFamily} href="/errors-state">
+              Errors state
             </ListItemLinkStyled>
           </ListItem>
         </List>

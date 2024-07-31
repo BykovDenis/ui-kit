@@ -30,7 +30,7 @@ const GridContainerStyled = styled.div<TGridContainerStyled>`
   grid-template-columns: ${props.gridTemplateColumns};
   grid-template-rows:  ${props.gridTemplateRows};
   ${isNotEmptyNumber(props?.zIndex) ? `z-index: ${props.zIndex};` : ''}
-  ${props.gridGap ? `grid-gap: ${props.gridGap};` : ''}
+  ${props.gridGap ? `gap: ${getMeasureValue(props.gridGap)};` : ''}
   ${props.gridColumnGap ? `grid-column-gap: ${props.gridColumnGap};` : ''}
   ${props.gridRowGap ? `grid-row-gap: ${props.gridRowGap};` : ''}
   ${props.justifyContent ? `justify-content: ${props.justifyContent};` : ''}

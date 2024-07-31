@@ -1,8 +1,7 @@
-import React from 'react';
-
 describe('The TextField component', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/textfield');
+    cy.viewport(1920, 1080);
   });
   it('Test1. Typing numbers', () => {
     // mount(<Input type="number" name="input name" value="123" />)
@@ -15,7 +14,11 @@ describe('The TextField component', () => {
   });
   it('Test2. Typing text', () => {
     // mount(<Input type="number" name="input name" value="123" />)
-    cy.get('input#text-field-digits').focus().type('ff12аааа34').invoke('val').should('equal', '1234');
+    cy.get('input#text-field-digits')
+      .focus()
+      .type('ff12аааа34')
+      .invoke('val')
+      .should('equal', '1234');
   });
   it('Test3. Typing text regular expression', () => {
     cy.get('input[data-test=text-field-regular-expressions')
