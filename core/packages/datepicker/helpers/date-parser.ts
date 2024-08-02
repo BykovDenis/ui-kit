@@ -18,7 +18,7 @@ class DateParser implements IDateParser {
   private mask: string;
   private firstDayOnMonth: Dayjs;
   constructor(date?: string, mask?: DatepickerMask) {
-    this.mask = mask === DatepickerMask.YYYYMMDD ? 'YYYY-MM-DD' : 'DD.MM.YYYY';
+    this.mask = mask === DatepickerMask.DashedYYYYMMDD ? 'YYYY-MM-DD' : 'DD.MM.YYYY';
     this.changeParsedDate(date);
   }
   changeParsedDate(date: string) {

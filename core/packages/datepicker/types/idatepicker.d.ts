@@ -21,7 +21,7 @@ export default interface IDatepicker extends IInput, ILabel, TBaseStyles {
   onChange?: (name: string, value: string, isValid: boolean) => void;
   onBlur?: (name: string, value: string, isValid: boolean) => void;
   textAlign?: string;
-  value?: string;
+  value?: string | undefined | null;
   variant?: 'contained' | 'outlined' | 'text';
   mask?: 'dd.MM.yyyy' | 'yyyy-MM-dd' | undefined;
   isErrorMessageDisplayed?: boolean;

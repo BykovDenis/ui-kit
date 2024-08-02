@@ -45,6 +45,7 @@ import ChevronBtnRightIcon from './icons/chevron-btn-right-icon';
 import ButtonDelete from '../../customs-styled-components/button-delete.styled';
 import dayjs, { Dayjs } from 'dayjs';
 import parseStringInsteadDate from '../helpers/parse-string-instead-date';
+
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -72,21 +73,21 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     props.isErrorMessageDisplayed !== undefined ? props.isErrorMessageDisplayed : 'true'
   );
   const [monthName, setMonthName] = useState<IOption | null>(null);
-  const [mask] = useState<DatepickerMask>((props.mask as DatepickerMask) || DatepickerMask.DDMMYYYY);
+  const [mask] = useState<DatepickerMask>((props.mask as DatepickerMask) || DatepickerMask.DottedDDMMYYYY);
 
   const minDate: DateParser = isNotEmptyString(props.minDate)
     ? new DateParser(props.minDate, mask)
-    : new DateParser((mask as DatepickerMask) === DatepickerMask.YYYYMMDD ? '1900-01-01' : '01.01.1900', mask);
+    : new DateParser((mask as DatepickerMask) === DatepickerMask.DashedYYYYMMDD ? '1900-01-01' : '01.01.1900', mask);
   const maxDate: DateParser = isNotEmptyString(props.maxDate) ? new DateParser(props.maxDate, mask) : null;
 
   const today: Dayjs = dayjs();
-  const todayParsed: string = today.format(DatepickerMask.YYYYMMDD);
+  const todayParsed: string = today.format(DatepickerMask.DashedYYYYMMDD);
 
   const isValidByMinDate: boolean = props.minDate
-    ? todayParsed >= minDate.getDate().format(DatepickerMask.YYYYMMDD)
+    ? todayParsed >= minDate.getDate().format(DatepickerMask.DashedYYYYMMDD)
     : true;
   const isValidByMaxDate: boolean = props.maxDate
-    ? todayParsed <= maxDate.getDate().format(DatepickerMask.YYYYMMDD)
+    ? todayParsed <= maxDate.getDate().format(DatepickerMask.DashedYYYYMMDD)
     : true;
 
   const syncDataParaemters = (date: DateParser) => {
@@ -242,7 +243,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onDayChange = (day: number): void => {
     const dateParsed: DateParser = new DateParser(
-      mask === DatepickerMask.YYYYMMDD
+      mask === DatepickerMask.DashedYYYYMMDD
         ? `${actualYearNumber}-${actualMonthNumber + 1}-${day}`
         : `${day}.${actualMonthNumber + 1}.${actualYearNumber}`,
       mask
@@ -306,9 +307,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   }, []);
 
   useEffect(() => {
-    if (!isError) {
-      setIsError(props?.error !== undefined ? props.error : false);
-    }
+    setIsError(props?.error !== undefined ? props.error : false);
   }, [props.error]);
 
   useEffect(() => {
@@ -439,6 +438,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
         width={props?.width}
         minWidth={props?.minWidth}
         height={props?.height}
+        data-test={props.id}
       >
         <DatepickerHeader>
           {props?.label && (
@@ -640,6 +640,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             />
             <Divider color={theme.palette.primary.main} />
             <DaysOfMonth
+              id={`${props.id}-grid`}
               countDaysIsMonth={countDaysIsMonth}
               activeMonthNumber={activeMonthNumber}
               activeYearNumber={activeYearNumber}

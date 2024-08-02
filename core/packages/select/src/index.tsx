@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import searchDomChildElement from '../../helpers/search-dom-child-element';
 import Input from '../../input/src';
@@ -17,12 +18,14 @@ import getUniqueIndex from '../../helpers/get-unique-index';
 import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import calculationPaddingByTextAlign from './helpers/calculation-padding-by-text-align';
-import { DEFAULT_HEIGHT, TEXT_ALIGN_CENTER } from '../../constants';
-
-const FONT_WEIGHT_REGULAR = 400;
-const INPUT_TAG: string = 'INPUT';
-const BUTTON_TAG: string = 'BUTTON';
-const IS_NOT_USE_DEBOUNCE_COUNT: number = 500;
+import {
+  BUTTON_TAG,
+  DEFAULT_HEIGHT,
+  FONT_WEIGHT_REGULAR,
+  INPUT_TAG,
+  IS_NOT_USE_DEBOUNCE_COUNT,
+  TEXT_ALIGN_CENTER,
+} from '../../constants';
 
 function getElementsParsed(elements: Array<IOption | string | number>, name: string): Array<IOption> {
   return elements?.map((element: string | number | IOption) => {
@@ -85,6 +88,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [isEdited, setIsEdited] = useState<boolean>(false);
   const [activeIndexElement, setActiveIndexElement] = useState<number>(null);
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const [id] = useState<string>(`${props.id}-${uuidv4()}`);
 
   useEffect(() => {
     setConsumer(globalThis.ReactThemeContextConsumer);
@@ -230,7 +234,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsFocus(true);
     setIsVisibleList(true);
     if (isScrollingToSelected) {
-      const elements = document.querySelector(`#${props.id}-list-items`);
+      const elements = document.querySelector(`#${id}-list-items`);
       if (elements) {
         const options = elements.children[0].getBoundingClientRect();
         if (options && activeIndexElement > 0) {
@@ -256,8 +260,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       setIsFocus(false);
       setIsEdited(false);
       setActiveElement(isFoundValue ? activeElementParsed : null);
-      // setElements(getElementsParsed(props.elements, props.name));
-      // setLabel(props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label);
     };
 
     const indicatorColor: string = !props?.isReadOnly
@@ -280,27 +282,29 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     );
 
     return (
-      <SelectContainer id={props.id} width={props?.width} height={props?.height} margin={props.margin}>
+      <SelectContainer data-test={props.id} id={id} width={props?.width} height={props?.height} margin={props.margin}>
         <SelectHeader height={props?.height || DEFAULT_HEIGHT}>
           {props?.label && (
             <LabelContainer isExistValue={isExistValue || isFocus} backgroundColor={backgroundColor}>
-              <Label
-                htmlFor={props.id}
-                fontSize={labelFontSize}
-                isFocus={isFocus}
-                isReadOnly={props.isReadOnly}
-                fontWeight={props?.fontWeight}
-                disabled={props.disabled}
-                fontFamily={props?.fontFamily || theme?.fontFamily}
-                onClick={onLabelClick}
-              >
-                {props?.label}
-              </Label>
+              {props?.label && (
+                <Label
+                  htmlFor={`${props.id}`}
+                  fontSize={labelFontSize}
+                  isFocus={isFocus}
+                  isReadOnly={props.isReadOnly}
+                  fontWeight={props?.fontWeight}
+                  disabled={props.disabled}
+                  fontFamily={props?.fontFamily || theme?.fontFamily}
+                  onClick={onLabelClick}
+                >
+                  {props?.label}
+                </Label>
+              )}
             </LabelContainer>
           )}
           {!props.isNotVisibleIndicator && <SelectIndicator backgroundColor={indicatorColor} />}
           <Input
-            id={`${props.id}-input`}
+            id={`${props.id}`}
             name={props.name}
             height={props?.height}
             width={props?.width}
@@ -335,6 +339,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             inputRef={inputRef}
             regExp={props?.regExp}
             padding={paddingCalculated}
+            error={props.error}
           />
         </SelectHeader>
         {isVisibleList && (

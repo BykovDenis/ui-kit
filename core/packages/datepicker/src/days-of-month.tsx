@@ -1,4 +1,5 @@
 import React from 'react';
+import CSS from 'csstype';
 
 import DateParser from '../helpers/date-parser';
 import IDateParser from '../helpers/idate-parser';
@@ -10,6 +11,7 @@ import DatepickerMask from '../enums/datepicker-mask';
 import TPatritionDate from '../types/tpatrition-date';
 
 interface IDaysOfMonth {
+  id: string;
   activeDayNumber: number;
   activeMonthNumber: number;
   activeYearNumber: number;
@@ -19,7 +21,7 @@ interface IDaysOfMonth {
   actualMonthNumber: number;
   actualYearNumber: number;
   todayPartitioned: TPatritionDate;
-  fontFamily: string;
+  fontFamily: CSS.Property.FontFamily;
   fontSize: number;
   maxDate?: IDateParser;
   minDate?: IDateParser;
@@ -45,7 +47,7 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
       : null;
 
   return (
-    <DaysOfMonthStyled>
+    <DaysOfMonthStyled id={props.id}>
       {daysElements?.map((element: number, index: number) => {
         const actualNumberDayOfWeek: number = index + 1;
         const dayValue: number = actualNumberDayOfWeek - numberDayInWeek + (numberDayInWeek > 0 ? 1 : 0);
@@ -55,7 +57,7 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
         }
 
         const actualDateValue =
-          props.mask === DatepickerMask.YYYYMMDD
+          props.mask === DatepickerMask.DashedYYYYMMDD
             ? `${props.actualYearNumber}-${props.actualMonthNumber + 1}-${dayValueParsed}`
             : `${dayValueParsed}.${props.actualMonthNumber + 1}.${props.actualYearNumber}`;
 
