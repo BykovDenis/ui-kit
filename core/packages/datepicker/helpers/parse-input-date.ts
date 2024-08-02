@@ -1,8 +1,8 @@
 import DatepickerMask from '../enums/datepicker-mask';
 
-function parseInputDate(date: string, mask: DatepickerMask = DatepickerMask.DDMMYYYY): string {
+function parseInputDate(date: string, mask: DatepickerMask = DatepickerMask.DottedDDMMYYYY): string {
   if (date && date?.length > 0) {
-    if (mask === DatepickerMask.YYYYMMDD) {
+    if (mask === DatepickerMask.DashedYYYYMMDD) {
       if (date?.length < 4) {
         return date;
       } else if (date.length === 4) {

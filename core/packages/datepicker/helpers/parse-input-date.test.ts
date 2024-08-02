@@ -6,7 +6,7 @@ describe('Test function parseInputDate', () => {
   let i: number = 1;
 
   beforeEach(() => {
-    mask = DatepickerMask.YYYYMMDD;
+    mask = DatepickerMask.DashedYYYYMMDD;
   });
 
   test(`Test${i}. Main scenario date format DD.MM.YYYY`, () => {

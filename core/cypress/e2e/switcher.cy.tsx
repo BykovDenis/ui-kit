@@ -8,28 +8,28 @@ describe('Testing Select component', () => {
       .first()
       .click()
       .invoke('css', 'background-color')
-      .then(bgColor => {
+      .then((bgColor: string) => {
         expect(bgColor).to.eq('rgb(8, 166, 82)');
       });
     cy.get('label[for^="q2"]')
       .last()
       .click()
       .invoke('css', 'background-color')
-      .then(bgColor => {
+      .then((bgColor: string) => {
         expect(bgColor).to.eq('rgb(8, 166, 82)');
       });
     cy.get('label[for^="q5"]')
       .first()
       .click()
       .invoke('css', 'background-color')
-      .then(bgColor => {
+      .then((bgColor: string) => {
         expect(bgColor).to.eq('rgb(8, 166, 82)');
       });
     cy.get('label[for^="q10"]')
       .last()
       .click()
       .invoke('css', 'background-color')
-      .then(bgColor => {
+      .then((bgColor: string) => {
         expect(bgColor).to.eq('rgb(8, 166, 82)');
       });
   });

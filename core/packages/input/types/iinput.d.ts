@@ -31,7 +31,7 @@ interface IInput extends TBaseStyles {
   onClick?: (evt: any) => void;
   onFocus?: (evt: any) => void;
   onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  onRemove?: (name: string, value?: string, evt?: any) => void;
+  onRemove?: (name: string, value?: string | null | undefined, evt?: any) => void;
   ref?: any;
   required?: boolean;
   step?: number;

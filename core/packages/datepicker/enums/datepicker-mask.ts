@@ -1,6 +1,6 @@
 enum DatepickerMask {
-  DDMMYYYY = 'dd.MM.yyyy',
-  YYYYMMDD = 'yyyy-MM-dd',
+  DottedDDMMYYYY = 'dd.MM.yyyy',
+  DashedYYYYMMDD = 'yyyy-MM-dd',
 }
 
 export default DatepickerMask;

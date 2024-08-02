@@ -1,16 +1,26 @@
 import React from 'react';
 import Typography from '@sber-risks-ui/core/typography';
 import FlexContainer from '@sber-risks-ui/core/flex-container';
-import TextField from '@sber-risks-ui/core/textfield';
+import TextField from '../../../packages/textfield/src';
 import GridContainer from '../../../packages/grid-container/src';
 import Label from '@sber-risks-ui/core/label';
 import Button from '@sber-risks-ui/core/button';
-import Input from '@sber-risks-ui/core/input';
+import Input from '../../../packages/input/src';
+import Select from '../../../packages/select/src';
+import IOption from '../../../packages/select/types/ioption';
+import Datepicker from '../../../packages/datepicker/src';
+import DatepickerMask from '../../../packages/datepicker/enums/datepicker-mask';
+import Locale from '../../../packages/enums/locale';
 
 const ErrorsStateTesting: React.FunctionComponent = () => {
   const [textFieldErrorValue, setTextFieldErrorValue] = React.useState<string | undefined | null>(undefined);
   const [inputErrorValue, setInputErrorValue] = React.useState<string | undefined | null>(undefined);
-  const [textFieldErrorFlag, setTextFieldErrorFlag] = React.useState<boolean>(false);
+  const [activeElementSelectErrorValue, setActiveElementSelectErrorValue] = React.useState<string | undefined | null>(
+    undefined
+  );
+  const [dateDottedErrorValue, setDateDottedErrorValue] = React.useState<string | null>(null);
+  const [dateDashedErrorValue, setDateDashedErrorValue] = React.useState<string | null>(null);
+  const [isTextFieldErrorFlag, setTextFieldErrorFlag] = React.useState<boolean>(false);
 
   const onTextFieldChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt.target;
@@ -22,6 +32,14 @@ const ErrorsStateTesting: React.FunctionComponent = () => {
     setInputErrorValue(element.value);
   };
 
+  const onSelectElementChange = (option: IOption) => {
+    setActiveElementSelectErrorValue(option.value?.toString());
+  };
+
+  const onSelectElementRemove = () => {
+    setActiveElementSelectErrorValue(null);
+  };
+
   const onTextFieldRemove = () => {
     setTextFieldErrorValue(null);
   };
@@ -31,7 +49,23 @@ const ErrorsStateTesting: React.FunctionComponent = () => {
   };
 
   const onSetErrorTextFieldButtonClick = () => {
-    setTextFieldErrorFlag(true);
+    setTextFieldErrorFlag((isTextFieldErrorFlag: boolean) => !isTextFieldErrorFlag);
+  };
+
+  const onDatepickerDottedChange = (name: string, newDate: string) => {
+    setDateDottedErrorValue(newDate);
+  };
+
+  const onDatepickerDottedRemove = () => {
+    setDateDottedErrorValue(null);
+  };
+
+  const onDatepickerDashedChange = (name: string, newDate: string) => {
+    setDateDashedErrorValue(newDate);
+  };
+
+  const onDatepickerDashedRemove = () => {
+    setDateDashedErrorValue(null);
   };
 
   return (
@@ -42,7 +76,7 @@ const ErrorsStateTesting: React.FunctionComponent = () => {
         </Typography>
         <GridContainer gap={20}>
           <Button id="set-error" onClick={onSetErrorTextFieldButtonClick}>
-            set error
+            {`${isTextFieldErrorFlag ? 'un' : ''}set error`}
           </Button>
           <GridContainer gridTemplateColumns="1fr 2fr" gap={20} width="initial">
             <Label htmlFor="textField">TextField component</Label>
@@ -51,18 +85,55 @@ const ErrorsStateTesting: React.FunctionComponent = () => {
               onChange={onTextFieldChange}
               onRemove={onTextFieldRemove}
               value={textFieldErrorValue}
-              error={textFieldErrorFlag || (textFieldErrorValue as string)?.length < 10}
+              error={isTextFieldErrorFlag || (textFieldErrorValue as string)?.length < 10}
             />
           </GridContainer>
           <GridContainer gridTemplateColumns="1fr 2fr" gap={20} width="initial">
-            <Label htmlFor="textField">Input component</Label>
+            <Label htmlFor="input">Input component</Label>
             <Input
               id="input"
               onChange={onInputChange}
               onRemove={onInputRemove}
               value={inputErrorValue}
-              error={textFieldErrorFlag || (inputErrorValue as string)?.length < 10}
+              error={isTextFieldErrorFlag || (inputErrorValue as string)?.length < 10}
               isNotRunDebounce={true}
+            />
+          </GridContainer>
+          <GridContainer gridTemplateColumns="1fr 2fr" gap={20} width="initial">
+            <Label htmlFor="select">Select component</Label>
+            <Select
+              id="select"
+              name="select"
+              onChange={onSelectElementChange}
+              onRemove={onSelectElementRemove}
+              activeElement={activeElementSelectErrorValue}
+              elements={['first', 'second', 'third', 'fourth']}
+              error={isTextFieldErrorFlag || (activeElementSelectErrorValue as string)?.length < 6}
+            />
+          </GridContainer>
+          <GridContainer gridTemplateColumns="1fr 2fr" gap={20} width="initial">
+            <Label htmlFor="datepicker-dotted">Datepicker Dotted DDMMYYYY</Label>
+            <Datepicker
+              id="datepicker-dotted"
+              name="datepickerDotted"
+              onChange={onDatepickerDottedChange}
+              onRemove={onDatepickerDottedRemove}
+              value={dateDottedErrorValue}
+              error={isTextFieldErrorFlag || (dateDottedErrorValue as string)?.length < 6}
+              mask={DatepickerMask.DottedDDMMYYYY}
+              locale={Locale.Ru}
+            />
+          </GridContainer>
+          <GridContainer gridTemplateColumns="1fr 2fr" gap={20} width="initial">
+            <Label htmlFor="datepicker-dashed">Datepicker Dashed YYYYMMDD</Label>
+            <Datepicker
+              id="datepicker-dashed"
+              name="datepickerDashed"
+              onChange={onDatepickerDashedChange}
+              onRemove={onDatepickerDashedRemove}
+              value={dateDashedErrorValue}
+              error={isTextFieldErrorFlag || (dateDashedErrorValue as string)?.length < 6}
+              mask={DatepickerMask.DashedYYYYMMDD}
             />
           </GridContainer>
         </GridContainer>

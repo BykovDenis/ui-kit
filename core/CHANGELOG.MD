@@ -255,3 +255,9 @@
   <li>ListItem. Fix style underline color </li>
   <li>Switcher. The name attribute is unique for each radio button. </li>
 </ol>
+
+<h2>v 0.12.3</h2>
+<h3>Features</h3>
+<ol>
+  <li>Datepicker. Update mask format. </li>
+</ol>

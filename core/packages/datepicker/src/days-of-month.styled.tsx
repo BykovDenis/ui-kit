@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const DaysOfMonthStyled = styled.div.attrs({ 'data-days-on-month': true })`
+type DaysOfMonthStyledProps = {
+  id: string;
+};
+
+const DaysOfMonthStyled = styled.div.attrs({ 'data-days-on-month': true })<DaysOfMonthStyledProps>`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   flex-direction: row;

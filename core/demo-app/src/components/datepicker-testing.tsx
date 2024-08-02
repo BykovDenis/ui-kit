@@ -81,7 +81,6 @@ const DatepickerTesting = () => {
             locale="RU"
             height={60}
             datesContainerAlign="left"
-            error={!date1}
             textMessage={(!date1 && 'Date is empty') || ''}
           />
         </FlexContainer>

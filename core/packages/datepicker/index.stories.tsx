@@ -47,7 +47,7 @@ const ThemeDarkTemplateYYYYMMDD: StoryFn<typeof Datepicker> = (args: Idatepicker
         <Datepicker
           {...args}
           id="datepicker1"
-          mask={DatepickerMask.YYYYMMDD}
+          mask={DatepickerMask.DashedYYYYMMDD}
           variant="outlined"
           name="someDatepicker"
           value={value}
@@ -114,7 +114,7 @@ const ThemeDarkTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
           name="someDatepicker"
           value={value}
           locale={Locale.Ru}
-          mask={DatepickerMask.DDMMYYYY}
+          mask={DatepickerMask.DottedDDMMYYYY}
           onChange={onDatepickerValueChange}
           onRemove={onDatepickerRemove}
           isErrorMessageDisplayed={false}

@@ -2,7 +2,7 @@ import DatepickerMask from '../enums/datepicker-mask';
 
 function parseStringInsteadDate(dateValue: string, mask: DatepickerMask): string {
   if (dateValue) {
-    return mask === DatepickerMask.DDMMYYYY
+    return mask === DatepickerMask.DottedDDMMYYYY
       ? parseStringInsteadDateDDMMYYYY(dateValue)
       : parseStringInsteadDateYYYYMMDD(dateValue);
   }
@@ -122,7 +122,7 @@ function parseStringInsteadDateDDMMYYYY(dateValue: string): string {
             dateParsedResultElements.push(`${dateParsedElement.substring(0, 1)}${dateParsedElement.substring(2)}`);
           } else {
             const middleValue: number = Number(dateParsedElement?.substring(0, 2));
-            if (middleValue > 12) {
+            if (middleValue > 19) {
               // if first element of date is empty and dateParsedResultElements consist of one element
               if (
                 (dateParsedElements[i] === '' || dateParsedElements.length === 2) &&
