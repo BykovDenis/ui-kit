@@ -3,20 +3,28 @@ import { PropsWithChildren } from 'react';
 
 import ITheme from '../../styles/types/itheme';
 import IconButtonStyled from './icon-button.styled';
+import TButton from '@sber-risks-ui/Button/types/tbutton';
+import ColorTheme from '../../enums/color-theme';
 
-const IconButton: React.FunctionComponent<PropsWithChildren<any>> = (props: any) => {
+const IconButton: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TButton) => {
   const [Consumer, setConsumer] = useState(globalThis?.ReactThemeContextConsumer);
+  const [colorTheme] = useState<string>(props?.colorTheme || ColorTheme.Normal);
+  const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
 
   useEffect(() => {
     setConsumer(globalThis.ReactThemeContextConsumer);
   }, [globalThis.ReactThemeContextConsumer]);
+
+  useEffect(() => {
+    setError(props?.error !== undefined ? props.error : false);
+  }, [props.error]);
 
   const children: any = props?.children;
 
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string = props.disabled
       ? theme.inactiveBackgroundColor
-      : props?.colorTheme === 'normal' || !props.colorTheme
+      : (colorTheme === ColorTheme.Normal && !error) || !colorTheme
       ? theme?.palette?.primary?.main
       : theme?.palette?.secondary?.main;
 
@@ -37,7 +45,7 @@ const IconButton: React.FunctionComponent<PropsWithChildren<any>> = (props: any)
         fontFamily={theme?.fontFamily}
         theme={theme}
         dataset={props?.dataset}
-        focusColor={theme?.palette?.primary?.main}
+        focusColor={props.focusColor || backgroundColor}
         borderRadius={props?.borderRadius}
         padding={props?.padding}
         name={props.name}

@@ -12,12 +12,17 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
   const [disabled, setDisabled] = useState<boolean>(props?.disabled !== undefined ? props.disabled : false);
   const [id1] = useState<string>(`${props.id}-${uuidv4()}`);
   const [id2] = useState<string>(`${props.id}-${uuidv4()}`);
+  const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
 
   useEffect(() => {
     if (props?.disabled !== undefined) {
       setDisabled(props.disabled);
     }
   }, [props.disabled]);
+
+  useEffect(() => {
+    setError(props?.error !== undefined ? props.error : false);
+  }, [props.error]);
 
   useEffect(() => {
     setConsumer(globalThis.ReactThemeContextConsumer);
@@ -41,7 +46,11 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
 
   const componentThemed = (theme: ITheme) => {
     const color: string = theme?.palette?.baseButtonFontColor;
-    const backgroundColor: string = disabled ? theme.inactiveBackgroundColor : theme?.palette?.primary?.main;
+    const backgroundColor: string = disabled
+      ? theme.inactiveBackgroundColor
+      : error
+      ? theme?.palette?.secondary?.main
+      : theme?.palette?.primary?.main;
     const inactiveBackgroundColor: string = theme?.mainBackgroundColor;
     const inactiveColor: string = theme?.palette.baseFontColor;
 
@@ -74,6 +83,7 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
           fontFamily={theme.fontFamily}
           color={props?.color || theme.palette.baseFontColor}
           height={props?.height}
+          data-label="element1"
         >
           {props.element1}
         </LabelSwitcher>
@@ -99,6 +109,7 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
           color={props?.color || theme.palette.baseFontColor}
           fontSize={props?.fontSize ?? theme.baseFontSize}
           height={props?.height}
+          data-label="element2"
         >
           {props.element2}
         </LabelSwitcher>

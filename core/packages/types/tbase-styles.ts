@@ -1,7 +1,6 @@
 import CSS from 'csstype';
 
 type TBaseStyles = {
-  name?: string;
   id?: string;
   display?: CSS.Property.Display;
   alignItems?: CSS.Property.AlignItems;
@@ -15,11 +14,12 @@ type TBaseStyles = {
   gap?: number | string;
   backgroundColor?: string;
   children?: any | Array<React.ReactNode>;
-  className?: any;
+  className?: string;
   color?: string;
   disabled?: boolean;
+  error?: boolean;
   fontFamily?: CSS.Property.FontFamily;
-  fontSize?: number;
+  fontSize?: number | string;
   fontWeight?: number;
   fontStyle?: string;
   whiteSpace?: CSS.Property.WhiteSpace;

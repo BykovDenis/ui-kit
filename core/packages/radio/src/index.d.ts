@@ -1,5 +1,4 @@
-import React from 'react';
-import IRadio from '../types/iradio';
+import RadioProps from '../types/radio-props';
 
-declare const Radio: React.FunctionComponent<IRadio>;
-export default Radio
+declare const Radio: React.FunctionComponent<RadioProps>;
+export default Radio;

@@ -35,6 +35,50 @@ describe('The TextField component', () => {
       .then((color: string) => {
         expect(color).to.eq(themes.dark.palette.baseFontColor);
       });
+    cy.get('#button')
+      .invoke('css', 'backgroundColor')
+      .then((color: string) => {
+        expect(color).to.eq(themes.dark.palette.primary.main);
+      });
+    cy.get('#icon-button')
+      .invoke('css', 'backgroundColor')
+      .then((color: string) => {
+        expect(color).to.eq(themes.dark.palette.primary.main);
+      });
+    cy.get('#label')
+      .invoke('css', 'color')
+      .then((color: string) => {
+        expect(color).to.eq(themes.dark.palette.baseFontColor);
+      });
+    cy.get('#radio-1 + label[for="radio-1"]')
+      .invoke('css', 'color')
+      .then((color: string) => {
+        expect(color).to.eq(themes.dark.palette.baseFontColor);
+      });
+    cy.get('#checkbox-1 + label[for="checkbox-1"]')
+      .invoke('css', 'color')
+      .then((color: string) => {
+        expect(color).to.eq(themes.dark.palette.baseFontColor);
+      });
+    cy.get('#radio-1 + label[for="radio-1"]').within((element: any) => {
+      cy.window().then((window: any) => {
+        const labelAfter = window.getComputedStyle(element[0], '::after');
+        const backgroundColor = labelAfter.getPropertyValue('background-color');
+        expect(backgroundColor).to.equal(themes.dark.palette.primary.main);
+      });
+    });
+    cy.get('#checkbox-1 + label[for="checkbox-1"]').within((element: any) => {
+      cy.window().then((window: any) => {
+        const labelAfter = window.getComputedStyle(element[0], '::before');
+        const backgroundColor = labelAfter.getPropertyValue('background-color');
+        expect(backgroundColor).to.equal(themes.dark.palette.primary.main);
+      });
+    });
+    cy.get('label[data-label="element2"]')
+      .invoke('css', 'backgroundColor')
+      .then((color: string) => {
+        expect(color).to.eq(themes.dark.palette.primary.main);
+      });
     cy.get('#datepicker-dotted').click().type('01042024').blur().should('value', '01.04.2024');
     cy.get('#datepicker-dashed').click().type('20240720').blur().should('value', '2024-07-20');
     cy.get('#set-error')
@@ -62,6 +106,50 @@ describe('The TextField component', () => {
           });
         cy.get('#datepicker-dashed')
           .invoke('css', 'color')
+          .then((color: string) => {
+            expect(color).to.eq(themes.dark.palette.secondary.main);
+          });
+        cy.get('#button')
+          .invoke('css', 'backgroundColor')
+          .then((color: string) => {
+            expect(color).to.eq(themes.dark.palette.secondary.main);
+          });
+        cy.get('#icon-button')
+          .invoke('css', 'backgroundColor')
+          .then((color: string) => {
+            expect(color).to.eq(themes.dark.palette.secondary.main);
+          });
+        cy.get('#label')
+          .invoke('css', 'color')
+          .then((color: string) => {
+            expect(color).to.eq(themes.dark.palette.secondary.main);
+          });
+        cy.get('#radio-1 + label[for="radio-1"]')
+          .invoke('css', 'color')
+          .then((color: string) => {
+            expect(color).to.eq(themes.dark.palette.baseFontColor);
+          });
+        cy.get('#checkbox-1 + label[for="checkbox-1"]')
+          .invoke('css', 'color')
+          .then((color: string) => {
+            expect(color).to.eq(themes.dark.palette.baseFontColor);
+          });
+        cy.get('#radio-1 + label[for="radio-1"]').within((element: any) => {
+          cy.window().then((window: any) => {
+            const labelAfter = window.getComputedStyle(element[0], '::after');
+            const backgroundColor = labelAfter.getPropertyValue('background-color');
+            expect(backgroundColor).to.equal(themes.dark.palette.secondary.main);
+          });
+        });
+        cy.get('#checkbox-1 + label[for="checkbox-1"]').within((element: any) => {
+          cy.window().then((window: any) => {
+            const labelAfter = window.getComputedStyle(element[0], '::before');
+            const backgroundColor = labelAfter.getPropertyValue('background-color');
+            expect(backgroundColor).to.equal(themes.dark.palette.secondary.main);
+          });
+        });
+        cy.get('label[data-label="element2"]')
+          .invoke('css', 'backgroundColor')
           .then((color: string) => {
             expect(color).to.eq(themes.dark.palette.secondary.main);
           });
@@ -93,6 +181,50 @@ describe('The TextField component', () => {
           .invoke('css', 'color')
           .then((color: string) => {
             expect(color).to.eq(themes.dark.palette.baseFontColor);
+          });
+        cy.get('#button')
+          .invoke('css', 'backgroundColor')
+          .then((color: string) => {
+            expect(color).to.eq(themes.dark.palette.primary.main);
+          });
+        cy.get('#icon-button')
+          .invoke('css', 'backgroundColor')
+          .then((color: string) => {
+            expect(color).to.eq(themes.dark.palette.primary.main);
+          });
+        cy.get('#label')
+          .invoke('css', 'color')
+          .then((color: string) => {
+            expect(color).to.eq(themes.dark.palette.baseFontColor);
+          });
+        cy.get('#radio-1 + label[for="radio-1"]')
+          .invoke('css', 'color')
+          .then((color: string) => {
+            expect(color).to.eq(themes.dark.palette.baseFontColor);
+          });
+        cy.get('#checkbox-1 + label[for="checkbox-1"]')
+          .invoke('css', 'color')
+          .then((color: string) => {
+            expect(color).to.eq(themes.dark.palette.baseFontColor);
+          });
+        cy.get('#radio-1 + label[for="radio-1"]').within((element: any) => {
+          cy.window().then((window: any) => {
+            const labelAfter = window.getComputedStyle(element[0], '::after');
+            const backgroundColor = labelAfter.getPropertyValue('background-color');
+            expect(backgroundColor).to.equal(themes.dark.palette.primary.main);
+          });
+        });
+        cy.get('#checkbox-1 + label[for="checkbox-1"]').within((element: any) => {
+          cy.window().then((window: any) => {
+            const labelAfter = window.getComputedStyle(element[0], '::before');
+            const backgroundColor = labelAfter.getPropertyValue('background-color');
+            expect(backgroundColor).to.equal(themes.dark.palette.primary.main);
+          });
+        });
+        cy.get('label[data-label="element2"]')
+          .invoke('css', 'backgroundColor')
+          .then((color: string) => {
+            expect(color).to.eq(themes.dark.palette.primary.main);
           });
       });
   });

@@ -260,4 +260,5 @@
 <h3>Features</h3>
 <ol>
   <li>Datepicker. Update mask format. </li>
+  <li>Add error state for all interactive components</li>
 </ol>

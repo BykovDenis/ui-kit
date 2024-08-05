@@ -4,13 +4,17 @@ import FlexContainer from '@sber-risks-ui/core/flex-container';
 import TextField from '../../../packages/textfield/src';
 import GridContainer from '../../../packages/grid-container/src';
 import Label from '@sber-risks-ui/core/label';
-import Button from '@sber-risks-ui/core/button';
+import Button from '../../../packages/button/src';
 import Input from '../../../packages/input/src';
 import Select from '../../../packages/select/src';
 import IOption from '../../../packages/select/types/ioption';
 import Datepicker from '../../../packages/datepicker/src';
 import DatepickerMask from '../../../packages/datepicker/enums/datepicker-mask';
 import Locale from '../../../packages/enums/locale';
+import Checkbox from '../../../packages/checkbox/src';
+import Radio from '../../../packages/radio/src';
+import IconButton from '../../../packages/icon-button/src';
+import Switcher from '../../../packages/switcher/src';
 
 const ErrorsStateTesting: React.FunctionComponent = () => {
   const [textFieldErrorValue, setTextFieldErrorValue] = React.useState<string | undefined | null>(undefined);
@@ -72,14 +76,14 @@ const ErrorsStateTesting: React.FunctionComponent = () => {
     <>
       <FlexContainer width={900} flexDirection="column">
         <Typography variant="H1" textAlign="center">
-          Testing of state errors
+          Testing error state Components
         </Typography>
         <GridContainer gap={20}>
           <Button id="set-error" onClick={onSetErrorTextFieldButtonClick}>
             {`${isTextFieldErrorFlag ? 'un' : ''}set error`}
           </Button>
           <GridContainer gridTemplateColumns="1fr 2fr" gap={20} width="initial">
-            <Label htmlFor="textField">TextField component</Label>
+            <Label htmlFor="textField">TextField</Label>
             <TextField
               id="textField"
               onChange={onTextFieldChange}
@@ -89,7 +93,7 @@ const ErrorsStateTesting: React.FunctionComponent = () => {
             />
           </GridContainer>
           <GridContainer gridTemplateColumns="1fr 2fr" gap={20} width="initial">
-            <Label htmlFor="input">Input component</Label>
+            <Label htmlFor="input">Input</Label>
             <Input
               id="input"
               onChange={onInputChange}
@@ -100,7 +104,7 @@ const ErrorsStateTesting: React.FunctionComponent = () => {
             />
           </GridContainer>
           <GridContainer gridTemplateColumns="1fr 2fr" gap={20} width="initial">
-            <Label htmlFor="select">Select component</Label>
+            <Label htmlFor="select">Select</Label>
             <Select
               id="select"
               name="select"
@@ -134,6 +138,45 @@ const ErrorsStateTesting: React.FunctionComponent = () => {
               value={dateDashedErrorValue}
               error={isTextFieldErrorFlag || (dateDashedErrorValue as string)?.length < 6}
               mask={DatepickerMask.DashedYYYYMMDD}
+            />
+          </GridContainer>
+          <GridContainer gridTemplateColumns="1fr 2fr" gap={20} width="initial">
+            <Label htmlFor="button">Button</Label>
+            <Button id="button" error={isTextFieldErrorFlag}>
+              Click me!
+            </Button>
+          </GridContainer>
+          <GridContainer gridTemplateColumns="1fr" gap={20} width="initial">
+            <Label id="label" error={isTextFieldErrorFlag}>
+              Label
+            </Label>
+          </GridContainer>
+          <GridContainer gridTemplateColumns="1fr 1fr 1fr 1fr" gap={20} width="initial">
+            <Label htmlFor="datepicker-dashed">Radio</Label>
+            <Radio error={isTextFieldErrorFlag} label="radio-1" id="radio-1" name="radio" checked />
+            <Radio error={isTextFieldErrorFlag} label="radio-2" id="radio-2" name="radio" />
+            <Radio error={isTextFieldErrorFlag} label="radio-3" id="radio-3" name="radio" />
+          </GridContainer>
+          <GridContainer gridTemplateColumns="1fr 1fr 1fr 1fr" gap={20} width="initial">
+            <Label htmlFor="datepicker-dashed">Checkbox</Label>
+            <Checkbox error={isTextFieldErrorFlag} label="checkbox-1" id="checkbox-1" name="checkbox-1" checked />
+            <Checkbox error={isTextFieldErrorFlag} label="checkbox-2" id="checkbox-2" name="checkbox-2" />
+            <Checkbox error={isTextFieldErrorFlag} label="checkbox-3" id="checkbox-3" name="checkbox-3" />
+          </GridContainer>
+          <GridContainer gridTemplateColumns="1fr 2fr" gap={20} width="initial">
+            <Label htmlFor="icon-button">Icon Button</Label>
+            <IconButton width={64} height={64} id="icon-button" error={isTextFieldErrorFlag}>
+              !
+            </IconButton>
+          </GridContainer>
+          <GridContainer gridTemplateColumns="1fr 2fr" gap={20} width="initial">
+            <Label htmlFor="switcher">Switcher</Label>
+            <Switcher
+              activeElement="element2"
+              element1="element1"
+              element2="element2"
+              id="switcher"
+              error={isTextFieldErrorFlag}
             />
           </GridContainer>
         </GridContainer>
