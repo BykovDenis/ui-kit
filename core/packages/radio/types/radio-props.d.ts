@@ -1,23 +1,18 @@
 ﻿import React from 'react';
+import TBaseStyles from '../../types/tbase-styles';
 
-interface IRadio {
+type RadioProps = TBaseStyles & {
   ReactThemeContext?: any;
-  backgroundColor?: string;
   checked?: boolean;
-  className?: string;
-  color?: string;
-  disabled?: boolean;
   focusColor?: string;
-  fontFamily?: string;
-  fontSize?: string;
   id: string;
   label?: string | React.ReactNode;
   name?: string;
-  onChange?: (evt: any) => void;
+  onChange?: (evt: React.MouseEvent<HtmlRadioButton>) => void;
   tabIndex?: any;
   theme?: any;
   value?: string;
   isIconDisabled?: boolean;
-}
+};
 
-export default IRadio;
+export default RadioProps;

@@ -1,23 +1,23 @@
 import React from 'react';
+import TBaseStyles from '../../types/tbase-styles';
 
-interface ICheckbox {
+type CheckboxProps = TBaseStyles & {
   backgroundColor?: string;
   checked?: boolean;
   className?: any;
   color?: string;
   disabled?: boolean;
   fontFamily?: string;
-  fontSize?: number;
   id: string;
   indeterminate?: boolean;
   label?: string | React.ReactNode;
   name?: string;
-  onChange?: (evt: any) => void;
+  onChange?: (evt: React.MouseEvent<HtmlRadioButton>) => void;
   tabIndex?: string;
   theme?: any;
   readOnly?: boolean;
   value?: string;
   isIconDisabled?: boolean;
-}
+};
 
-export default ICheckbox;
+export default CheckboxProps;

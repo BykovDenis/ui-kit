@@ -2,7 +2,7 @@ import React from 'react';
 import getNewReactThemeContext from '../../styles/src';
 import renderer from 'react-test-renderer';
 import ISelect from '../types/iselect';
-import Variants from '../../enums/variants';
+import Variant from '../../enums/variant';
 import Select from '../src';
 import { themes } from '../../styles/src/themes';
 
@@ -13,7 +13,7 @@ it('Select renders correctly', () => {
     activeElement: 'List item 1',
     type: 'list-buttons',
     elements: ['List item 1', 'List item 2', 'List item 3', 'List item 4', 'List item 5'],
-    variant: Variants.Outlined,
+    variant: Variant.Outlined,
     label: 'Select 1',
     name: 'select-custom',
     id: 'select',
