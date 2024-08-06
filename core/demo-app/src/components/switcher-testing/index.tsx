@@ -1,13 +1,20 @@
 import Typography from '@sber-risks-ui/core/typography';
 import React, { useState } from 'react';
-import FlexContainer from '../../../../packages/flex-container/src';
-import List from '../../../../packages/list/src';
-import ListItem from '../../../../packages/list-item/src';
 import CertainDecision from '../../enums/certain-decision';
 import ListItemWrapped from './list-item-wrapped';
 import ListItemContainer from './list-item-container';
 import SppiQuestion from '../../enums/sppi-question';
-import Switcher from '../../../../packages/switcher/src';
+// local components
+// import FlexContainer from '../../../../packages/flex-container/src';
+// import List from '../../../../packages/list/src';
+// import ListItem from '../../../../packages/list-item/src';
+// import Switcher from '../../../../packages/switcher/src';
+
+// components from package library
+import FlexContainer from '@sber-risks-ui/core/flex-container';
+import List from '@sber-risks-ui/core/list';
+import ListItem from '@sber-risks-ui/core/list-item';
+import Switcher from '@sber-risks-ui/core/switcher';
 
 const checklistSppiTestQuestions: { [key: string]: CertainDecision } = {
   q1: CertainDecision.Unknown,

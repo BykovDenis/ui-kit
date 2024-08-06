@@ -1,20 +1,36 @@
 import React from 'react';
 import Typography from '@sber-risks-ui/core/typography';
 import FlexContainer from '@sber-risks-ui/core/flex-container';
-import TextField from '../../../packages/textfield/src';
-import GridContainer from '../../../packages/grid-container/src';
+// local components
+// import TextField from '../../../packages/textfield/src';
+// import GridContainer from '../../../packages/grid-container/src';
+// import Label from '@sber-risks-ui/core/label';
+// import Button from '../../../packages/button/src';
+// import Input from '../../../packages/input/src';
+// import Select from '../../../packages/select/src';
+// import IOption from '../../../packages/select/types/ioption';
+// import Datepicker from '../../../packages/datepicker/src';
+// import DatepickerMask from '../../../packages/datepicker/enums/datepicker-mask';
+// import Locale from '../../../packages/enums/locale';
+// import Checkbox from '../../../packages/checkbox/src';
+// import Radio from '../../../packages/radio/src';
+// import IconButton from '../../../packages/icon-button/src';
+// import Switcher from '../../../packages/switcher/src';
+// components from package library
+import TextField from '@sber-risks-ui/core/textfield';
+import GridContainer from '@sber-risks-ui/core/grid-container';
 import Label from '@sber-risks-ui/core/label';
-import Button from '../../../packages/button/src';
-import Input from '../../../packages/input/src';
-import Select from '../../../packages/select/src';
-import IOption from '../../../packages/select/types/ioption';
-import Datepicker from '../../../packages/datepicker/src';
-import DatepickerMask from '../../../packages/datepicker/enums/datepicker-mask';
-import Locale from '../../../packages/enums/locale';
-import Checkbox from '../../../packages/checkbox/src';
-import Radio from '../../../packages/radio/src';
-import IconButton from '../../../packages/icon-button/src';
-import Switcher from '../../../packages/switcher/src';
+import Button from '@sber-risks-ui/core/button';
+import Input from '@sber-risks-ui/core/input';
+import Select from '@sber-risks-ui/core/select';
+import { IOption } from '@sber-risks-ui/core/select';
+import Datepicker from '@sber-risks-ui/core/datepicker';
+import DatepickerMask from '@sber-risks-ui/core/datepicker/enums/datepicker-mask';
+import Locale from '@sber-risks-ui/core/enums/locale';
+import Checkbox from '@sber-risks-ui/core/checkbox';
+import Radio from '@sber-risks-ui/core/radio';
+import IconButton from '@sber-risks-ui/core/icon-button';
+import Switcher from '@sber-risks-ui/core/switcher';
 
 const ErrorsStateTesting: React.FunctionComponent = () => {
   const [textFieldErrorValue, setTextFieldErrorValue] = React.useState<string | undefined | null>(undefined);

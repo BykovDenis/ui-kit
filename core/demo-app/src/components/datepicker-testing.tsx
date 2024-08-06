@@ -1,8 +1,11 @@
 import FlexContainer from '@sber-risks-ui/core/flex-container';
 import React, { useState } from 'react';
 import { warning, success } from '../utils/dev-utils-theme';
+// local components
+// import Datepicker from '../../../packages/datepicker/src';
+// components from package library
+import Datepicker from '@sber-risks-ui/core/datepicker';
 import Typography from '@sber-risks-ui/core/typography';
-import Datepicker from '../../../packages/datepicker/src';
 
 const DatepickerTesting = () => {
   const [date, setDate] = useState('2024-04-02');

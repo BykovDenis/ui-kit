@@ -1,4 +1,4 @@
-import FlexContainer from '../../../../packages/flex-container/src';
+import FlexContainer from '@sber-risks-ui/core/flex-container';
 import { ITheme } from '@sber-risks-ui/core/styles';
 import { useContext } from 'react';
 import { ReactThemeContext } from '../../app';
