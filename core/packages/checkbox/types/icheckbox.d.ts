@@ -12,7 +12,7 @@ type CheckboxProps = TBaseStyles & {
   indeterminate?: boolean;
   label?: string | React.ReactNode;
   name?: string;
-  onChange?: (evt: React.MouseEvent<HtmlRadioButton>) => void;
+  onChange?: (evt: React.ChangeEvent<HtmlRadioButton>) => void;
   tabIndex?: string;
   theme?: any;
   readOnly?: boolean;
