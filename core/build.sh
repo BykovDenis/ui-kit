@@ -122,3 +122,7 @@ cd ..
 cd styles/
 echo 31. Datepicker building...
 npm run build
+cd ..
+cd sticky-bottom-panel/
+echo 31. Datepicker building...
+npm run build

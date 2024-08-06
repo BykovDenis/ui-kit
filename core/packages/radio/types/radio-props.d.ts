@@ -8,7 +8,7 @@ type RadioProps = TBaseStyles & {
   id: string;
   label?: string | React.ReactNode;
   name?: string;
-  onChange?: (evt: React.MouseEvent<HtmlRadioButton>) => void;
+  onChange?: (evt: React.ChangeEvent<HtmlRadioButton>) => void;
   tabIndex?: any;
   theme?: any;
   value?: string;
