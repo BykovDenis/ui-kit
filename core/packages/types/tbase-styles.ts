@@ -2,6 +2,7 @@ import CSS from 'csstype';
 
 type TBaseStyles = {
   id?: string;
+  name?: string;
   display?: CSS.Property.Display;
   alignItems?: CSS.Property.AlignItems;
   flexDirection?: CSS.Property.FlexDirection;

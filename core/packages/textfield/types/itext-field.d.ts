@@ -6,6 +6,8 @@ interface ITextField extends IInput, ILabel {
   isExistTextMessageHelper?: boolean;
   isExistValue?: boolean;
   label?: string | React.ReactNode;
+  fontSize?: number;
+  baseFontSize?: number;
 }
 
 export default ITextField;
