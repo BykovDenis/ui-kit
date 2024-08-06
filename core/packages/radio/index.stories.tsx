@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import React, { Fragment } from 'react';
 
 import Radio from './src/index';
-import Iradio from './types/iradio';
+import RadioProps from './types/radio-props';
 import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
 
@@ -23,7 +23,7 @@ export default {
   },
 } as Meta<typeof Radio>;
 
-const ThemeDarkTemplate: StoryFn<typeof Radio> = (args: Iradio) => {
+const ThemeDarkTemplate: StoryFn<typeof Radio> = (args: RadioProps) => {
   const onCheckboxCheck = () => {
     action('checked');
   };
@@ -40,7 +40,7 @@ const ThemeDarkTemplate: StoryFn<typeof Radio> = (args: Iradio) => {
   );
 };
 
-const ThemeLightTemplate: StoryFn<typeof Radio> = (args: Iradio) => {
+const ThemeLightTemplate: StoryFn<typeof Radio> = (args: RadioProps) => {
   const onCheckboxCheck = () => {
     action('checked');
   };
