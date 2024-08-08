@@ -7,6 +7,7 @@ import SelectTesting from './components/select-testing';
 import MultiSelectTesting from './components/multi-select-testing';
 import SwitcherTesting from './components/switcher-testing';
 import ErrorsStateTesting from './components/errors-state-testing';
+import ContainersTesting from './components/containers-testing';
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -41,6 +42,10 @@ const Routes = () => {
     {
       path: '/errors-state',
       element: <ErrorsStateTesting />,
+    },
+    {
+      path: '/containers',
+      element: <ContainersTesting />,
     },
   ]);
 

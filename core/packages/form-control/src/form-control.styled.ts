@@ -32,7 +32,6 @@ const FormControlStyled = styled.div<IFormControl>`
     top: ${getMeasureValue(props.top, 'auto')};
     bottom: ${getMeasureValue(props.bottom, 'auto')};
     font-size: ${getMeasureValue(props.fontSize, 'inherit')};
-    word-break: ${props.wordBreak || 'normal'};
     ${props?.alignSelf ? `align-self: ${props.alignSelf};` : ''}
     ${isNotEmptyNumber(props?.zIndex) ? `z-index: ${props.zIndex};` : ''}
     ${isNotEmptyString(props?.transform) ? `transform: ${props.transform};` : ''}
@@ -51,6 +50,7 @@ const FormControlStyled = styled.div<IFormControl>`
     ${props?.border ? `border: ${props.border};` : ''}
     ${props?.borderBottom ? `border-bottom: ${props.borderBottom};` : ''}
     ${props?.lineHeight ? `line-height: ${props.lineHeight};` : ''}
+    ${props?.wordBreak ? `word-break: ${props.wordBreak};` : ''}
   `}
 `;
 
