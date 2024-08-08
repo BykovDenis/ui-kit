@@ -14,7 +14,7 @@
     "build-storybook": "storybook build",
     "bootstrap": "lerna bootstrap",
     "test": "jest",
-    "cypress:open": "cypress run --headless",
+    "cypress:open": "cypress open",
     "build-packages": "time sh ./build.sh",
     "install-packages": "npm i && cd packages && npm i && cd .. && ./build.sh",
     "clean": "rm -rf node_modules && rm -rf packages/node_modules && rm -rf packages/*/node_modules && rm -rf packages/dist && rm -rf packages/*/dist"
