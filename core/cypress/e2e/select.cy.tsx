@@ -4,7 +4,7 @@ describe('Testing Select component', () => {
     cy.viewport(1920, 1080);
   });
   it('Test 1. Select text value', () => {
-    cy.get('#select-text-input')
+    cy.get('#select-text')
       .focus()
       .type('thr')
       .then(() => {
@@ -12,12 +12,12 @@ describe('Testing Select component', () => {
           .as('btn')
           .click()
           .then(() => {
-            cy.get('#select-text-input').should('value', 'three');
+            cy.get('#select-text').should('value', 'three');
           });
       });
   });
   it('Test 2. Select number value', () => {
-    cy.get('#select-digits-input')
+    cy.get('#select-digits')
       .focus()
       .type('32')
       .then(() => {
@@ -25,12 +25,12 @@ describe('Testing Select component', () => {
           .as('btn')
           .click()
           .then(() => {
-            cy.get('#select-digits-input').should('value', 532);
+            cy.get('#select-digits').should('value', 532);
           });
       });
   });
   it('Test 3. Select object value', () => {
-    cy.get('#select-object-input')
+    cy.get('#select-object')
       .focus()
       .type('юль')
       .then(() => {
@@ -38,7 +38,7 @@ describe('Testing Select component', () => {
           .as('btn')
           .click()
           .then(() => {
-            cy.get('#select-object-input').should('value', 'Июль');
+            cy.get('#select-object').should('value', 'Июль');
           });
       });
   });
