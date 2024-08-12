@@ -10,7 +10,7 @@
     "npm-run-update": "npm i -E @sber-risks-ui/core@latest --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release"
   },
   "dependencies": {
-    "@sber-risks-ui/core": "0.12.3-alpha.0",
+    "@sber-risks-ui/core": "0.12.3-beta.0",
     "dayjs": "1.11.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
