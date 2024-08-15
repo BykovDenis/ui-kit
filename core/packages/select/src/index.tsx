@@ -15,7 +15,7 @@ import SelectHeader from './select-header.styled';
 import SelectIndicator from './select-indicator.styled';
 import SelectListContainer from './select-list-container.styled';
 import getUniqueIndex from '../../helpers/get-unique-index';
-import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
+import { onKeyUpEscapeEventHandler } from '../../helpers/on-key-up-event-handler';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import calculationPaddingByTextAlign from './helpers/calculation-padding-by-text-align';
 import {
@@ -164,7 +164,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   };
 
   const onKeyUp = (evt: any) => {
-    onKeyUpEventHandler(evt, onListItemsCloseByKey);
+    onKeyUpEscapeEventHandler(evt, onListItemsCloseByKey);
   };
 
   useEffect(() => {

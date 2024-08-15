@@ -1,10 +1,17 @@
-import { KEY_ESCAPE } from '../constants';
+import { KEY_ENTER, KEY_ESCAPE } from '../constants';
 import React from 'react';
+import KeyCode from '../enums/key-code';
 
-function onKeyUpEventHandler(evt: any, cb: () => void) {
-  if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
+function onKeyUpEscapeEventHandler(evt: any, cb: () => void) {
+  if (evt.keyCode === KeyCode.Escape || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
     cb();
   }
 }
 
-export default onKeyUpEventHandler;
+function onKeyUpEnterEventHandler(evt: any, cb: () => void) {
+  if (evt.keyCode === KeyCode.Enter || evt.code === KEY_ENTER || evt.key === KEY_ENTER) {
+    cb();
+  }
+}
+
+export { onKeyUpEscapeEventHandler, onKeyUpEnterEventHandler };

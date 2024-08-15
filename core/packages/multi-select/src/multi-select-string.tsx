@@ -33,6 +33,7 @@ import {
   TAG_NAME_SVG,
 } from '../../constants';
 import MultiSelectVariant from '../enums/multi-select-variant';
+import KeyCode from '../../enums/key-code';
 
 const BUTTON_TOGGLE_NAME = 'button-toggle';
 const BUTTON_MULTI_SELECT_CONTAINER = 'multi-select-container';
@@ -101,7 +102,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
   };
 
   const onKeyUp = (evt: any) => {
-    if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
+    if (evt.keyCode === KeyCode.Escape || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
       onListItemsCloseByKey();
     }
   };
@@ -258,7 +259,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
     };
 
     const onKeyUp = (evt: any) => {
-      if (evt.keyCode === 27 || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
+      if (evt.keyCode === KeyCode.Escape || evt.code === KEY_ESCAPE || evt.key === KEY_ESCAPE) {
         onListItemsCloseByKey();
       }
     };

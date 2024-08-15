@@ -2,10 +2,11 @@ import FlexContainer from '@sber-risks-ui/core/flex-container';
 import React, { useState } from 'react';
 import { warning, success } from '../utils/dev-utils-theme';
 // local components
-// import Datepicker from '../../../packages/datepicker/src';
+import Datepicker from '../../../packages/datepicker/src';
 // components from package library
-import Datepicker from '@sber-risks-ui/core/datepicker';
+// import Datepicker from '@sber-risks-ui/core/datepicker';
 import Typography from '@sber-risks-ui/core/typography';
+import { toast } from 'react-toastify';
 
 const DatepickerTesting = () => {
   const [date, setDate] = useState('2024-04-02');
@@ -22,8 +23,10 @@ const DatepickerTesting = () => {
     setDate1(value);
     if (isValid) {
       console.log(success(value));
+      toast('value = ' + value, { type: 'success' });
     } else {
       console.log(warning(value));
+      toast('value = ' + value, { type: 'error' });
     }
     console.log('date1', date1);
   };
@@ -41,13 +44,22 @@ const DatepickerTesting = () => {
     setDate2(newDateValue);
     if (isValid) {
       console.log(success(newDateValue));
+      toast('value = ' + newDateValue, { type: 'success' });
     } else {
       console.log(warning(newDateValue));
+      toast('value =  ' + newDateValue, { type: 'error' });
     }
   };
 
-  const onDate3Change = (name: string, value: string) => {
+  const onDate3Change = (name: string, value: string, isValid: boolean) => {
     setDate3(value);
+    if (isValid) {
+      console.log(success(value));
+      toast('value = ' + value, { type: 'success' });
+    } else {
+      console.log(warning(value));
+      toast('value =  ' + value, { type: 'error' });
+    }
   };
 
   const onDate3Remove = (name: string) => {
@@ -105,7 +117,7 @@ const DatepickerTesting = () => {
         <FlexContainer width={200} margin="20px 10px">
           <Datepicker
             value={date3 as string}
-            onChange={onDate3Change}
+            onBlur={onDate3Change}
             onRemove={onDate3Remove}
             mask="dd.MM.yyyy"
             variant="outlined"
@@ -113,8 +125,8 @@ const DatepickerTesting = () => {
             id="datepicker3"
             name="datepicker3"
             height={60}
-            minDate="24.04.2024"
-            maxDate="24.04.2024"
+            minDate="24.07.2024"
+            maxDate="24.04.2025"
           />
         </FlexContainer>
       </FlexContainer>

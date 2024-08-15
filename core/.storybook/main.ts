@@ -2,7 +2,7 @@ import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
-  stories: ['../packages/**/*.mdx', '../packages/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../packages/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@storybook/addon-onboarding',
     '@storybook/addon-links',
@@ -26,8 +26,8 @@ const config: StorybookConfig = {
       },
     });
   },
-  docs: {
-    autodocs: true,
-  },
+  // docs: {
+  //   autodocs: true,
+  // },
 };
 export default config;
