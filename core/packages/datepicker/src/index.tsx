@@ -34,7 +34,7 @@ import SortDirection from '../../enums/sort-direction';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import DatepickerMask from '../enums/datepicker-mask';
 import checkMinMaxDate from '../helpers/check-min-max-date';
-import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
+import { onKeyUpEnterEventHandler, onKeyUpEscapeEventHandler } from '../../helpers/on-key-up-event-handler';
 import CalendarIcon from '../../icons-components/24x24/calendar-icon';
 import FormControl from '../../form-control/src';
 import CrossIcon from '../../icons-components/24x24/cross-icon';
@@ -161,12 +161,28 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   };
 
   const onKeyUp = (evt: any) => {
-    const cb = () => {
+    const cbKeyUpEscape = () => {
       setIsFocus(false);
       setIsVisibleList(false);
     };
 
-    onKeyUpEventHandler(evt, cb);
+    const cbKeyUpEnter = () => {
+      setIsFocus(false);
+      if (props?.onBlur && props?.value !== value) {
+        const validationDate: {
+          isValid: boolean;
+          isErrorMinDate: boolean;
+          isErrorMaxDate: boolean;
+        } = checkMinMaxDate(dateParsed, props.minDate ? minDate : null, props.maxDate ? maxDate : null);
+        props.onBlur(props.name, value, validationDate.isValid && !isError);
+      }
+      evt.target.blur();
+
+      setIsVisibleList(false);
+    };
+
+    onKeyUpEscapeEventHandler(evt, cbKeyUpEscape);
+    onKeyUpEnterEventHandler(evt, cbKeyUpEnter);
   };
 
   const onInputFocus = () => {

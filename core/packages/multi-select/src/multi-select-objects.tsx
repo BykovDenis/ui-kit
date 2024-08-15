@@ -23,7 +23,7 @@ import MultiSelectContainerStyled from './multi-select-container.styled';
 import sortObjectData from '../../helpers/sort-object-data';
 import TMultiSelectOption from '../types/tmulti-select-option';
 import MultiSelectVariant from '../enums/multi-select-variant';
-import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
+import { onKeyUpEscapeEventHandler } from '../../helpers/on-key-up-event-handler';
 import optionsToArray from '../helpers/options-to-array';
 import TMultiSelectObjects from '../types/tmulti-select-objects';
 import TMapMultiSelectObjects from '../types/tmap-multi-select-objects';
@@ -117,7 +117,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
   };
 
   const onKeyUp = (evt: any) => {
-    onKeyUpEventHandler(evt, onListItemsCloseByKey);
+    onKeyUpEscapeEventHandler(evt, onListItemsCloseByKey);
   };
 
   useEffect(() => {

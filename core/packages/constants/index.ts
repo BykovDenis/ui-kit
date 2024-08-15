@@ -9,6 +9,7 @@ export const IS_NOT_USE_DEBOUNCE_COUNT: number = 500;
 export const INPUT_TAG: string = 'INPUT';
 export const BUTTON_TAG: string = 'BUTTON';
 export const KEY_ESCAPE: string = 'ESCAPE';
+export const KEY_ENTER: string = 'ENTER';
 export const COLOR_THEME: string = 'normal';
 export const COLOR_TRANSPARENT: string = 'transparent';
 export const SVG_FORMAT_FILE: string = 'svg';
