@@ -1,5 +1,4 @@
 import { KEY_ENTER, KEY_ESCAPE } from '../constants';
-import React from 'react';
 import KeyCode from '../enums/key-code';
 
 function onKeyUpEscapeEventHandler(evt: any, cb: () => void) {

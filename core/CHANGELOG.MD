@@ -262,3 +262,9 @@
   <li>Datepicker. Update mask format. </li>
   <li>Add error state for all interactive components</li>
 </ol>
+
+<h2>v 0.12.4</h2>
+<h3>Features</h3>
+<ol>
+  <li>Datepicker. Update date value after pressing Enter. </li>
+</ol>

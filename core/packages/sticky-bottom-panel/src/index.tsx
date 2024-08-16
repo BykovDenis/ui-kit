@@ -6,7 +6,7 @@ import StickyBottomPanelStyled from './sticky-bottom-panel.styled';
 import FormControl from '../../form-control/src';
 import IconButton from '../../icon-button/src';
 import CircleCrossIcon from '../../icons-components/24x24/circle-cross-icon';
-import onKeyUpEventHandler from '../../helpers/on-key-up-event-handler';
+import { onKeyUpEscapeEventHandler } from '../../helpers/on-key-up-event-handler';
 
 const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: TStickyBottomPanel) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
@@ -15,7 +15,7 @@ const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: T
 
   const onKeyUp = (evt: any) => {
     if (isOpen) {
-      onKeyUpEventHandler(evt, props.onDialogVisibleChange);
+      onKeyUpEscapeEventHandler(evt, props.onDialogVisibleChange);
     }
   };
 
