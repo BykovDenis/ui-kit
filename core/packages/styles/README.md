@@ -1,1 +1,1 @@
-<h1> Switcher </h1>  
+<h1> Styles </h1>  
