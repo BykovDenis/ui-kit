@@ -1,5 +1,5 @@
-def rootPath = './icon'
-def uiKitIconPath = './icon/'
+def uiKitIconPath = './icon'
+def uiKitIconStylesPath = './icon/styles'
 
 pipeline {
     agent {
