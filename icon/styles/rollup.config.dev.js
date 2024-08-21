@@ -1,26 +1,18 @@
 import cleaner from 'rollup-plugin-cleaner';
+import postcss from 'rollup-plugin-postcss';
 import svg from 'rollup-plugin-svg';
 import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json';
-import alias from '@rollup/plugin-alias';
-import path from 'node:path';
 
 export default {
-  input: 'src/index.tsx',
+  input: 'src/index.ts',
   output: [
     {
       file: pkg.main,
       format: 'cjs',
       exports: 'named',
-      sourcemap: true,
-      strict: true,
-    },
-    {
-      file: pkg.module,
-      format: 'esm',
-      exports: 'named',
-      sourcemap: true,
+      sourcemap: false,
       strict: true,
     },
   ],
@@ -28,10 +20,12 @@ export default {
     cleaner({
       targets: ['./dist'],
     }),
-    typescript({ objectHashIgnoreUnknownHack: false, inlineSourceMap: true, sourceMap: true }),
-    alias({
-      entries: {
-        '@src': path.resolve(__dirname, './src'),
+    typescript({ objectHashIgnoreUnknownHack: false, inlineSourceMap: true }),
+    svg(),
+    postcss({
+      autoModules: true,
+      modules: {
+        generateScopedName: '[hash:base64:8]',
       },
     }),
   ],

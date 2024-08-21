@@ -1,0 +1,9 @@
+{
+  "name": "@sber-risks-ui/icon/icon",
+  "version": "0.0.1",
+  "description": "Risks react UI Icon component Icon",
+  "homepage": "/",
+  "license": "MIT",
+  "author": "Denis Bykov",
+  "type": "module"
+}

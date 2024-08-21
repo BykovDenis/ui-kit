@@ -36,4 +36,7 @@ yarn-error.log*
 **/paths.js
 **/*tsconfig*
 **/types
+**/.eslint*
+**/build.sh
+**/.prettierrc
 

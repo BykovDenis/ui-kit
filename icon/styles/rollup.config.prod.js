@@ -1,14 +1,17 @@
-import cleaner from 'rollup-plugin-cleaner';
-import typescript from 'rollup-plugin-typescript2';
-import pkg from './package.json';
 import { terser } from 'rollup-plugin-terser';
+import cleaner from 'rollup-plugin-cleaner';
+import postcss from 'rollup-plugin-postcss';
+import typescript from 'rollup-plugin-typescript2';
+
+import pkg from './package.json';
+import dts from 'rollup-plugin-dts';
 
 export default [
   {
-    input: './src/index.tsx',
+    input: 'src/index.ts',
     output: [
       {
-        file: pkg.module,
+        file: pkg.main,
         format: 'cjs',
         exports: 'named',
         sourcemap: false,
@@ -27,8 +30,22 @@ export default [
         targets: ['./dist'],
       }),
       typescript({ objectHashIgnoreUnknownHack: false }),
+      postcss({
+        autoModules: true,
+        modules: {
+          generateScopedName: '[hash:base64:8]',
+        },
+        options: {
+          autoprefixer: true,
+        },
+      }),
       terser(),
     ],
     external: ['react', 'react-dom'],
+  },
+  {
+    input: './src/index.d.ts',
+    output: [{ file: pkg.types, format: 'es' }],
+    plugins: [dts()],
   },
 ];

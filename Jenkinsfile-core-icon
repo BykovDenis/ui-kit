@@ -17,10 +17,10 @@ pipeline {
         stage('Root packages installing') {
             tools
             {
-                nodejs 'node-v16.20.2-linux-x64'
+                nodejs 'node-v20.9.0-linux-x64'
             }
             steps {
-                nodejs('node-v16.20.2-linux-x64') {
+                nodejs('node-v20.9.0-linux-x64') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
                         sh 'node -v'
@@ -43,7 +43,7 @@ pipeline {
         stage("UI Icon PUBLISH") {
             tools
             {
-                nodejs 'node-v16.20.2-linux-x64'
+                nodejs 'node-v20.9.0-linux-x64'
             }
             steps {
                 script {
@@ -58,7 +58,7 @@ pipeline {
                     )
                     if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes') {
 
-                          nodejs('node-v16.20.2-linux-x64') {
+                          nodejs('node-v20.9.0-linux-x64') {
                             withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                                 dir("${uiKitIconPath}") {
                                     withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
