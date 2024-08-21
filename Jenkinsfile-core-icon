@@ -4,7 +4,7 @@ def uiKitIconPath = './icon/'
 pipeline {
     agent {
         node {
-            label 'Linux_Default' //Сборка должна происходить на централизованных агентах из пула Linux_Default
+            label 'rhel8&&!delta4' // Clean builder agent //Сборка должна происходить на централизованных агентах из пула Linux_Default
         }
     }
 
