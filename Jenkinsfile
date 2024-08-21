@@ -14,7 +14,7 @@ pipeline {
     }
     options { timeout(time: 60, unit: 'MINUTES') }
     stages {
-        stage('Root packages installing') {
+        stage('Icon component packages installing') {
             tools
             {
                 nodejs 'node-v20.9.0-linux-x64'
@@ -25,7 +25,33 @@ pipeline {
                         sh 'npm -v'
                         sh 'node -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${rootPath}") {
+                            dir("${uiKitIconPath}") {
+                                script {
+                                    echo 'Packages installing'
+                                    sh 'npm i'
+                                    echo 'Building'
+                                    sh 'npm run build'
+                                    echo 'Clean'
+                                    sh 'npm run clean-node-modules'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Icon component styles packages installing') {
+            tools
+            {
+                nodejs 'node-v20.9.0-linux-x64'
+            }
+            steps {
+                nodejs('node-v20.9.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        sh 'npm -v'
+                        sh 'node -v'
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${uiKitIconStylesPath}") {
                                 script {
                                     echo 'Packages installing'
                                     sh 'npm i'
