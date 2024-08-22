@@ -1,7 +1,10 @@
 type IconProps = {
   name?: string;
   size: 'm' | 'lg';
-  pathname: string;
+  pathname: {
+    m: string,
+    lg: string,
+  };
 };
 
 export default IconProps;
