@@ -13,24 +13,24 @@ const Icon: React.FunctionComponent<IconProps> = ({ name, size = 'm', pathname }
   }, [globalThis.ReactIconContextConsumer]);
 
   const filterId: string = useId();
-  const currentSize: number = Number(SizeMap[size]);
+  const actualSize: number = Number(SizeMap[size]);
 
   if (Consumer) {
     const iconComponentWrapped: any = (iconProps: IconProps): any => {
       const nameParsed: string | undefined = name || iconProps.name;
-      const pathnameParsed: string = pathname || iconProps.pathname;
+      const actualPathname: string = pathname || size === 'm' ? iconProps.pathname.m : iconProps.pathname.lg;
 
       return (
         <>
-          <svg width={currentSize} height={currentSize}>
+          <svg width={actualSize} height={actualSize}>
             <filter id={filterId}>
               <feFlood floodColor="currentColor" />
               <feComposite in2="SourceAlpha" operator="in" />
             </filter>
             <image
-              width={currentSize}
-              height={currentSize}
-              href={`${pathnameParsed}${nameParsed}.svg`}
+              width={actualSize}
+              height={actualSize}
+              href={`${actualPathname}${nameParsed}.svg`}
               filter={`url(#${filterId})`}
             />
           </svg>
@@ -44,14 +44,14 @@ const Icon: React.FunctionComponent<IconProps> = ({ name, size = 'm', pathname }
 
     return (
       <>
-        <svg width={currentSize} height={currentSize}>
+        <svg width={actualSize} height={actualSize}>
           <filter id={filterId}>
             <feFlood floodColor="currentColor" />
             <feComposite in2="SourceAlpha" operator="in" />
           </filter>
           <image
-            width={currentSize}
-            height={currentSize}
+            width={actualSize}
+            height={actualSize}
             href={`${pathname}${name}.svg`}
             filter={`url(#${filterId})`}
           />
