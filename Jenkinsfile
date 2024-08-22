@@ -28,7 +28,7 @@ pipeline {
                             dir("${uiKitIconPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm i'
+                                    sh 'npm ci'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
@@ -54,7 +54,7 @@ pipeline {
                             dir("${uiKitIconStylesPath}") {
                                 script {
                                     echo 'Packages installing'
-                                    sh 'npm i'
+                                    sh 'npm ci'
                                     echo 'Building'
                                     sh 'npm run build'
                                     echo 'Clean'
