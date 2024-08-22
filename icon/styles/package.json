@@ -21,9 +21,7 @@
     "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
   },
   "devDependencies": {
-    "@lopatnov/rollup-plugin-uglify": "^2.1.2",
-    "@types/styled-components": "^5.1.18",
-    "rollup": "^2.61.1"
+    "rollup": "2.61.1"
   },
   "gitHead": "ba995ea450483990b69ef6a428631a479e29e107"
 }
