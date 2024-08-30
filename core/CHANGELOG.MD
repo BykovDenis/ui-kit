@@ -268,3 +268,9 @@
 <ol>
   <li>Datepicker. Update date value after pressing Enter. </li>
 </ol>
+
+<h2>v 0.12.5</h2>
+<h3>Features</h3>
+<ol>
+  <li>Select. Create a new value not by exact matching. </li>
+</ol>

@@ -42,4 +42,53 @@ describe('Testing Select component', () => {
           });
       });
   });
+  it('Test 4. Test new element', () => {
+    cy.get('#select-text')
+      .focus()
+      .type('vne')
+      .then(() => {
+        cy.get('#select-text-list').find('button').should('have.length', 4);
+        cy.get('#select-text-list').find('button').last().contains('Create new');
+        cy.get('#select-text-list div:last button')
+          .as('btn')
+          .click()
+          .then(() => {
+            cy.get('#select-text').should('value', 'vne');
+          });
+        cy.get('[data-test="btn-delete-value"]')
+          .as('btn')
+          .parent()
+          .click({ multiple: true })
+          .then(() => {
+            cy.get('#select-text').should('value', '');
+          });
+      });
+    cy.get('#select-text')
+      .focus()
+      .type('vnekb')
+      .then(() => {
+        cy.get('#select-text-list').find('button').should('have.length', 1);
+        cy.get('[data-test="btn-delete-value"]')
+          .as('btn')
+          .parent()
+          .click({ multiple: true })
+          .then(() => {
+            cy.get('#select-text').should('value', '');
+          });
+      });
+    cy.get('#select-text')
+      .focus()
+      .type('vnek')
+      .then(() => {
+        cy.get('#select-text-list').find('button').should('have.length', 3);
+        cy.get('#select-text-list').find('button').last().contains('Create new');
+      });
+    cy.get('#select-text')
+      .focus()
+      .type('b1')
+      .then(() => {
+        cy.get('#select-text-list').find('button').should('have.length', 1);
+        cy.get('#select-text-list').find('button').last().contains('Create new');
+      });
+  });
 });

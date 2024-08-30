@@ -1,11 +1,11 @@
-import { useContext } from 'react';
-import themeDark from './themes/theme-dark';
-import Sidebar from './components/sidebar';
-import GridContainer from '../../packages/grid-container';
-import getNewReactThemeContext, { ITheme } from '@sber-risks-ui/core/styles';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import './css/create-window-notification.css';
+import { useContext } from "react";
+import themeDark from "./themes/theme-dark";
+import Sidebar from "./components/sidebar";
+import GridContainer from "../../core/packages/grid-container";
+import getNewReactThemeContext, { ITheme } from "@sber-risks-ui/core/styles";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./css/create-window-notification.css";
 
 type AppProps = {
   children: React.ReactNode;
@@ -32,16 +32,24 @@ const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
       <ReactThemeContext.Provider value={themeDark}>
         <ToastContainer
           theme="dark"
-          toastClassName={context =>
-            contextClass[context?.type || 'default'] +
-            ' relative flex p-1 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer'
+          toastClassName={(context) =>
+            contextClass[context?.type || "default"] +
+            " relative flex p-1 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer"
           }
           autoClose={10000000}
           position="top-right"
         />
         <GridContainer gridTemplateColumns="250px auto" gap={20}>
           <Sidebar />
-          <div style={{ background: context.mainBackgroundColor, height: '100vh', margin: 0 }}>{props.children}</div>
+          <div
+            style={{
+              background: context.mainBackgroundColor,
+              height: "100vh",
+              margin: 0,
+            }}
+          >
+            {props.children}
+          </div>
         </GridContainer>
       </ReactThemeContext.Provider>
     </>
