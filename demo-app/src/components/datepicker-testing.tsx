@@ -1,15 +1,15 @@
-import FlexContainer from '@sber-risks-ui/core/flex-container';
-import React, { useState } from 'react';
-import { warning, success } from '../utils/dev-utils-theme';
+import FlexContainer from "@sber-risks-ui/core/flex-container";
+import React, { useState } from "react";
+import { warning, success } from "../utils/dev-utils-theme";
 // local components
-import Datepicker from '../../../packages/datepicker/src';
+import Datepicker from "../../../core/packages/datepicker/src";
 // components from package library
 // import Datepicker from '@sber-risks-ui/core/datepicker';
-import Typography from '@sber-risks-ui/core/typography';
-import { toast } from 'react-toastify';
+import Typography from "@sber-risks-ui/core/typography";
+import { toast } from "react-toastify";
 
 const DatepickerTesting = () => {
-  const [date, setDate] = useState('2024-04-02');
+  const [date, setDate] = useState("2024-04-02");
   const [date1, setDate1] = useState<string | null>(null);
   const [date2, setDate2] = useState<string | null>(null);
   const [date3, setDate3] = useState<string | null>(null);
@@ -23,12 +23,12 @@ const DatepickerTesting = () => {
     setDate1(value);
     if (isValid) {
       console.log(success(value));
-      toast('value = ' + value, { type: 'success' });
+      toast("value = " + value, { type: "success" });
     } else {
       console.log(warning(value));
-      toast('value = ' + value, { type: 'error' });
+      toast("value = " + value, { type: "error" });
     }
-    console.log('date1', date1);
+    console.log("date1", date1);
   };
 
   const onDate1Remove = (name: string) => {
@@ -40,14 +40,18 @@ const DatepickerTesting = () => {
     console.log(date2);
   };
 
-  const onDate2Change = (name: string, newDateValue: string, isValid: boolean) => {
+  const onDate2Change = (
+    name: string,
+    newDateValue: string,
+    isValid: boolean
+  ) => {
     setDate2(newDateValue);
     if (isValid) {
       console.log(success(newDateValue));
-      toast('value = ' + newDateValue, { type: 'success' });
+      toast("value = " + newDateValue, { type: "success" });
     } else {
       console.log(warning(newDateValue));
-      toast('value =  ' + newDateValue, { type: 'error' });
+      toast("value =  " + newDateValue, { type: "error" });
     }
   };
 
@@ -55,10 +59,10 @@ const DatepickerTesting = () => {
     setDate3(value);
     if (isValid) {
       console.log(success(value));
-      toast('value = ' + value, { type: 'success' });
+      toast("value = " + value, { type: "success" });
     } else {
       console.log(warning(value));
-      toast('value =  ' + value, { type: 'error' });
+      toast("value =  " + value, { type: "error" });
     }
   };
 
@@ -96,7 +100,7 @@ const DatepickerTesting = () => {
             locale="RU"
             height={60}
             datesContainerAlign="left"
-            textMessage={(!date1 && 'Date is empty') || ''}
+            textMessage={(!date1 && "Date is empty") || ""}
           />
         </FlexContainer>
         <FlexContainer width={200} margin="20px 10px">
@@ -111,7 +115,7 @@ const DatepickerTesting = () => {
             name="datepicker1"
             height={60}
             error={!date2}
-            textMessage={(!date2 && 'Date is empty') || ''}
+            textMessage={(!date2 && "Date is empty") || ""}
           />
         </FlexContainer>
         <FlexContainer width={200} margin="20px 10px">

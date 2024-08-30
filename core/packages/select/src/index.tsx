@@ -71,6 +71,18 @@ function getElementsFiltered(elements: Array<IOption>, label: string) {
   });
 }
 
+function getElementsExactFiltered(elements: Array<IOption>, label: string) {
+  const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
+  return elements?.filter((element: IOption) => {
+    const labelParsed: string = element?.label?.toString();
+    const labelParsedUppercase: string = labelParsed?.toLocaleUpperCase();
+    if (labelParsed && label) {
+      return labelParsedUppercase === labelUpperCase;
+    }
+    return true;
+  });
+}
+
 const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);
   const isScrollingToSelected: boolean =
@@ -197,9 +209,15 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       const elementsFiltered: Array<IOption> = isNotEmptyString(labelUpperCase)
         ? getElementsFiltered(getElementsParsed(props.elements, props.name), labelUpperCase)
         : getElementsParsed(props.elements, props.name);
+      const elementsExactFiltered: Array<IOption> = isNotEmptyString(labelUpperCase)
+        ? getElementsExactFiltered(getElementsParsed(props.elements, props.name), labelUpperCase)
+        : getElementsParsed(props.elements, props.name);
       setElements(elementsFiltered);
       setIsFoundValue(elementsFiltered?.length > 0);
-      setIsNewElement(elementsFiltered?.length === 0);
+      setIsNewElement(
+        (elementsFiltered?.length > 0 && isNotEmptyString(label) && elementsExactFiltered?.length === 0) ||
+          elementsFiltered?.length === 0
+      );
     } else {
       setElements(getElementsParsed(props.elements, props.name));
     }
@@ -390,7 +408,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                     </ListItem>
                   );
                 })}
-              {isNewElement && props?.isCreatable && label > '' && (
+              {isNewElement && props?.isCreatable && (
                 <ListItem
                   type="button"
                   key={`${props.id}-list-item-new`}

@@ -1,11 +1,14 @@
-import TableHead from '@sber-risks-ui/core/table-head';
-import TableRow from '@sber-risks-ui/core/table-row';
-import TableCell from '@sber-risks-ui/core/table-cell';
-import Table from '@sber-risks-ui/core/table';
-import TableBody from '@sber-risks-ui/core/table-body';
-import { IOption } from '@sber-risks-ui/core/select';
-import { useState } from 'react';
-import Select from '@sber-risks-ui/core/select';
+import TableHead from "@sber-risks-ui/core/table-head";
+import TableRow from "@sber-risks-ui/core/table-row";
+import TableCell from "@sber-risks-ui/core/table-cell";
+import Table from "@sber-risks-ui/core/table";
+import TableBody from "@sber-risks-ui/core/table-body";
+import { IOption } from "@sber-risks-ui/core/select";
+import { useState } from "react";
+// local components
+import Select from "../../../core/packages/select/src";
+// components from package library
+// import Select from "@sber-risks-ui/core/select";
 
 const SelectTesting: React.FunctionComponent = () => {
   const [textValue, setTextValue] = useState<string | null>(null);
@@ -29,30 +32,43 @@ const SelectTesting: React.FunctionComponent = () => {
 
   const onInputRemove = () => {
     setNumberValue(null);
-    console.log('');
+    console.log("");
   };
 
   const onInputRemove2 = () => {
     setObjectValue(null);
-    console.log('');
+    console.log("");
   };
 
-  const textElements: Array<string> = ['one', 'two', 'three', 'four', 'five', 'six'];
-  const numbersElement: Array<number> = [111, 121, 311, 412, 532, 156, 127, 198, 189, 231];
+  const textElements: Array<string> = [
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "VNEKB",
+    "VNESH",
+    "CORVN",
+    "VNEKSH",
+  ];
+  const numbersElement: Array<number> = [
+    111, 121, 311, 412, 532, 156, 127, 198, 189, 231,
+  ];
 
   const elementsState: Array<{ label: string; value: string }> = [
-    { label: 'Январь', value: '0' },
-    { label: 'Февраль', value: '1' },
-    { label: 'Март', value: '2' },
-    { label: 'Апрель', value: '3' },
-    { label: 'Май', value: '4' },
-    { label: 'Июнь', value: '5' },
-    { label: 'Июль', value: '6' },
-    { label: 'Август', value: '7' },
-    { label: 'Сентябрь', value: '8' },
-    { label: 'Октябрь', value: '9' },
-    { label: 'Ноябрь', value: '10' },
-    { label: 'Декабрь', value: '11' },
+    { label: "Январь", value: "0" },
+    { label: "Февраль", value: "1" },
+    { label: "Март", value: "2" },
+    { label: "Апрель", value: "3" },
+    { label: "Май", value: "4" },
+    { label: "Июнь", value: "5" },
+    { label: "Июль", value: "6" },
+    { label: "Август", value: "7" },
+    { label: "Сентябрь", value: "8" },
+    { label: "Октябрь", value: "9" },
+    { label: "Ноябрь", value: "10" },
+    { label: "Декабрь", value: "11" },
   ];
 
   return (
