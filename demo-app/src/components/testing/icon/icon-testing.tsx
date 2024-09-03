@@ -5,13 +5,13 @@ import { ITheme } from "@sber-risks-ui/core/styles";
 import { ReactIconContext, ReactThemeContext } from "../../app";
 // local component
 import Icon from "../../../../../icon/src";
-import IconButton from "../../../../../core/packages/icon-button/src";
-import Button from "../../../../../core/packages/button/src";
+// import IconButton from "../../../../../core/packages/icon-button/src";
+// import Button from "../../../../../core/packages/button/src";
 // components from package library
 // @ts-ignore
 // import Icon from "@sber-risks-ui/icon";
-// import Button from "@sber-risks-ui/core/button";
-// import IconButton from "@sber-risks-ui/core/icon-button";
+import Button from "@sber-risks-ui/core/button";
+import IconButton from "@sber-risks-ui/core/icon-button";
 
 const IconTesting: React.FunctionComponent = () => {
   const theme: ITheme = useContext(ReactThemeContext);
