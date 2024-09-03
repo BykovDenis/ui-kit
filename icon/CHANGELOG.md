@@ -13,4 +13,5 @@
 <ol>
     <li>Create Icon component Provider</li>
     <li>Add dynamic pathname for icons source</li>  
+    <li>Add small size</li>  
 </ol>
