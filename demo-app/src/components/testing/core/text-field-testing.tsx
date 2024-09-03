@@ -1,23 +1,31 @@
-import Table from '@sber-risks-ui/core/table';
-import TableHead from '@sber-risks-ui/core/table-head';
-import TableRow from '@sber-risks-ui/core/table-row';
-import TableCell from '@sber-risks-ui/core/table-cell';
-import TableBody from '@sber-risks-ui/core/table-body';
-import React, { useState } from 'react';
-import Typography from '@sber-risks-ui/core/typography';
-import { success } from '../utils/dev-utils-theme';
+import Table from "@sber-risks-ui/core/table";
+import TableHead from "@sber-risks-ui/core/table-head";
+import TableRow from "@sber-risks-ui/core/table-row";
+import TableCell from "@sber-risks-ui/core/table-cell";
+import TableBody from "@sber-risks-ui/core/table-body";
+import React, { useState } from "react";
+import Typography from "@sber-risks-ui/core/typography";
+import { success } from "../../../utils/dev-utils-theme";
 // local components
 // import TextField from '../../../packages/textfield/src';
 // components from package library
-import TextField from '@sber-risks-ui/core/textfield';
+import TextField from "@sber-risks-ui/core/textfield";
 
 const TextFieldTesting: React.FunctionComponent = () => {
-  const regExp: RegExp = new RegExp('[0-9_]', 'gi');
-  const regExpComplixity: RegExp = new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
+  const regExp: RegExp = new RegExp("[0-9_]", "gi");
+  const regExpComplixity: RegExp = new RegExp(
+    "^(pg_|_|[0-9])|[^a-z0-9_]",
+    "gi"
+  );
   const [textField1, setTextField1] = useState<number | null>(null);
   const [textField2, setTextField2] = useState<number | null>(null);
-  const [textFieldRegularExpression, setTextFieldRegularExpression] = useState<string | null>(null);
-  const [textFieldRegularExpressionComplixity, setTextFieldRegularExpressionComplixity] = useState<string | null>(null);
+  const [textFieldRegularExpression, setTextFieldRegularExpression] = useState<
+    string | null
+  >(null);
+  const [
+    textFieldRegularExpressionComplixity,
+    setTextFieldRegularExpressionComplixity,
+  ] = useState<string | null>(null);
 
   const onInputNumberChange = (
     evt: React.ChangeEvent<HTMLInputElement>,

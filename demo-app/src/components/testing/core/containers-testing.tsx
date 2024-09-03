@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { ReactThemeContext } from '../app';
-import styled from 'styled-components';
+import React, { useContext } from "react";
+import { ReactThemeContext } from "../../app";
+import styled from "styled-components";
 
 // local components
 // import FlexContainer from '../../../packages/flex-container/src';
@@ -8,9 +8,9 @@ import styled from 'styled-components';
 // import Typography from '../../../packages/typography/src';
 
 // components from package library
-import FlexContainer from '@sber-risks-ui/core/flex-container';
-import Typography from '@sber-risks-ui/core/typography';
-import FormControl from '@sber-risks-ui/core/form-control';
+import FlexContainer from "@sber-risks-ui/core/flex-container";
+import Typography from "@sber-risks-ui/core/typography";
+import FormControl from "@sber-risks-ui/core/form-control";
 
 type TableProps = {
   color: string;
@@ -49,7 +49,7 @@ const TableCell = styled.td<TableProps>`
         color: var(--main-font-color) !important;
         background-color: var(--main-background-color) !important;
         border-bottom-color: var(--main-outlined-color) !important;
-        ${props?.width ? `width: ${props.width}px;` : ''}`}
+        ${props?.width ? `width: ${props.width}px;` : ""}`}
 `;
 
 const TableCellHeader = styled.td<TableProps>`
@@ -68,14 +68,20 @@ const TableCellHeader = styled.td<TableProps>`
         color: var(--main-font-color) !important;
         background-color: var(--main-background-color) !important;
         border-bottom-color: var(--main-outlined-color) !important;
-        ${props?.width ? `width: ${props.width}px;` : ''}`}
+        ${props?.width ? `width: ${props.width}px;` : ""}`}
 `;
 
 const ContainersTesting: React.FunctionComponent = () => {
   const themes: any = useContext(ReactThemeContext);
 
   return (
-    <FlexContainer flexDirection="column" alignItems="flex-start" gap={10} margin="30px 0 30px 0" width={500}>
+    <FlexContainer
+      flexDirection="column"
+      alignItems="flex-start"
+      gap={10}
+      margin="30px 0 30px 0"
+      width={500}
+    >
       <Typography variant="H1">Containers Testing</Typography>
       <Typography variant="H2">Containers</Typography>
       <Table color={themes.palette.baseFontColor}>
@@ -118,12 +124,20 @@ const ContainersTesting: React.FunctionComponent = () => {
           </tr>
           <tr>
             <TableCell color={themes.palette.baseFontColor} width={350}>
-              <FlexContainer id="container3" justifyContent="flex-end" paddingRight={10}>
+              <FlexContainer
+                id="container3"
+                justifyContent="flex-end"
+                paddingRight={10}
+              >
                 Typologies
               </FlexContainer>
             </TableCell>
             <TableCell color={themes.palette.baseFontColor} width={750}>
-              <FlexContainer id="container4" justifyContent="flex-start" paddingRight={10}>
+              <FlexContainer
+                id="container4"
+                justifyContent="flex-start"
+                paddingRight={10}
+              >
                 XXXXX,XXXXXX,XXXXX,XXXXXX,XXXXXXX,XXXXXXXX,XXXXXXXXXXXX,XXXXXXXXXX,XXXXXXXX,XXXXXXXXX,XXXXXXXXXX,XXXXXXXXX
               </FlexContainer>
             </TableCell>
@@ -152,12 +166,20 @@ const ContainersTesting: React.FunctionComponent = () => {
           </tr>
           <tr>
             <TableCell color={themes.palette.baseFontColor} width={350}>
-              <FormControl id="container1" justifyContent="flex-end" paddingRight={10}>
+              <FormControl
+                id="container1"
+                justifyContent="flex-end"
+                paddingRight={10}
+              >
                 American Monte Carlo Number Of Paths
               </FormControl>
             </TableCell>
             <TableCell color={themes.palette.baseFontColor} width={750}>
-              <FlexContainer id="container2" justifyContent="flex-start" paddingRight={10}>
+              <FlexContainer
+                id="container2"
+                justifyContent="flex-start"
+                paddingRight={10}
+              >
                 000
               </FlexContainer>
             </TableCell>

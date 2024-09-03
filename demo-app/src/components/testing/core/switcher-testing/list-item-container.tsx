@@ -1,8 +1,8 @@
-import FlexContainer from '@sber-risks-ui/core/flex-container';
-import { ITheme } from '@sber-risks-ui/core/styles';
-import { useContext } from 'react';
-import { ReactThemeContext } from '../../app';
-import NumberContainer from './number-container';
+import FlexContainer from "@sber-risks-ui/core/flex-container";
+import { ITheme } from "@sber-risks-ui/core/styles";
+import { useContext } from "react";
+import { ReactThemeContext } from "../../../app";
+import NumberContainer from "./number-container";
 
 type TypographyWrappedProps = {
   children: React.ReactNode;
@@ -10,10 +10,16 @@ type TypographyWrappedProps = {
   answerIndex: number;
 };
 
-const ListItemContainer: React.FunctionComponent<TypographyWrappedProps> = (props: TypographyWrappedProps) => {
+const ListItemContainer: React.FunctionComponent<TypographyWrappedProps> = (
+  props: TypographyWrappedProps
+) => {
   const theme: ITheme = useContext(ReactThemeContext);
   return (
-    <FlexContainer justifyContent="flex-start" alignItems="baseline" width="initial">
+    <FlexContainer
+      justifyContent="flex-start"
+      alignItems="baseline"
+      width="initial"
+    >
       <NumberContainer>{props.answerIndex}.</NumberContainer>
       <FlexContainer
         borderBottom={`1px solid ${theme.mainOutlinedColor}`}
