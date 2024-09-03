@@ -1,51 +1,56 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import DatepickerTesting from './components/datepicker-testing';
-import App from './app';
-import InputTesting from './components/input-testing';
-import TextFieldTesting from './components/text-field-testing';
-import SelectTesting from './components/select-testing';
-import MultiSelectTesting from './components/multi-select-testing';
-import SwitcherTesting from './components/switcher-testing';
-import ErrorsStateTesting from './components/errors-state-testing';
-import ContainersTesting from './components/containers-testing';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./components/app";
+import DatepickerTesting from "./components/testing/core/datepicker-testing";
+import InputTesting from "./components/testing/core/input-testing";
+import TextFieldTesting from "./components/testing/core/text-field-testing";
+import SelectTesting from "./components/testing/core/select-testing";
+import MultiSelectTesting from "./components/testing/core/multi-select-testing";
+import SwitcherTesting from "./components/testing/core/switcher-testing";
+import ErrorsStateTesting from "./components/testing/core/errors-state-testing";
+import ContainersTesting from "./components/testing/core/containers-testing";
+import IconTesting from "./components/testing/icon/icon-testing";
 
 const Routes = () => {
   const router = createBrowserRouter([
     {
-      path: '/',
+      path: "/",
       element: <></>,
     },
     {
-      path: '/datepicker',
+      path: "/datepicker",
       element: <DatepickerTesting />,
     },
     {
-      path: '/input',
+      path: "/input",
       element: <InputTesting />,
     },
     {
-      path: '/textfield',
+      path: "/textfield",
       element: <TextFieldTesting />,
     },
     {
-      path: '/select',
+      path: "/select",
       element: <SelectTesting />,
     },
     {
-      path: '/multi-select',
+      path: "/multi-select",
       element: <MultiSelectTesting />,
     },
     {
-      path: '/switcher',
+      path: "/switcher",
       element: <SwitcherTesting />,
     },
     {
-      path: '/errors-state',
+      path: "/errors-state",
       element: <ErrorsStateTesting />,
     },
     {
-      path: '/containers',
+      path: "/containers",
       element: <ContainersTesting />,
+    },
+    {
+      path: "/icon",
+      element: <IconTesting />,
     },
   ]);
 

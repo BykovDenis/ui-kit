@@ -274,3 +274,10 @@
 <ol>
   <li>Select. Create a new value not by exact matching. </li>
 </ol>
+
+<h2>v 0.12.6</h2>
+<h3>Bugfix</h3>
+<ol>
+  <li>Button. Color rendering for the text variant. </li>
+  <li>IconButton. Color rendering for the text variant. </li>
+</ol>

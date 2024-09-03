@@ -1,9 +1,9 @@
-import Typography from '@sber-risks-ui/core/typography';
-import React, { useState } from 'react';
-import CertainDecision from '../../enums/certain-decision';
-import ListItemWrapped from './list-item-wrapped';
-import ListItemContainer from './list-item-container';
-import SppiQuestion from '../../enums/sppi-question';
+import Typography from "@sber-risks-ui/core/typography";
+import React, { useState } from "react";
+import CertainDecision from "../../../../enums/certain-decision";
+import ListItemWrapped from "./list-item-wrapped";
+import ListItemContainer from "./list-item-container";
+import SppiQuestion from "../../../../enums/sppi-question";
 // local components
 // import FlexContainer from '../../../../packages/flex-container/src';
 // import List from '../../../../packages/list/src';
@@ -11,10 +11,10 @@ import SppiQuestion from '../../enums/sppi-question';
 // import Switcher from '../../../../packages/switcher/src';
 
 // components from package library
-import FlexContainer from '@sber-risks-ui/core/flex-container';
-import List from '@sber-risks-ui/core/list';
-import ListItem from '@sber-risks-ui/core/list-item';
-import Switcher from '@sber-risks-ui/core/switcher';
+import FlexContainer from "@sber-risks-ui/core/flex-container";
+import List from "@sber-risks-ui/core/list";
+import ListItem from "@sber-risks-ui/core/list-item";
+import Switcher from "@sber-risks-ui/core/switcher";
 
 const checklistSppiTestQuestions: { [key: string]: CertainDecision } = {
   q1: CertainDecision.Unknown,
@@ -32,7 +32,9 @@ const checklistSppiTestQuestions: { [key: string]: CertainDecision } = {
 };
 
 const SwitcherTesting: React.FunctionComponent = () => {
-  const [answers, setAnswers] = useState<{ [key: string]: CertainDecision }>(checklistSppiTestQuestions);
+  const [answers, setAnswers] = useState<{ [key: string]: CertainDecision }>(
+    checklistSppiTestQuestions
+  );
 
   const onCertainDecisionChange = (certainDecision: string, name?: string) => {
     setAnswers((answers: { [key: string]: CertainDecision }) => {
@@ -48,14 +50,20 @@ const SwitcherTesting: React.FunctionComponent = () => {
       <Typography variant="H1" textAlign="center">
         Testing Datepickers components
       </Typography>
-      <FlexContainer marginLeft={15} flexDirection="column" alignItems="flex-start">
+      <FlexContainer
+        marginLeft={15}
+        flexDirection="column"
+        alignItems="flex-start"
+      >
         <Typography variant="H2" fontSize={20}>
           Отметьте верные утверждения
         </Typography>
         <FlexContainer marginLeft={65} width="initial">
           <List width={1340}>
             <ListItemWrapped>
-              <ListItemContainer answerIndex={answerIndex++}>{SppiQuestion.Q1}</ListItemContainer>
+              <ListItemContainer answerIndex={answerIndex++}>
+                {SppiQuestion.Q1}
+              </ListItemContainer>
               <FlexContainer width={140}>
                 <Switcher
                   id="q1"
@@ -70,7 +78,9 @@ const SwitcherTesting: React.FunctionComponent = () => {
               </FlexContainer>
             </ListItemWrapped>
             <ListItemWrapped>
-              <ListItemContainer answerIndex={answerIndex++}>{SppiQuestion.Q2}</ListItemContainer>
+              <ListItemContainer answerIndex={answerIndex++}>
+                {SppiQuestion.Q2}
+              </ListItemContainer>
               <FlexContainer width={140}>
                 <Switcher
                   id="q2"
@@ -85,7 +95,9 @@ const SwitcherTesting: React.FunctionComponent = () => {
               </FlexContainer>
             </ListItemWrapped>
             <ListItemWrapped>
-              <ListItemContainer answerIndex={answerIndex++}>{SppiQuestion.Q3}</ListItemContainer>
+              <ListItemContainer answerIndex={answerIndex++}>
+                {SppiQuestion.Q3}
+              </ListItemContainer>
               <FlexContainer width={140}>
                 <Switcher
                   id="q3"
@@ -100,7 +112,9 @@ const SwitcherTesting: React.FunctionComponent = () => {
               </FlexContainer>
             </ListItemWrapped>
             <ListItemWrapped>
-              <ListItemContainer answerIndex={answerIndex++}>{SppiQuestion.Q4}</ListItemContainer>
+              <ListItemContainer answerIndex={answerIndex++}>
+                {SppiQuestion.Q4}
+              </ListItemContainer>
               <FlexContainer width={140}>
                 <Switcher
                   id="q4"
@@ -115,7 +129,9 @@ const SwitcherTesting: React.FunctionComponent = () => {
               </FlexContainer>
             </ListItemWrapped>
             <ListItemWrapped>
-              <ListItemContainer answerIndex={answerIndex++}>{SppiQuestion.Q5}</ListItemContainer>
+              <ListItemContainer answerIndex={answerIndex++}>
+                {SppiQuestion.Q5}
+              </ListItemContainer>
               <FlexContainer width={140}>
                 <Switcher
                   id="q5"
@@ -130,7 +146,9 @@ const SwitcherTesting: React.FunctionComponent = () => {
               </FlexContainer>
             </ListItemWrapped>
             <ListItemWrapped>
-              <ListItemContainer answerIndex={answerIndex++}>{SppiQuestion.Q6}</ListItemContainer>
+              <ListItemContainer answerIndex={answerIndex++}>
+                {SppiQuestion.Q6}
+              </ListItemContainer>
               <FlexContainer width={140}>
                 <Switcher
                   id="q6"
@@ -162,18 +180,37 @@ const SwitcherTesting: React.FunctionComponent = () => {
               </FlexContainer>
             </ListItemWrapped>
             <ListItemWrapped>
-              <FlexContainer flexDirection="column" alignItems="flex-start" width={1000}>
+              <FlexContainer
+                flexDirection="column"
+                alignItems="flex-start"
+                width={1000}
+              >
                 <ListItemContainer answerIndex={answerIndex++}>
-                  <FlexContainer flexDirection="column" alignItems="flex-start" fontSize={18}>
+                  <FlexContainer
+                    flexDirection="column"
+                    alignItems="flex-start"
+                    fontSize={18}
+                  >
                     В сделке ПДВ рассчитывается иначе чем:
                     <FlexContainer marginLeft={20} marginTop={5}>
                       <List fontSize={18}>
-                        <ListItem textAlign="left" isVisibleTextUnderline={false}>
-                          <Typography variant="Phrase" fontSize={18} margin="0" height={20}>
+                        <ListItem
+                          textAlign="left"
+                          isVisibleTextUnderline={false}
+                        >
+                          <Typography
+                            variant="Phrase"
+                            fontSize={18}
+                            margin="0"
+                            height={20}
+                          >
                             a. % от досрочно возвращаемой суммы кредита
                           </Typography>
                         </ListItem>
-                        <ListItem textAlign="left" isVisibleTextUnderline={false}>
+                        <ListItem
+                          textAlign="left"
+                          isVisibleTextUnderline={false}
+                        >
                           <Typography
                             variant="Phrase"
                             fontSize={18}
@@ -183,8 +220,10 @@ const SwitcherTesting: React.FunctionComponent = () => {
                             width={1000}
                             lineHeight={2}
                           >
-                            b. % от досрочно возвращаемой суммы кредита с учетом срока до плановой даты погашения/ до
-                            даты уведомления. Например, ПДВ привязана к рыночной ставке (в т.ч. ОФЗ)
+                            b. % от досрочно возвращаемой суммы кредита с учетом
+                            срока до плановой даты погашения/ до даты
+                            уведомления. Например, ПДВ привязана к рыночной
+                            ставке (в т.ч. ОФЗ)
                           </Typography>
                         </ListItem>
                       </List>
@@ -206,7 +245,9 @@ const SwitcherTesting: React.FunctionComponent = () => {
               </FlexContainer>
             </ListItemWrapped>
             <ListItemWrapped>
-              <ListItemContainer answerIndex={answerIndex++}>{SppiQuestion.Q9}</ListItemContainer>
+              <ListItemContainer answerIndex={answerIndex++}>
+                {SppiQuestion.Q9}
+              </ListItemContainer>
               <FlexContainer width={140}>
                 <Switcher
                   id="q9"
@@ -221,19 +262,44 @@ const SwitcherTesting: React.FunctionComponent = () => {
               </FlexContainer>
             </ListItemWrapped>
             <ListItemWrapped>
-              <FlexContainer flexDirection="column" alignItems="flex-start" width={1000}>
+              <FlexContainer
+                flexDirection="column"
+                alignItems="flex-start"
+                width={1000}
+              >
                 <ListItemContainer answerIndex={answerIndex++}>
-                  <FlexContainer flexDirection="column" alignItems="flex-start" fontSize={18}>
-                    Сделка заключается в рамках Программы субсидирования отличной от следующего списка:
+                  <FlexContainer
+                    flexDirection="column"
+                    alignItems="flex-start"
+                    fontSize={18}
+                  >
+                    Сделка заключается в рамках Программы субсидирования
+                    отличной от следующего списка:
                     <FlexContainer marginLeft={20} marginTop={15}>
                       <List fontSize={18}>
-                        <ListItem textAlign="left" isVisibleTextUnderline={false}>
-                          <Typography variant="Phrase" fontSize={18} margin="0 0 15px 0" height={18}>
+                        <ListItem
+                          textAlign="left"
+                          isVisibleTextUnderline={false}
+                        >
+                          <Typography
+                            variant="Phrase"
+                            fontSize={18}
+                            margin="0 0 15px 0"
+                            height={18}
+                          >
                             a. МСХ Постановление Правительства №1528
                           </Typography>
                         </ListItem>
-                        <ListItem textAlign="left" isVisibleTextUnderline={false}>
-                          <Typography variant="Phrase" fontSize={18} margin="0 0 15px 0" height={18}>
+                        <ListItem
+                          textAlign="left"
+                          isVisibleTextUnderline={false}
+                        >
+                          <Typography
+                            variant="Phrase"
+                            fontSize={18}
+                            margin="0 0 15px 0"
+                            height={18}
+                          >
                             b. МПТ Постановление Правительства №191
                           </Typography>
                         </ListItem>
@@ -256,7 +322,9 @@ const SwitcherTesting: React.FunctionComponent = () => {
               </FlexContainer>
             </ListItemWrapped>
             <ListItemWrapped>
-              <ListItemContainer answerIndex={answerIndex++}>{SppiQuestion.Q11}</ListItemContainer>
+              <ListItemContainer answerIndex={answerIndex++}>
+                {SppiQuestion.Q11}
+              </ListItemContainer>
               <FlexContainer width={140}>
                 <Switcher
                   id="q11"
