@@ -2,9 +2,9 @@ import FlexContainer from "@sber-risks-ui/core/flex-container";
 import React, { useState } from "react";
 import { warning, success } from "../../../utils/dev-utils-theme";
 // local components
-import Datepicker from "../../../../../core/packages/datepicker/src";
+// import Datepicker from "../../../../../core/packages/datepicker/src";
 // components from package library
-// import Datepicker from '@sber-risks-ui/core/datepicker';
+import Datepicker from "@sber-risks-ui/core/datepicker";
 import Typography from "@sber-risks-ui/core/typography";
 import { toast } from "react-toastify";
 

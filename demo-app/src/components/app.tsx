@@ -2,13 +2,17 @@ import { useContext } from "react";
 import themeDark from "../themes/theme-dark";
 import iconConfig from "../themes/icon-config";
 import Sidebar from "./sidebar";
-import GridContainer from "../../../core/packages/grid-container/src";
+
 import getNewReactThemeContext, { ITheme } from "@sber-risks-ui/core/styles";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../css/create-window-notification.css";
-import getNewReactIconContext from "../../../icon/styles/src";
-// import getNewReactIconContext from "@sber-risks-ui/icon/styles";
+// local components
+// import getNewReactIconContext from "../../../icon/styles/src";
+// import GridContainer from "../../../core/packages/grid-container/src";
+// components from package library
+import getNewReactIconContext from "@sber-risks-ui/icon/styles";
+import GridContainer from "@sber-risks-ui/core/grid-container";
 
 type AppProps = {
   children: React.ReactNode;
