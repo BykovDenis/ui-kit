@@ -1,6 +1,7 @@
 import IconProps from './types/icon-props';
 import SizeMap from './enums/size-map';
 import React, { useId, useState, useEffect } from 'react';
+import getPathname from './helpers/get-pathname';
 
 const Icon: React.FunctionComponent<IconProps> = ({ name, size = 'm', pathname }: IconProps) => {
   // @ts-ignore-next-line
@@ -18,7 +19,7 @@ const Icon: React.FunctionComponent<IconProps> = ({ name, size = 'm', pathname }
   if (Consumer) {
     const iconComponentWrapped: any = (iconProps: IconProps): any => {
       const nameParsed: string | undefined = name || iconProps.name;
-      const actualPathname: string = pathname || size === 'm' ? iconProps.pathname.m : iconProps.pathname.lg;
+      const actualPathname: string = getPathname(iconProps?.pathname, size);
 
       return (
         <>
@@ -49,12 +50,7 @@ const Icon: React.FunctionComponent<IconProps> = ({ name, size = 'm', pathname }
             <feFlood floodColor="currentColor" />
             <feComposite in2="SourceAlpha" operator="in" />
           </filter>
-          <image
-            width={actualSize}
-            height={actualSize}
-            href={`${pathname}${name}.svg`}
-            filter={`url(#${filterId})`}
-          />
+          <image width={actualSize} height={actualSize} href={`${pathname}${name}.svg`} filter={`url(#${filterId})`} />
         </svg>
       </>
     );

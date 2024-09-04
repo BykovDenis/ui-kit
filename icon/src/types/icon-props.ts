@@ -1,11 +1,9 @@
+import Pathname from './pathname';
+
 type IconProps = {
   name?: string;
   size?: 'sm' | 'm' | 'lg';
-  pathname?: {
-    sm: string;
-    m: string;
-    lg: string;
-  };
+  pathname?: Pathname;
 };
 
 export default IconProps;

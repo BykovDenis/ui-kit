@@ -1,5 +1,5 @@
-import GridContainer from '@sber-risks-ui/core/grid-container';
-import FlexContainer from '@sber-risks-ui/core/form-control';
+import GridContainer from "@sber-risks-ui/core/grid-container";
+import FlexContainer from "@sber-risks-ui/core/flex-container";
 
 const GridContainerTesting: React.FunctionComponent = () => {
   return (

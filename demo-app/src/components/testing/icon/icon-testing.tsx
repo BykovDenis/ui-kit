@@ -19,61 +19,228 @@ const IconTesting: React.FunctionComponent = () => {
   return (
     <GridContainer justifyContent="center" alignItems="center">
       <Typography variant="H1">Icon Testing</Typography>
-      <GridContainer
-        gridTemplateColumns="100px 100px 100px"
-        gridTemplateRows="100px 100px 100px"
-      >
+      <GridContainer gridTemplateColumns="1fr" width={330} gridRowGap="10px">
         <GridContainer
-          outline={`1px solid ${theme.palette.baseFontColor}`}
-          alignItems="center"
-          justifyContent="center"
+          gridTemplateColumns="1fr 1fr 1fr"
+          gridColumnGap="10px"
+          gridTemplateRows="70px"
         >
-          <Icon name="icon-menu" />
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+            fontWeight={900}
+          >
+            sm 16px x 16px
+          </GridContainer>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+            fontWeight={900}
+          >
+            m 24px x 24px
+          </GridContainer>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+            fontWeight={900}
+          >
+            lg 36px x 36px
+          </GridContainer>
         </GridContainer>
         <GridContainer
-          outline={`1px solid ${theme.palette.baseFontColor}`}
-          alignItems="center"
-          justifyContent="center"
+          gridTemplateColumns="1fr 1fr 1fr"
+          gridColumnGap="10px"
+          gridTemplateRows="70px"
         >
-          <Icon name="icon-menu-open" />
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Icon name="icon-star" size="sm" />
+          </GridContainer>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Icon name="icon-menu" size="m" />
+          </GridContainer>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Icon name="ic_36_pram" size="lg" />
+          </GridContainer>
         </GridContainer>
         <GridContainer
-          outline={`1px solid ${theme.palette.baseFontColor}`}
-          alignItems="center"
-          justifyContent="center"
+          gridTemplateColumns="1fr 1fr 1fr"
+          gridColumnGap="10px"
+          gridTemplateRows="70px"
         >
-          <IconButton variant="text" color={theme.palette.secondary.main}>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Icon name="icon-star-filled" size="sm" />
+          </GridContainer>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+          >
             <Icon name="icon-menu-open" />
-          </IconButton>
+          </GridContainer>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Icon name="ic_36_moneybag" size="lg" />
+          </GridContainer>
         </GridContainer>
         <GridContainer
-          outline={`1px solid ${theme.palette.baseFontColor}`}
-          alignItems="center"
-          justifyContent="center"
+          gridTemplateColumns="1fr 1fr 1fr"
+          gridColumnGap="10px"
+          gridTemplateRows="70px"
         >
-          <IconButton>
-            <Icon name="icon-menu" />
-          </IconButton>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <IconButton variant="text" color={theme.palette.secondary.main}>
+              <Icon name="icon-star" size="sm" />
+            </IconButton>
+          </GridContainer>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <IconButton variant="text" color={theme.palette.secondary.main}>
+              <Icon name="icon-menu-open" />
+            </IconButton>
+          </GridContainer>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <IconButton variant="text" color={theme.palette.secondary.main}>
+              <Icon name="ic_36_pram" size="lg" />
+            </IconButton>
+          </GridContainer>
         </GridContainer>
         <GridContainer
-          outline={`1px solid ${theme.palette.baseFontColor}`}
-          alignItems="center"
-          justifyContent="center"
-          color={theme.palette.secondary.main}
+          gridTemplateColumns="1fr 1fr 1fr"
+          gridColumnGap="10px"
+          gridTemplateRows="70px"
         >
-          <Button color="inherit">
-            <Icon name="icon-menu-open" />
-          </Button>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <IconButton>
+              <Icon name="icon-star-filled" size="sm" />
+            </IconButton>
+          </GridContainer>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <IconButton>
+              <Icon name="icon-menu" />
+            </IconButton>
+          </GridContainer>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <IconButton>
+              <Icon name="ic_36_moneybag" size="lg" />
+            </IconButton>
+          </GridContainer>
         </GridContainer>
         <GridContainer
-          outline={`1px solid ${theme.palette.baseFontColor}`}
-          alignItems="center"
-          justifyContent="center"
-          color={theme.palette.secondary.main}
+          gridTemplateColumns="1fr 1fr 1fr"
+          gridColumnGap="10px"
+          gridTemplateRows="70px"
         >
-          <Button variant="text" color="inherit">
-            <Icon name="icon-menu-open" />
-          </Button>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+            color={theme.palette.secondary.main}
+          >
+            <Button color="inherit">
+              <Icon name="icon-star" size="sm" />
+            </Button>
+          </GridContainer>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+            color={theme.palette.secondary.main}
+          >
+            <Button color="inherit">
+              <Icon name="icon-menu-open" />
+            </Button>
+          </GridContainer>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+            color={theme.palette.secondary.main}
+          >
+            <Button color="inherit">
+              <Icon name="ic_36_moneybag" size="lg" />
+            </Button>
+          </GridContainer>
+        </GridContainer>
+        <GridContainer
+          gridTemplateColumns="1fr 1fr 1fr"
+          gridColumnGap="10px"
+          gridTemplateRows="70px"
+        >
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+            color={theme.palette.secondary.main}
+          >
+            <Button variant="text" color="inherit">
+              <Icon name="icon-star-filled" size="sm" />
+            </Button>
+          </GridContainer>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+            color={theme.palette.secondary.main}
+          >
+            <Button variant="text" color="inherit">
+              <Icon name="icon-menu-open" />
+            </Button>
+          </GridContainer>
+          <GridContainer
+            outline={`1px solid ${theme.palette.baseFontColor}`}
+            alignItems="center"
+            justifyContent="center"
+            color={theme.palette.secondary.main}
+          >
+            <Button variant="text" color="inherit">
+              <Icon name="ic_36_pram" size="lg" />
+            </Button>
+          </GridContainer>
         </GridContainer>
       </GridContainer>
     </GridContainer>
