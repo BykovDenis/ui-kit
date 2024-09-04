@@ -1,14 +1,16 @@
+import { terser } from 'rollup-plugin-terser';
 import cleaner from 'rollup-plugin-cleaner';
 import typescript from 'rollup-plugin-typescript2';
+
 import pkg from './package.json';
-import { terser } from 'rollup-plugin-terser';
+import dts from 'rollup-plugin-dts';
 
 export default [
   {
-    input: './src/index.tsx',
+    input: 'src/index.tsx',
     output: [
       {
-        file: pkg.module,
+        file: pkg.main,
         format: 'cjs',
         exports: 'named',
         sourcemap: false,
@@ -30,5 +32,10 @@ export default [
       terser(),
     ],
     external: ['react', 'react-dom'],
+  },
+  {
+    input: './src/index.d.ts',
+    output: [{ file: pkg.types, format: 'es' }],
+    plugins: [dts()],
   },
 ];
