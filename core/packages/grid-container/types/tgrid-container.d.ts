@@ -17,8 +17,8 @@ type TGridContainer = TBaseStyles & {
   rowHeight?: number | string;
   gridTemplateColumns?: string;
   gridTemplateRows?: string;
-  gridRowGap?: string;
-  gridColumnGap?: string;
+  gridRowGap?: number | string;
+  gridColumnGap?: number | string;
   alignItems?: CSS.Property.AlignItems;
   justifyContent?: CSS.Property.JustifyContent;
 };

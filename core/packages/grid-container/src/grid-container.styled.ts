@@ -31,8 +31,8 @@ const GridContainerStyled = styled.div<TGridContainerStyled>`
   grid-template-rows:  ${props.gridTemplateRows};
   ${isNotEmptyNumber(props?.zIndex) ? `z-index: ${props.zIndex};` : ''}
   ${props.gridGap ? `gap: ${getMeasureValue(props.gridGap)};` : ''}
-  ${props.gridColumnGap ? `grid-column-gap: ${props.gridColumnGap};` : ''}
-  ${props.gridRowGap ? `grid-row-gap: ${props.gridRowGap};` : ''}
+  ${props.gridColumnGap ? `grid-column-gap: ${getMeasureValue(props.gridColumnGap)};` : ''}
+  ${props.gridRowGap ? `grid-row-gap: ${getMeasureValue(props.gridRowGap)};` : ''}
   ${props.justifyContent ? `justify-content: ${props.justifyContent};` : ''}
   ${props.alignItems ? `align-items: ${props.alignItems};` : ''}
 `}
