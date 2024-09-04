@@ -9,7 +9,7 @@ function getPathname(pathnameProps: Pathname, size: 'sm' | 'm' | 'lg') {
       return pathnameProps.m;
     }
     case 'lg': {
-      return pathnameProps.sm;
+      return pathnameProps.lg;
     }
     default: {
       return pathnameProps.m;
