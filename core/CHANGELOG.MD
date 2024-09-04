@@ -276,6 +276,10 @@
 </ol>
 
 <h2>v 0.12.6</h2>
+<h3>Features</h3>
+<ol>
+  <li>GridContainer. Extended types props gridRowGap and gridColumnGap. </li>
+</ol>
 <h3>Bugfix</h3>
 <ol>
   <li>Button. Color rendering for the text variant. </li>
