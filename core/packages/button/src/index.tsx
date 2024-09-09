@@ -28,7 +28,9 @@ const Button: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TBut
 
     const color: string = props.disabled
       ? theme.inactiveColor
-      : props?.color || props.variant === 'text'
+      : props?.color
+      ? props?.color
+      : props.variant === 'text'
       ? theme.palette.primary.main
       : theme?.palette?.baseButtonFontColor;
     return (
