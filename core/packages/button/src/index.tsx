@@ -26,7 +26,11 @@ const Button: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TBut
       ? theme?.palette?.primary?.main
       : theme?.palette?.secondary?.main;
 
-    const color: string = props.disabled ? theme.inactiveColor : props?.color || theme?.palette?.baseButtonFontColor;
+    const color: string = props.disabled
+      ? theme.inactiveColor
+      : props?.color || props.variant === 'text'
+      ? theme.palette.primary.main
+      : theme?.palette?.baseButtonFontColor;
     return (
       <ButtonStyled
         {...props}

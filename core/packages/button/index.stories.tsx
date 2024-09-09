@@ -15,6 +15,7 @@ export default {
     disabled: { control: { type: 'radio' }, options: [true, false] },
     fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
     colorTheme: { control: { type: 'select' }, options: [null, 'normal', 'warning'] },
+    textDecoration: { control: { type: 'select' }, options: [undefined, 'underline'] },
   },
   args: {
     disabled: false,
