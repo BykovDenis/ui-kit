@@ -565,6 +565,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 data-btn-set-today="1"
                 disabled={isSetTodayButtonDisabled}
                 data-test-name="setToday"
+                color={theme.palette.baseFontColor}
               >
                 {setTodayTitle}
               </Button>
