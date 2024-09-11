@@ -20,6 +20,7 @@ export default {
     disabled: false,
     label: 'Label for the Radio',
     isIconDisabled: false,
+    borderColor: '',
   },
 } as Meta<typeof Radio>;
 

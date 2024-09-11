@@ -24,7 +24,9 @@ const Radio: React.FunctionComponent<RadioProps> = (props: RadioProps) => {
       : error
       ? theme?.palette?.secondary?.main
       : theme?.palette?.primary?.main;
-    const borderColor: string = props.disabled ? theme?.inactiveBackgroundColor : theme?.mainOutlinedColor;
+    const borderColor: string = props.disabled
+      ? theme?.inactiveBackgroundColor
+      : props?.borderColor || theme?.mainOutlinedColor;
     return (
       <FormControl isExistLabel={props?.label > '' && props?.label !== null}>
         <RadioStyled

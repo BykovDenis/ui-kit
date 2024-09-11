@@ -24,7 +24,9 @@ const Checkbox: React.FunctionComponent<CheckboxProps> = (props: CheckboxProps) 
       : error
       ? theme?.palette?.secondary?.main
       : theme?.palette?.primary?.main;
-    const borderColor: string = props.disabled ? theme?.inactiveBackgroundColor : theme?.mainOutlinedColor;
+    const borderColor: string = props.disabled
+      ? theme?.inactiveBackgroundColor
+      : props.borderColor || theme?.mainOutlinedColor;
     return (
       <FormControl isExistLabel={props?.label > '' && props?.label !== null}>
         <CheckboxStyled
