@@ -6,7 +6,6 @@ import Checkbox from './src';
 import ICheckbox from './types/icheckbox';
 import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
-import { ITheme } from '@sber-risks-ui/styles';
 
 export default {
   title: 'Components/Checkbox',
