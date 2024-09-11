@@ -19,7 +19,12 @@ const Radio: React.FunctionComponent<RadioProps> = (props: RadioProps) => {
   }, [props.error]);
 
   const componentThemed = (theme: ITheme) => {
-    const backgroundColor: string = error ? theme?.palette?.secondary?.main : theme?.palette?.primary?.main;
+    const backgroundColor: string = props.disabled
+      ? theme?.inactiveBackgroundColor
+      : error
+      ? theme?.palette?.secondary?.main
+      : theme?.palette?.primary?.main;
+    const borderColor: string = props.disabled ? theme?.inactiveBackgroundColor : theme?.mainOutlinedColor;
     return (
       <FormControl isExistLabel={props?.label > '' && props?.label !== null}>
         <RadioStyled
@@ -33,7 +38,7 @@ const Radio: React.FunctionComponent<RadioProps> = (props: RadioProps) => {
           checked={props.checked}
           onChange={props.onChange}
           isIconDisabled={props?.isIconDisabled}
-          borderColor={theme?.mainOutlinedColor}
+          borderColor={borderColor}
         />
         <Label
           htmlFor={props.id}

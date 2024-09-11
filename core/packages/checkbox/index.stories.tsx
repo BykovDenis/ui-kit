@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 
-import Checkbox from './src/index';
+import Checkbox from './src';
 import ICheckbox from './types/icheckbox';
 import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
