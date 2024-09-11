@@ -286,4 +286,6 @@
   <li>IconButton. Color rendering for the text variant. </li>
   <li>Datepicker. Update button text color "set today". </li>
   <li>Button. Set primary text color for light theme for text variant. </li>
+  <li>Checkbox. Update disable styles for light theme. </li>
+  <li>Radio. Update disable styles for light theme. </li>
 </ol>

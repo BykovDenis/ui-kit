@@ -19,7 +19,12 @@ const Checkbox: React.FunctionComponent<CheckboxProps> = (props: CheckboxProps) 
   }, [props.error]);
 
   const componentThemed: any = (theme: ITheme) => {
-    const backgroundColor: string = error ? theme?.palette?.secondary?.main : theme?.palette?.primary?.main;
+    const backgroundColor: string = props.disabled
+      ? theme?.inactiveBackgroundColor
+      : error
+      ? theme?.palette?.secondary?.main
+      : theme?.palette?.primary?.main;
+    const borderColor: string = props.disabled ? theme?.inactiveBackgroundColor : theme?.mainOutlinedColor;
     return (
       <FormControl isExistLabel={props?.label > '' && props?.label !== null}>
         <CheckboxStyled
@@ -33,7 +38,7 @@ const Checkbox: React.FunctionComponent<CheckboxProps> = (props: CheckboxProps) 
           onChange={props.onChange}
           indeterminate={props.indeterminate}
           isIconDisabled={props.isIconDisabled}
-          borderColor={theme?.mainOutlinedColor}
+          borderColor={borderColor}
           disabledColor={theme?.palette?.baseFontColor}
         />
         <Label
