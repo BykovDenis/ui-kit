@@ -13,10 +13,10 @@ type TBaseStyles = {
   borderBottom?: CSS.Property.BorderBottom;
   borderRadius?: number;
   gap?: number | string;
-  backgroundColor?: string;
+  backgroundColor?: CSS.Property.BackgroundColor;
   children?: any | Array<React.ReactNode>;
   className?: string;
-  color?: string;
+  color?: CSS.Property.Color;
   disabled?: boolean;
   error?: boolean;
   fontFamily?: CSS.Property.FontFamily;

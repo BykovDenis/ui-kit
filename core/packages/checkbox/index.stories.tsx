@@ -1,11 +1,12 @@
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
+import React, { useContext } from 'react';
 
 import Checkbox from './src';
 import ICheckbox from './types/icheckbox';
 import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
+import { ITheme } from '@sber-risks-ui/styles';
 
 export default {
   title: 'Components/Checkbox',
@@ -25,6 +26,7 @@ export default {
     indeterminate: false,
     isIconDisabled: false,
     fontSize: 14,
+    borderColor: '',
   },
 } as Meta<typeof Checkbox>;
 
@@ -44,6 +46,7 @@ const TemplateLightTheme: StoryFn<typeof Checkbox> = (args: ICheckbox) => {
 
 const TemplateDarkTheme: StoryFn<typeof Checkbox> = (args: ICheckbox) => {
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
   return (
     <ReactThemeContext.Provider value={themes.dark}>
       {' '}

@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import TBaseStyles from '../../types/tbase-styles';
+import CSS from 'csstype';
 
 type RadioProps = TBaseStyles & {
   ReactThemeContext?: any;
@@ -13,6 +14,7 @@ type RadioProps = TBaseStyles & {
   theme?: any;
   value?: string;
   isIconDisabled?: boolean;
+  borderColor?: CSS.Property.BorderColor;
 };
 
 export default RadioProps;

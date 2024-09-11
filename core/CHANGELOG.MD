@@ -279,6 +279,8 @@
 <h3>Features</h3>
 <ol>
   <li>GridContainer. Extended types props gridRowGap and gridColumnGap. </li>
+  <li>Checkbox. Pass border color. </li>
+  <li>Radio. Pass border color. </li>
 </ol>
 <h3>Bugfix</h3>
 <ol>
