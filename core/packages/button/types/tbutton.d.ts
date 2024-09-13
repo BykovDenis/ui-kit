@@ -1,23 +1,18 @@
 import React from 'react';
 import TButtonVariants from './tbutton-variants';
 import TButtonStyled from './tbutton-styled';
-import * as CSS from 'csstype';
+import TBaseStyles from '../../types/tbase-styles';
 
-type TButton = TButtonStyled & {
-  ReactThemeContext?: any;
-  children?: React.ReactNode | string;
-  className?: any;
-  colorTheme?: 'normal' | 'warning';
-  dataset?: any;
-  id?: string;
-  name?: string;
-  onClick?: (evt: React.ChangeEvent<HTMLButtonElement>) => void;
-  onDragStart?: (evt: any) => void;
-  theme?: any;
-  variant?: TButtonVariants;
-  justifyContent?: CSS.Property.JustifyContent;
-  alignItems?: CSS.Property.AlignItems;
-  padding?: CSS.Property.Padding;
-};
+type TButton = TBaseStyles &
+  TButtonStyled & {
+    ReactThemeContext?: any;
+    children?: React.ReactNode | string;
+    colorTheme?: 'normal' | 'warning';
+    dataset?: any;
+    onClick?: (evt: React.ChangeEvent<HTMLButtonElement>) => void;
+    onDragStart?: (evt: any) => void;
+    theme?: any;
+    variant?: TButtonVariants;
+  };
 
 export default TButton;

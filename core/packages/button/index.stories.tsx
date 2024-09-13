@@ -20,6 +20,7 @@ export default {
   args: {
     disabled: false,
     children: 'Click me',
+    justifyContent: '',
   },
 } as Meta<typeof Button>;
 
@@ -40,7 +41,7 @@ const ThemeDarkTemplate: StoryFn<typeof Button> = (args: TButton) => {
 
   return (
     <ReactThemeContext.Provider value={themes.dark}>
-      <Button {...args} name="button1" onClick={action('clicked')}>
+      <Button {...args} name="button1" onClick={action('clicked')} width={100}>
         {args.children}
       </Button>
     </ReactThemeContext.Provider>

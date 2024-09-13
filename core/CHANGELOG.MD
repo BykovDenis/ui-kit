@@ -281,6 +281,7 @@
   <li>GridContainer. Extended types props gridRowGap and gridColumnGap. </li>
   <li>Checkbox. Pass border color. </li>
   <li>Radio. Pass border color. </li>
+  <li>Button. Pass props: justifyContent, textAlign, fontFamily. </li>
 </ol>
 <h3>Bugfix</h3>
 <ol>
