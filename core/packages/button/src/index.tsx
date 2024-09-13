@@ -45,6 +45,7 @@ const Button: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TBut
         fontSize={props?.fontSize ?? theme?.baseFontSize}
         theme={theme}
         dataset={props?.dataset}
+        fontFamily={props?.fontFamily || theme?.fontFamily}
         focusColor={props.focusColor || backgroundColor}
         onDragStart={props?.onDragStart}
         error={error}
