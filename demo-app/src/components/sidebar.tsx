@@ -7,9 +7,10 @@ import { ReactThemeContext } from "./app";
 import { ITheme } from "@sber-risks-ui/core/styles";
 import ListItemLinkStyled from "./common/list-item-link.styled";
 
-const Sidebar: React.FunctionComponent = () => {
+const SideBar: React.FunctionComponent = () => {
   const pathname: string = document.location.pathname;
 
+  const isHomePageActive: boolean = pathname === "/";
   const isDatepickerActive: boolean = pathname?.indexOf("datepicker") > -1;
   const isInputActive: boolean = pathname?.indexOf("input") > -1;
   const isTextFieldActive: boolean = pathname?.indexOf("textfield") > -1;
@@ -17,6 +18,8 @@ const Sidebar: React.FunctionComponent = () => {
   const isSwitcherActive: boolean = pathname?.indexOf("/switcher") > -1;
   const isErrorsStateActive: boolean = pathname?.indexOf("/errors-state") > -1;
   const isContainersActive: boolean = pathname?.indexOf("/containers") > -1;
+  const isPopupEventAccordionActive: boolean =
+    pathname?.indexOf("/popup-event-accordion") > -1;
   const isSelectActive: boolean =
     pathname?.indexOf("select") > -1 && pathname?.indexOf("multi") === -1;
   const isIconActive: boolean = pathname?.indexOf("/icon") > -1;
@@ -30,6 +33,23 @@ const Sidebar: React.FunctionComponent = () => {
           Testing components
         </Typography>
         <List type="list" width={250}>
+          <ListItem
+            type="text"
+            backgroundColor={
+              isHomePageActive
+                ? theme.palette.primary.main
+                : theme.mainBackgroundColor
+            }
+            height={60}
+          >
+            <ListItemLinkStyled
+              color={theme.palette.baseFontColor}
+              fontFamily={theme.fontFamily}
+              href="/"
+            >
+              Home page
+            </ListItemLinkStyled>
+          </ListItem>
           <ListItem
             type="text"
             backgroundColor={
@@ -183,10 +203,27 @@ const Sidebar: React.FunctionComponent = () => {
               Icon testing
             </ListItemLinkStyled>
           </ListItem>
+          <ListItem
+            type="text"
+            backgroundColor={
+              isPopupEventAccordionActive
+                ? theme.palette.primary.main
+                : theme.mainBackgroundColor
+            }
+            height={60}
+          >
+            <ListItemLinkStyled
+              color={theme.palette.baseFontColor}
+              fontFamily={theme.fontFamily}
+              href="/popup-event-accordion"
+            >
+              Popup event accordion testing
+            </ListItemLinkStyled>
+          </ListItem>
         </List>
       </FlexContainer>
     </>
   );
 };
 
-export default Sidebar;
+export default SideBar;
