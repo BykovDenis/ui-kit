@@ -68,6 +68,28 @@ pipeline {
                 }
             }
         }
+        stage('Root packages installing') {
+            tools
+            {
+                nodejs 'node-v20.9.0-linux-x64'
+            }
+            steps {
+                nodejs('node-v20.9.0-linux-x64') {
+                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                        sh 'npm -v'
+                        sh 'node -v'
+                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                            dir("${rootPath}") {
+                                script {
+                                    echo 'Root packages installing'
+                                    sh 'npm ci'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         stage('Styles theme deploy') {
             tools
             {
@@ -85,28 +107,6 @@ pipeline {
                                     sh 'npm run build'
                                     echo 'Clean'
                                     sh 'npm run clean-node-modules'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stage('Root packages installing') {
-            tools
-            {
-                nodejs 'node-v20.9.0-linux-x64'
-            }
-            steps {
-                nodejs('node-v20.9.0-linux-x64') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        sh 'npm -v'
-                        sh 'node -v'
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Root packages installing'
-                                    sh 'npm ci'
                                 }
                             }
                         }
