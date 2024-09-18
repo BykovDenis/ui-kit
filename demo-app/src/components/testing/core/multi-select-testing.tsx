@@ -1,20 +1,32 @@
-import React, { useState } from 'react';
-import MultiSelect from '@sber-risks-ui/core/multi-select';
-import { TMultiSelectOption } from '@sber-risks-ui/core/multi-select';
-import GridContainer from '@sber-risks-ui/core/grid-container';
-import Button from '@sber-risks-ui/core/button';
-import FormControl from '@sber-risks-ui/core/form-control';
-import FlexContainer from '@sber-risks-ui/core/flex-container';
+import React, { useState } from "react";
+
+// import MultiSelect from "../../../../../core/packages/multi-select/src";
+
+// components from package library
+import MultiSelect from "@sber-risks-ui/core/multi-select";
+import { TMultiSelectOption } from "@sber-risks-ui/core/multi-select";
+import GridContainer from "@sber-risks-ui/core/grid-container";
+import Button from "@sber-risks-ui/core/button";
+import FormControl from "@sber-risks-ui/core/form-control";
+import FlexContainer from "@sber-risks-ui/core/flex-container";
 
 const MultiSelectTesting: React.FunctionComponent = () => {
-  const [columnsSelected0, setColumnNamesSelected0] = useState<Array<TMultiSelectOption> | []>([]);
-  const [columnsSelected1, setColumnNamesSelected1] = useState<Array<string> | []>(['2', '1']);
-  const [columnsSelected2, setColumnNamesSelected2] = useState<Array<any> | []>([
-    { label: 'five', value: 5 },
-    { label: 'three', value: 3 },
-    { label: 'twofff', value: 2 },
-  ]);
-  const [columnsSelected3, setColumnNamesSelected3] = useState<Array<TMultiSelectOption> | []>([]);
+  const [columnsSelected0, setColumnNamesSelected0] = useState<
+    Array<TMultiSelectOption> | []
+  >([]);
+  const [columnsSelected1, setColumnNamesSelected1] = useState<
+    Array<string> | []
+  >(["2", "1"]);
+  const [columnsSelected2, setColumnNamesSelected2] = useState<Array<any> | []>(
+    [
+      { label: "five", value: 5 },
+      { label: "three", value: 3 },
+      { label: "twofff", value: 2 },
+    ]
+  );
+  const [columnsSelected3, setColumnNamesSelected3] = useState<
+    Array<TMultiSelectOption> | []
+  >([]);
 
   // const columns: Array<TMultiSelectOption> = [
   //   { label: 'one', value: 1 },
@@ -28,22 +40,39 @@ const MultiSelectTesting: React.FunctionComponent = () => {
   // ];
 
   const columns: Array<any> = [
-    { value: 'B1_EA_UK', label: 'B1_EA_UK' },
-    { value: 'B1_ES_UK', label: 'B1_ES_UK' },
-    { value: 'B1_OL_UK', label: 'B1_OL_UK' },
-    { value: 'B1_SC_UK', label: 'B1_SC_UK' },
-    { value: 'B1_SH_UK', label: 'B1_SH_UK' },
-    { value: 'B1_SS1PRUK', label: 'B1_SS1PRUK' },
-    { value: 'B1_SS1_UK', label: 'B1_SS1_UK' },
-    { value: 'B2_AB_UK', label: 'B2_AB_UK' },
-    { value: 'BOOK-UA', label: 'BOOK-UA' },
-    { value: 'BOOK1_CP', label: 'BOOK1_CP' },
-    { value: 'BOOK1_GP', label: 'BOOK1_GP' },
-    { value: 'BOOK2_NUC', label: 'BOOK2_NUC' },
+    { value: "B1_EA_UK", label: "B1_EA_UK" },
+    { value: "B1_ES_UK", label: "B1_ES_UK" },
+    { value: "B1_OL_UK", label: "B1_OL_UK" },
+    { value: "B1_SC_UK", label: "B1_SC_UK" },
+    { value: "B1_SH_UK", label: "B1_SH_UK" },
+    { value: "B1_SS1PRUK", label: "B1_SS1PRUK" },
+    { value: "B1_SS1_UK", label: "B1_SS1_UK" },
+    { value: "B2_AB_UK", label: "B2_AB_UK" },
+    { value: "BOOK-UA", label: "BOOK-UA" },
+    { value: "BOOK1_CP", label: "BOOK1_CP" },
+    { value: "BOOK1_GP", label: "BOOK1_GP" },
+    { value: "BOOK2_NUC", label: "BOOK2_NUC" },
   ];
 
-  const columns1: Array<string> = ['1', '5', '7', '9', '4', '32', '43', '3232323232323', '4234'];
-  const columns2: Array<string> = ['one', 'two', 'three', 'four', 'five', 'six'];
+  const columns1: Array<string> = [
+    "1",
+    "5",
+    "7",
+    "9",
+    "4",
+    "32",
+    "43",
+    "3232323232323",
+    "4234",
+  ];
+  const columns2: Array<string> = [
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+  ];
 
   const onMultiSelect0Change = (columnNames: Array<TMultiSelectOption>) => {
     setColumnNamesSelected0(columnNames);
@@ -68,7 +97,12 @@ const MultiSelectTesting: React.FunctionComponent = () => {
 
   return (
     <>
-      <FlexContainer padding="40px" width={300} flexDirection="column" alignItems="flex-start">
+      <FlexContainer
+        padding="40px"
+        width={300}
+        flexDirection="column"
+        alignItems="flex-start"
+      >
         <FormControl width="initial" margin="0 0 15px 0">
           <Button onClick={onMultiSelect1Clean}>Clear filters</Button>
         </FormControl>
@@ -100,7 +134,6 @@ const MultiSelectTesting: React.FunctionComponent = () => {
           onChange={onMultiSelect2Change}
           fontSize={14}
         />
-        {/*<MultiSelect sortDirection="asc" height={100}  isUseLocaleStorage={true} id="multi-select-3" label="some-label" name="someColumns3" elementNamesDefaultSelected={columnsSelected3} elementNames={columns1} onChange={onMultiSelect3Change}  />*/}
       </GridContainer>
     </>
   );

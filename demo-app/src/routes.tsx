@@ -18,6 +18,7 @@ import SwitcherTesting from "./components/testing/core/switcher-testing";
 import ErrorsStateTesting from "./components/testing/core/errors-state-testing";
 import ContainersTesting from "./components/testing/core/containers-testing";
 import IconTesting from "./components/testing/icon/icon-testing";
+import PopupEventAccordion from "./components/testing/core/popup-event-accordion";
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -93,7 +94,7 @@ const iconRoute = createRoute({
 const popupEventAccordionRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/popup-event-accordion",
-  component: IconTesting,
+  component: PopupEventAccordion,
 });
 
 const routeTree = rootRoute.addChildren([

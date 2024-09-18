@@ -282,6 +282,7 @@
   <li>Checkbox. Pass border color. </li>
   <li>Radio. Pass border color. </li>
   <li>Button. Pass props: justifyContent, textAlign, fontFamily. </li>
+  <li>Datepicker, Select, Multiselect. Toggle popups. </li>
 </ol>
 <h3>Bugfix</h3>
 <ol>
