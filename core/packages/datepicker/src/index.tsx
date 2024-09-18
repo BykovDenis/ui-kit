@@ -218,6 +218,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     if (props?.onBlur && props?.value !== value) {
       props.onBlur(props.name, value, validationDate.isValid && !isError);
     }
+    setIsVisibleList(false);
   };
 
   const onDatesContainerClose = (isSearchResult: boolean, evt?: React.ChangeEvent<HTMLElement>) => {

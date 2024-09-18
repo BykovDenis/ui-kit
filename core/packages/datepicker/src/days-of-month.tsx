@@ -94,6 +94,7 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
             name={dayValueParsed}
             disabled={disabled}
             primaryColor={props.primaryColor}
+            type="button"
           >
             {dayValueParsed}
           </DayOfMonth>

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import searchDomChildElement from '../../helpers/search-dom-child-element';
 import Input from '../../input/src';
@@ -26,6 +25,7 @@ import {
   IS_NOT_USE_DEBOUNCE_COUNT,
   TEXT_ALIGN_CENTER,
 } from '../../constants';
+import { v4 as uuidv4 } from 'uuid';
 
 function getElementsParsed(elements: Array<IOption | string | number>, name: string): Array<IOption> {
   return elements?.map((element: string | number | IOption) => {
@@ -100,14 +100,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [isEdited, setIsEdited] = useState<boolean>(false);
   const [activeIndexElement, setActiveIndexElement] = useState<number>(null);
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-  const [id] = useState<string>(`${props.id}-${uuidv4()}`);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
 
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
   const selectListContainerRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const [uuid] = useState<string>(uuidv4());
 
   const onSelectChange = (evt: React.ChangeEvent<HTMLElement> | React.MouseEvent<HTMLElement, MouseEvent>) => {
     const element: any = evt.target;
@@ -129,7 +125,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     }
     setLabel(props?.regExp ? activeElementState?.label?.replaceAll(props.regExp, '') : activeElementState?.label);
     setIsEdited(false);
-    setIsVisibleList(!isVisibleList);
+    setIsVisibleList((isVisibleList: boolean) => !isVisibleList);
   };
 
   const onListItemsClose = (isSearchResult: boolean, evt?: any) => {
@@ -192,6 +188,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, []);
 
   useEffect(() => {
+    setConsumer(globalThis.ReactThemeContextConsumer);
+  }, [globalThis.ReactThemeContextConsumer]);
+
+  useEffect(() => {
     const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);
     setActiveElement(activeElementParsed);
     setLabel(props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label);
@@ -252,7 +252,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsFocus(true);
     setIsVisibleList(true);
     if (isScrollingToSelected) {
-      const elements = document.querySelector(`#${id}-list-items`);
+      const elements = document.querySelector(`#${uuid}-list-items`);
       if (elements) {
         const options = elements.children[0].getBoundingClientRect();
         if (options && activeIndexElement > 0) {
@@ -278,6 +278,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       setIsFocus(false);
       setIsEdited(false);
       setActiveElement(isFoundValue ? activeElementParsed : null);
+      setIsVisibleList(false);
     };
 
     const indicatorColor: string = !props?.isReadOnly
@@ -300,7 +301,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     );
 
     return (
-      <SelectContainer data-test={props.id} id={id} width={props?.width} height={props?.height} margin={props.margin}>
+      <SelectContainer data-test={props.id} id={uuid} width={props?.width} height={props?.height} margin={props.margin}>
         <SelectHeader height={props?.height || DEFAULT_HEIGHT}>
           {props?.label && (
             <LabelContainer isExistValue={isExistValue || isFocus} backgroundColor={backgroundColor}>
