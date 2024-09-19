@@ -93,7 +93,11 @@ const PopupEventAccordion: React.FunctionComponent = () => {
         gap={30}
         margin="20px"
       >
-        <GridContainer outline="1px dashed pink" padding="10px">
+        <GridContainer
+          outline="1px dashed pink"
+          padding="10px"
+          fontWeight={900}
+        >
           <Datepicker
             name="datepicker-1"
             id="datepicker-1"
