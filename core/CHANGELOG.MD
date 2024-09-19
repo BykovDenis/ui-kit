@@ -283,7 +283,7 @@
   <li>Radio. Pass border color. </li>
   <li>Button. Pass props: justifyContent, textAlign, fontFamily. </li>
   <li>Datepicker, Select, Multiselect. Toggle popups. </li>
-  <li>Datepicker. Font weight, set to Regular for button set today  </li>
+  <li>Datepicker. Font weight, set to Regular for button set today.  </li>
 </ol>
 <h3>Bugfix</h3>
 <ol>
