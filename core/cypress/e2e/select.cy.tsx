@@ -18,7 +18,7 @@ describe('Testing Select component', () => {
   });
   it('Test 2. Select number value', () => {
     cy.get('#select-digits')
-      .focus()
+      .click()
       .type('32')
       .then(() => {
         cy.get('#select-digits-list div:first button')
@@ -31,7 +31,7 @@ describe('Testing Select component', () => {
   });
   it('Test 3. Select object value', () => {
     cy.get('#select-object')
-      .focus()
+      .click()
       .type('юль')
       .then(() => {
         cy.get('#select-object-list div:first button')
@@ -44,7 +44,7 @@ describe('Testing Select component', () => {
   });
   it('Test 4. Test new element', () => {
     cy.get('#select-text')
-      .focus()
+      .click()
       .type('vne')
       .then(() => {
         cy.get('#select-text-list').find('button').should('have.length', 4);
@@ -64,7 +64,7 @@ describe('Testing Select component', () => {
           });
       });
     cy.get('#select-text')
-      .focus()
+      .click()
       .type('vnekb')
       .then(() => {
         cy.get('#select-text-list').find('button').should('have.length', 1);
@@ -77,14 +77,14 @@ describe('Testing Select component', () => {
           });
       });
     cy.get('#select-text')
-      .focus()
+      .click()
       .type('vnek')
       .then(() => {
         cy.get('#select-text-list').find('button').should('have.length', 3);
         cy.get('#select-text-list').find('button').last().contains('Create new');
       });
     cy.get('#select-text')
-      .focus()
+      .click()
       .type('b1')
       .then(() => {
         cy.get('#select-text-list').find('button').should('have.length', 1);

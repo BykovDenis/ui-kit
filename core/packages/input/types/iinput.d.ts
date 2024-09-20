@@ -35,7 +35,6 @@ interface IInput extends TBaseStyles {
   ref?: any;
   required?: boolean;
   step?: number;
-  textAlign?: string;
   textMessage?: string;
   theme?: any;
   type?: string;
@@ -43,10 +42,11 @@ interface IInput extends TBaseStyles {
   variant?: 'outlined' | 'text' | 'contained';
   inputComponent?: any;
   placeholder?: string;
-  textAling?: string;
+  textAlign?: string;
   inputRef?: React.MutableRefObject<HTMLInputElement>;
   isNotRunDebounce?: boolean;
   height?: number;
+  delayDebounce?: number;
 }
 
 export default IInput;
