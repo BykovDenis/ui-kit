@@ -11,7 +11,7 @@ interface IDatepickerButtonNavigate extends TButton {
   fontFamily: string;
   fontSize: number;
   id?: any;
-  onClick?: (evt: any) => void;
+  onMouseDown?: (evt: any) => void;
 }
 
 const DatepickerButtonNavigate: React.FunctionComponent<IDatepickerButtonNavigate> = (

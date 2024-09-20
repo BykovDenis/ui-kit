@@ -9,6 +9,7 @@ import DaysOfMonthStyled from './days-of-month.styled';
 import getUniqueIndex from '../../helpers/get-unique-index';
 import DatepickerMask from '../enums/datepicker-mask';
 import TPatritionDate from '../types/tpatrition-date';
+import UiKitComponent from '../../enums/ui-kit-component';
 
 interface IDaysOfMonth {
   id: string;
@@ -35,6 +36,7 @@ interface IDaysOfMonth {
 
 const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth) => {
   const onDayChange = (evt: React.MouseEvent<HTMLButtonElement>) => {
+    evt.stopPropagation();
     const element = evt.currentTarget;
     props.onDayChange(parseInt(element.name, 10));
   };
@@ -47,13 +49,13 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
       : null;
 
   return (
-    <DaysOfMonthStyled id={props.id}>
+    <DaysOfMonthStyled id={props.id} data-ui-kit-component={UiKitComponent.Datepicker}>
       {daysElements?.map((element: number, index: number) => {
         const actualNumberDayOfWeek: number = index + 1;
         const dayValue: number = actualNumberDayOfWeek - numberDayInWeek + (numberDayInWeek > 0 ? 1 : 0);
         const dayValueParsed: string = dayValue?.toString();
         if (numberDayInWeek > actualNumberDayOfWeek || dayValue > props.countDaysIsMonth) {
-          return <DayEmptyOfMonth key={getUniqueIndex()} />;
+          return <DayEmptyOfMonth key={getUniqueIndex()} data-ui-kit-component={UiKitComponent.Datepicker} />;
         }
 
         const actualDateValue =
@@ -79,6 +81,8 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
 
         return (
           <DayOfMonth
+            name={dayValueParsed}
+            data-ui-kit-component={UiKitComponent.Datepicker}
             fontFamily={props.fontFamily}
             hoverBackgroundColor={props.hoverBackgroundColor}
             activeBackgroundColor={props.activeBackgroundColor}
@@ -91,7 +95,6 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
             numberDayInWeek={props.numberDayInWeek}
             key={`day-number-${dayValue}-${index}-${dayValueParsed}`}
             onClick={onDayChange}
-            name={dayValueParsed}
             disabled={disabled}
             primaryColor={props.primaryColor}
             type="button"

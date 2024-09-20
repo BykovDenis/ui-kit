@@ -252,7 +252,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsFocus(true);
     setIsVisibleList(true);
     if (isScrollingToSelected) {
-      const elements = document.querySelector(`#${uuid}-list-items`);
+      const elements = document.querySelector(`#${props.id || uuid}-list-items`);
       if (elements) {
         const options = elements.children[0].getBoundingClientRect();
         if (options && activeIndexElement > 0) {
@@ -323,6 +323,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
           )}
           {!props.isNotVisibleIndicator && <SelectIndicator backgroundColor={indicatorColor} />}
           <Input
+            {...props}
             id={`${props.id}`}
             name={props.name}
             height={props?.height}
@@ -363,6 +364,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
         </SelectHeader>
         {isVisibleList && (
           <SelectListContainer
+            {...props}
             backgroundColor={backgroundColor}
             outlinedColor={theme.palette.primary.moreLighter}
             ref={selectListContainerRef}

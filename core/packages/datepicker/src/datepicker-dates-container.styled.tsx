@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import React from 'react';
 import getMeasureValue from '../../helpers/get-measure-value';
+import UiKitComponent from '../../enums/ui-kit-component';
 
 type TDatepickerDatesContainer = {
   ref?: any;
@@ -13,7 +14,10 @@ type TDatepickerDatesContainer = {
   top: number;
 };
 
-const DatepickerDatesContainer = styled.div.attrs({ 'data-days-on-month': true })<TDatepickerDatesContainer>`
+const DatepickerDatesContainer = styled.div.attrs({
+  'data-days-on-month': true,
+  'data-ui-kit-component': UiKitComponent.Datepicker,
+})<TDatepickerDatesContainer>`
   position: absolute;
   margin-bottom: 5px;
   margin-top: -3px;

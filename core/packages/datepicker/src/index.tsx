@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import {
+  DEFAULT_HEIGHT,
   FONT_WEIGHT_REGULAR,
   INPUT_TAG,
   TAG_NAME_PATH,
   TAG_NAME_SVG,
   TEXT_ALIGN_LEFT,
-  DEFAULT_HEIGHT,
 } from '../../constants';
 import Divider from '../../divider/src/divider.styled';
 import Locale from '../../enums/locale';
@@ -45,6 +45,7 @@ import ChevronBtnRightIcon from './icons/chevron-btn-right-icon';
 import ButtonDelete from '../../customs-styled-components/button-delete.styled';
 import dayjs, { Dayjs } from 'dayjs';
 import parseStringInsteadDate from '../helpers/parse-string-instead-date';
+import UiKitComponent from '../../enums/ui-kit-component';
 
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
@@ -136,13 +137,20 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const onMouseOutUp = (evt: any) => {
     const element: any = evt.target;
+    const currentElement = evt.currentTarget;
+    const dataUiKitComponent: UiKitComponent = element?.dataset?.uiKitComponent;
+    const currentElementDataUiKitComponent: UiKitComponent = currentElement?.dataset?.uiKitComponent;
     const dataId: string = element?.dataset?.id;
     if (dateRef) {
       const listElement: any = dateRef?.current;
       if (listElement) {
         onDatesContainerClose(searchDomChildElement(listElement, element), evt);
       }
-      if (dataId && element.id !== props.id) {
+      if (
+        (dataUiKitComponent !== UiKitComponent.Datepicker &&
+          currentElementDataUiKitComponent !== UiKitComponent.Datepicker) ||
+        (dataId && element.id !== props.id)
+      ) {
         setIsVisibleList(false);
       }
     }
@@ -208,7 +216,12 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     }
   };
 
-  const onInputBlur = () => {
+  const onInputBlur = (evt: any) => {
+    const element: any = evt.target;
+    const dataUiKitComponent: UiKitComponent = element?.dataset.uiKitComponent;
+    if (dataUiKitComponent !== UiKitComponent.Datepicker) {
+      setIsVisibleList(false);
+    }
     setIsFocus(false);
     const validationDate: {
       isValid: boolean;
@@ -218,7 +231,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     if (props?.onBlur && props?.value !== value) {
       props.onBlur(props.name, value, validationDate.isValid && !isError);
     }
-    setIsVisibleList(false);
   };
 
   const onDatesContainerClose = (isSearchResult: boolean, evt?: React.ChangeEvent<HTMLElement>) => {
@@ -451,6 +463,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const isSetTodayButtonDisabled: boolean = !isValidByMinDate || !isValidByMaxDate;
     return (
       <DatepickerContainerStyled
+        data-ui-kit-component={UiKitComponent.Datepicker}
         backgroundImage={props?.backgroundImage}
         width={props?.width}
         minWidth={props?.minWidth}
@@ -482,6 +495,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             id={props.id}
             name={props.name}
             data-id={props.id}
+            data-ui-kit-component={UiKitComponent.Datepicker}
             height={props?.height}
             width={props?.width}
             variant={props?.variant}
@@ -531,6 +545,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             ) : (
               <ButtonDelete
                 data-name="datepicker-calendar-btn-close"
+                data-ui-kit-component={UiKitComponent.Datepicker}
                 className="delete-button"
                 hoverColor={hoverColor}
                 focusColor={focusColor}
@@ -560,31 +575,37 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           >
             <FormControl justifyContent="center" margin="0 0 3px 0">
               <Button
+                data-btn-set-today="1"
+                data-test-name="setToday"
+                data-ui-kit-component={UiKitComponent.Datepicker}
                 height={15}
                 variant="text"
                 textDecoration="underline"
-                data-btn-set-today="1"
                 disabled={isSetTodayButtonDisabled}
-                data-test-name="setToday"
                 color={theme.palette.primary.main}
                 fontWeight={400}
               >
                 {setTodayTitle}
               </Button>
             </FormControl>
-            <MonthsYearsRuleContainer>
-              <DatepickerNavigateContainerStyled>
+            <MonthsYearsRuleContainer data-ui-kit-component={UiKitComponent.Datepicker}>
+              <DatepickerNavigateContainerStyled data-ui-kit-component={UiKitComponent.Datepicker}>
                 <DatepickerButtonNavigate
                   id={`get-previous-month-${props.id}`}
+                  data-ui-kit-component={UiKitComponent.Datepicker}
                   fontSize={18}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   color={theme.palette.primary.main}
                   onClick={onGetPreviousMonth}
                 >
-                  <ChevronBtnLeftIcon color={theme.palette.baseFontColor} />
+                  <ChevronBtnLeftIcon
+                    color={theme.palette.baseFontColor}
+                    data-ui-kit-component={UiKitComponent.Datepicker}
+                  />
                 </DatepickerButtonNavigate>
                 <Select
                   id={`datepicker-month-${props.id}`}
+                  data-ui-kit-component={UiKitComponent.Datepicker}
                   name="month"
                   onChange={onMonthNameChange}
                   onRemove={onMonthRemove}
@@ -603,26 +624,35 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 />
                 <DatepickerButtonNavigate
                   id={`get-next-month-${props.id}`}
+                  data-ui-kit-component={UiKitComponent.Datepicker}
                   fontSize={18}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   color={theme.palette.primary.main}
                   onClick={onGetNextMonth}
                 >
-                  <ChevronBtnRightIcon color={theme.palette.baseFontColor} />
+                  <ChevronBtnRightIcon
+                    color={theme.palette.baseFontColor}
+                    data-ui-kit-component={UiKitComponent.Datepicker}
+                  />
                 </DatepickerButtonNavigate>
               </DatepickerNavigateContainerStyled>
-              <DatepickerNavigateContainerStyled>
+              <DatepickerNavigateContainerStyled data-ui-kit-component={UiKitComponent.Datepicker}>
                 <DatepickerButtonNavigate
                   id={`get-previous-year-${props.id}`}
+                  data-ui-kit-component={UiKitComponent.Datepicker}
                   fontSize={18}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   color={theme.palette.primary.main}
                   onClick={onGetPreviousYear}
                 >
-                  <ChevronBtnLeftIcon color={theme.palette.baseFontColor} />
+                  <ChevronBtnLeftIcon
+                    color={theme.palette.baseFontColor}
+                    data-ui-kit-component={UiKitComponent.Datepicker}
+                  />
                 </DatepickerButtonNavigate>
                 <Select
                   id={`datepicker-year-${props.id}`}
+                  data-ui-kit-component={UiKitComponent.Datepicker}
                   name="year"
                   onChange={onYearNameChange}
                   onRemove={onYearRemove}
@@ -641,23 +671,28 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 />
                 <DatepickerButtonNavigate
                   id={`get-next-year-${props.id}`}
+                  data-ui-kit-component={UiKitComponent.Datepicker}
                   fontSize={18}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
                   color={theme.palette.primary.main}
                   onClick={onGetNextYear}
                 >
-                  <ChevronBtnRightIcon color={theme.palette.baseFontColor} />
+                  <ChevronBtnRightIcon
+                    color={theme.palette.baseFontColor}
+                    data-ui-kit-component={UiKitComponent.Datepicker}
+                  />
                 </DatepickerButtonNavigate>
               </DatepickerNavigateContainerStyled>
             </MonthsYearsRuleContainer>
             <DaysOfWeek
               primaryColor={theme.palette.primary.main}
+              data-ui-kit-component={UiKitComponent.Datepicker}
               secondaryColor={theme.palette.secondary.main}
               fontSize={fontSize}
               fontFamily={props?.fontFamily || theme?.fontFamily}
               locale={props?.locale}
             />
-            <Divider color={theme.palette.primary.main} />
+            <Divider color={theme.palette.primary.main} data-ui-kit-component={UiKitComponent.Datepicker} />
             <DaysOfMonth
               id={`${props.id}-grid`}
               countDaysIsMonth={countDaysIsMonth}
