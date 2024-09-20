@@ -5,8 +5,12 @@ import MultiSelect from "../../../../../core/packages/multi-select/src";
 import { toast } from "react-toastify";
 import React, { useState } from "react";
 import DatepickerMask from "@sber-risks-ui/core/datepicker/enums/datepicker-mask";
+import Input from "../../../../../core/packages/input/src";
+import TextField from "../../../../../core/packages/textfield/src";
+import { success } from "../../../utils/dev-utils-theme";
 
 // components from package library
+import Label from "@sber-risks-ui/core/label";
 // import GridContainer from "@sber-risks-ui/core/grid-container";
 // import Datepicker from "@sber-risks-ui/core/datepicker";
 // import Select from "@sber-risks-ui/core/select";
@@ -15,10 +19,14 @@ import DatepickerMask from "@sber-risks-ui/core/datepicker/enums/datepicker-mask
 const PopupEventAccordion: React.FunctionComponent = () => {
   const [datepicker1, setDatepicker1] = useState<string | null>(null);
   const [datepicker2, setDatepicker2] = useState<string | null>(null);
+  const [inputValue1, setInputValue1] = useState<string | null>(null);
+  const [inputValue2, setInputValue2] = useState<string | null>(null);
 
   const onDatepicker1Change = (name: string, newDataValue: string) => {
     setDatepicker1(newDataValue);
-    toast("datepicker1 =" + newDataValue, { type: "success" });
+    if (newDataValue) {
+      toast("datepicker1 =" + newDataValue, { type: "success" });
+    }
   };
 
   const onDatepicker1Remove = () => {
@@ -27,7 +35,9 @@ const PopupEventAccordion: React.FunctionComponent = () => {
 
   const onDatepicker2Change = (name: string, newDataValue: string) => {
     setDatepicker2(newDataValue);
-    toast("datepicker2 =" + newDataValue, { type: "success" });
+    if (newDataValue) {
+      toast("datepicker2 =" + newDataValue, { type: "success" });
+    }
   };
 
   const onDatepicker2Remove = () => {
@@ -85,10 +95,37 @@ const PopupEventAccordion: React.FunctionComponent = () => {
     setColumnNamesSelected2(columnNames);
   };
 
+  const onInputValue1Change = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const element = evt.target;
+    const valueParsed: string | null = element.value
+      ? element.value?.toString()
+      : null;
+    setInputValue1(valueParsed);
+    console.log(success(valueParsed));
+  };
+
+  const onInputValue1Remove = (name: string) => {
+    setInputValue1(null);
+  };
+
+  const onInputValue2Change = (
+    evt: React.ChangeEvent,
+    name: string,
+    value: number | string | null | undefined
+  ) => {
+    const valueParsed: string | null = value ? value?.toString() : null;
+    setInputValue2(valueParsed);
+    console.log(success(valueParsed));
+  };
+
+  const onInputValue2Remove = (name: string) => {
+    setInputValue2(null);
+  };
+
   return (
     <>
       <GridContainer
-        gridTemplateColumns="repeat(3, 300px)"
+        gridTemplateColumns="repeat(4, 300px)"
         gridTemplateRows="repeat(2, 300px)"
         gap={30}
         margin="20px"
@@ -134,6 +171,23 @@ const PopupEventAccordion: React.FunctionComponent = () => {
             fontSize={14}
           />
         </GridContainer>
+        <GridContainer
+          outline="1px dotted yellow"
+          padding="10px"
+          gridTemplateColumns="50px 1fr"
+          gridTemplateRows="45px"
+        >
+          <Label htmlFor="input1" width="initial" justifyContent="flex-start">
+            Label 1
+          </Label>
+          <Input
+            id="input1"
+            value={inputValue1}
+            onChange={onInputValue1Change}
+            onRemove={onInputValue1Remove}
+            delayDebounce={300}
+          />
+        </GridContainer>
         <GridContainer outline="1px dotted yellow" padding="10px">
           <Datepicker
             name="datepicker2"
@@ -168,6 +222,20 @@ const PopupEventAccordion: React.FunctionComponent = () => {
             elementNames={columns}
             onChange={onMultiSelect2Change}
             fontSize={14}
+          />
+        </GridContainer>
+        <GridContainer
+          outline="1px dotted yellow"
+          padding="10px"
+          gridTemplateRows="45px"
+        >
+          <TextField
+            label="Label 2"
+            id="input2"
+            value={inputValue2}
+            onChange={onInputValue2Change}
+            onRemove={onInputValue2Remove}
+            isNotRunDebounce={true}
           />
         </GridContainer>
       </GridContainer>

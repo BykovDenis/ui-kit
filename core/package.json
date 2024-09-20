@@ -37,7 +37,6 @@
     "@storybook/testing-react": "1.2.3",
     "chroma-js": "2.0.3",
     "dayjs": "1.11.11",
-    "debounce": "2.1.0",
     "eslint-plugin-flowtype": "^3.4.2",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",

@@ -7,6 +7,7 @@
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "install-packages": "npm ci --registry https://nexus-ci.delta.sbrf.ru/repository/npm-all",
     "npm-update-ui-kit": "npm i -E @sber-risks-ui/core@latest --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release",
     "npm-update-ui-icon": "npm i -E @sber-risks-ui/icon@latest --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release"
   },

@@ -18,7 +18,6 @@ type TBaseStyles = {
   className?: string;
   color?: CSS.Property.Color;
   disabled?: boolean;
-  error?: boolean;
   fontFamily?: CSS.Property.FontFamily;
   fontSize?: number | string;
   fontWeight?: number;

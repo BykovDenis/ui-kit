@@ -97,6 +97,7 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
           regExp={props.regExp}
           value={value}
           onChange={props.onChange}
+          delayDebounce={props?.delayDebounce}
         />
       </TextFieldContainer>
     );

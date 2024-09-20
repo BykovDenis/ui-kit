@@ -1,4 +1,3 @@
-import debounce from 'debounce';
 import { useEffect, useRef, useState } from 'react';
 
 import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, TEXT_ALIGN_RIGHT, TIMEOUT, TYPE_TEXT } from '../../constants';
@@ -15,6 +14,7 @@ import parseValue from './helpers/parse-value';
 import ButtonDelete from '../../customs-styled-components/button-delete.styled';
 import calculationPaddingByTextAlign from './helpers/calculation-padding-by-text-align';
 import FormControl from '../../form-control/src';
+import { useDebouncedCallback } from 'use-debounce';
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(isNotEmptyString(props.value?.toString()) ? props.value : '');
@@ -61,7 +61,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
       }
     }
     setIsChanging(false);
-    setIsRunDebounce(false);
+    // setIsRunDebounce(false);
   };
 
   useEffect(() => {
@@ -109,18 +109,17 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     if (props?.onInput) {
       onInput(evt);
     }
-    if (isNotRunDebounce) {
-      if (props?.onChange) {
-        props.onChange(evt, props.name, valueParsed);
-      }
-    } else {
-      const cbEvent = () => {
-        cb(evt);
-      };
-      const executeDebounce = debounce(cbEvent, TIMEOUT);
-      executeDebounce();
-    }
   };
+
+  const onInputChangeDebounced = useDebouncedCallback(
+    (evt: React.ChangeEvent<HTMLInputElement>) => {
+      const element: any = evt?.target;
+      let value: string = element.value;
+      const valueParsed: string | number = parseValue(props.type, value, props.regExp, props.mask);
+      cb(evt);
+    },
+    isNotRunDebounce ? 0 : props.delayDebounce ?? TIMEOUT
+  );
 
   const onInputDelete = (evt: React.MouseEvent<HTMLButtonElement>) => {
     setInputValue('');
@@ -221,7 +220,10 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             fontSize={props?.fontSize ?? theme?.baseFontSize}
             fontFamily={theme?.fontFamily}
             textAlign={props?.textAlign || TEXT_ALIGN_RIGHT}
-            onChange={onInputChange}
+            onChange={(evt: React.ChangeEvent<HTMLInputElement>) => {
+              onInputChange(evt);
+              onInputChangeDebounced(evt);
+            }}
             onFocus={onInputFocus}
             onBlur={onInputBlur}
             borderColor={borderColor}

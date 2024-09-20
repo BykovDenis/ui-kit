@@ -294,3 +294,9 @@
   <li>Checkbox. Update disable styles for light theme. </li>
   <li>Radio. Update disable styles for light theme. </li>
 </ol>
+
+<h2>v 0.12.7</h2>
+<h3>Features</h3>
+<ol>
+  <li>Input. Improve debounce mechanic. </li>
+</ol>
