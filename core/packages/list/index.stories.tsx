@@ -8,12 +8,13 @@ import ListItem from '../list-item/src';
 import List from './src';
 import IList from './types/ilist';
 import ListType from './enum/list-type';
+import ListItemType from '@sber-risks-ui/ListItem/enums/list-item-type';
 
 export default {
   title: 'Components/List',
   component: List,
   argTypes: {
-    type: { control: { type: 'select' }, options: ['button', 'text'] },
+    type: { control: { type: 'select' }, options: [ListType.Buttons, ListType.List], defaultValue: ListType.Buttons },
   },
   args: {
     textMessage: 'text message',
@@ -28,7 +29,7 @@ const ThemeDarkTemplate: StoryFn<typeof List> = (args: IList) => {
   return (
     <ReactThemeContext.Provider value={themes?.dark}>
       <div style={{ width: '600px' }}>
-        <List type={ListType.Buttons}>
+        <List {...args}>
           {elements.map((element: string, index: number) => (
             <ListItem
               key={index}
@@ -36,6 +37,7 @@ const ThemeDarkTemplate: StoryFn<typeof List> = (args: IList) => {
               isDisable={index === 2}
               isSelected={index === 3 || index === 1}
               width={400}
+              type={ListItemType.Text}
             >
               {element}
             </ListItem>
@@ -53,9 +55,9 @@ const ThemeLightTemplate: StoryFn<typeof List> = (args: IList) => {
   return (
     <ReactThemeContext.Provider value={themes?.light}>
       <div style={{ width: '220px' }}>
-        <List type="list">
+        <List {...args}>
           {elements.map((element: string, index: number) => (
-            <ListItem key={index} onClick={action('clicked')} isVisibleTextUnderline={true}>
+            <ListItem key={index} type={ListItemType.Button} onClick={action('clicked')} isVisibleTextUnderline={true}>
               {element}
             </ListItem>
           ))}

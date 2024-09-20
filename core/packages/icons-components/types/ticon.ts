@@ -1,8 +1,9 @@
-import CSS from "csstype";
+import CSS from 'csstype';
 
 type TIcon = {
-  className?: string,
-  color?: CSS.Property.Color,
+  className?: string;
+  color?: CSS.Property.Color;
+  dataset?: any;
 };
 
 export default TIcon;

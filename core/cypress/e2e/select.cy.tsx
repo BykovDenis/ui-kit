@@ -5,7 +5,7 @@ describe('Testing Select component', () => {
   });
   it('Test 1. Select text value', () => {
     cy.get('#select-text')
-      .focus()
+      .click()
       .type('thr')
       .then(() => {
         cy.get('#select-text-list div:first button')
