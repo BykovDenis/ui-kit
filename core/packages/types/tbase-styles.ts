@@ -54,6 +54,7 @@ type TBaseStyles = {
   transform?: string;
   overflowY?: string;
   zIndex?: number;
+  error?: boolean;
 };
 
 export default TBaseStyles;
