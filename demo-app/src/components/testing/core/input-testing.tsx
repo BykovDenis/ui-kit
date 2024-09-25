@@ -1,27 +1,34 @@
-import Table from '@sber-risks-ui/core/table';
-import TableHead from '@sber-risks-ui/core/table-head';
-import TableRow from '@sber-risks-ui/core/table-row';
-import TableCell from '@sber-risks-ui/core/table-cell';
-import TableBody from '@sber-risks-ui/core/table-body';
-import React, { useState } from 'react';
-import Typography from '@sber-risks-ui/core/typography';
+import Table from "@sber-risks-ui/core/table";
+import TableHead from "@sber-risks-ui/core/table-head";
+import TableRow from "@sber-risks-ui/core/table-row";
+import TableCell from "@sber-risks-ui/core/table-cell";
+import TableBody from "@sber-risks-ui/core/table-body";
+import React, { useState } from "react";
+import Typography from "@sber-risks-ui/core/typography";
 // local components
-// import Input from '../../../packages/input/src';
+// import Input from "../../../../../core/packages/input/src";
 // components from package library
-import Input from '@sber-risks-ui/core/input';
+import Input from "@sber-risks-ui/core/input";
 
 const InputTesting: React.FunctionComponent = () => {
   const [inputValue, setInputValue] = useState<string | undefined>();
 
   const [digitsFormatted, setDigitsFormatted] = useState<string | undefined>();
   const [digits] = useState<string>();
-  const [regularExpression, setRegularExpression] = useState<string | undefined>();
-  const [inputRegExprCompixity, setInputRegExprCompixity] = useState<string | undefined>();
+  const [regularExpression, setRegularExpression] = useState<
+    string | undefined
+  >();
+  const [inputRegExprCompixity, setInputRegExprCompixity] = useState<
+    string | undefined
+  >();
 
-  const regExpOnlyDigits: RegExp = new RegExp('[^0-9_]', 'gi');
-  const regExpOnlySymbols: RegExp = new RegExp('[0-9_]', 'gi');
-  const regExpComplixity: RegExp = new RegExp('^(pg_|_|[0-9])|[^а-яa-z0-9_]', 'gi');
-  const regExpTrim: RegExp = new RegExp('^\\s+|\\s+$', 'gi');
+  const regExpOnlyDigits: RegExp = new RegExp("[^0-9_]", "gi");
+  const regExpOnlySymbols: RegExp = new RegExp("[0-9_]", "gi");
+  const regExpComplixity: RegExp = new RegExp(
+    "^(pg_|_|[0-9])|[^а-яa-z0-9_]",
+    "gi"
+  );
+  const regExpTrim: RegExp = new RegExp("^\\s+|\\s+$", "gi");
 
   const onInputValueChange = (
     evt: React.ChangeEvent<HTMLInputElement>,
@@ -30,29 +37,29 @@ const InputTesting: React.FunctionComponent = () => {
   ) => {
     const element = evt.target;
     switch (element.name) {
-      case 'trim': {
+      case "trim": {
         setInputValue(value?.toString()?.trim());
         console.log(value?.toString()?.trim());
         break;
       }
-      case 'text': {
+      case "text": {
         setInputValue(value?.toString()?.trim());
         console.log(value?.toString()?.trim());
         break;
       }
-      case 'digits-formatted': {
+      case "digits-formatted": {
         setDigitsFormatted(element.value);
         break;
       }
-      case 'digits': {
+      case "digits": {
         setDigitsFormatted(element.value);
         break;
       }
-      case 'input-reg-expr': {
+      case "input-reg-expr": {
         setRegularExpression(element.value);
         break;
       }
-      case 'input-reg-expr-compixity': {
+      case "input-reg-expr-compixity": {
         setInputRegExprCompixity(element.value);
         break;
       }
@@ -64,27 +71,27 @@ const InputTesting: React.FunctionComponent = () => {
 
   const onInputValueRemove = (name: string) => {
     switch (name) {
-      case 'trim': {
+      case "trim": {
         setInputValue(undefined);
         break;
       }
-      case 'text': {
+      case "text": {
         setInputValue(undefined);
         break;
       }
-      case 'digits-formatted': {
+      case "digits-formatted": {
         setDigitsFormatted(undefined);
         break;
       }
-      case 'digits': {
+      case "digits": {
         setDigitsFormatted(undefined);
         break;
       }
-      case 'input-reg-expr': {
+      case "input-reg-expr": {
         setRegularExpression(undefined);
         break;
       }
-      case 'input-reg-expr-compixity': {
+      case "input-reg-expr-compixity": {
         setInputRegExprCompixity(undefined);
         break;
       }
