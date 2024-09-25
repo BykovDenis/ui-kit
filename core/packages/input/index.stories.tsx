@@ -85,6 +85,7 @@ const TemplateLightTheme: StoryFn<typeof Input> = (args: IInput) => {
     const element = evt?.target;
     const value: string = element?.value;
     setValue(value);
+    console.log(value);
   };
 
   const onInputRemove = () => {
@@ -95,7 +96,7 @@ const TemplateLightTheme: StoryFn<typeof Input> = (args: IInput) => {
 
   return (
     <ReactThemeContext.Provider value={themes.light}>
-      <div>
+      <div style={{ width: '190px' }}>
         <Input
           {...args}
           name="input"
@@ -116,6 +117,7 @@ const TemplateLightTheme: StoryFn<typeof Input> = (args: IInput) => {
           backgroundColor="transparent"
           isSeparateNumberFormat={true}
           type="number"
+          delayDebounce={900}
         />
       </div>
     </ReactThemeContext.Provider>

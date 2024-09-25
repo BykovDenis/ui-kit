@@ -3,6 +3,7 @@ export const TEXT_ALIGN_RIGHT = 'right';
 export const TEXT_ALIGN_LEFT = 'left';
 export const TEXT_ALIGN_CENTER = 'center';
 export const TIMEOUT = 300;
+export const DELAY_DEBOUNCE = 300;
 export const TYPE_TEXT = 'text';
 export const FONT_WEIGHT_REGULAR = 400;
 export const IS_NOT_USE_DEBOUNCE_COUNT: number = 500;

@@ -27,6 +27,9 @@ interface ITheme {
     Datepicker?: {
       isIconCanBeTodaySelected?: boolean;
     };
+    Input?: {
+      delayDebounce?: number;
+    };
   };
 }
 

@@ -1,6 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
-import { DEFAULT_HEIGHT, FONT_WEIGHT_REGULAR, TEXT_ALIGN_RIGHT, TIMEOUT, TYPE_TEXT } from '../../constants';
+import {
+  DEFAULT_HEIGHT,
+  DELAY_DEBOUNCE,
+  FONT_WEIGHT_REGULAR,
+  TEXT_ALIGN_RIGHT,
+  TIMEOUT,
+  TYPE_TEXT,
+} from '../../constants';
 import ITheme from '../../styles/types/itheme';
 import IInput from '../types/iinput';
 import CrossIcon from '../../icons-components/24x24/cross-icon';
@@ -24,7 +31,9 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [isFocus, setIsFocus] = useState(false);
   const [isChanging, setIsChanging] = useState(false);
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const [context, setContext] = useState(props?.ReactThemeContext || globalThis.ReactThemeContext);
+
+  const theme: ITheme = useContext(context);
 
   const cb = (evt: any) => {
     const value = props.inputRef ? props.inputRef?.current?.value : inputRef?.current?.value;
@@ -65,8 +74,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   };
 
   useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+    setContext(props.ReactThemeContext || globalThis.ReactThemeContext);
+  }, [props.ReactThemeContext, globalThis.ReactThemeContext]);
 
   useEffect(() => {
     let valueParsed: number | string = parseValue(props.type, props.value, props.regExp, props.mask);
@@ -100,6 +109,16 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
   };
 
+  const onInputChangeDebounced = useDebouncedCallback(
+    (evt: React.ChangeEvent<HTMLInputElement>) => {
+      const element: any = evt?.target;
+      let value: string = element.value;
+      const valueParsed: string | number = parseValue(props.type, value, props.regExp, props.mask);
+      cb(evt);
+    },
+    isNotRunDebounce ? 0 : props.delayDebounce ?? theme.components?.Input.delayDebounce ?? DELAY_DEBOUNCE
+  );
+
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element: any = evt?.target;
     let value: string = element.value;
@@ -110,16 +129,6 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
       onInput(evt);
     }
   };
-
-  const onInputChangeDebounced = useDebouncedCallback(
-    (evt: React.ChangeEvent<HTMLInputElement>) => {
-      const element: any = evt?.target;
-      let value: string = element.value;
-      const valueParsed: string | number = parseValue(props.type, value, props.regExp, props.mask);
-      cb(evt);
-    },
-    isNotRunDebounce ? 0 : props.delayDebounce ?? TIMEOUT
-  );
 
   const onInputDelete = (evt: React.MouseEvent<HTMLButtonElement>) => {
     setInputValue('');
@@ -160,128 +169,124 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
     }
   };
 
-  const componentThemed: any = (theme: ITheme) => {
-    const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : theme?.mainBackgroundColor;
+  const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : theme?.mainBackgroundColor;
 
-    const hoverBackgroundColor: string = props.disabled
-      ? theme.inactiveBackgroundColor
-      : props?.error
-      ? theme?.palette?.secondary?.lighter
-      : theme?.mainBackgroundColor;
-    const hoverColor: string = props.disabled
-      ? theme.inactiveColor
-      : props?.error
-      ? theme?.palette?.secondary?.main
-      : theme?.palette.baseFontColor;
-    const hoverBorderColor: string = props?.error ? theme?.palette?.secondary?.main : theme?.mainOutlinedHoverColor;
+  const hoverBackgroundColor: string = props.disabled
+    ? theme.inactiveBackgroundColor
+    : props?.error
+    ? theme?.palette?.secondary?.lighter
+    : theme?.mainBackgroundColor;
+  const hoverColor: string = props.disabled
+    ? theme.inactiveColor
+    : props?.error
+    ? theme?.palette?.secondary?.main
+    : theme?.palette.baseFontColor;
+  const hoverBorderColor: string = props?.error ? theme?.palette?.secondary?.main : theme?.mainOutlinedHoverColor;
 
-    const color: string = props?.error
-      ? theme?.palette?.secondary?.main
-      : isFocus && !props?.isReadOnly
-      ? theme?.palette?.primary?.main
-      : theme?.palette?.baseFontColor;
+  const color: string = props?.error
+    ? theme?.palette?.secondary?.main
+    : isFocus && !props?.isReadOnly
+    ? theme?.palette?.primary?.main
+    : theme?.palette?.baseFontColor;
 
-    const focusColor: string = props?.error ? theme?.palette?.secondary?.main : theme.palette.primary.main;
+  const focusColor: string = props?.error ? theme?.palette?.secondary?.main : theme.palette.primary.main;
 
-    const ReactInput: React.FunctionComponent = (props: any) => <input {...props} />;
+  const ReactInput: React.FunctionComponent = (props: any) => <input {...props} />;
 
-    const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
-    const borderColor: string = props?.error
-      ? theme?.palette?.secondary?.lighter
-      : props?.borderColor || theme?.mainOutlinedColor;
-    const inputColor: string = props.disabled
-      ? theme.inactiveColor
-      : props?.error
-      ? theme?.palette?.secondary?.main
-      : props?.color || color;
-    const underlineColor: string = props.disabled
-      ? theme.mainOutlinedColor
-      : props?.error
-      ? theme?.palette?.secondary?.main
-      : props?.borderColor || theme?.mainOutlinedColor;
+  const value: string | number = inputValue !== undefined && inputValue !== null ? inputValue : '';
+  const borderColor: string = props?.error
+    ? theme?.palette?.secondary?.lighter
+    : props?.borderColor || theme?.mainOutlinedColor;
+  const inputColor: string = props.disabled
+    ? theme.inactiveColor
+    : props?.error
+    ? theme?.palette?.secondary?.main
+    : props?.color || color;
+  const underlineColor: string = props.disabled
+    ? theme.mainOutlinedColor
+    : props?.error
+    ? theme?.palette?.secondary?.main
+    : props?.borderColor || theme?.mainOutlinedColor;
 
-    const paddingCalculated = calculationPaddingByTextAlign(props.textAlign, props.isNotClearable);
+  const paddingCalculated = calculationPaddingByTextAlign(props.textAlign, props.isNotClearable);
 
-    return (
-      <InputContainer height={props?.height} width={props?.width}>
-        <InputElementContainer backgroundColor={backgroundColor}>
-          <InputStyled
-            {...props}
-            value={value}
-            height={props.height || DEFAULT_HEIGHT}
-            color={inputColor}
-            hoverColor={props?.hoverColor || hoverColor}
-            focusColor={props.focusColor || focusColor}
-            disabledBackgroundColor={theme?.mainGrayColor}
-            hoverBorderColor={props?.hoverColor || hoverBorderColor}
-            hoverBackgroundColor={hoverBackgroundColor}
-            disabledColor={theme?.palette.baseFontColorOpacity05}
-            backgroundColor={props.backgroundColor ?? backgroundColor}
-            fontSize={props?.fontSize ?? theme?.baseFontSize}
-            fontFamily={theme?.fontFamily}
-            textAlign={props?.textAlign || TEXT_ALIGN_RIGHT}
-            onChange={(evt: React.ChangeEvent<HTMLInputElement>) => {
-              onInputChange(evt);
-              onInputChangeDebounced(evt);
-            }}
-            onFocus={onInputFocus}
-            onBlur={onInputBlur}
-            borderColor={borderColor}
-            inputComponent={ReactInput}
-            type={props?.type || TYPE_TEXT}
-            fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
-            ref={props?.inputRef || inputRef}
-            autoComplete="off"
-            padding={props?.padding || paddingCalculated}
-          />
-          {props?.variant !== TYPE_TEXT && (
-            <InputUnderline
-              name={props?.name}
-              className="underline"
-              variant={props?.variant}
-              color={underlineColor}
-              hoverColor={hoverBackgroundColor}
-              disabled={props?.disabled}
-              width={props.width}
-            />
-          )}
-          {!props?.isReadOnly && !props.isNotClearable && isNotEmptyString(inputValue as string) && !props?.disabled ? (
-            <FormControl position="absolute" top="50%" transform="translateY(-50%)" right={0} width={20} height={20}>
-              <ButtonDelete
-                data-test="btn-delete-value"
-                onClick={onInputDelete}
-                className="delete-button"
-                hoverColor={hoverColor}
-                focusColor={focusColor}
-                disabled={props?.disabled}
-                type="button"
-              >
-                <CrossIcon color={inputColor} className="delete-icon" />
-              </ButtonDelete>
-            </FormControl>
-          ) : null}
-        </InputElementContainer>
-        {props?.textMessage ? (
-          <TextMessage
-            data-test-id={`${props.id}-text-message`}
-            className="text-message"
-            fontSize={props?.fontSize ?? theme?.baseFontSize}
-            fontFamily={theme?.fontFamily}
-            color={inputColor}
-          >
-            {props.textMessage}
-          </TextMessage>
-        ) : null}
-      </InputContainer>
-    );
-  };
-
-  if (!Consumer) {
+  if (!context) {
     console.error('You need an initialization provider');
     return null;
   }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return (
+    <InputContainer height={props?.height} width={props?.width}>
+      <InputElementContainer backgroundColor={backgroundColor}>
+        <InputStyled
+          {...props}
+          value={value}
+          height={props.height || DEFAULT_HEIGHT}
+          color={inputColor}
+          hoverColor={props?.hoverColor || hoverColor}
+          focusColor={props.focusColor || focusColor}
+          disabledBackgroundColor={theme?.mainGrayColor}
+          hoverBorderColor={props?.hoverColor || hoverBorderColor}
+          hoverBackgroundColor={hoverBackgroundColor}
+          disabledColor={theme?.palette.baseFontColorOpacity05}
+          backgroundColor={props.backgroundColor ?? backgroundColor}
+          fontSize={props?.fontSize ?? theme?.baseFontSize}
+          fontFamily={theme?.fontFamily}
+          textAlign={props?.textAlign || TEXT_ALIGN_RIGHT}
+          onChange={(evt: React.ChangeEvent<HTMLInputElement>) => {
+            onInputChange(evt);
+            onInputChangeDebounced(evt);
+          }}
+          onFocus={onInputFocus}
+          onBlur={onInputBlur}
+          borderColor={borderColor}
+          inputComponent={ReactInput}
+          type={props?.type || TYPE_TEXT}
+          fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
+          ref={props?.inputRef || inputRef}
+          autoComplete="off"
+          padding={props?.padding || paddingCalculated}
+        />
+        {props?.variant !== TYPE_TEXT && (
+          <InputUnderline
+            name={props?.name}
+            className="underline"
+            variant={props?.variant}
+            color={underlineColor}
+            hoverColor={hoverBackgroundColor}
+            disabled={props?.disabled}
+            width={props.width}
+          />
+        )}
+        {!props?.isReadOnly && !props.isNotClearable && isNotEmptyString(inputValue as string) && !props?.disabled ? (
+          <FormControl position="absolute" top="50%" transform="translateY(-50%)" right={0} width={20} height={20}>
+            <ButtonDelete
+              data-test="btn-delete-value"
+              onClick={onInputDelete}
+              className="delete-button"
+              hoverColor={hoverColor}
+              focusColor={focusColor}
+              disabled={props?.disabled}
+              type="button"
+            >
+              <CrossIcon color={inputColor} className="delete-icon" />
+            </ButtonDelete>
+          </FormControl>
+        ) : null}
+      </InputElementContainer>
+      {props?.textMessage ? (
+        <TextMessage
+          data-test-id={`${props.id}-text-message`}
+          className="text-message"
+          fontSize={props?.fontSize ?? theme?.baseFontSize}
+          fontFamily={theme?.fontFamily}
+          color={inputColor}
+        >
+          {props.textMessage}
+        </TextMessage>
+      ) : null}
+    </InputContainer>
+  );
 };
 
 export default Input;

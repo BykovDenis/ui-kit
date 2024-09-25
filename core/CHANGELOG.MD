@@ -299,4 +299,6 @@
 <h3>Features</h3>
 <ol>
   <li>Input. Improve debounce mechanic. </li>
+  <li>Context. Add delayDebounce property to theme. </li>
+  <li>Input. Change component Consumer to hook useContext. </li>
 </ol>
