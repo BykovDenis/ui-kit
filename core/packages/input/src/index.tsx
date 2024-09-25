@@ -116,7 +116,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
       const valueParsed: string | number = parseValue(props.type, value, props.regExp, props.mask);
       cb(evt);
     },
-    isNotRunDebounce ? 0 : props.delayDebounce ?? theme.components?.Input.delayDebounce ?? DELAY_DEBOUNCE
+    isNotRunDebounce ? 0 : props.delayDebounce ?? theme.components?.Input?.delayDebounce ?? DELAY_DEBOUNCE
   );
 
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
