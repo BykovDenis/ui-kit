@@ -46,6 +46,9 @@ export const themes: IThemes = {
       Datepicker: {
         isIconCanBeTodaySelected: false,
       },
+      Input: {
+        delayDebounce: 5000,
+      },
     },
   },
   dark: {
@@ -92,6 +95,9 @@ export const themes: IThemes = {
       },
       Datepicker: {
         isIconCanBeTodaySelected: false,
+      },
+      Input: {
+        delayDebounce: 5000,
       },
     },
   },
