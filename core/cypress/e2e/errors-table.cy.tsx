@@ -276,7 +276,7 @@ describe('The TextField component', () => {
   });
   it('Test4. Select component', () => {
     cy.get('#select')
-      .focus()
+      .click()
       .type('thi')
       .then(() => {
         cy.get('#select-list div:first button')
