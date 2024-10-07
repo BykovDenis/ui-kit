@@ -35,6 +35,18 @@ const GridContainerStyled = styled.div<TGridContainerStyled>`
   ${props.gridRowGap ? `grid-row-gap: ${getMeasureValue(props.gridRowGap)};` : ''}
   ${props.justifyContent ? `justify-content: ${props.justifyContent};` : ''}
   ${props.alignItems ? `align-items: ${props.alignItems};` : ''}
+  ${props?.marginTop ? `margin-top: ${getMeasureValue(props.marginTop)};` : ''}
+  ${props?.marginLeft ? `margin-left: ${getMeasureValue(props.marginLeft)};` : ''}
+  ${props?.marginRight ? `margin-right: ${getMeasureValue(props.marginRight)};` : ''}
+  ${props?.marginBottom ? `margin-bottom: ${getMeasureValue(props.marginBottom)};` : ''}
+  ${props?.paddingTop ? `padding-top: ${getMeasureValue(props.paddingTop)};` : ''}
+  ${props?.paddingLeft ? `padding-left: ${getMeasureValue(props.paddingLeft)};` : ''}
+  ${props?.paddingRight ? `padding-right: ${getMeasureValue(props.paddingRight)};` : ''}
+  ${props?.paddingBottom ? `padding-bottom: ${getMeasureValue(props.paddingBottom)};` : ''}
+  ${props?.border ? `border: ${props.border};` : ''}
+  ${props?.borderBottom ? `border-bottom: ${props.borderBottom};` : ''}
+  ${props?.lineHeight ? `line-height: ${props.lineHeight};` : ''}
+  ${props?.wordBreak ? `word-break: ${props.wordBreak};` : ''}
 `}
 `;
 

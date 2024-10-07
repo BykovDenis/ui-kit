@@ -531,6 +531,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             {isNotEmptyString(value) ? (
               !props.isNotClearable && (
                 <ButtonDelete
+                  id={`${props.id}-btn-delete-value`}
                   data-test="btn-delete-value"
                   onClick={onInputDelete}
                   className="delete-button"
@@ -575,6 +576,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           >
             <FormControl justifyContent="center" margin="0 0 3px 0">
               <Button
+                id={`${props.id}-btn-set-today`}
                 data-btn-set-today="1"
                 data-test-name="setToday"
                 data-ui-kit-component={UiKitComponent.Datepicker}

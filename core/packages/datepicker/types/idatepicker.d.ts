@@ -15,8 +15,8 @@ export default interface IDatepicker extends IInput, ILabel, TBaseStyles {
   isExistValue?: boolean;
   label?: string | React.ReactNode;
   locale?: 'EN' | 'RU' | undefined;
-  maxDate?: string;
-  minDate?: string;
+  maxDate?: string | null;
+  minDate?: string | null;
   name: string;
   onChange?: (name: string, value: string, isValid: boolean) => void;
   onBlur?: (name: string, value: string, isValid: boolean) => void;
