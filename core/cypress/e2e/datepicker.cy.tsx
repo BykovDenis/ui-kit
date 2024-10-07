@@ -24,10 +24,9 @@ describe('The Datepicker component', () => {
           })
           .then(() => {
             // Remove values
-            cy.get('div[data-test="datepicker1"] button[data-test="btn-delete-value"]')
+            cy.get('#datepicker1-btn-delete-value')
               .as('btn')
-              .parent()
-              .click({ multiple: true })
+              .click()
               .then(() => {
                 cy.get('#datepicker1').should('value', '');
               });
@@ -46,10 +45,7 @@ describe('The Datepicker component', () => {
         expect(color).to.eq(themes.dark.palette.baseFontColor);
       });
     // Remove values
-    cy.get('div[data-test="datepicker2"] button[data-test="btn-delete-value"]')
-      .as('btn')
-      .parent()
-      .click({ multiple: true });
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').should('value', '');
   });
   it('Test 3. Selection by click. Testing value changing attributes by onChange event handler. Mask dd.MM.yyyy  (onChange)', () => {
@@ -108,7 +104,7 @@ describe('The Datepicker component', () => {
   });
   it('Test 5. Test min-max date  (onChange)', () => {
     cy.get('#datepicker3').focus().click();
-    cy.get('button[data-test-name="setToday"]').should('be.disabled');
+    cy.get('#datepicker3-btn-set-today').should('not.be.disabled', true);
   });
   it('Test 6. Selection by click text after invalid typing value  (onChange)', () => {
     // Typing value
@@ -121,7 +117,7 @@ describe('The Datepicker component', () => {
       .then((color: string) => {
         expect(color).to.eq(themes.dark.palette.baseFontColor);
       });
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
+    cy.get('#datepicker1-btn-delete-value').as('btn').click();
     cy.get('#datepicker1')
       .focus()
       .type('55032024')
@@ -131,7 +127,7 @@ describe('The Datepicker component', () => {
       .then((color: string) => {
         expect(color).to.eq(themes.dark.palette.secondary.main);
       });
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click({ multiple: true });
+    cy.get('#datepicker1-btn-delete-value').as('btn').click();
     cy.get('#datepicker1')
       .focus()
       .should('value', '')
@@ -151,7 +147,7 @@ describe('The Datepicker component', () => {
       .then((color: string) => {
         expect(color).to.eq(themes.dark.palette.baseFontColor);
       });
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2')
       .focus()
       .type('2024-03-54')
@@ -161,7 +157,7 @@ describe('The Datepicker component', () => {
       .then((color: string) => {
         expect(color).to.eq(themes.dark.palette.secondary.main);
       });
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click({ multiple: true });
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2')
       .should('value', '')
       .invoke('css', 'color')
@@ -179,7 +175,7 @@ describe('The Datepicker component', () => {
       .then((color: string) => {
         expect(color).to.eq(themes.dark.palette.baseFontColor);
       });
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
+    cy.get('#datepicker1-btn-delete-value').as('btn').click();
     cy.get('#datepicker1')
       .focus()
       .type('03.04')
@@ -206,7 +202,7 @@ describe('The Datepicker component', () => {
       .then((color: string) => {
         expect(color).to.eq(themes.dark.palette.baseFontColor);
       });
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2')
       .focus()
       .type('2024-03-5')
@@ -233,7 +229,7 @@ describe('The Datepicker component', () => {
       .then((color: string) => {
         expect(color).to.eq(themes.dark.palette.baseFontColor);
       });
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2')
       .focus()
       .type('2024-03')
@@ -310,15 +306,14 @@ describe('The Datepicker component', () => {
     // Typing value
     cy.get('#datepicker1').focus().type('01.04.2024').blur().should('value', '01.04.2024');
     // Remove values
-    // cy.get('button[data-test="btn-delete-value"]').as('btn').click();
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click({ multiple: true });
+    cy.get('#datepicker1-btn-delete-value').as('btn').click();
     cy.get('#datepicker1').should('value', '');
   });
   it('Test 16. Selection by click text. Testing input value changing attributes by onChange event handler. Mask yyyy-MM-dd (onBlur)', () => {
     // Typing value
     cy.get('#datepicker2').focus().type('2024-04-01').blur().should('value', '2024-04-01');
     // Remove values
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click({ multiple: true });
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').should('value', '');
   });
   it('Test 17. Selection by click. Testing value changing attributes by onChange event handler. Mask dd.MM.yyyy  (onChange)', () => {
@@ -341,39 +336,39 @@ describe('The Datepicker component', () => {
   });
   it('Test 19. Test min-max date  (onChange)', () => {
     cy.get('#datepicker3').focus().click();
-    cy.get('button[data-test-name="setToday"]').should('be.disabled');
+    cy.get('#datepicker3-btn-set-today').should('not.be.disabled', true);
   });
   it('Test 20. Selection by click text after invalid typing value  (onChange)', () => {
     // Typing value
     cy.get('#datepicker1').focus().type('03.04.2024').blur().should('value', '03.04.2024');
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
+    cy.get('#datepicker1-btn-delete-value').as('btn').click();
     cy.get('#datepicker1').focus().type('55.03.2024').blur().should('value', '55.03.2024');
     cy.get('[data-test-id=datepicker1-text-message]').should('have.text', 'Дата не валидна');
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click({ multiple: true });
+    cy.get('#datepicker1-btn-delete-value').as('btn').click();
     cy.get('#datepicker1').should('value', '');
   });
   it('Test 21. Selection by click text after invalid typing value1 and checking invalid typing value (onBlur)', () => {
     cy.get('#datepicker2').focus().type('2024-04-03').blur().should('value', '2024-04-03');
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').focus().type('2024-03-54').blur().should('value', '2024-03-54');
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click({ multiple: true });
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').should('value', '');
   });
   it('Test 22. Input invalid date event handler onChange  (onChange)', () => {
     cy.get('#datepicker1').focus().type('03.04.2024').blur().should('value', '03.04.2024');
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
+    cy.get('#datepicker1-btn-delete-value').as('btn').click();
     cy.get('#datepicker1').focus().type('03.04').blur().should('value', '03.04');
     cy.get('[data-test-id=datepicker1-text-message]').should('have.text', 'Дата не валидна');
   });
   it('Test 23. Input invalid date event handler  (onBlur)', () => {
     cy.get('#datepicker2').focus().type('2024-04-03').blur().should('value', '2024-04-03');
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').focus().type('2024-03-5').blur().should('value', '2024-03-5');
     cy.get('[data-test-id=datepicker2-text-message]').should('have.text', 'Date is not valid');
   });
   it('Test 24. Input invalid date event handler  (onBlur)', () => {
     cy.get('#datepicker2').focus().type('2024-04-03').blur().should('value', '2024-04-03');
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click();
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').focus().type('2024-03').blur().should('value', '2024-03');
     cy.get('[data-test-id=datepicker2-text-message]').should('have.text', 'Date is not valid');
   });
@@ -466,17 +461,17 @@ describe('The Datepicker component', () => {
   it('Test 33. Complexity input date. Testing input value changing attributes by onChange event handler. Mask yyyy-MM-dd (onBlur)', () => {
     // Typing value
     cy.get('#datepicker2').click().type('20240401').blur().should('value', '2024-04-01');
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click({ multiple: true });
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').should('value', '');
     cy.get('#datepicker2').click().type('202410401').blur().should('value', '2024-10-41');
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click({ multiple: true });
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').should('value', '');
     cy.get('#datepicker2').click().type('120240401').blur().should('value', '1202-40-41');
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click({ multiple: true });
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').should('value', '');
     cy.get('#datepicker2').click().type('210240401').blur().should('value', '2102-40-41');
     // Remove values
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click({ multiple: true });
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').should('value', '');
   });
   it('Test 34. Move cursor position. Testing input value changing attributes by onChange event handler. Mask yyyy-MM-dd (onBlur)', () => {
@@ -486,14 +481,14 @@ describe('The Datepicker component', () => {
       .type('20240401{leftArrow}{leftArrow}{leftArrow}5')
       .blur()
       .should('value', '2024-05-01');
-    cy.get('button[data-test="btn-delete-value"]').as('btn').parent().click({ multiple: true });
+    cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').should('value', '');
   });
   it('Test 35. Only digits values. Testing input value changing attributes by onChange event handler. Mask yyyy-MM-dd (onBlur)', () => {
     // Typing value
     cy.get('#datepicker2').click().type('ew20df24ff04fd01').blur().should('value', '2024-04-01');
   });
-  it('Test 36. Change by pressing Enter key. Mask dd-MM-yyyy (onChange)', () => {
+  it('Test 36. Change by pressing Enter key. Mask dd.MM.yyyy (onChange)', () => {
     // Typing value
     cy.get('#datepicker1').click().type('12022024').type('{enter}').should('value', '12.02.2024');
   });
@@ -505,8 +500,171 @@ describe('The Datepicker component', () => {
       .type('{enter}')
       .should('value', '2024-05-01');
   });
-  it('Test 38. Change by pressing Enter key. Mask dd-MM-yyyy (onBlur)', () => {
+  it('Test 38. Change by pressing Enter key. Mask dd.MM.yyyy (onBlur)', () => {
     // Typing value
     cy.get('#datepicker2').click().type('20240402').type('{enter}').should('value', '2024-04-02');
+  });
+  it('Test 39. Test limit dates min date and max date. Mask dd.MM.yyyy (onChange)', () => {
+    // Typing value
+    cy.get('#min-max-date-1')
+      .click()
+      .then(() => {
+        cy.get('button[name=1]').as('btn').should('be.disabled', true);
+        cy.get('button[name=2]').as('btn').should('be.disabled', true);
+        cy.get('button[name=3]').as('btn').should('not.be.disabled', true);
+        cy.get('button[name=10]').as('btn').should('not.be.disabled', true);
+        cy.get('button[name=15]').as('btn').should('not.be.disabled', true);
+        cy.get('button[name=20]').as('btn').should('not.be.disabled', true);
+        cy.get('button[name=21]').as('btn').should('be.disabled', true);
+        cy.get('button[name=31]').as('btn').should('be.disabled', true);
+        cy.get('button[name=8]')
+          .as('btn')
+          .click()
+          .then(() => {
+            cy.get('#min-max-date-1').should('value', '08.10.2024');
+          });
+      });
+    cy.get('#min-date-1')
+      .type('{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{del}7')
+      .then(() => {
+        cy.get('#min-max-date-1')
+          .click()
+          .then(() => {
+            cy.get('button[name=5]').as('btn').should('be.disabled', true);
+            cy.get('button[name=6]').as('btn').should('be.disabled', true);
+            cy.get('button[name=7]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=10]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=15]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=20]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=21]').as('btn').should('be.disabled', true);
+            cy.get('button[name=31]').as('btn').should('be.disabled', true);
+            cy.get('button[name=10]')
+              .as('btn')
+              .click()
+              .then(() => {
+                cy.get('#min-max-date-1').should('value', '10.10.2024');
+              });
+          });
+      });
+    cy.get('#max-date-1')
+      .type('{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{del}6')
+      .then(() => {
+        cy.get('#min-max-date-1')
+          .click()
+          .then(() => {
+            cy.get('button[name=5]').as('btn').should('be.disabled', true);
+            cy.get('button[name=6]').as('btn').should('be.disabled', true);
+            cy.get('button[name=7]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=10]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=20]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=25]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=27]').as('btn').should('be.disabled', true);
+            cy.get('button[name=31]').as('btn').should('be.disabled', true);
+            cy.get('button[name=15]')
+              .as('btn')
+              .click()
+              .then(() => {
+                cy.get('#min-max-date-1').should('value', '15.10.2024');
+              });
+          });
+      });
+  });
+  it('Test 40. Test limit dates min date and max date. Mask yyyy-MM-dd (onBlur)', () => {
+    // Typing value
+    cy.get('#min-max-date-2')
+      .click()
+      .then(() => {
+        cy.get('button[name=1]').as('btn').should('be.disabled', true);
+        cy.get('button[name=2]').as('btn').should('be.disabled', true);
+        cy.get('button[name=3]').as('btn').should('not.be.disabled', true);
+        cy.get('button[name=10]').as('btn').should('not.be.disabled', true);
+        cy.get('button[name=15]').as('btn').should('not.be.disabled', true);
+        cy.get('button[name=20]').as('btn').should('not.be.disabled', true);
+        cy.get('button[name=21]').as('btn').should('be.disabled', true);
+        cy.get('button[name=31]').as('btn').should('be.disabled', true);
+        cy.get('button[name=8]')
+          .as('btn')
+          .click()
+          .then(() => {
+            cy.get('#min-max-date-2').should('value', '2024-10-08');
+          });
+      });
+    cy.get('#min-date-2')
+      .type('{backspace}7')
+      .then(() => {
+        cy.get('#min-max-date-2')
+          .click()
+          .then(() => {
+            cy.get('button[name=5]').as('btn').should('be.disabled', true);
+            cy.get('button[name=6]').as('btn').should('be.disabled', true);
+            cy.get('button[name=7]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=10]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=15]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=20]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=21]').as('btn').should('be.disabled', true);
+            cy.get('button[name=31]').as('btn').should('be.disabled', true);
+            cy.get('button[name=10]')
+              .as('btn')
+              .click()
+              .then(() => {
+                cy.get('#min-max-date-2').should('value', '2024-10-10');
+              });
+          });
+      });
+    cy.get('#max-date-2')
+      .type('{backspace}6')
+      .then(() => {
+        cy.get('#min-max-date-2')
+          .click()
+          .then(() => {
+            cy.get('button[name=5]').as('btn').should('be.disabled', true);
+            cy.get('button[name=6]').as('btn').should('be.disabled', true);
+            cy.get('button[name=7]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=10]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=20]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=25]').as('btn').should('not.be.disabled', true);
+            cy.get('button[name=27]').as('btn').should('be.disabled', true);
+            cy.get('button[name=31]').as('btn').should('be.disabled', true);
+            cy.get('button[name=15]')
+              .as('btn')
+              .click()
+              .then(() => {
+                cy.get('#min-max-date-2').should('value', '2024-10-15');
+              });
+          });
+      });
+  });
+  it('Test 41. Test limit dates min date and max date by today. Mask dd.MM.yyyy (onChange)', () => {
+    cy.get('#min-date-1').type(
+      '{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{del}7'
+    );
+    cy.get('#max-date-1').type(
+      '{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{del}{del}07'
+    );
+    // Typing value
+    cy.get('#min-max-date-1')
+      .click()
+      .then(() => {
+        cy.get('button[data-test-name="setToday"]').as('btn').click();
+      });
+    cy.get('#min-max-date-1')
+      .invoke('css', 'color')
+      .then((bgColor: string) => {
+        expect(bgColor).to.eq(themes.dark.palette.baseFontColor);
+      });
+  });
+  it('Test 42. Btn set today is disable. Mask dd.MM.yyyy (onChange)', () => {
+    cy.get('#min-date-1').type(
+      '{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{del}8'
+    );
+    cy.get('#max-date-1').type(
+      '{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{del}{del}08'
+    );
+    // Typing value
+    cy.get('#min-max-date-1')
+      .click()
+      .then(() => {
+        cy.get('button[data-test-name="setToday"').as('btn').should('be.disabled', true);
+      });
   });
 });

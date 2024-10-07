@@ -302,3 +302,9 @@
   <li>Context. Add delayDebounce property to theme. </li>
   <li>Input. Change component Consumer to hook useContext. </li>
 </ol>
+
+<h2>v 0.12.8</h2>
+<h3>Features</h3>
+<ol>
+  <li>GridContainer. Margin top left bottom right property added. </li>
+</ol>
