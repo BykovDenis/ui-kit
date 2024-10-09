@@ -1,3 +1,5 @@
+"use client";
+
 import {
   createRootRoute,
   createRoute,
@@ -97,6 +99,7 @@ const popupEventAccordionRoute = createRoute({
   component: PopupEventAccordion,
 });
 
+// @ts-ignore-next-line
 const routeTree = rootRoute.addChildren([
   indexRoute,
   inputRoute,

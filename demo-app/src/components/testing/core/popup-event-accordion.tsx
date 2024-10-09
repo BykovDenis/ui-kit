@@ -1,20 +1,21 @@
-import GridContainer from "../../../../../core/packages/grid-container/src";
-import Datepicker from "../../../../../core/packages/datepicker/src";
-import Select from "../../../../../core/packages/select/src";
-import MultiSelect from "../../../../../core/packages/multi-select/src";
+// import GridContainer from "../../../../../core/packages/grid-container/src";
+// import Datepicker from "../../../../../core/packages/datepicker/src";
+// import Select from "../../../../../core/packages/select/src";
+// import MultiSelect from "../../../../../core/packages/multi-select/src";
 import { toast } from "react-toastify";
 import React, { useState } from "react";
-import DatepickerMask from "@sber-risks-ui/core/datepicker/enums/datepicker-mask";
-import Input from "../../../../../core/packages/input/src";
-import TextField from "../../../../../core/packages/textfield/src";
+// import Input from "../../../../../core/packages/input/src";
+// import TextField from "../../../../../core/packages/textfield/src";
 import { success } from "../../../utils/dev-utils-theme";
 
 // components from package library
+import DatepickerMask from "@sber-risks-ui/core/datepicker/enums/datepicker-mask";
 import Label from "@sber-risks-ui/core/label";
-// import GridContainer from "@sber-risks-ui/core/grid-container";
-// import Datepicker from "@sber-risks-ui/core/datepicker";
-// import Select from "@sber-risks-ui/core/select";
-// import MultiSelect from "@sber-risks-ui/core/multi-select";
+import GridContainer from "@sber-risks-ui/core/grid-container";
+import Datepicker from "@sber-risks-ui/core/datepicker";
+import Select from "@sber-risks-ui/core/select";
+import MultiSelect from "@sber-risks-ui/core/multi-select";
+import Input from "@sber-risks-ui/core/input";
 
 const PopupEventAccordion: React.FunctionComponent = () => {
   const [datepicker1, setDatepicker1] = useState<string | null>(null);
