@@ -2,16 +2,16 @@ import FlexContainer from "@sber-risks-ui/core/flex-container";
 import React, { useState } from "react";
 import { warning, success } from "../../../utils/dev-utils-theme";
 // local components
-import Datepicker from "../../../../../core/packages/datepicker/src";
-import GridContainer from "../../../../../core/packages/grid-container/src";
+// import Datepicker from "../../../../../core/packages/datepicker/src";
+// import GridContainer from "../../../../../core/packages/grid-container/src";
 // components from package library
-// import Datepicker from "@sber-risks-ui/core/datepicker";
+import Datepicker from "@sber-risks-ui/core/datepicker";
 import Typography from "@sber-risks-ui/core/typography";
 import { toast } from "react-toastify";
 import DatepickerMask from "@sber-risks-ui/core/datepicker/enums/datepicker-mask";
 import Locale from "@sber-risks-ui/core/enums/locale";
 import TextField from "@sber-risks-ui/core/textfield";
-// import GridContainer from "@sber-risks-ui/core/grid-container";
+import GridContainer from "@sber-risks-ui/core/grid-container";
 
 const DatepickerTesting = () => {
   const [date, setDate] = useState("2024-04-02");
@@ -25,10 +25,10 @@ const DatepickerTesting = () => {
   const [minMaxDate2, setMinMaxDate2] = useState<string | undefined | null>(
     null
   );
-  const [minDate1, setMinDate1] = useState<string | null>("03.10.2024");
-  const [minDate2, setMinDate2] = useState<string | null>("2024-10-03");
-  const [maxDate1, setMaxDate1] = useState<string | null>("20.10.2024");
-  const [maxDate2, setMaxDate2] = useState<string | null>("2024-10-20");
+  const [minDate1, setMinDate1] = useState<string | undefined>("03.10.2024");
+  const [minDate2, setMinDate2] = useState<string | undefined>("2024-10-03");
+  const [maxDate1, setMaxDate1] = useState<string | undefined>("20.10.2024");
+  const [maxDate2, setMaxDate2] = useState<string | undefined>("2024-10-20");
 
   const onMinMaxDate1Change = (
     name: string,
@@ -94,11 +94,11 @@ const DatepickerTesting = () => {
   };
 
   const onMinDate1Remove = (name: string) => {
-    setMinDate1(null);
+    setMinDate1(undefined);
   };
 
   const onMinDate2Remove = (name: string) => {
-    setMinDate2(null);
+    setMinDate2(undefined);
   };
 
   const onMaxDate1Change = (
@@ -118,11 +118,11 @@ const DatepickerTesting = () => {
   };
 
   const onMaxDate1Remove = (name: string) => {
-    setMaxDate1(null);
+    setMaxDate1(undefined);
   };
 
   const onMaxDate2Remove = (name: string) => {
-    setMaxDate2(null);
+    setMaxDate2(undefined);
   };
 
   const onDate1Change = (name: string, value: string, isValid: boolean) => {
