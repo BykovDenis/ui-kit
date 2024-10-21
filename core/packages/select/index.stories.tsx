@@ -15,6 +15,10 @@ export default {
       control: { type: 'radio' },
       options: [true, false],
     },
+    readOnly: {
+      control: { type: 'radio' },
+      options: [true, false],
+    },
     fontSize: {
       control: { type: 'select' },
       options: [10, 12, 14, 16],

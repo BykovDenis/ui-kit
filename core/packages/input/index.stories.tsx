@@ -13,8 +13,8 @@ export default {
   argTypes: {
     isSeparateNumberFormat: { control: { type: 'radio' }, options: [true, false] },
     disabled: { control: { type: 'radio' }, options: [true, false] },
+    readOnly: { control: { type: 'radio' }, options: [true, false] },
     error: { control: { type: 'radio' }, options: [true, false] },
-    isReadOnly: { control: { type: 'radio' }, options: [true, false] },
     isNotClearable: { control: { type: 'radio' }, options: [true, false] },
     type: { control: { type: 'select' }, options: ['number', 'text', 'date', 'file'] },
     fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
@@ -28,7 +28,7 @@ export default {
     isSeparateNumberFormat: false,
     disabled: false,
     error: false,
-    isReadOnly: false,
+    readOnly: false,
     isNotClearable: false,
     type: 'text',
     fontSize: 14,

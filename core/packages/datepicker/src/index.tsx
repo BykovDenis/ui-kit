@@ -481,7 +481,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 htmlFor={props.id}
                 fontSize={labelFontSize}
                 isFocus={isFocus}
-                isReadOnly={props.isReadOnly}
+                readOnly={props.readOnly}
                 fontWeight={props?.fontWeight}
                 disabled={props.disabled}
                 fontFamily={props?.fontFamily || theme?.fontFamily}
@@ -513,7 +513,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             disabled={props?.disabled}
             required={props?.required}
             fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
-            isReadOnly={props?.isReadOnly}
+            readOnly={props?.readOnly}
             error={isError}
             inputRef={inputRef}
             isNotRunDebounce={true}

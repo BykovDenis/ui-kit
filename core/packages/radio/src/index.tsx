@@ -33,7 +33,7 @@ const Radio: React.FunctionComponent<RadioProps> = (props: RadioProps) => {
           {...props}
           name={props.name}
           id={props.id}
-          disabled={props?.disabled}
+          disabled={props?.disabled || props.readOnly}
           color={theme?.mainBackgroundColor}
           disabledColor={theme?.palette?.baseFontColor}
           backgroundColor={backgroundColor}

@@ -12,6 +12,7 @@ export default {
   component: Checkbox,
   argTypes: {
     disabled: { control: { type: 'radio' }, options: [true, false] },
+    readOnly: { control: { type: 'radio' }, options: [true, false] },
     fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
     checked: { control: { type: 'select' }, options: [true, false] },
     indeterminate: { control: { type: 'select' }, options: [true, false] },

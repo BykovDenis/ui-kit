@@ -33,7 +33,7 @@ const Checkbox: React.FunctionComponent<CheckboxProps> = (props: CheckboxProps) 
           {...props}
           name={props.name}
           id={props.id}
-          disabled={props?.disabled}
+          disabled={props?.disabled || props?.readOnly}
           color={theme?.palette?.baseFontColor}
           backgroundColor={backgroundColor}
           checked={props.checked}

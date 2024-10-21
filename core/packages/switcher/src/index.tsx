@@ -6,10 +6,12 @@ import FormSwitcher from './form-switcher';
 import InputSwitcher from './input-switcher';
 import LabelSwitcher from './label-switcher';
 import TSwitcher from '../types/tswitcher';
+import ColorTheme from '../../enums/color-theme';
 
 const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
   const [disabled, setDisabled] = useState<boolean>(props?.disabled !== undefined ? props.disabled : false);
+  const [colorTheme] = useState<string>(props?.colorTheme || ColorTheme.Normal);
   const [id1] = useState<string>(`${props.id}-${uuidv4()}`);
   const [id2] = useState<string>(`${props.id}-${uuidv4()}`);
   const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
@@ -46,11 +48,11 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
 
   const componentThemed = (theme: ITheme) => {
     const color: string = theme?.palette?.baseButtonFontColor;
-    const backgroundColor: string = disabled
+    const backgroundColor: string = props.disabled
       ? theme.inactiveBackgroundColor
-      : error
-      ? theme?.palette?.secondary?.main
-      : theme?.palette?.primary?.main;
+      : (colorTheme === ColorTheme.Normal && !error) || !colorTheme
+      ? theme?.palette?.primary?.main
+      : theme?.palette?.secondary?.main;
     const inactiveBackgroundColor: string = theme?.mainBackgroundColor;
     const inactiveColor: string = theme?.palette.baseFontColor;
 
@@ -69,7 +71,7 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
           type="radio"
           checked={isActiveFirstElement}
           onChange={checkboxChangeHandler}
-          disabled={disabled}
+          disabled={disabled || props.readOnly}
           position="left"
           color={color}
           backgroundColor={backgroundColor}
@@ -95,7 +97,7 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
           type="radio"
           checked={isActiveSecondElement}
           onChange={checkboxChangeHandler}
-          disabled={disabled}
+          disabled={disabled || props.readOnly}
           position="right"
           color={color}
           backgroundColor={backgroundColor}
