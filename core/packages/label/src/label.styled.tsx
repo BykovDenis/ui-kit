@@ -12,7 +12,7 @@ const Label = styled.label<TLabel>`
   align-items: center;
   justify-content: ${(props: TLabel) => (props?.justifyContent ? props.justifyContent : 'center')};
   font-family: ${(props: TLabel) => props.fontFamily};
-  cursor: ${(props: TLabel) => (!props.isReadOnly && !props.disabled ? 'pointer' : 'default')};
+  cursor: ${(props: TLabel) => (!props.readOnly && !props.disabled ? 'pointer' : 'default')};
   color: ${(props: TLabel) => props.color};
   font-size: ${(props: TLabel) => getMeasureValue(props.fontSize)};
   line-height: ${(props: TLabel) => props.lineHeight ?? 0.7};

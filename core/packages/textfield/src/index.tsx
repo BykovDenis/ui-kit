@@ -77,9 +77,9 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
             htmlFor={props.id}
             fontSize={labelFontSize}
             isFocus={isFocus}
-            isReadOnly={props.isReadOnly}
             fontWeight={props?.fontWeight}
             disabled={props.disabled}
+            readOnly={props.readOnly}
             error={props?.error}
             color={color}
           >
@@ -98,6 +98,8 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
           value={value}
           onChange={props.onChange}
           delayDebounce={props?.delayDebounce}
+          disabled={props?.disabled}
+          readOnly={props?.readOnly}
         />
       </TextFieldContainer>
     );

@@ -7,7 +7,6 @@ type TButton = TBaseStyles &
   TButtonStyled & {
     ReactThemeContext?: any;
     children?: React.ReactNode | string;
-    colorTheme?: 'normal' | 'warning';
     dataset?: any;
     onClick?: (evt: React.ChangeEvent<HTMLButtonElement>) => void;
     onDragStart?: (evt: any) => void;

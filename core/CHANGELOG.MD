@@ -308,3 +308,10 @@
 <ol>
   <li>GridContainer. Margin top left bottom right property added. </li>
 </ol>
+
+<h2>v 0.12.9</h2>
+<h3>Features</h3>
+<ol>
+  <li>Input, TextField, Select, Radio, Checkbox, Switcher. ReadOnly property added. </li>
+  <li>Switcher. themeColor added. </li>
+</ol>

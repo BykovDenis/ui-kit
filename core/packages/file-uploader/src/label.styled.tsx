@@ -15,7 +15,7 @@ const Label = styled.label<FileUploaderProps>`
     padding: ${getMeasureValue(props?.padding, '10px 15px')};
     justify-content: ${props?.justifyContent ? props.justifyContent : 'center'};
     font-family: ${props.fontFamily};
-    cursor: ${!props.isReadOnly && !props.disabled ? 'pointer' : 'default'};
+    cursor: ${!props.readOnly && !props.disabled ? 'pointer' : 'default'};
     color: ${props.color};
     font-size: ${props.fontSize}px;
     line-height: ${props.lineHeight ?? 0.7}; 

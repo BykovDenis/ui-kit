@@ -281,7 +281,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       setIsVisibleList(false);
     };
 
-    const indicatorColor: string = !props?.isReadOnly
+    const indicatorColor: string = !props?.readOnly
       ? isExistValue && isFoundValue
         ? isEdited
           ? theme?.mainGrayColor
@@ -310,7 +310,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                   htmlFor={`${props.id}`}
                   fontSize={labelFontSize}
                   isFocus={isFocus}
-                  isReadOnly={props.isReadOnly}
+                  readOnly={props.readOnly}
                   fontWeight={props?.fontWeight}
                   disabled={props.disabled}
                   fontFamily={props?.fontFamily || theme?.fontFamily}
@@ -348,7 +348,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             max={props?.max}
             type={props?.type}
             fontWeight={props?.fontWeight || FONT_WEIGHT_REGULAR}
-            isReadOnly={props?.isReadOnly}
+            readOnly={props?.readOnly}
             isNotRunDebounce={elements?.length < IS_NOT_USE_DEBOUNCE_COUNT}
             backgroundColor={backgroundColor}
             color={props?.color}

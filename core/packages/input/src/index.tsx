@@ -185,7 +185,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
   const color: string = props?.error
     ? theme?.palette?.secondary?.main
-    : isFocus && !props?.isReadOnly
+    : isFocus && !props?.readOnly
     ? theme?.palette?.primary?.main
     : theme?.palette?.baseFontColor;
 
@@ -246,6 +246,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           ref={props?.inputRef || inputRef}
           autoComplete="off"
           padding={props?.padding || paddingCalculated}
+          disabled={props?.disabled || props?.readOnly}
         />
         {props?.variant !== TYPE_TEXT && (
           <InputUnderline
@@ -258,7 +259,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
             width={props.width}
           />
         )}
-        {!props?.isReadOnly && !props.isNotClearable && isNotEmptyString(inputValue as string) && !props?.disabled ? (
+        {!props?.readOnly && !props.isNotClearable && isNotEmptyString(inputValue as string) && !props?.disabled ? (
           <FormControl position="absolute" top="50%" transform="translateY(-50%)" right={0} width={20} height={20}>
             <ButtonDelete
               data-test="btn-delete-value"

@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import Typography from "@sber-risks-ui/core/typography";
 import { success } from "../../../utils/dev-utils-theme";
 // local components
-// import TextField from '../../../packages/textfield/src';
+// import TextField from "../../../../../core/packages/textfield/src";
 // components from package library
 import TextField from "@sber-risks-ui/core/textfield";
 
@@ -115,6 +115,7 @@ const TextFieldTesting: React.FunctionComponent = () => {
                 variant="outlined"
                 type="number"
                 name="text-field-number"
+                readOnly={true}
               />
             </TableCell>
             <TableCell>The component contain only digits</TableCell>

@@ -14,7 +14,7 @@ it('TextField renders correctly', () => {
     isSeparateNumberFormat: false,
     disabled: false,
     error: false,
-    isReadOnly: false,
+    readOnly: false,
     isNotClearable: false,
     type: 'text',
     fontSize: 14,

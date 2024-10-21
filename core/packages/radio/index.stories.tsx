@@ -12,6 +12,7 @@ export default {
   component: Radio,
   argTypes: {
     disabled: { control: { type: 'radio' }, options: [true, false] },
+    readOnly: { control: { type: 'radio' }, options: [true, false] },
     fontSize: { control: { type: 'select' }, options: ['10px', '12px', '14px', '16px'] },
     isIconDisabled: { control: { type: 'radio' }, options: [true, false] },
   },

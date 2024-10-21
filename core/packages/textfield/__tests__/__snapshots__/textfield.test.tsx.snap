@@ -21,7 +21,7 @@ exports[`TextField renders correctly 1`] = `
       fontWeight={400}
       htmlFor="textfield1"
       isFocus={false}
-      isReadOnly={false}
+      readOnly={false}
     >
       label
     </label>
@@ -54,7 +54,7 @@ exports[`TextField renders correctly 1`] = `
         id="textfield1"
         inputComponent={[Function]}
         isNotClearable={false}
-        isReadOnly={false}
+        readOnly={false}
         isSeparateNumberFormat={false}
         label="label"
         name="textfield1"

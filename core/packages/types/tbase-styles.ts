@@ -18,6 +18,7 @@ type TBaseStyles = {
   className?: string;
   color?: CSS.Property.Color;
   disabled?: boolean;
+  readOnly?: boolean;
   fontFamily?: CSS.Property.FontFamily;
   fontSize?: number | string;
   fontWeight?: number;
@@ -55,6 +56,7 @@ type TBaseStyles = {
   overflowY?: string;
   zIndex?: number;
   error?: boolean;
+  colorTheme?: 'normal' | 'warning';
 };
 
 export default TBaseStyles;

@@ -9,7 +9,6 @@ type FileUploaderProps = TBaseStyles & {
   fontFamily?: string;
   htmlFor?: string;
   isFocus?: boolean;
-  isReadOnly?: boolean;
   justifyContent?: CSS.Property.JustifyContent;
   tabIndex?: string;
   theme?: any;
