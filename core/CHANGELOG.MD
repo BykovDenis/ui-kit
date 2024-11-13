@@ -315,3 +315,9 @@
   <li>Input, TextField, Select, Radio, Checkbox, Switcher. ReadOnly property added. </li>
   <li>Switcher. themeColor added. </li>
 </ol>
+
+<h2>v 0.12.10</h2>
+<h3>Bugfix</h3>
+<ol>
+  <li>Checkbox. Change bgColor to Indeterminate as checked mode </li>
+</ol>

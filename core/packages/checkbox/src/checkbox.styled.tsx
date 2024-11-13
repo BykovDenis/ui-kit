@@ -32,7 +32,7 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })<TCheckboxStylish>`
       border: 2px solid ${props.borderColor};    
       border-radius: 3px;
       margin-right: 5px;
-      background-color: ${props?.backgroundColor ? props.backgroundColor : '#ffffff'};
+      background-color: ${props?.backgroundColor ? props.backgroundColor : props.borderColor};
     }  
     &:disabled + label:before {
       display:  ${props.isIconDisabled === true ? 'none' : 'block'};
@@ -63,12 +63,15 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })<TCheckboxStylish>`
         content: '';
         height: 2px;
         width: 16px;
-        background: ${props.indeterminate ? props.disabledColor : 'none'};
+        background: ${props.indeterminate ? '#ffffff' : 'none'};
         left: 2px;
       }
     }
     &:disabled:not(:checked) + label:before {
       background-color: ${props?.backgroundColor};
+    }
+    &:disabled:not(:checked) + label:after {
+      background-color: #333333;
     }
     &:disabled:checked + label:before {
       display:  ${props.isIconDisabled === true ? 'none' : 'block'};
