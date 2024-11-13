@@ -320,4 +320,5 @@
 <h3>Bugfix</h3>
 <ol>
   <li>Checkbox. Change bgColor to Indeterminate as checked mode </li>
+  <li>Storybook. Updated to v8 </li>
 </ol>
