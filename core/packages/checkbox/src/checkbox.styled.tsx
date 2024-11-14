@@ -70,8 +70,12 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })<TCheckboxStylish>`
     &:disabled:not(:checked) + label:before {
       background-color: ${props?.backgroundColor};
     }
-    &:disabled:not(:checked) + label:after {
+    ${
+      props.indeterminate
+        ? `&:disabled:not(:checked) + label:after {
       background-color: #333333;
+    };`
+        : ''
     }
     &:disabled:checked + label:before {
       display:  ${props.isIconDisabled === true ? 'none' : 'block'};
