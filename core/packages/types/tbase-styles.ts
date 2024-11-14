@@ -53,7 +53,9 @@ type TBaseStyles = {
   bottom?: number | string;
   opacity?: CSS.Property.Opacity;
   transform?: string;
-  overflowY?: string;
+  overflowY?: CSS.Property.OverflowY;
+  overflowX?: CSS.Property.OverflowX;
+  overflow: CSS.Property.Overflow;
   zIndex?: number;
   error?: boolean;
   colorTheme?: 'normal' | 'warning';
