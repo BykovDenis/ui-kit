@@ -51,6 +51,8 @@ const FormControlStyled = styled.div<IFormControl>`
     ${props?.borderBottom ? `border-bottom: ${props.borderBottom};` : ''}
     ${props?.lineHeight ? `line-height: ${props.lineHeight};` : ''}
     ${props?.wordBreak ? `word-break: ${props.wordBreak};` : ''}
+    ${props?.overflowY ? `overflow-y: ${props.overflowY};` : ''}
+    ${props?.overflow ? `overflow: ${props.overflow};` : ''}
   `}
 `;
 

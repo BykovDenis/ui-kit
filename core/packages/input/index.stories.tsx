@@ -45,7 +45,8 @@ const TemplateDarkTheme: StoryFn<typeof Input> = (args: IInput) => {
   const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const element = evt?.target;
     const value: string = element?.value;
-    setValue(value);
+    const valueParsed: string = value?.replaceAll(/\D/gi, '');
+    setValue(valueParsed);
     // console.log(value);
   };
 

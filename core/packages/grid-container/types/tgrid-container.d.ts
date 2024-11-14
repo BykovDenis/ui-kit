@@ -2,7 +2,6 @@ import TBaseStyles from '../../types/tbase-styles';
 import * as CSS from 'csstype';
 
 type TGridContainer = TBaseStyles & {
-  overflowY?: string;
   outline?: string;
   borderRadius?: number | string;
   top?: number | string;

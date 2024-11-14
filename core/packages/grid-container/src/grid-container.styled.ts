@@ -47,6 +47,8 @@ const GridContainerStyled = styled.div<TGridContainerStyled>`
   ${props?.borderBottom ? `border-bottom: ${props.borderBottom};` : ''}
   ${props?.lineHeight ? `line-height: ${props.lineHeight};` : ''}
   ${props?.wordBreak ? `word-break: ${props.wordBreak};` : ''}
+  ${props?.overflowY ? `overflow-y: ${props.overflowY};` : ''}
+  ${props?.overflow ? `overflow: ${props.overflow};` : ''}
 `}
 `;
 
