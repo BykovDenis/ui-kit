@@ -322,4 +322,5 @@
   <li>Checkbox. Change bgColor to Indeterminate as checked mode </li>
   <li>Storybook. Updated to v8 </li>
   <li>FlexContainer, FormControl, GridContainer. Add CSS properties: overflow-x, overflow </li>
+  <li>Multiselect. Fix styles for disabled component with string[]. </li>
 </ol>

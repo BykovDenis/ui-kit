@@ -8,11 +8,11 @@
     "build": "vite build",
     "preview": "vite preview",
     "install-packages": "npm i --registry https://nexus-ci.delta.sbrf.ru/repository/npm-all",
-    "npm-update-ui-kit": "npm i -E @sber-risks-ui/core@latest --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release",
+    "npm-update-ui-kit": "npm i -E @sber-risks-ui/core@latest",
     "npm-update-ui-icon": "npm i -E @sber-risks-ui/icon@latest --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release"
   },
   "dependencies": {
-    "@sber-risks-ui/core": "0.12.7-alpha.1",
+    "@sber-risks-ui/core": "0.12.10-alpha.1",
     "@sber-risks-ui/icon": "0.0.2-beta.8",
     "@tanstack/react-router": "1.56.5",
     "dayjs": "1.11.11",
@@ -26,13 +26,13 @@
     "@tanstack/router-plugin": "1.56.4",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
-    "@vitejs/plugin-react": "3.1.0",
+    "@vitejs/plugin-react": "4.3.4",
     "chalk": "5.3.0",
     "picocolors": "1.0.1",
     "rollup-plugin-visualizer": "5.12.0",
     "typescript": "4.9.3",
     "uuid": "10.0.0",
-    "vite": "5.2.6",
+    "vite": "6.0.3",
     "vite-plugin-progress": "0.0.7"
   }
 }

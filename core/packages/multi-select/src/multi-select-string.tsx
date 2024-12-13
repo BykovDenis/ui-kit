@@ -34,9 +34,7 @@ import {
 } from '../../constants';
 import MultiSelectVariant from '../enums/multi-select-variant';
 import KeyCode from '../../enums/key-code';
-
-const BUTTON_TOGGLE_NAME = 'button-toggle';
-const BUTTON_MULTI_SELECT_CONTAINER = 'multi-select-container';
+import { BUTTON_MULTI_SELECT_CONTAINER, BUTTON_TOGGLE_NAME } from './constants';
 
 type TMultiSelectString = TMultiSelect & {
   elementNames: Array<string>;
@@ -150,9 +148,6 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
   }, [props.elementNamesDefaultSelected]);
 
   const componentThemed: any = (theme: ITheme) => {
-    const color: string = props.disabled ? theme?.palette?.baseFontColorOpacity05 : theme?.palette?.baseFontColor;
-    const outlinedColor: string = theme.mainOutlinedColor;
-
     const onListExpanded = () => {
       setExpanded((isExpanded: boolean) => !isExpanded);
     };
@@ -273,17 +268,24 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
 
     const fontSize: number | string = props.fontSize ?? theme.baseFontSize;
 
+    const color: string = props.disabled ? theme?.palette?.baseFontColorOpacity05 : theme?.palette?.baseFontColor;
+    const outlinedColor: string = props.disabled ? 'transparent' : theme.mainOutlinedColor;
+    const borderColorFocused: string = props.disabled ? 'transparent' : theme.palette.primary.main;
+    const borderColorHovered: string = props.disabled ? outlinedColor : theme.mainOutlinedHoverColor;
+
     return (
       <MultiSelectContainerStyled
         data-name={BUTTON_MULTI_SELECT_CONTAINER}
         data-id={props.id}
+        id={props.id}
         width={props?.width}
         borderColor={outlinedColor}
-        borderColorFocused={theme.palette.primary.main}
-        borderColorHovered={theme.mainOutlinedHoverColor}
+        borderColorFocused={borderColorFocused}
+        borderColorHovered={borderColorHovered}
         onClick={onBtnElementsClickExpand}
         ref={btnMultiSelect}
         backgroundColor={props.disabled ? theme.inactiveBackgroundColor : 'transparent'}
+        disabled={props.disabled}
       >
         {props?.label && (
           <LabelContainer backgroundColor={theme.mainBackgroundColor}>
@@ -315,7 +317,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                   borderRadius={5}
                   padding="1px"
                   margin="0 3px 0 0"
-                  backgroundColor={theme.palette.primary.main}
+                  backgroundColor={props.disabled ? theme.inactiveColor : theme.palette.primary.main}
                   alignItems="stretch"
                 >
                   <Label
@@ -351,10 +353,12 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
           <ButtonExpandStyled
             data-name="button-toggle"
             data-id={props.id}
+            data-cy={`${props.id}-btn-expand`}
             onClick={onListExpanded}
             fontSize={pixelsMeasureToNumber(fontSize)}
             borderColor={outlinedColor}
             borderColorFocused={theme.palette.primary.light}
+            disabled={props.disabled}
           >
             {isExpanded ? <ChevronUpIcon color={color} /> : <ChevronDownIcon color={color} />}
           </ButtonExpandStyled>
@@ -362,6 +366,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
         {isExpanded && (
           <ToggleContainer
             data-name="toggle-container"
+            data-cy={`${props.id}-toggle-container`}
             ref={btnToggleContainer}
             backgroundColor={theme.mainBackgroundColor}
           >
@@ -373,6 +378,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                 fontSize={pixelsMeasureToNumber(fontSize)}
                 color={theme.palette.baseFontColor}
                 backgroundColor={theme.palette.primary.light}
+                disabled={props.disabled}
               >
                 Select all <CirclePlusIcon color={theme.palette.baseFontColor} />
               </Button>
@@ -383,6 +389,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                 fontSize={pixelsMeasureToNumber(fontSize)}
                 color={theme.palette.baseFontColor}
                 backgroundColor={theme.palette.primary.light}
+                disabled={props.disabled}
               >
                 Unselect all <CircleCrossIcon color={theme.palette.baseFontColor} />
               </Button>
@@ -394,6 +401,8 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
               onRemove={onSearchStringClean}
               placeholder="Search elements"
               variant="outlined"
+              isNotClearable={props.disabled}
+              disabled={props.disabled}
               fontSize={pixelsMeasureToNumber(fontSize)}
             />
             <ListContainerStyled
@@ -406,7 +415,8 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                 backgroundColor={theme.mainBackgroundColor}
                 color={theme.palette.baseFontColor}
               >
-                {variant === MultiSelectVariant.Atlas &&
+                {!props.disabled &&
+                  variant === MultiSelectVariant.Atlas &&
                   arrElementNames?.map((columnNameElement: string, index: number) => (
                     <ListItem
                       type="button"
@@ -432,29 +442,30 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                       </Label>
                     </ListItem>
                   ))}
-                {elementNamesFiltered?.map((columnNameElement: string, index: number) => (
-                  <ListItem
-                    type="button"
-                    key={`${index}-list-item`}
-                    padding="5px 0"
-                    justifyContent="space-between"
-                    color={theme.palette.baseFontColor}
-                    data-value={columnNameElement}
-                    data-id={props.id}
-                    onClick={onElementNameSelect}
-                  >
-                    <Label
-                      backgroundColor="transparent"
+                {!props.disabled &&
+                  elementNamesFiltered?.map((columnNameElement: string, index: number) => (
+                    <ListItem
+                      type="button"
+                      key={`${index}-list-item`}
+                      padding="5px 0"
+                      justifyContent="space-between"
+                      color={theme.palette.baseFontColor}
                       data-value={columnNameElement}
-                      fontSize={pixelsMeasureToNumber(fontSize)}
+                      data-id={props.id}
+                      onClick={onElementNameSelect}
                     >
-                      {columnNameElement}
-                      <FormControl position="absolute" right={5} width="initial" data-value={columnNameElement}>
-                        <CirclePlusIcon color={theme.palette.baseFontColor} />
-                      </FormControl>
-                    </Label>
-                  </ListItem>
-                ))}
+                      <Label
+                        backgroundColor="transparent"
+                        data-value={columnNameElement}
+                        fontSize={pixelsMeasureToNumber(fontSize)}
+                      >
+                        {columnNameElement}
+                        <FormControl position="absolute" right={5} width="initial" data-value={columnNameElement}>
+                          <CirclePlusIcon color={theme.palette.baseFontColor} />
+                        </FormControl>
+                      </Label>
+                    </ListItem>
+                  ))}
               </List>
             </ListContainerStyled>
           </ToggleContainer>
