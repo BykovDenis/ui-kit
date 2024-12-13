@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
-// import MultiSelect from "../../../../../core/packages/multi-select/src";
-
+import MultiSelect from "../../../../../core/packages/multi-select/src";
 // components from package library
-import MultiSelect from "@sber-risks-ui/core/multi-select";
+// import MultiSelect from "@sber-risks-ui/core/multi-select";
 import { TMultiSelectOption } from "@sber-risks-ui/core/multi-select";
 import GridContainer from "@sber-risks-ui/core/grid-container";
 import Button from "@sber-risks-ui/core/button";
@@ -19,25 +18,14 @@ const MultiSelectTesting: React.FunctionComponent = () => {
   >(["2", "1"]);
   const [columnsSelected2, setColumnNamesSelected2] = useState<Array<any> | []>(
     [
-      { label: "five", value: 5 },
-      { label: "three", value: 3 },
-      { label: "twofff", value: 2 },
+      { value: "B1_OL_UK", label: "B1_OL_UK" },
+      { value: "B1_SC_UK", label: "B1_SC_UK" },
+      { value: "B1_SH_UK", label: "B1_SH_UK" },
     ]
   );
   const [columnsSelected3, setColumnNamesSelected3] = useState<
     Array<TMultiSelectOption> | []
   >([]);
-
-  // const columns: Array<TMultiSelectOption> = [
-  //   { label: 'one', value: 1 },
-  //   { label: 'someeee', value: 88 },
-  //   { label: 'five', value: 5 },
-  //   { label: 'three', value: 3 },
-  //   { label: 'twofff', value: 2 },
-  //   { label: 'twwwwo', value: 22 },
-  //   { label: 'fffour', value: 4 },
-  //   { label: 'some', value: 8 },
-  // ];
 
   const columns: Array<any> = [
     { value: "B1_EA_UK", label: "B1_EA_UK" },
@@ -74,6 +62,33 @@ const MultiSelectTesting: React.FunctionComponent = () => {
     "six",
   ];
 
+  const metrics: string[] = [
+    "ProductValue",
+    "CVA",
+    "DVA",
+    "BCVA",
+    "ExpectedDiscountedPositiveExposure",
+    "ExpectedDiscountedNegativeExposure",
+    "ExpectedDiscountedPositiveExposureNoCollateral",
+    "ExpectedDiscountedNegativeExposureNoCollateral",
+    "ExpectedPositiveExposure",
+    "ExpectedNegativeExposure",
+    "ExpectedOwnProbabilityOfDefault",
+    "ExpectedCounterpartyProbabilityOfDefault",
+    "CVA_NonLinear",
+    "DVA_NonLinear",
+    "BCVA_NonLinear",
+    "ProductValue_NonLinear",
+    "CVA_ByTrade",
+    "DVA_ByTrade",
+    "BCVA_ByTrade",
+    "PresentValues_ByTrade",
+    "ENE",
+    "EPE",
+  ];
+
+  const selectedMetrics: string[] = ["BCVA", "CVA", "DVA", "ProductValue"];
+
   const onMultiSelect0Change = (columnNames: Array<TMultiSelectOption>) => {
     setColumnNamesSelected0(columnNames);
   };
@@ -97,42 +112,70 @@ const MultiSelectTesting: React.FunctionComponent = () => {
 
   return (
     <>
-      <FlexContainer
-        padding="40px"
-        width={300}
-        flexDirection="column"
-        alignItems="flex-start"
+      <GridContainer
+        gridTemplateColumns="300px 500px 300px 300px"
+        gridColumnGap={20}
+        gridTemplateRows="500px"
+        alignItems="center"
       >
-        <FormControl width="initial" margin="0 0 15px 0">
-          <Button onClick={onMultiSelect1Clean}>Clear filters</Button>
-        </FormControl>
+        <FlexContainer
+          padding="40px"
+          width={300}
+          flexDirection="column"
+          alignItems="flex-start"
+        >
+          <FormControl width="initial" margin="0 0 15px 0">
+            <Button onClick={onMultiSelect1Clean}>Clear filters</Button>
+          </FormControl>
+          <MultiSelect
+            disabled={false}
+            sortDirection="asc"
+            height={50}
+            isUseLocaleStorage={false}
+            id="multi-select-1"
+            label="multi-select-atlas"
+            name="someColumns1"
+            elementNamesDefaultSelected={columnsSelected1}
+            elementNames={columns1}
+            onChange={onMultiSelect1Change}
+            fontSize={14}
+          />
+        </FlexContainer>
         <MultiSelect
-          disabled={false}
+          id="multi-select-2"
+          name="someColumns2"
+          elementNames={columns}
+          height={177}
+          onChange={onMultiSelect2Change}
+          label="some-label"
           sortDirection="asc"
-          height={50}
           isUseLocaleStorage={false}
-          id="multi-select-1"
-          label="multi-select-atlas"
-          name="someColumns1"
-          elementNamesDefaultSelected={columnsSelected1}
-          elementNames={columns1}
-          onChange={onMultiSelect1Change}
+          elementNamesDefaultSelected={columnsSelected2}
           fontSize={14}
         />
-      </FlexContainer>
-      <GridContainer columns={2} rows={2} gap="40px" padding="50px">
         <MultiSelect
-          disabled={false}
-          sortDirection="asc"
-          height={100}
-          isUseLocaleStorage={false}
-          id="multi-select-2"
-          label="some-label"
-          name="someColumns2"
-          elementNamesDefaultSelected={columnsSelected2}
-          elementNames={columns}
+          id="selected-metrics-objects"
+          name="selectedMetrics"
+          elementNames={metrics}
+          height={177}
           onChange={onMultiSelect2Change}
+          label="Metrics"
+          sortDirection="asc"
+          elementNamesDefaultSelected={selectedMetrics}
+          fontSize={12}
+          disabled={true}
+        />
+        <MultiSelect
+          id="multi-select-strings"
+          name="someColumns2"
+          elementNames={columns}
+          height={177}
+          onChange={onMultiSelect2Change}
+          label="some-label"
+          sortDirection="asc"
+          elementNamesDefaultSelected={columnsSelected2}
           fontSize={14}
+          disabled={true}
         />
       </GridContainer>
     </>

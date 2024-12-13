@@ -37,9 +37,7 @@ import {
   TAG_NAME_PATH,
   TAG_NAME_SVG,
 } from '../../constants';
-
-const BUTTON_TOGGLE_NAME = 'button-toggle';
-const BUTTON_MULTI_SELECT_CONTAINER = 'multi-select-container';
+import { BUTTON_MULTI_SELECT_CONTAINER, BUTTON_TOGGLE_NAME } from './constants';
 
 const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelectObjects>> = (
   props: TMultiSelectObjects
@@ -163,20 +161,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
     }
   }, [props.elementNamesDefaultSelected]);
 
-  // useEffect(() => {
-  // console.log('hook elementNamesSelected', elementNamesSelected);
-  // }, [elementNamesSelected])
-
-  // useEffect(() => {
-  //   if (props.elementNamesDefaultSelected?.length === 0) {
-  //     setElementNamesSelected(new Map());
-  //   }
-  // }, [props.elementNamesDefaultSelected]);
-
   const componentThemed: any = (theme: ITheme) => {
-    const color: string = props.disabled ? theme?.palette?.baseFontColorOpacity05 : theme?.palette?.baseFontColor;
-    const outlinedColor: string = theme.mainOutlinedColor;
-
     const onListExpanded = () => {
       setExpanded((isExpanded: boolean) => !isExpanded);
     };
@@ -205,11 +190,6 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
     };
 
     const onAllElementsSelected = () => {
-      // const elementsValuesSelected: Array<string> = getValue sFromElements(elementNames);
-      // const elementNamesSelectedParsed: TMapMultiSelectObjects = new Map([
-      //   ...elementsValuesSelected,
-      //   ...Array.from(elementNamesSelected),
-      // ]);
       const allElementSelected: TMapMultiSelectObjects = convertArrayToMap(elementNames);
 
       setElementNamesSelected(allElementSelected);
@@ -299,10 +279,16 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
 
     const fontSize: number | string = props.fontSize ?? theme.baseFontSize;
 
+    const color: string = props.disabled ? theme?.palette?.baseFontColorOpacity05 : theme?.palette?.baseFontColor;
+    const outlinedColor: string = props.disabled ? 'transparent' : theme.mainOutlinedColor;
+    const borderColorFocused: string = props.disabled ? 'transparent' : theme.palette.primary.main;
+    const borderColorHovered: string = props.disabled ? outlinedColor : theme.mainOutlinedHoverColor;
+
     return (
       <MultiSelectContainerStyled
         data-name={BUTTON_MULTI_SELECT_CONTAINER}
         data-id={props.id}
+        id={props.id}
         width={props?.width}
         borderColor={outlinedColor}
         borderColorFocused={theme.palette.primary.main}
@@ -310,6 +296,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
         onClick={onBtnElementsClickExpand}
         ref={btnMultiSelect}
         backgroundColor={props.disabled ? theme.inactiveBackgroundColor : 'transparent'}
+        disabled={props.disabled}
       >
         {props?.label && (
           <LabelContainer backgroundColor={theme.mainBackgroundColor}>
@@ -325,7 +312,8 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
         )}
         <FormControl>
           <MultiSelectStyled
-            data-id="multi-select-border-right"
+            data-id={`${props.id}-border-right`}
+            data-cy={`${props.id}-selected-elements`}
             className={props?.className}
             height={props.height}
             isExistLabel={isNotEmptyString(props?.label)}
@@ -340,7 +328,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                   borderRadius={5}
                   padding="1px"
                   margin="0 3px 0 0"
-                  backgroundColor={theme.palette.primary.main}
+                  backgroundColor={props.disabled ? theme.inactiveColor : theme.palette.primary.main}
                   alignItems="stretch"
                 >
                   <Label
@@ -376,6 +364,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
           <ButtonExpandStyled
             data-name="button-toggle"
             data-id={props.id}
+            data-cy={`${props.id}-btn-expand`}
             onClick={onListExpanded}
             fontSize={pixelsMeasureToNumber(fontSize)}
             borderColor={outlinedColor}
@@ -388,6 +377,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
         {isExpanded && (
           <ToggleContainer
             data-name="toggle-container"
+            data-cy={`${props.id}-toggle-container`}
             ref={btnToggleContainer}
             backgroundColor={theme.mainBackgroundColor}
           >
@@ -417,12 +407,13 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
             </FormControl>
             <Input
               name="search-values"
+              data-cy={`${props.id}-search-input`}
               value={searchText}
               onChange={onSearchStringChange}
               onRemove={onSearchStringClean}
               placeholder="Search elements"
               variant="outlined"
-              isNotClearable={true}
+              isNotClearable={props.disabled}
               disabled={props.disabled}
               fontSize={pixelsMeasureToNumber(fontSize)}
             />
