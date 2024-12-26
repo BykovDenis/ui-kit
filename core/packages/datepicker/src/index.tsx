@@ -91,6 +91,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     ? todayParsed <= maxDate.getDate().format(DatepickerMask.DashedYYYYMMDD)
     : true;
 
+  const dataCyTodayContainer: string = `${UiKitComponent.Datepicker}-${props.id}-today-container`;
+
   const syncDataParaemters = (date: DateParser) => {
     setDateParsed(date);
     setActualMonthNumber(date.getNumberMonth());
@@ -139,6 +141,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const element: any = evt.target;
     const currentElement = evt.currentTarget;
     const dataUiKitComponent: UiKitComponent = element?.dataset?.uiKitComponent;
+    const cyTodayContainer: string = element?.dataset?.cy;
     const currentElementDataUiKitComponent: UiKitComponent = currentElement?.dataset?.uiKitComponent;
     const dataId: string = element?.dataset?.id;
     if (dateRef) {
@@ -147,9 +150,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
         onDatesContainerClose(searchDomChildElement(listElement, element), evt);
       }
       if (
-        (dataUiKitComponent !== UiKitComponent.Datepicker &&
+        ((dataUiKitComponent !== UiKitComponent.Datepicker &&
           currentElementDataUiKitComponent !== UiKitComponent.Datepicker) ||
-        (dataId && element.id !== props.id)
+          (dataId && element.id !== props.id)) &&
+        cyTodayContainer !== dataCyTodayContainer
+        // currentElement !== document
       ) {
         setIsVisibleList(false);
       }
@@ -211,6 +216,16 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     setIsVisibleList(false);
     const valueParsed: string = parseStringInsteadDate(element.value, mask);
     if (value !== valueParsed || value !== element.value) {
+      const validationDate: {
+        isValid: boolean;
+        isErrorMinDate: boolean;
+        isErrorMaxDate: boolean;
+      } = checkMinMaxDate(
+        new DateParser(valueParsed, mask),
+        props.minDate ? minDate : null,
+        props.maxDate ? maxDate : null
+      );
+      setIsError(!validationDate.isValid);
       setValue(valueParsed);
       inputRef.current.value = valueParsed;
     }
@@ -573,8 +588,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             ref={dateRef}
             datesContainerAlign={props.datesContainerAlign || 'right'}
             top={props?.height || DEFAULT_HEIGHT}
+            data-cy={`${UiKitComponent.Datepicker}-${props.id}-dates-dialog`}
           >
-            <FormControl justifyContent="center" margin="0 0 3px 0">
+            <FormControl justifyContent="center" margin="0 0 3px 0" data-cy={dataCyTodayContainer}>
               <Button
                 id={`${props.id}-btn-set-today`}
                 data-btn-set-today="1"
@@ -590,7 +606,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
                 {setTodayTitle}
               </Button>
             </FormControl>
-            <MonthsYearsRuleContainer data-ui-kit-component={UiKitComponent.Datepicker}>
+            <MonthsYearsRuleContainer
+              data-cy={`${UiKitComponent.Datepicker}-${props.id}-container`}
+              data-ui-kit-component={UiKitComponent.Datepicker}
+            >
               <DatepickerNavigateContainerStyled data-ui-kit-component={UiKitComponent.Datepicker}>
                 <DatepickerButtonNavigate
                   id={`get-previous-month-${props.id}`}
