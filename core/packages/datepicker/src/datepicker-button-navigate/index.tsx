@@ -29,6 +29,7 @@ const DatepickerButtonNavigate: React.FunctionComponent<IDatepickerButtonNavigat
       height={20}
       onClick={props?.onClick}
       children={props?.children}
+      {...props}
     />
   );
 };

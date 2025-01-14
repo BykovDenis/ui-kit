@@ -707,7 +707,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             </MonthsYearsRuleContainer>
             <DaysOfWeek
               primaryColor={theme.palette.primary.main}
-              data-ui-kit-component={UiKitComponent.Datepicker}
               secondaryColor={theme.palette.secondary.main}
               fontSize={fontSize}
               fontFamily={props?.fontFamily || theme?.fontFamily}
