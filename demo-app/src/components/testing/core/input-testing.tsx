@@ -6,9 +6,9 @@ import TableBody from "@sber-risks-ui/core/table-body";
 import React, { useState } from "react";
 import Typography from "@sber-risks-ui/core/typography";
 // local components
-// import Input from "../../../../../core/packages/input/src";
+import Input from "../../../../../core/packages/input/src";
 // components from package library
-import Input from "@sber-risks-ui/core/input";
+// import Input from "@sber-risks-ui/core/input";
 
 const InputTesting: React.FunctionComponent = () => {
   const [inputValue, setInputValue] = useState<string | undefined>();
@@ -21,6 +21,7 @@ const InputTesting: React.FunctionComponent = () => {
   const [inputRegExprCompixity, setInputRegExprCompixity] = useState<
     string | undefined
   >();
+  const [inputValueClearable, setInputValueClearable] = useState<number>(1);
 
   const regExpOnlyDigits: RegExp = new RegExp("[^0-9_]", "gi");
   const regExpOnlySymbols: RegExp = new RegExp("[0-9_]", "gi");
@@ -99,6 +100,22 @@ const InputTesting: React.FunctionComponent = () => {
         setInputValue(undefined);
       }
     }
+  };
+
+  const onInputValueClearableChange = (
+    evt: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const element = evt.target;
+    if (!element.value.trim()) {
+      setInputValueClearable(1);
+    } else {
+      const valueParsed: number = Number(element.value);
+      setInputValueClearable(valueParsed);
+    }
+  };
+
+  const onInputValueChangeRemove = () => {
+    setInputValueClearable(1);
   };
 
   return (
@@ -215,6 +232,26 @@ const InputTesting: React.FunctionComponent = () => {
               />
             </TableCell>
             <TableCell>Typing text trim</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Input
+                onChange={onInputValueClearableChange}
+                onRemove={onInputValueChangeRemove}
+                data-test="clearableValue"
+                name="clearableValue"
+                variant="outlined"
+                value={inputValueClearable}
+                isNotRunDebounce={true}
+                regExp={regExpOnlyDigits}
+                min={1}
+                max={5000}
+              />
+            </TableCell>
+            <TableCell>
+              Clearable digital value. Min default value 1 and max default value
+              5000
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>
