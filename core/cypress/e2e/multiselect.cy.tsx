@@ -7,17 +7,18 @@ describe('Testing MultiSelect component', () => {
     cy.get('[data-cy="multi-select-2-btn-expand"]')
       .click()
       .then(() => {
-        cy.get('[data-cy="multi-select-2-search-input"]').click().type('B1');
-        cy.get('[data-label="B1_SH_UK"]').click();
-        cy.get('[data-label="B1_OL_UK"]').click();
-        cy.get('[data-label="B1_SC_UK"]').click();
-        cy.get('[data-label="B1_SS1_UK"]')
-          .click()
-          .then(() => {
-            cy.get('[data-cy="multi-select-2-selected-elements"]').find('div').should('have.length', 4);
-            cy.get('#multi-select-2-2-button').click();
-            cy.get('[data-cy="multi-select-2-selected-elements"]').find('div').should('have.length', 3);
-          });
+        cy.get('#multi-select-2').find('[data-label="B1_SH_UK"]').click();
+        cy.get('#multi-select-2').find('[data-label="B1_OL_UK"]').click();
+        cy.get('#multi-select-2').find('[data-label="B1_SC_UK"]').click();
+        cy.get('#multi-select-2').find('[data-label="B1_SS1_UK"]').click();
+        cy.get('[data-cy="multi-select-2-selected-elements"]').find('div').should('have.length', 1);
+        cy.get('#multi-select-2').find('[data-cy="multi-select-2-search-input"]').click().type('B1');
+        cy.get('#multi-select-2').find('[data-label="B1_SH_UK"]').click();
+        cy.get('#multi-select-2').find('[data-label="B1_OL_UK"]').click();
+        cy.get('#multi-select-2').find('[data-label="B1_SC_UK"]').click();
+        cy.get('[data-cy="multi-select-2-selected-elements"]').find('div').should('have.length', 4);
+        cy.get('#multi-select-2-2-button').click();
+        cy.get('[data-cy="multi-select-2-selected-elements"]').find('div').should('have.length', 3);
       });
   });
   it('Test 2. MultiSelect. Disable elements', () => {
