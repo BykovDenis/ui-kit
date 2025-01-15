@@ -60,9 +60,9 @@ const ThemeLightTemplate: StoryFn<typeof Tabs> = (args: TTabs) => {
   return (
     <ReactThemeContext.Provider value={themes.light}>
       <Tabs {...args} value={tabActive} onChange={onTabChange}>
-        {/*<Tab>Tab 1</Tab>*/}
-        {/*<Tab disabled={true}>Tab 2</Tab>*/}
-        {/*<Tab>Tab 3</Tab>*/}
+        <Tab>Tab 1</Tab>
+        <Tab disabled={true}>Tab 2</Tab>
+        <Tab>Tab 3</Tab>
       </Tabs>
     </ReactThemeContext.Provider>
   );
