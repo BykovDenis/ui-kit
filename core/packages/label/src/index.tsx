@@ -20,6 +20,12 @@ const Label: React.FunctionComponent<TLabel> = (props: TLabel) => {
       ? theme?.palette?.baseFontColorOpacity05
       : theme?.palette?.baseFontColor;
 
+    const onLabelClick = (evt: React.MouseEvent<HTMLLabelElement>) => {
+      if (!props.disabled) {
+        props.onClick(evt);
+      }
+    };
+
     return (
       <LabelStyled
         {...props}
@@ -39,6 +45,7 @@ const Label: React.FunctionComponent<TLabel> = (props: TLabel) => {
         height={props?.height}
         wordBreak={props?.wordBreak}
         lineHeight={props.lineHeight}
+        onClick={onLabelClick}
       >
         {props.children}
       </LabelStyled>
