@@ -324,3 +324,13 @@
   <li>FlexContainer, FormControl, GridContainer. Add CSS properties: overflow-x, overflow </li>
   <li>Multiselect. Fix styles for disabled component with string[]. </li>
 </ol>
+
+<h2>v 0.12.11</h2>
+<h3>Features</h3>
+<ol>
+   <li>Tab. Set type attribute as button for Tab component </li>
+</ol>
+<h3>Bugfix</h3>
+<ol>
+    <li>Datepicker. Fix behavior when pressing incorrectly </li>
+</ol>
