@@ -36,7 +36,7 @@ def gridContainerPath = './core/packages/grid-container'
 pipeline {
     agent {
         node {
-            label 'rhel8&&!delta4' // Clean builder agent
+            label 'rhel8' // Clean builder agent
         }
     }
 
@@ -49,10 +49,10 @@ pipeline {
         stage('Core packages installing') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
                         sh 'node -v'
@@ -71,10 +71,10 @@ pipeline {
         stage('Root packages installing') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
                         sh 'node -v'
@@ -93,10 +93,10 @@ pipeline {
         stage('Styles theme deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${stylesPath}") {
@@ -117,10 +117,10 @@ pipeline {
         stage('Typography deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${typographyPath}") {
@@ -145,10 +145,10 @@ pipeline {
         stage('Datepicker deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${datepickerPath}") {
@@ -173,10 +173,10 @@ pipeline {
         stage('Checkbox deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${checkboxPath}") {
@@ -201,10 +201,10 @@ pipeline {
         stage('Button deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${buttonPath}") {
@@ -229,10 +229,10 @@ pipeline {
         stage('IconButton  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${iconButtonPath}") {
@@ -257,10 +257,10 @@ pipeline {
         stage('Input, TextField  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${inputPath}") {
@@ -299,10 +299,10 @@ pipeline {
         stage('Label, Label interactive  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${labelPath}") {
@@ -341,10 +341,10 @@ pipeline {
         stage('ListItem  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${listItemPath}") {
@@ -369,10 +369,10 @@ pipeline {
         stage('List  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${listPath}") {
@@ -397,10 +397,10 @@ pipeline {
         stage('Radio  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${radioPath}") {
@@ -425,10 +425,10 @@ pipeline {
         stage('Select  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${selectPath}") {
@@ -453,10 +453,10 @@ pipeline {
         stage('Switcher  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${switcherPath}") {
@@ -477,10 +477,10 @@ pipeline {
         stage('FormControl  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${formControlPath}") {
@@ -501,10 +501,10 @@ pipeline {
         stage('FlexContainer  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${flexContainerPath}") {
@@ -525,10 +525,10 @@ pipeline {
         stage('GridContainer  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${gridContainerPath}") {
@@ -549,10 +549,10 @@ pipeline {
         stage('TableColumnsVisible  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${tableColumnsVisiblePath}") {
@@ -573,10 +573,10 @@ pipeline {
         stage('ProgressBar  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${progressBarPath}") {
@@ -597,10 +597,10 @@ pipeline {
         stage('MultiSelect  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${multiSelectPath}") {
@@ -621,10 +621,10 @@ pipeline {
         stage('StickyBottomPanel  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${stickyBottomPanelPath}") {
@@ -645,10 +645,10 @@ pipeline {
         stage('Tabs  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${tabsPath}") {
@@ -669,10 +669,10 @@ pipeline {
         stage('Tab  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${tabPath}") {
@@ -693,10 +693,10 @@ pipeline {
         stage('Divider  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${dividerPath}") {
@@ -717,10 +717,10 @@ pipeline {
         stage('Table  deploy') {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
-                nodejs('node-v20.9.0-linux-x64') {
+                nodejs('node-22.5.1') {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${tablePath}") {
@@ -781,7 +781,7 @@ pipeline {
         stage("UI Kit PUBLISH") {
             tools
             {
-                nodejs 'node-v20.9.0-linux-x64'
+                nodejs 'node-22.5.1'
             }
             steps {
                 script {
@@ -805,7 +805,7 @@ pipeline {
                           ]
                         )
                         if (IS_RELEASE == 'Yes' || IS_RELEASE == 'yes') {
-                            nodejs('node-v20.9.0-linux-x64') {
+                            nodejs('node-22.5.1') {
                                 withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                                     dir("${uiKitPath}") {
                                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
@@ -817,7 +817,7 @@ pipeline {
                                 }
                             }
                         } else {
-                            nodejs('node-v20.9.0-linux-x64') {
+                            nodejs('node-22.5.1') {
                                 withCredentials([file(credentialsId: 'npmrc_publish_dev', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                                     dir("${uiKitPath}") {
                                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
