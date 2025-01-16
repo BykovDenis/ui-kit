@@ -6,9 +6,9 @@ import TableBody from "@sber-risks-ui/core/table-body";
 import { IOption } from "@sber-risks-ui/core/select";
 import { useState } from "react";
 // local components
-// import Select from "../../../../../core/packages/select/src";
+import Select from "../../../../../core/packages/select/src";
 // components from package library
-import Select from "@sber-risks-ui/core/select";
+// import Select from "@sber-risks-ui/core/select";
 
 const SelectTesting: React.FunctionComponent = () => {
   const [textValue, setTextValue] = useState<string | null>(null);
@@ -134,6 +134,48 @@ const SelectTesting: React.FunctionComponent = () => {
               />
             </TableCell>
             <TableCell>The component Select contain only digits</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Select
+                label="Some select disabled"
+                data-test="select-disabled"
+                activeElement={"one"}
+                elements={["one", "two", "three", "four", "five", "six"]}
+                variant="outlined"
+                id="select-disabled"
+                name="selectObject"
+                isCreatable={true}
+                isNotVisibleIndicator={true}
+                disabled={true}
+              />
+            </TableCell>
+            <TableCell>
+              The disabled component Select (primitive string entities)
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Select
+                label="Some select objects disabled"
+                data-test="select-objects-disabled"
+                activeElement={{ label: "two", value: 1 }}
+                elements={[
+                  { label: "one", value: 1 },
+                  { label: "two", value: 2 },
+                  { label: "three", value: 3 },
+                ]}
+                variant="outlined"
+                id="select-objects-disabled"
+                name="selectObject"
+                isCreatable={true}
+                isNotVisibleIndicator={true}
+                disabled={true}
+              />
+            </TableCell>
+            <TableCell>
+              The disabled component Select (object string entities)
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>

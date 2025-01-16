@@ -334,3 +334,9 @@
 <ol>
     <li>Datepicker. Fix behavior when pressing incorrectly </li>
 </ol>
+
+<h2>v 0.12.12</h2>
+<h3>Bugfix</h3>
+<ol>
+    <li>Select. Doesn't dropdown data for disabled Select component </li>
+</ol>

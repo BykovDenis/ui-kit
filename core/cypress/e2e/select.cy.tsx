@@ -91,4 +91,32 @@ describe('Testing Select component', () => {
         cy.get('#select-text-list').find('button').last().contains('Create new');
       });
   });
+  it('Test 5. Click component by disabled component', () => {
+    cy.get('#select-disabled')
+      .click({ force: true })
+      .then(() => {
+        cy.get('#select-disabled-list-items').should('have.length', 0);
+      });
+  });
+  it('Test 6. Click label by disabled component', () => {
+    cy.get('label[for="select-disabled"]')
+      .click({ force: true })
+      .then(() => {
+        cy.get('#select-disabled-list-items').should('have.length', 0);
+      });
+  });
+  it('Test 7. Click component by disabled component', () => {
+    cy.get('#select-objects-disabled')
+      .click({ force: true })
+      .then(() => {
+        cy.get('#select-objects-disabled-list-items').should('have.length', 0);
+      });
+  });
+  it('Test 8. Click label by disabled component', () => {
+    cy.get('label[for="select-objects-disabled"]')
+      .click({ force: true })
+      .then(() => {
+        cy.get('#select-objects-disabled-list-items').should('have.length', 0);
+      });
+  });
 });
