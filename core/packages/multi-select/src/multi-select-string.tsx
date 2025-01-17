@@ -410,6 +410,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
               outlinedColor={theme.palette.primary.lighter}
             >
               <List
+                data-cy={`${props.id}-list`}
                 type="list-buttons"
                 onKeyUp={onKeyUp}
                 backgroundColor={theme.mainBackgroundColor}

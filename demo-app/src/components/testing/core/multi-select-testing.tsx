@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-// import MultiSelect from "../../../../../core/packages/multi-select/src";
+import MultiSelect from "../../../../../core/packages/multi-select/src";
 // components from package library
-import MultiSelect from "@sber-risks-ui/core/multi-select";
+// import MultiSelect from "@sber-risks-ui/core/multi-select";
 import { TMultiSelectOption } from "@sber-risks-ui/core/multi-select";
 import GridContainer from "@sber-risks-ui/core/grid-container";
 import Button from "@sber-risks-ui/core/button";
@@ -21,6 +21,7 @@ const MultiSelectTesting: React.FunctionComponent = () => {
       { value: "B1_OL_UK", label: "B1_OL_UK" },
       { value: "B1_SC_UK", label: "B1_SC_UK" },
       { value: "B1_SH_UK", label: "B1_SH_UK" },
+      { value: "B1_SS1_UK", label: "B1_SS1_UK" },
     ]
   );
   const [columnsSelected3, setColumnNamesSelected3] = useState<
