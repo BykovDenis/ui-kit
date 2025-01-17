@@ -21,7 +21,7 @@ const Label: React.FunctionComponent<TLabel> = (props: TLabel) => {
       : theme?.palette?.baseFontColor;
 
     const onLabelClick = (evt: React.MouseEvent<HTMLLabelElement>) => {
-      if (!props.disabled) {
+      if (!props.disabled && props?.onClick) {
         props.onClick(evt);
       }
     };

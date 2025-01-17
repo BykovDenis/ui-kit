@@ -291,7 +291,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
         id={props.id}
         width={props?.width}
         borderColor={outlinedColor}
-        borderColorFocused={theme.palette.primary.main}
+        borderColorFocused={borderColorFocused}
         borderColorHovered={theme.mainOutlinedHoverColor}
         onClick={onBtnElementsClickExpand}
         ref={btnMultiSelect}
@@ -422,6 +422,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
               outlinedColor={theme.palette.primary.lighter}
             >
               <List
+                data-cy={`${props.id}-list`}
                 type="list-buttons"
                 onKeyUp={onKeyUp}
                 backgroundColor={theme.mainBackgroundColor}
