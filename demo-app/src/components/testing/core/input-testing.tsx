@@ -6,9 +6,9 @@ import TableBody from "@sber-risks-ui/core/table-body";
 import React, { useState } from "react";
 import Typography from "@sber-risks-ui/core/typography";
 // local components
-import Input from "../../../../../core/packages/input/src";
+// import Input from "../../../../../core/packages/input/src";
 // components from package library
-// import Input from "@sber-risks-ui/core/input";
+import Input from "@sber-risks-ui/core/input";
 
 const InputTesting: React.FunctionComponent = () => {
   const [inputValue, setInputValue] = useState<string | undefined>();

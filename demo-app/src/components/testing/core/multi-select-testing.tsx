@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import MultiSelect from "../../../../../core/packages/multi-select/src";
+// import MultiSelect from "../../../../../core/packages/multi-select/src";
 // components from package library
-// import MultiSelect from "@sber-risks-ui/core/multi-select";
+import MultiSelect from "@sber-risks-ui/core/multi-select";
 import { TMultiSelectOption } from "@sber-risks-ui/core/multi-select";
 import GridContainer from "@sber-risks-ui/core/grid-container";
 import Button from "@sber-risks-ui/core/button";
@@ -10,9 +10,6 @@ import FormControl from "@sber-risks-ui/core/form-control";
 import FlexContainer from "@sber-risks-ui/core/flex-container";
 
 const MultiSelectTesting: React.FunctionComponent = () => {
-  const [columnsSelected0, setColumnNamesSelected0] = useState<
-    Array<TMultiSelectOption> | []
-  >([]);
   const [columnsSelected1, setColumnNamesSelected1] = useState<
     Array<string> | []
   >(["2", "1"]);
@@ -54,14 +51,6 @@ const MultiSelectTesting: React.FunctionComponent = () => {
     "3232323232323",
     "4234",
   ];
-  const columns2: Array<string> = [
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-  ];
 
   const metrics: string[] = [
     "ProductValue",
@@ -90,10 +79,6 @@ const MultiSelectTesting: React.FunctionComponent = () => {
 
   const selectedMetrics: string[] = ["BCVA", "CVA", "DVA", "ProductValue"];
 
-  const onMultiSelect0Change = (columnNames: Array<TMultiSelectOption>) => {
-    setColumnNamesSelected0(columnNames);
-  };
-
   const onMultiSelect1Change = (columnNames: Array<string>) => {
     setColumnNamesSelected1(columnNames);
   };
@@ -105,10 +90,6 @@ const MultiSelectTesting: React.FunctionComponent = () => {
 
   const onMultiSelect2Change = (columnNames: Array<string>) => {
     setColumnNamesSelected2(columnNames);
-  };
-
-  const onMultiSelect3Change = (columnNames: Array<TMultiSelectOption>) => {
-    setColumnNamesSelected3(columnNames);
   };
 
   return (

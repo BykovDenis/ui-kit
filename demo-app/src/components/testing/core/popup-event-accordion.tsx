@@ -16,6 +16,7 @@ import Datepicker from "@sber-risks-ui/core/datepicker";
 import Select from "@sber-risks-ui/core/select";
 import MultiSelect from "@sber-risks-ui/core/multi-select";
 import Input from "@sber-risks-ui/core/input";
+import TextField from "@sber-risks-ui/core/textfield";
 
 const PopupEventAccordion: React.FunctionComponent = () => {
   const [datepicker1, setDatepicker1] = useState<string | null>(null);
@@ -87,11 +88,6 @@ const PopupEventAccordion: React.FunctionComponent = () => {
     setColumnNamesSelected1(columnNames);
   };
 
-  const onMultiSelect1Clean = () => {
-    setColumnNamesSelected1([]);
-    setColumnNamesSelected2([]);
-  };
-
   const onMultiSelect2Change = (columnNames: Array<string>) => {
     setColumnNamesSelected2(columnNames);
   };
@@ -105,7 +101,7 @@ const PopupEventAccordion: React.FunctionComponent = () => {
     console.log(success(valueParsed));
   };
 
-  const onInputValue1Remove = (name: string) => {
+  const onInputValue1Remove = () => {
     setInputValue1(null);
   };
 
