@@ -2,10 +2,10 @@ import FlexContainer from "@sber-risks-ui/core/flex-container";
 import React, { useState } from "react";
 import { warning, success } from "../../../utils/dev-utils-theme";
 // local components
-// import Datepicker from "../../../../../core/packages/datepicker/src";
+import Datepicker from "../../../../../core/packages/datepicker/src";
 // import GridContainer from "../../../../../core/packages/grid-container/src";
 // components from package library
-import Datepicker from "@sber-risks-ui/core/datepicker";
+// import Datepicker from "@sber-risks-ui/core/datepicker";
 import Typography from "@sber-risks-ui/core/typography";
 import { toast } from "react-toastify";
 import DatepickerMask from "@sber-risks-ui/core/datepicker/enums/datepicker-mask";
@@ -163,8 +163,8 @@ const DatepickerTesting = () => {
   };
 
   const onDate3Change = (name: string, value: string, isValid: boolean) => {
-    setDate3(value);
     if (isValid) {
+      setDate3(value);
       console.log(success(value));
       toast("value = " + value, { type: "success" });
     } else {
