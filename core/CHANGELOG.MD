@@ -340,3 +340,9 @@
 <ol>
     <li>Select. Doesn't dropdown data for disabled Select component </li>
 </ol>
+
+<h2>v 0.12.13</h2>
+<h3>Bugfix</h3>
+<ol>
+    <li>CIBFV-4569 Datepicker. Fix clean incorrect date</li>
+</ol>
