@@ -15,3 +15,10 @@
     <li>Add dynamic pathname for icons source</li>  
     <li>Add small size</li>  
 </ol>
+
+<h2>v 1.0.0</h2>
+
+<h3>Features</h3>
+<ol>
+    <li>Stability version</li>
+</ol>
