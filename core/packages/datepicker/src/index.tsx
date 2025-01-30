@@ -132,6 +132,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const onInputDelete = () => {
     if (props?.onRemove) {
       setValue(null);
+      setIsError(false);
       props?.onRemove(props.name, null);
     }
     setIsExistValue(false);
