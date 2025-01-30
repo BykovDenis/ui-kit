@@ -638,6 +638,11 @@ describe('The Datepicker component', () => {
   it('Test 41. Clear incorrect values', () => {
     cy.get('#datepicker3').click().type('01192029');
     cy.get('#datepicker3-btn-delete-value').click();
-    cy.get('#datepicker3').should('value', '');
+    cy.get('#datepicker3')
+      .should('value', '')
+      .invoke('css', 'color')
+      .then((color: string) => {
+        expect(color).to.eq(themes.dark.palette.baseFontColor);
+      });
   });
 });

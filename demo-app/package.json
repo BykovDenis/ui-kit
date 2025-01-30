@@ -12,7 +12,7 @@
     "npm-update-ui-icon": "npm i -E @sber-risks-ui/icon@latest --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release"
   },
   "dependencies": {
-    "@sber-risks-ui/core": "0.12.12-alpha.1",
+    "@sber-risks-ui/core": "0.12.13-beta.0",
     "@sber-risks-ui/icon": "0.0.2-beta.8",
     "@tanstack/react-router": "1.56.5",
     "dayjs": "1.11.11",
