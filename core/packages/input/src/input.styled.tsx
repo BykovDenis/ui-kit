@@ -55,6 +55,16 @@ const Input = styled.input<IInput>`
         border-color: ${props?.variant === Variant.Outlined ? props?.disabledColor : 'transparent'};
       }
       padding: ${props?.padding};
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+          /* display: none; <- Crashes Chrome on hover */
+          -webkit-appearance: none;
+          margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+      }
+
+      &[type=number] {
+        -moz-appearance:textfield; /* Firefox */
+      }
   `}
 `;
 
