@@ -346,3 +346,9 @@
 <ol>
     <li>CIBFV-4569 Datepicker. Fix clean incorrect date</li>
 </ol>
+
+<h2>v 0.12.14</h2>
+<h3>Feature</h3>
+<ol>
+    <li>CIBFV-4516 Input. Hide spinbox for Input type="number"</li>
+</ol>
