@@ -9,11 +9,11 @@
     "preview": "vite preview",
     "install-packages": "npm i --registry https://nexus-ci.delta.sbrf.ru/repository/npm-all",
     "npm-update-ui-kit": "npm i -E @sber-risks-ui/core@latest",
-    "npm-update-ui-icon": "npm i -E @sber-risks-ui/icon@latest --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release"
+    "npm-update-ui-icon": "npm i -E @sber-risks-ui/icon@latest"
   },
   "dependencies": {
-    "@sber-risks-ui/core": "0.12.13-beta.0",
-    "@sber-risks-ui/icon": "0.0.2-beta.8",
+    "@sber-risks-ui/core": "0.12.14-beta.0",
+    "@sber-risks-ui/icon": "1.0.0",
     "@tanstack/react-router": "1.56.5",
     "dayjs": "1.11.11",
     "react": "18.2.0",
