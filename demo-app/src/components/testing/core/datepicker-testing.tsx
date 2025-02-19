@@ -211,6 +211,7 @@ const DatepickerTesting = () => {
               height={60}
               datesContainerAlign="left"
               textMessage={(!date1 && "Date is empty") || ""}
+              error={!date1}
             />
           </FlexContainer>
           <FlexContainer width={200} margin="20px 10px 20px 0">
