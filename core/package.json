@@ -61,7 +61,6 @@
     "@storybook/addon-essentials": "8.5.5",
     "@storybook/addon-interactions": "8.5.5",
     "@storybook/addon-links": "8.4.2",
-    "@storybook/addon-onboarding": "^8.2.10",
     "@storybook/blocks": "^8.2.10",
     "@storybook/builder-vite": "8.5.5",
     "@storybook/builder-webpack5": "8.5.3",

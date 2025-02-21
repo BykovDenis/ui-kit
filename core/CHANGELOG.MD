@@ -352,3 +352,9 @@
 <ol>
     <li>CIBFV-4516 Input. Hide spinbox for Input type="number"</li>
 </ol>
+
+<h2>v 0.13.0</h2>
+<h3>Feature</h3>
+<ol>
+    <li>CIBFV-4491 Select. Implement dropdown by React Portal</li>
+</ol>

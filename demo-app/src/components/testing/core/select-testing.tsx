@@ -6,9 +6,9 @@ import TableBody from "@sber-risks-ui/core/table-body";
 import { IOption } from "@sber-risks-ui/core/select";
 import { useState } from "react";
 // local components
-// import Select from "../../../../../core/packages/select/src";
+import Select from "../../../../../core/packages/select/src";
 // components from package library
-import Select from "@sber-risks-ui/core/select";
+// import Select from "@sber-risks-ui/core/select";
 
 const SelectTesting: React.FunctionComponent = () => {
   const [textValue, setTextValue] = useState<string | null>(null);
