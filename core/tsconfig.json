@@ -22,5 +22,8 @@
     "build",
     "__tests__"
   ],
-  "include": ["**/*", "node_modules"]
+  "include": ["**/*", "node_modules"],
+  "assets": {
+    "baseUrl": "."
+  }
 }

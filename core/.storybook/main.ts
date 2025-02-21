@@ -7,7 +7,6 @@ const config: StorybookConfig = {
     '@storybook/addon-onboarding',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    // '@chromatic-com/storybook',
     '@storybook/addon-interactions',
   ],
   framework: {
@@ -26,8 +25,8 @@ const config: StorybookConfig = {
       },
     });
   },
-  // docs: {
-  //   autodocs: true,
-  // },
+  docs: {
+    autodocs: true,
+  },
 };
 export default config;
