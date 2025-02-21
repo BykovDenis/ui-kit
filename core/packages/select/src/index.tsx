@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import searchDomChildElement from '../../helpers/search-dom-child-element';
 import Input from '../../input/src';
@@ -300,6 +301,90 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       props?.isNotClearable
     );
 
+    let top: number = 0;
+    let left: number = 0;
+    let width: number = 0;
+
+    if (inputRef?.current) {
+      const clientRectPosition: any = inputRef.current.getBoundingClientRect();
+      console.log(clientRectPosition);
+      top = clientRectPosition.bottom;
+      left = clientRectPosition.left;
+      width = clientRectPosition.width;
+    }
+
+    const SelectListContainerPortal = () =>
+      createPortal(
+        <SelectListContainer
+          {...props}
+          backgroundColor={backgroundColor}
+          outlinedColor={theme.palette.primary.moreLighter}
+          ref={selectListContainerRef}
+          top={top}
+          left={left}
+          width={width}
+          id={`${props.id}-list-items`}
+        >
+          <List
+            id={`${props.id}-list`}
+            type="list-buttons"
+            onMouseDown={onMouseDown}
+            onKeyUp={onKeyUp}
+            fontSize={props?.fontSize}
+          >
+            {isFoundValue &&
+              elements?.map((element: IOption, index: number) => {
+                const isSelectedElement: boolean = element?.value === activeElement?.value;
+                if (isSelectedElement) {
+                  setActiveIndexElement(index);
+                }
+                return (
+                  <ListItem
+                    type="button"
+                    key={`${props.id}-list-item-${index}`}
+                    data-index={element.index}
+                    data-value={element.value}
+                    data-label={element.label}
+                    data-element-selected={`${props.id}-element${
+                      element?.value && activeElement?.value && isSelectedElement ? '-selected' : ''
+                    }`}
+                    textAlign={textAlign}
+                    fontSize={fontSize}
+                    height={props?.height || DEFAULT_HEIGHT}
+                    fontFamily={props?.fontFamily || theme?.fontFamily}
+                    padding={paddingCalculated}
+                    backgroundColor={
+                      isNotEmptyString(element?.label) &&
+                      isNotEmptyString(activeElement?.label) &&
+                      element.label === activeElement.label
+                        ? theme.palette.primary.main
+                        : theme.mainBackgroundColor
+                    }
+                  >
+                    {element.label}
+                  </ListItem>
+                );
+              })}
+            {isNewElement && props?.isCreatable && (
+              <ListItem
+                type="button"
+                key={`${props.id}-list-item-new`}
+                data-label={label}
+                data-value={label}
+                textAlign={textAlign}
+                fontSize={fontSize}
+                fontFamily={props?.fontFamily || theme?.fontFamily}
+                height={props?.height || DEFAULT_HEIGHT}
+                padding={paddingCalculated}
+              >
+                Create new {label}
+              </ListItem>
+            )}
+          </List>
+        </SelectListContainer>,
+        document.body
+      );
+
     return (
       <SelectContainer data-test={props.id} id={uuid} width={props?.width} height={props?.height} margin={props.margin}>
         <SelectHeader height={props?.height || DEFAULT_HEIGHT}>
@@ -362,73 +447,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             error={props.error}
           />
         </SelectHeader>
-        {isVisibleList && (
-          <SelectListContainer
-            {...props}
-            backgroundColor={backgroundColor}
-            outlinedColor={theme.palette.primary.moreLighter}
-            ref={selectListContainerRef}
-            top={props?.height || DEFAULT_HEIGHT}
-            id={`${props.id}-list-items`}
-          >
-            <List
-              id={`${props.id}-list`}
-              type="list-buttons"
-              onMouseDown={onMouseDown}
-              onKeyUp={onKeyUp}
-              fontSize={props?.fontSize}
-            >
-              {isFoundValue &&
-                elements?.map((element: IOption, index: number) => {
-                  const isSelectedElement: boolean = element?.value === activeElement?.value;
-                  if (isSelectedElement) {
-                    setActiveIndexElement(index);
-                  }
-                  return (
-                    <ListItem
-                      type="button"
-                      key={`${props.id}-list-item-${index}`}
-                      data-index={element.index}
-                      data-value={element.value}
-                      data-label={element.label}
-                      data-element-selected={`${props.id}-element${
-                        element?.value && activeElement?.value && isSelectedElement ? '-selected' : ''
-                      }`}
-                      textAlign={textAlign}
-                      fontSize={fontSize}
-                      height={props?.height || DEFAULT_HEIGHT}
-                      fontFamily={props?.fontFamily || theme?.fontFamily}
-                      padding={paddingCalculated}
-                      backgroundColor={
-                        isNotEmptyString(element?.label) &&
-                        isNotEmptyString(activeElement?.label) &&
-                        element.label === activeElement.label
-                          ? theme.palette.primary.main
-                          : theme.mainBackgroundColor
-                      }
-                    >
-                      {element.label}
-                    </ListItem>
-                  );
-                })}
-              {isNewElement && props?.isCreatable && (
-                <ListItem
-                  type="button"
-                  key={`${props.id}-list-item-new`}
-                  data-label={label}
-                  data-value={label}
-                  textAlign={textAlign}
-                  fontSize={fontSize}
-                  fontFamily={props?.fontFamily || theme?.fontFamily}
-                  height={props?.height || DEFAULT_HEIGHT}
-                  padding={paddingCalculated}
-                >
-                  Create new {label}
-                </ListItem>
-              )}
-            </List>
-          </SelectListContainer>
-        )}
+        {isVisibleList && <SelectListContainerPortal />}
       </SelectContainer>
     );
   };
