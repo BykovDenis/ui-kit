@@ -4,14 +4,19 @@ import React from 'react';
 import getMeasureValue from '../../helpers/get-measure-value';
 import UiKitComponent from '../../enums/ui-kit-component';
 
+const CALENDAR_WIDTH = 250;
+const CALENDAR_HEIGHT = 305;
+
 type TDatepickerDatesContainer = {
   ref?: any;
   onMouseUp: (evt: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onKeyUp: (evt: React.KeyboardEvent<HTMLElement>) => void;
   backgroundColor?: string;
   outlineColor: string;
-  datesContainerAlign?: 'left' | 'right';
+  datesContainerAlign?: 'left' | 'right' | 'center';
   top: number;
+  left: number;
+  width: number;
 };
 
 const DatepickerDatesContainer = styled.div.attrs({
@@ -21,16 +26,21 @@ const DatepickerDatesContainer = styled.div.attrs({
   position: absolute;
   margin-bottom: 5px;
   margin-top: -3px;
-  top: ${(props: TDatepickerDatesContainer) => getMeasureValue(props?.top + 4, '100%')};
+  top: ${(props: TDatepickerDatesContainer) => getMeasureValue(props?.top + 6, '100%')};
   background-color: ${(props: TDatepickerDatesContainer) => props.backgroundColor};
   border-radius: 4px;
   box-shadow: rgb(0 0 0 / 10%) 0 0 0 1px, rgb(0 0 0 / 10%) 0 4px 11px;
-  width: 250px;
-  height: 305px;
+  width: ${CALENDAR_WIDTH}px;
+  height: ${CALENDAR_HEIGHT}px;
   z-index: 10001;
   box-sizing: border-box;
   border: 1px solid ${(props: TDatepickerDatesContainer) => props.outlineColor};
-  ${(props: TDatepickerDatesContainer) => (props.datesContainerAlign === 'right' ? 'right: 0;' : 'left: 0;')}
+  ${(props: TDatepickerDatesContainer) =>
+    props.datesContainerAlign === 'left'
+      ? `left: ${props.left}px;`
+      : props.datesContainerAlign === 'right'
+      ? `left: ${props.left - (CALENDAR_WIDTH - props.width)}px;`
+      : `left: ${props.left + Math.abs(CALENDAR_WIDTH - props.width) / 2}px;`}
 `;
 
 export default DatepickerDatesContainer;

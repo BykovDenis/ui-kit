@@ -358,3 +358,7 @@
 <ol>
     <li>CIBFV-4491 Select. Implement dropdown by React Portal</li>
 </ol>
+<h3>Bugfix</h3>
+<ol>
+    <li>Datepicker. The fix is installed only today for the current calendar</li>
+</ol>
