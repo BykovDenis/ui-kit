@@ -23,7 +23,5 @@
     "__tests__"
   ],
   "include": ["**/*", "node_modules"],
-  "assets": {
-    "baseUrl": "."
-  }
+  "extends": "@sbol/cypress-config/cypress/tsconfig.json"
 }

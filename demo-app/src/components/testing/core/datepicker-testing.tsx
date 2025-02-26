@@ -209,9 +209,10 @@ const DatepickerTesting = () => {
               name="datepicker1"
               locale={Locale.Ru}
               height={60}
-              datesContainerAlign="left"
+              width={180}
               textMessage={(!date1 && "Date is empty") || ""}
               error={!date1}
+              datesContainerAlign="left"
             />
           </FlexContainer>
           <FlexContainer width={200} margin="20px 10px 20px 0">
@@ -227,6 +228,7 @@ const DatepickerTesting = () => {
               height={60}
               error={!date2}
               textMessage={(!date2 && "Date is empty") || ""}
+              width={180}
             />
           </FlexContainer>
           <FlexContainer width={200} margin="20px 10px 20px 0">
@@ -235,7 +237,6 @@ const DatepickerTesting = () => {
               onBlur={onDate3Change}
               onRemove={onDate3Remove}
               mask="dd.MM.yyyy"
-              variant="outlined"
               label="Datepicker3"
               id="datepicker3"
               name="datepicker3"
@@ -259,6 +260,7 @@ const DatepickerTesting = () => {
               maxDate={maxDate1}
               error={!minMaxDate1}
               locale={Locale.Ru}
+              width={200}
             />
             <TextField
               id="min-date-1"
@@ -293,6 +295,8 @@ const DatepickerTesting = () => {
               minDate={minDate2}
               maxDate={maxDate2}
               error={!minMaxDate2}
+              width={300}
+              datesContainerAlign="center"
             />
             <TextField
               id="min-date-2"

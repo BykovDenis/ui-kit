@@ -307,7 +307,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
 
     if (inputRef?.current) {
       const clientRectPosition: any = inputRef.current.getBoundingClientRect();
-      console.log(clientRectPosition);
       top = clientRectPosition.bottom;
       left = clientRectPosition.left;
       width = clientRectPosition.width;

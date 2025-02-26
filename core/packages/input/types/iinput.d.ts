@@ -46,6 +46,7 @@ interface IInput extends TBaseStyles {
   isNotRunDebounce?: boolean;
   height?: number;
   delayDebounce?: number;
+  isFocused?: boolean;
 }
 
 export default IInput;
