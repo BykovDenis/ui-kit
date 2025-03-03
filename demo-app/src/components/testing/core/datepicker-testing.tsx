@@ -183,6 +183,17 @@ const DatepickerTesting = () => {
       <Typography variant="H1" textAlign="center">
         Testing Datepickers components
       </Typography>
+      <Datepicker
+        id="pd-date"
+        onChange={() => null}
+        name="pdDate"
+        label="counterpartyRatingTitle"
+        value="03.04.2025"
+        width="200px"
+        locale={Locale.Ru}
+        mask={DatepickerMask.DottedDDMMYYYY}
+        datesContainerAlign="right"
+      />
       <GridContainer gridTemplateRows="repeat(2, 100px)" gridRowGap="15px">
         <GridContainer
           gridTemplateColumns="repeat(3, 300px)"
@@ -229,6 +240,7 @@ const DatepickerTesting = () => {
               error={!date2}
               textMessage={(!date2 && "Date is empty") || ""}
               width={180}
+              datesContainerAlign="right"
             />
           </FlexContainer>
           <FlexContainer width={200} margin="20px 10px 20px 0">
