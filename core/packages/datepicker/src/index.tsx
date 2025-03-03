@@ -503,7 +503,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           datesContainerAlign={props.datesContainerAlign || 'right'}
           top={top}
           left={left}
-          width={props?.width || width}
+          width={parseInt(props?.width as string, 10) || width}
           data-cy={`${UiKitComponent.Datepicker}-${props.id}-dates-dialog`}
         >
           <FormControl justifyContent="center" margin="0 0 3px 0" data-cy={dataCyTodayContainer}>
