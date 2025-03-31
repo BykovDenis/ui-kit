@@ -40,7 +40,10 @@ const DatepickerDatesContainer = styled.div.attrs({
       ? `left: ${props.left}px;`
       : props.datesContainerAlign === 'right'
       ? `left: ${props.left - (CALENDAR_WIDTH - props.width)}px;`
-      : `left: ${props.left + Math.abs(CALENDAR_WIDTH - props.width) / 2}px;`}
+      : props.width >= CALENDAR_WIDTH
+      ? `left: ${props.left + Math.abs(CALENDAR_WIDTH - props.width) / 2}px;`
+      : `left: ${props.left - Math.abs(CALENDAR_WIDTH - props.width) / 2}px;}`}
+}
 `;
 
 export default DatepickerDatesContainer;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-// import MultiSelect from "../../../../../core/packages/multi-select/src";
+import MultiSelect from "../../../../../core/packages/multi-select/src";
 // components from package library
-import MultiSelect from "@sber-risks-ui/core/multi-select";
+// import MultiSelect from "@sber-risks-ui/core/multi-select";
 import { TMultiSelectOption } from "@sber-risks-ui/core/multi-select";
 import GridContainer from "@sber-risks-ui/core/grid-container";
 import Button from "@sber-risks-ui/core/button";
@@ -112,7 +112,7 @@ const MultiSelectTesting: React.FunctionComponent = () => {
           <MultiSelect
             disabled={false}
             sortDirection="asc"
-            height={50}
+            height={150}
             isUseLocaleStorage={false}
             id="multi-select-1"
             label="multi-select-atlas"

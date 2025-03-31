@@ -183,17 +183,6 @@ const DatepickerTesting = () => {
       <Typography variant="H1" textAlign="center">
         Testing Datepickers components
       </Typography>
-      <Datepicker
-        id="pd-date"
-        onChange={() => null}
-        name="pdDate"
-        label="counterpartyRatingTitle"
-        value="03.04.2025"
-        width="200px"
-        locale={Locale.Ru}
-        mask={DatepickerMask.DottedDDMMYYYY}
-        datesContainerAlign="right"
-      />
       <GridContainer gridTemplateRows="repeat(2, 100px)" gridRowGap="15px">
         <GridContainer
           gridTemplateColumns="repeat(3, 300px)"
