@@ -174,16 +174,6 @@ legacy-peer-deps=true
                     ]
                     )
 
-                    npmrc_content = """\
-//nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${NEXUS3_TOKEN_BASE64}
-audit=false
-always-auth=true
-fetch-retries=5
-strict-ssl=false
-save-exact=true
-legacy-peer-deps=true
-"""
-
                     if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes') {
 
                         nodejs('node-22.5.1') {
