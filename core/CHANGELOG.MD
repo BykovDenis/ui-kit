@@ -352,3 +352,11 @@
 <ol>
     <li>CIBFV-4516 Input. Hide spinbox for Input type="number"</li>
 </ol>
+
+<h2>v 0.13.0</h2>
+<h3>Feature</h3>
+<ol>
+    <li>CIBFV-4491 Datepicker component using React Portal</li>
+    <li>CIBFV-4491 Select component using React Portal</li>
+    <li>CIBFV-4491 Multiselect component using React Portal</li>
+</ol>

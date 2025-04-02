@@ -32,4 +32,16 @@ describe('Testing MultiSelect component', () => {
       .find('[data-cy="multi-select-strings-toggle-container"]')
       .should('have.length', 0);
   });
+  it('Test 4. MultiSelect. Filters', () => {
+    cy.get('[data-cy="multi-select-2-btn-expand"]')
+      .click()
+      .then(() => {
+        cy.get('[data-cy="multi-select-2-list"]').find('div > button').should('have.length', 7);
+        cy.get('[data-cy="multi-select-2-search-input"]').type('BOO');
+        cy.get('[data-cy="multi-select-2-list"]').find('div > button').should('have.length', 3);
+        cy.get('[data-test="btn-delete-value"]').click();
+        cy.get('[data-cy="multi-select-2-list"]').find('div > button').should('have.length', 7);
+        cy.get('[data-cy="multi-select-2-search-input"]').should('value', '');
+      });
+  });
 });
