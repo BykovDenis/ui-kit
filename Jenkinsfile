@@ -40,7 +40,7 @@ def secman_configuration = [ vaultUrl: 'https://ift.secrets.sigma.sbrf.ru', vaul
 
 def secrets = [
     [path: "${jenkins_secrets_path}/SA-SDVO00000467", engineVersion: 1, secretValues: [
-        [vaultKey: 'NEXUS3_TOKEN_BASE64', envVar: 'NEXUS3_TOKEN_BASE64']]]
+        [vaultKey: 'nexus-token-base64', envVar: 'NEXUS3_TOKEN_BASE64']]]
 ]
 
 pipeline {
@@ -144,17 +144,6 @@ legacy-peer-deps=true
                     withVault(configuration: secman_configuration, vaultSecrets: secrets){
                         dir("${typographyPath}") {
                             script {
-
-                                npmrc_content = """\
-//nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${NEXUS3_TOKEN_BASE64}
-audit=false
-always-auth=true
-fetch-retries=5
-strict-ssl=false
-save-exact=true
-legacy-peer-deps=true
-"""
-
                                 writeFile(file: npmrc_name, text: npmrc_content)
                                 echo 'Packages installing'
                                 sh 'npm i'
@@ -184,14 +173,26 @@ legacy-peer-deps=true
                       string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Publish library UI KIt?')
                     ]
                     )
+
+                    npmrc_content = """\
+//nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${NEXUS3_TOKEN_BASE64}
+audit=false
+always-auth=true
+fetch-retries=5
+strict-ssl=false
+save-exact=true
+legacy-peer-deps=true
+"""
+
                     if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes') {
 
                         nodejs('node-22.5.1') {
                             withVault(configuration: secman_configuration, vaultSecrets: secrets){
                                 dir("${uiKitPath}") {
-                                    sh """
-                                    npm publish
-                                    """
+                                    writeFile(file: npmrc_name, text: npmrc_content)
+                                        sh """
+                                        npm publish
+                                        """
                                 }
                             }
                         }
