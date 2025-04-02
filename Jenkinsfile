@@ -40,7 +40,7 @@ def secman_configuration = [ vaultUrl: 'https://ift.secrets.sigma.sbrf.ru', vaul
 
 def secrets = [
     [path: "${jenkins_secrets_path}/CI_TUZ_NEXUS3", engineVersion: 1, secretValues: [
-        [vaultKey: 'nexus_name_token_base64', envVar: 'NEXUS3_TOKEN_BASE64']]]
+        [vaultKey: 'nexus_name_token_base64', envVar: 'SA-SDVO00000467']]]
 ]
 
 pipeline {
@@ -143,6 +143,17 @@ legacy-peer-deps=true
                 nodejs('node-22.5.1') {
                     withVault(configuration: secman_configuration, vaultSecrets: secrets){
                         dir("${typographyPath}") {
+
+                        npmrc_content = """\
+//nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${NEXUS3_TOKEN_BASE64}
+audit=false
+always-auth=true
+fetch-retries=5
+strict-ssl=false
+save-exact=true
+legacy-peer-deps=true
+"""
+
                             script {
                                 writeFile(file: npmrc_name, text: npmrc_content)
                                 echo 'Packages installing'
@@ -176,13 +187,11 @@ legacy-peer-deps=true
                     if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes') {
 
                         nodejs('node-22.5.1') {
-                            withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
+                            withVault(configuration: secman_configuration, vaultSecrets: secrets){
                                 dir("${uiKitPath}") {
-                                    withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
-                                        sh """
-                                        npm publish
-                                        """
-                                    }
+                                    sh """
+                                    npm publish
+                                    """
                                 }
                             }
                         }
