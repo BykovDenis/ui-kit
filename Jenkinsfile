@@ -777,6 +777,59 @@ legacy-peer-deps=true
                 }
             }
         }
+        stage("UI Kit PUBLISH") {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                script {
+
+                    def IS_PUBLISH = input(
+                    message: 'Publish library UI KIt?',
+                    ok: 'Yes',
+                    no: 'No',
+                    parameters: [
+                      string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Publish library UI KIt?')
+                    ]
+                    )
+                    if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes') {
+
+                        def IS_RELEASE = input(
+                          message: 'Is it release or development build?',
+                          ok: 'Yes',
+                          no: 'No',
+                          parameters: [
+                            string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Publish library UI KIt?')
+                          ]
+                        )
+                        if (IS_RELEASE == 'Yes' || IS_RELEASE == 'yes') {
+                            nodejs('node-22.5.1') {
+                                withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                                    dir("${uiKitPath}") {
+                                        writeFile(file: npmrc_name, text: npmrc_content)
+                                        sh """
+                                        npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
+                                        """
+                                    }
+                                }
+                            }
+                        } else {
+                            nodejs('node-22.5.1') {
+                                withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                                    dir("${uiKitPath}") {
+                                        writeFile(file: npmrc_name, text: npmrc_content)
+                                        sh """
+                                        npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-dev/
+                                        """
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     post {
         always {
