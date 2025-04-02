@@ -33,6 +33,15 @@ def flexContainerPath = './core/packages/flex-container';
 def gridContainerPath = './core/packages/grid-container'
 
 
+def jenkins_secrets_path = 'CI00747472_CI00756401/A/CI02196403/JEN/MAIN/KV/UI-Kit'
+def secman_configuration = [ vaultUrl: 'https://ift.secrets.sigma.sbrf.ru', vaultCredentialId: 'secman_jenkins_approle', engineVersion: 1, skipSslVerification: true, timeout: 60]
+
+def secrets = [
+    [path: "${jenkins_secrets_path}/CI_TUZ_NEXUS3", engineVersion: 1, secretValues: [
+        [vaultKey: 'token-base-64', envVar: 'tokenBase64']]]
+
+def npmrc_name = '.npmrc'
+
 pipeline {
     agent {
         node {
@@ -56,7 +65,21 @@ pipeline {
                     withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
                         sh 'npm -v'
                         sh 'node -v'
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                        withVault(configuration: secman_configuration, vaultSecrets: secrets){
+
+                        def npmrc_content = """\
+//nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${NEXUS3_TOKEN_BASE64}
+//nexus-ci.delta.sbrf.ru/repository/npm-all/:_auth=${NEXUS3_TOKEN_BASE64}
+audit=false
+always-auth=true
+fetch-retries=5
+strict-ssl=false
+save-exact=true
+"""
+
+                            writeFile(file: npmrc_name, text: npmrc_content)
+                            def npmrc_path = sh(returnStdout: true, script: "readlink -f ${npmrc_name}")
+
                             dir("${uiKitPath}") {
                                 script {
                                     echo 'Core packages installing'
