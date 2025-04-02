@@ -143,8 +143,9 @@ legacy-peer-deps=true
                 nodejs('node-22.5.1') {
                     withVault(configuration: secman_configuration, vaultSecrets: secrets){
                         dir("${typographyPath}") {
+                            script {
 
-                        npmrc_content = """\
+                                npmrc_content = """\
 //nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${NEXUS3_TOKEN_BASE64}
 audit=false
 always-auth=true
@@ -154,7 +155,6 @@ save-exact=true
 legacy-peer-deps=true
 """
 
-                            script {
                                 writeFile(file: npmrc_name, text: npmrc_content)
                                 echo 'Packages installing'
                                 sh 'npm i'
