@@ -31,6 +31,8 @@ def tabsPath = './core/packages/tabs';
 def tabPath = './core/packages/tab';
 def flexContainerPath = './core/packages/flex-container';
 def gridContainerPath = './core/packages/grid-container'
+def npmrc_name = 'NPMRC_CONFIG'
+def npmrc_content = ''
 
 
 def jenkins_secrets_path = 'CI00747472_CI00756401/A/LOANPRIC/JEN/SECRET/KV'
@@ -67,9 +69,7 @@ pipeline {
                         dir("${uiKitPath}") {
                             script {
 
-                            def npmrc_name = 'NPMRC_CONFIG'
-
-                            def npmrc_content = """\
+                            npmrc_content = """\
 //nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${NEXUS3_TOKEN_BASE64}
 //nexus-ci.delta.sbrf.ru/repository/npm-all/:_auth=${NEXUS3_TOKEN_BASE64}
 audit=false
@@ -77,6 +77,7 @@ always-auth=true
 fetch-retries=5
 strict-ssl=false
 save-exact=true
+legacy-peer-deps=true
 """
 
                             writeFile(file: npmrc_name, text: npmrc_content)
