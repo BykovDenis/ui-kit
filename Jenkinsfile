@@ -157,6 +157,626 @@ legacy-peer-deps=true
                 }
             }
         }
+        stage('Datepicker deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets){
+                        dir("${datepickerPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                            }
+                        }
+                        dir("${datepickerPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Checkbox deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets){
+                        dir("${checkboxPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                            }
+                        }
+                        dir("${checkboxPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Button deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${buttonPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                            }
+                        }
+                        dir("${buttonPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('IconButton  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${iconButtonPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                            }
+                        }
+                        dir("${iconButtonPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Input, TextField  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${inputPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                            }
+                        }
+                        dir("${inputPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                        dir("${textFieldPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                            }
+                        }
+                        dir("${textFieldPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Label, Label interactive  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${labelPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                            }
+                        }
+                        dir("${labelPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                        dir("${labelInteractivePath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                            }
+                        }
+                        dir("${labelInteractivePath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('ListItem  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${listItemPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                            }
+                        }
+                        dir("${listItemPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('List  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${listPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                            }
+                        }
+                        dir("${listPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Radio  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${radioPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                            }
+                        }
+                        dir("${radioPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Select  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${selectPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                            }
+                        }
+                        dir("${selectPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Switcher  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${switcherPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('FormControl  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${formControlPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('FlexContainer  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${flexContainerPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('GridContainer  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${gridContainerPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('TableColumnsVisible  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${tableColumnsVisiblePath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('ProgressBar  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${progressBarPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('MultiSelect  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${multiSelectPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('StickyBottomPanel  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${stickyBottomPanelPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Tabs  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${tabsPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Tab  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${tabPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Divider  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${dividerPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Table  deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${tablePath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                        dir("${tableHeadPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                        dir("${tableBodyPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                        dir("${tableRowPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                        dir("${tableCellPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     post {
         always {
