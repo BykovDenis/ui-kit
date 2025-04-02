@@ -175,23 +175,14 @@ legacy-peer-deps=true
                     )
                     if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes') {
 
-                        def IS_RELEASE = input(
-                          message: 'Is it release or development build?',
-                          ok: 'Yes',
-                          no: 'No',
-                          parameters: [
-                            string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Publish library UI KIt?')
-                          ]
-                        )
-
                         nodejs('node-22.5.1') {
-                            withCredentials([file(credentialsId: 'npmrc_publish_dev', variable: 'NPMRC_CONFIG_PUBLISH')]) {
+                            withVault(configuration: secman_configuration, vaultSecrets: secrets){
                                 dir("${uiKitPath}") {
-                                    withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
-                                        sh """
-                                        npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
-                                        """
-                                    }
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                    sh """
+                                    npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
+                                    """
+
                                 }
                             }
                         }
