@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/Select",
-  "version": "0.12.14",
+  "version": "0.13.0-beta.2",
   "description": "Simple react component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -20,5 +20,5 @@
   "publishConfig": {
     "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
   },
-  "gitHead": "29f2c2ae813aa9e3560689b1e0f986591b3ea3a3"
+  "gitHead": "3778daf575b9c46fa10487f9b5850bffb0d01d7e"
 }

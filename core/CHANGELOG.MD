@@ -356,7 +356,11 @@
 <h2>v 0.13.0</h2>
 <h3>Feature</h3>
 <ol>
-    <li>CIBFV-4491 Datepicker component using React Portal</li>
-    <li>CIBFV-4491 Select component using React Portal</li>
-    <li>CIBFV-4491 Multiselect component using React Portal</li>
+    <li>CIBFV-4491 Datepicker. Implement dropdown by React Portal</li>
+    <li>CIBFV-4491 Select. Implement dropdown by React Portal</li>
+    <li>CIBFV-4491 Multiselect. Implement dropdown by React Portal</li>
+</ol>
+<h3>Bugfix</h3>
+<ol>
+    <li>Datepicker. The fix is installed only today for the current calendar</li>
 </ol>

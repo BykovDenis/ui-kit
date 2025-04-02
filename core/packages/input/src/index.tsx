@@ -1,13 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 
-import {
-  DEFAULT_HEIGHT,
-  DELAY_DEBOUNCE,
-  FONT_WEIGHT_REGULAR,
-  TEXT_ALIGN_RIGHT,
-  TIMEOUT,
-  TYPE_TEXT,
-} from '../../constants';
+import { DEFAULT_HEIGHT, DELAY_DEBOUNCE, FONT_WEIGHT_REGULAR, TEXT_ALIGN_RIGHT, TYPE_TEXT } from '../../constants';
 import ITheme from '../../styles/types/itheme';
 import IInput from '../types/iinput';
 import CrossIcon from '../../icons-components/24x24/cross-icon';
@@ -25,9 +18,7 @@ import { useDebouncedCallback } from 'use-debounce';
 
 const Input: React.FunctionComponent<IInput> = (props: IInput) => {
   const [inputValue, setInputValue] = useState(isNotEmptyString(props.value?.toString()) ? props.value : '');
-  const [isNotRunDebounce, setIsRunDebounce] = useState(
-    props?.isNotRunDebounce !== undefined ? props.isNotRunDebounce : false
-  );
+  const [isNotRunDebounce] = useState(props?.isNotRunDebounce !== undefined ? props.isNotRunDebounce : false);
   const [isFocus, setIsFocus] = useState(false);
   const [isChanging, setIsChanging] = useState(false);
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -92,7 +83,6 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
       }
     }
     if (valueParsed !== inputValue) {
-      let value = props.value;
       setInputValue(valueParsed);
     }
   }, [props.value]);
@@ -111,9 +101,6 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
 
   const onInputChangeDebounced = useDebouncedCallback(
     (evt: React.ChangeEvent<HTMLInputElement>) => {
-      const element: any = evt?.target;
-      let value: string = element.value;
-      const valueParsed: string | number = parseValue(props.type, value, props.regExp, props.mask);
       cb(evt);
     },
     isNotRunDebounce ? 0 : props.delayDebounce ?? theme.components?.Input?.delayDebounce ?? DELAY_DEBOUNCE
@@ -222,8 +209,8 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           {...props}
           value={value}
           height={props.height || DEFAULT_HEIGHT}
-          color={inputColor}
-          hoverColor={props?.hoverColor || hoverColor}
+          color={props.isFocused ? props.focusColor || focusColor : inputColor}
+          hoverColor={props.isFocused ? props.focusColor || focusColor : props?.hoverColor || hoverColor}
           focusColor={props.focusColor || focusColor}
           disabledBackgroundColor={theme?.mainGrayColor}
           hoverBorderColor={props?.hoverColor || hoverBorderColor}
@@ -239,7 +226,7 @@ const Input: React.FunctionComponent<IInput> = (props: IInput) => {
           }}
           onFocus={onInputFocus}
           onBlur={onInputBlur}
-          borderColor={borderColor}
+          borderColor={props?.isFocused ? props.focusColor || focusColor : borderColor}
           inputComponent={ReactInput}
           type={props?.type || TYPE_TEXT}
           fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
