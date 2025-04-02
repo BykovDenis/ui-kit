@@ -40,8 +40,6 @@ def secrets = [
     [path: "${jenkins_secrets_path}/CI_TUZ_NEXUS3", engineVersion: 1, secretValues: [
         [vaultKey: 'token-base-64', envVar: 'tokenBase64']]]
 
-def npmrc_name = '.npmrc'
-
 pipeline {
     agent {
         node {
@@ -66,6 +64,7 @@ pipeline {
                         sh 'npm -v'
                         sh 'node -v'
                         withVault(configuration: secman_configuration, vaultSecrets: secrets){
+                        def npmrc_name = '.npmrc'
 
                         def npmrc_content = """\
 //nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${NEXUS3_TOKEN_BASE64}
