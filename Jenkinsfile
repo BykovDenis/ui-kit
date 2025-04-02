@@ -40,7 +40,7 @@ def secman_configuration = [ vaultUrl: 'https://ift.secrets.sigma.sbrf.ru', vaul
 
 def secrets = [
     [path: "${jenkins_secrets_path}/SA-SDVO00000467", engineVersion: 1, secretValues: [
-        [vaultKey: 'NEXUS3_TOKEN_BASE64', envVar: 'SA-NEXUS3_TOKEN_BASE64']]]
+        [vaultKey: 'NEXUS3_TOKEN_BASE64', envVar: 'NEXUS3_TOKEN_BASE64']]]
 ]
 
 pipeline {
