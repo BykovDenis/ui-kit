@@ -123,7 +123,7 @@ legacy-peer-deps=true
                             script {
                                 writeFile(file: npmrc_name, text: npmrc_content)
                                 echo 'Packages installing'
-                                sh 'npm сi'
+                                sh 'npm i'
                                 echo 'Building'
                                 sh 'npm run build'
                                 echo 'Clean'
@@ -146,7 +146,7 @@ legacy-peer-deps=true
                             script {
                                 writeFile(file: npmrc_name, text: npmrc_content)
                                 echo 'Packages installing'
-                                sh 'npm сi'
+                                sh 'npm i'
                                 echo 'Building'
                                 sh 'npm run build'
                                 echo 'Clean'
