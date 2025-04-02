@@ -61,12 +61,24 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets){
                         sh 'npm -v'
                         sh 'node -v'
+                        def npmrc_name = '.npmrc'
+
+                        def npmrc_content = """\
+//nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${NEXUS3_TOKEN_BASE64}
+//nexus-ci.delta.sbrf.ru/repository/npm-all/:_auth=${NEXUS3_TOKEN_BASE64}
+audit=false
+always-auth=true
+fetch-retries=5
+strict-ssl=false
+save-exact=true
+"""
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
                             dir("${uiKitPath}") {
                                 script {
+                                    writeFile(file: npmrc_name, text: npmrc_content)
                                     echo 'Core packages installing'
                                     sh 'npm ci'
                                 }
