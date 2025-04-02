@@ -181,7 +181,6 @@ legacy-peer-deps=true
                                 dir("${uiKitPath}") {
                                     writeFile(file: npmrc_name, text: npmrc_content)
                                         sh """
-                                        npm login --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
                                         npm publish
                                         """
                                 }
