@@ -12,7 +12,7 @@
     "npm-update-ui-icon": "npm i -E @sber-risks-ui/icon@latest"
   },
   "dependencies": {
-    "@sber-risks-ui/core": "0.12.14-beta.0",
+    "@sber-risks-ui/core": "0.13.0-beta.1",
     "@sber-risks-ui/icon": "1.0.0",
     "@tanstack/react-router": "1.56.5",
     "dayjs": "1.11.11",

@@ -65,6 +65,7 @@ const Input = styled.input<IInput>`
       &[type=number] {
         -moz-appearance:textfield; /* Firefox */
       }
+      ${props.isFocused && `box-shadow: 1px 1px 5px 3px ${rgbToRgba(props?.focusColor, 0.3)};`}
   `}
 `;
 
