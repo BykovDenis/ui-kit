@@ -181,6 +181,7 @@ legacy-peer-deps=true
                                 dir("${uiKitPath}") {
                                     writeFile(file: npmrc_name, text: npmrc_content)
                                         sh """
+                                        npm login --scope=@sber-risks-ui
                                         npm publish
                                         """
                                 }
