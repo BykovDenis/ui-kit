@@ -69,7 +69,7 @@ pipeline {
                             dir("${uiKitPath}") {
                                 script {
 
-                                def npmrc_name = '.npmrc'
+                                def npmrc_name = 'NPMRC_CONFIG'
 
                                 def npmrc_content = """\
 //nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${NEXUS3_TOKEN_BASE64}
