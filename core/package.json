@@ -110,6 +110,9 @@
     "vite": "5.1.4",
     "vite-plugin-progress": "0.0.7"
   },
+  "publishConfig": {
+    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-release/"
+  },
   "todo": "TODO for publish comments this lines 71,72,73 for publish npm registry",
   "private": "false"
 }
