@@ -805,25 +805,27 @@ legacy-peer-deps=true
                         )
                         if (IS_RELEASE == 'Yes' || IS_RELEASE == 'yes') {
                             nodejs('node-22.5.1') {
-                                withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                                withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                                     dir("${uiKitPath}") {
-                                        writeFile(file: npmrc_name, text: npmrc_content)
-                                        sh """
-                                        npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
-                                        """
+                                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
+                                            sh """
+                                            npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
+                                            """
+                                        }
                                     }
                                 }
                             }
                         } else {
                             nodejs('node-22.5.1') {
-                                withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                                withCredentials([file(credentialsId: 'npmrc_publish_dev', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                                     dir("${uiKitPath}") {
-                                        writeFile(file: npmrc_name, text: npmrc_content)
-                                        sh """
-                                        npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-dev/
-                                        """
+                                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
+                                            sh """
+                                            npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-dev/
+                                            """
+                                        }
                                     }
-                                }
+                                }a
                             }
                         }
                     }
