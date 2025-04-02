@@ -89,7 +89,28 @@ legacy-peer-deps=true
                 }
             }
         }
-    
+        stage('Root packages installing') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets){
+                        sh 'npm -v'
+                        sh 'node -v'
+
+                        dir("${rootPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Root packages installing'
+                                sh 'npm ci'
+                            }
+                        }                    
+                    }
+                }
+            }
+        }
     }
     post {
         always {
