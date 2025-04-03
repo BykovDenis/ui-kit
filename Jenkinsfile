@@ -195,7 +195,9 @@ legacy-peer-deps=true
                                 dir("${uiKitPath}") {
                                     script {
                                         def npmrc_publish_content = """\
+//nexus-ci.delta.sbrf.ru/repository/npm-all:_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
 //nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
+@sber-risks-ui:registry=https://nexus-ci.delta.sbrf.ru/repository/npm-release/
 audit=false
 always-auth=true
 fetch-retries=5
