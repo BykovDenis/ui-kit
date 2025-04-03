@@ -53,7 +53,8 @@ def secman_configuration = [
 
 def secrets = [
     [path: "$jenkins_secrets_path/CI_TUZ_NEXUS3", engineVersion: 1, secretValues: [
-        [vaultKey: 'token_base64', envVar: 'NEXUS3_TOKEN_BASE64']]]
+        [vaultKey: 'token_base64', envVar: 'NEXUS3_TOKEN_BASE64'],
+        [vaultKey: 'uikit_publish_token_base64', envVar: 'UIKIT_PUBLISH_TOKEN_BASE64']]]
 ]
 
 pipeline {
@@ -192,10 +193,22 @@ legacy-peer-deps=true
                         nodejs('node-22.5.1') {
                             withVault(configuration: secman_configuration, vaultSecrets: secrets){
                                 dir("${uiKitPath}") {
-                                    writeFile(file: npmrc_name, text: npmrc_content)
-                                        sh """
-                                        npm publish
-                                        """
+                                    script {
+                                        def npmrc_publish_content = """\
+//nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
+audit=false
+always-auth=true
+fetch-retries=5
+strict-ssl=false
+save-exact=true
+legacy-peer-deps=true
+"""
+
+                                        writeFile(file: npmrc_name, text: npmrc_publish_content)
+                                            sh """
+                                            npm publish
+                                            """
+                                    }
                                 }
                             }
                         }
