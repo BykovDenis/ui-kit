@@ -52,7 +52,7 @@ def secman_configuration = [
     timeout: 60]
 
 def secrets = [
-    [path: vault_tuz_path, engineVersion: 1, secretValues: [
+    [path: "$jenkins_secrets_path/CI_TUZ_NEXUS3", engineVersion: 1, secretValues: [
         [vaultKey: 'token_base64', envVar: 'NEXUS3_TOKEN_BASE64']]]
 ]
 
