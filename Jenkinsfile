@@ -53,7 +53,7 @@ def secman_configuration = [
 
 def secrets = [
     [path: vault_tuz_path, engineVersion: 1, secretValues: [
-        [vaultKey: 'token_base64', envVar: 'TOKEN_BASE64']]]
+        [vaultKey: 'token_base64', envVar: 'NEXUS3_TOKEN_BASE64']]]
 ]
 
 pipeline {
