@@ -188,7 +188,7 @@ legacy-peer-deps=true
                     ]
                     )
 
-                    if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes') {
+                    if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes' || IS_PUBLISH == 'YES') {
 
                         nodejs('node-22.5.1') {
                             withVault(configuration: secman_configuration, vaultSecrets: secrets){
