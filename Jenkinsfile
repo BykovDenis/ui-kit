@@ -198,12 +198,14 @@ legacy-peer-deps=true
 //nexus-ci.delta.sbrf.ru/repository/npm-all:_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
 //nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
 @sber-risks-ui:registry=https://nexus-ci.delta.sbrf.ru/repository/npm-release/
+_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
 audit=false
 always-auth=true
 fetch-retries=5
 strict-ssl=false
 save-exact=true
 legacy-peer-deps=true
+email=bykov.d.sta@sberbank.ru
 """
 
                                         writeFile(file: npmrc_name, text: npmrc_publish_content)
