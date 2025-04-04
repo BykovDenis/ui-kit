@@ -206,7 +206,6 @@ fetch-retries=5
 strict-ssl=false
 save-exact=true
 legacy-peer-deps=true
-_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
 """
 
                                         writeFile(file: npmrc_name, text: npmrc_publish_content)
