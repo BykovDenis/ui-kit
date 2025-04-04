@@ -151,7 +151,7 @@ legacy-peer-deps=true
        stage("UI Kit PUBLISH") {
             tools
             {
-                nodejs 'node-v18.20.2'
+                nodejs 'node-v20.12.2'
             }
             steps {
                 script {
@@ -167,14 +167,14 @@ legacy-peer-deps=true
 
                     if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes' || IS_PUBLISH == 'YES') {
 
-                        nodejs('node-v18.20.2') {
+                        nodejs('node-v20.12.2') {
                              withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                                 dir("${uiKitPath}") {
                                     withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
                                         sh 'npm -v'
                                         sh 'node -v'
                                         sh """
-                                        npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
+                                        npm publish
                                         """
                                     }
                                 }
