@@ -172,7 +172,6 @@ legacy-peer-deps=true
                                     withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
                                         sh 'npm -v'
                                         sh 'node -v'
-                                        sh "ls -a"
                                         sh """
                                         npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/
                                         """
