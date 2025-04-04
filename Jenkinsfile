@@ -168,24 +168,9 @@ legacy-peer-deps=true
                     if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes' || IS_PUBLISH == 'YES') {
 
                         nodejs('node-22.5.1') {
-                            withVault(configuration: secman_configuration, vaultSecrets: secrets){
+                             withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                                 dir("${uiKitPath}") {
-                                    script {
-                                        def npmrc_publish_content = """\
-always-auth=true
-email=bykov.d.sta@sberbank.ru
-//nexus-ci.delta.sbrf.ru/repository/npm-all:_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
-//nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
-registry=https://nexus-ci.delta.sbrf.ru/repository/npm-all/
-@sber-risks-ui:registry=https://nexus-ci.delta.sbrf.ru/repository/npm-release/
-audit=false
-fetch-retries=5
-strict-ssl=false
-save-exact=true
-legacy-peer-deps=true
-"""
-
-                                        writeFile(file: npmrc_name, text: npmrc_publish_content)
+                                    withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
                                             sh "ls -a"
                                             sh """
                                             npm publish
