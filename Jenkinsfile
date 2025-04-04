@@ -170,6 +170,7 @@ legacy-peer-deps=true
                              withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                                 dir("${uiKitPath}") {
                                     withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
+                                        sh 'npm unpublish @sber-risks-ui/core@0.13.0-beta.3'
                                         sh 'npm -v'
                                         sh 'node -v'
                                         sh """
