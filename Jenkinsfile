@@ -195,17 +195,18 @@ legacy-peer-deps=true
                                 dir("${uiKitPath}") {
                                     script {
                                         def npmrc_publish_content = """\
+always-auth=true
+email=bykov.d.sta@sberbank.ru
 //nexus-ci.delta.sbrf.ru/repository/npm-all:_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
 //nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
+registry=https://nexus-ci.delta.sbrf.ru/repository/npm-all/
 @sber-risks-ui:registry=https://nexus-ci.delta.sbrf.ru/repository/npm-release/
-_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
 audit=false
-always-auth=true
 fetch-retries=5
 strict-ssl=false
 save-exact=true
 legacy-peer-deps=true
-email=bykov.d.sta@sberbank.ru
+_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
 """
 
                                         writeFile(file: npmrc_name, text: npmrc_publish_content)
