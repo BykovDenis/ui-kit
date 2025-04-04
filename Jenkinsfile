@@ -52,8 +52,8 @@ def secman_configuration = [
     timeout: 60]
 
 def secrets = [
-    [path: "$jenkins_secrets_path/SA-SDVO00000467", engineVersion: 1, secretValues: [
-        [vaultKey: 'token_base64', envVar: 'NEXUS3_TOKEN_BASE64'],
+    [path: "$jenkins_secrets_path/CI_TUZ_NEXUS3", engineVersion: 1, secretValues: [
+        [vaultKey: 'uikit_publish_token_base64', envVar: 'NEXUS3_TOKEN_BASE64'],
         [vaultKey: 'uikit_publish_token_base64', envVar: 'UIKIT_PUBLISH_TOKEN_BASE64']]]
 ]
 
