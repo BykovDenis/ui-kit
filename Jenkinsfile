@@ -167,21 +167,9 @@ legacy-peer-deps=true
                     if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes' || IS_PUBLISH == 'YES') {
 
                         nodejs('node-v18.20.2') {
-                             withVault(configuration: secman_configuration, vaultSecrets: secrets){
+                             withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                                 dir("${uiKitPath}") {
-                                    script {
-
-                                        npmrc_content = """\
-audit=false
-always-auth=true
-fetch-retries=5
-strict-ssl=false
-save-exact=true
-email=bykov.d.sta@sberbank.ru
-legacy-peer-deps=true
-//nexus-ci.delta.sbrf.ru/repository/npm-release/:_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
-"""
-
+                                    withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
                                         sh 'npm -v'
                                         sh 'node -v'
                                         sh """
