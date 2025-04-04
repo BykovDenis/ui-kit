@@ -151,7 +151,7 @@ legacy-peer-deps=true
        stage("UI Kit PUBLISH") {
             tools
             {
-                nodejs 'node-v20.12.2'
+                nodejs 'node-22.5.1'
             }
             steps {
                 script {
@@ -167,7 +167,7 @@ legacy-peer-deps=true
 
                     if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes' || IS_PUBLISH == 'YES') {
 
-                        nodejs('node-v20.12.2') {
+                        nodejs('node-22.5.1') {
                              withCredentials([file(credentialsId: 'npmrc_publish', variable: 'NPMRC_CONFIG_PUBLISH')]) {
                                 dir("${uiKitPath}") {
                                     withEnv(["npm_config_userconfig=${NPMRC_CONFIG_PUBLISH}"]) {
