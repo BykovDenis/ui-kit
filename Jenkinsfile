@@ -179,7 +179,7 @@ strict-ssl=false
 save-exact=true
 email=bykov.d.sta@sberbank.ru
 legacy-peer-deps=true
-//nexus-ci.delta.sbrf.ru/repository/npm-release/:_auth="${UIKIT_PUBLISH_TOKEN_BASE64}"
+//nexus-ci.delta.sbrf.ru/repository/npm-release/:_auth=${UIKIT_PUBLISH_TOKEN_BASE64}
 """
 
                                         sh 'npm -v'
