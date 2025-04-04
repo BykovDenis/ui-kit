@@ -35,25 +35,26 @@ def npmrc_name = '.npmrc'
 def npmrc_content = ''
 
 
-def vault_namespace = 'CI00747472_CI00756401'
+def vault_namespace = 'CI00747472_CI04634153'
 
 // Основная папка с секретами
-def jenkins_secrets_path = "${vault_namespace}/A/LOANPRIC/JEN/SECRET/KV"
+def jenkins_secrets_path = "${vault_namespace}/A/CI02196403/JEN/MAIN/KV"
 
 // Путь до ТУЗа в secman (смотреть на DevOps портал)
 def vault_tuz_path = "${vault_namespace}/AD/delta.sbrf.ru/creds/cab-sa-dvo09147"
 
 def secman_configuration = [
-    vaultUrl: 'https://ift.secrets.sigma.sbrf.ru',
-    vaultCredentialId: 'secman_jenkins_approle',
+    vaultUrl: 'https://t.secrets.delta.sbrf.ru',
+    vaultCredentialId: 'cab-sa-dvo09147_CI00747472_CI04634153',
+    vaultNamespace: vault_namespace,
     engineVersion: 1,
     skipSslVerification: true,
     timeout: 60]
 
 def secrets = [
     [path: "$jenkins_secrets_path/SA-SDVO00000467", engineVersion: 1, secretValues: [
-        [vaultKey: 'nexus-token-base64', envVar: 'NEXUS3_TOKEN_BASE64'],
-        [vaultKey: 'nexus-token-base64', envVar: 'UIKIT_PUBLISH_TOKEN_BASE64']]]
+        [vaultKey: 'token_base64', envVar: 'NEXUS3_TOKEN_BASE64'],
+        [vaultKey: 'uikit_publish_token_base64', envVar: 'UIKIT_PUBLISH_TOKEN_BASE64']]]
 ]
 
 pipeline {
