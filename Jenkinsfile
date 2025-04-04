@@ -148,29 +148,6 @@ legacy-peer-deps=true
                 }
             }
         }
-        stage('Typography deploy') {
-            tools
-            {
-                nodejs 'node-22.5.1'
-            }
-            steps {
-                nodejs('node-22.5.1') {
-                    withVault(configuration: secman_configuration, vaultSecrets: secrets){
-                        dir("${typographyPath}") {
-                            script {
-                                writeFile(file: npmrc_name, text: npmrc_content)
-                                echo 'Packages installing'
-                                sh 'npm i'
-                                echo 'Building'
-                                sh 'npm run build'
-                                echo 'Clean'
-                                sh 'npm run clean-node-modules'
-                            }
-                        }
-                    }
-                }
-            }
-        }
        stage("UI Kit PUBLISH") {
             tools
             {
@@ -209,6 +186,7 @@ legacy-peer-deps=true
 """
 
                                         writeFile(file: npmrc_name, text: npmrc_publish_content)
+                                            sh "ls -a"
                                             sh """
                                             npm publish
                                             """
