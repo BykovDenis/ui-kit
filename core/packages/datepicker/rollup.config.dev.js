@@ -15,6 +15,13 @@ export default {
       sourcemap: true,
       strict: true,
     },
+    {
+      file: pkg.module,
+      format: 'esm',
+      exports: 'named',
+      sourcemap: true,
+      strict: true,
+    },
   ],
   plugins: [
     cleaner({

@@ -2,10 +2,10 @@ import FlexContainer from "@sber-risks-ui/core/flex-container";
 import React, { useState } from "react";
 import { warning, success } from "../../../utils/dev-utils-theme";
 // local components
-// import Datepicker from "../../../../../core/packages/datepicker/src";
+import Datepicker from "../../../../../core/packages/datepicker/src";
 // import GridContainer from "../../../../../core/packages/grid-container/src";
 // components from package library
-import Datepicker from "@sber-risks-ui/core/datepicker";
+// import Datepicker from "@sber-risks-ui/core/datepicker";
 import Typography from "@sber-risks-ui/core/typography";
 import { toast } from "react-toastify";
 import DatepickerMask from "@sber-risks-ui/core/datepicker/enums/datepicker-mask";
@@ -183,7 +183,11 @@ const DatepickerTesting = () => {
       <Typography variant="H1" textAlign="center">
         Testing Datepickers components
       </Typography>
-      <GridContainer gridTemplateRows="repeat(2, 100px)" gridRowGap="15px">
+      <GridContainer
+        gridTemplateRows="repeat(2, 100px)"
+        gridRowGap="15px"
+        marginTop={1200}
+      >
         <GridContainer
           gridTemplateColumns="repeat(3, 300px)"
           gridColumnGap="10px"

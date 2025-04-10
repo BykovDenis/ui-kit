@@ -487,7 +487,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
     if (inputRef?.current) {
       const clientRectPosition: any = inputRef.current.getBoundingClientRect();
-      top = clientRectPosition.bottom;
+      top = clientRectPosition.bottom + window.scrollY;
       left = clientRectPosition.left;
       width = clientRectPosition.width;
     }

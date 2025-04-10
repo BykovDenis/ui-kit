@@ -283,7 +283,6 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
     const color: string = props.disabled ? theme?.palette?.baseFontColorOpacity05 : theme?.palette?.baseFontColor;
     const outlinedColor: string = props.disabled ? 'transparent' : theme.mainOutlinedColor;
     const borderColorFocused: string = props.disabled ? 'transparent' : theme.palette.primary.main;
-    const borderColorHovered: string = props.disabled ? outlinedColor : theme.mainOutlinedHoverColor;
 
     let top: number = 0;
     let left: number = 0;
@@ -291,7 +290,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
 
     if (btnMultiSelect?.current?.getBoundingClientRect) {
       const clientRectPosition: any = btnMultiSelect.current.getBoundingClientRect();
-      top = clientRectPosition.bottom;
+      top = clientRectPosition.bottom + window.scrollY;
       left = clientRectPosition.left;
       width = clientRectPosition.width;
     }
