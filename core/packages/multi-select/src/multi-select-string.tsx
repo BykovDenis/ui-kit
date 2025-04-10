@@ -1,4 +1,4 @@
-import React, { createRef, PropsWithChildren, useEffect, useRef, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import TMultiSelect from '../types/tmulti-select';
 import ITheme from '../../styles/types/itheme';
 import MultiSelectStyled from './multi-select-styled';
@@ -282,7 +282,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
 
     if (btnMultiSelect?.current?.getBoundingClientRect) {
       const clientRectPosition: any = btnMultiSelect.current.getBoundingClientRect();
-      top = clientRectPosition.bottom;
+      top = clientRectPosition.bottom + window.scrollY;
       left = clientRectPosition.left;
       width = clientRectPosition.width;
     }
