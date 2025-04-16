@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/TableCell",
-  "version": "0.13.0-beta.5",
+  "version": "0.13.0-beta.6",
   "description": "TableCell react UI",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
