@@ -183,11 +183,7 @@ const DatepickerTesting = () => {
       <Typography variant="H1" textAlign="center">
         Testing Datepickers components
       </Typography>
-      <GridContainer
-        gridTemplateRows="repeat(2, 100px)"
-        gridRowGap="15px"
-        marginTop={1200}
-      >
+      <GridContainer gridTemplateRows="repeat(2, 100px)" gridRowGap="15px">
         <GridContainer
           gridTemplateColumns="repeat(3, 300px)"
           gridColumnGap="10px"

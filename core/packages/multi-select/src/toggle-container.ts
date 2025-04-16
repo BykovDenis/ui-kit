@@ -14,7 +14,7 @@ const ToggleContainer = styled.div<ToggleContainerProps>`
     top: ${getMeasureValue(props?.top + 6, '100%')};
     background-color: ${(props: ToggleContainerProps) => props.backgroundColor};
     position: absolute;
-    z-index: 10001;
+    z-index: 2147483647;
     width: ${getMeasureValue(props?.width, '100%')};
   `}
 `;
