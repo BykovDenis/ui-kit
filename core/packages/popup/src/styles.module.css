@@ -7,7 +7,7 @@
 }
 
 .popup {
-    min-height: 100px;
+    min-height: 5px;
     position: absolute;
-    z-index: calc(infinity * 1px);
+    z-index: 2147483647;
 }
