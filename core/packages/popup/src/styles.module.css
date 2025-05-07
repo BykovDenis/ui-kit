@@ -1,0 +1,14 @@
+.popup-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 0;
+    outline: 1px dashed red;
+}
+
+.popup {
+    min-height: 100px;
+    position: absolute;
+    outline: 1px dashed blue;
+}
