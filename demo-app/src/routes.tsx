@@ -21,6 +21,7 @@ import ErrorsStateTesting from "./components/testing/core/errors-state-testing";
 import ContainersTesting from "./components/testing/core/containers-testing";
 import IconTesting from "./components/testing/icon/icon-testing";
 import PopupEventAccordion from "./components/testing/core/popup-event-accordion";
+import PopupTesting from "./components/testing/core/popup-testing";
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -99,6 +100,12 @@ const popupEventAccordionRoute = createRoute({
   component: PopupEventAccordion,
 });
 
+const popupRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/popup",
+  component: PopupTesting,
+});
+
 // @ts-ignore-next-line
 const routeTree = rootRoute.addChildren([
   indexRoute,
@@ -112,6 +119,7 @@ const routeTree = rootRoute.addChildren([
   containersRoute,
   iconRoute,
   popupEventAccordionRoute,
+  popupRoute,
 ]);
 
 const router = createRouter({ routeTree });

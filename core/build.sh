@@ -126,3 +126,7 @@ cd ..
 cd sticky-bottom-panel/
 echo 31. StickyBottomPanel building...
 npm run build
+cd ..
+cd popup/
+echo 32. Popup building...
+npm run build
