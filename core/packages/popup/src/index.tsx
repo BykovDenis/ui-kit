@@ -34,15 +34,23 @@ const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
     }
   }
 
-  const PopupPortal = () =>
-    createPortal(
-      <div className={styles.popup} style={{ top, left, width: props?.width ? getMeasureValue(props?.width) : width }}>
-        {props.children}
-      </div>,
-      document.body
-    );
-
   const componentThemed: any = (theme: ITheme) => {
+    const PopupPortal = () =>
+      createPortal(
+        <div
+          className={styles.popup}
+          style={{
+            top,
+            left,
+            width: props?.width ? getMeasureValue(props?.width) : width,
+            backgroundColor: theme.mainBackgroundColor,
+          }}
+        >
+          {props.children}
+        </div>,
+        document.body
+      );
+
     return (
       <div id={props.id} ref={refPortal} className={styles['popup-container']}>
         {props.isOpen ? <PopupPortal /> : null}
