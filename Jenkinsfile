@@ -97,7 +97,7 @@ legacy-peer-deps=true
 
                             writeFile(file: npmrc_name, text: npmrc_content)
                             echo 'Core packages installing'
-                            sh 'npm ci'
+                            sh 'npm i'
                             }
                         }
                     }
@@ -119,7 +119,7 @@ legacy-peer-deps=true
                             script {
                                 writeFile(file: npmrc_name, text: npmrc_content)
                                 echo 'Root packages installing'
-                                sh 'npm ci'
+                                sh 'npm i'
                             }
                         }                    
                     }
