@@ -12,6 +12,7 @@ def listPath = './core/packages/list'
 def listItemPath = './core/packages/list-item'
 def radioPath = './core/packages/radio'
 def selectPath = './core/packages/select'
+def popupPath = './core/packages/popup'
 def textFieldPath = './core/packages/textfield'
 def warningPath = './core/packages/warning-panel'
 def switcherPath = './core/packages/switcher';
@@ -157,6 +158,29 @@ legacy-peer-deps=true
                 nodejs('node-22.5.1') {
                     withVault(configuration: secman_configuration, vaultSecrets: secrets){
                         dir("${typographyPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Popup deploy') {
+            tools
+            {
+                nodejs 'node-22.5.1'
+            }
+            steps {
+                nodejs('node-22.5.1') {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets){
+                        dir("${popupPath}") {
                             script {
                                 writeFile(file: npmrc_name, text: npmrc_content)
                                 echo 'Packages installing'

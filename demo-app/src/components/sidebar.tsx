@@ -18,6 +18,7 @@ const SideBar: React.FunctionComponent = () => {
   const isSwitcherActive: boolean = pathname?.indexOf("/switcher") > -1;
   const isErrorsStateActive: boolean = pathname?.indexOf("/errors-state") > -1;
   const isContainersActive: boolean = pathname?.indexOf("/containers") > -1;
+  const isPopupActive: boolean = pathname?.indexOf("/popup") > -1;
   const isPopupEventAccordionActive: boolean =
     pathname?.indexOf("/popup-event-accordion") > -1;
   const isSelectActive: boolean =
@@ -218,6 +219,23 @@ const SideBar: React.FunctionComponent = () => {
               href="/popup-event-accordion"
             >
               Popup event accordion testing
+            </ListItemLinkStyled>
+          </ListItem>
+          <ListItem
+            type="text"
+            backgroundColor={
+              isPopupActive
+                ? theme.palette.primary.main
+                : theme.mainBackgroundColor
+            }
+            height={60}
+          >
+            <ListItemLinkStyled
+              color={theme.palette.baseFontColor}
+              fontFamily={theme.fontFamily}
+              href="/popup"
+            >
+              Popup
             </ListItemLinkStyled>
           </ListItem>
         </List>
