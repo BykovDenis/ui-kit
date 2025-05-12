@@ -360,6 +360,7 @@
     <li>CIBFV-4491 Datepicker. Implement dropdown by React Portal</li>
     <li>CIBFV-4491 Select. Implement dropdown by React Portal</li>
     <li>CIBFV-4491 Multiselect. Implement dropdown by React Portal</li>
+    <li>CIBFV-4491 FlexContainer. Add ref property</li>
 </ol>
 <h3>Bugfix</h3>
 <ol>
