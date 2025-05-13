@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/TableHead",
-  "version": "0.13.0-beta.8",
+  "version": "0.13.0-beta.9",
   "description": "TableHead react UI",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
