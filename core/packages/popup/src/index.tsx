@@ -8,31 +8,23 @@ import { createPortal } from 'react-dom';
 import getMeasureValue from '../../helpers/get-measure-value';
 
 const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
+  const [isInitialized, setIsInitialized] = useState<boolean>(false);
+  const [top, setTop] = useState<number>(0);
+  const [left, setLeft] = useState<number>(0);
+  const [width, setWidth] = useState<number>(0);
   const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
 
   const refPortal = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
-
-  let top: number = 0;
-  let left: number = 0;
-  let width: number = 0;
-
-  if (refPortal?.current) {
-    const clientRectPosition: any = refPortal.current.getBoundingClientRect();
-    top = clientRectPosition.bottom + window.scrollY;
-    left = clientRectPosition.left;
-    width = clientRectPosition.width;
-  } else {
-    const clientRectPosition: any = document.querySelector(`#${props.id}`)?.getBoundingClientRect();
+    const clientRectPosition: any = refPortal?.current ? refPortal.current.getBoundingClientRect() : null;
     if (clientRectPosition) {
-      top = clientRectPosition.bottom + window.scrollY;
-      left = clientRectPosition.left;
-      width = clientRectPosition.width;
+      setIsInitialized(true);
+      setTop(clientRectPosition.bottom + window.scrollY);
+      setLeft(clientRectPosition.left);
+      setWidth(clientRectPosition.width);
     }
-  }
+  }, []);
 
   const componentThemed: any = (theme: ITheme) => {
     const PopupPortal = () =>
@@ -52,8 +44,8 @@ const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
       );
 
     return (
-      <div id={props.id} ref={refPortal} className={styles['popup-container']}>
-        {props.isOpen ? <PopupPortal /> : null}
+      <div ref={refPortal} className={styles['popup-container']}>
+        {isInitialized && props.isOpen ? <PopupPortal /> : null}
       </div>
     );
   };
