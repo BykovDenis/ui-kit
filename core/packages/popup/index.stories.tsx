@@ -38,7 +38,7 @@ const Template: StoryFn<typeof Label> = (args: PopupProps) => {
       <FlexContainer minHeight={450} outline="1px solid green" alignItems="flex-start">
         <FlexContainer position="relative">
           <Button onClick={onButtonClick}>Expand</Button>
-          <Popup isOpen={isExpanded} width={120} id="some-popup">
+          <Popup isOpen={isExpanded} width={120}>
             <FlexContainer flexDirection="column" alignItems="stretch" gap={5}>
               <Button>111</Button>
               <Button>222</Button>
