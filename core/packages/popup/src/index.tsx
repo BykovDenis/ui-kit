@@ -36,6 +36,7 @@ const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
             left,
             width: props?.width ? getMeasureValue(props?.width) : width,
             backgroundColor: theme.mainBackgroundColor,
+            zIndex: props?.zIndex || 2147483647,
           }}
         >
           {props.children}
