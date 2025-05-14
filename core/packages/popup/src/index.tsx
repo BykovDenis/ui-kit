@@ -16,15 +16,25 @@ const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
 
   const refPortal = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  const initialCoordinated = () => {
     const clientRectPosition: any = refPortal?.current ? refPortal.current.getBoundingClientRect() : null;
     if (clientRectPosition) {
-      setIsInitialized(true);
       setTop(clientRectPosition.bottom + window.scrollY);
       setLeft(clientRectPosition.left);
       setWidth(clientRectPosition.width);
     }
+  };
+
+  useEffect(() => {
+    initialCoordinated();
   }, []);
+
+  useEffect(() => {
+    if (props.isOpen) {
+      setIsInitialized(true);
+      initialCoordinated();
+    }
+  }, [props.isOpen]);
 
   const componentThemed: any = (theme: ITheme) => {
     const PopupPortal = () =>
