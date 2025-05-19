@@ -8,27 +8,29 @@ describe('The Datepicker component', () => {
   });
   it('Test 1. Selection by click text. Testing input value changing attributes by onChange event handler. Mask dd.MM.yyyy (onChange)', () => {
     // Typing value
-    cy.get('#datepicker1')
+    cy.get('label[for="datepicker1"]')
       .click()
       .type('01042024')
-      .blur()
-      .should('value', '01.04.2024')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.baseFontColor);
+      .then(() => {
         cy.get('#datepicker1')
-          .focus()
+          .should('value', '01.04.2024')
           .invoke('css', 'color')
           .then((color: string) => {
             expect(color).to.eq(themes.dark.palette.primary.main);
-          })
-          .then(() => {
-            // Remove values
-            cy.get('#datepicker1-btn-delete-value')
-              .as('btn')
-              .click()
+            cy.get('#datepicker1')
+              .focus()
+              .invoke('css', 'color')
+              .then((color: string) => {
+                expect(color).to.eq(themes.dark.palette.primary.main);
+              })
               .then(() => {
-                cy.get('#datepicker1').should('value', '');
+                // Remove values
+                cy.get('#datepicker1-btn-delete-value')
+                  .as('btn')
+                  .click()
+                  .then(() => {
+                    cy.get('#datepicker1').should('value', '');
+                  });
               });
           });
       });
@@ -36,7 +38,7 @@ describe('The Datepicker component', () => {
   it('Test 2. Selection by click text. Testing input value changing attributes by onChange event handler. Mask yyyy-MM-dd (onBlur)', () => {
     // Typing value
     cy.get('#datepicker2')
-      .click()
+      .focus()
       .type('20240401')
       .blur()
       .should('value', '2024-04-01')
@@ -423,7 +425,7 @@ describe('The Datepicker component', () => {
   it('Test 29. Change month and year from dropdown (onChange)', () => {
     cy.get('#datepicker1').focus().type('03042024').blur().should('value', '03.04.2024');
     cy.get('#datepicker1').click();
-    cy.get('#datepicker-month-datepicker1').click();
+    cy.get('#datepicker-month-datepicker1').focus();
     cy.get('#datepicker-month-datepicker1-list > div:nth-of-type(9) > button').as('btn').click();
     cy.get('#datepicker1').should('value', '03.09.2024');
     cy.get('#datepicker1').click();
@@ -434,7 +436,7 @@ describe('The Datepicker component', () => {
   it('Test 30. Change month and year from dropdown (onBlur)', () => {
     cy.get('#datepicker2').focus().type('20240519').blur().should('value', '2024-05-19');
     cy.get('#datepicker2').click();
-    cy.get('#datepicker-month-datepicker2').click();
+    cy.get('#datepicker-month-datepicker2').focus();
     cy.get('#datepicker-month-datepicker2-list > div:nth-of-type(9) > button').as('btn').click();
     cy.get('#datepicker2').should('value', '2024-09-19');
     cy.get('#datepicker2').click();
@@ -460,16 +462,16 @@ describe('The Datepicker component', () => {
   });
   it('Test 33. Complexity input date. Testing input value changing attributes by onChange event handler. Mask yyyy-MM-dd (onBlur)', () => {
     // Typing value
-    cy.get('#datepicker2').click().type('20240401').blur().should('value', '2024-04-01');
+    cy.get('#datepicker2').focus().type('20240401').blur().should('value', '2024-04-01');
     cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').should('value', '');
-    cy.get('#datepicker2').click().type('202410401').blur().should('value', '2024-10-41');
+    cy.get('#datepicker2').focus().type('202410401').blur().should('value', '2024-10-41');
     cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').should('value', '');
-    cy.get('#datepicker2').click().type('120240401').blur().should('value', '1202-40-41');
+    cy.get('#datepicker2').focus().type('120240401').blur().should('value', '1202-40-41');
     cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').should('value', '');
-    cy.get('#datepicker2').click().type('210240401').blur().should('value', '2102-40-41');
+    cy.get('#datepicker2').focus().type('210240401').blur().should('value', '2102-40-41');
     // Remove values
     cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').should('value', '');
@@ -477,7 +479,7 @@ describe('The Datepicker component', () => {
   it('Test 34. Move cursor position. Testing input value changing attributes by onChange event handler. Mask yyyy-MM-dd (onBlur)', () => {
     // Typing value
     cy.get('#datepicker2')
-      .click()
+      .focus()
       .type('20240401{leftArrow}{leftArrow}{leftArrow}5')
       .blur()
       .should('value', '2024-05-01');
@@ -486,28 +488,28 @@ describe('The Datepicker component', () => {
   });
   it('Test 35. Only digits values. Testing input value changing attributes by onChange event handler. Mask yyyy-MM-dd (onBlur)', () => {
     // Typing value
-    cy.get('#datepicker2').click().type('ew20df24ff04fd01').blur().should('value', '2024-04-01');
+    cy.get('#datepicker2').focus().type('ew20df24ff04fd01').blur().should('value', '2024-04-01');
   });
   it('Test 36. Change by pressing Enter key. Mask dd.MM.yyyy (onChange)', () => {
     // Typing value
-    cy.get('#datepicker1').click().type('12022024').type('{enter}').should('value', '12.02.2024');
+    cy.get('#datepicker1').focus().type('12022024').type('{enter}').should('value', '12.02.2024');
   });
   it('Test 37. Change by pressing Enter key. Mask yyyy-MM-dd (onBlur)', () => {
     // Typing value
     cy.get('#datepicker2')
-      .click()
+      .focus()
       .type('20240401{leftArrow}{leftArrow}{leftArrow}5')
       .type('{enter}')
       .should('value', '2024-05-01');
   });
   it('Test 38. Change by pressing Enter key. Mask dd.MM.yyyy (onBlur)', () => {
     // Typing value
-    cy.get('#datepicker2').click().type('20240402').type('{enter}').should('value', '2024-04-02');
+    cy.get('#datepicker2').focus().type('20240402').type('{enter}').should('value', '2024-04-02');
   });
   it('Test 39. Test limit dates min date and max date. Mask dd.MM.yyyy (onChange)', () => {
-    cy.get('#min-max-date-1').type('15102024');
+    cy.get('#min-max-date-1').focus().type('15102024');
     // Typing value
-    cy.get('#min-max-date-1')
+    cy.get('label[for="min-max-date-1"]')
       .click()
       .then(() => {
         cy.get('button[name=1]').as('btn').should('be.disabled', true);
@@ -526,6 +528,7 @@ describe('The Datepicker component', () => {
           });
       });
     cy.get('#min-date-1')
+      .focus()
       .type('{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{leftArrow}{del}7')
       .then(() => {
         cy.get('#min-max-date-1')

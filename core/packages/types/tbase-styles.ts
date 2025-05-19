@@ -59,6 +59,7 @@ type TBaseStyles = {
   zIndex?: number;
   error?: boolean;
   colorTheme?: 'normal' | 'warning';
+  ref?: any;
 };
 
 export default TBaseStyles;
