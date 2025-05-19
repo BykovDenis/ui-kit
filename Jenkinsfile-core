@@ -31,7 +31,17 @@ def tabsPath = './core/packages/tabs';
 def tabPath = './core/packages/tab';
 def flexContainerPath = './core/packages/flex-container';
 def gridContainerPath = './core/packages/grid-container'
+def npmrc_name = '.npmrc'
+def npmrc_content = ''
 
+
+def jenkins_secrets_path = 'CI00747472_CI00756401/A/LOANPRIC/JEN/SECRET/KV'
+def secman_configuration = [ vaultUrl: 'https://ift.secrets.sigma.sbrf.ru', vaultCredentialId: 'secman_jenkins_approle', engineVersion: 1, skipSslVerification: true, timeout: 60]
+
+def secrets = [
+    [path: "${jenkins_secrets_path}/CI_TUZ_NEXUS3", engineVersion: 1, secretValues: [
+        [vaultKey: 'nexus_name_token_base64', envVar: 'NEXUS3_TOKEN_BASE64']]]
+]
 
 pipeline {
     agent {
@@ -53,15 +63,26 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets){
                         sh 'npm -v'
                         sh 'node -v'
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${uiKitPath}") {
-                                script {
-                                    echo 'Core packages installing'
-                                    sh 'npm ci'
-                                }
+                        dir("${uiKitPath}") {
+                            script {
+
+                            npmrc_content = """\
+//nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${NEXUS3_TOKEN_BASE64}
+//nexus-ci.delta.sbrf.ru/repository/npm-all/:_auth=${NEXUS3_TOKEN_BASE64}
+audit=false
+always-auth=true
+fetch-retries=5
+strict-ssl=false
+save-exact=true
+legacy-peer-deps=true
+"""
+
+                            writeFile(file: npmrc_name, text: npmrc_content)
+                            echo 'Core packages installing'
+                            sh 'npm ci'
                             }
                         }
                     }
@@ -75,15 +96,15 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets){
                         sh 'npm -v'
                         sh 'node -v'
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Root packages installing'
-                                    sh 'npm ci'
-                                }
+
+                        dir("${rootPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Root packages installing'
+                                sh 'npm ci'
                             }
                         }
                     }
@@ -97,17 +118,16 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${stylesPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets){
+                        dir("${stylesPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -121,21 +141,16 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${typographyPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
-                            }
-                            dir("${typographyPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets){
+                        dir("${typographyPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -149,21 +164,20 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${datepickerPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets){
+                        dir("${datepickerPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
                             }
-                            dir("${datepickerPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${datepickerPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -177,21 +191,20 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${checkboxPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets){
+                        dir("${checkboxPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
                             }
-                            dir("${checkboxPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${checkboxPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -205,21 +218,20 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${buttonPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${buttonPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
                             }
-                            dir("${buttonPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${buttonPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -233,21 +245,20 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${iconButtonPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${iconButtonPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
                             }
-                            dir("${iconButtonPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${iconButtonPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -261,35 +272,35 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${inputPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${inputPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
                             }
-                            dir("${inputPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${inputPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
-                            dir("${textFieldPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
+                        }
+                        dir("${textFieldPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
                             }
-                            dir("${textFieldPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${textFieldPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -303,35 +314,35 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${labelPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${labelPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
                             }
-                            dir("${labelPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${labelPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
-                            dir("${labelInteractivePath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
+                        }
+                        dir("${labelInteractivePath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
                             }
-                            dir("${labelInteractivePath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${labelInteractivePath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -345,21 +356,20 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${listItemPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${listItemPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
                             }
-                            dir("${listItemPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${listItemPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -373,21 +383,20 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${listPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${listPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
                             }
-                            dir("${listPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${listPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -401,21 +410,20 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${radioPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${radioPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
                             }
-                            dir("${radioPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${radioPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -429,21 +437,20 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${selectPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${selectPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
                             }
-                            dir("${selectPath}") {
-                                script {
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${selectPath}") {
+                            script {
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -457,17 +464,16 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${switcherPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${switcherPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -481,17 +487,16 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${formControlPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${formControlPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -505,17 +510,16 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${flexContainerPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${flexContainerPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -529,17 +533,16 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${gridContainerPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${gridContainerPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -553,17 +556,16 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${tableColumnsVisiblePath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${tableColumnsVisiblePath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -577,17 +579,16 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${progressBarPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${progressBarPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -601,17 +602,16 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${multiSelectPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${multiSelectPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -625,17 +625,16 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${stickyBottomPanelPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${stickyBottomPanelPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -649,17 +648,16 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${tabsPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${tabsPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -673,17 +671,16 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${tabPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${tabPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -697,17 +694,16 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${dividerPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${dividerPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -721,57 +717,60 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${tablePath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets) {
+                        dir("${tablePath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
-                            dir("${tableHeadPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${tableHeadPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
-                            dir("${tableBodyPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${tableBodyPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
-                            dir("${tableRowPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${tableRowPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
-                            dir("${tableCellPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        }
+                        dir("${tableCellPath}") {
+                            script {
+                                writeFile(file: npmrc_name, text: npmrc_content)
+                                echo 'Packages installing'
+                                sh 'npm i'
+                                echo 'Building'
+                                sh 'npm run build'
+                                echo 'Clean'
+                                sh 'npm run clean-node-modules'
                             }
                         }
                     }

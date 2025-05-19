@@ -6,12 +6,13 @@ import { visualizer } from 'rollup-plugin-visualizer';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  input: ['packages/**/*.ts', 'packages/**/*.ts|tsx'],
+  root: './packages',
   base: '/',
   build: {
     outDir: './',
     sourcemap: false,
     minify: 'terser',
+    cssMinify: true,
   },
   plugins: [
     react(),

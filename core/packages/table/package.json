@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/Table",
-  "version": "0.12.14",
+  "version": "0.13.0",
   "description": "Table react UI",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -20,5 +20,5 @@
   "publishConfig": {
     "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
   },
-  "gitHead": "29f2c2ae813aa9e3560689b1e0f986591b3ea3a3"
+  "gitHead": "6f94b1dc0bdbbfc2b92d888c5bfc799a170a80a5"
 }
