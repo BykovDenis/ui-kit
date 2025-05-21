@@ -86,7 +86,7 @@ legacy-peer-deps=true
                     withVault(configuration: secman_configuration, vaultSecrets: secrets){
                         sh 'npm -v'
                         sh 'node -v'
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
+                        dir("${uiKitStylesPath}") {
                             script {
                               npmrc_content = """\
 //nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${NEXUS3_TOKEN_BASE64}
