@@ -2,6 +2,28 @@ def rootPath = './icon'
 def uiKitIconPath = './icon/'
 def uiKitStylesPath = './icon/styles/'
 
+def vault_namespace = 'CI00747472_CI04634153'
+
+// Основная папка с секретами
+def jenkins_secrets_path = "${vault_namespace}/A/CI02196403/JEN/MAIN/KV"
+
+// Путь до ТУЗа в secman (смотреть на DevOps портал)
+def vault_tuz_path = "${vault_namespace}/AD/delta.sbrf.ru/creds/cab-sa-dvo09147"
+
+def secman_configuration = [
+    vaultUrl: 'https://t.secrets.delta.sbrf.ru',
+    vaultCredentialId: 'cab-sa-dvo09147_CI00747472_CI04634153',
+    vaultNamespace: vault_namespace,
+    engineVersion: 1,
+    skipSslVerification: true,
+    timeout: 60]
+
+def secrets = [
+    [path: "$jenkins_secrets_path/CI_TUZ_NEXUS3", engineVersion: 1, secretValues: [
+        [vaultKey: 'uikit_publish_token_base64', envVar: 'NEXUS3_TOKEN_BASE64'],
+        [vaultKey: 'uikit_publish_token_base64', envVar: 'UIKIT_PUBLISH_TOKEN_BASE64']]]
+]
+
 pipeline {
     agent {
         node {
@@ -22,19 +44,30 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                     withVault(configuration: secman_configuration, vaultSecrets: secrets){
                         sh 'npm -v'
                         sh 'node -v'
-                        withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${rootPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                        dir("${rootPath}") {
+                            script {
+
+                              npmrc_content = """\
+//nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${NEXUS3_TOKEN_BASE64}
+//nexus-ci.delta.sbrf.ru/repository/npm-all/:_auth=${NEXUS3_TOKEN_BASE64}
+audit=false
+always-auth=true
+fetch-retries=5
+strict-ssl=false
+save-exact=true
+legacy-peer-deps=true
+"""
+
+                              writeFile(file: npmrc_name, text: npmrc_content)
+                              echo 'Packages installing'
+                              sh 'npm i'
+                              echo 'Building'
+                              sh 'npm run build'
+                              echo 'Clean'
+                              sh 'npm run clean-node-modules'
                             }
                         }
                     }
@@ -48,19 +81,28 @@ pipeline {
             }
             steps {
                 nodejs('node-22.5.1') {
-                    withCredentials([file(credentialsId: 'npmrc', variable: 'NPMRC_CONFIG')]) {
+                    withVault(configuration: secman_configuration, vaultSecrets: secrets){
                         sh 'npm -v'
                         sh 'node -v'
                         withEnv(["npm_config_userconfig=${NPMRC_CONFIG}"]) {
-                            dir("${uiKitStylesPath}") {
-                                script {
-                                    echo 'Packages installing'
-                                    sh 'npm i'
-                                    echo 'Building'
-                                    sh 'npm run build'
-                                    echo 'Clean'
-                                    sh 'npm run clean-node-modules'
-                                }
+                            script {
+                              npmrc_content = """\
+//nexus-ci.delta.sbrf.ru/repository/npm-release:_auth=${NEXUS3_TOKEN_BASE64}
+//nexus-ci.delta.sbrf.ru/repository/npm-all/:_auth=${NEXUS3_TOKEN_BASE64}
+audit=false
+always-auth=true
+fetch-retries=5
+strict-ssl=false
+save-exact=true
+legacy-peer-deps=true
+"""
+                              writeFile(file: npmrc_name, text: npmrc_content)
+                              echo 'Packages installing'
+                              sh 'npm i'
+                              echo 'Building'
+                              sh 'npm run build'
+                              echo 'Clean'
+                              sh 'npm run clean-node-modules'
                             }
                         }
                     }
