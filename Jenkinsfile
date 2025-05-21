@@ -5,7 +5,7 @@ def uiKitStylesPath = './icon/styles/'
 pipeline {
     agent {
         node {
-            label 'rhel8&&!delta4' // Clean builder agent //Сборка должна происходить на централизованных агентах из пула Linux_Default
+            label 'clearAgent&&rhel8'
         }
     }
 
