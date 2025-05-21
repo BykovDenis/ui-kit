@@ -1,6 +1,8 @@
 def rootPath = './icon'
 def uiKitIconPath = './icon/'
 def uiKitStylesPath = './icon/styles/'
+def npmrc_name = '.npmrc'
+def npmrc_content = ''
 
 def vault_namespace = 'CI00747472_CI04634153'
 
