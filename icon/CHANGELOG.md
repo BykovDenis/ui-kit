@@ -22,3 +22,10 @@
 <ol>
     <li>Stability version</li>
 </ol>
+
+<h2>v 1.1.0</h2>
+
+<h3>Features</h3>
+<ol>
+    <li>Publish the package as ESM only</li>
+</ol>
