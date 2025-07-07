@@ -76,14 +76,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const maxDate: DateParser = isNotEmptyString(props.maxDate) ? new DateParser(props.maxDate, mask) : null;
 
   const today: Dayjs = dayjs();
-  const todayParsed: string = today.format(DatepickerMask.DashedYYYYMMDD);
+  const todayParsed: string = today.format('YYYY-MM-DD');
 
-  const isValidByMinDate: boolean = props.minDate
-    ? todayParsed >= minDate.getDate().format(DatepickerMask.DashedYYYYMMDD)
-    : true;
-  const isValidByMaxDate: boolean = props.maxDate
-    ? todayParsed <= maxDate.getDate().format(DatepickerMask.DashedYYYYMMDD)
-    : true;
+  const isValidByMinDate: boolean = props.minDate ? todayParsed >= minDate.getDate().format('YYYY-MM-DD') : true;
+  const isValidByMaxDate: boolean = props.maxDate ? todayParsed <= maxDate.getDate().format('YYYY-MM-DD') : true;
 
   const dataCyTodayContainer: string = `${UiKitComponent.Datepicker}-${props.id}-today-container`;
 
