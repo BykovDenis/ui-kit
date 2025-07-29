@@ -366,3 +366,9 @@
 <ol>
     <li>Datepicker. The fix is installed only today for the current calendar</li>
 </ol>
+
+<h2>v 0.13.1</h2>
+<h3>Bugfix</h3>
+<ol>
+    <li>Datepicker. Fix checking today, minDate, maxDate</li>
+</ol>
