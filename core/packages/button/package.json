@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/Button",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "description": "A simple button component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -33,6 +33,6 @@
     "@types/styled-components": "^5.1.18",
     "rollup": "^2.61.1"
   },
-  "gitHead": "6f94b1dc0bdbbfc2b92d888c5bfc799a170a80a5",
+  "gitHead": "257ca2d081a13f6a140c96f44d2c0ef4cb0a7475",
   "_id": "@sber-risks-ui/Button@0.5.28"
 }

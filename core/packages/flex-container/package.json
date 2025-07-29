@@ -1,6 +1,6 @@
 {
   "name": "@sber-risks-ui/FlexContainer",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "description": "The FlexContainer component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -20,5 +20,5 @@
   "publishConfig": {
     "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
   },
-  "gitHead": "6f94b1dc0bdbbfc2b92d888c5bfc799a170a80a5"
+  "gitHead": "257ca2d081a13f6a140c96f44d2c0ef4cb0a7475"
 }
