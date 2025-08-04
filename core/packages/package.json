@@ -1,7 +1,7 @@
 {
-  "name": "@sber-risks-ui/core",
+  "name": "@dbykov-ui-kit/core",
   "version": "0.13.1",
-  "description": "Risks react UI",
+  "description": "UI Kit",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
@@ -12,11 +12,10 @@
     "build": "rollup -c rollup.config.prod.js",
     "build-dev": "rollup -w -c rollup.config.dev.js",
     "prepare-ui-kit": "lerna bootstrap && lerna run build && git reset --hard",
-    "publish-ui-kit": "npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/",
     "clean-node-modules": "rm -rf node_modules"
   },
   "publishConfig": {
-    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-release/"
+    "registry": "https://github.com/BykovDenis/ui-kit.git"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.14.5",

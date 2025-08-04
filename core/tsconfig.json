@@ -23,5 +23,5 @@
     "__tests__"
   ],
   "include": ["**/*", "node_modules"],
-  "extends": "@sbol/cypress-config/cypress/tsconfig.json"
+  "extends": "cypress/cypress/tsconfig.json"
 }

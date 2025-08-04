@@ -1,4 +1,4 @@
-import FlexContainer from '@sber-risks-ui/core/flex-container';
+import FlexContainer from '@dbykov-ui-kit/core/flex-container';
 
 type NumberContainerProps = {
   children: React.ReactNode,

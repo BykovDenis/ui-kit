@@ -1,4 +1,4 @@
-import { ITheme } from '@sber-risks-ui/core/styles';
+import { ITheme } from '@dbykov-ui-kit/core/styles';
 
 const theme: ITheme = {
   palette: {

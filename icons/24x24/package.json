@@ -1,7 +1,7 @@
 {
-  "name": "@sber-risks-ui/icons/24x24",
+  "name": "@dbykov-ui-kit/icons/24x24",
   "version": "0.0.2",
-  "description": "Risks react UI",
+  "description": "UI Kit",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
@@ -11,11 +11,10 @@
     "build": "../node_modules/.bin/rollup -c rollup.config.prod.js",
     "build-dev": "../node_modules/.bin/rollup -w -c rollup.config.dev.js",
     "prepare-ui-kit": "lerna bootstrap && lerna run build && git reset --hard",
-    "publish-ui-kit": "npm publish --registry https://nexus-ci.delta.sbrf.ru/repository/npm-release/",
     "clean-node-modules": "rm -rf ../node_modules"
   },
   "publishConfig": {
-    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-release/"
+    "registry": "https://github.com/BykovDenis/ui-kit.git"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.14.5",

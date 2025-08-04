@@ -1,4 +1,4 @@
-import ListItem from '@sber-risks-ui/core/list-item';
+import ListItem from '@dbykov-ui-kit/core/list-item';
 
 type ListItemWrappedProps = {
   children: React.ReactNode;

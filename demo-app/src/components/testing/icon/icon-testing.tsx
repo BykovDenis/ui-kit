@@ -1,16 +1,16 @@
-import Typography from "@sber-risks-ui/core/typography";
+import Typography from "@dbykov-ui-kit/core/typography";
 import React, { useContext } from "react";
-import GridContainer from "@sber-risks-ui/core/grid-container";
-import { ITheme } from "@sber-risks-ui/core/styles";
+import GridContainer from "@dbykov-ui-kit/core/grid-container";
+import { ITheme } from "@dbykov-ui-kit/core/styles";
 import { ReactIconContext, ReactThemeContext } from "../../app";
 // local component
 // import Icon from "../../../../../icon/src";
 // import IconButton from "../../../../../core/packages/icon-button/src";
 // import Button from "../../../../../core/packages/button/src";
 // components from package library
-import Icon from "@sber-risks-ui/icon";
-import Button from "@sber-risks-ui/core/button";
-import IconButton from "@sber-risks-ui/core/icon-button";
+import Icon from "@dbykov-ui-kit/icon";
+import Button from "@dbykov-ui-kit/core/button";
+import IconButton from "@dbykov-ui-kit/core/icon-button";
 
 const IconTesting: React.FunctionComponent = () => {
   const theme: ITheme = useContext(ReactThemeContext);

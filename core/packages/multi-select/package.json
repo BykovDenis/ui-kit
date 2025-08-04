@@ -1,7 +1,7 @@
 {
-  "name": "@sber-risks-ui/MultiSelect",
+  "name": "@dbykov-ui-kit/MultiSelect",
   "version": "0.13.1",
-  "description": "Risks react UI",
+  "description": "UI Kit",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     "clean-node-modules": "rm -rf node_modules"
   },
   "publishConfig": {
-    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
+    "registry": "https://github.com/BykovDenis/ui-kit.git"
   },
   "gitHead": "257ca2d081a13f6a140c96f44d2c0ef4cb0a7475"
 }

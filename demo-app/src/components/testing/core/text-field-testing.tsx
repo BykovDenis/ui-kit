@@ -1,15 +1,15 @@
-import Table from "@sber-risks-ui/core/table";
-import TableHead from "@sber-risks-ui/core/table-head";
-import TableRow from "@sber-risks-ui/core/table-row";
-import TableCell from "@sber-risks-ui/core/table-cell";
-import TableBody from "@sber-risks-ui/core/table-body";
+import Table from "@dbykov-ui-kit/core/table";
+import TableHead from "@dbykov-ui-kit/core/table-head";
+import TableRow from "@dbykov-ui-kit/core/table-row";
+import TableCell from "@dbykov-ui-kit/core/table-cell";
+import TableBody from "@dbykov-ui-kit/core/table-body";
 import React, { useState } from "react";
-import Typography from "@sber-risks-ui/core/typography";
+import Typography from "@dbykov-ui-kit/core/typography";
 import { success } from "../../../utils/dev-utils-theme";
 // local components
 // import TextField from "../../../../../core/packages/textfield/src";
 // components from package library
-import TextField from "@sber-risks-ui/core/textfield";
+import TextField from "@dbykov-ui-kit/core/textfield";
 
 const TextFieldTesting: React.FunctionComponent = () => {
   const regExp: RegExp = new RegExp("[0-9_]", "gi");

@@ -1,5 +1,5 @@
-import GridContainer from "@sber-risks-ui/core/grid-container";
-import Datepicker from "@sber-risks-ui/core/datepicker";
+import GridContainer from "@dbykov-ui-kit/core/grid-container";
+import Datepicker from "@dbykov-ui-kit/core/datepicker";
 import { useState } from "react";
 
 const MixedComponents: React.FunctionComponent = () => {

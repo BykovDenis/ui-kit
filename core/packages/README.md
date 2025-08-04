@@ -1,16 +1,16 @@
-<h1>Library Risks react UI Kit components</h1>
+<h1>Library React UI Kit components</h1>
 
 <h2>GET Starting</h2>
 
 
 <ol>
-    <li>npm i @sber-risks-ui/core</li>
+    <li>npm i @dbykov-ui-kit/core</li>
     <li>
     <h3>
         Create theme
     </h3>
 <pre><code>
-import { ITheme } from '@sber-risks-ui/core/styles';
+import { ITheme } from '@dbykov-ui-kit/core/styles';
 </code></pre>
 <pre><code>
 const default defaultTheme: ITheme = {

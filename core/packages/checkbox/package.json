@@ -1,5 +1,5 @@
 {
-  "name": "@sber-risks-ui/Checkbox",
+  "name": "@dbykov-ui-kit/Checkbox",
   "version": "0.13.1",
   "description": "A simple checkbox component",
   "main": "dist/index.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
+    "url": "https://github.com/BykovDenis/ui-kit.git"
   },
   "keywords": [
     "react",
@@ -22,7 +22,7 @@
   "author": "DenisBykov",
   "license": "MIT",
   "bugs": {
-    "url": "https://nexus-ci.delta.sbrf.ru/repository/npm-all/issues"
+    "url": "https://registry.npmjs.org/issues"
   },
   "homepage": "/",
   "files": [

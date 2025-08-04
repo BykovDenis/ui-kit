@@ -9,14 +9,14 @@ import React, { useState } from "react";
 import { success } from "../../../utils/dev-utils-theme";
 
 // components from package library
-import DatepickerMask from "@sber-risks-ui/core/datepicker/enums/datepicker-mask";
-import Label from "@sber-risks-ui/core/label";
-import GridContainer from "@sber-risks-ui/core/grid-container";
-import Datepicker from "@sber-risks-ui/core/datepicker";
-import Select from "@sber-risks-ui/core/select";
-import MultiSelect from "@sber-risks-ui/core/multi-select";
-import Input from "@sber-risks-ui/core/input";
-import TextField from "@sber-risks-ui/core/textfield";
+import DatepickerMask from "@dbykov-ui-kit/core/datepicker/enums/datepicker-mask";
+import Label from "@dbykov-ui-kit/core/label";
+import GridContainer from "@dbykov-ui-kit/core/grid-container";
+import Datepicker from "@dbykov-ui-kit/core/datepicker";
+import Select from "@dbykov-ui-kit/core/select";
+import MultiSelect from "@dbykov-ui-kit/core/multi-select";
+import Input from "@dbykov-ui-kit/core/input";
+import TextField from "@dbykov-ui-kit/core/textfield";
 
 const PopupEventAccordion: React.FunctionComponent = () => {
   const [datepicker1, setDatepicker1] = useState<string | null>(null);
