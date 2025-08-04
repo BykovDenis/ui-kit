@@ -12,9 +12,9 @@ import "../css/create-window-notification.css";
 // import getNewReactThemeContext from "../../../core/packages/styles/src";
 // import ITheme from "../../../core/packages/styles/types/itheme";
 // components from package library
-import getNewReactIconContext from "@sber-risks-ui/icon/styles";
-import GridContainer from "@sber-risks-ui/core/grid-container";
-import getNewReactThemeContext, { ITheme } from "@sber-risks-ui/core/styles";
+import getNewReactIconContext from "@dbykov-ui-kit/icon/styles";
+import GridContainer from "@dbykov-ui-kit/core/grid-container";
+import getNewReactThemeContext, { ITheme } from "@dbykov-ui-kit/core/styles";
 
 type AppProps = {
   children: React.ReactNode;

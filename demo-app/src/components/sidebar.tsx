@@ -1,10 +1,10 @@
-import List from "@sber-risks-ui/core/list";
-import ListItem from "@sber-risks-ui/core/list-item";
-import Typography from "@sber-risks-ui/core/typography";
-import FlexContainer from "@sber-risks-ui/core/flex-container";
+import List from "@dbykov-ui-kit/core/list";
+import ListItem from "@dbykov-ui-kit/core/list-item";
+import Typography from "@dbykov-ui-kit/core/typography";
+import FlexContainer from "@dbykov-ui-kit/core/flex-container";
 import { useContext } from "react";
 import { ReactThemeContext } from "./app";
-import { ITheme } from "@sber-risks-ui/core/styles";
+import { ITheme } from "@dbykov-ui-kit/core/styles";
 import ListItemLinkStyled from "./common/list-item-link.styled";
 
 const SideBar: React.FunctionComponent = () => {

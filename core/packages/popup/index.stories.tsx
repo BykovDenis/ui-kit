@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import Label from './src/index';
 import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
-import FlexContainer from '@sber-risks-ui/FlexContainer/src';
-import Button from '@sber-risks-ui/Button/src';
+import FlexContainer from '@dbykov-ui-kit/FlexContainer/src';
+import Button from '@dbykov-ui-kit/Button/src';
 import Popup from './src/index';
 import PopupProps from './types/popup-props';
 

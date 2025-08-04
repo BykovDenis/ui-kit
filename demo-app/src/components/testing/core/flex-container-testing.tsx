@@ -1,5 +1,5 @@
-import FlexContainer from '@sber-risks-ui/core/flex-container';
-import FormControl from '@sber-risks-ui/core/form-control';
+import FlexContainer from '@dbykov-ui-kit/core/flex-container';
+import FormControl from '@dbykov-ui-kit/core/form-control';
 
 const FlexContainerTesting = () => {
   return (

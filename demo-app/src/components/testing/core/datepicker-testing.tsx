@@ -1,17 +1,17 @@
-import FlexContainer from "@sber-risks-ui/core/flex-container";
+import FlexContainer from "@dbykov-ui-kit/core/flex-container";
 import React, { useState } from "react";
 import { warning, success } from "../../../utils/dev-utils-theme";
 // local components
 import Datepicker from "../../../../../core/packages/datepicker/src";
 // import GridContainer from "../../../../../core/packages/grid-container/src";
 // components from package library
-// import Datepicker from "@sber-risks-ui/core/datepicker";
-import Typography from "@sber-risks-ui/core/typography";
+// import Datepicker from "@dbykov-ui-kit/core/datepicker";
+import Typography from "@dbykov-ui-kit/core/typography";
 import { toast } from "react-toastify";
-import DatepickerMask from "@sber-risks-ui/core/datepicker/enums/datepicker-mask";
-import Locale from "@sber-risks-ui/core/enums/locale";
-import TextField from "@sber-risks-ui/core/textfield";
-import GridContainer from "@sber-risks-ui/core/grid-container";
+import DatepickerMask from "@dbykov-ui-kit/core/datepicker/enums/datepicker-mask";
+import Locale from "@dbykov-ui-kit/core/enums/locale";
+import TextField from "@dbykov-ui-kit/core/textfield";
+import GridContainer from "@dbykov-ui-kit/core/grid-container";
 
 const DatepickerTesting = () => {
   const [date, setDate] = useState("2024-04-02");

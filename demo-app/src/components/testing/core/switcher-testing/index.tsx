@@ -1,4 +1,4 @@
-import Typography from "@sber-risks-ui/core/typography";
+import Typography from "@dbykov-ui-kit/core/typography";
 import React, { useState } from "react";
 import CertainDecision from "../../../../enums/certain-decision";
 import ListItemWrapped from "./list-item-wrapped";
@@ -11,10 +11,10 @@ import SppiQuestion from "../../../../enums/sppi-question";
 // import Switcher from '../../../../packages/switcher/src';
 
 // components from package library
-import FlexContainer from "@sber-risks-ui/core/flex-container";
-import List from "@sber-risks-ui/core/list";
-import ListItem from "@sber-risks-ui/core/list-item";
-import Switcher from "@sber-risks-ui/core/switcher";
+import FlexContainer from "@dbykov-ui-kit/core/flex-container";
+import List from "@dbykov-ui-kit/core/list";
+import ListItem from "@dbykov-ui-kit/core/list-item";
+import Switcher from "@dbykov-ui-kit/core/switcher";
 
 const checklistSppiTestQuestions: { [key: string]: CertainDecision } = {
   q1: CertainDecision.Unknown,

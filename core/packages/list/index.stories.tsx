@@ -8,7 +8,7 @@ import ListItem from '../list-item/src';
 import List from './src';
 import IList from './types/ilist';
 import ListType from './enum/list-type';
-import ListItemType from '@sber-risks-ui/ListItem/enums/list-item-type';
+import ListItemType from '@dbykov-ui-kit/ListItem/enums/list-item-type';
 
 export default {
   title: 'Components/List',

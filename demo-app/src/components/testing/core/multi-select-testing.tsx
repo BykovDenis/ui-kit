@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import MultiSelect from "../../../../../core/packages/multi-select/src";
 // components from package library
-// import MultiSelect from "@sber-risks-ui/core/multi-select";
-import { TMultiSelectOption } from "@sber-risks-ui/core/multi-select";
-import GridContainer from "@sber-risks-ui/core/grid-container";
-import Button from "@sber-risks-ui/core/button";
-import FormControl from "@sber-risks-ui/core/form-control";
-import FlexContainer from "@sber-risks-ui/core/flex-container";
+// import MultiSelect from "@dbykov-ui-kit/core/multi-select";
+import { TMultiSelectOption } from "@dbykov-ui-kit/core/multi-select";
+import GridContainer from "@dbykov-ui-kit/core/grid-container";
+import Button from "@dbykov-ui-kit/core/button";
+import FormControl from "@dbykov-ui-kit/core/form-control";
+import FlexContainer from "@dbykov-ui-kit/core/flex-container";
 
 const MultiSelectTesting: React.FunctionComponent = () => {
   const [columnsSelected1, setColumnNamesSelected1] = useState<

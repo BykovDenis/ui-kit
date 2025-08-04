@@ -1,6 +1,6 @@
-import FlexContainer from '@sber-risks-ui/core/flex-container';
+import FlexContainer from '@dbykov-ui-kit/core/flex-container';
 // @ts-ignore
-import FileUploader from '@sber-risks-ui/core/file-uploader';
+import FileUploader from '@dbykov-ui-kit/core/file-uploader';
 
 const FileUploaderTesting: React.FunctionComponent = () => {
   const onFileUpload = (files: Array<File>, evt: any) => {

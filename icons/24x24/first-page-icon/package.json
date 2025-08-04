@@ -1,7 +1,7 @@
 {
-  "name": "@sber-risks-ui/FirstPageIcon",
+  "name": "@dbykov-ui-kit/FirstPageIcon",
   "version": "0.0.2",
-  "description": "Risks react UI Icon component FirstPageIcon",
+  "description": "React UI Icon component FirstPageIcon",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
     "clean-node-modules": "rm -rf node_modules"
   },
   "publishConfig": {
-    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-all"
+    "registry": "https://github.com/BykovDenis/ui-kit.git"
   },
   "gitHead": "b29a487d3b4b9a512f91e847967f75288a73048f"
 }

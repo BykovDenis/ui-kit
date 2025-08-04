@@ -1,5 +1,5 @@
 // @ts-ignore
-import { IconProps } from "@sber-risks-ui/icon";
+import { IconProps } from "@dbykov-ui-kit/icon";
 
 const iconConfig: IconProps = {
   name: "image",

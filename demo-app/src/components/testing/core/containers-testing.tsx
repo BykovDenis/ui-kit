@@ -8,9 +8,9 @@ import styled from "styled-components";
 // import Typography from '../../../packages/typography/src';
 
 // components from package library
-import FlexContainer from "@sber-risks-ui/core/flex-container";
-import Typography from "@sber-risks-ui/core/typography";
-import FormControl from "@sber-risks-ui/core/form-control";
+import FlexContainer from "@dbykov-ui-kit/core/flex-container";
+import Typography from "@dbykov-ui-kit/core/typography";
+import FormControl from "@dbykov-ui-kit/core/form-control";
 
 type TableProps = {
   color: string;

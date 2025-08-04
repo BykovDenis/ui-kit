@@ -1,9 +1,9 @@
 import "./popup-testing.css";
-import Button from "@sber-risks-ui/core/button";
-import FlexContainer from "@sber-risks-ui/core/flex-container";
+import Button from "@dbykov-ui-kit/core/button";
+import FlexContainer from "@dbykov-ui-kit/core/flex-container";
 import Popup from "../../../../../core/packages/popup/src";
 import React, { useState } from "react";
-import Icon from "@sber-risks-ui/icon";
+import Icon from "@dbykov-ui-kit/icon";
 
 const PopupTesting: React.FunctionComponent = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);

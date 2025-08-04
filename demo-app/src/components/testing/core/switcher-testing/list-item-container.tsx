@@ -1,5 +1,5 @@
-import FlexContainer from "@sber-risks-ui/core/flex-container";
-import { ITheme } from "@sber-risks-ui/core/styles";
+import FlexContainer from "@dbykov-ui-kit/core/flex-container";
+import { ITheme } from "@dbykov-ui-kit/core/styles";
 import { useContext } from "react";
 import { ReactThemeContext } from "../../../app";
 import NumberContainer from "./number-container";

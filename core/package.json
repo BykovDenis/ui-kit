@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://sbtatlas.sigma.sbrf.ru/stash/scm/rp/react-ui-components.git"
+    "url": "https://github.com/BykovDenis/ui-kit.git"
   },
   "keywords": [
     "react",
@@ -54,7 +54,7 @@
     "@chromatic-com/storybook": "3.2.2",
     "@lopatnov/rollup-plugin-uglify": "2.1.5",
     "@nx/nx-darwin-x64": "19.5.0-canary.20240705-653cad2",
-    "@sbol/cypress-config": "2.3.0",
+    "cypress": "14.5.3",
     "@storybook/addon-actions": "^8.2.10",
     "@storybook/addon-docs": "8.5.5",
     "@storybook/addon-essentials": "8.5.5",
@@ -111,7 +111,7 @@
     "vite-plugin-progress": "0.0.7"
   },
   "publishConfig": {
-    "registry": "https://nexus-ci.delta.sbrf.ru/repository/npm-release/"
+    "registry": "https://github.com/BykovDenis/ui-kit.git"
   },
   "todo": "TODO for publish comments this lines 71,72,73 for publish npm registry",
   "private": "false"

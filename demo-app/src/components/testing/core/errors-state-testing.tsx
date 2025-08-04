@@ -1,10 +1,10 @@
 import React from 'react';
-import Typography from '@sber-risks-ui/core/typography';
-import FlexContainer from '@sber-risks-ui/core/flex-container';
+import Typography from '@dbykov-ui-kit/core/typography';
+import FlexContainer from '@dbykov-ui-kit/core/flex-container';
 // local components
 // import TextField from '../../../packages/textfield/src';
 // import GridContainer from '../../../packages/grid-container/src';
-// import Label from '@sber-risks-ui/core/label';
+// import Label from '@dbykov-ui-kit/core/label';
 // import Button from '../../../packages/button/src';
 // import Input from '../../../packages/input/src';
 // import Select from '../../../packages/select/src';
@@ -17,20 +17,20 @@ import FlexContainer from '@sber-risks-ui/core/flex-container';
 // import IconButton from '../../../packages/icon-button/src';
 // import Switcher from '../../../packages/switcher/src';
 // components from package library
-import TextField from '@sber-risks-ui/core/textfield';
-import GridContainer from '@sber-risks-ui/core/grid-container';
-import Label from '@sber-risks-ui/core/label';
-import Button from '@sber-risks-ui/core/button';
-import Input from '@sber-risks-ui/core/input';
-import Select from '@sber-risks-ui/core/select';
-import { IOption } from '@sber-risks-ui/core/select';
-import Datepicker from '@sber-risks-ui/core/datepicker';
-import DatepickerMask from '@sber-risks-ui/core/datepicker/enums/datepicker-mask';
-import Locale from '@sber-risks-ui/core/enums/locale';
-import Checkbox from '@sber-risks-ui/core/checkbox';
-import Radio from '@sber-risks-ui/core/radio';
-import IconButton from '@sber-risks-ui/core/icon-button';
-import Switcher from '@sber-risks-ui/core/switcher';
+import TextField from '@dbykov-ui-kit/core/textfield';
+import GridContainer from '@dbykov-ui-kit/core/grid-container';
+import Label from '@dbykov-ui-kit/core/label';
+import Button from '@dbykov-ui-kit/core/button';
+import Input from '@dbykov-ui-kit/core/input';
+import Select from '@dbykov-ui-kit/core/select';
+import { IOption } from '@dbykov-ui-kit/core/select';
+import Datepicker from '@dbykov-ui-kit/core/datepicker';
+import DatepickerMask from '@dbykov-ui-kit/core/datepicker/enums/datepicker-mask';
+import Locale from '@dbykov-ui-kit/core/enums/locale';
+import Checkbox from '@dbykov-ui-kit/core/checkbox';
+import Radio from '@dbykov-ui-kit/core/radio';
+import IconButton from '@dbykov-ui-kit/core/icon-button';
+import Switcher from '@dbykov-ui-kit/core/switcher';
 
 const ErrorsStateTesting: React.FunctionComponent = () => {
   const [textFieldErrorValue, setTextFieldErrorValue] = React.useState<string | undefined | null>(undefined);

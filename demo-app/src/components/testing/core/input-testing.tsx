@@ -1,14 +1,14 @@
-import Table from "@sber-risks-ui/core/table";
-import TableHead from "@sber-risks-ui/core/table-head";
-import TableRow from "@sber-risks-ui/core/table-row";
-import TableCell from "@sber-risks-ui/core/table-cell";
-import TableBody from "@sber-risks-ui/core/table-body";
+import Table from "@dbykov-ui-kit/core/table";
+import TableHead from "@dbykov-ui-kit/core/table-head";
+import TableRow from "@dbykov-ui-kit/core/table-row";
+import TableCell from "@dbykov-ui-kit/core/table-cell";
+import TableBody from "@dbykov-ui-kit/core/table-body";
 import React, { useState } from "react";
-import Typography from "@sber-risks-ui/core/typography";
+import Typography from "@dbykov-ui-kit/core/typography";
 // local components
 // import Input from "../../../../../core/packages/input/src";
 // components from package library
-import Input from "@sber-risks-ui/core/input";
+import Input from "@dbykov-ui-kit/core/input";
 
 const InputTesting: React.FunctionComponent = () => {
   const [inputValue, setInputValue] = useState<string | undefined>();
