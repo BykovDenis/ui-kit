@@ -1,6 +1,6 @@
 {
   "name": "@dbykov-ui-kit/Progressbar",
-  "version": "0.13.1",
+  "version": "0.0.1",
   "description": "React UI Progressbar component",
   "keywords": "React, progressbar, progress-bar",
   "main": "dist/index.js",
