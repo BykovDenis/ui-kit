@@ -38,6 +38,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
+    "g": "2.0.1",
     "html-loader": "^3.0.0",
     "prettier": "^1.16.4",
     "react": "18.2.0",
@@ -108,9 +109,6 @@
     "typescript": "5.7.3",
     "vite": "5.1.4",
     "vite-plugin-progress": "0.0.7"
-  },
-  "publishConfig": {
-    "registry": "https://github.com/BykovDenis/ui-kit.git"
   },
   "todo": "TODO for publish comments this lines 71,72,73 for publish npm registry",
   "private": "false"

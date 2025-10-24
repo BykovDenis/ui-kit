@@ -1,0 +1,22 @@
+0 silly argv {
+0 silly argv   _: [ 'publish' ],
+0 silly argv   composed: 'publish',
+0 silly argv   lernaVersion: '8.1.5',
+0 silly argv   '$0': 'lerna'
+0 silly argv }
+1 notice cli v8.1.5
+2 verbose packageConfigs Explicit "packages" configuration found in lerna.json. Resolving packages using the configured glob(s): ["packages/*"]
+3 verbose rootPath /Users/denisbykov/www/ui-kit/core
+4 error Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
+4 error       An error occurred while processing files for the nx/core/package-json plugin.
+4 error     - packages/progress-bar/package.json: packageJson.keywords.map is not a function
+4 error       TypeError: packageJson.keywords.map is not a function
+4 error           at getTagsFromPackageJson (/Users/denisbykov/www/ui-kit/core/node_modules/nx/src/utils/package-json.js:73:43)
+4 error           at buildProjectConfigurationFromPackageJson (/Users/denisbykov/www/ui-kit/core/node_modules/nx/src/plugins/package-json/create-nodes.js:131:57)
+4 error           at createNodeFromPackageJson (/Users/denisbykov/www/ui-kit/core/node_modules/nx/src/plugins/package-json/create-nodes.js:96:21)
+4 error           at /Users/denisbykov/www/ui-kit/core/node_modules/nx/src/plugins/package-json/create-nodes.js:39:20
+4 error           at /Users/denisbykov/www/ui-kit/core/node_modules/nx/src/project-graph/plugins/utils.js:47:33
+4 error           at Array.map (<anonymous>)
+4 error           at createNodesFromFiles (/Users/denisbykov/www/ui-kit/core/node_modules/nx/src/project-graph/plugins/utils.js:45:35)
+4 error           at exports.createNodesV2 (/Users/denisbykov/www/ui-kit/core/node_modules/nx/src/plugins/package-json/create-nodes.js:33:51)
+4 error           at LoadedNxPlugin.createNodes (/Users/denisbykov/www/ui-kit/core/node_modules/nx/src/project-graph/plugins/internal-api.js:34:65)

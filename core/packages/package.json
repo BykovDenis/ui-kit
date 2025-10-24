@@ -15,7 +15,7 @@
     "clean-node-modules": "rm -rf node_modules"
   },
   "publishConfig": {
-    "registry": "https://github.com/BykovDenis/ui-kit.git"
+    "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.14.5",
