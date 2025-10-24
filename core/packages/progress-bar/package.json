@@ -2,7 +2,6 @@
   "name": "@dbykov-ui-kit/Progressbar",
   "version": "0.0.1",
   "description": "React UI Progressbar component",
-  "keywords": "React, progressbar, progress-bar",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
@@ -18,8 +17,10 @@
     "build-dev": "rollup -w -c rollup.config.dev.js",
     "clean-node-modules": "rm -rf node_modules"
   },
-  "publishConfig": {
-    "registry": "https://github.com/BykovDenis/ui-kit.git"
-  },
+  "keywords": [
+    "react",
+    "react-component",
+    "button"
+  ],
   "gitHead": "257ca2d081a13f6a140c96f44d2c0ef4cb0a7475"
 }
