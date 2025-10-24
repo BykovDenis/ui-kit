@@ -1,6 +1,6 @@
 {
   "name": "@dbykov-ui-kit/GridContainer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The GridContainer component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
