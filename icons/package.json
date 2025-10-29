@@ -107,7 +107,7 @@
     "webpack-dashboard": "^3.3.5",
     "webpack-deadcode-plugin": "^0.1.15",
     "webpack-dev-middleware": "^5.0.0",
-    "webpack-dev-server": "^4.3.1",
+    "webpack-dev-server": "^5.2.1",
     "webpackbar": "^5.0.0-3"
   },
   "todo": "TODO for publish comments this lines 71,72,73 for publish npm registry",
