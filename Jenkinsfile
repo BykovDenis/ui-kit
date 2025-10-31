@@ -71,22 +71,6 @@ pipeline {
               }
           }
       }
-      stage('Styles theme deploy') {
-          steps {
-              ansiColor('xterm') {
-                  dir("${stylesPath}") {
-                      script {
-                        echo 'Packages installing'
-                        sh 'npm i'
-                        echo 'Building'
-                        sh 'npm run build'
-                        echo 'Clean'
-                        sh 'npm run clean-node-modules'
-                     }
-                  }
-              }
-          }
-      }
         stage('Styles theme deploy') {
             steps {
                 ansiColor('xterm') {
@@ -123,6 +107,54 @@ pipeline {
             steps {
                 ansiColor('xterm') {
                     dir("${popupPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('Datepicker deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${datepickerPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('Checkbox deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${checkboxPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('Button deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${buttonPath}") {
                         script {
                           echo 'Packages installing'
                           sh 'npm i'
