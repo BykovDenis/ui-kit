@@ -151,6 +151,22 @@ pipeline {
                 }
             }
         }
+        stage('Radio deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${radioPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
         stage('Button deploy') {
             steps {
                 ansiColor('xterm') {
@@ -183,49 +199,322 @@ pipeline {
                 }
             }
         }
-
-//     stage('🧾 Install dependencies') {
-//       steps {
-//         ansiColor('xterm') {
-//           sh 'npm ci'
-//         }
-//       }
-//     }
-//
-//     stage('🧪 Run tests') {
-//       steps {
-//         ansiColor('xterm') {
-//           sh 'npm test'
-//         }
-//       }
-//     }
-//
-//     stage('🏗️ Build project') {
-//       steps {
-//         ansiColor('xterm') {
-//           sh 'npm run build'
-//         }
-//       }
-//     }
-//
-//     stage('📦 Archive artifacts') {
-//       steps {
-//         ansiColor('xterm') {
-//           script {
-//             def dirName = fileExists('dist') ? 'dist' : 'build'
-//             sh '''
-//               raw_path="jenkins_home/jobs/MyBit money frontend/branches/$BRANCH_NAME/builds/$BUILD_NUMBER/"
-//               safe_path=$(echo "$raw_path" | sed 's/ /\\\\ /g')
-//               echo ""
-//               echo "cd $safe_path"
-//               echo ""
-//             '''
-//             archiveArtifacts artifacts: "${dirName}/**", fingerprint: true
-//           }
-//         }
-//       }
-//     }
-
+        stage('Input deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${inputPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                    dir("${textFieldPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('Select deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${selectPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('Switcher deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${switcherPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('Label deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${labelPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('FormControl deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${formControlPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('FlexContainer deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${flexContainerPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('GridContainer deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${gridContainerPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('List deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${listPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('ListItem deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${listItemPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('TableColumnsVisible deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${tableColumnsVisiblePath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('ProgressBar deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${progressBarPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('MultiSelect deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${multiSelectPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('StickyBottomPanel deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${stickyBottomPanelPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('Tabs deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${tabsPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                    dir("${tabPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('Divider deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${dividerPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('Table deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${tablePath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                    dir("${tableHeadPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                    dir("${tableBodyPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                    dir("${tableRowPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                    dir("${tableCellPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
     /*
     stage('🚀 Publish npm package') {
       steps {
