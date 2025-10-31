@@ -167,6 +167,22 @@ pipeline {
                 }
             }
         }
+        stage('IconButton deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${iconButtonPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
 
 //     stage('🧾 Install dependencies') {
 //       steps {
