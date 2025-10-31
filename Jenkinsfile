@@ -47,7 +47,6 @@ pipeline {
   }
   options { timeout(time: 60, unit: 'MINUTES') }
   stages {
-
       stage('Core packages installing') {
           steps {
               ansiColor('xterm') {
@@ -60,8 +59,82 @@ pipeline {
               }
           }
       }
-
-
+      stage('Root packages installing') {
+          steps {
+              ansiColor('xterm') {
+                  dir("${rootPath}") {
+                      script {
+                        echo 'Root packages installing'
+                        sh 'npm i'
+                     }
+                  }
+              }
+          }
+      }
+      stage('Styles theme deploy') {
+          steps {
+              ansiColor('xterm') {
+                  dir("${stylesPath}") {
+                      script {
+                        echo 'Packages installing'
+                        sh 'npm i'
+                        echo 'Building'
+                        sh 'npm run build'
+                        echo 'Clean'
+                        sh 'npm run clean-node-modules'
+                     }
+                  }
+              }
+          }
+      }
+        stage('Styles theme deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${stylesPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('Typography deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${typographyPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('Popup deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${popupPath}") {
+                        script {
+                          echo 'Packages installing'
+                          sh 'npm i'
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
 
 //     stage('🧾 Install dependencies') {
 //       steps {
