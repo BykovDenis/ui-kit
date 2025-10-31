@@ -65,7 +65,7 @@ pipeline {
                   dir("${rootPath}") {
                       script {
                         echo 'Root packages installing'
-                        sh 'npm i'
+                        sh 'npm i --legacy-peer-deps'
                      }
                   }
               }
