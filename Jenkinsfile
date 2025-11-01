@@ -515,6 +515,29 @@ pipeline {
                 }
             }
         }
+//         stage("UI Kit PUBLISH") {
+//             steps {
+//                 script {
+//                     def IS_PUBLISH = input(
+//                     message: 'Publish library UI KIt?',
+//                     ok: 'Yes',
+//                     no: 'No',
+//                     parameters: [
+//                       string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Publish library UI KIt?')
+//                     ]
+//                     )
+//                     if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes' || IS_PUBLISH == 'YES') {
+//                         dir("${uiKitPath}") {
+//                             sh 'npm -v'
+//                             sh 'node -v'
+//                             sh """
+//                             npm publish
+//                             """
+//                         }
+//                     }
+//                 }
+//             }
+//         }
     /*
     stage('🚀 Publish npm package') {
       steps {

@@ -1,7 +1,7 @@
-import React from 'react';
+import type {FunctionComponent} from 'react';
 import TTypography from '../types/ttypography';
 import IHeader from '../types/iheader';
 
-declare const Typography: React.FunctionComponent<TTypography>;
-export { IHeader };
+declare const Typography: FunctionComponent<TTypography>;
+export {TTypography, IHeader};
 export default Typography;

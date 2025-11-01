@@ -1,5 +1,8 @@
-import React from 'react'
 import TStickyBottomPanel from '../types/tsticky-bottom-panel';
+import type {FunctionComponent} from 'react';
 
-declare const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel>;
+declare const StickyBottomPanel: FunctionComponent<TStickyBottomPanel>;
+
+export {TStickyBottomPanel};
+
 export default StickyBottomPanel;
