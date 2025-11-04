@@ -528,12 +528,14 @@ pipeline {
                         ]
                         )
                         if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes' || IS_PUBLISH == 'YES') {
-                            dir("${uiKitPath}") {
-                                sh 'npm -v'
-                                sh 'node -v'
-                                sh """
-                                npm publish
-                                """
+                            withCredentials([string(credentialsId: 'NPM_TOKEN', variable: 'NPM_TOKEN')]) {
+                                dir("${uiKitPath}") {
+                                    sh 'npm -v'
+                                    sh 'node -v'
+                                    sh """
+                                    npm publish
+                                    """
+                                }
                             }
                         }
                     }
