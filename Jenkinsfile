@@ -530,11 +530,11 @@ pipeline {
                         if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes' || IS_PUBLISH == 'YES') {
                             withCredentials([string(credentialsId: 'NPM_TOKEN', variable: 'NPM_TOKEN')]) {
                                 dir("${uiKitPath}") {
-                                    sh 'npm -v'
-                                    sh 'node -v'
-                                    sh """
-                                    npm publish
-                                    """
+                                sh 'npm -v'
+                                sh 'node -v'
+                                writeFile file: '.npmrc', text: "//registry.npmjs.org/:_authToken=${NPM_TOKEN}"
+                                sh 'npm whoami || echo "Not logged in"'
+                                sh 'npm publish'
                                 }
                             }
                         }
