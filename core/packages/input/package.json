@@ -1,6 +1,6 @@
 {
   "name": "@dbykov-ui-kit/Input",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "UI Kit",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
