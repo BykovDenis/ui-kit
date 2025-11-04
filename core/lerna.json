@@ -4,8 +4,9 @@
     ".",
     "packages/*"
   ],
-  "npmClient": "npm",
   "workspaces": [
+    ".",
     "packages/*"
-  ]
+  ],
+  "npmClient": "npm"
 }
