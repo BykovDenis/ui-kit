@@ -22,6 +22,5 @@
     "build",
     "__tests__"
   ],
-  "include": ["**/*", "node_modules"],
-  "extends": "cypress/cypress/tsconfig.json"
+  "include": ["**/*", "node_modules"]
 }

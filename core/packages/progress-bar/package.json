@@ -1,6 +1,6 @@
 {
   "name": "@dbykov-ui-kit/Progressbar",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "React UI Progressbar component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -22,5 +22,5 @@
     "react-component",
     "button"
   ],
-  "gitHead": "257ca2d081a13f6a140c96f44d2c0ef4cb0a7475"
+  "gitHead": "20608dbf7e6f227292710b845401e992d37ff980"
 }

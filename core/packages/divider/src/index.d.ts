@@ -1,5 +1,8 @@
-import React from 'react';
 import TDivider from '../types/tdivider';
+import type {FunctionComponent} from 'react';
 
-declare const Divider: React.FunctionComponent<TDivider>;
+declare const Divider: FunctionComponent<TDivider>;
+
+export { TDivider };
+
 export default Divider;
