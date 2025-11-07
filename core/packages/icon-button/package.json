@@ -34,6 +34,6 @@
     "rollup": "^2.61.1",
     "rollup-plugin-cleaner": "^1.0.0"
   },
-  "gitHead": "20608dbf7e6f227292710b845401e992d37ff980",
+  "gitHead": "e75c0606b43e9fe9c55d71fed679b41bbc715429",
   "_id": "@dbykov-ui-kit/Button@0.5.28"
 }
