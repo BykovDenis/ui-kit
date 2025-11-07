@@ -53,6 +53,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "7.24.7",
     "@chromatic-com/storybook": "3.2.2",
+    "@cypress/vite-dev-server": "7.0.1",
     "@lopatnov/rollup-plugin-uglify": "2.1.5",
     "@storybook/addon-actions": "^8.2.10",
     "@storybook/addon-docs": "8.5.5",

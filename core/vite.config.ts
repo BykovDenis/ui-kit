@@ -30,4 +30,8 @@ export default defineConfig({
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.d.ts', '.jsx', '.scss', '.css', '.json', '.svg', '.png'],
   },
+  define: {
+    __dirname: JSON.stringify('/'), // ⬅️ добавляем это
+    'process.env.REACT_APP_SC_ATTR': JSON.stringify('data-styled'),
+  },
 });

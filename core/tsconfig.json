@@ -20,7 +20,9 @@
   "exclude": [
     "node_modules",
     "build",
-    "__tests__"
+    "__tests__",
+    "vite.config.ts",
+    "cypress.config.ts"
   ],
   "include": ["**/*", "node_modules"]
 }
