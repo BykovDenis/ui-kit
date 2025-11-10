@@ -1,12 +1,17 @@
 {
-  "version": "0.2.0",
+  "version": "0.2.1",
   "packages": [
     ".",
     "packages/*"
   ],
-  "workspaces": [
-    ".",
-    "packages/*"
-  ],
-  "npmClient": "npm"
+  "npmClient": "npm",
+  "command": {
+    "publish": {
+      "ignoreChanges": ["*.md", "tests/**", "cypress/**"],
+      "message": "chore(release): publish %v"
+    },
+    "version": {
+      "allowBranch": ["main", "develop"]
+    }
+  }
 }

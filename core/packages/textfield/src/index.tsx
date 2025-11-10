@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ForwardedRef, forwardRef, useEffect, useState } from 'react';
 
 import Input from '../../input/src';
 import Label from '../../label/src';
@@ -8,7 +8,7 @@ import LabelContainer from './label-container.styled';
 import TextFieldContainer from './text-field-container.styled';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 
-const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
+const TextField = forwardRef<HTMLInputElement, ITextField>((props: ITextField, ref: ForwardedRef<HTMLInputElement>) => {
   const [value, setValue] = useState<string | number>(props.value);
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
@@ -88,6 +88,7 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
         </LabelContainer>
         <Input
           {...props}
+          ref={ref}
           onRemove={onInputDelete}
           onInput={onInput}
           fontSize={fontSize}
@@ -111,6 +112,6 @@ const TextField: React.FunctionComponent<ITextField> = (props: ITextField) => {
   }
 
   return <Consumer>{componentThemed}</Consumer>;
-};
+});
 
 export default TextField;

@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
 import FormControl from '../form-control/src';
@@ -8,7 +8,7 @@ import { themes } from '../styles/src/themes';
 import LabelInterative from './src/index';
 import TLabelInteractive from './types/tlabel-interactive';
 
-export default {
+const meta: Meta<typeof LabelInterative> = {
   title: 'Components/LabelInteractive',
   component: LabelInterative,
   argTypes: {
@@ -23,20 +23,39 @@ export default {
     fontSize: 14,
     error: false,
   },
-} as Meta<typeof LabelInterative>;
-
-const Template: StoryFn<typeof LabelInterative> = (args: TLabelInteractive) => {
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
-
-  return (
-    <ReactThemeContext.Provider value={themes.dark}>
-      <FormControl width="150px">
-        <LabelInterative minHeight={30} {...args}>
-          {args.children}
-        </LabelInterative>
-      </FormControl>
-    </ReactThemeContext.Provider>
-  );
 };
 
-export const InteractiveLabel = Template.bind({});
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const LightTheme: Story = {
+  render: (args: TLabelInteractive) => {
+    const ReactThemeContext = getNewReactThemeContext(themes.light);
+
+    return (
+      <ReactThemeContext.Provider value={themes.light}>
+        <FormControl width="150px">
+          <LabelInterative minHeight={30} {...args}>
+            {args.children}
+          </LabelInterative>
+        </FormControl>
+      </ReactThemeContext.Provider>
+    );
+  },
+};
+
+export const DarkTheme: Story = {
+  render: (args: TLabelInteractive) => {
+    const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
+    return (
+      <ReactThemeContext.Provider value={themes.dark}>
+        <FormControl width="150px">
+          <LabelInterative minHeight={30} {...args}>
+            {args.children}
+          </LabelInterative>
+        </FormControl>
+      </ReactThemeContext.Provider>
+    );
+  },
+};

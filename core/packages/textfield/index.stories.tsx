@@ -1,12 +1,12 @@
-import { Meta, StoryFn } from '@storybook/react';
-import React, { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 
+import getNewReactThemeContext from '../styles/src';
+import { themes } from '../styles/src/themes';
 import TextField from './src';
 import ITextField from './types/itext-field';
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
 
-export default {
+const meta: Meta<typeof TextField> = {
   title: 'Components/TextField',
   component: TextField,
   argTypes: {
@@ -20,7 +20,6 @@ export default {
     fontWeight: { control: { type: 'select' }, options: [100, 400, 600, 900] },
     textAlign: { control: { type: 'select' }, options: ['right', 'left', 'center'] },
     variant: { control: { type: 'select' }, options: ['normal', 'outlined', 'text'] },
-    onChange: { action: 'changed' },
   },
   args: {
     isSeparateNumberFormat: false,
@@ -35,72 +34,86 @@ export default {
     fontWeight: 400,
     variant: 'outlined',
   },
-} as Meta<typeof TextField>;
-
-const TemplateLightTheme: StoryFn<typeof TextField> = (args: ITextField) => {
-  const [value, setValue] = useState('');
-
-  const ReactThemeContext = getNewReactThemeContext(themes.light);
-
-  const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    const element = evt?.target;
-    setValue(element?.value);
-    console.log(element?.value);
-  };
-
-  const onInputDelete = (name: string, value: string) => {
-    setValue(value);
-  };
-
-  return (
-    <ReactThemeContext.Provider value={themes.light}>
-      <div style={{ width: '190px' }}>
-        <TextField
-          {...args}
-          id="textfield1"
-          name="textfield1"
-          value={value}
-          onChange={onInputChange}
-          onRemove={onInputDelete}
-          isNotRunDebounce={true}
-        />
-      </div>
-    </ReactThemeContext.Provider>
-  );
+  parameters: {
+    actions: { argTypesRegex: '^on.*' },
+  },
 };
 
-const Template: StoryFn<typeof TextField> = (args: ITextField) => {
-  const [value, setValue] = useState('');
+export default meta;
 
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
-  const regExp: RegExp = /[a-z_]/gi; // new RegExp('[0-9_]', 'gi');
+type Story = StoryObj<typeof meta>;
 
-  const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    const element = evt?.target;
-    setValue(element?.value);
-    console.log(element?.value);
-  };
+export const LightTheme: Story = {
+  render: (args: ITextField) => {
+    const ReactThemeContext = getNewReactThemeContext(themes.light);
 
-  const onInputDelete = (name: string, value: string) => {
-    setValue(value);
-  };
+    function Controlled() {
+      const [value, setValue] = useState('');
 
-  return (
-    <ReactThemeContext.Provider value={themes.dark}>
-      <div style={{ width: '190px' }}>
-        <TextField
-          {...args}
-          id="textfield1"
-          name="textfield1"
-          value={value}
-          onChange={onInputChange}
-          onRemove={onInputDelete}
-          regExp={regExp}
-        />
-      </div>
-    </ReactThemeContext.Provider>
-  );
+      const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+        const element = evt?.target;
+        setValue(element?.value ?? '');
+      };
+
+      const onInputDelete = (_name: string, nextValue: string) => {
+        setValue(nextValue);
+      };
+
+      return (
+        <ReactThemeContext.Provider value={themes.light}>
+          <div style={{ width: '190px' }}>
+            <TextField
+              {...args}
+              id="textfield1"
+              name="textfield1"
+              value={value}
+              onChange={onInputChange}
+              onRemove={onInputDelete}
+              isNotRunDebounce={true}
+            />
+          </div>
+        </ReactThemeContext.Provider>
+      );
+    }
+
+    return <Controlled />;
+  },
 };
 
-export const DarkThemeTextField = Template.bind({});
-export const LightThemeTextField = TemplateLightTheme.bind({});
+export const DarkTheme: Story = {
+  render: (args: ITextField) => {
+    const ReactThemeContext = getNewReactThemeContext(themes.dark);
+    const regExp: RegExp = /[a-z_]/gi;
+
+    function Controlled() {
+      const [value, setValue] = useState('');
+
+      const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+        const element = evt?.target;
+        setValue(element?.value ?? '');
+      };
+
+      const onInputDelete = (_name: string, nextValue: string) => {
+        setValue(nextValue);
+      };
+
+      return (
+        <ReactThemeContext.Provider value={themes.dark}>
+          <div style={{ width: '190px' }}>
+            <TextField
+              {...args}
+              id="textfield1"
+              name="textfield1"
+              value={value}
+              onChange={onInputChange}
+              onRemove={onInputDelete}
+              regExp={regExp}
+            />
+          </div>
+        </ReactThemeContext.Provider>
+      );
+    }
+
+    return <Controlled />;
+  },
+};

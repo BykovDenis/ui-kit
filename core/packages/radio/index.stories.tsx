@@ -1,13 +1,13 @@
-import { action } from '@storybook/addon-actions';
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import React, { Fragment } from 'react';
+import { fn } from 'storybook/test';
 
+import getNewReactThemeContext from '../styles/src';
+import { themes } from '../styles/src/themes';
 import Radio from './src/index';
 import RadioProps from './types/radio-props';
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
 
-export default {
+const meta: Meta<typeof Radio> = {
   title: 'Components/Radio',
   component: Radio,
   argTypes: {
@@ -22,42 +22,39 @@ export default {
     label: 'Label for the Radio',
     isIconDisabled: false,
     borderColor: '',
+    onChange: fn(),
   },
-} as Meta<typeof Radio>;
-
-const ThemeDarkTemplate: StoryFn<typeof Radio> = (args: RadioProps) => {
-  const onCheckboxCheck = () => {
-    action('checked');
-  };
-
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
-
-  return (
-    <ReactThemeContext.Provider value={themes.dark}>
-      <Fragment>
-        <Radio {...args} id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} tabIndex="0" />
-        <Radio {...args} id="radio2" name="radio1" onChange={onCheckboxCheck} tabIndex="1" />
-      </Fragment>
-    </ReactThemeContext.Provider>
-  );
 };
 
-const ThemeLightTemplate: StoryFn<typeof Radio> = (args: RadioProps) => {
-  const onCheckboxCheck = () => {
-    action('checked');
-  };
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-  const ReactThemeContext = getNewReactThemeContext(themes.light);
+export const LightTheme: Story = {
+  render: (args: RadioProps) => {
+    const ReactThemeContext = getNewReactThemeContext(themes.light);
 
-  return (
-    <ReactThemeContext.Provider value={themes.light}>
-      <Fragment>
-        <Radio {...args} id="radio1" name="radio1" onChange={onCheckboxCheck} checked={true} tabIndex="0" />
-        <Radio {...args} id="radio2" name="radio1" onChange={onCheckboxCheck} tabIndex="1" />
-      </Fragment>
-    </ReactThemeContext.Provider>
-  );
+    return (
+      <ReactThemeContext.Provider value={themes.light}>
+        <Fragment>
+          <Radio {...args} id="radio1" name="radio1" checked={true} tabIndex="0" />
+          <Radio {...args} id="radio2" name="radio1" tabIndex="1" />
+        </Fragment>
+      </ReactThemeContext.Provider>
+    );
+  },
 };
 
-export const DarkThemeRadio = ThemeDarkTemplate.bind({});
-export const LightThemeRadio = ThemeLightTemplate.bind({});
+export const DarkTheme: Story = {
+  render: (args: RadioProps) => {
+    const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
+    return (
+      <ReactThemeContext.Provider value={themes.dark}>
+        <Fragment>
+          <Radio {...args} id="radio1" name="radio1" checked={true} tabIndex="0" />
+          <Radio {...args} id="radio2" name="radio1" tabIndex="1" />
+        </Fragment>
+      </ReactThemeContext.Provider>
+    );
+  },
+};

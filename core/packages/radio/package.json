@@ -1,6 +1,6 @@
 {
   "name": "@dbykov-ui-kit/Radio",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A simple radio component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -33,5 +33,5 @@
     "@types/styled-components": "^5.1.18",
     "rollup": "^2.61.1"
   },
-  "gitHead": "20608dbf7e6f227292710b845401e992d37ff980"
+  "gitHead": "e75c0606b43e9fe9c55d71fed679b41bbc715429"
 }

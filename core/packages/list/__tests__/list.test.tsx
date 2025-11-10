@@ -1,11 +1,10 @@
 import React from 'react';
-import getNewReactThemeContext from '../../styles/src';
 import renderer from 'react-test-renderer';
 
 import ListItem from '../../list-item/src';
-import List from '../src';
-import { action } from '@storybook/addon-actions';
+import getNewReactThemeContext from '../../styles/src';
 import { themes } from '../../styles/src/themes';
+import List from '../src';
 
 it('List renders correctly', () => {
   const ReactThemeContext = getNewReactThemeContext(themes.light);
@@ -19,7 +18,7 @@ it('List renders correctly', () => {
     <ReactThemeContext.Provider value={themes.light}>
       <List {...props}>
         {props.elements.map((element: string, index: number) => (
-          <ListItem onClick={action('clicked')} type="text" key={index}>
+          <ListItem type="text" key={index}>
             {element}
           </ListItem>
         ))}

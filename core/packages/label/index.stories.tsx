@@ -1,12 +1,12 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
+import getNewReactThemeContext from '../styles/src';
+import { themes } from '../styles/src/themes';
 import Label from './src/index';
 import ILabel from './types/tlabel';
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
 
-export default {
+const meta: Meta<typeof Label> = {
   title: 'Components/Label',
   component: Label,
   argTypes: {
@@ -19,16 +19,32 @@ export default {
     fontSize: 14,
     error: false,
   },
-} as Meta<typeof Label>;
-
-const Template: StoryFn<typeof Label> = (args: ILabel) => {
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
-
-  return (
-    <ReactThemeContext.Provider value={themes.dark}>
-      <Label {...args}>{args.children}</Label>
-    </ReactThemeContext.Provider>
-  );
 };
 
-export const NormalLabel = Template.bind({});
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const LightTheme: Story = {
+  render: (args: ILabel) => {
+    const ReactThemeContext = getNewReactThemeContext(themes.light);
+
+    return (
+      <ReactThemeContext.Provider value={themes.light}>
+        <Label {...args}>{args.children}</Label>
+      </ReactThemeContext.Provider>
+    );
+  },
+};
+
+export const DarkTheme: Story = {
+  render: (args: ILabel) => {
+    const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
+    return (
+      <ReactThemeContext.Provider value={themes.dark}>
+        <Label {...args}>{args.children}</Label>
+      </ReactThemeContext.Provider>
+    );
+  },
+};

@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
-    "rootDir": "./packages",
+    "rootDir": ".",
     "baseUrl": ".",
     "outDir": "build",
     "jsx": "react-jsx",
-    "target": "es5",
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "ESNext",
     "noImplicitAny": true,
     "sourceMap": false,
     "allowJs": true,
     "checkJs": false,
     "allowSyntheticDefaultImports": true,
     "preserveConstEnums": true,
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
     "esModuleInterop": true
@@ -20,7 +20,9 @@
   "exclude": [
     "node_modules",
     "build",
-    "__tests__"
+    "__tests__",
+    "vite.config.ts",
+    "cypress.config.ts"
   ],
-  "include": ["**/*", "node_modules"]
+  "include": ["**/*", ".storybook"]
 }

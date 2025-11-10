@@ -1,6 +1,6 @@
 {
   "name": "@dbykov-ui-kit/Textfield",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "The simple Textfield component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -20,5 +20,5 @@
   "publishConfig": {
     "registry": "https://github.com/BykovDenis/ui-kit.git"
   },
-  "gitHead": "20608dbf7e6f227292710b845401e992d37ff980"
+  "gitHead": "e75c0606b43e9fe9c55d71fed679b41bbc715429"
 }

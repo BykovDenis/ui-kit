@@ -10,23 +10,21 @@ export default interface IDatepicker extends IInput, ILabel, TBaseStyles {
   fontFamily?: string;
   fontSize?: number;
   height?: number;
-  id: string;
   isCreatable?: boolean;
   isExistValue?: boolean;
-  label?: string | React.ReactNode;
+  label?: React.ReactNode | string;
   locale?: 'EN' | 'RU' | undefined;
   maxDate?: string | null;
   minDate?: string | null;
-  name: string;
   onChange?: (name: string, value: string, isValid: boolean) => void;
   onBlur?: (name: string, value: string, isValid: boolean) => void;
   textAlign?: string;
-  value?: string | undefined | null;
+  value?: string | null | undefined;
   variant?: 'contained' | 'outlined' | 'text';
   mask?: 'dd.MM.yyyy' | 'yyyy-MM-dd' | undefined;
   isErrorMessageDisplayed?: boolean;
   setToday?: () => void;
   isOnInputChangeUsed?: boolean;
   isIconCanBeTodaySelected?: boolean;
-  datesContainerAlign?: 'left' | 'right' | 'center';
+  datesContainerAlign?: 'center' | 'left' | 'right';
 }

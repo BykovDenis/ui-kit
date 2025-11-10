@@ -1,13 +1,13 @@
-import { action } from '@storybook/addon-actions';
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
+import { fn } from 'storybook/test';
 
 import getNewReactThemeContext from '../styles/src';
 import { themes } from '../styles/src/themes';
 import Button from './src/index';
 import TButton from './types/tbutton';
 
-export default {
+const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
   argTypes: {
@@ -21,32 +21,38 @@ export default {
     disabled: false,
     children: 'Click me',
     justifyContent: '',
+    onClick: fn(),
   },
-} as Meta<typeof Button>;
-
-const ThemeLightTemplate: StoryFn<typeof Button> = (args: TButton) => {
-  const ReactThemeContext = getNewReactThemeContext(themes.light);
-
-  return (
-    <ReactThemeContext.Provider value={themes.light}>
-      <Button {...args} name="button1" onClick={action('clicked')}>
-        {args.children}
-      </Button>
-    </ReactThemeContext.Provider>
-  );
+  parameters: {
+    actions: { argTypesRegex: '^on.*' },
+  },
 };
 
-const ThemeDarkTemplate: StoryFn<typeof Button> = (args: TButton) => {
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-  return (
-    <ReactThemeContext.Provider value={themes.dark}>
-      <Button {...args} name="button1" onClick={action('clicked')} width={100}>
-        {args.children}
-      </Button>
-    </ReactThemeContext.Provider>
-  );
+export const LightTheme: Story = {
+  render: (args: TButton) => {
+    const ReactThemeContext = getNewReactThemeContext(themes.light);
+    return (
+      <ReactThemeContext.Provider value={themes.light}>
+        <Button {...args} name="button1">
+          {args.children}
+        </Button>
+      </ReactThemeContext.Provider>
+    );
+  },
 };
 
-export const DarkThemeList = ThemeDarkTemplate.bind({});
-export const LightThemeList = ThemeLightTemplate.bind({});
+export const DarkTheme: Story = {
+  render: (args: TButton) => {
+    const ReactThemeContext = getNewReactThemeContext(themes.dark);
+    return (
+      <ReactThemeContext.Provider value={themes.dark}>
+        <Button {...args} name="button1" width={100}>
+          {args.children}
+        </Button>
+      </ReactThemeContext.Provider>
+    );
+  },
+};

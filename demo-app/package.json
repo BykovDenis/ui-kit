@@ -12,7 +12,7 @@
     "npm-update-ui-icon": "npm i -E @dbykov-ui-kit/icon@latest"
   },
   "dependencies": {
-    "@dbykov-ui-kit/core": "./dbykov-ui-kit-core-0.13.1.tgz",
+    "@dbykov-ui-kit/core": "0.2.0",
     "@dbykov-ui-kit/icon": "./dbykov-ui-kit-icon-1.1.1.tgz",
     "@tanstack/react-router": "1.56.5",
     "dayjs": "1.11.11",
