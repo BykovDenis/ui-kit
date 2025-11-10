@@ -1,13 +1,13 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 
+import getNewReactThemeContext from '../styles/src';
+import { themes } from '../styles/src/themes';
+import Tab from '../tab/src';
 import Tabs from './src/index';
 import TTabs from './types/ttabs';
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
-import Tab from '../tab/src';
 
-export default {
+const meta: Meta<typeof Tabs> = {
   title: 'Components/Tabs',
   component: Tabs,
   argTypes: {
@@ -20,53 +20,53 @@ export default {
     error: false,
     fontSize: 14,
   },
-} as Meta<typeof Tabs>;
+};
 
-const ThemeDarkTemplate: StoryFn<typeof Tabs> = (args: TTabs) => {
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+function DarkWrapper(args: TTabs) {
   const [tabActive, setTabActive] = useState<number | string>('tab2');
-
   const ReactThemeContext = getNewReactThemeContext(themes.dark);
-
-  const onTabChange = (tabIndex: number) => {
-    setTabActive(tabIndex);
-  };
-
+  const onTabChange = (tabIndex: number) => setTabActive(tabIndex);
   const Tab1Title = () => <p>Исторические данные</p>;
 
   return (
     <ReactThemeContext.Provider value={themes.dark}>
-      <Tabs {...args} value={tabActive} onChange={onTabChange} isUpperCase={true} fontWeight={400}>
+      <Tabs {...args} value={tabActive} onChange={onTabChange} isUpperCase fontWeight={400}>
         <Tab minHeight={80} name="tab1">
           <Tab1Title />
         </Tab>
         <Tab minHeight={80} name="tab2">
           Tab 2
         </Tab>
-        {/*<Tab minHeight={80} name="tab3" disabled={true}>Tab 3</Tab>*/}
+        {/* <Tab minHeight={80} name="tab3" disabled>Tab 3</Tab> */}
       </Tabs>
     </ReactThemeContext.Provider>
   );
-};
+}
 
-const ThemeLightTemplate: StoryFn<typeof Tabs> = (args: TTabs) => {
+function LightWrapper(args: TTabs) {
   const [tabActive, setTabActive] = useState<number>(0);
-
   const ReactThemeContext = getNewReactThemeContext(themes.light);
-
-  const onTabChange = (tabIndex: number) => {
-    setTabActive(tabIndex);
-  };
+  const onTabChange = (tabIndex: number) => setTabActive(tabIndex);
 
   return (
     <ReactThemeContext.Provider value={themes.light}>
       <Tabs {...args} value={tabActive} onChange={onTabChange}>
         <Tab>Tab 1</Tab>
-        <Tab disabled={true}>Tab 2</Tab>
+        <Tab disabled>Tab 2</Tab>
         <Tab>Tab 3</Tab>
       </Tabs>
     </ReactThemeContext.Provider>
   );
+}
+
+export const DarkTheme: Story = {
+  render: (args) => <DarkWrapper {...(args as TTabs)} />,
 };
 
-export const DarkThemeList = ThemeDarkTemplate.bind({});
-export const LightThemeList = ThemeLightTemplate.bind({});
+export const LightTheme: Story = {
+  render: (args) => <LightWrapper {...(args as TTabs)} />,
+};

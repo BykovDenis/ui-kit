@@ -1,14 +1,14 @@
-import { Meta, StoryFn } from '@storybook/react';
-import React, { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 
-import Datepicker from './src';
-import Idatepicker from './types/idatepicker';
 import Locale from '../enums/locale';
-import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
+import { themes } from '../styles/src/themes';
 import DatepickerMask from './enums/datepicker-mask';
+import Datepicker from './src';
+import IDatepicker from './types/idatepicker';
 
-export default {
+const meta: Meta<typeof Datepicker> = {
   title: 'Components/Datepicker',
   component: Datepicker,
   argTypes: {
@@ -19,117 +19,96 @@ export default {
     fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
   },
   args: {
-    textMessage: 'text message',
+    id: 'datepicker',
+    name: 'datepicker',
     label: 'label',
+    textMessage: 'text message',
     readOnly: false,
     locale: Locale.En,
     fontSize: 14,
     height: 60,
+    isErrorMessageDisplayed: false,
   },
-} as Meta<typeof Datepicker>;
-
-const ThemeDarkTemplateYYYYMMDD: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
-  const [value, setValue] = useState('2022-05-11');
-
-  const onDatepickerValueChange = (name: string, value: string, isValid: boolean) => {
-    setValue(value);
-    console.log(name, value, isValid);
-  };
-
-  const onDatepickerRemove = () => {
-    setValue(null);
-    // console.log(null);
-  };
-
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
-
-  return (
-    <ReactThemeContext.Provider value={themes.dark}>
-      <div style={{ width: '250px', zoom: 4 }}>
-        <Datepicker
-          {...args}
-          id="datepicker1"
-          mask={DatepickerMask.DashedYYYYMMDD}
-          variant="outlined"
-          name="someDatepicker"
-          value={value}
-          onChange={onDatepickerValueChange}
-          onRemove={onDatepickerRemove}
-          isErrorMessageDisplayed={false}
-          datesContainerAlign="right"
-        />
-      </div>
-    </ReactThemeContext.Provider>
-  );
 };
 
-const ThemeLightTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
-  const [value, setValue] = useState('03.11.2023');
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-  const onDatepickerValueChange = (name: string, value: string) => {
-    setValue(value);
-  };
+export const DarkYYYYMMDD: Story = {
+  render: (args: IDatepicker) => {
+    const [value, setValue] = useState<string>('2022-05-11');
+    const ReactThemeContext = getNewReactThemeContext(themes.dark);
 
-  const ReactThemeContext = getNewReactThemeContext(themes.light);
-
-  return (
-    <ReactThemeContext.Provider value={themes.light}>
-      <div style={{ width: '250px', zoom: 2 }}>
-        <Datepicker
-          {...args}
-          width={170}
-          variant="outlined"
-          name="someDatepickerLight"
-          value={value}
-          locale={Locale.Ru}
-          onChange={onDatepickerValueChange}
-          isErrorMessageDisplayed={false}
-          datesContainerAlign="left"
-        />
-      </div>
-    </ReactThemeContext.Provider>
-  );
+    return (
+      <ReactThemeContext.Provider value={themes.dark}>
+        <div style={{ width: '250px', zoom: 4 }}>
+          <Datepicker
+            {...args}
+            id="datepicker1"
+            name="someDatepicker"
+            mask={DatepickerMask.DashedYYYYMMDD}
+            variant="outlined"
+            value={value}
+            onChange={(_, v) => setValue(v)}
+            onRemove={() => setValue(null)}
+            datesContainerAlign="right"
+          />
+        </div>
+      </ReactThemeContext.Provider>
+    );
+  },
 };
 
-const ThemeDarkTemplate: StoryFn<typeof Datepicker> = (args: Idatepicker) => {
-  const [value, setValue] = useState(null);
+export const LightTheme: Story = {
+  render: (args: IDatepicker) => {
+    const [value, setValue] = useState<string>('03.11.2023');
+    const ReactThemeContext = getNewReactThemeContext(themes.light);
 
-  const onDatepickerValueChange = (name: string, value: string, isValid: boolean) => {
-    setValue(value);
-    // console.log(name, value, isValid);
-  };
-
-  const onDatepickerRemove = () => {
-    setValue(null);
-    // console.log(null);
-  };
-
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
-
-  return (
-    <ReactThemeContext.Provider value={themes.dark}>
-      <div style={{ width: '250px', zoom: 1 }}>
-        <Datepicker
-          {...args}
-          width={200}
-          variant="outlined"
-          name="someDatepicker"
-          value={value}
-          locale={Locale.Ru}
-          mask={DatepickerMask.DottedDDMMYYYY}
-          onChange={onDatepickerValueChange}
-          onRemove={onDatepickerRemove}
-          isErrorMessageDisplayed={false}
-          datesContainerAlign="left"
-          textMessage="text message"
-          minDate="02.07.2025"
-          maxDate="06.07.2025"
-        />
-      </div>
-    </ReactThemeContext.Provider>
-  );
+    return (
+      <ReactThemeContext.Provider value={themes.light}>
+        <div style={{ width: '250px', zoom: 2 }}>
+          <Datepicker
+            {...args}
+            id="light-theme-datepicker"
+            name="someDatepickerLight"
+            width={170}
+            variant="outlined"
+            value={value}
+            locale={Locale.Ru}
+            onChange={(_, v) => setValue(v)}
+            datesContainerAlign="left"
+          />
+        </div>
+      </ReactThemeContext.Provider>
+    );
+  },
 };
 
-export const DarkThemeDatepicker = ThemeDarkTemplate.bind({});
-export const LightThemeDatepicker = ThemeLightTemplate.bind({});
-export const DarkThemeDatepickerYYYYMMDD = ThemeDarkTemplateYYYYMMDD.bind({});
+export const DarkTheme: Story = {
+  render: (args: IDatepicker) => {
+    const [value, setValue] = useState<string | null>(null);
+    const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
+    return (
+      <ReactThemeContext.Provider value={themes.dark}>
+        <div style={{ width: '250px', zoom: 1 }}>
+          <Datepicker
+            {...args}
+            id="dark-theme-datepicker"
+            name="someDatepicker"
+            width={200}
+            variant="outlined"
+            value={value}
+            locale={Locale.Ru}
+            mask={DatepickerMask.DottedDDMMYYYY}
+            onChange={(_, v) => setValue(v)}
+            onRemove={() => setValue(null)}
+            datesContainerAlign="left"
+            minDate="02.07.2025"
+            maxDate="06.07.2025"
+          />
+        </div>
+      </ReactThemeContext.Provider>
+    );
+  },
+};

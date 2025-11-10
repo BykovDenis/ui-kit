@@ -4,9 +4,14 @@
     ".",
     "packages/*"
   ],
-  "workspaces": [
-    ".",
-    "packages/*"
-  ],
-  "npmClient": "npm"
+  "npmClient": "npm",
+  "command": {
+    "publish": {
+      "ignoreChanges": ["*.md", "tests/**", "cypress/**"],
+      "message": "chore(release): publish %v"
+    },
+    "version": {
+      "allowBranch": ["main", "develop"]
+    }
+  }
 }

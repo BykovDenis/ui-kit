@@ -1,13 +1,13 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
-import Label from '../label/src';
 
+import Label from '../label/src';
+import getNewReactThemeContext from '../styles/src';
+import { themes } from '../styles/src/themes';
 import Input from './src/index';
 import IInput from './types/iinput';
-import { themes } from '../styles/src/themes';
-import getNewReactThemeContext from '../styles/src';
 
-export default {
+const meta: Meta<typeof Input> = {
   title: 'Components/Input',
   component: Input,
   argTypes: {
@@ -35,95 +35,102 @@ export default {
     fontWeight: 400,
     variant: 'outlined',
   },
-} as Meta<typeof Input>;
-
-const regExp: RegExp = new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
-
-const TemplateDarkTheme: StoryFn<typeof Input> = (args: IInput) => {
-  const [value, setValue] = useState('');
-
-  const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    const element = evt?.target;
-    const value: string = element?.value;
-    const valueParsed: string = value?.replaceAll(/\D/gi, '');
-    setValue(valueParsed);
-    // console.log(value);
-  };
-
-  const onInputRemove = () => {
-    setValue(null);
-  };
-
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
-  // const regExp: RegExp =  new RegExp('[0-9_]', 'gi'); // new RegExp('^(pg_|_|[0-9])|[^a-z0-9_]', 'gi');
-
-  return (
-    <ReactThemeContext.Provider value={themes.dark}>
-      <div style={{ width: '190px' }}>
-        <Input
-          {...args}
-          name="input"
-          value={value}
-          onChange={onInputChange}
-          onRemove={onInputRemove}
-          textAlign="right"
-          isNotClearable={false}
-          isNotRunDebounce={true}
-        />
-      </div>
-      <div style={{ width: '190px' }}>
-        <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} />
-      </div>
-      <Label>{value}</Label>
-    </ReactThemeContext.Provider>
-  );
 };
 
-const TemplateLightTheme: StoryFn<typeof Input> = (args: IInput) => {
-  const [value, setValue] = useState('123');
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-  const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    const element = evt?.target;
-    const value: string = element?.value;
-    setValue(value);
-    console.log(value);
-  };
+export const DarkTheme: Story = {
+  render: (args: IInput) => {
+    const InputWrapper = () => {
+      const [value, setValue] = useState('');
 
-  const onInputRemove = () => {
-    setValue('');
-  };
+      const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+        const element = evt?.target;
+        const value: string = element?.value;
+        const valueParsed: string = value?.replaceAll(/\D/gi, '');
+        setValue(valueParsed);
+        // console.log(value);
+      };
 
-  const ReactThemeContext = getNewReactThemeContext(themes.light);
+      const onInputRemove = () => {
+        setValue(null);
+      };
 
-  return (
-    <ReactThemeContext.Provider value={themes.light}>
-      <div style={{ width: '190px' }}>
-        <Input
-          {...args}
-          name="input"
-          value={value}
-          onChange={onInputChange}
-          onRemove={onInputRemove}
-          backgroundColor="transparent"
-          variant="text"
-        />
-      </div>
-      <div style={{ width: '190px' }}>
-        <Input
-          {...args}
-          name="input"
-          value={value}
-          onChange={onInputChange}
-          onRemove={onInputRemove}
-          backgroundColor="transparent"
-          isSeparateNumberFormat={true}
-          type="number"
-          delayDebounce={900}
-        />
-      </div>
-    </ReactThemeContext.Provider>
-  );
+      const ReactThemeContext = getNewReactThemeContext(themes.dark);
+
+      return (
+        <ReactThemeContext.Provider value={themes.dark}>
+          <div style={{ width: '190px' }}>
+            <Input
+              {...args}
+              name="input"
+              value={value}
+              onChange={onInputChange}
+              onRemove={onInputRemove}
+              textAlign="right"
+              isNotClearable={false}
+              isNotRunDebounce={true}
+            />
+          </div>
+          <div style={{ width: '190px' }}>
+            <Input {...args} name="input" value={value} onChange={onInputChange} onRemove={onInputRemove} />
+          </div>
+          <Label>{value}</Label>
+        </ReactThemeContext.Provider>
+      );
+    };
+    return <InputWrapper />;
+  },
 };
 
-export const DarkThemeTextField = TemplateDarkTheme.bind({});
-export const LightThemeTextField = TemplateLightTheme.bind({});
+export const LightTheme: Story = {
+  render: (args: IInput) => {
+    const InputWrapper = () => {
+      const [value, setValue] = useState('123');
+
+      const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+        const element = evt?.target;
+        const value: string = element?.value;
+        setValue(value);
+        console.log(value);
+      };
+
+      const onInputRemove = () => {
+        setValue('');
+      };
+
+      const ReactThemeContext = getNewReactThemeContext(themes.light);
+
+      return (
+        <ReactThemeContext.Provider value={themes.light}>
+          <div style={{ width: '190px' }}>
+            <Input
+              {...args}
+              name="input"
+              value={value}
+              onChange={onInputChange}
+              onRemove={onInputRemove}
+              backgroundColor="transparent"
+              variant="text"
+            />
+          </div>
+          <div style={{ width: '190px' }}>
+            <Input
+              {...args}
+              name="input"
+              value={value}
+              onChange={onInputChange}
+              onRemove={onInputRemove}
+              backgroundColor="transparent"
+              isSeparateNumberFormat={true}
+              type="number"
+              delayDebounce={900}
+            />
+          </div>
+        </ReactThemeContext.Provider>
+      );
+    };
+    return <InputWrapper />;
+  },
+};

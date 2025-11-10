@@ -12,13 +12,14 @@
     "checkJs": false,
     "allowSyntheticDefaultImports": true,
     "preserveConstEnums": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "types": ["vite/client", "node"]
   },
   "exclude": [
     "dist"
   ],
-  "include": ["**/*",]
+  "include": ["**/*", "../.storybook"]
 }

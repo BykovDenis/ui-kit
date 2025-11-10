@@ -33,3 +33,5 @@ yarn-error.log*
 .npmrc
 **/coverage
 **/analize.html
+
+*storybook.log

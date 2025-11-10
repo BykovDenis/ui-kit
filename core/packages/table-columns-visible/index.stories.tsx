@@ -1,17 +1,16 @@
-import { Meta, StoryFn } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { themes } from '../styles/src/themes';
 import getNewReactThemeContext from '../styles/src';
-import TTableColumnsVisible from './types/ttable-columns-visible';
-import TableColumnsVisible from './src/index';
+import { themes } from '../styles/src/themes';
+import TableColumnsVisible from './src';
+import type TTableColumnsVisible from './types/ttable-columns-visible';
 
-export default {
+const meta: Meta<typeof TableColumnsVisible> = {
   title: 'Components/TableColumnsVisible',
   component: TableColumnsVisible,
-  argTypes: {
-    disabled: { control: { type: 'radio' }, options: [true, false] },
-    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+  parameters: {
+    layout: 'padded',
   },
   args: {
     width: 300,
@@ -19,20 +18,24 @@ export default {
     fontSize: 14,
     disabled: false,
   },
-} as Meta<typeof TableColumnsVisible>;
+  argTypes: {
+    disabled: { control: { type: 'radio' }, options: [true, false] },
+    fontSize: { control: { type: 'select' }, options: [10, 12, 14, 16] },
+  },
+};
 
-const Template: StoryFn<typeof TableColumnsVisible> = (args: TTableColumnsVisible) => {
-  const ReactThemeContext = getNewReactThemeContext(themes.dark);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-  const columns: Array<string> = ['column1', 'column2', 'column3', 'column4', 'column5'];
-  const columnsSelected: Array<string> = ['column2', 'column5'];
+const columns = ['column1', 'column2', 'column3', 'column4', 'column5'];
+const columnsSelected = ['column2', 'column5'];
 
-  const onChange = (columnNames: Array<string>) => {
-    console.log(columnNames);
-  };
+const renderTableColumnsVisible = (theme: 'dark' | 'light', args: TTableColumnsVisible) => {
+  const ReactThemeContext = getNewReactThemeContext(themes[theme]);
+  const onChange = (columnNames: Array<string>) => console.log(columnNames);
 
   return (
-    <ReactThemeContext.Provider value={themes.dark}>
+    <ReactThemeContext.Provider value={themes[theme]}>
       <TableColumnsVisible
         {...args}
         name="someColumns"
@@ -44,4 +47,10 @@ const Template: StoryFn<typeof TableColumnsVisible> = (args: TTableColumnsVisibl
   );
 };
 
-export const NormalTableColumnsVisible = Template.bind({});
+export const LightTheme: Story = {
+  render: (args) => renderTableColumnsVisible('light', args),
+};
+
+export const DarkTheme: Story = {
+  render: (args) => renderTableColumnsVisible('dark', args),
+};
