@@ -11,7 +11,8 @@
     "import": "./dist/esm/index.js"
   },
   "scripts": {
-    "build": "rollup -c ../rollup.config.prod.js && rollup -c ../rollup.dts.config.js",
+    "clean": "rimraf dist",
+    "build": "npm run clean && rollup -c ../rollup.config.prod.js && rollup -c ../rollup.dts.config.js",
     "clean-node-modules": "rm -rf node_modules"
   },
   "repository": {

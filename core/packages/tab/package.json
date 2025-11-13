@@ -7,14 +7,15 @@
   "types": "dist/index.d.ts",
   "author": "Denis Bykov",
   "license": "MIT",
+  "type": "module",
   "jest": {
     "setupFiles": [
       "./setupTests.js"
     ]
   },
   "scripts": {
-    "build": "rollup -c rollup.config.prod.js",
-    "build-dev": "rollup -w -c rollup.config.dev.js",
+    "clean": "rimraf dist",
+    "build": "npm run clean && rollup -c ../rollup.config.prod.js && rollup -c ../rollup.dts.config.js",
     "clean-node-modules": "rm -rf node_modules"
   },
   "publishConfig": {

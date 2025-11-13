@@ -51,7 +51,7 @@ const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColum
       setExpanded((isExpanded: boolean) => !isExpanded);
     };
 
-    const onColumnNameSelect = (evt: React.ChangeEvent<HTMLButtonElement>) => {
+    const onColumnNameSelect = (evt: React.MouseEvent<HTMLButtonElement>) => {
       const element = evt.currentTarget;
       const columnName: string = element?.dataset?.name;
       if (isNotEmptyString(columnName)) {
@@ -66,7 +66,7 @@ const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColum
       }
     };
 
-    const onColumnNameRemove = (evt: React.ChangeEvent<HTMLButtonElement>) => {
+    const onColumnNameRemove = (evt: React.MouseEvent<HTMLButtonElement>) => {
       const element = evt.currentTarget;
       const columnName: string = element?.dataset?.name;
       if (columnName) {

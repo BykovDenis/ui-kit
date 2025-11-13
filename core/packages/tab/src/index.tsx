@@ -16,7 +16,7 @@ const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
 
     const borderColor: string = theme.palette.secondary.main;
 
-    const onTabClick = (evt: React.ChangeEvent<HTMLButtonElement>) => {
+    const onTabClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
       props.onChange(props.tabActive, evt);
     };
 

@@ -30,7 +30,7 @@ const ProgressBar: React.FunctionComponent<TProgressBar> = (props: TProgressBar)
     const progress: number = props.progress || 0;
     const isAnimate: boolean = props.isAnimate || false;
     const fontSize: number | string = props.fontSize || theme.baseFontSize;
-    const direction: string = 'ltr';
+    const direction: 'ltr' | 'rtl' = 'ltr';
     const fontFamily: string = props.fontFamily || theme.fontFamily;
 
     return (

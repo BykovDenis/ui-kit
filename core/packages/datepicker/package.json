@@ -16,7 +16,6 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && rollup -c ../rollup.config.prod.js && rollup -c ../rollup.dts.config.js",
-    "build-dev": "rollup -w -c rollup.config.dev.js",
     "clean-node-modules": "rm -rf node_modules"
   },
   "publishConfig": {

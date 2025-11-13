@@ -1,9 +1,8 @@
-﻿import styled from 'styled-components';
-import CSS from 'csstype';
+﻿import CSS from 'csstype';
+import styled from 'styled-components';
 
 type TRadioStylish = {
   backgroundColor: string;
-  indeterminate: boolean;
   isIconDisabled?: boolean;
   color: CSS.Property.Color;
   borderColor: string;

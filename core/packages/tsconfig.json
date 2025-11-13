@@ -19,6 +19,15 @@
     "emitDeclarationOnly": false,
     "resolveJsonModule": true
   },
-  "exclude": ["dist", "**/__tests__/**", "**/*.test.ts", "**/*.test.tsx"],
-  "include": ["packages/**/*", "src/**/*", "./types"],
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
+    "./types/**/*.d.ts"
+  ],
+  "exclude": [
+    "dist",
+    "**/__tests__/**",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ]
 }
