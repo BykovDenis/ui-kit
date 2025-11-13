@@ -1,6 +1,6 @@
 <h1>CHANGE LOG</h1>
 
-<h2>v 0.10.1</h2>
+<h2>v 0.1.1</h2>
 
 <h3>Features</h3>
 <ol>
@@ -12,35 +12,35 @@
     <li>bug fix radio</li>
 </ol>
 
-<h2>v 0.10.2</h2>
+<h2>v 0.1.2</h2>
 
 <h3>Bugfix</h3>
 <ol>
     <li>TableCell width attributes fixed</li>
 </ol>
 
-<h2>v 0.10.3</h2>
+<h2>v 0.1.3</h2>
 
 <h3>Bugfix</h3>
 <ol>
     <li>Inherit font-size into the options of the Select component</li>
 </ol>
 
-<h2>v 0.10.4</h2>
+<h2>v 0.1.4</h2>
 
 <h3>Features</h3>
 <ol>
     <li>The component TableColumnsVisible improved. Custom default visible columns</li>
 </ol>
 
-<h2>v 0.10.5</h2>
+<h2>v 0.1.5</h2>
 
 <h3>Features</h3>
 <ol>
     <li>The component MultiSelect improved. Custom default visible elements</li>
 </ol>
 
-<h2>v 0.10.6</h2>
+<h2>v 0.1.6</h2>
 
 <h3>Features</h3>
 <ol>
@@ -50,7 +50,7 @@
     <li>Datepicker component: Refactords and some improved</li>
 </ol>
 
-<h2>v 0.10.7</h2>
+<h2>v 0.1.7</h2>
 <h3>Features</h3>
 <ol>
     <li>Tabs component added</li>
@@ -65,7 +65,7 @@
     <li>DatePicker event handler onChange fixed</li>
 </ol>
 
-<h2>v 0.10.8</h2>
+<h2>v 0.1.8</h2>
 <h3>Features</h3>
 <ol>
     <li>The new component Divider</li>
@@ -76,7 +76,7 @@
     <li>box-shadow and filter css properties added into the bottom sticky panel</li>
     <li>The color of disabled components edited</li>
 </ol>
-<h2>v 0.10.9</h2>
+<h2>v 0.1.9</h2>
 <h3>BugFix</h3>
 <ol>
     <li> The height attribute into the Switcher fixed </li>
@@ -96,7 +96,7 @@
     <li>The max width property into the FormControl added</li>
 </ol>
 
-<h2>v 0.10.10</h2>
+<h2>v 0.1.10</h2>
 <h3>Features</h3>
 <ol>
     <li>padding and margin property added into the Typography component</li>
@@ -107,7 +107,7 @@
     <li> The height attribute into the Switcher fixed </li>
 </ol>
 
-<h2>v 0.11.0</h2>
+<h2>v 0.2.0</h2>
 
 <h3>Features</h3>
 <ol>
@@ -117,7 +117,7 @@
     <li> Sticky bottom panel z-index parameter added</li>
 </ol>
 
-<h2>v 0.11.1</h2>
+<h2>v 0.2.1</h2>
 
 <h3>BugFix</h3>
 <ol>
@@ -129,14 +129,14 @@
     <li>Progressbar add disable status</li>
 </ol>
 
-<h2>v 0.11.2</h2>
+<h2>v 0.2.2</h2>
 
 <h3>Features</h3>
 <ol>
     <li>GridContainer added into the library</li>
 </ol>
 
-<h2>v 0.11.3</h2>
+<h2>v 0.2.3</h2>
 
 <h3>BugFix</h3>
 <ol>
@@ -145,7 +145,7 @@
     <li>Minimal height attribute added into the list-item element</li>
 </ol>
 
-<h2>v 0.11.4</h2>
+<h2>v 0.2.4</h2>
 
 <h3>Features</h3>
 <ol>
@@ -157,21 +157,21 @@
     <li>FormControl and FlexContainer added min-width properties</li>
 </ol>
 
-<h2>v 0.11.5</h2>
+<h2>v 0.2.5</h2>
 
 <h3>Features</h3>
 <ol>
     <li>Datepicker design and functionality some improved</li>
 </ol>
 
-<h2>v 0.11.6</h2>
+<h2>v 0.2.6</h2>
 
 <h3>Features</h3>
 <ol>
     <li>Datepicker can be use onInput event</li>
 </ol>
 
-<h2>v 0.11.7</h2>
+<h2>v 0.2.7</h2>
 
 <h3>Features</h3>
 <ol>
@@ -179,7 +179,7 @@
     <li>Select. textAlign attribute added into the search line and list items </li>
 </ol>
 
-<h2>v 0.11.8</h2>
+<h2>v 0.2.8</h2>
 
 <h3>Features</h3>
 <ol>
@@ -195,7 +195,7 @@
     <li>Select. Filter fixed for the large sequence </li>
 </ol>
 
-<h2>v 0.11.9</h2>
+<h2>v 0.2.9</h2>
 
 <h3>Features</h3>
 <ol>
@@ -221,28 +221,28 @@
    <li> ProgressBar. Tag p -> div. Fixed to specification </li>
 </ol>
 
-<h2>v 0.12.1</h2>
+<h2>v 0.3.1</h2>
 <h3>Features</h3>
 <ol>
   <li>Stories adapted for the new version of the storybook</li>
-  <li>PSCVA-1094 Multiselect. Margin-top attribute reduced to 0</li>
+  <li>Multiselect. Margin-top attribute reduced to 0</li>
   <li>Datepicker. The positions of the delete button and calendar button have been recalculated</li>
-  <li>PSCVA-1139 Datepicker. Removed layering of calendars</li>
-  <li>PSCVA-859 Datepicker. onBlur event handler implemented </li>
+  <li>Datepicker. Removed layering of calendars</li>
+  <li>Datepicker. onBlur event handler implemented </li>
   <li>Csstype library added for typecheking css properties</li>
   <li>Typography. Css properties extended</li>
   <li>Typography. variant "Phrase" added</li>
   <li>Datepicker. Doesn't set today when maxDate < today </li>
-  <li>PSCVA-1193 Datepicker. Strict mode validation turned on (Library DayJS) </li>
+  <li>Datepicker. Strict mode validation turned on (Library DayJS) </li>
   <li>Multiselect. Using fontSize without calculation -2 </li>
   <li>Datepicker. Text message can be pass </li>
 </ol>
 <h3>BugFix</h3>
 <ol>
-  <li>PSCVA-1193 Datepicker. Date validation some improved.</li>
+  <li>Datepicker. Date validation some improved.</li>
 </ol>
 
-<h2>v 0.12.2</h2>
+<h2>v 0.3.2</h2>
 <h3>Features</h3>
 <ol>
   <li>Datepicker. Delete a date digit without resetting the cursor position. </li>
@@ -256,26 +256,26 @@
   <li>Switcher. The name attribute is unique for each radio button. </li>
 </ol>
 
-<h2>v 0.12.3</h2>
+<h2>v 0.3.3</h2>
 <h3>Features</h3>
 <ol>
   <li>Datepicker. Update mask format. </li>
   <li>Add error state for all interactive components</li>
 </ol>
 
-<h2>v 0.12.4</h2>
+<h2>v 0.3.4</h2>
 <h3>Features</h3>
 <ol>
   <li>Datepicker. Update date value after pressing Enter. </li>
 </ol>
 
-<h2>v 0.12.5</h2>
+<h2>v 0.3.5</h2>
 <h3>Features</h3>
 <ol>
   <li>Select. Create a new value not by exact matching. </li>
 </ol>
 
-<h2>v 0.12.6</h2>
+<h2>v 0.3.6</h2>
 <h3>Features</h3>
 <ol>
   <li>GridContainer. Extended types props gridRowGap and gridColumnGap. </li>
@@ -295,7 +295,7 @@
   <li>Radio. Update disable styles for light theme. </li>
 </ol>
 
-<h2>v 0.12.7</h2>
+<h2>v 0.3.7</h2>
 <h3>Features</h3>
 <ol>
   <li>Input. Improve debounce mechanic. </li>
@@ -303,20 +303,20 @@
   <li>Input. Change component Consumer to hook useContext. </li>
 </ol>
 
-<h2>v 0.12.8</h2>
+<h2>v 0.3.8</h2>
 <h3>Features</h3>
 <ol>
   <li>GridContainer. Margin top left bottom right property added. </li>
 </ol>
 
-<h2>v 0.12.9</h2>
+<h2>v 0.3.9</h2>
 <h3>Features</h3>
 <ol>
   <li>Input, TextField, Select, Radio, Checkbox, Switcher. ReadOnly property added. </li>
   <li>Switcher. themeColor added. </li>
 </ol>
 
-<h2>v 0.12.10</h2>
+<h2>v 0.3.10</h2>
 <h3>Bugfix</h3>
 <ol>
   <li>Checkbox. Change bgColor to Indeterminate as checked mode </li>
@@ -325,7 +325,7 @@
   <li>Multiselect. Fix styles for disabled component with string[]. </li>
 </ol>
 
-<h2>v 0.12.11</h2>
+<h2>v 0.3.11</h2>
 <h3>Features</h3>
 <ol>
    <li>Tab. Set type attribute as button for Tab component </li>
@@ -335,39 +335,39 @@
     <li>Datepicker. Fix behavior when pressing incorrectly </li>
 </ol>
 
-<h2>v 0.12.12</h2>
+<h2>v 0.3.12</h2>
 <h3>Bugfix</h3>
 <ol>
     <li>Select. Doesn't dropdown data for disabled Select component </li>
 </ol>
 
-<h2>v 0.12.13</h2>
+<h2>v 0.3.13</h2>
 <h3>Bugfix</h3>
 <ol>
-    <li>CIBFV-4569 Datepicker. Fix clean incorrect date</li>
+    <li>Datepicker. Fix clean incorrect date</li>
 </ol>
 
-<h2>v 0.12.14</h2>
+<h2>v 0.3.14</h2>
 <h3>Feature</h3>
 <ol>
-    <li>CIBFV-4516 Input. Hide spinbox for Input type="number"</li>
+    <li>Input. Hide spinbox for Input type="number"</li>
 </ol>
 
-<h2>v 0.13.0</h2>
+<h2>v 0.4.0</h2>
 <h3>Feature</h3>
 <ol>
-    <li>CIBFV-4491 Popup. Add new component</li>
-    <li>CIBFV-4491 Datepicker. Implement dropdown by React Portal</li>
-    <li>CIBFV-4491 Select. Implement dropdown by React Portal</li>
-    <li>CIBFV-4491 Multiselect. Implement dropdown by React Portal</li>
-    <li>CIBFV-4491 FlexContainer. Add ref property</li>
+    <li>Popup. Add new component</li>
+    <li>Datepicker. Implement dropdown by React Portal</li>
+    <li>Select. Implement dropdown by React Portal</li>
+    <li>Multiselect. Implement dropdown by React Portal</li>
+    <li>FlexContainer. Add ref property</li>
 </ol>
 <h3>Bugfix</h3>
 <ol>
     <li>Datepicker. The fix is installed only today for the current calendar</li>
 </ol>
 
-<h2>v 0.13.1</h2>
+<h2>v 0.4.1</h2>
 <h3>Bugfix</h3>
 <ol>
     <li>Datepicker. Fix checking today, minDate, maxDate</li>
