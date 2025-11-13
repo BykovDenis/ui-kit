@@ -1,7 +1,7 @@
-enum Variant {
-  Contained = 'contained',
-  Outlined = 'outlined',
-  Text = 'text',
-}
+export const Variant = {
+  Contained: 'contained',
+  Outlined: 'outlined',
+  Text: 'text',
+} as const;
 
-export default Variant;
+export type Variant = typeof Variant[keyof typeof Variant];

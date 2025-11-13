@@ -1,6 +1,7 @@
 import CSS from 'csstype';
+import {ListItemType} from '../enums/list-item-type';
 
-interface IListElement {
+interface IListElement extends Omit<React.HTMLAttributes<HTMLElement>, 'type' | 'onClick'> {
   activeBackgroundColor?: string;
   backgroundColor?: string;
   children: any;
@@ -14,9 +15,9 @@ interface IListElement {
   hoverBackgroundColor?: string;
   hoverColor?: string;
   key?: string | number;
-  onClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (evt: React.MouseEvent<HTMLElement>) => void;
   textAlign?: string;
-  type?: 'text' | 'button';
+  type?: ListItemType;
   underLineColor?: string;
   width?: number;
   justifyContent?: CSS.Property.JustifyContent;

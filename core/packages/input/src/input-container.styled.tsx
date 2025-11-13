@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import getMeasureValue from '../../helpers/get-measure-value';
 
 interface IInputContainer {
-  width: number;
-  height: number;
+  width?: number | string;
+  height?: number;
 }
 
 const InputContainer =
@@ -15,7 +16,7 @@ const InputContainer =
   align-items: flex-start;
   margin: 0;
   padding: 0;
-  width: ${(props: IInputContainer) => (props?.width ? `${props?.width}px` : `100%`)};
+  width: ${(props: IInputContainer) => getMeasureValue(props.width, '100%')};
   height: ${(props: IInputContainer) => (props?.height ? `${props?.height + 5}px` : 'initial')};
 `;
 

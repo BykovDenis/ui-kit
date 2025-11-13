@@ -31,7 +31,6 @@ yarn-error.log*
 **/build
 **/dist
 .npmrc
-**/coverage
 **/analize.html
 
 *storybook.log

@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
+import React, {PropsWithChildren, useEffect, useRef, useState} from 'react';
 import TMultiSelect from '../types/tmulti-select';
 import ITheme from '../../styles/types/itheme';
 import MultiSelectStyled from './multi-select-styled';
@@ -34,8 +34,8 @@ import {
 } from '../../constants';
 import MultiSelectVariant from '../enums/multi-select-variant';
 import KeyCode from '../../enums/key-code';
-import { BUTTON_MULTI_SELECT_CONTAINER, BUTTON_TOGGLE_NAME } from './constants';
-import { createPortal } from 'react-dom';
+import {BUTTON_MULTI_SELECT_CONTAINER, BUTTON_TOGGLE_NAME} from './constants';
+import {createPortal} from 'react-dom';
 
 type TMultiSelectString = TMultiSelect & {
   elementNames: Array<string>;
@@ -118,8 +118,8 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
     const elementsFromLocaleStorage: Set<string> = isUseLocaleStorage
       ? getElementsFromLocalStorage(props.name, ',')
       : props?.elementNamesDefaultSelected?.length > 0
-      ? new Set(props.elementNamesDefaultSelected)
-      : new Set();
+        ? new Set(props.elementNamesDefaultSelected)
+        : new Set();
     if (elementsFromLocaleStorage.size > 0) {
       setElementNamesSelected(elementsFromLocaleStorage);
     } else {
@@ -127,8 +127,8 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
         props?.elementNamesDefaultSelected?.length > 0
           ? props.elementNamesDefaultSelected
           : props?.isSelectAll
-          ? props.elementNames
-          : [];
+            ? props.elementNames
+            : [];
       if (isUseLocaleStorage) {
         const elementNamesSelectedText: string = columns?.join(',');
         localStorage.setItem(props.name, elementNamesSelectedText);
@@ -162,7 +162,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
       setExpanded((isExpanded: boolean) => !isExpanded);
     };
 
-    const onColumnNameRemove = (evt: React.ChangeEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement>) => {
+    const onColumnNameRemove = (evt: React.MouseEvent<HTMLButtonElement>) => {
       evt.stopPropagation();
       const element = evt.currentTarget;
       const id: string = element?.dataset?.id;
@@ -229,9 +229,9 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
       setSearchText(null);
     };
 
-    const onBtnElementsClickExpand = (evt: React.ChangeEvent<HTMLButtonElement>) => {
+    const onBtnElementsClickExpand = (evt: React.MouseEvent<HTMLButtonElement>) => {
       const rootElement = evt.currentTarget;
-      const element = evt.target;
+      const element = evt.target as HTMLElement;
       const buttonToggle = rootElement?.dataset?.name;
       const id = rootElement.dataset.id;
       if (
@@ -314,7 +314,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
             backgroundColor={theme.palette.primary.light}
             disabled={props.disabled}
           >
-            Select all <CirclePlusIcon color={theme.palette.baseFontColor} />
+            Select all <CirclePlusIcon color={theme.palette.baseFontColor}/>
           </Button>
           <Button
             padding="2px"
@@ -325,7 +325,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
             backgroundColor={theme.palette.primary.light}
             disabled={props.disabled}
           >
-            Unselect all <CircleCrossIcon color={theme.palette.baseFontColor} />
+            Unselect all <CircleCrossIcon color={theme.palette.baseFontColor}/>
           </Button>
         </FormControl>
         <Input
@@ -370,7 +370,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                   >
                     {columnNameElement}
                     <FormControl position="absolute" right={5} width="initial" data-value={columnNameElement}>
-                      <CircleCrossIcon color={theme.palette.baseFontColor} />
+                      <CircleCrossIcon color={theme.palette.baseFontColor}/>
                     </FormControl>
                   </Label>
                 </ListItem>
@@ -394,7 +394,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                   >
                     {columnNameElement}
                     <FormControl position="absolute" right={5} width="initial" data-value={columnNameElement}>
-                      <CirclePlusIcon color={theme.palette.baseFontColor} />
+                      <CirclePlusIcon color={theme.palette.baseFontColor}/>
                     </FormControl>
                   </Label>
                 </ListItem>
@@ -472,7 +472,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                     data-id={props.id}
                     disabled={props.disabled}
                   >
-                    <CrossIcon color={theme.palette.baseFontColor} />
+                    <CrossIcon color={theme.palette.baseFontColor}/>
                   </ButtonStyled>
                 </FormControl>
               ))
@@ -492,7 +492,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
             borderColorFocused={theme.palette.primary.light}
             disabled={props.disabled}
           >
-            {isExpanded ? <ChevronUpIcon color={color} /> : <ChevronDownIcon color={color} />}
+            {isExpanded ? <ChevronUpIcon color={color}/> : <ChevronDownIcon color={color}/>}
           </ButtonExpandStyled>
         </FormControl>
         {isExpanded && SelectListContainerPortal}

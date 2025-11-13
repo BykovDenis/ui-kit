@@ -175,7 +175,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       setExpanded((isExpanded: boolean) => !isExpanded);
     };
 
-    const onColumnNameRemove = (evt: React.ChangeEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement>) => {
+    const onColumnNameRemove = (evt: React.MouseEvent<HTMLButtonElement>) => {
       evt.stopPropagation();
       const element = evt.currentTarget;
       const id: string = element?.dataset?.id;
@@ -238,9 +238,9 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       setSearchText(null);
     };
 
-    const onBtnElementsClickExpand = (evt: React.ChangeEvent<HTMLButtonElement>) => {
+    const onBtnElementsClickExpand = (evt: React.MouseEvent<HTMLButtonElement>) => {
       const rootElement = evt.currentTarget;
-      const element = evt.target;
+      const element = evt.target as HTMLElement;
       const id = rootElement.dataset.id;
       const buttonToggle = rootElement?.dataset?.name;
       if (

@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
-    "build": "rollup -c rollup.config.prod.js",
+    "build": "rollup -c ../rollup.config.prod.js && rollup -c ../rollup.dts.config.js",
     "build-dev": "rollup -w -c rollup.config.dev.js",
     "clean-node-modules": "rm -rf node_modules"
   },
@@ -28,12 +29,6 @@
   "files": [
     "dist"
   ],
-  "devDependencies": {
-    "@lopatnov/rollup-plugin-uglify": "^2.1.2",
-    "@types/styled-components": "^5.1.18",
-    "rollup": "^2.61.1",
-    "rollup-plugin-cleaner": "^1.0.0"
-  },
   "gitHead": "e75c0606b43e9fe9c55d71fed679b41bbc715429",
   "_id": "@dbykov-ui-kit/Button@0.5.28"
 }

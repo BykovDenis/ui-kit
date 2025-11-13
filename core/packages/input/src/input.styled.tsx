@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Variant from '../../enums/variant';
+import { Variant } from '../../enums/variant';
 import rgbToRgba from '../../helpers/rgb-to-rgba';
 import IInput from '../types/iinput';
 import getMeasureValue from '../../helpers/get-measure-value';

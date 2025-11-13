@@ -4,9 +4,10 @@
   "description": "A simple radio component",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
+  "type": "module",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rollup -c rollup.config.prod.js",
+    "build": "rollup -c ../rollup.config.prod.js && rollup -c ../rollup.dts.config.js",
     "build-dev": "rollup -c rollup.config.dev.js",
     "clean-node-modules": "rm -rf node_modules"
   },
