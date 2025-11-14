@@ -53,7 +53,7 @@ pipeline {
                   dir("${uiKitPath}") {
                       script {
                         echo 'Core packages installing'
-                        sh 'npm ci'
+                        sh 'npm i'
                      }
                   }
               }
@@ -65,7 +65,7 @@ pipeline {
                   dir("${rootPath}") {
                       script {
                         echo 'Root packages installing'
-                        sh 'npm ci'
+                        sh 'npm i'
                      }
                   }
               }
