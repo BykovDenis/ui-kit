@@ -1,10 +1,10 @@
 import React from 'react';
-import getNewReactThemeContext from '../../styles/src';
 import renderer from 'react-test-renderer';
+import getNewReactThemeContext from '../../styles/src';
 
 import TextField from '../src';
 import ITextField from '../types/itext-field';
-import Variant from '../../enums/variant';
+import { Variant } from '../../enums/variant';
 import { themes } from '../../styles/src/themes';
 
 it('TextField renders correctly', () => {

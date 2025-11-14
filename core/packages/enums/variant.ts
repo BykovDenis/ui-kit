@@ -4,4 +4,4 @@ export const Variant = {
   Text: 'text',
 } as const;
 
-export type Variant = typeof Variant[keyof typeof Variant];
+export type Variant = (typeof Variant)[keyof typeof Variant];

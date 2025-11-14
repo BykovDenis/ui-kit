@@ -1,5 +1,5 @@
 {
-  "name": "@dbykov-ui-kit/file-uploader",
+  "name": "@dbykov-ui-kit/flex-container",
   "description": "FileUploader component of the @dbykov-ui-kit library",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
