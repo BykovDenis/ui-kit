@@ -188,8 +188,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${inputPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
