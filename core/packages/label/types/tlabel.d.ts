@@ -1,5 +1,6 @@
-import TBaseStyles from '../../types/tbase-styles';
 import * as CSS from 'csstype';
+
+import TBaseStyles from '../../types/tbase-styles';
 
 type TLabel = TBaseStyles & {
   colorTheme?: string;
@@ -9,7 +10,7 @@ type TLabel = TBaseStyles & {
   htmlFor?: string;
   isFocus?: boolean;
   justifyContent?: CSS.Property.JustifyContent;
-  tabIndex?: string;
+  tabIndex?: number | string;
   theme?: any;
   whiteSpace?: string;
   onClick?: (evt: any) => void;

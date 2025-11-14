@@ -1,4 +1,5 @@
-﻿import React, { useEffect, useState } from 'react';
+﻿import React, {useEffect, useState} from 'react';
+import CSS from 'csstype';
 
 import FormControlStyled from './form-control.styled';
 import IFormControl from '../types/iform-control';
@@ -11,7 +12,7 @@ const FormControl: React.FunctionComponent<IFormControl> = (props: IFormControl)
     setConsumer(globalThis.ReactThemeContextConsumer);
   }, [globalThis.ReactThemeContextConsumer]);
 
-  const flexDirection: string = props.flexDirection || 'row';
+  const flexDirection: CSS.Property.FlexDirection = props.flexDirection || 'row';
   const alignItems: string = props.alignItems || 'center';
   const justifyContent: string = props.justifyContent || 'flex-start';
 

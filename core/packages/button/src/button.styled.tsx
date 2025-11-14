@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
+import { Variant } from '../../enums/variant';
 import getMeasureValue from '../../helpers/get-measure-value';
 import rgbToRgba from '../../helpers/rgb-to-rgba';
 import TButton from '../types/tbutton';
-import Variant from '../../enums/variant';
 
 const ButtonStyled = styled('button')<TButton>`
   ${(props: TButton) => `
     display: flex;
     align-items: center;
-    flex-direction: row;
+    flex-direction: row; 
     justify-content: ${props?.justifyContent || 'center'};
     box-sizing: border-box;
     font-family: ${props?.fontFamily};
@@ -29,8 +29,8 @@ const ButtonStyled = styled('button')<TButton>`
       props?.variant === Variant.Contained || !props?.variant || props.disabled
         ? props.backgroundColor
         : props?.variant === Variant.Text || props?.variant === Variant.Outlined
-        ? 'transparent'
-        : props.color
+          ? 'transparent'
+      : props.color
     };
     background-image: ${props?.backgroundImage ?? 'none'};
     cursor: pointer;

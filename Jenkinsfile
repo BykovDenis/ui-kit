@@ -53,7 +53,7 @@ pipeline {
                   dir("${uiKitPath}") {
                       script {
                         echo 'Core packages installing'
-                        sh 'npm i'
+                        sh 'npm ci --legacy-peer-deps'
                      }
                   }
               }
@@ -65,7 +65,7 @@ pipeline {
                   dir("${rootPath}") {
                       script {
                         echo 'Root packages installing'
-                        sh 'npm i --legacy-peer-deps'
+                        sh 'npm ci --legacy-peer-deps'
                      }
                   }
               }
@@ -76,8 +76,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${stylesPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -92,8 +90,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${typographyPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -108,8 +104,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${popupPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -124,8 +118,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${datepickerPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -140,8 +132,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${checkboxPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -156,8 +146,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${radioPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -172,8 +160,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${buttonPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -188,8 +174,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${iconButtonPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -204,8 +188,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${inputPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -214,8 +196,6 @@ pipeline {
                     }
                     dir("${textFieldPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -230,8 +210,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${selectPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -246,8 +224,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${switcherPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -262,8 +238,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${labelPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -278,8 +252,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${formControlPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -294,8 +266,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${flexContainerPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -310,8 +280,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${gridContainerPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -326,8 +294,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${listPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -342,8 +308,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${listItemPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -358,8 +322,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${tableColumnsVisiblePath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -374,8 +336,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${progressBarPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -390,8 +350,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${multiSelectPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -406,8 +364,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${stickyBottomPanelPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -422,8 +378,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${tabsPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -432,8 +386,6 @@ pipeline {
                     }
                     dir("${tabPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -448,8 +400,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${dividerPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -464,8 +414,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${tablePath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -474,8 +422,6 @@ pipeline {
                     }
                     dir("${tableHeadPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -484,8 +430,6 @@ pipeline {
                     }
                     dir("${tableBodyPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -494,8 +438,6 @@ pipeline {
                     }
                     dir("${tableRowPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
@@ -504,8 +446,6 @@ pipeline {
                     }
                     dir("${tableCellPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm i'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'

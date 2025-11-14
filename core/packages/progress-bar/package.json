@@ -6,6 +6,7 @@
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "author": "Denis Bykov",
+  "type": "module",
   "license": "MIT",
   "jest": {
     "setupFiles": [
@@ -13,8 +14,8 @@
     ]
   },
   "scripts": {
-    "build": "rollup -c rollup.config.prod.js",
-    "build-dev": "rollup -w -c rollup.config.dev.js",
+    "clean": "rimraf dist",
+    "build": "npm run clean && rollup -c ../rollup.config.prod.js && rollup -c ../rollup.dts.config.js",
     "clean-node-modules": "rm -rf node_modules"
   },
   "keywords": [

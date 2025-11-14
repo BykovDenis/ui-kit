@@ -1,14 +1,11 @@
 import styled from 'styled-components';
-
-import rgbToRgba from '../../helpers/rgb-to-rgba';
 import React from 'react';
 
-interface IDayOfMonth {
+type DayOfMonthProps =  {
   key?: string;
   activeBackgroundColor: string;
   activeColor: string;
   backgroundColor: string;
-  borderColor: string;
   color: string;
   primaryColor: string;
   fontFamily: string;
@@ -24,9 +21,9 @@ interface IDayOfMonth {
 
 const DayOfMonth =
   styled('button') <
-  IDayOfMonth >
+    DayOfMonthProps >
   `
-    ${(props: IDayOfMonth) => `
+    ${(props: DayOfMonthProps) => `
       display: flex;
       flex-direction: row;
       align-items: center;

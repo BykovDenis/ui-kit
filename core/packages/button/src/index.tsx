@@ -4,6 +4,7 @@ import ITheme from '../../styles/types/itheme';
 import TButton from '../types/tbutton';
 import ButtonStyled from './button.styled';
 import ColorTheme from '../../enums/color-theme';
+import { TButtonType } from '../../enums/button-type';
 import ButtonType from '../../enums/button-type';
 
 const Button: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TButton) => {
@@ -37,7 +38,7 @@ const Button: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TBut
       <ButtonStyled
         {...props}
         id={props?.id}
-        type={props.type ?? ButtonType.Button}
+        type={(props.type ?? ButtonType.Button) as TButtonType}
         onClick={props?.onClick}
         color={color}
         backgroundColor={props?.backgroundColor || backgroundColor}

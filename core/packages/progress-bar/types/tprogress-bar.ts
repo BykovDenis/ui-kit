@@ -3,7 +3,7 @@ type TProgressBar = {
   backgroundColor?: string;
   children?: any;
   borderColor?: string;
-  borderWidth?: string;
+  borderWidth?: number | string;
   borderStyle?: string;
   borderRadius?: number | string;
   height?: number | string;

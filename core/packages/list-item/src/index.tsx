@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import ListItemType from '../enums/list-item-type';
+import { ListItemType } from '../enums/list-item-type';
 import IListElement from '../types/ilist-element';
 import ListItemStyled from './list-item.styled';
 import ListItemButtonStyled from './list-item-button.styled';
@@ -18,7 +18,6 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
   useEffect(() => {
     setConsumer(globalThis.ReactThemeContextConsumer);
   }, [globalThis.ReactThemeContextConsumer]);
-  const listItemType: string = ListItemType.Text;
 
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string = props.isSelected
@@ -52,17 +51,18 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
     const textAlign: string = props?.textAlign || TEXT_ALIGN_CENTER;
     const justifyContent: string = props?.justifyContent || calculationJustifyContent(textAlign);
 
+    const { type, ...restProps } = props;
+
     return props.type === ListItemType.Button ? (
       <ListItemContainer underLineColor={underLineColor} hoverColor={hoverColor} isVisibleTextUnderline={isVisibleTextUnderline}>
         <ListItemButtonStyled
-          {...props}
+          {...restProps}
           color={props?.color || color}
           hoverColor={hoverColor}
           height={props?.height}
           minHeight={props?.minHeight || HEIGHT}
           hoverBackgroundColor={props?.hoverBackgroundColor || hoverBackgroundColor}
           activeBackgroundColor={props?.hoverBackgroundColor || activeBackgroundColor}
-          type={props?.type || listItemType}
           backgroundColor={props?.backgroundColor || backgroundColor}
           onClick={props?.onClick}
           className={props?.className}
@@ -79,12 +79,11 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
       </ListItemContainer>
     ) : (
       <ListItemStyled
-        {...props}
+        {...restProps}
         color={props?.color || color}
         height={props?.height}
         minHeight={props?.minHeight || HEIGHT}
         underLineColor={underLineColor}
-        type={props?.type || listItemType}
         backgroundColor={props?.backgroundColor || backgroundColor}
         className={props?.className}
         justifyContent={justifyContent}

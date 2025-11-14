@@ -15,7 +15,7 @@ type TButtonStyled = {
   fontWeight?: CSS.Property.FontWeight;
   height?: number | string;
   padding?: CSS.Property.Padding;
-  type?: string;
+  type?: 'button' | 'submit' | 'reset';
   width?: number | string;
   textDecoration?: CSS.Property.TextDecoration;
   textTransform?: CSS.Property.TextTransform;

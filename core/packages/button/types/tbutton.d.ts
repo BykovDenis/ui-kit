@@ -8,7 +8,7 @@ type TButton = TBaseStyles &
     ReactThemeContext?: any;
     children?: React.ReactNode | string;
     dataset?: any;
-    onClick?: (evt: React.ChangeEvent<HTMLButtonElement>) => void;
+    onClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;
     onDragStart?: (evt: any) => void;
     theme?: any;
     variant?: TButtonVariants;

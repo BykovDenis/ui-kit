@@ -1,6 +1,6 @@
-enum ListItemType {
-  Button = 'button',
-  Text = 'text',
-}
+export const ListItemType = {
+  Button: 'button',
+  Text: 'text',
+} as const;
 
-export default ListItemType;
+export type ListItemType = typeof ListItemType[keyof typeof ListItemType];

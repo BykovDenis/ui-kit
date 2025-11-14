@@ -1,14 +1,15 @@
-import React from 'react';
-import TBaseStyles from '../../types/tbase-styles';
 import CSS from 'csstype';
+import React from 'react';
+
+import TBaseStyles from '../../types/tbase-styles';
 
 type CheckboxProps = TBaseStyles & {
   checked?: boolean;
   id: string;
   indeterminate?: boolean;
-  label?: string | React.ReactNode;
+  label?: React.ReactNode | string;
   onChange?: (evt: React.ChangeEvent<HtmlRadioButton>) => void;
-  tabIndex?: string;
+  tabIndex?: number | string;
   theme?: any;
   readOnly?: boolean;
   value?: string;

@@ -5,7 +5,7 @@ import getMeasureValue from '../../helpers/get-measure-value';
 import isNotEmptyNumber from '../../helpers/is-not-empty-number';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import rgbToRgba from '../../helpers/rgb-to-rgba';
-import Variant from '../../enums/variant';
+import { Variant } from '../../enums/variant';
 
 const IconButtonStyled = styled('button')<TButton>`
   display: flex;

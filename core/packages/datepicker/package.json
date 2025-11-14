@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "author": "Denis Bykov",
   "license": "MIT",
   "jest": {
@@ -13,8 +14,8 @@
     ]
   },
   "scripts": {
-    "build": "rollup -c rollup.config.prod.js",
-    "build-dev": "rollup -w -c rollup.config.dev.js",
+    "clean": "rimraf dist",
+    "build": "npm run clean && rollup -c ../rollup.config.prod.js && rollup -c ../rollup.dts.config.js",
     "clean-node-modules": "rm -rf node_modules"
   },
   "publishConfig": {
@@ -22,9 +23,6 @@
   },
   "gitHead": "e75c0606b43e9fe9c55d71fed679b41bbc715429",
   "dependencies": {
-    "dayjs": "1.9.8"
-  },
-  "files": [
-    "dist"
-  ]
+    "dayjs": "1.11.19"
+  }
 }

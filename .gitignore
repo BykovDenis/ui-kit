@@ -26,12 +26,11 @@ git push
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/.idea
+**/.idea
 **/.npmrc
 **/build
 **/dist
 .npmrc
-**/coverage
 **/analize.html
 
 *storybook.log
