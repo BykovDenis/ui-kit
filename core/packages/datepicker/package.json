@@ -24,8 +24,5 @@
   "gitHead": "e75c0606b43e9fe9c55d71fed679b41bbc715429",
   "dependencies": {
     "dayjs": "1.11.19"
-  },
-  "files": [
-    "dist"
-  ]
+  }
 }
