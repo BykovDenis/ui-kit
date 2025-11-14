@@ -118,8 +118,6 @@ pipeline {
                 ansiColor('xterm') {
                     dir("${datepickerPath}") {
                         script {
-                          echo 'Packages installing'
-                          sh 'npm ci --legacy-peer-deps'
                           echo 'Building'
                           sh 'npm run build'
                           echo 'Clean'
