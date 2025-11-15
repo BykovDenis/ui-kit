@@ -1,24 +1,18 @@
 {
-  "name": "@dbykov-ui-kit/FlexContainer",
-  "version": "0.2.1",
-  "description": "The FlexContainer component",
+  "name": "@dbykov-ui-kit/flex-container",
+  "description": "FileUploader component of the @dbykov-ui-kit library",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
-  "author": "Denis Bykov",
-  "license": "MIT",
-  "jest": {
-    "setupFiles": [
-      "./setupTests.js"
-    ]
+  "type": "module",
+  "private": true,
+  "exports": {
+    "require": "./dist/index.js",
+    "import": "./dist/esm/index.js"
   },
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && rollup -c ../rollup.config.prod.js && rollup -c ../rollup.dts.config.js",
     "clean-node-modules": "rm -rf node_modules"
-  },
-  "publishConfig": {
-    "registry": "https://github.com/BykovDenis/ui-kit.git"
-  },
-  "gitHead": "e75c0606b43e9fe9c55d71fed679b41bbc715429"
+  }
 }

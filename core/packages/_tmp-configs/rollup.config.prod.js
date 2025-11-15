@@ -2,9 +2,8 @@ import cleaner from 'rollup-plugin-cleaner';
 import postcss from 'rollup-plugin-postcss';
 import typescript from 'rollup-plugin-typescript2';
 import terser from '@rollup/plugin-terser';
-import dts from 'rollup-plugin-dts';
 import path from 'path';
-import pkg from './package.json' with { type: 'json' };
+import pkg from '../package.json' with { type: 'json' };
 
 export default [
   {
@@ -42,10 +41,5 @@ export default [
       terser(),
     ],
     external: ['react', 'react-dom','styled-components'],
-  },
-  {
-    input: './src/index.d.ts',
-    output: [{ file: './dist/index.d.ts', format: 'es' }],
-    plugins: [dts()],
-  },
+  }
 ];

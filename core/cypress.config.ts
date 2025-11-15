@@ -16,5 +16,6 @@ export default defineConfig({
       viteConfig,
     },
     specPattern: "cypress/component/**/*.cy.{ts,tsx}"
-  },
+  }
 });
+

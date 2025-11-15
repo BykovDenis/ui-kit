@@ -2,24 +2,32 @@
   "compilerOptions": {
     "rootDir": "./",
     "baseUrl": "./",
-    "outDir": "dist",
+    "outDir": "./temp/types",
     "jsx": "react-jsx",
-    "target": "es5",
+    "target": "esnext",
     "module": "esnext",
     "noImplicitAny": false,
     "sourceMap": true,
-    "allowJs": true,
-    "checkJs": false,
     "allowSyntheticDefaultImports": true,
     "preserveConstEnums": true,
     "moduleResolution": "node",
     "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "types": ["vite/client", "node", "react", "react-dom"],
+    "declaration": false,
+    "emitDeclarationOnly": false,
+    "resolveJsonModule": true
   },
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
+    "./types/**/*.d.ts"
+  ],
   "exclude": [
     "dist",
-    "**/*.stories.*"
-  ],
-  "include": ["**/*",]
+    "**/__tests__/**",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ]
 }

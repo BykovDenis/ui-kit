@@ -2,7 +2,7 @@ import React from 'react';
 import getNewReactThemeContext from '../../styles/src';
 import renderer from 'react-test-renderer';
 import ISelect from '../types/iselect';
-import Variant from '../../enums/variant';
+import { Variant } from '../../enums/variant';
 import Select from '../src';
 import { themes } from '../../styles/src/themes';
 
