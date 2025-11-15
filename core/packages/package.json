@@ -10,7 +10,8 @@
   "type": "module",
   "scripts": {
     "build-pack": "npm pack",
-    "build": "rollup -c tmp/rollup.config.prod.js",
+    "clean": "rimraf dist",
+    "build": "npm run clean && rollup -c ./rollup.config.prod.js && rollup -c ./rollup.dts.config.js",
     "build-dev": "rollup -w -c tmp/rollup.config.dev.js",
     "prepare-ui-kit": "lerna bootstrap && lerna run build && git reset --hard",
     "clean-node-modules": "rm -rf node_modules"

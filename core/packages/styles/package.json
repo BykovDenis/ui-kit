@@ -1,16 +1,6 @@
 {
   "name": "@dbykov-ui-kit/styles",
-  "version": "0.2.1",
   "description": "React UI styles",
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/index.d.ts",
-  "author": "Denis Bykov",
-  "license": "MIT",
   "type": "module",
-  "scripts": {
-    "clean": "rimraf dist",
-    "build": "npm run clean && rollup -c ./rollup.config.prod.js && rollup -c ./rollup.dts.config.js",
-    "clean-node-modules": "rm -rf node_modules"
-  }
+  "private": true
 }
