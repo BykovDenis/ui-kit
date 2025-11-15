@@ -8,7 +8,7 @@ import pkg from './package.json' with { type: 'json' };
 
 export default [
   {
-    input: path.resolve(process.cwd(), 'src/index.tsx'),
+    input: './src/index.ts',
     output: [
       {
         file: pkg.main,
