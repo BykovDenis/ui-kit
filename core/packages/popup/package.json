@@ -1,6 +1,19 @@
 {
   "name": "@dbykov-ui-kit/popup",
   "description": "Popup interactive component of the @dbykov-ui-kit library",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
-  "private": true
+  "private": true,
+  "exports": {
+    "require": "./dist/index.js",
+    "import": "./dist/esm/index.js"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && rollup -c ../rollup.config.prod.js && rollup -c ../rollup.dts.config.js",
+    "clean-node-modules": "rm -rf node_modules"
+  }
 }
+
