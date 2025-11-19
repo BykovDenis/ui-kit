@@ -1,8 +1,8 @@
 {
   "name": "@dbykov-ui-kit/core",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "UI Kit",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "author": "Denis Bykov",

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import ITheme from '../types/itheme';
 import { themes } from './themes';
 
