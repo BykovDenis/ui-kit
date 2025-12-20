@@ -84,20 +84,16 @@ pipeline {
             }
         }
         stage('E2E tests (Headless Chrome)') {
-          steps {
-            ansiColor('xterm') {
-              dir("${rootPath}") {
-                script {
-                  echo 'E2E tests running (Headless Chrome in Docker)'
-                  docker.image('cypress/browsers:node22.0.0-chrome124')
-                    .inside('--shm-size=1g') {
-                      sh 'npm ci'
-                      sh 'npx cypress run --browser chrome'
-                  }
+            steps {
+                ansiColor('xterm') {
+                    dir("${rootPath}") {
+                        script {
+                            echo 'E2E tests running (Cypress + Xvfb)'
+                            sh 'xvfb-run -a npx cypress run --browser chrome --headless'
+                        }
+                    }
                 }
-              }
             }
-          }
         }
         stage('Styles theme deploy') {
             steps {
