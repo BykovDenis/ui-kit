@@ -87,15 +87,10 @@ pipeline {
           steps {
             ansiColor('xterm') {
               dir("${rootPath}") {
-                script {
-                  sh '''
-                    if command -v xvfb-run >/dev/null 2>&1; then
-                      xvfb-run -a npx cypress run --browser chrome --headless
-                    else
-                      echo "xvfb-run not found — skipping E2E stage"
-                      exit 0
-                    fi
-                  '''
+                wrap([$class: 'Xvfb',
+                      installationName: 'default',
+                      autoDisplayName: true]) {
+                  sh 'npx cypress run --browser chrome --headless'
                 }
               }
             }
