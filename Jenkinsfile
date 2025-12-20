@@ -84,18 +84,16 @@ pipeline {
             }
         }
         stage('E2E tests (Headless Chrome)') {
-          agent {
-            docker {
-              image 'cypress/browsers:node22.0.0-chrome124'
-              args '--shm-size=1g'
-            }
-          }
           steps {
             ansiColor('xterm') {
               dir("${rootPath}") {
                 script {
-                  echo 'E2E tests running (Headless Chrome)'
-                  sh 'npx cypress run --browser chrome'
+                  echo 'E2E tests running (Headless Chrome in Docker)'
+                  docker.image('cypress/browsers:node22.0.0-chrome124')
+                    .inside('--shm-size=1g') {
+                      sh 'npm ci'
+                      sh 'npx cypress run --browser chrome'
+                  }
                 }
               }
             }
