@@ -92,7 +92,7 @@ pipeline {
                     if command -v xvfb-run >/dev/null 2>&1; then
                       xvfb-run -a npx cypress run --browser chrome --headless
                     else
-                      echo "xvfb-run not found — skipping E2E"
+                      echo "xvfb-run not found — skipping E2E stage"
                       exit 0
                     fi
                   '''
