@@ -2,14 +2,10 @@
 
 exports[`Button renders correctly 1`] = `
 <button
-  backgroundColor="rgb(8, 166, 82)"
-  className="sc-bcHOTY iTSJUA"
+  class="sc-bdvvtL rHlcR"
   color="#ffffff"
-  disabled={false}
-  focusColor="rgb(8, 166, 82)"
-  fontFamily="Roboto, Arial, sans-serif"
-  fontSize={14}
-  onClick={[MockFunction]}
+  font-family="Roboto, Arial, sans-serif"
+  font-size="14"
   type="button"
 >
   Hello world!

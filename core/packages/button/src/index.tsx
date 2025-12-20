@@ -1,13 +1,13 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 
+import { TButtonType } from '../../enums/button-type';
+import ButtonType from '../../enums/button-type';
+import ColorTheme from '../../enums/color-theme';
 import ITheme from '../../styles/types/itheme';
 import TButton from '../types/tbutton';
 import ButtonStyled from './button.styled';
-import ColorTheme from '../../enums/color-theme';
-import { TButtonType } from '../../enums/button-type';
-import ButtonType from '../../enums/button-type';
 
-const Button: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TButton) => {
+const Button = React.forwardRef<HTMLButtonElement, PropsWithChildren<TButton>>((props: TButton, ref) => {
   const [Consumer, setConsumer] = useState(globalThis?.ReactThemeContextConsumer);
   const [colorTheme] = useState<string>(props?.colorTheme || ColorTheme.Normal);
   const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
@@ -37,6 +37,7 @@ const Button: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TBut
     return (
       <ButtonStyled
         {...props}
+        ref={ref}
         id={props?.id}
         type={(props.type ?? ButtonType.Button) as TButtonType}
         onClick={props?.onClick}
@@ -60,6 +61,6 @@ const Button: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TBut
   }
 
   return <Consumer>{componentThemed}</Consumer>;
-};
+});
 
 export default Button;

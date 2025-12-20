@@ -2,31 +2,25 @@
 
 exports[`Checkbox renders correctly 1`] = `
 <p
-  className="sc-dkHyXG fVVrpV"
-  isExistLabel={true}
+  className="sc-dkPtRN ffbVmP"
 >
   <input
-    backgroundColor="rgb(8, 166, 82)"
-    borderColor="rgba(0, 0, 0, 0.6)"
     checked={false}
-    className="sc-gsMHZj hVidzs"
+    className="sc-gsDKAQ dkFkPY"
     color="#333333"
-    disabled={false}
-    disabledColor="#333333"
     id="label1"
-    indeterminate={false}
     label="Label for the Checkbox"
     onChange={[MockFunction]}
     tabIndex="1"
     type="checkbox"
   />
   <label
-    className="sc-bcHOTY gagqbh"
+    className="sc-bdvvtL dNUyao"
     color="#333333"
-    focusColor="#333333"
     fontFamily="Roboto, Arial, sans-serif"
     fontSize={14}
     htmlFor="label1"
+    onClick={[Function]}
     tabIndex="1"
     width="initial"
   >

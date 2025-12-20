@@ -3,16 +3,12 @@
 exports[`Radio renders correctly 1`] = `
 Array [
   <div
-    className="sc-gsMHZj dubEgc"
-    isExistLabel={false}
+    className="sc-gsDKAQ dieCOK"
   >
     <input
-      backgroundColor="rgb(8, 166, 82)"
-      borderColor="rgba(0, 0, 0, 0.6)"
       checked={true}
-      className="sc-dkHyXG lneheb"
+      className="sc-dkPtRN jhrKYF"
       color="#ffffff"
-      disabledColor="#333333"
       id="radio1"
       name="radio1"
       onChange={[MockFunction]}
@@ -20,26 +16,22 @@ Array [
       type="radio"
     />
     <label
-      className="sc-bcHOTY gagqbh"
+      className="sc-bdvvtL dNUyao"
       color="#333333"
-      focusColor="#333333"
       fontFamily="Roboto, Arial, sans-serif"
       fontSize={14}
       htmlFor="radio1"
+      onClick={[Function]}
       tabIndex="0"
       width="initial"
     />
   </div>,
   <div
-    className="sc-gsMHZj dubEgc"
-    isExistLabel={false}
+    className="sc-gsDKAQ dieCOK"
   >
     <input
-      backgroundColor="rgb(8, 166, 82)"
-      borderColor="rgba(0, 0, 0, 0.6)"
-      className="sc-dkHyXG lneheb"
+      className="sc-dkPtRN jhrKYF"
       color="#ffffff"
-      disabledColor="#333333"
       id="radio2"
       name="radio1"
       onChange={[MockFunction]}
@@ -47,12 +39,12 @@ Array [
       type="radio"
     />
     <label
-      className="sc-bcHOTY gagqbh"
+      className="sc-bdvvtL dNUyao"
       color="#333333"
-      focusColor="#333333"
       fontFamily="Roboto, Arial, sans-serif"
       fontSize={14}
       htmlFor="radio2"
+      onClick={[Function]}
       tabIndex="1"
       width="initial"
     />

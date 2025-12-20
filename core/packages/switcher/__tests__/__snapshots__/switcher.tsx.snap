@@ -1,59 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Switcher renders correctly 1`] = `
-<form
-  backgroundColor="#ffffff"
-  borderColor="rgba(0, 0, 0, 0.6)"
-  className="sc-bcHOTY eAJoDQ"
-  method="get"
+<div
+  className="sc-bdvvtL NEXlZ"
 >
   <input
-    backgroundColor="rgb(8, 166, 82)"
     checked={true}
-    className="sc-gsMHZj kgePlE"
+    className="sc-gsDKAQ ZZGbv"
     color="#ffffff"
     data-name="Native"
-    disabled={false}
-    id="custom-switcher-element1-Native"
-    inactiveBackgroundColor="#ffffff"
-    inactiveColor="#333333"
-    name="custom-switcher"
+    id="undefined-530306b6-1d47-43eb-a13b-e5464687ffeb"
+    name="custom-switcher-undefined"
     onChange={[Function]}
-    position="left"
     type="radio"
   />
   <label
-    className="sc-dkHyXG jOkNby"
+    className="sc-dkPtRN hAxvtY"
     color="#333333"
+    data-label="element1"
     fontFamily="Roboto, Arial, sans-serif"
     fontSize={14}
-    htmlFor="custom-switcher-element1-Native"
+    htmlFor="undefined-530306b6-1d47-43eb-a13b-e5464687ffeb"
   >
     Native
   </label>
   <input
-    backgroundColor="rgb(8, 166, 82)"
     checked={false}
-    className="sc-gsMHZj dLnEbw"
+    className="sc-gsDKAQ jLNcYb"
     color="#ffffff"
     data-name="RUB"
-    disabled={false}
-    id="custom-switcher-element2-RUB"
-    inactiveBackgroundColor="#ffffff"
-    inactiveColor="#333333"
-    name="custom-switcher"
+    id="undefined-00196ba2-8db5-4e83-b89f-0f7ed2c92885"
+    name="custom-switcher-undefined"
     onChange={[Function]}
-    position="right"
     type="radio"
   />
   <label
-    className="sc-dkHyXG jOkNby"
+    className="sc-dkPtRN hAxvtY"
     color="#333333"
+    data-label="element2"
     fontFamily="Roboto, Arial, sans-serif"
     fontSize={14}
-    htmlFor="custom-switcher-element2-RUB"
+    htmlFor="undefined-00196ba2-8db5-4e83-b89f-0f7ed2c92885"
   >
     RUB
   </label>
-</form>
+</div>
 `;

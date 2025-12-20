@@ -2,67 +2,49 @@
 
 exports[`Select renders correctly 1`] = `
 <div
-  className="sc-cseZMA chJbSq"
-  height={40}
-  id="select"
+  className="sc-egiyK hgeZqD"
+  data-test="select"
+  id="591934f6-ff92-487b-b816-7f16456d95d6"
 >
   <div
-    className="sc-eodsR khtDJm"
+    className="sc-bqiRlB diyHQT"
     height={40}
   >
     <div
-      backgroundColor="#ffffff"
-      className="sc-ipUqZP gMQsCx"
-      isExistValue={true}
+      className="sc-crHmcD bKhaxW"
     >
       <label
-        className="sc-gLfKCG BchhI"
+        className="sc-iCfMLu fsuvKe"
         color="#333333"
-        focusColor="#333333"
         fontFamily="Roboto, Arial, sans-serif"
         fontSize={12}
         htmlFor="select"
-        isFocus={false}
+        onClick={[Function]}
       >
         Select 1
       </label>
     </div>
     <div
-      backgroundColor="#ffffff"
-      className="sc-brmqBe feGqWc"
+      className="sc-ksdxgE iXdEhp"
     />
     <div
-      className="sc-dkHyXG itBUld"
-      height={40}
+      className="sc-gsDKAQ iqOcMz"
     >
       <div
-        backgroundColor="#ffffff"
-        className="sc-hLljAB iMPlNY"
+        className="sc-dkPtRN hfUIKC"
       >
         <input
           autoComplete="off"
-          backgroundColor="#ffffff"
-          borderColor="#ffffff"
-          className="sc-gsMHZj hTxdQV"
+          className="sc-bdvvtL hynkmt"
           color="#ffffff"
-          disabledBackgroundColor="#e3e3e3"
-          disabledColor="rgba(51, 51, 51, 0.5)"
-          focusColor="#0000ff"
+          data-error={false}
+          data-focused={false}
           fontFamily="Roboto, Arial, sans-serif"
           fontSize={14}
           fontWeight={400}
           height={40}
-          hoverBackgroundColor="#ffffff"
-          hoverBorderColor="#ff0000"
-          hoverColor="#ff0000"
-          id="select-input"
-          inputComponent={[Function]}
-          inputRef={
-            Object {
-              "current": null,
-            }
-          }
-          isNotUseDebounce={true}
+          id="select"
+          label="Select 1"
           name="select-custom"
           onBlur={[Function]}
           onChange={[Function]}
@@ -70,40 +52,42 @@ exports[`Select renders correctly 1`] = `
           onFocus={[Function]}
           onInput={[Function]}
           onRemove={[Function]}
-          textAlign="center"
           type="list-buttons"
           value="List item 1"
-          variant="outlined"
         />
         <div
-          className="sc-eDgayY cpIPTG underline"
+          className="sc-hKwDye jywLcO underline"
           color="#ffffff"
-          hoverColor="#ffffff"
           name="select-custom"
-          variant="outlined"
         />
-        <button
-          className="sc-bcHOTY cHXlsB delete-button"
-          data-test="btn-delete-value"
-          focusColor="rgb(8, 166, 82)"
-          hoverColor="#333333"
-          onClick={[Function]}
+        <div
+          className="sc-gKclnd SPCEw"
+          fontSize={14}
+          height={20}
+          transform="translateY(-50%)"
+          width={20}
         >
-          <svg
-            className="delete-icon"
-            height="14"
-            version="1.1"
-            viewBox="5 5 14 14"
-            width="14"
-            xmlns="http://www.w3.org/2000/svg"
+          <button
+            className="sc-jRQBWg fEmArW delete-button"
+            data-test="btn-delete-value"
+            onClick={[Function]}
+            type="button"
           >
-            <path
-              d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-              fill="#ffffff"
-              stroke="#ffffff"
-            />
-          </svg>
-        </button>
+            <svg
+              className="delete-icon"
+              fill="none"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18.3 5.70997C17.91 5.31997 17.28 5.31997 16.89 5.70997L12 10.59L7.11 5.69997C6.72 5.30997 6.09 5.30997 5.7 5.69997C5.31 6.08997 5.31 6.71997 5.7 7.10997L10.59 12L5.7 16.89C5.31 17.28 5.31 17.91 5.7 18.3C6.09 18.69 6.72 18.69 7.11 18.3L12 13.41L16.89 18.3C17.28 18.69 17.91 18.69 18.3 18.3C18.69 17.91 18.69 17.28 18.3 16.89L13.41 12L18.3 7.10997C18.68 6.72997 18.68 6.08997 18.3 5.70997Z"
+                fill="#ffffff"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>

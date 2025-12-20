@@ -2,12 +2,11 @@
 
 exports[`Input renders correctly 1`] = `
 <label
-  className="sc-bcHOTY dfNeAP"
+  className="sc-bdvvtL dsAGwm"
   color="#333333"
-  error={false}
-  focusColor="#333333"
   fontFamily="Roboto, Arial, sans-serif"
   fontSize={14}
+  onClick={[Function]}
 >
   Label
 </label>

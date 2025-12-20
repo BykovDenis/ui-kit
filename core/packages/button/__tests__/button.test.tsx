@@ -1,9 +1,9 @@
+import { render } from '@testing-library/react';
 import React from 'react';
-import getNewReactThemeContext from '../../styles/src';
-import renderer from 'react-test-renderer';
 
-import Button from '../src';
+import getNewReactThemeContext from '../../styles/src';
 import { themes } from '../../styles/src/themes';
+import Button from '../src';
 
 it('Button renders correctly', () => {
   const ReactThemeContext = getNewReactThemeContext(themes.light);
@@ -29,11 +29,11 @@ it('Button renders correctly', () => {
     focusColor: 'rgb(8, 166, 82)',
   };
 
-  const wrapper = renderer.create(
+  const { container } = render(
     <ReactThemeContext.Provider value={themes.light}>
       <Button {...props}>Hello world!</Button>
     </ReactThemeContext.Provider>
   );
 
-  expect(wrapper.toJSON()).toMatchSnapshot();
+  expect(container.firstChild).toMatchSnapshot();
 });

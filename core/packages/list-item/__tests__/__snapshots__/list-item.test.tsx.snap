@@ -2,21 +2,12 @@
 
 exports[`ListItem renders correctly 1`] = `
 <div
-  className="sc-dkHyXG fSlMOu"
-  hoverColor="#333333"
-  underLineColor="#e3e3e3"
+  className="sc-dkPtRN jWyZGR"
 >
   <button
-    activeBackgroundColor="rgba(8, 166, 82, 0.6)"
-    backgroundColor="#ffffff"
-    className="sc-gsMHZj cDBMkf"
+    className="sc-gsDKAQ juOifF"
     color="#333333"
-    height={30}
-    hoverBackgroundColor="rgba(8, 166, 82, 0.3)"
-    hoverColor="#333333"
     onClick={[MockFunction]}
-    textAlign="center"
-    type="button"
   />
 </div>
 `;
