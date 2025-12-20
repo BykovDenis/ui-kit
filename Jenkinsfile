@@ -87,9 +87,7 @@ pipeline {
           steps {
             ansiColor('xterm') {
               dir("${rootPath}") {
-                wrap([$class: 'Xvfb',
-                      installationName: 'default',
-                      autoDisplayName: true]) {
+                wrap([$class: 'Xvfb', installationName: 'default']) {
                   sh 'npx cypress run --browser chrome --headless'
                 }
               }
