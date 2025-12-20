@@ -47,30 +47,42 @@ pipeline {
   }
   options { timeout(time: 60, unit: 'MINUTES') }
   stages {
-      stage('Core packages installing') {
-          steps {
-              ansiColor('xterm') {
-                  dir("${uiKitPath}") {
-                      script {
-                        echo 'Core packages installing'
-                        sh 'npm i'
-                     }
-                  }
-              }
-          }
-      }
-      stage('Root packages installing') {
-          steps {
-              ansiColor('xterm') {
-                  dir("${rootPath}") {
-                      script {
-                        echo 'Root packages installing'
-                        sh 'npm i --legacy-peer-deps'
-                     }
-                  }
-              }
-          }
-      }
+        stage('Core packages installing') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${uiKitPath}") {
+                        script {
+                            echo 'Core packages installing'
+                            sh 'npm i'
+                        }
+                    }
+                }
+            }
+        }
+        stage('Root packages installing') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${rootPath}") {
+                        script {
+                            echo 'Root packages installing'
+                            sh 'npm i --legacy-peer-deps'
+                        }
+                    }
+                }
+            }
+        }
+        stage('Unit tests running') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${rootPath}") {
+                        script {
+                          echo 'Unit tests running'
+                          sh 'npm test'
+                       }
+                    }
+                }
+            }
+        }
         stage('Styles theme deploy') {
             steps {
                 ansiColor('xterm') {
