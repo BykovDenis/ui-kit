@@ -55,7 +55,7 @@ pipeline {
                     dir("${uiKitPath}") {
                         script {
                             echo 'Core packages installing'
-                            sh 'npm i'
+                            sh 'npm i --legacy-peer-deps'
                         }
                     }
                 }
@@ -67,7 +67,7 @@ pipeline {
                     dir("${rootPath}") {
                         script {
                             echo 'Root packages installing'
-                            sh 'npm i --legacy-peer-deps'
+                            sh 'npm ci --legacy-peer-deps'
                         }
                     }
                 }
