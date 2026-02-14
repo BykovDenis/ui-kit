@@ -2,7 +2,7 @@ import { themes } from '../../packages/styles/src/themes';
 
 describe('The Datepicker component', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/datepicker');
+    cy.visit('/datepicker');
     cy.viewport(1920, 1080);
     // cy.get('button[data-test="btn-delete-value"]').as('btn').click({ multiple: true});
   });

@@ -1,6 +1,6 @@
 describe('Testing Select component', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/select');
+    cy.visit('/select');
     cy.viewport(1920, 1080);
   });
   it('Test 1. Select text value', () => {
@@ -118,5 +118,40 @@ describe('Testing Select component', () => {
       .then(() => {
         cy.get('#select-objects-disabled-list-items').should('have.length', 0);
       });
+  });
+
+  it('Test 9. Close options list by Escape key', () => {
+    cy.get('#select-text').click().type('th');
+    cy.get('#select-text-list-items').should('exist');
+
+    cy.get('body').trigger('keyup', { key: 'Escape', code: 'Escape', keyCode: 27 });
+    cy.get('#select-text-list-items').should('not.exist');
+  });
+
+  it('Test 10. Close options list by outside click', () => {
+    cy.get('#select-text').click().type('th');
+    cy.get('#select-text-list-items').should('exist');
+
+    cy.get('body').click(0, 0);
+    cy.get('#select-text-list-items').should('not.exist');
+  });
+
+  it('Test 11. Clear selected text value by remove button', () => {
+    cy.get('#select-text')
+      .click()
+      .type('one')
+      .then(() => {
+        cy.get('#select-text-list div:first button').click();
+        cy.get('#select-text').should('value', 'one');
+      });
+
+    cy.get('#select-text')
+      .closest('div')
+      .parent()
+      .find('button[data-test="btn-delete-value"]')
+      .first()
+      .click({ force: true });
+
+    cy.get('#select-text').should('value', '');
   });
 });

@@ -1,6 +1,6 @@
 describe('The Input component', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/input');
+    cy.visit('/input');
     cy.viewport(1920, 1080);
   });
   it('Test1. Typing text. Testing name and value attributes', () => {
@@ -43,5 +43,31 @@ describe('The Input component', () => {
   });
   it('Test11. Typing text regular expression trim text', () => {
     cy.get('input[data-test=trim]').type('    pg_ff6ewe       ').invoke('val').should('equal', 'pg_ff6ewe');
+  });
+
+  it('Test12. Clearable number input keeps typed value below min in demo page', () => {
+    cy.get('input[data-test=clearableValue]')
+      .clear()
+      .type('0')
+      .blur()
+      .invoke('val')
+      .should('equal', '0');
+  });
+
+  it('Test13. Clearable number input keeps typed value above max in demo page', () => {
+    cy.get('input[data-test=clearableValue]')
+      .clear()
+      .type('6000')
+      .blur()
+      .invoke('val')
+      .should('equal', '6000');
+  });
+
+  it('Test14. Clearable number input allows empty value after clear', () => {
+    cy.get('input[data-test=clearableValue]')
+      .clear()
+      .blur()
+      .invoke('val')
+      .should('equal', '');
   });
 });

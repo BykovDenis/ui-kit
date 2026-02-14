@@ -2,7 +2,7 @@ import { themes } from '../../packages/styles/src/themes';
 
 describe('The TextField component', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/errors-state');
+    cy.visit('/errors-state');
     cy.viewport(1920, 1080);
   });
   it('Test1. Set error all components', () => {

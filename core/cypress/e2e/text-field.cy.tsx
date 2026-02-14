@@ -1,6 +1,6 @@
 describe('The TextField component', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/textfield');
+    cy.visit('/textfield');
     cy.viewport(1920, 1080);
   });
   it('Test1. Typing numbers', () => {
@@ -17,7 +17,7 @@ describe('The TextField component', () => {
     cy.get('input#text-field-digits').click().type('ff12аааа34').invoke('val').should('equal', '1234');
   });
   it('Test3. Typing text regular expression', () => {
-    cy.get('input[data-test=text-field-regular-expressions')
+    cy.get('input[data-test=text-field-regular-expressions]')
       .focus()
       .type('fdfd67')
       .invoke('val')
@@ -43,5 +43,21 @@ describe('The TextField component', () => {
       .type('pg_ff6ewe')
       .invoke('val')
       .should('equal', 'ff6ewe');
+  });
+
+  it('Test7. Clear button removes value for numeric text-field', () => {
+    cy.get('#text-field-digits').focus().type('12345').invoke('val').should('equal', '12345');
+    cy.get('#text-field-digits')
+      .closest('div')
+      .parent()
+      .find('button[data-test="btn-delete-value"]')
+      .first()
+      .click({ force: true });
+    cy.get('#text-field-digits').invoke('val').should('equal', '');
+  });
+
+  it('Test8. Label click focuses corresponding input', () => {
+    cy.get('label[for="text-field-digits-separated"]').click();
+    cy.focused().should('have.attr', 'id', 'text-field-digits-separated');
   });
 });
