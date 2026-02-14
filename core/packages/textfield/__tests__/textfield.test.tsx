@@ -1,4 +1,5 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import renderer from 'react-test-renderer';
 import getNewReactThemeContext from '../../styles/src';
@@ -50,7 +51,8 @@ it('TextField renders correctly', () => {
   expect(wrapper.toJSON()).toMatchSnapshot();
 });
 
-it('calls onRemove when clear button is clicked', () => {
+it('calls onRemove when clear button is clicked', async () => {
+  const user = userEvent.setup();
   const onRemove = jest.fn();
   const props = getProps({ value: '123', onRemove });
 
@@ -58,18 +60,20 @@ it('calls onRemove when clear button is clicked', () => {
   const clearButton = container.querySelector('button[data-test="btn-delete-value"]') as HTMLButtonElement;
   expect(clearButton).toBeInTheDocument();
 
-  fireEvent.click(clearButton);
+  await user.click(clearButton);
 
   expect(onRemove).toHaveBeenCalledWith('textfield1', '');
 });
 
 it('forwards value change to onChange callback', async () => {
+  const user = userEvent.setup();
   const onChange = jest.fn();
   const props = getProps({ value: '12', onChange, delayDebounce: 0 });
   renderTextField(props);
 
   const input = screen.getByLabelText('label') as HTMLInputElement;
-  fireEvent.change(input, { target: { value: '1234' } });
+  await user.clear(input);
+  await user.type(input, '1234');
 
   await waitFor(() => {
     expect(onChange).toHaveBeenCalledWith(expect.any(Object), 'textfield1', '1234');

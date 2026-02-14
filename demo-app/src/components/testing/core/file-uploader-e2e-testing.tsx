@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Typography from "@dbykov-ui-kit/core/typography";
-import FlexContainer from "@dbykov-ui-kit/core/flex-container";
-import FileUploader from "@dbykov-ui-kit/core/file-uploader";
+import React, {useState} from 'react';
+import Typography from '@dbykov-ui-kit/core/typography';
+import FlexContainer from '@dbykov-ui-kit/core/flex-container';
+import FileUploader from '../../../../../core/packages/file-uploader/src';
 
 const FileUploaderE2ETesting: React.FunctionComponent = () => {
   const [uploadedNames, setUploadedNames] = useState<string[]>([]);
@@ -34,7 +34,7 @@ const FileUploaderE2ETesting: React.FunctionComponent = () => {
         Disabled uploader
       </FileUploader>
 
-      <div id="file-uploader-e2e-state">{uploadedNames.join(",")}</div>
+      <div id="file-uploader-e2e-state">{uploadedNames.join(',')}</div>
     </FlexContainer>
   );
 };
