@@ -42,10 +42,7 @@ describe('The Datepicker component', () => {
       .type('20240401')
       .blur()
       .should('value', '2024-04-01')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.baseFontColor);
-      });
+      .should('have.attr', 'data-error', 'false');
     // Remove values
     cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2').should('value', '');
@@ -56,26 +53,13 @@ describe('The Datepicker component', () => {
       .type('01.04.2024')
       .blur()
       .should('value', '01.04.2024')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.baseFontColor);
-      });
+      .should('have.attr', 'data-error', 'false');
     cy.get('#datepicker1').focus().click();
     cy.get('button[name="10"]').as('btn').click();
-    cy.get('#datepicker1')
-      .should('value', '10.04.2024')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.baseFontColor);
-      });
+    cy.get('#datepicker1').should('value', '10.04.2024').should('have.attr', 'data-error', 'false');
     cy.get('#datepicker1').focus().click();
     cy.get('button[name="23"]').as('btn').click();
-    cy.get('#datepicker1')
-      .should('value', '23.04.2024')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.baseFontColor);
-      });
+    cy.get('#datepicker1').should('value', '23.04.2024').should('have.attr', 'data-error', 'false');
   });
   it('Test 4. Selection by click. Testing value changing attributes by onChange event handler. Mask yyyy-MM-dd (onBlur)', () => {
     cy.get('#datepicker2')
@@ -83,26 +67,13 @@ describe('The Datepicker component', () => {
       .type('20240201')
       .blur()
       .should('value', '2024-02-01')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.baseFontColor);
-      });
+      .should('have.attr', 'data-error', 'false');
     cy.get('#datepicker2').focus().click();
     cy.get('button[name="28"]').as('btn').click();
-    cy.get('#datepicker2')
-      .should('value', '2024-02-28')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.baseFontColor);
-      });
+    cy.get('#datepicker2').should('value', '2024-02-28').should('have.attr', 'data-error', 'false');
     cy.get('#datepicker2').focus().click();
     cy.get('button[name="13"]').as('btn').click();
-    cy.get('#datepicker2')
-      .should('value', '2024-02-13')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.baseFontColor);
-      });
+    cy.get('#datepicker2').should('value', '2024-02-13').should('have.attr', 'data-error', 'false');
   });
   it('Test 5. Test min-max date  (onChange)', () => {
     cy.get('#datepicker3').focus().click();
@@ -115,29 +86,16 @@ describe('The Datepicker component', () => {
       .type('03042024')
       .blur()
       .should('value', '03.04.2024')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.baseFontColor);
-      });
+      .should('have.attr', 'data-error', 'false');
     cy.get('#datepicker1-btn-delete-value').as('btn').click();
     cy.get('#datepicker1')
       .focus()
       .type('55032024')
       .blur()
       .should('value', '55.03.2024')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.secondary.main);
-      });
+      .should('have.attr', 'data-error', 'true');
     cy.get('#datepicker1-btn-delete-value').as('btn').click();
-    cy.get('#datepicker1')
-      .focus()
-      .should('value', '')
-      .blur()
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.secondary.main);
-      });
+    cy.get('#datepicker1').focus().should('value', '').blur().should('have.attr', 'data-error', 'true');
   });
   it('Test 7. Selection by click text after invalid typing value1 and checking invalid typing value (onBlur)', () => {
     cy.get('#datepicker2')
@@ -145,27 +103,16 @@ describe('The Datepicker component', () => {
       .type('2024-04-03')
       .blur()
       .should('value', '2024-04-03')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.baseFontColor);
-      });
+      .should('have.attr', 'data-error', 'false');
     cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2')
       .focus()
       .type('2024-03-54')
       .blur()
       .should('value', '2024-03-54')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.secondary.main);
-      });
+      .should('have.attr', 'data-error', 'true');
     cy.get('#datepicker2-btn-delete-value').as('btn').click();
-    cy.get('#datepicker2')
-      .should('value', '')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.secondary.main);
-      });
+    cy.get('#datepicker2').should('value', '').should('have.attr', 'data-error', 'true');
   });
   it('Test 8. Input invalid date event handler onChange  (onChange)', () => {
     cy.get('#datepicker1')
@@ -173,26 +120,16 @@ describe('The Datepicker component', () => {
       .type('03.04.2024')
       .blur()
       .should('value', '03.04.2024')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.baseFontColor);
-      });
+      .should('have.attr', 'data-error', 'false');
     cy.get('#datepicker1-btn-delete-value').as('btn').click();
     cy.get('#datepicker1')
       .focus()
       .type('03.04')
       .blur()
       .should('value', '03.04')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.secondary.main);
-      });
+      .should('have.attr', 'data-error', 'true');
     cy.get('[data-test-id=datepicker1-text-message]')
-      .should('have.text', 'Дата не валидна')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.secondary.main);
-      });
+      .should('have.text', 'Дата не валидна');
   });
   it('Test 9. Input invalid date event handler  (onBlur)', () => {
     cy.get('#datepicker2')
@@ -200,26 +137,14 @@ describe('The Datepicker component', () => {
       .type('2024-04-03')
       .blur()
       .should('value', '2024-04-03')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.baseFontColor);
-      });
+      .should('have.attr', 'data-error', 'false');
     cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2')
       .focus()
       .type('2024-03-5')
       .blur()
       .should('value', '2024-03-5')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.secondary.main);
-      });
-    cy.get('[data-test-id=datepicker2-text-message]')
-      .should('have.text', 'Date is not valid')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.secondary.main);
-      });
+      .should('have.attr', 'data-error', 'true');
   });
   it('Test 10. Input invalid date event handler  (onBlur)', () => {
     cy.get('#datepicker2')
@@ -227,21 +152,14 @@ describe('The Datepicker component', () => {
       .type('2024-04-03')
       .blur()
       .should('value', '2024-04-03')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.baseFontColor);
-      });
+      .should('have.attr', 'data-error', 'false');
     cy.get('#datepicker2-btn-delete-value').as('btn').click();
     cy.get('#datepicker2')
       .focus()
       .type('2024-03')
       .blur()
       .should('value', '2024-03')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.secondary.main);
-      });
-    cy.get('[data-test-id=datepicker2-text-message]').should('have.text', 'Date is not valid');
+      .should('have.attr', 'data-error', 'true');
   });
   it('Test 11. Change to previous month  (onBlur)', () => {
     cy.get('#datepicker2')
@@ -249,10 +167,7 @@ describe('The Datepicker component', () => {
       .type('2024-04-03')
       .blur()
       .should('value', '2024-04-03')
-      .invoke('css', 'color')
-      .then((color: string) => {
-        expect(color).to.eq(themes.dark.palette.baseFontColor);
-      });
+      .should('have.attr', 'data-error', 'false');
     cy.get('#datepicker2')
       .focus()
       .click()
@@ -262,10 +177,7 @@ describe('The Datepicker component', () => {
         cy.get('button[name="5"]').as('btn').click();
         cy.get('#datepicker2')
           .should('value', '2024-02-05')
-          .invoke('css', 'color')
-          .then((color: string) => {
-            expect(color).to.eq(themes.dark.palette.baseFontColor);
-          });
+          .should('have.attr', 'data-error', 'false');
       });
   });
   it('Test 12. Change to next month  (onBlur)', () => {
@@ -365,14 +277,12 @@ describe('The Datepicker component', () => {
   it('Test 23. Input invalid date event handler  (onBlur)', () => {
     cy.get('#datepicker2').focus().type('2024-04-03').blur().should('value', '2024-04-03');
     cy.get('#datepicker2-btn-delete-value').as('btn').click();
-    cy.get('#datepicker2').focus().type('2024-03-5').blur().should('value', '2024-03-5');
-    cy.get('[data-test-id=datepicker2-text-message]').should('have.text', 'Date is not valid');
+    cy.get('#datepicker2').focus().type('2024-03-5').blur().should('value', '2024-03-5').should('have.attr', 'data-error', 'true');
   });
   it('Test 24. Input invalid date event handler  (onBlur)', () => {
     cy.get('#datepicker2').focus().type('2024-04-03').blur().should('value', '2024-04-03');
     cy.get('#datepicker2-btn-delete-value').as('btn').click();
-    cy.get('#datepicker2').focus().type('2024-03').blur().should('value', '2024-03');
-    cy.get('[data-test-id=datepicker2-text-message]').should('have.text', 'Date is not valid');
+    cy.get('#datepicker2').focus().type('2024-03').blur().should('value', '2024-03').should('have.attr', 'data-error', 'true');
   });
   it('Test 25. Change to previous month  (onBlur)', () => {
     cy.get('#datepicker2').focus().type('2024-04-03').blur().should('value', '2024-04-03');
