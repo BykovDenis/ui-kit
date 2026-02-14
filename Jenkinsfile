@@ -73,6 +73,18 @@ pipeline {
                 }
             }
         }
+        stage('Demo app packages installing') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${demoAppPath}") {
+                        script {
+                            echo 'Demo app packages installing'
+                            sh 'npm ci --legacy-peer-deps'
+                        }
+                    }
+                }
+            }
+        }
         stage('Unit tests running') {
             steps {
                 ansiColor('xterm') {
@@ -90,7 +102,32 @@ pipeline {
             ansiColor('xterm') {
               dir("${rootPath}") {
                 wrap([$class: 'Xvfb', installationName: 'default']) {
-                  sh 'npx cypress run --browser chromium --headless'
+                  sh '''
+                    set -e
+                    cd ../demo-app
+                    npm run start -- --host 0.0.0.0 --port 3000 > /tmp/demo-app.log 2>&1 &
+                    DEMO_PID=$!
+                    cd ../core
+
+                    cleanup() {
+                      kill "$DEMO_PID" 2>/dev/null || true
+                      wait "$DEMO_PID" 2>/dev/null || true
+                    }
+                    trap cleanup EXIT
+
+                    i=0
+                    until curl -sf http://localhost:3000 >/dev/null; do
+                      i=$((i + 1))
+                      if [ "$i" -ge 60 ]; then
+                        echo "Demo app did not start on http://localhost:3000"
+                        cat /tmp/demo-app.log || true
+                        exit 1
+                      fi
+                      sleep 2
+                    done
+
+                    npx cypress run --browser chromium --headless
+                  '''
                 }
               }
             }
