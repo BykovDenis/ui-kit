@@ -13,6 +13,7 @@ def listItemPath = './core/packages/list-item'
 def radioPath = './core/packages/radio'
 def selectPath = './core/packages/select'
 def popupPath = './core/packages/popup'
+def fileUploaderPath = './core/packages/file-uploader'
 def textFieldPath = './core/packages/textfield'
 def warningPath = './core/packages/warning-panel'
 def switcherPath = './core/packages/switcher';
@@ -155,6 +156,20 @@ pipeline {
             steps {
                 ansiColor('xterm') {
                     dir("${checkboxPath}") {
+                        script {
+                          echo 'Building'
+                          sh 'npm run build'
+                          echo 'Clean'
+                          sh 'npm run clean-node-modules'
+                       }
+                    }
+                }
+            }
+        }
+        stage('FileUploader deploy') {
+            steps {
+                ansiColor('xterm') {
+                    dir("${fileUploaderPath}") {
                         script {
                           echo 'Building'
                           sh 'npm run build'

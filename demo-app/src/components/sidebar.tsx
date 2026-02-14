@@ -18,6 +18,13 @@ const SideBar: React.FunctionComponent = () => {
   const isSwitcherActive: boolean = pathname?.indexOf("/switcher") > -1;
   const isErrorsStateActive: boolean = pathname?.indexOf("/errors-state") > -1;
   const isContainersActive: boolean = pathname?.indexOf("/containers") > -1;
+  const isTableActive: boolean = pathname?.indexOf("/table") > -1;
+  const isCheckboxE2EActive: boolean = pathname?.indexOf("/checkbox-e2e") > -1;
+  const isRadioE2EActive: boolean = pathname?.indexOf("/radio-e2e") > -1;
+  const isTabsE2EActive: boolean = pathname?.indexOf("/tabs-e2e") > -1;
+  const isPopupE2EActive: boolean = pathname?.indexOf("/popup-e2e") > -1;
+  const isFileUploaderE2EActive: boolean =
+    pathname?.indexOf("/file-uploader-e2e") > -1;
   const isPopupActive: boolean = pathname?.indexOf("/popup") > -1;
   const isPopupEventAccordionActive: boolean =
     pathname?.indexOf("/popup-event-accordion") > -1;
@@ -185,6 +192,108 @@ const SideBar: React.FunctionComponent = () => {
               href="/containers"
             >
               Containers testing
+            </ListItemLinkStyled>
+          </ListItem>
+          <ListItem
+            type="text"
+            backgroundColor={
+              isTableActive
+                ? theme.palette.primary.main
+                : theme.mainBackgroundColor
+            }
+            height={60}
+          >
+            <ListItemLinkStyled
+              color={theme.palette.baseFontColor}
+              fontFamily={theme.fontFamily}
+              href="/table"
+            >
+              Table testing
+            </ListItemLinkStyled>
+          </ListItem>
+          <ListItem
+            type="text"
+            backgroundColor={
+              isCheckboxE2EActive
+                ? theme.palette.primary.main
+                : theme.mainBackgroundColor
+            }
+            height={60}
+          >
+            <ListItemLinkStyled
+              color={theme.palette.baseFontColor}
+              fontFamily={theme.fontFamily}
+              href="/checkbox-e2e"
+            >
+              Checkbox E2E
+            </ListItemLinkStyled>
+          </ListItem>
+          <ListItem
+            type="text"
+            backgroundColor={
+              isRadioE2EActive
+                ? theme.palette.primary.main
+                : theme.mainBackgroundColor
+            }
+            height={60}
+          >
+            <ListItemLinkStyled
+              color={theme.palette.baseFontColor}
+              fontFamily={theme.fontFamily}
+              href="/radio-e2e"
+            >
+              Radio E2E
+            </ListItemLinkStyled>
+          </ListItem>
+          <ListItem
+            type="text"
+            backgroundColor={
+              isTabsE2EActive
+                ? theme.palette.primary.main
+                : theme.mainBackgroundColor
+            }
+            height={60}
+          >
+            <ListItemLinkStyled
+              color={theme.palette.baseFontColor}
+              fontFamily={theme.fontFamily}
+              href="/tabs-e2e"
+            >
+              Tabs E2E
+            </ListItemLinkStyled>
+          </ListItem>
+          <ListItem
+            type="text"
+            backgroundColor={
+              isPopupE2EActive
+                ? theme.palette.primary.main
+                : theme.mainBackgroundColor
+            }
+            height={60}
+          >
+            <ListItemLinkStyled
+              color={theme.palette.baseFontColor}
+              fontFamily={theme.fontFamily}
+              href="/popup-e2e"
+            >
+              Popup E2E
+            </ListItemLinkStyled>
+          </ListItem>
+          <ListItem
+            type="text"
+            backgroundColor={
+              isFileUploaderE2EActive
+                ? theme.palette.primary.main
+                : theme.mainBackgroundColor
+            }
+            height={60}
+          >
+            <ListItemLinkStyled
+              color={theme.palette.baseFontColor}
+              fontFamily={theme.fontFamily}
+              href="/file-uploader-e2e"
+            >
+              FileUploader E2E
             </ListItemLinkStyled>
           </ListItem>
           <ListItem

@@ -19,6 +19,12 @@ import MultiSelectTesting from "./components/testing/core/multi-select-testing";
 import SwitcherTesting from "./components/testing/core/switcher-testing";
 import ErrorsStateTesting from "./components/testing/core/errors-state-testing";
 import ContainersTesting from "./components/testing/core/containers-testing";
+import TableTesting from "./components/testing/core/table-testing";
+import CheckboxE2ETesting from "./components/testing/core/checkbox-e2e-testing";
+import RadioE2ETesting from "./components/testing/core/radio-e2e-testing";
+import TabsE2ETesting from "./components/testing/core/tabs-e2e-testing";
+import PopupE2ETesting from "./components/testing/core/popup-e2e-testing";
+import FileUploaderE2ETesting from "./components/testing/core/file-uploader-e2e-testing";
 import IconTesting from "./components/testing/icon/icon-testing";
 import PopupEventAccordion from "./components/testing/core/popup-event-accordion";
 import PopupTesting from "./components/testing/core/popup-testing";
@@ -88,6 +94,42 @@ const containersRoute = createRoute({
   component: ContainersTesting,
 });
 
+const tableRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/table",
+  component: TableTesting,
+});
+
+const checkboxE2ERoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/checkbox-e2e",
+  component: CheckboxE2ETesting,
+});
+
+const radioE2ERoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/radio-e2e",
+  component: RadioE2ETesting,
+});
+
+const tabsE2ERoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/tabs-e2e",
+  component: TabsE2ETesting,
+});
+
+const popupE2ERoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/popup-e2e",
+  component: PopupE2ETesting,
+});
+
+const fileUploaderE2ERoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/file-uploader-e2e",
+  component: FileUploaderE2ETesting,
+});
+
 const iconRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/icon",
@@ -117,6 +159,12 @@ const routeTree = rootRoute.addChildren([
   switcherRoute,
   errorStateRoute,
   containersRoute,
+  tableRoute,
+  checkboxE2ERoute,
+  radioE2ERoute,
+  tabsE2ERoute,
+  popupE2ERoute,
+  fileUploaderE2ERoute,
   iconRoute,
   popupEventAccordionRoute,
   popupRoute,
