@@ -32,6 +32,7 @@ def tabsPath = './core/packages/tabs';
 def tabPath = './core/packages/tab';
 def flexContainerPath = './core/packages/flex-container';
 def gridContainerPath = './core/packages/grid-container'
+def demoAppPath = './demo-app'
 def npmrc_name = '.npmrc'
 def npmrc_content = ''
 
