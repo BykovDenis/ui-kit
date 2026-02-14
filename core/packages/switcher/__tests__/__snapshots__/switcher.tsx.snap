@@ -9,7 +9,7 @@ exports[`Switcher renders correctly 1`] = `
     className="sc-gsDKAQ ZZGbv"
     color="#ffffff"
     data-name="Native"
-    id="undefined-530306b6-1d47-43eb-a13b-e5464687ffeb"
+    id="undefined-uuid-switcher-1"
     name="custom-switcher-undefined"
     onChange={[Function]}
     type="radio"
@@ -20,7 +20,7 @@ exports[`Switcher renders correctly 1`] = `
     data-label="element1"
     fontFamily="Roboto, Arial, sans-serif"
     fontSize={14}
-    htmlFor="undefined-530306b6-1d47-43eb-a13b-e5464687ffeb"
+    htmlFor="undefined-uuid-switcher-1"
   >
     Native
   </label>
@@ -29,7 +29,7 @@ exports[`Switcher renders correctly 1`] = `
     className="sc-gsDKAQ jLNcYb"
     color="#ffffff"
     data-name="RUB"
-    id="undefined-00196ba2-8db5-4e83-b89f-0f7ed2c92885"
+    id="undefined-uuid-switcher-2"
     name="custom-switcher-undefined"
     onChange={[Function]}
     type="radio"
@@ -40,7 +40,7 @@ exports[`Switcher renders correctly 1`] = `
     data-label="element2"
     fontFamily="Roboto, Arial, sans-serif"
     fontSize={14}
-    htmlFor="undefined-00196ba2-8db5-4e83-b89f-0f7ed2c92885"
+    htmlFor="undefined-uuid-switcher-2"
   >
     RUB
   </label>

@@ -4,7 +4,7 @@ exports[`Select renders correctly 1`] = `
 <div
   className="sc-egiyK hgeZqD"
   data-test="select"
-  id="591934f6-ff92-487b-b816-7f16456d95d6"
+  id="uuid-select-1"
 >
   <div
     className="sc-bqiRlB diyHQT"

@@ -10,7 +10,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "bootstrap": "lerna bootstrap",
-    "test": "jest ./packages/button --coverage",
+    "test": "jest ./packages --coverage",
     "cypress:open": "cypress open",
     "build-packages": "time sh ./build.sh",
     "install-packages": "npm i && cd packages && npm i && cd .. && ./build.sh",

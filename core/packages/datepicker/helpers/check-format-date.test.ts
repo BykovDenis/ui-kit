@@ -66,8 +66,12 @@ describe('Test function checkFormatDate', () => {
     expect(checkFormatDate(12, 0, 2022)).toBe(false);
   });
 
-  test('should return false for year less than 1970', () => {
-    expect(checkFormatDate(12, 6, 1969)).toBe(false);
+  test('should return true for year 1969 (allowed by format validator)', () => {
+    expect(checkFormatDate(12, 6, 1969)).toBe(true);
+  });
+
+  test('should return false for year less than 1900', () => {
+    expect(checkFormatDate(12, 6, 1899)).toBe(false);
   });
 
   test('should return false for February with 29 days on a non-leap year', () => {

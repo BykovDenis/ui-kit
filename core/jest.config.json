@@ -11,8 +11,9 @@
     ]
   },
   "moduleNameMapper": {
-    "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    "\\.(css|less|scss|sass)$": "<rootDir>/__mocks__/styleMock.js"
   },
+  "testPathIgnorePatterns": ["<rootDir>/node_modules/", "<rootDir>/packages/dist/"],
   "moduleDirectories": ["<rootDir>", "node_modules"],
   "collectCoverage": false,
   "coverageDirectory": "<rootDir>/coverage/jest",
