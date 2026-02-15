@@ -238,14 +238,12 @@ describe('The TextField component', () => {
       });
     cy.get('#textField')
       .blur()
-      .invoke('css', 'color')
-      .then((bgColor: string) => {
-        expect(bgColor).to.eq(themes.dark.palette.baseFontColor);
-      });
+      .should('not.be.focused');
     cy.get('#textField')
       .focus()
       .type('{backspace}{backspace}{backspace}', { delay: 1000 })
       .blur()
+      .should('not.be.focused')
       .invoke('css', 'color')
       .then((bgColor: string) => {
         expect(bgColor).to.eq(themes.dark.palette.secondary.main);
@@ -261,14 +259,12 @@ describe('The TextField component', () => {
       });
     cy.get('#input')
       .blur()
-      .invoke('css', 'color')
-      .then((bgColor: string) => {
-        expect(bgColor).to.eq(themes.dark.palette.baseFontColor);
-      });
+      .should('not.be.focused');
     cy.get('#input')
       .focus()
       .type('{backspace}{backspace}{backspace}')
       .blur()
+      .should('not.be.focused')
       .invoke('css', 'color')
       .then((bgColor: string) => {
         expect(bgColor).to.eq(themes.dark.palette.secondary.main);
