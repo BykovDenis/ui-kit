@@ -1,6 +1,6 @@
 <h1>CHANGE LOG</h1>
 
-<h2>v 0.1.1</h2>
+<h2>v x.1.1</h2>
 
 <h3>Features</h3>
 <ol>
@@ -12,35 +12,35 @@
     <li>bug fix radio</li>
 </ol>
 
-<h2>v 0.1.2</h2>
+<h2>v x.1.2</h2>
 
 <h3>Bugfix</h3>
 <ol>
     <li>TableCell width attributes fixed</li>
 </ol>
 
-<h2>v 0.1.3</h2>
+<h2>v x.1.3</h2>
 
 <h3>Bugfix</h3>
 <ol>
     <li>Inherit font-size into the options of the Select component</li>
 </ol>
 
-<h2>v 0.1.4</h2>
+<h2>v x.1.4</h2>
 
 <h3>Features</h3>
 <ol>
     <li>The component TableColumnsVisible improved. Custom default visible columns</li>
 </ol>
 
-<h2>v 0.1.5</h2>
+<h2>v x.1.5</h2>
 
 <h3>Features</h3>
 <ol>
     <li>The component MultiSelect improved. Custom default visible elements</li>
 </ol>
 
-<h2>v 0.1.6</h2>
+<h2>v x.1.6</h2>
 
 <h3>Features</h3>
 <ol>
@@ -50,7 +50,7 @@
     <li>Datepicker component: Refactords and some improved</li>
 </ol>
 
-<h2>v 0.1.7</h2>
+<h2>v x.1.7</h2>
 <h3>Features</h3>
 <ol>
     <li>Tabs component added</li>
@@ -65,7 +65,7 @@
     <li>DatePicker event handler onChange fixed</li>
 </ol>
 
-<h2>v 0.1.8</h2>
+<h2>v x.1.8</h2>
 <h3>Features</h3>
 <ol>
     <li>The new component Divider</li>
@@ -76,7 +76,7 @@
     <li>box-shadow and filter css properties added into the bottom sticky panel</li>
     <li>The color of disabled components edited</li>
 </ol>
-<h2>v 0.1.9</h2>
+<h2>v x.1.9</h2>
 <h3>BugFix</h3>
 <ol>
     <li> The height attribute into the Switcher fixed </li>
@@ -96,7 +96,7 @@
     <li>The max width property into the FormControl added</li>
 </ol>
 
-<h2>v 0.1.10</h2>
+<h2>v x.1.10</h2>
 <h3>Features</h3>
 <ol>
     <li>padding and margin property added into the Typography component</li>
@@ -107,7 +107,7 @@
     <li> The height attribute into the Switcher fixed </li>
 </ol>
 
-<h2>v 0.2.0</h2>
+<h2>v x.2.0</h2>
 
 <h3>Features</h3>
 <ol>
@@ -117,7 +117,7 @@
     <li> Sticky bottom panel z-index parameter added</li>
 </ol>
 
-<h2>v 0.2.1</h2>
+<h2>v x.2.1</h2>
 
 <h3>BugFix</h3>
 <ol>
@@ -129,14 +129,14 @@
     <li>Progressbar add disable status</li>
 </ol>
 
-<h2>v 0.2.2</h2>
+<h2>v x.2.2</h2>
 
 <h3>Features</h3>
 <ol>
     <li>GridContainer added into the library</li>
 </ol>
 
-<h2>v 0.2.3</h2>
+<h2>v x.2.3</h2>
 
 <h3>BugFix</h3>
 <ol>
@@ -145,7 +145,7 @@
     <li>Minimal height attribute added into the list-item element</li>
 </ol>
 
-<h2>v 0.2.4</h2>
+<h2>v x.2.4</h2>
 
 <h3>Features</h3>
 <ol>
@@ -157,21 +157,21 @@
     <li>FormControl and FlexContainer added min-width properties</li>
 </ol>
 
-<h2>v 0.2.5</h2>
+<h2>v x.2.5</h2>
 
 <h3>Features</h3>
 <ol>
     <li>Datepicker design and functionality some improved</li>
 </ol>
 
-<h2>v 0.2.6</h2>
+<h2>v x.2.6</h2>
 
 <h3>Features</h3>
 <ol>
     <li>Datepicker can be use onInput event</li>
 </ol>
 
-<h2>v 0.2.7</h2>
+<h2>v x.2.7</h2>
 
 <h3>Features</h3>
 <ol>
@@ -179,7 +179,7 @@
     <li>Select. textAlign attribute added into the search line and list items </li>
 </ol>
 
-<h2>v 0.2.8</h2>
+<h2>v x.2.8</h2>
 
 <h3>Features</h3>
 <ol>
@@ -195,7 +195,7 @@
     <li>Select. Filter fixed for the large sequence </li>
 </ol>
 
-<h2>v 0.2.9</h2>
+<h2>v x.2.9</h2>
 
 <h3>Features</h3>
 <ol>
@@ -206,7 +206,7 @@
    <li> FileUploader component added. </li>
 </ol>
 
-<h2>v 0.12.0</h2>
+<h2>v x.12.0</h2>
 <h3>Features</h3>
 <ol>
    <li> Builder vite added to storybook instead webpack </li>
@@ -221,7 +221,7 @@
    <li> ProgressBar. Tag p -> div. Fixed to specification </li>
 </ol>
 
-<h2>v 0.3.1</h2>
+<h2>v x.13.1</h2>
 <h3>Features</h3>
 <ol>
   <li>Stories adapted for the new version of the storybook</li>
@@ -242,7 +242,7 @@
   <li>Datepicker. Date validation some improved.</li>
 </ol>
 
-<h2>v 0.3.2</h2>
+<h2>v x.13.2</h2>
 <h3>Features</h3>
 <ol>
   <li>Datepicker. Delete a date digit without resetting the cursor position. </li>
@@ -256,26 +256,26 @@
   <li>Switcher. The name attribute is unique for each radio button. </li>
 </ol>
 
-<h2>v 0.3.3</h2>
+<h2>v x.3.3</h2>
 <h3>Features</h3>
 <ol>
   <li>Datepicker. Update mask format. </li>
   <li>Add error state for all interactive components</li>
 </ol>
 
-<h2>v 0.3.4</h2>
+<h2>v x.3.4</h2>
 <h3>Features</h3>
 <ol>
   <li>Datepicker. Update date value after pressing Enter. </li>
 </ol>
 
-<h2>v 0.3.5</h2>
+<h2>v x.3.5</h2>
 <h3>Features</h3>
 <ol>
   <li>Select. Create a new value not by exact matching. </li>
 </ol>
 
-<h2>v 0.3.6</h2>
+<h2>v x.3.6</h2>
 <h3>Features</h3>
 <ol>
   <li>GridContainer. Extended types props gridRowGap and gridColumnGap. </li>
@@ -295,7 +295,7 @@
   <li>Radio. Update disable styles for light theme. </li>
 </ol>
 
-<h2>v 0.3.7</h2>
+<h2>v x.3.7</h2>
 <h3>Features</h3>
 <ol>
   <li>Input. Improve debounce mechanic. </li>
@@ -303,20 +303,20 @@
   <li>Input. Change component Consumer to hook useContext. </li>
 </ol>
 
-<h2>v 0.3.8</h2>
+<h2>v x.3.8</h2>
 <h3>Features</h3>
 <ol>
   <li>GridContainer. Margin top left bottom right property added. </li>
 </ol>
 
-<h2>v 0.3.9</h2>
+<h2>v x.3.9</h2>
 <h3>Features</h3>
 <ol>
   <li>Input, TextField, Select, Radio, Checkbox, Switcher. ReadOnly property added. </li>
   <li>Switcher. themeColor added. </li>
 </ol>
 
-<h2>v 0.3.10</h2>
+<h2>v x.3.10</h2>
 <h3>Bugfix</h3>
 <ol>
   <li>Checkbox. Change bgColor to Indeterminate as checked mode </li>
@@ -325,7 +325,7 @@
   <li>Multiselect. Fix styles for disabled component with string[]. </li>
 </ol>
 
-<h2>v 0.3.11</h2>
+<h2>v x.3.11</h2>
 <h3>Features</h3>
 <ol>
    <li>Tab. Set type attribute as button for Tab component </li>
@@ -335,25 +335,25 @@
     <li>Datepicker. Fix behavior when pressing incorrectly </li>
 </ol>
 
-<h2>v 0.3.12</h2>
+<h2>v x.3.12</h2>
 <h3>Bugfix</h3>
 <ol>
     <li>Select. Doesn't dropdown data for disabled Select component </li>
 </ol>
 
-<h2>v 0.3.13</h2>
+<h2>v x.3.13</h2>
 <h3>Bugfix</h3>
 <ol>
     <li>Datepicker. Fix clean incorrect date</li>
 </ol>
 
-<h2>v 0.3.14</h2>
+<h2>v x.3.14</h2>
 <h3>Feature</h3>
 <ol>
     <li>Input. Hide spinbox for Input type="number"</li>
 </ol>
 
-<h2>v 0.4.0</h2>
+<h2>v x.4.0</h2>
 <h3>Feature</h3>
 <ol>
     <li>Popup. Add new component</li>
@@ -367,8 +367,15 @@
     <li>Datepicker. The fix is installed only today for the current calendar</li>
 </ol>
 
-<h2>v 0.4.1</h2>
+<h2>v x.4.1</h2>
 <h3>Bugfix</h3>
 <ol>
     <li>Datepicker. Fix checking today, minDate, maxDate</li>
+</ol>
+
+<h2>v 0.2.4</h2>
+<h3>Feature</h3>
+<ol>
+    <li>File Uploader. Add to deploy</li>
+    <li>Add unit tests, e2e tests</li>
 </ol>

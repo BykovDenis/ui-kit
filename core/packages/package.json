@@ -1,6 +1,6 @@
 {
   "name": "@dbykov-ui-kit/core",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "UI Kit",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
