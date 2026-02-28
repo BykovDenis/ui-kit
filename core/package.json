@@ -88,7 +88,7 @@
     "inspectpack": "^4.0.1",
     "jest": "27.5.1",
     "jest-styled-components": "^7.0.8",
-    "lerna": "8.1.5",
+    "lerna": "9.0.5",
     "p-locate": "6.0.0",
     "patch-package": "8.0.1",
     "playwright": "^1.56.1",
