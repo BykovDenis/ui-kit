@@ -2,48 +2,75 @@
 
 exports[`Input renders correctly 1`] = `
 <div
-  className="sc-gsDKAQ iqOcMz"
+  className="sc-gtstET jXlMKC"
 >
   <div
-    className="sc-dkPtRN hfUIKC"
+    backgroundColor="#ffffff"
+    className="sc-dlnkDq jiXPWh"
   >
     <input
       autoComplete="off"
-      className="sc-bdvvtL hxjPfT"
+      backgroundColor="transparent"
+      borderColor="#ffffff"
+      className="sc-bdnAzI evRbRL"
       color="#ffffff"
       data-error={false}
       data-focused={false}
       disabled={false}
+      disabledBackgroundColor="#e3e3e3"
+      disabledColor="rgba(51, 51, 51, 0.5)"
+      error={false}
+      focusColor="rgb(139, 88, 203)"
       fontFamily="Roboto, Arial, sans-serif"
       fontSize={14}
       fontWeight={400}
       height={40}
+      hoverBackgroundColor="#ffffff"
+      hoverBorderColor="rgba(0, 0, 0, 0.4)"
+      hoverColor="#333333"
+      inputComponent={[Function]}
+      isNotClearable={false}
+      isSeparateNumberFormat={false}
       name="input"
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
       onRemove={[MockFunction]}
+      padding="0 22px 0 0"
       readOnly={false}
+      textAlign="right"
+      textMessage="text message"
       type="text"
       value="123"
+      variant="outline"
     />
     <div
-      className="sc-hKwDye foeYvF underline"
+      className="sc-hKFxUR dSuteQ underline"
       color="#ffffff"
       disabled={false}
+      hoverColor="#ffffff"
       name="input"
+      variant="outline"
     />
     <div
-      className="sc-gKclnd SPCEw"
+      alignItems="center"
+      className="sc-gKzYWW jUwWmm"
+      flexDirection="row"
       fontSize={14}
       height={20}
+      justifyContent="flex-start"
+      position="absolute"
+      right={0}
+      top="50%"
       transform="translateY(-50%)"
       width={20}
     >
       <button
-        className="sc-jRQBWg bczKwS delete-button"
+        className="sc-jSFhYz exGjdF delete-button"
         data-test="btn-delete-value"
         disabled={false}
+        focusColor="rgb(139, 88, 203)"
+        hoverColor="#333333"
         onClick={[Function]}
         type="button"
       >
@@ -64,7 +91,7 @@ exports[`Input renders correctly 1`] = `
     </div>
   </div>
   <p
-    className="sc-eCImPb fJJRaR text-message"
+    className="sc-eCAoTo iYxmey text-message"
     color="#ffffff"
     data-test-id="undefined-text-message"
     fontFamily="Roboto, Arial, sans-serif"

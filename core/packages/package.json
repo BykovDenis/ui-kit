@@ -1,6 +1,6 @@
 {
   "name": "@dbykov-ui-kit/core",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "UI Kit",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -57,7 +57,7 @@
     "uuid": "10.0.0"
   },
   "dependencies": {
-    "styled-components": "5.3.3",
+    "styled-components": "6.4.0",
     "use-debounce": "10.0.3"
   },
   "peerDependencies": {

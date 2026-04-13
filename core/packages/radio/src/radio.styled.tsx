@@ -1,5 +1,5 @@
 ﻿import CSS from 'csstype';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 type TRadioStylish = {
   backgroundColor: string;

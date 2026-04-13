@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import CSS from "csstype";

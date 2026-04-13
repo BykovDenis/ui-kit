@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import TProgressBar from '../types/tprogress-bar';
 import getMeasureValue from '../../helpers/get-measure-value';
 

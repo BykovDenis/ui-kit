@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 import TButton from '../../button/types/tbutton';
 import getMeasureValue from '../../helpers/get-measure-value';

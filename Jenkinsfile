@@ -105,7 +105,7 @@ pipeline {
                   sh '''
                     set -e
                     cd ../demo-app
-                    npm run start -- --host 0.0.0.0 --port 3000 > /tmp/demo-app.log 2>&1 &
+                    npm run start -- --host 0.0.0.0 --port 3030 > /tmp/demo-app.log 2>&1 &
                     DEMO_PID=$!
                     cd ../core
 
@@ -116,10 +116,10 @@ pipeline {
                     trap cleanup EXIT
 
                     i=0
-                    until curl -sf http://localhost:3000 >/dev/null; do
+                    until curl -sf http://localhost:3030 >/dev/null; do
                       i=$((i + 1))
                       if [ "$i" -ge 60 ]; then
-                        echo "Demo app did not start on http://localhost:3000"
+                        echo "Demo app did not start on http://localhost:3030"
                         cat /tmp/demo-app.log || true
                         exit 1
                       fi

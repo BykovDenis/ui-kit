@@ -2,20 +2,26 @@
 
 exports[`Switcher renders correctly 1`] = `
 <div
-  className="sc-bdvvtL NEXlZ"
+  backgroundColor="#ffffff"
+  borderColor="rgba(0, 0, 0, 0.6)"
+  className="sc-bdnAzI iKioZi"
 >
   <input
+    backgroundColor="rgb(139, 88, 203)"
     checked={true}
-    className="sc-gsDKAQ cdHZci"
+    className="sc-gtstET dRarPP"
     color="#ffffff"
     data-name="Native"
     id="undefined-uuid-switcher-1"
+    inactiveBackgroundColor="#ffffff"
+    inactiveColor="#333333"
     name="custom-switcher-undefined"
     onChange={[Function]}
+    position="left"
     type="radio"
   />
   <label
-    className="sc-dkPtRN hAxvtY"
+    className="sc-dlnkDq dYfZvX"
     color="#333333"
     data-label="element1"
     fontFamily="Roboto, Arial, sans-serif"
@@ -25,17 +31,21 @@ exports[`Switcher renders correctly 1`] = `
     Native
   </label>
   <input
+    backgroundColor="rgb(139, 88, 203)"
     checked={false}
-    className="sc-gsDKAQ kPvvYO"
+    className="sc-gtstET bcqNJb"
     color="#ffffff"
     data-name="RUB"
     id="undefined-uuid-switcher-2"
+    inactiveBackgroundColor="#ffffff"
+    inactiveColor="#333333"
     name="custom-switcher-undefined"
     onChange={[Function]}
+    position="right"
     type="radio"
   />
   <label
-    className="sc-dkPtRN hAxvtY"
+    className="sc-dlnkDq dYfZvX"
     color="#333333"
     data-label="element2"
     fontFamily="Roboto, Arial, sans-serif"

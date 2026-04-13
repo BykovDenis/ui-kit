@@ -2,8 +2,10 @@
 
 exports[`Button renders correctly 1`] = `
 <button
-  class="sc-bdvvtL hfPMaQ"
+  backgroundcolor="rgb(139, 88, 203)"
+  class="sc-bdnAzI gzYWhU"
   color="#ffffff"
+  focuscolor="rgb(139, 88, 203)"
   font-family="Roboto, Arial, sans-serif"
   font-size="14"
   type="button"

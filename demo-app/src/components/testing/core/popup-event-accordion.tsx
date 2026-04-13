@@ -2,21 +2,21 @@
 // import Datepicker from "../../../../../core/packages/datepicker/src";
 // import Select from "../../../../../core/packages/select/src";
 // import MultiSelect from "../../../../../core/packages/multi-select/src";
-import { toast } from "react-toastify";
-import React, { useState } from "react";
+import {toast} from 'react-toastify';
+import React, {useState} from 'react';
 // import Input from "../../../../../core/packages/input/src";
 // import TextField from "../../../../../core/packages/textfield/src";
-import { success } from "../../../utils/dev-utils-theme";
+import {success} from '../../../utils/dev-utils-theme';
 
 // components from package library
-import DatepickerMask from "@dbykov-ui-kit/core/datepicker/enums/datepicker-mask";
-import Label from "@dbykov-ui-kit/core/label";
-import GridContainer from "@dbykov-ui-kit/core/grid-container";
-import Datepicker from "@dbykov-ui-kit/core/datepicker";
-import Select from "@dbykov-ui-kit/core/select";
-import MultiSelect from "@dbykov-ui-kit/core/multi-select";
-import Input from "@dbykov-ui-kit/core/input";
-import TextField from "@dbykov-ui-kit/core/textfield";
+import DatepickerMask from '@dbykov-ui-kit/core/datepicker/enums/datepicker-mask';
+import Label from '@dbykov-ui-kit/core/label';
+import GridContainer from '@dbykov-ui-kit/core/grid-container';
+import Datepicker from '@dbykov-ui-kit/core/datepicker';
+import Select from '@dbykov-ui-kit/core/select';
+import MultiSelect from '@dbykov-ui-kit/core/multi-select';
+import Input from '@dbykov-ui-kit/core/input';
+import TextField from '@dbykov-ui-kit/core/textfield';
 
 const PopupEventAccordion: React.FunctionComponent = () => {
   const [datepicker1, setDatepicker1] = useState<string | null>(null);
@@ -27,7 +27,7 @@ const PopupEventAccordion: React.FunctionComponent = () => {
   const onDatepicker1Change = (name: string, newDataValue: string) => {
     setDatepicker1(newDataValue);
     if (newDataValue) {
-      toast("datepicker1 =" + newDataValue, { type: "success" });
+      toast('datepicker1 =' + newDataValue, {type: 'success'});
     }
   };
 
@@ -38,7 +38,7 @@ const PopupEventAccordion: React.FunctionComponent = () => {
   const onDatepicker2Change = (name: string, newDataValue: string) => {
     setDatepicker2(newDataValue);
     if (newDataValue) {
-      toast("datepicker2 =" + newDataValue, { type: "success" });
+      toast('datepicker2 =' + newDataValue, {type: 'success'});
     }
   };
 
@@ -48,40 +48,40 @@ const PopupEventAccordion: React.FunctionComponent = () => {
 
   const [columnsSelected1, setColumnNamesSelected1] = useState<
     Array<string> | []
-  >(["2", "1"]);
+  >(['2', '1']);
   const [columnsSelected2, setColumnNamesSelected2] = useState<Array<any> | []>(
     [
-      { label: "five", value: 5 },
-      { label: "three", value: 3 },
-      { label: "twofff", value: 2 },
+      {label: 'five', value: 5},
+      {label: 'three', value: 3},
+      {label: 'twofff', value: 2},
     ]
   );
 
   const columns: Array<any> = [
-    { value: "B1_EA_UK", label: "B1_EA_UK" },
-    { value: "B1_ES_UK", label: "B1_ES_UK" },
-    { value: "B1_OL_UK", label: "B1_OL_UK" },
-    { value: "B1_SC_UK", label: "B1_SC_UK" },
-    { value: "B1_SH_UK", label: "B1_SH_UK" },
-    { value: "B1_SS1PRUK", label: "B1_SS1PRUK" },
-    { value: "B1_SS1_UK", label: "B1_SS1_UK" },
-    { value: "B2_AB_UK", label: "B2_AB_UK" },
-    { value: "BOOK-UA", label: "BOOK-UA" },
-    { value: "BOOK1_CP", label: "BOOK1_CP" },
-    { value: "BOOK1_GP", label: "BOOK1_GP" },
-    { value: "BOOK2_NUC", label: "BOOK2_NUC" },
+    {value: 'B1_EA_UK', label: 'B1_EA_UK'},
+    {value: 'B1_ES_UK', label: 'B1_ES_UK'},
+    {value: 'B1_OL_UK', label: 'B1_OL_UK'},
+    {value: 'B1_SC_UK', label: 'B1_SC_UK'},
+    {value: 'B1_SH_UK', label: 'B1_SH_UK'},
+    {value: 'B1_SS1PRUK', label: 'B1_SS1PRUK'},
+    {value: 'B1_SS1_UK', label: 'B1_SS1_UK'},
+    {value: 'B2_AB_UK', label: 'B2_AB_UK'},
+    {value: 'BOOK-UA', label: 'BOOK-UA'},
+    {value: 'BOOK1_CP', label: 'BOOK1_CP'},
+    {value: 'BOOK1_GP', label: 'BOOK1_GP'},
+    {value: 'BOOK2_NUC', label: 'BOOK2_NUC'},
   ];
 
   const columns1: Array<string> = [
-    "1",
-    "5",
-    "7",
-    "9",
-    "4",
-    "32",
-    "43",
-    "3232323232323",
-    "4234",
+    '1',
+    '5',
+    '7',
+    '9',
+    '4',
+    '32',
+    '43',
+    '3232323232323',
+    '4234',
   ];
 
   const onMultiSelect1Change = (columnNames: Array<string>) => {
@@ -115,7 +115,7 @@ const PopupEventAccordion: React.FunctionComponent = () => {
     console.log(success(valueParsed));
   };
 
-  const onInputValue2Remove = (name: string) => {
+  const onInputValue2Remove = () => {
     setInputValue2(null);
   };
 
@@ -150,7 +150,7 @@ const PopupEventAccordion: React.FunctionComponent = () => {
             label="select 1"
             variant="outlined"
             activeElement="one"
-            elements={["one", "two", "three", "four"]}
+            elements={['one', 'two', 'three', 'four']}
           />
         </GridContainer>
         <GridContainer alignSelf="start" height={100}>
@@ -203,7 +203,7 @@ const PopupEventAccordion: React.FunctionComponent = () => {
             label="select 2"
             variant="outlined"
             activeElement="three"
-            elements={["one", "two", "three", "four"]}
+            elements={['one', 'two', 'three', 'four']}
           />
         </GridContainer>
         <GridContainer height={100}>

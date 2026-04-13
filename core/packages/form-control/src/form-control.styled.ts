@@ -1,4 +1,4 @@
-﻿import styled from 'styled-components';
+﻿import { styled } from 'styled-components';
 import getMeasureValue from '../../helpers/get-measure-value';
 import isNotEmptyNumber from '../../helpers/is-not-empty-number';
 import isNotEmptyString from '../../helpers/is-not-empty-string';

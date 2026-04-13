@@ -2,10 +2,11 @@
 
 exports[`Typography renders correctly 1`] = `
 <h1
-  className="sc-bdvvtL loFlDN"
+  className="sc-bdnAzI dljmEI"
   color="#333333"
   fontFamily="Roboto, Arial, sans-serif"
   fontSize={28}
+  variant="H1"
 >
   Some text
 </h1>

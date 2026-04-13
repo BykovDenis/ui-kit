@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 import isNotEmptyNumber from '../../helpers/is-not-empty-number';
 import TTableRow from '../types/ttable-row';
