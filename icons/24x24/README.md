@@ -1,1 +1,0 @@
-<h1>Library of icons</h1>
