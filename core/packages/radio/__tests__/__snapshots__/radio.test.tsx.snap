@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Radio renders correctly 1`] = `
+Array [
+  <div
+    className="sc-gsDKAQ dieCOK"
+  >
+    <input
+      checked={true}
+      className="sc-dkPtRN dIIFmh"
+      color="#ffffff"
+      id="radio1"
+      name="radio1"
+      onChange={[MockFunction]}
+      tabIndex="0"
+      type="radio"
+    />
+    <label
+      className="sc-bdvvtL dNUyao"
+      color="#333333"
+      fontFamily="Roboto, Arial, sans-serif"
+      fontSize={14}
+      htmlFor="radio1"
+      onClick={[Function]}
+      tabIndex="0"
+      width="initial"
+    />
+  </div>,
+  <div
+    className="sc-gsDKAQ dieCOK"
+  >
+    <input
+      className="sc-dkPtRN dIIFmh"
+      color="#ffffff"
+      id="radio2"
+      name="radio1"
+      onChange={[MockFunction]}
+      tabIndex="1"
+      type="radio"
+    />
+    <label
+      className="sc-bdvvtL dNUyao"
+      color="#333333"
+      fontFamily="Roboto, Arial, sans-serif"
+      fontSize={14}
+      htmlFor="radio2"
+      onClick={[Function]}
+      tabIndex="1"
+      width="initial"
+    />
+  </div>,
+]
+`;

@@ -1,0 +1,5 @@
+/* cypress/support/component.css */
+html, body {
+  background-color: #333333 !important;
+  color: rgb(227, 227, 227) !important;
+}

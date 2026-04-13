@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconButton renders correctly 1`] = `
+<button
+  className="sc-bdvvtL kPzznj"
+  color="#ffffff"
+  disabled={false}
+  fontFamily="Roboto, Arial, sans-serif"
+  fontSize={14}
+  onClick={[MockFunction]}
+  type="button"
+>
+  Hello world!
+</button>
+`;

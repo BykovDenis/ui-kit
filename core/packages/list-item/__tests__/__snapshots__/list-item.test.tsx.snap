@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItem renders correctly 1`] = `
+<div
+  className="sc-dkPtRN jWyZGR"
+>
+  <button
+    className="sc-gsDKAQ gqdMHp"
+    color="#333333"
+    onClick={[MockFunction]}
+  />
+</div>
+`;

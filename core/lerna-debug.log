@@ -1,0 +1,8 @@
+299 error Error: Command failed with exit code 128: git tag v0.1.0 -m v0.1.0
+299 error fatal: tag 'v0.1.0' already exists
+299 error     at makeError (/Users/denisbykov/www/ui-kit/core/node_modules/lerna/node_modules/execa/lib/error.js:59:11)
+299 error     at handlePromise (/Users/denisbykov/www/ui-kit/core/node_modules/lerna/node_modules/execa/index.js:114:26)
+299 error     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+299 error     at async VersionCommand.gitCommitAndTagVersion (/Users/denisbykov/www/ui-kit/core/node_modules/lerna/dist/index.js:9940:9)
+299 error     at async VersionCommand.commitAndTagUpdates (/Users/denisbykov/www/ui-kit/core/node_modules/lerna/dist/index.js:9905:18)
+299 error     at async Promise.all (index 0)

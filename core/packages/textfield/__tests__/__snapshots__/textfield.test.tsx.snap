@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField renders correctly 1`] = `
+<div
+  className="sc-pVTFL jzPhAh"
+>
+  <div
+    className="sc-furwcr fTYgzF"
+  >
+    <label
+      className="sc-iCfMLu loQTOJ"
+      color="#333333"
+      disabled={false}
+      fontFamily="Roboto, Arial, sans-serif"
+      fontSize={14}
+      fontWeight={400}
+      htmlFor="textfield1"
+      onClick={[Function]}
+      readOnly={false}
+    >
+      label
+    </label>
+  </div>
+  <div
+    className="sc-gsDKAQ iqOcMz"
+  >
+    <div
+      className="sc-dkPtRN hfUIKC"
+    >
+      <input
+        autoComplete="off"
+        className="sc-bdvvtL dZhJw"
+        color="#333333"
+        data-error={false}
+        data-focused={false}
+        disabled={false}
+        fontFamily="Roboto, Arial, sans-serif"
+        fontSize={14}
+        fontWeight={400}
+        height={40}
+        id="textfield1"
+        label="label"
+        name="textfield1"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onInput={[Function]}
+        onRemove={[Function]}
+        readOnly={false}
+        type="text"
+        value=""
+      />
+      <div
+        className="sc-hKwDye gaTzWq underline"
+        color="rgba(0, 0, 0, 0.6)"
+        disabled={false}
+        name="textfield1"
+      />
+    </div>
+    <p
+      className="sc-eCImPb gCEIQt text-message"
+      color="#333333"
+      data-test-id="textfield1-text-message"
+      fontFamily="Roboto, Arial, sans-serif"
+      fontSize={14}
+    >
+      text message
+    </p>
+  </div>
+</div>
+`;

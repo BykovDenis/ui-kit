@@ -1,0 +1,20 @@
+﻿.window-notification-message {
+    word-break: break-word;
+}
+
+.Toastify__progress-bar--error {
+    --toastify-color-error: #F6650A;
+    --toastify-color-progress-error: var(--toastify-color-error);
+    background-color: var(--toastify-color-error);
+}
+
+.Toastify__toast-body {
+    height: 50px;
+    padding-left: 20px;
+}
+
+.Toastify__close-button {
+    position: absolute;
+    top: 55% !important;
+    transform: translateY(-50%);
+}

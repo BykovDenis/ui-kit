@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List renders correctly 1`] = `
+<div
+  className="sc-eCImPb ljyFZE"
+  color="#333333"
+  fontFamily="Roboto, Arial, sans-serif"
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  type="list-buttons"
+>
+  <li
+    className="sc-bdvvtL fmOqfV"
+    color="#333333"
+  >
+    List item 1
+  </li>
+  <li
+    className="sc-bdvvtL fmOqfV"
+    color="#333333"
+  >
+    List item 2
+  </li>
+  <li
+    className="sc-bdvvtL fmOqfV"
+    color="#333333"
+  >
+    List item 3
+  </li>
+  <li
+    className="sc-bdvvtL fmOqfV"
+    color="#333333"
+  >
+    List item 4
+  </li>
+  <li
+    className="sc-bdvvtL fmOqfV"
+    color="#333333"
+  >
+    List item 5
+  </li>
+</div>
+`;
