@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 import IListElement from '../types/ilist-element';
 import getMeasureValue from '../../helpers/get-measure-value';

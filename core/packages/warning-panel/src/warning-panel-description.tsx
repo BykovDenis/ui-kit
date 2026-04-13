@@ -1,4 +1,4 @@
-﻿import styled from 'styled-components';
+﻿import { styled } from 'styled-components';
 
 const WarningPanelDescription = styled('p')`
   margin: 0;

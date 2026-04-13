@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 import TStickyBottomPanel from '../types/tsticky-bottom-panel';
 import getMeasureValue from '../../helpers/get-measure-value';

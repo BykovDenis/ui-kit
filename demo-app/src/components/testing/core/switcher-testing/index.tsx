@@ -46,7 +46,7 @@ const SwitcherTesting: React.FunctionComponent = () => {
   let answerIndex: number = 1;
 
   return (
-    <FlexContainer width={900} flexDirection="column">
+    <FlexContainer width={800} flexDirection="column">
       <Typography variant="H1" textAlign="center">
         Testing Datepickers components
       </Typography>
@@ -54,12 +54,13 @@ const SwitcherTesting: React.FunctionComponent = () => {
         marginLeft={15}
         flexDirection="column"
         alignItems="flex-start"
+        width="initial"
       >
         <Typography variant="H2" fontSize={20}>
           Отметьте верные утверждения
         </Typography>
         <FlexContainer marginLeft={65} width="initial">
-          <List width={1340}>
+          <List width={900}>
             <ListItemWrapped>
               <ListItemContainer answerIndex={answerIndex++}>
                 {SppiQuestion.Q1}
@@ -191,7 +192,7 @@ const SwitcherTesting: React.FunctionComponent = () => {
                     alignItems="flex-start"
                     fontSize={18}
                   >
-                    В сделке ПДВ рассчитывается иначе чем:
+                    XXXXX
                     <FlexContainer marginLeft={20} marginTop={5}>
                       <List fontSize={18}>
                         <ListItem
@@ -204,7 +205,7 @@ const SwitcherTesting: React.FunctionComponent = () => {
                             margin="0"
                             height={20}
                           >
-                            a. % от досрочно возвращаемой суммы кредита
+                            a. CCCC
                           </Typography>
                         </ListItem>
                         <ListItem
@@ -220,10 +221,7 @@ const SwitcherTesting: React.FunctionComponent = () => {
                             width={1000}
                             lineHeight={2}
                           >
-                            b. % от досрочно возвращаемой суммы кредита с учетом
-                            срока до плановой даты погашения/ до даты
-                            уведомления. Например, ПДВ привязана к рыночной
-                            ставке (в т.ч. ОФЗ)
+                            b. VVVV
                           </Typography>
                         </ListItem>
                       </List>
@@ -273,8 +271,7 @@ const SwitcherTesting: React.FunctionComponent = () => {
                     alignItems="flex-start"
                     fontSize={18}
                   >
-                    Сделка заключается в рамках Программы субсидирования
-                    отличной от следующего списка:
+                   VVVVD:
                     <FlexContainer marginLeft={20} marginTop={15}>
                       <List fontSize={18}>
                         <ListItem
@@ -287,7 +284,7 @@ const SwitcherTesting: React.FunctionComponent = () => {
                             margin="0 0 15px 0"
                             height={18}
                           >
-                            a. МСХ Постановление Правительства №1528
+                            a. EEEE
                           </Typography>
                         </ListItem>
                         <ListItem
@@ -300,7 +297,7 @@ const SwitcherTesting: React.FunctionComponent = () => {
                             margin="0 0 15px 0"
                             height={18}
                           >
-                            b. МПТ Постановление Правительства №191
+                            b. QQQQ
                           </Typography>
                         </ListItem>
                       </List>

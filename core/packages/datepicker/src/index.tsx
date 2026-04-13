@@ -39,7 +39,8 @@ import ButtonDelete from '../../customs-styled-components/button-delete.styled';
 import dayjs, { Dayjs } from 'dayjs';
 import parseStringInsteadDate from '../helpers/parse-string-instead-date';
 import UiKitComponent from '../../enums/ui-kit-component';
-import { createPortal } from 'react-dom';
+import { getIsClient } from '../../utilities/ssr/get-is-client';
+import { Portal } from '../../portal';
 
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
@@ -481,15 +482,15 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     let left: number = 0;
     let width: number = 0;
 
-    if (inputRef?.current) {
+    if (getIsClient() && inputRef?.current) {
       const clientRectPosition: any = inputRef.current.getBoundingClientRect();
       top = clientRectPosition.bottom + window.scrollY;
       left = clientRectPosition.left;
       width = clientRectPosition.width;
     }
 
-    const DatepickerDatesContainerPortal = () =>
-      createPortal(
+    const DatepickerDatesContainerPortal = () => (
+      <Portal>
         <DatepickerDatesContainer
           outlineColor={theme.mainOutlinedColor}
           backgroundColor={theme.mainBackgroundColor}
@@ -648,9 +649,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             maxDate={maxDate}
             mask={mask as DatepickerMask}
           />
-        </DatepickerDatesContainer>,
-        document.body
-      );
+        </DatepickerDatesContainer>
+      </Portal>
+    );
 
     return (
       <DatepickerContainerStyled

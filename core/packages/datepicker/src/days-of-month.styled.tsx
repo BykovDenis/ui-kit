@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import UiKitComponent from '../../enums/ui-kit-component';
 
 type DaysOfMonthStyledProps = {

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import IHeader from '../types/iheader';
 
 const H1Styled = styled.h1<IHeader>`

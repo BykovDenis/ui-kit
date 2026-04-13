@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import TTableBody from '../types/ttable-body';
 
 const TableBodyStyled = styled.tbody`

@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite --port 3000",
+    "start": "vite --port 3030",
     "build": "vite build",
     "preview": "vite preview",
     "install-packages": "npm i --registry https://github.com/BykovDenis/ui-kit.git",

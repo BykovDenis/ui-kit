@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 
 import type ITheme from '../../styles/types/itheme';
 import type PopupProps from '../types/popup-props';
-import { createPortal } from 'react-dom';
 import getMeasureValue from '../../helpers/get-measure-value';
+import { Portal } from '../../portal';
 
 const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
@@ -17,7 +17,10 @@ const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
   const refPortal = useRef<HTMLDivElement | null>(null);
 
   const initialCoordinated = () => {
-    const clientRectPosition: any = refPortal?.current ? refPortal.current.getBoundingClientRect() : null;
+    if (typeof window === 'undefined' || !refPortal.current) {
+      return;
+    }
+    const clientRectPosition: any = refPortal.current.getBoundingClientRect();
     if (clientRectPosition) {
       setTop(clientRectPosition.bottom + window.scrollY);
       setLeft(clientRectPosition.left);
@@ -37,8 +40,8 @@ const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
   }, [props.isOpen]);
 
   const componentThemed: any = (theme: ITheme) => {
-    const PopupPortal = () =>
-      createPortal(
+    const PopupPortal = () => (
+      <Portal>
         <div
           className={styles.popup}
           style={{
@@ -50,9 +53,9 @@ const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
           }}
         >
           {props.children}
-        </div>,
-        document.body
-      );
+        </div>
+      </Portal>
+    );
 
     return (
       <div ref={refPortal} className={styles['popup-container']}>

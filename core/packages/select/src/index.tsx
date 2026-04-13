@@ -27,6 +27,8 @@ import {
   TEXT_ALIGN_CENTER,
 } from '../../constants';
 import { v4 as uuidv4 } from 'uuid';
+import { getIsClient } from '../../utilities/ssr/get-is-client';
+import { Portal } from '../../portal';
 
 function getElementsParsed(elements: Array<IOption | string | number>, name: string): Array<IOption> {
   return elements?.map((element: string | number | IOption) => {
@@ -305,15 +307,15 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     let left: number = 0;
     let width: number = 0;
 
-    if (inputRef?.current) {
+    if (getIsClient() && inputRef?.current) {
       const clientRectPosition: any = inputRef.current.getBoundingClientRect();
       top = clientRectPosition.bottom + window.scrollY;
       left = clientRectPosition.left;
       width = clientRectPosition.width;
     }
 
-    const SelectListContainerPortal = () =>
-      createPortal(
+    const SelectListContainerPortal = () => (
+      <Portal>
         <SelectListContainer
           {...props}
           backgroundColor={backgroundColor}
@@ -380,9 +382,9 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
               </ListItem>
             )}
           </List>
-        </SelectListContainer>,
-        document.body
-      );
+        </SelectListContainer>
+      </Portal>
+    );
 
     return (
       <SelectContainer data-test={props.id} id={uuid} width={props?.width} height={props?.height} margin={props.margin}>

@@ -2,19 +2,25 @@
 
 exports[`TextField renders correctly 1`] = `
 <div
-  className="sc-pVTFL jzPhAh"
+  className="sc-pNYLI kYhJZQ"
 >
   <div
-    className="sc-furwcr fTYgzF"
+    backgroundColor="#ffffff"
+    className="sc-fujBio fdJGuP"
+    isExistTextMessageHelper={true}
+    isExistValue={false}
   >
     <label
-      className="sc-iCfMLu loQTOJ"
+      className="sc-iCoKjR dfGBqR"
       color="#333333"
       disabled={false}
+      error={false}
+      focusColor="#333333"
       fontFamily="Roboto, Arial, sans-serif"
       fontSize={14}
       fontWeight={400}
       htmlFor="textfield1"
+      isFocus={false}
       onClick={[Function]}
       readOnly={false}
     >
@@ -22,23 +28,36 @@ exports[`TextField renders correctly 1`] = `
     </label>
   </div>
   <div
-    className="sc-gsDKAQ iqOcMz"
+    className="sc-gtstET jXlMKC"
   >
     <div
-      className="sc-dkPtRN hfUIKC"
+      backgroundColor="#ffffff"
+      className="sc-dlnkDq jiXPWh"
     >
       <input
         autoComplete="off"
-        className="sc-bdvvtL dZhJw"
+        backgroundColor="#ffffff"
+        borderColor="rgba(0, 0, 0, 0.6)"
+        className="sc-bdnAzI ENVzU"
         color="#333333"
         data-error={false}
         data-focused={false}
         disabled={false}
+        disabledBackgroundColor="#e3e3e3"
+        disabledColor="rgba(51, 51, 51, 0.5)"
+        error={false}
+        focusColor="rgb(139, 88, 203)"
         fontFamily="Roboto, Arial, sans-serif"
         fontSize={14}
         fontWeight={400}
         height={40}
+        hoverBackgroundColor="#ffffff"
+        hoverBorderColor="rgba(0, 0, 0, 0.4)"
+        hoverColor="#333333"
         id="textfield1"
+        inputComponent={[Function]}
+        isNotClearable={false}
+        isSeparateNumberFormat={false}
         label="label"
         name="textfield1"
         onBlur={[Function]}
@@ -46,19 +65,25 @@ exports[`TextField renders correctly 1`] = `
         onFocus={[Function]}
         onInput={[Function]}
         onRemove={[Function]}
+        padding="0 22px 0 0"
         readOnly={false}
+        textAlign="right"
+        textMessage="text message"
         type="text"
         value=""
+        variant="outlined"
       />
       <div
-        className="sc-hKwDye gaTzWq underline"
+        className="sc-hKFxUR hgbtJD underline"
         color="rgba(0, 0, 0, 0.6)"
         disabled={false}
+        hoverColor="#ffffff"
         name="textfield1"
+        variant="outlined"
       />
     </div>
     <p
-      className="sc-eCImPb gCEIQt text-message"
+      className="sc-eCAoTo ODaru text-message"
       color="#333333"
       data-test-id="textfield1-text-message"
       fontFamily="Roboto, Arial, sans-serif"

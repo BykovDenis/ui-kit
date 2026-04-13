@@ -1,4 +1,4 @@
-import React, {PropsWithChildren, useEffect, useRef, useState} from 'react';
+import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import TMultiSelect from '../types/tmulti-select';
 import ITheme from '../../styles/types/itheme';
 import MultiSelectStyled from './multi-select-styled';
@@ -34,8 +34,9 @@ import {
 } from '../../constants';
 import MultiSelectVariant from '../enums/multi-select-variant';
 import KeyCode from '../../enums/key-code';
-import {BUTTON_MULTI_SELECT_CONTAINER, BUTTON_TOGGLE_NAME} from './constants';
-import {createPortal} from 'react-dom';
+import { BUTTON_MULTI_SELECT_CONTAINER, BUTTON_TOGGLE_NAME } from './constants';
+import { getIsClient } from '../../utilities/ssr/get-is-client';
+import { Portal } from '../../portal';
 
 type TMultiSelectString = TMultiSelect & {
   elementNames: Array<string>;
@@ -118,8 +119,8 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
     const elementsFromLocaleStorage: Set<string> = isUseLocaleStorage
       ? getElementsFromLocalStorage(props.name, ',')
       : props?.elementNamesDefaultSelected?.length > 0
-        ? new Set(props.elementNamesDefaultSelected)
-        : new Set();
+      ? new Set(props.elementNamesDefaultSelected)
+      : new Set();
     if (elementsFromLocaleStorage.size > 0) {
       setElementNamesSelected(elementsFromLocaleStorage);
     } else {
@@ -127,8 +128,8 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
         props?.elementNamesDefaultSelected?.length > 0
           ? props.elementNamesDefaultSelected
           : props?.isSelectAll
-            ? props.elementNames
-            : [];
+          ? props.elementNames
+          : [];
       if (isUseLocaleStorage) {
         const elementNamesSelectedText: string = columns?.join(',');
         localStorage.setItem(props.name, elementNamesSelectedText);
@@ -287,122 +288,126 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
     let left: number = 0;
     let width: number = 0;
 
-    if (btnMultiSelect?.current?.getBoundingClientRect) {
+    if (getIsClient() && btnMultiSelect?.current?.getBoundingClientRect) {
       const clientRectPosition: any = btnMultiSelect.current.getBoundingClientRect();
       top = clientRectPosition.bottom + window.scrollY;
       left = clientRectPosition.left;
       width = clientRectPosition.width;
     }
 
-    const SelectListContainerPortal = createPortal(
-      <ToggleContainer
-        data-name="toggle-container"
-        data-cy={`${props.id}-toggle-container`}
-        ref={btnToggleContainer}
-        backgroundColor={theme.mainBackgroundColor}
-        top={top}
-        left={left}
-        width={width}
-      >
-        <FormControl>
-          <Button
-            padding="2px"
-            width="50%"
-            onClick={onAllElementsSelected}
-            fontSize={pixelsMeasureToNumber(fontSize)}
-            color={theme.palette.baseFontColor}
-            backgroundColor={theme.palette.primary.light}
+    const SelectListContainerPortal = () => (
+      <Portal>
+        <ToggleContainer
+          data-name="toggle-container"
+          data-cy={`${props.id}-toggle-container`}
+          ref={btnToggleContainer}
+          backgroundColor={theme.mainBackgroundColor}
+          top={top}
+          left={left}
+          width={width}
+        >
+          <FormControl>
+            <Button
+              padding="2px"
+              width="50%"
+              onClick={onAllElementsSelected}
+              fontSize={pixelsMeasureToNumber(fontSize)}
+              color={theme.palette.baseFontColor}
+              backgroundColor={theme.palette.primary.light}
+              disabled={props.disabled}
+            >
+              Select all <CirclePlusIcon color={theme.palette.baseFontColor} />
+            </Button>
+            <Button
+              padding="2px"
+              width="50%"
+              onClick={onAllElementsUnselected}
+              fontSize={pixelsMeasureToNumber(fontSize)}
+              color={theme.palette.baseFontColor}
+              backgroundColor={theme.palette.primary.light}
+              disabled={props.disabled}
+            >
+              Unselect all <CircleCrossIcon color={theme.palette.baseFontColor} />
+            </Button>
+          </FormControl>
+          <Input
+            name="search-values"
+            value={searchText}
+            onChange={onSearchStringChange}
+            onRemove={onSearchStringClean}
+            placeholder="Search elements"
+            variant="outlined"
+            isNotClearable={props.disabled}
             disabled={props.disabled}
-          >
-            Select all <CirclePlusIcon color={theme.palette.baseFontColor}/>
-          </Button>
-          <Button
-            padding="2px"
-            width="50%"
-            onClick={onAllElementsUnselected}
             fontSize={pixelsMeasureToNumber(fontSize)}
-            color={theme.palette.baseFontColor}
-            backgroundColor={theme.palette.primary.light}
-            disabled={props.disabled}
-          >
-            Unselect all <CircleCrossIcon color={theme.palette.baseFontColor}/>
-          </Button>
-        </FormControl>
-        <Input
-          name="search-values"
-          value={searchText}
-          onChange={onSearchStringChange}
-          onRemove={onSearchStringClean}
-          placeholder="Search elements"
-          variant="outlined"
-          isNotClearable={props.disabled}
-          disabled={props.disabled}
-          fontSize={pixelsMeasureToNumber(fontSize)}
-        />
-        <ListContainerStyled backgroundColor={theme.mainBackgroundColor} outlinedColor={theme.palette.primary.lighter}>
-          <List
-            data-cy={`${props.id}-list`}
-            type="list-buttons"
-            onKeyUp={onKeyUp}
-            // onMouseDown={onMouseDown}
+          />
+          <ListContainerStyled
             backgroundColor={theme.mainBackgroundColor}
-            color={theme.palette.baseFontColor}
+            outlinedColor={theme.palette.primary.lighter}
           >
-            {!props.disabled &&
-              variant === MultiSelectVariant.Atlas &&
-              arrElementNames?.map((columnNameElement: string, index: number) => (
-                <ListItem
-                  type="button"
-                  key={`${index}-list-item`}
-                  padding="5px 0"
-                  justifyContent="space-between"
-                  color={theme.palette.baseFontColor}
-                  data-value={columnNameElement}
-                  data-name={columnNameElement}
-                  data-id={props.id}
-                  onClick={onColumnNameRemove}
-                  backgroundColor={theme.palette.primary.moreLighter}
-                >
-                  <Label
-                    backgroundColor="transparent"
+            <List
+              data-cy={`${props.id}-list`}
+              type="list-buttons"
+              onKeyUp={onKeyUp}
+              // onMouseDown={onMouseDown}
+              backgroundColor={theme.mainBackgroundColor}
+              color={theme.palette.baseFontColor}
+            >
+              {!props.disabled &&
+                variant === MultiSelectVariant.Atlas &&
+                arrElementNames?.map((columnNameElement: string, index: number) => (
+                  <ListItem
+                    type="button"
+                    key={`${index}-list-item`}
+                    padding="5px 0"
+                    justifyContent="space-between"
+                    color={theme.palette.baseFontColor}
                     data-value={columnNameElement}
-                    fontSize={pixelsMeasureToNumber(fontSize)}
+                    data-name={columnNameElement}
+                    data-id={props.id}
+                    onClick={onColumnNameRemove}
+                    backgroundColor={theme.palette.primary.moreLighter}
                   >
-                    {columnNameElement}
-                    <FormControl position="absolute" right={5} width="initial" data-value={columnNameElement}>
-                      <CircleCrossIcon color={theme.palette.baseFontColor}/>
-                    </FormControl>
-                  </Label>
-                </ListItem>
-              ))}
-            {!props.disabled &&
-              elementNamesFiltered?.map((columnNameElement: string, index: number) => (
-                <ListItem
-                  type="button"
-                  key={`${index}-list-item`}
-                  padding="5px 0"
-                  justifyContent="space-between"
-                  color={theme.palette.baseFontColor}
-                  data-value={columnNameElement}
-                  data-id={props.id}
-                  onClick={onElementNameSelect}
-                >
-                  <Label
-                    backgroundColor="transparent"
+                    <Label
+                      backgroundColor="transparent"
+                      data-value={columnNameElement}
+                      fontSize={pixelsMeasureToNumber(fontSize)}
+                    >
+                      {columnNameElement}
+                      <FormControl position="absolute" right={5} width="initial" data-value={columnNameElement}>
+                        <CircleCrossIcon color={theme.palette.baseFontColor} />
+                      </FormControl>
+                    </Label>
+                  </ListItem>
+                ))}
+              {!props.disabled &&
+                elementNamesFiltered?.map((columnNameElement: string, index: number) => (
+                  <ListItem
+                    type="button"
+                    key={`${index}-list-item`}
+                    padding="5px 0"
+                    justifyContent="space-between"
+                    color={theme.palette.baseFontColor}
                     data-value={columnNameElement}
-                    fontSize={pixelsMeasureToNumber(fontSize)}
+                    data-id={props.id}
+                    onClick={onElementNameSelect}
                   >
-                    {columnNameElement}
-                    <FormControl position="absolute" right={5} width="initial" data-value={columnNameElement}>
-                      <CirclePlusIcon color={theme.palette.baseFontColor}/>
-                    </FormControl>
-                  </Label>
-                </ListItem>
-              ))}
-          </List>
-        </ListContainerStyled>
-      </ToggleContainer>,
-      document.body
+                    <Label
+                      backgroundColor="transparent"
+                      data-value={columnNameElement}
+                      fontSize={pixelsMeasureToNumber(fontSize)}
+                    >
+                      {columnNameElement}
+                      <FormControl position="absolute" right={5} width="initial" data-value={columnNameElement}>
+                        <CirclePlusIcon color={theme.palette.baseFontColor} />
+                      </FormControl>
+                    </Label>
+                  </ListItem>
+                ))}
+            </List>
+          </ListContainerStyled>
+        </ToggleContainer>
+      </Portal>
     );
 
     return (
@@ -472,7 +477,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
                     data-id={props.id}
                     disabled={props.disabled}
                   >
-                    <CrossIcon color={theme.palette.baseFontColor}/>
+                    <CrossIcon color={theme.palette.baseFontColor} />
                   </ButtonStyled>
                 </FormControl>
               ))
@@ -492,10 +497,10 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
             borderColorFocused={theme.palette.primary.light}
             disabled={props.disabled}
           >
-            {isExpanded ? <ChevronUpIcon color={color}/> : <ChevronDownIcon color={color}/>}
+            {isExpanded ? <ChevronUpIcon color={color} /> : <ChevronDownIcon color={color} />}
           </ButtonExpandStyled>
         </FormControl>
-        {isExpanded && SelectListContainerPortal}
+        {isExpanded && <SelectListContainerPortal />}
       </MultiSelectContainerStyled>
     );
   };

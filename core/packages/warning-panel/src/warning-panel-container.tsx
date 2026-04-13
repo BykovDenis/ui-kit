@@ -1,4 +1,4 @@
-﻿import styled from 'styled-components';
+﻿import { styled } from 'styled-components';
 
 const WarningPanelContainer = styled('div')`
   display: flex;

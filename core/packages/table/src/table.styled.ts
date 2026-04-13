@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 import TTable from '../types/ttable';
 import getMeasureValue from '../../helpers/get-measure-value';
