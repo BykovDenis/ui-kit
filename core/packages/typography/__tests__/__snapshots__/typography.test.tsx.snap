@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Typography renders correctly 1`] = `
+<h1
+  className="sc-bdvvtL loFlDN"
+  color="#333333"
+  fontFamily="Roboto, Arial, sans-serif"
+  fontSize={28}
+>
+  Some text
+</h1>
+`;

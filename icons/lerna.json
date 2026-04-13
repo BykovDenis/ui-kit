@@ -1,0 +1,9 @@
+{
+  "version": "0.0.2",
+  "packages": [
+    "24x24/*",
+    "36x36/*"
+  ],
+  "npmClient": "npm",
+  "useWorkspaces": true
+}

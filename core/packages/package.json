@@ -1,0 +1,70 @@
+{
+  "name": "@dbykov-ui-kit/core",
+  "version": "0.2.5",
+  "description": "UI Kit",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Denis Bykov",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build-pack": "npm pack",
+    "clean": "rimraf dist",
+    "build": "npm run clean && rollup -c ./rollup.config.prod.js && rollup -c ./rollup.dts.config.js",
+    "build-dev": "rollup -w -c tmp/rollup.config.dev.js",
+    "prepare-ui-kit": "lerna bootstrap && lerna run build && git reset --hard",
+    "clean-node-modules": "rm -rf node_modules"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.14.5",
+    "@babel/preset-react": "^7.18.6",
+    "@rollup/plugin-terser": "0.4.4",
+    "@svgr/rollup": "^6.2.0",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.0",
+    "@types/enzyme": "^3.10.10",
+    "@types/react": "18.0.26",
+    "@types/react-dom": "18.0.1",
+    "@types/styled-components": "5.1.26",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "csstype": "3.0.11",
+    "dayjs": "1.11.19",
+    "eslint-config-prettier": "8.6.0",
+    "html-webpack-plugin": "^5.5.0",
+    "jest-styled-components": "7.2.0",
+    "postcss": "8.5.6",
+    "postcss-url": "^10.1.3",
+    "prettier": "2.8.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-test-renderer": "18.1.0",
+    "rimraf": "6.1.3",
+    "rollup": "3.29.5",
+    "rollup-plugin-cleaner": "^1.0.0",
+    "rollup-plugin-dts": "6.2.3",
+    "rollup-plugin-image-base64": "^1.0.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-react-svg": "^3.0.3",
+    "rollup-plugin-scss": "^3.0.0",
+    "rollup-plugin-svg": "^2.0.0",
+    "rollup-plugin-typescript2": "0.36.0",
+    "rollup-pluginutils": "^2.8.2",
+    "uuid": "10.0.0"
+  },
+  "dependencies": {
+    "styled-components": "5.3.3",
+    "use-debounce": "10.0.3"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.6",
+    "react-dom": ">=16.8.6"
+  },
+  "workspaces": [
+    "./*"
+  ]
+}

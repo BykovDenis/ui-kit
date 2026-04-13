@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "nodenext"
+  },
+  "include": [
+    "packages/**/*",
+    "src/**/*",
+    "components/**/*",
+    ".storybook/**/*",
+    "test/**/*",
+    "**/*.stories.tsx",
+    "**/*.stories.ts",
+    "**/*.tsx",
+    "**/*.ts",
+    "index.ts",
+    "index.tsx",
+    ".eslintrc.cjs"
+  ]
+}

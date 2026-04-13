@@ -1,0 +1,15 @@
+0 silly argv {
+0 silly argv   _: [ 'run' ],
+0 silly argv   lernaVersion: '4.0.0',
+0 silly argv   '$0': '..\\..\\..\\AppData\\Roaming\\npm\\node_modules\\lerna\\cli.js',
+0 silly argv   script: 'build'
+0 silly argv }
+1 notice cli v4.0.0
+2 verbose rootPath C:\Users\16783656\www\react-ui-components\icons
+3 error Error: Invalid package name "@dbykov-ui-kit/icons/ChevronDownIcon": name can only contain URL-friendly characters
+3 error     at invalidPackageName (C:\Users\16783656\AppData\Roaming\npm\node_modules\lerna\node_modules\npm-package-arg\npa.js:84:15)
+3 error     at Result.setName (C:\Users\16783656\AppData\Roaming\npm\node_modules\lerna\node_modules\npm-package-arg\npa.js:119:11)
+3 error     at new Result (C:\Users\16783656\AppData\Roaming\npm\node_modules\lerna\node_modules\npm-package-arg\npa.js:110:10)
+3 error     at Function.resolve (C:\Users\16783656\AppData\Roaming\npm\node_modules\lerna\node_modules\npm-package-arg\npa.js:54:15)
+3 error     at new Package (C:\Users\16783656\AppData\Roaming\npm\node_modules\lerna\node_modules\@lerna\package\index.js:95:26)
+3 error     at C:\Users\16783656\AppData\Roaming\npm\node_modules\lerna\node_modules\@lerna\project\index.js:207:26

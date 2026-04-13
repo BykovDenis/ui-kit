@@ -1,0 +1,23 @@
+export const DEFAULT_HEIGHT = 40;
+export const TEXT_ALIGN_RIGHT = 'right';
+export const TEXT_ALIGN_LEFT = 'left';
+export const TEXT_ALIGN_CENTER = 'center';
+export const TIMEOUT = 300;
+export const DELAY_DEBOUNCE = 300;
+export const TYPE_TEXT = 'text';
+export const FONT_WEIGHT_REGULAR = 400;
+export const IS_NOT_USE_DEBOUNCE_COUNT: number = 500;
+export const INPUT_TAG: string = 'INPUT';
+export const BUTTON_TAG: string = 'BUTTON';
+export const KEY_ESCAPE: string = 'ESCAPE';
+export const KEY_ENTER: string = 'ENTER';
+export const COLOR_THEME: string = 'normal';
+export const COLOR_TRANSPARENT: string = 'transparent';
+export const SVG_FORMAT_FILE: string = 'svg';
+
+export const TAG_NAME_BUTTON = 'BUTTON';
+export const TAG_NAME_LABEL = 'LABEL';
+export const TAG_NAME_INPUT = 'INPUT';
+export const TAG_NAME_DIV = 'DIV';
+export const TAG_NAME_SVG = 'svg';
+export const TAG_NAME_PATH = 'path';

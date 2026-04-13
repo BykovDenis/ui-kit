@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "rootDir": "./",
+    "baseUrl": "./",
+    "outDir": "dist",
+    "jsx": "react-jsx",
+    "target": "es5",
+    "module": "esnext",
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "allowJs": true,
+    "checkJs": false,
+    "allowSyntheticDefaultImports": true,
+    "preserveConstEnums": true,
+    "moduleResolution": "node",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "isolatedModules": true
+  },
+  "exclude": [
+    "dist",
+    "**/*.stories.*"
+  ],
+  "include": ["**/*",]
+}

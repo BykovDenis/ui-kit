@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox renders correctly 1`] = `
+<p
+  className="sc-dkPtRN ffbVmP"
+>
+  <input
+    checked={false}
+    className="sc-gsDKAQ hUkDFt"
+    color="#333333"
+    id="label1"
+    label="Label for the Checkbox"
+    onChange={[MockFunction]}
+    tabIndex="1"
+    type="checkbox"
+  />
+  <label
+    className="sc-bdvvtL dNUyao"
+    color="#333333"
+    fontFamily="Roboto, Arial, sans-serif"
+    fontSize={14}
+    htmlFor="label1"
+    onClick={[Function]}
+    tabIndex="1"
+    width="initial"
+  >
+    Label for the Checkbox
+  </label>
+</p>
+`;

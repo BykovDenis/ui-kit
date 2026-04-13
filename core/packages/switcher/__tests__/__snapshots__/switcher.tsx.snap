@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switcher renders correctly 1`] = `
+<div
+  className="sc-bdvvtL NEXlZ"
+>
+  <input
+    checked={true}
+    className="sc-gsDKAQ cdHZci"
+    color="#ffffff"
+    data-name="Native"
+    id="undefined-uuid-switcher-1"
+    name="custom-switcher-undefined"
+    onChange={[Function]}
+    type="radio"
+  />
+  <label
+    className="sc-dkPtRN hAxvtY"
+    color="#333333"
+    data-label="element1"
+    fontFamily="Roboto, Arial, sans-serif"
+    fontSize={14}
+    htmlFor="undefined-uuid-switcher-1"
+  >
+    Native
+  </label>
+  <input
+    checked={false}
+    className="sc-gsDKAQ kPvvYO"
+    color="#ffffff"
+    data-name="RUB"
+    id="undefined-uuid-switcher-2"
+    name="custom-switcher-undefined"
+    onChange={[Function]}
+    type="radio"
+  />
+  <label
+    className="sc-dkPtRN hAxvtY"
+    color="#333333"
+    data-label="element2"
+    fontFamily="Roboto, Arial, sans-serif"
+    fontSize={14}
+    htmlFor="undefined-uuid-switcher-2"
+  >
+    RUB
+  </label>
+</div>
+`;

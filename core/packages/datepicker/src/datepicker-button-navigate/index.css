@@ -1,0 +1,6 @@
+.button {
+    border-radius: 50%;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    background-color: transparent !important;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@dbykov-ui-kit/LastPageIcon",
+  "version": "0.0.2",
+  "description": "React UI Icon component LastPageIcon",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Denis Bykov",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c rollup.config.prod.js",
+    "build-dev": "rollup -w -c rollup.config.dev.js",
+    "clean-node-modules": "rm -rf node_modules"
+  },
+  "publishConfig": {
+    "registry": "https://github.com/BykovDenis/ui-kit.git"
+  },
+  "gitHead": "b29a487d3b4b9a512f91e847967f75288a73048f"
+}
