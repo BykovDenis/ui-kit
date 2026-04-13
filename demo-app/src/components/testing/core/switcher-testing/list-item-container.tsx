@@ -1,8 +1,8 @@
-import FlexContainer from "@dbykov-ui-kit/core/flex-container";
-import { ITheme } from "@dbykov-ui-kit/core/styles";
-import { useContext } from "react";
-import { ReactThemeContext } from "../../../app";
-import NumberContainer from "./number-container";
+import FlexContainer from '@dbykov-ui-kit/core/flex-container';
+import {ITheme} from '@dbykov-ui-kit/core/styles';
+import {useContext} from 'react';
+import {ReactThemeContext} from '../../../app';
+import NumberContainer from './number-container';
 
 type TypographyWrappedProps = {
   children: React.ReactNode;

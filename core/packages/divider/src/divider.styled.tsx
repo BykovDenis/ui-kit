@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import TDivider from '../types/tdivider';
 import getMeasureValue from '../../helpers/get-measure-value';
 

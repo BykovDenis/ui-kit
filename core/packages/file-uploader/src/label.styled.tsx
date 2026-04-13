@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 import getMeasureValue from '../../helpers/get-measure-value';
 import rgbToRgba from '../../helpers/rgb-to-rgba';

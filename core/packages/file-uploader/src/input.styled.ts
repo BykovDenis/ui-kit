@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 const InputStyled = styled.input.attrs({ type: 'file' })`
   opacity: 0;

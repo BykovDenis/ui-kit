@@ -2,40 +2,78 @@
 
 exports[`List renders correctly 1`] = `
 <div
-  className="sc-eCImPb ljyFZE"
+  backgroundColor="rgb(139, 88, 203)"
+  className="sc-eCAoTo ggbCzP"
   color="#333333"
+  elements={
+    Array [
+      "List item 1",
+      "List item 2",
+      "List item 3",
+      "List item 4",
+      "List item 5",
+    ]
+  }
   fontFamily="Roboto, Arial, sans-serif"
+  hoverBackgroundColor="rgba(139, 88, 203, 0.3)"
+  hoverColor="#333333"
   onKeyUp={[Function]}
   onMouseDown={[Function]}
   type="list-buttons"
+  underlineColor="rgb(139, 88, 203)"
 >
   <li
-    className="sc-bdvvtL fmOqfV"
+    backgroundColor="#ffffff"
+    className="sc-bdnAzI lnNvZx"
     color="#333333"
+    isVisibleTextUnderline={true}
+    justifyContent="center"
+    minHeight={30}
+    underLineColor="#333333"
   >
     List item 1
   </li>
   <li
-    className="sc-bdvvtL fmOqfV"
+    backgroundColor="#ffffff"
+    className="sc-bdnAzI lnNvZx"
     color="#333333"
+    isVisibleTextUnderline={true}
+    justifyContent="center"
+    minHeight={30}
+    underLineColor="#333333"
   >
     List item 2
   </li>
   <li
-    className="sc-bdvvtL fmOqfV"
+    backgroundColor="#ffffff"
+    className="sc-bdnAzI lnNvZx"
     color="#333333"
+    isVisibleTextUnderline={true}
+    justifyContent="center"
+    minHeight={30}
+    underLineColor="#333333"
   >
     List item 3
   </li>
   <li
-    className="sc-bdvvtL fmOqfV"
+    backgroundColor="#ffffff"
+    className="sc-bdnAzI lnNvZx"
     color="#333333"
+    isVisibleTextUnderline={true}
+    justifyContent="center"
+    minHeight={30}
+    underLineColor="#333333"
   >
     List item 4
   </li>
   <li
-    className="sc-bdvvtL fmOqfV"
+    backgroundColor="#ffffff"
+    className="sc-bdnAzI lnNvZx"
     color="#333333"
+    isVisibleTextUnderline={true}
+    justifyContent="center"
+    minHeight={30}
+    underLineColor="#333333"
   >
     List item 5
   </li>

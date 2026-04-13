@@ -2,9 +2,11 @@
 
 exports[`IconButton renders correctly 1`] = `
 <button
-  className="sc-bdvvtL kPzznj"
+  backgroundColor="rgb(139, 88, 203)"
+  className="sc-bdnAzI eqmLSF"
   color="#ffffff"
   disabled={false}
+  focusColor="rgb(139, 88, 203)"
   fontFamily="Roboto, Arial, sans-serif"
   fontSize={14}
   onClick={[MockFunction]}

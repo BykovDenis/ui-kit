@@ -379,3 +379,9 @@
     <li>File Uploader. Add to deploy</li>
     <li>Add unit tests, e2e tests</li>
 </ol>
+
+<h2>v 0.2.6</h2>
+<h3>Feature</h3>
+<ol>
+    <li>Add support React SSR mode</li>
+</ol>
