@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 
 import ITheme from '../../styles/types/itheme';
 import IconButtonStyled from './icon-button.styled';
-import TButton from '@dbykov-ui-kit/Button/types/tbutton';
+import TButton from '../../button/types/tbutton';
 import ColorTheme from '../../enums/color-theme';
 
 const IconButton: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TButton) => {

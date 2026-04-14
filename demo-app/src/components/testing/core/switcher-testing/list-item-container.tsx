@@ -33,7 +33,7 @@ const ListItemContainer: React.FunctionComponent<TypographyWrappedProps> = (
           alignItems="center"
           wordBreak="break-word"
           whiteSpace="normal"
-          width={1135}
+          width={700}
           lineHeight={2}
         >
           {props.children}

@@ -101,34 +101,32 @@ pipeline {
           steps {
             ansiColor('xterm') {
               dir("${rootPath}") {
-                wrap([$class: 'Xvfb', installationName: 'default']) {
-                  sh '''
-                    set -e
-                    cd ../demo-app
-                    npm run start -- --host 0.0.0.0 --port 3030 > /tmp/demo-app.log 2>&1 &
-                    DEMO_PID=$!
-                    cd ../core
+                sh '''
+                  set -e
+                  cd ../demo-app
+                  npm run start -- --host 0.0.0.0 --port 3030 > /tmp/demo-app.log 2>&1 &
+                  DEMO_PID=$!
+                  cd ../core
 
-                    cleanup() {
-                      kill "$DEMO_PID" 2>/dev/null || true
-                      wait "$DEMO_PID" 2>/dev/null || true
-                    }
-                    trap cleanup EXIT
+                  cleanup() {
+                    kill "$DEMO_PID" 2>/dev/null || true
+                    wait "$DEMO_PID" 2>/dev/null || true
+                  }
+                  trap cleanup EXIT
 
-                    i=0
-                    until curl -sf http://localhost:3030 >/dev/null; do
-                      i=$((i + 1))
-                      if [ "$i" -ge 60 ]; then
-                        echo "Demo app did not start on http://localhost:3030"
-                        cat /tmp/demo-app.log || true
-                        exit 1
-                      fi
-                      sleep 2
-                    done
+                  i=0
+                  until curl -sf http://localhost:3030 >/dev/null; do
+                    i=$((i + 1))
+                    if [ "$i" -ge 60 ]; then
+                      echo "Demo app did not start on http://localhost:3030"
+                      cat /tmp/demo-app.log || true
+                      exit 1
+                    fi
+                    sleep 2
+                  done
 
-                    npx cypress run --browser chromium --headless
-                  '''
-                }
+                  npx cypress run --browser chromium --headless
+                '''
               }
             }
           }
