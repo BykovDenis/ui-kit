@@ -548,7 +548,7 @@ pipeline {
                                 sh 'node -v'
                                 writeFile file: '.npmrc', text: "//registry.npmjs.org/:_authToken=${NPM_TOKEN}"
                                 sh 'npm whoami || echo "Not logged in"'
-                                sh 'npm publish'
+                                sh 'npm publish --access public'
                                 }
                             }
                         }
