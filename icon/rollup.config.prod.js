@@ -31,10 +31,7 @@ export default [
       typescript({ objectHashIgnoreUnknownHack: false }),
       terser(),
     ],
-    external: (id) => {
-      if (id === 'react' || id === 'react-dom') return true;
-      return id.startsWith('@dbykov-ui-kit/');
-    },
+    external: ['react', 'react-dom'],
   },
   {
     input: './src/index.d.ts',
