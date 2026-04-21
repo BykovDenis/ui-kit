@@ -23,9 +23,9 @@
     <li>Stability version</li>
 </ol>
 
-<h2>v 1.1.0</h2>
+<h2>v 1.0.2</h2>
 
 <h3>Features</h3>
 <ol>
-    <li>Publish the package as ESM only</li>
+    <li>Publish different esm/cjs</li>
 </ol>
