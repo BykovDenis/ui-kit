@@ -1,13 +1,13 @@
 {
   "name": "@dbykov-ui-kit/icon",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React UI Icon component Icon",
   "homepage": "/",
   "license": "MIT",
   "author": "Denis Bykov",
   "type": "module",
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c rollup.config.prod.js",
