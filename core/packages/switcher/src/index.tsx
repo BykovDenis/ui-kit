@@ -9,7 +9,7 @@ import TSwitcher from '../types/tswitcher';
 import ColorTheme from '../../enums/color-theme';
 
 const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const Consumer = globalThis.ReactThemeContextConsumer;
   const [disabled, setDisabled] = useState<boolean>(props?.disabled !== undefined ? props.disabled : false);
   const [colorTheme] = useState<string>(props?.colorTheme || ColorTheme.Normal);
   const [id1] = useState<string>(`${props.id}-${uuidv4()}`);
@@ -26,9 +26,6 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
     setError(props?.error !== undefined ? props.error : false);
   }, [props.error]);
 
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
   const { element1, element2, activeElement } = props;
   const isActiveFirstElement = element1 === activeElement;
   const isActiveSecondElement = element2 === activeElement;

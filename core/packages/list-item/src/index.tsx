@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { ListItemType } from '../enums/list-item-type';
 import IListElement from '../types/ilist-element';
@@ -12,12 +12,8 @@ import { TEXT_ALIGN_CENTER } from '../../constants';
 const HEIGHT: number = 30;
 
 const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const Consumer = globalThis.ReactThemeContextConsumer;
   const [isVisibleTextUnderline] = useState<boolean>(props?.isVisibleTextUnderline !== undefined ? props.isVisibleTextUnderline : true);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
 
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string = props.isSelected

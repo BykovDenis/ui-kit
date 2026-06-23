@@ -7,12 +7,8 @@ import RadioStyled from './radio.styled';
 import RadioProps from '../types/radio-props';
 
 const Radio: React.FunctionComponent<RadioProps> = (props: RadioProps) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const Consumer = globalThis.ReactThemeContextConsumer;
   const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
     setError(props?.error !== undefined ? props.error : false);

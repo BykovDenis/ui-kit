@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import Label from '../../label/src/';
 import ITheme from '../../styles/types/itheme';
@@ -7,11 +7,7 @@ import ButtonStyled from './button.styled';
 import LabelInteractiveStyled from './label-interactive.styled';
 
 const LabelInteractive: React.FunctionComponent<TLabelInteractive> = (props: TLabelInteractive) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+  const Consumer = globalThis.ReactThemeContextConsumer;
 
   const componentThemed: any = (theme: ITheme) => {
     const color: string = props?.error

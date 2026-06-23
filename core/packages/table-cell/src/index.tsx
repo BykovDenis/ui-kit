@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import ChevronDownIcon from '../../icons-components/24x24/chevron-down-icon';
 import ITheme from '../../styles/types/itheme';
@@ -6,11 +6,7 @@ import TTableCell from '../types/ttable-cell';
 import TableCellStyled from './table-cell.styled';
 
 const TableCell: React.FunctionComponent<TTableCell> = (props: TTableCell) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+  const Consumer = globalThis.ReactThemeContextConsumer;
 
   const componentThemed: any = (theme: ITheme) => {
     const borderColor: string = theme.mainOutlinedColor;

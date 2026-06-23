@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+﻿import React from 'react';
 
 import TGridContainer from '../types/tgrid-container';
 import ITheme from '../../styles/types/itheme';
@@ -8,11 +8,7 @@ import isNotEmptyNumber from "../../helpers/is-not-empty-number";
 import getMeasureValue from "../../helpers/get-measure-value";
 
 const GridContainer: React.FunctionComponent<TGridContainer> = (props: TGridContainer) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+  const Consumer = globalThis.ReactThemeContextConsumer;
 
   const columns: number = props?.columns ?? 1;
   const rows: number = props?.columns ?? 1;

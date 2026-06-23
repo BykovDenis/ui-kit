@@ -8,13 +8,9 @@ import TButton from '../types/tbutton';
 import ButtonStyled from './button.styled';
 
 const Button = React.forwardRef<HTMLButtonElement, PropsWithChildren<TButton>>((props: TButton, ref) => {
-  const [Consumer, setConsumer] = useState(globalThis?.ReactThemeContextConsumer);
+  const Consumer = globalThis?.ReactThemeContextConsumer;
   const [colorTheme] = useState<string>(props?.colorTheme || ColorTheme.Normal);
   const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
     setError(props?.error !== undefined ? props.error : false);

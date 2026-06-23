@@ -18,7 +18,7 @@ import getElementsFromLocalStorage from '../../helpers/get-elements-from-localst
 const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColumnsVisible>> = (
   props: TTableColumnsVisible
 ) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const Consumer = globalThis.ReactThemeContextConsumer;
   const [isExpanded, setExpanded] = useState<boolean>(false);
   const [columnNames, setColumnNames] = useState<Array<string>>(props.columnNames);
   const [columnNamesSelected, setColumnNamesSelected] = useState<Set<string>>(null);
@@ -35,10 +35,6 @@ const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColum
       setColumnNamesSelected(new Set(columns));
     }
   }, []);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
     setColumnNames(props.columnNames);

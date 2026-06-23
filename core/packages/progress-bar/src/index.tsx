@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import TProgressBar from '../types/tprogress-bar';
 import ProgressBarContainerStyled from './progress-bar-container.styled';
 import ProgressBarFillContainerStyled from './progress-bar-fill-container.styled';
@@ -7,11 +7,7 @@ import ITheme from '../../styles/types/itheme';
 import MiddleEllipseContainer from './middle-ellipse-container';
 
 const ProgressBar: React.FunctionComponent<TProgressBar> = (props: TProgressBar) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+  const Consumer = globalThis.ReactThemeContextConsumer;
 
   const componentThemed: any = (theme: ITheme) => {
     const isDisabled: boolean = props.disabled || false;

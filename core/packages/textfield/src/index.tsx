@@ -12,11 +12,7 @@ const TextField = forwardRef<HTMLInputElement, ITextField>((props: ITextField, r
   const [value, setValue] = useState<string | number>(props.value);
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+  const Consumer = globalThis.ReactThemeContextConsumer;
 
   useEffect(() => {
     setValue(props.value);

@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import TTableBody from '../types/ttable-body';
 import TableBodyStyled from './table-body.styled';
 
 const TableBody: React.FunctionComponent<TTableBody> = (props: TTableBody) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+  const Consumer = globalThis.ReactThemeContextConsumer;
 
   const componentThemed: any = () => {
     return <TableBodyStyled className={props?.className}>{props.children}</TableBodyStyled>;

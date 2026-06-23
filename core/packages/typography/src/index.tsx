@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import TTypography from '../types/ttypography';
 import H1Styled from './h1.styled';
 import H2Styled from './h2.styled';
@@ -7,11 +7,7 @@ import ITheme from '../../styles/types/itheme';
 import PhraseStyled from './phrase.styled';
 
 const Typography: React.FunctionComponent<TTypography> = (props: TTypography) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+  const Consumer = globalThis.ReactThemeContextConsumer;
 
   const componentThemed: any = (theme: ITheme) => {
     const color: string = !props?.error ? theme?.palette?.baseFontColor : theme?.palette?.secondary?.main;

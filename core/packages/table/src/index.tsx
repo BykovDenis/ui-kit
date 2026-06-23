@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import ITheme from '../../styles/types/itheme';
 import TTable from '../types/ttable';
 import TableStyled from './table.styled';
 
 const Table: React.FunctionComponent<TTable> = (props: TTable) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+  const Consumer = globalThis.ReactThemeContextConsumer;
 
   const componentThemed: any = (theme: ITheme) => {
     const color: string = props.color ?? theme.palette.baseFontColor;

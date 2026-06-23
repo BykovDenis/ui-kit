@@ -12,7 +12,7 @@ const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
   const [top, setTop] = useState<number>(0);
   const [left, setLeft] = useState<number>(0);
   const [width, setWidth] = useState<number>(0);
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const Consumer = globalThis.ReactThemeContextConsumer;
 
   const refPortal = useRef<HTMLDivElement | null>(null);
 

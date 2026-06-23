@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import ITheme from '../../styles/types/itheme';
 import TTab from '../types/ttab';
 import TabStyled from './tab.styled';
 
 const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+  const Consumer = globalThis.ReactThemeContextConsumer;
 
   const componentThemed: any = (theme: ITheme) => {
     const color: string = props.disabled ? theme?.inactiveColor : props.color ?? theme?.palette?.baseFontColor;

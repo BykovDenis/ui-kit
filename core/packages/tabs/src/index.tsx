@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import ITheme from '../../styles/types/itheme';
 import TTabs from '../types/ttabs';
@@ -7,11 +7,7 @@ import renderChildren from '../helpers/render-children-with-props';
 
 const Tabs: React.FunctionComponent<TTabs> = (props: TTabs) => {
   if (props?.children) {
-    const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-    useEffect(() => {
-      setConsumer(globalThis.ReactThemeContextConsumer);
-    }, [globalThis.ReactThemeContextConsumer]);
+    const Consumer = globalThis.ReactThemeContextConsumer;
 
     const componentThemed: any = (theme: ITheme) => {
       const color: string = props.disabled

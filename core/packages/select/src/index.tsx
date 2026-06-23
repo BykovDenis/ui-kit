@@ -102,7 +102,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [activeElement, setActiveElement] = useState<IOption>(activeElementParsed);
   const [isEdited, setIsEdited] = useState<boolean>(false);
   const [activeIndexElement, setActiveIndexElement] = useState<number>(null);
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const Consumer = globalThis.ReactThemeContextConsumer;
 
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
   const selectListContainerRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -183,16 +183,12 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     document.addEventListener('keyup', onKeyUp);
     return () => {
       document.removeEventListener('mouseup', onMouseSelectUp);
-      document.addEventListener('keyup', onKeyUp);
+      document.removeEventListener('keyup', onKeyUp);
       setIsVisibleList(false);
       setIsFocus(false);
       setIsFoundValue(true);
     };
   }, []);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
     const activeElementParsed: IOption = getActiveElementParsed(props.activeElement);

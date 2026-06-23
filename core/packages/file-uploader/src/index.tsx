@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import ITheme from '../../styles/types/itheme';
 import FileUploaderProps from '../types/file-uploader-props';
@@ -6,11 +6,7 @@ import LabelStyled from './label.styled';
 import InputStyled from './input.styled';
 
 const FileUploader: React.FunctionComponent<FileUploaderProps> = (props: FileUploaderProps) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+  const Consumer = globalThis.ReactThemeContextConsumer;
 
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string = props.disabled

@@ -34,3 +34,4 @@ yarn-error.log*
 **/analize.html
 
 *storybook.log
+.claude/settings.local.json

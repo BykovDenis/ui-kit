@@ -1,17 +1,11 @@
 import IconProps from './types/icon-props';
 import SizeMap from './enums/size-map';
-import React, { useId, useState, useEffect } from 'react';
+import React, { useId } from 'react';
 import getPathname from './helpers/get-pathname';
 
 const Icon: React.FunctionComponent<IconProps> = ({ name, size = 'm', pathname }: IconProps) => {
   // @ts-ignore-next-line
-  const [Consumer, setConsumer] = useState(globalThis?.ReactIconContextConsumer);
-
-  useEffect(() => {
-    // @ts-ignore-next-line
-    setConsumer(globalThis.ReactIconContextConsumer);
-    // @ts-ignore-next-line
-  }, [globalThis.ReactIconContextConsumer]);
+  const Consumer = globalThis?.ReactIconContextConsumer;
 
   const filterId: string = useId();
   const actualSize: number = Number(SizeMap[size]);

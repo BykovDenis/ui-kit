@@ -50,7 +50,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   // >>> initial values
   const [months, setMonths] = useState<Array<IOption>>(locale === Locale.Ru ? monthsElementRu : monthsElementEn);
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const Consumer = globalThis.ReactThemeContextConsumer;
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState<string>(props.value);
@@ -354,10 +354,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   useEffect(() => {
     setIsError(props?.error !== undefined ? props.error : false);
   }, [props.error]);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
     setLocale(props.locale);

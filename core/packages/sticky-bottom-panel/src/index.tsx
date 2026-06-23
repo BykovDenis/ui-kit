@@ -9,7 +9,7 @@ import CircleCrossIcon from '../../icons-components/24x24/circle-cross-icon';
 import { onKeyUpEscapeEventHandler } from '../../helpers/on-key-up-event-handler';
 
 const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: TStickyBottomPanel) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const Consumer = globalThis.ReactThemeContextConsumer;
   const [isOpen, setIsOpen] = useState<boolean>(props.isOpen);
   const [panelAlign] = useState<'left' | 'right' | 'center'>(props.panelAlign || 'center');
 
@@ -29,10 +29,6 @@ const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: T
   useEffect(() => {
     setIsOpen(props.isOpen);
   }, [props.isOpen]);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
 
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string = props?.backgroundColor || theme?.mainBackgroundColor;

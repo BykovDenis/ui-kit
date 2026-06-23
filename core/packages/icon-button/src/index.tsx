@@ -7,13 +7,9 @@ import TButton from '../../button/types/tbutton';
 import ColorTheme from '../../enums/color-theme';
 
 const IconButton: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TButton) => {
-  const [Consumer, setConsumer] = useState(globalThis?.ReactThemeContextConsumer);
+  const Consumer = globalThis?.ReactThemeContextConsumer;
   const [colorTheme] = useState<string>(props?.colorTheme || ColorTheme.Normal);
   const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
     setError(props?.error !== undefined ? props.error : false);

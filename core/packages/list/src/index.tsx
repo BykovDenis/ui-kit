@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
 import { COLOR_THEME } from '../../constants';
 import ITheme from '../../styles/types/itheme';
@@ -8,11 +8,7 @@ import ListStyled from './list.styled';
 import ListDivStyled from './list-div.styled';
 
 const List: React.FunctionComponent<IList> = (props: IList) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
+  const Consumer = globalThis.ReactThemeContextConsumer;
 
   const listRef = useRef();
   const componentThemed: any = (theme: ITheme) => {

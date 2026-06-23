@@ -7,12 +7,8 @@ import FormControl from './form-control.styled';
 import CheckboxProps from '../types/icheckbox';
 
 const Checkbox: React.FunctionComponent<CheckboxProps> = (props: CheckboxProps) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const Consumer = globalThis.ReactThemeContextConsumer;
   const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
-
-  useEffect(() => {
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
     setError(props?.error !== undefined ? props.error : false);
