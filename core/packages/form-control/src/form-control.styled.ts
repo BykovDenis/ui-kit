@@ -53,6 +53,8 @@ const FormControlStyled = styled.div<IFormControl>`
     ${props?.wordBreak ? `word-break: ${props.wordBreak};` : ''}
     ${props?.overflowY ? `overflow-y: ${props.overflowY};` : ''}
     ${props?.overflow ? `overflow: ${props.overflow};` : ''}
+    ${props?.boxShadow ? `box-shadow: ${props.boxShadow};` : ''}
+    ${props?.filter ? `filter: ${props.filter};` : ''}
   `}
 `;
 

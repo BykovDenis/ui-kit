@@ -7,6 +7,10 @@ import GridContainer from "@dbykov-ui-kit/core/grid-container";
 import Button from "@dbykov-ui-kit/core/button";
 import FormControl from "@dbykov-ui-kit/core/form-control";
 import FlexContainer from "@dbykov-ui-kit/core/flex-container";
+import Table from '@dbykov-ui-kit/core/table';
+import TableHead from '@dbykov-ui-kit/core/table-head';
+import TableRow from '@dbykov-ui-kit/core/table-row';
+import TableCell from '@dbykov-ui-kit/core/table-cell';
 
 const MultiSelectTesting: React.FunctionComponent = () => {
   const [columnsSelected1, setColumnNamesSelected1] = useState<
@@ -92,12 +96,12 @@ const MultiSelectTesting: React.FunctionComponent = () => {
   };
 
   return (
-    <>
+    <FlexContainer flexDirection="column">
       <GridContainer
         gridTemplateColumns="300px 500px 300px 300px"
         gridColumnGap={20}
-        gridTemplateRows="500px"
         alignItems="center"
+        justifyContent="start"
       >
         <FlexContainer
           padding="40px"
@@ -159,7 +163,21 @@ const MultiSelectTesting: React.FunctionComponent = () => {
           disabled={true}
         />
       </GridContainer>
-    </>
+      <FlexContainer margin="-30px 0 0 0">
+        <Table>
+          <TableHead>
+            <TableRow isHeader={true}>
+              <TableCell>Column 1</TableCell>
+              <TableCell>Column 2</TableCell>
+              <TableCell>Column 3</TableCell>
+              <TableCell>Column 4</TableCell>
+              <TableCell>Column 5</TableCell>
+              <TableCell>Column 6</TableCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      </FlexContainer>
+    </FlexContainer>
   );
 };
 

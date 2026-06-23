@@ -306,7 +306,11 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
           left={left}
           width={width}
         >
-          <FormControl>
+          <FormControl
+            backgroundColor={theme.mainBackgroundColor}
+            borderRadius={4}
+            boxShadow={`1px 0 3px ${theme.palette.baseFontColor}`}
+          >
             <Button
               padding="2px"
               width="50%"

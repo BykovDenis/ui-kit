@@ -60,6 +60,8 @@ type TBaseStyles = {
   error?: boolean;
   colorTheme?: 'normal' | 'warning';
   ref?: any;
+  boxShadow?: CSS.Property.BoxShadow;
+  filter?: CSS.Property.Filter;
 };
 
 export default TBaseStyles;

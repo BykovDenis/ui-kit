@@ -1,5 +1,6 @@
 import {useContext} from 'react';
 import themeDark from '../themes/theme-dark';
+import themeLight from '../themes/theme-light';
 import iconConfig from '../themes/icon-config';
 import Sidebar from './sidebar';
 

@@ -12,8 +12,8 @@
     "npm-update-ui-icon": "npm i -E @dbykov-ui-kit/icon@latest"
   },
   "dependencies": {
-    "@dbykov-ui-kit/core": "0.2.3",
-    "@dbykov-ui-kit/icon": "1.0.0",
+    "@dbykov-ui-kit/core": "0.2.7",
+    "@dbykov-ui-kit/icon": "1.0.3",
     "@tanstack/react-router": "1.56.5",
     "dayjs": "1.11.11",
     "react": "18.2.0",
@@ -31,7 +31,7 @@
     "picocolors": "1.0.1",
     "rollup-plugin-visualizer": "5.12.0",
     "typescript": "4.9.3",
-    "uuid": "10.0.0",
+    "uuid": "14.0.0",
     "vite": "8.0.16",
     "vite-plugin-progress": "0.0.7"
   }
