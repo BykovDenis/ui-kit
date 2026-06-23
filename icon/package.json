@@ -1,14 +1,28 @@
 {
   "name": "@dbykov-ui-kit/icon",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React UI Icon component Icon",
   "homepage": "/",
   "license": "MIT",
   "author": "Denis Bykov",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/esm/index.js"
+    },
+    "./styles": {
+      "types": "./styles/dist/index.d.ts",
+      "import": "./styles/dist/esm/index.js",
+      "require": "./styles/dist/index.cjs",
+      "default": "./styles/dist/esm/index.js"
+    }
+  },
   "scripts": {
     "build": "rollup -c rollup.config.prod.js",
     "build-dev": "rollup -w -c rollup.config.dev.js",
@@ -52,7 +66,12 @@
     "react-dom": ">=16.8.6"
   },
   "gitHead": "b29a487d3b4b9a512f91e847967f75288a73048f",
-  "workspaces": [
-    "./*"
+  "files": [
+    "dist",
+    "styles/dist",
+    "styles/package.json",
+    "styles/README.md",
+    "styles/LICENSE.md",
+    "styles/data"
   ]
 }
