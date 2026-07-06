@@ -31,15 +31,20 @@ Proxy над styled-components с `shouldForwardProp` на базе `@emotion/is
 заодно добавлен `private: true` в checkbox и styles, где поля не было.
 Публикуемые (core/packages, icon) — корректно без поля. Коммит e4167bc.
 
-### 1.3. [ ] Гигиена репозитория
+### 1.3. [x] Гигиена репозитория
 - удалить `core/packages/tsconfig.json--old`, `core/packages/_tmp-configs/`;
 - поправить опечатку «storebook» в скриптах/конфигах;
 - вычистить закомментированные workspace-импорты в demo-app;
 - обновить `CLAUDE.md`: описана старая архитектура через `globalThis`, нужно
   описать ThemeProvider/useTheme + compat-шимы.
 
-### 1.4. [ ] CHANGELOG для icon
+Сделано (коммит a2b7532): −377 строк мусора; CLAUDE.md переписан — theme context,
+styled-обёртка, схема сборки externals+relative dist, реальный publishing flow.
+
+### 1.4. [x] CHANGELOG для icon
 Завести `icon/CHANGELOG.MD` по образцу core, задним числом описать 1.1.0.
+Факт: файл существовал, но в HTML-разметке и заканчивался на 1.0.2 —
+конвертирован в markdown в стиле core, добавлена запись 1.1.0.
 
 ---
 

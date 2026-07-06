@@ -1,31 +1,28 @@
-<<h1>CHANGE LOG</h1>
+# CHANGELOG
 
-<h2>v 0.0.1</h2>
+## v 0.0.1
+### Features
+- Create Icon component
 
-<h3>Features</h3>
-<ol>
-    <li>Create Icon component</li>
-</ol>
+## v 0.0.2
+### Features
+- Create Icon component Provider
+- Add dynamic pathname for icons source
+- Add small size
 
-<h2>v 0.0.2</h2>
+## v 1.0.0
+### Features
+- Stability version
 
-<h3>Features</h3>
-<ol>
-    <li>Create Icon component Provider</li>
-    <li>Add dynamic pathname for icons source</li>  
-    <li>Add small size</li>  
-</ol>
+## v 1.0.2
+### Features
+- Publish different esm/cjs
 
-<h2>v 1.0.0</h2>
-
-<h3>Features</h3>
-<ol>
-    <li>Stability version</li>
-</ol>
-
-<h2>v 1.0.2</h2>
-
-<h3>Features</h3>
-<ol>
-    <li>Publish different esm/cjs</li>
-</ol>
+## v 1.1.0
+### Features
+- Icon config migrated from `globalThis` to a shared React Context: new exports
+  `IconProvider`, `useIconContext`, `IconContextConsumer`, `setFallbackIconConfig`
+- `getNewReactIconContext` kept as a backwards-compatible shim: existing
+  bootstrap code and previously published bundles keep working unchanged
+- The `./styles` bundle imports the shared `IconContext` from the main bundle,
+  so both entry points see a single context instance
