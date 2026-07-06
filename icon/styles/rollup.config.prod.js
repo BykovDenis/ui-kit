@@ -5,6 +5,11 @@ import typescript from 'rollup-plugin-typescript2';
 import pkg from './package.json';
 import dts from 'rollup-plugin-dts';
 
+// The shared IconContext lives in the main bundle; import it there instead of
+// bundling a second copy. Both bundles ship in one npm tarball, so the
+// relative dist paths resolve for consumers as well as in the workspace.
+const MAIN_ENTRY = '@dbykov-ui-kit/icon';
+
 export default [
   {
     input: 'src/index.ts',
@@ -15,6 +20,7 @@ export default [
         exports: 'named',
         sourcemap: false,
         strict: true,
+        paths: { [MAIN_ENTRY]: '../../dist/index.cjs' },
       },
       {
         file: pkg.module,
@@ -22,6 +28,7 @@ export default [
         exports: 'named',
         sourcemap: false,
         strict: true,
+        paths: { [MAIN_ENTRY]: '../../../dist/esm/index.js' },
       },
     ],
     plugins: [
@@ -31,7 +38,7 @@ export default [
       typescript({ objectHashIgnoreUnknownHack: false }),
       terser(),
     ],
-    external: ['react', 'react-dom'],
+    external: ['react', 'react-dom', MAIN_ENTRY],
   },
   {
     input: './src/index.d.ts',

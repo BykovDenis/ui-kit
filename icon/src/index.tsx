@@ -2,53 +2,35 @@ import IconProps from './types/icon-props';
 import SizeMap from './enums/size-map';
 import React, { useId } from 'react';
 import getPathname from './helpers/get-pathname';
+import { useIconContext } from './icon-context';
 
 const Icon: React.FunctionComponent<IconProps> = ({ name, size = 'm', pathname }: IconProps) => {
-  // @ts-ignore-next-line
-  const Consumer = globalThis?.ReactIconContextConsumer;
+  const iconConfig = useIconContext();
 
   const filterId: string = useId();
   const actualSize: number = Number(SizeMap[size]);
 
-  if (Consumer) {
-    const iconComponentWrapped: any = (iconProps: IconProps): any => {
-      const nameParsed: string | undefined = name || iconProps.name;
-      const actualPathname: string = getPathname(iconProps?.pathname, size);
+  const nameParsed: string | undefined = name || iconConfig?.name;
+  const href: string = iconConfig
+    ? `${getPathname(iconConfig.pathname, size)}${nameParsed}.svg`
+    : `${pathname}${name}.svg`;
 
-      return (
-        <>
-          <svg width={actualSize} height={actualSize}>
-            <filter id={filterId}>
-              <feFlood floodColor="currentColor" />
-              <feComposite in2="SourceAlpha" operator="in" />
-            </filter>
-            <image
-              width={actualSize}
-              height={actualSize}
-              href={`${actualPathname}${nameParsed}.svg`}
-              filter={`url(#${filterId})`}
-            />
-          </svg>
-        </>
-      );
-    };
-
-    return <Consumer>{iconComponentWrapped}</Consumer>;
-  } else {
-    console.log('globalThis?.ReactIconContextConsumer not found');
-
-    return (
-      <>
-        <svg width={actualSize} height={actualSize}>
-          <filter id={filterId}>
-            <feFlood floodColor="currentColor" />
-            <feComposite in2="SourceAlpha" operator="in" />
-          </filter>
-          <image width={actualSize} height={actualSize} href={`${pathname}${name}.svg`} filter={`url(#${filterId})`} />
-        </svg>
-      </>
-    );
-  }
+  return (
+    <svg width={actualSize} height={actualSize}>
+      <filter id={filterId}>
+        <feFlood floodColor="currentColor" />
+        <feComposite in2="SourceAlpha" operator="in" />
+      </filter>
+      <image width={actualSize} height={actualSize} href={href} filter={`url(#${filterId})`} />
+    </svg>
+  );
 };
 
+export {
+  default as IconContext,
+  IconProvider,
+  IconContextConsumer,
+  useIconContext,
+  setFallbackIconConfig,
+} from './icon-context';
 export default Icon;

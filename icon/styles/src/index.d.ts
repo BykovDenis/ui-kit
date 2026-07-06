@@ -1,8 +1,9 @@
-import getNewReactIconContext from './index';
+import React from 'react';
+
 import IconProps from '../../src/types/icon-props';
 
-declare const ReactIconContextConsumer;
-declare const iconProps: IconProps;
+declare const IconContext: React.Context<IconProps | null>;
+declare function getNewReactIconContext(iconProps?: IconProps): typeof IconContext;
 
-export { iconProps, ReactIconContextConsumer };
+export { IconContext, IconProps };
 export default getNewReactIconContext;

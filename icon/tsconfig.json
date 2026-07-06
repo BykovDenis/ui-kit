@@ -2,6 +2,9 @@
   "compilerOptions": {
     "rootDir": ".",
     "baseUrl": ".",
+    "paths": {
+      "@dbykov-ui-kit/icon": ["./src"]
+    },
     "outDir": "dist",
     "jsx": "react-jsx",
     "target": "es6",
