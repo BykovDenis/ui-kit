@@ -5,8 +5,6 @@ import TableCell from "@dbykov-ui-kit/core/table-cell";
 import TableBody from "@dbykov-ui-kit/core/table-body";
 import React, { useState } from "react";
 import Typography from "@dbykov-ui-kit/core/typography";
-// local components
-// import Input from "../../../../../core/packages/input/src";
 // components from package library
 import Input from "@dbykov-ui-kit/core/input";
 

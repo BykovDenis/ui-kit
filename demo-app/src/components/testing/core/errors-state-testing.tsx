@@ -1,21 +1,6 @@
 import React from 'react';
 import Typography from '@dbykov-ui-kit/core/typography';
 import FlexContainer from '@dbykov-ui-kit/core/flex-container';
-// local components
-// import TextField from '../../../packages/textfield/src';
-// import GridContainer from '../../../packages/grid-container/src';
-// import Label from '@dbykov-ui-kit/core/label';
-// import Button from '../../../packages/button/src';
-// import Input from '../../../packages/input/src';
-// import Select from '../../../packages/select/src';
-// import IOption from '../../../packages/select/types/ioption';
-// import Datepicker from '../../../packages/datepicker/src';
-// import DatepickerMask from '../../../packages/datepicker/enums/datepicker-mask';
-// import Locale from '../../../packages/enums/locale';
-// import Checkbox from '../../../packages/checkbox/src';
-// import Radio from '../../../packages/radio/src';
-// import IconButton from '../../../packages/icon-button/src';
-// import Switcher from '../../../packages/switcher/src';
 // components from package library
 import TextField from '@dbykov-ui-kit/core/textfield';
 import GridContainer from '@dbykov-ui-kit/core/grid-container';

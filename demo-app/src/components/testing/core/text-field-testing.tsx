@@ -6,8 +6,6 @@ import TableBody from "@dbykov-ui-kit/core/table-body";
 import React, { useState } from "react";
 import Typography from "@dbykov-ui-kit/core/typography";
 import { success } from "../../../utils/dev-utils-theme";
-// local components
-// import TextField from "../../../../../core/packages/textfield/src";
 // components from package library
 import TextField from "@dbykov-ui-kit/core/textfield";
 

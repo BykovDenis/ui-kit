@@ -4,9 +4,6 @@ import GridContainer from "@dbykov-ui-kit/core/grid-container";
 import { ITheme } from "@dbykov-ui-kit/core/styles";
 import { ReactIconContext, ReactThemeContext } from "../../app";
 // local component
-// import Icon from "../../../../../icon/src";
-// import IconButton from "../../../../../core/packages/icon-button/src";
-// import Button from "../../../../../core/packages/button/src";
 // components from package library
 import Icon from "@dbykov-ui-kit/icon";
 import Button from "@dbykov-ui-kit/core/button";
