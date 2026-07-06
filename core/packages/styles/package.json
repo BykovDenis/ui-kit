@@ -2,7 +2,7 @@
   "name": "@dbykov-ui-kit/styles",
   "version": "0.2.1",
   "description": "React UI styles",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "author": "Denis Bykov",

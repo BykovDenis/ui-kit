@@ -1,4 +1,4 @@
-import ListItemType from '@dbykov-ui-kit/ListItem/enums/list-item-type';
+import { ListItemType } from '../list-item/enums/list-item-type';
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 

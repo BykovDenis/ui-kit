@@ -1,13 +1,13 @@
 {
   "name": "@dbykov-ui-kit/input",
   "description": "Input component of the @dbykov-ui-kit library",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "private": true,
   "exports": {
-    "require": "./dist/index.js",
+    "require": "./dist/cjs/index.js",
     "import": "./dist/esm/index.js"
   },
   "scripts": {
@@ -16,4 +16,3 @@
     "clean-node-modules": "rm -rf node_modules"
   }
 }
-
