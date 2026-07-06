@@ -49,10 +49,8 @@ exports[`Button matches snapshot 1`] = `
 }
 
 <button
-  backgroundcolor="rgb(139, 88, 203)"
   class="c0"
   color="rgb(227, 227, 227)"
-  focuscolor="rgb(139, 88, 203)"
   font-family="\\"SBSansInterface\\", \\"Open Sans\\", \\"Arial\\", sans-serif"
   font-size="14"
   type="button"

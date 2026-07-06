@@ -11,72 +11,39 @@ exports[`Select renders correctly 1`] = `
     height={40}
   >
     <div
-      backgroundColor="#ffffff"
       className="sc-crzogQ cFtJQk"
-      isExistValue={true}
     >
       <label
         className="sc-iCoKjR SYCfi"
         color="#333333"
-        focusColor="#333333"
         fontFamily="Roboto, Arial, sans-serif"
         fontSize={12}
         htmlFor="select"
-        isFocus={false}
         onClick={[Function]}
       >
         Select 1
       </label>
     </div>
     <div
-      backgroundColor="#ffffff"
       className="sc-kslsaH cfzvOx"
     />
     <div
       className="sc-gtstET jXlMKC"
     >
       <div
-        backgroundColor="#ffffff"
         className="sc-dlnkDq jiXPWh"
       >
         <input
-          activeElement="List item 1"
           autoComplete="off"
-          backgroundColor="#ffffff"
-          borderColor="#ffffff"
           className="sc-bdnAzI odNPp"
           color="#ffffff"
           data-error={false}
           data-focused={false}
-          disabledBackgroundColor="#e3e3e3"
-          disabledColor="rgba(51, 51, 51, 0.5)"
-          elements={
-            Array [
-              "List item 1",
-              "List item 2",
-              "List item 3",
-              "List item 4",
-              "List item 5",
-            ]
-          }
-          focusColor="#0000ff"
           fontFamily="Roboto, Arial, sans-serif"
           fontSize={14}
           fontWeight={400}
           height={40}
-          hoverBackgroundColor="#ffffff"
-          hoverBorderColor="#ff0000"
-          hoverColor="#ff0000"
           id="select"
-          indicatorColor="#ffffff"
-          inputComponent={[Function]}
-          inputRef={
-            Object {
-              "current": null,
-            }
-          }
-          isCreatable={true}
-          isNotRunDebounce={true}
           label="Select 1"
           name="select-custom"
           onBlur={[Function]}
@@ -84,38 +51,24 @@ exports[`Select renders correctly 1`] = `
           onClick={[Function]}
           onFocus={[Function]}
           onInput={[Function]}
-          onRemove={[Function]}
-          padding="0"
-          textAlign="center"
           type="list-buttons"
           value="List item 1"
-          variant="outlined"
         />
         <div
           className="sc-hKFxUR cVKYor underline"
           color="#ffffff"
-          hoverColor="#ffffff"
           name="select-custom"
-          variant="outlined"
         />
         <div
-          alignItems="center"
           className="sc-gKzYWW jUwWmm"
-          flexDirection="row"
           fontSize={14}
           height={20}
-          justifyContent="flex-start"
-          position="absolute"
-          right={0}
-          top="50%"
           transform="translateY(-50%)"
           width={20}
         >
           <button
             className="sc-jSFhYz exGjdF delete-button"
             data-test="btn-delete-value"
-            focusColor="rgb(139, 88, 203)"
-            hoverColor="#333333"
             onClick={[Function]}
             type="button"
           >

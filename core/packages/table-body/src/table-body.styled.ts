@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from '@dbykov-ui-kit/styles';
 import TTableBody from '../types/ttable-body';
 
 const TableBodyStyled = styled.tbody`

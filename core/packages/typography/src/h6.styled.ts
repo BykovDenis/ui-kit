@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from '@dbykov-ui-kit/styles';
 import IHeader from '../types/iheader';
 
 const H6Styled = styled.h3<IHeader>`

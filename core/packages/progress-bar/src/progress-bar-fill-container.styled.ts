@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from '@dbykov-ui-kit/styles';
 import TProgressBar from '../types/tprogress-bar';
 import TProgressBarFillContainer from '../types/tprogress-bar-fill-container';
 import getMeasureValue from '../../helpers/get-measure-value';

@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from '@dbykov-ui-kit/styles';
 
 import getMeasureValue from '../../helpers/get-measure-value';
 import TTabs from '../types/ttabs';

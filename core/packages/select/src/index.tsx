@@ -311,10 +311,14 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       width = clientRectPosition.width;
     }
 
+    // custom callbacks are not DOM attributes: keep them out of the spread,
+    // is-prop-valid lets any on* prop through to the element
+    const { onRemove: _onRemove, ...listContainerProps } = props;
+
     const SelectListContainerPortal = () => (
       <Portal>
         <SelectListContainer
-          {...props}
+          {...listContainerProps}
           backgroundColor={backgroundColor}
           outlinedColor={theme.palette.primary.moreLighter}
           ref={selectListContainerRef}

@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from '@dbykov-ui-kit/styles';
 
 const InputStyled = styled.input.attrs({ type: 'file' })`
   opacity: 0;

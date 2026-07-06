@@ -197,11 +197,15 @@ const Input: ForwardRefExoticComponent<IInput & RefAttributes<HTMLInputElement>>
 
     const refCombined = props?.inputRef || ref || inputRef;
 
+    // custom callbacks are not DOM attributes: keep them out of the spread,
+    // is-prop-valid lets any on* prop through to the element
+    const { onRemove: _onRemove, ...restProps } = props;
+
     return (
       <InputContainer height={props?.height} width={props?.width}>
         <InputElementContainer backgroundColor={backgroundColor}>
           <InputStyled
-            {...props}
+            {...restProps}
             value={value}
             height={props.height || DEFAULT_HEIGHT}
             color={props.isFocused ? props.focusColor || focusColor : inputColor}

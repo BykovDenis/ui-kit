@@ -10,13 +10,11 @@ exports[`Datepicker renders correctly 1`] = `
     class="sc-dIvsxA hyoXQM"
   >
     <div
-      backgroundcolor="#ffffff"
       class="sc-iwaiTi kOxstF"
     >
       <label
         class="sc-fujBio lfZSHZ"
         color="#333333"
-        focuscolor="#333333"
         font-family="Roboto, Arial, sans-serif"
         font-size="12"
         for="datepicker-unit"
@@ -28,64 +26,42 @@ exports[`Datepicker renders correctly 1`] = `
       class="sc-dlnkDq OgHCr"
     >
       <div
-        backgroundcolor="#ffffff"
         class="sc-hKFxUR kfEpWL"
       >
         <input
           autocomplete="off"
-          backgroundcolor="#ffffff"
-          bordercolor="rgba(0, 0, 0, 0.6)"
           class="sc-gtstET jwVKeb"
           color="#333333"
           data-error="false"
           data-focused="false"
           data-id="datepicker-unit"
           data-ui-kit-component="datepicker"
-          disabledbackgroundcolor="#e3e3e3"
-          disabledcolor="rgba(51, 51, 51, 0.5)"
-          focuscolor="rgb(139, 88, 203)"
           font-family="Roboto, Arial, sans-serif"
           font-size="14"
           font-weight="400"
           height="40"
-          hoverbackgroundcolor="#ffffff"
-          hoverbordercolor="rgba(0, 0, 0, 0.4)"
-          hovercolor="#333333"
           id="datepicker-unit"
-          inputref="[object Object]"
           name="datepicker-field"
-          padding="0 0 0 17px"
-          regexp="/[a-zа-я]/gi"
-          textalign="left"
           type="text"
           value="2024-01-15"
         />
         <div
           class="sc-eCAoTo hztnCJ underline"
           color="rgba(0, 0, 0, 0.6)"
-          hovercolor="#ffffff"
           name="datepicker-field"
         />
       </div>
     </div>
     <div
-      alignitems="center"
       class="sc-iCoKjR bVVMKw"
-      flexdirection="row"
       font-size="14"
       height="20"
-      justifycontent="flex-start"
-      position="absolute"
-      right="3"
-      top="50%"
       transform="translateY(-50%)"
       width="20"
     >
       <button
         class="sc-gKzYWW bKqwsi delete-button"
         data-test="btn-delete-value"
-        focuscolor="rgb(139, 88, 203)"
-        hovercolor="#333333"
         id="datepicker-unit-btn-delete-value"
         type="button"
       >

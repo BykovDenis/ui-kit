@@ -57,6 +57,7 @@
     "uuid": "10.0.0"
   },
   "dependencies": {
+    "@emotion/is-prop-valid": "1.4.0",
     "styled-components": "6.4.0",
     "use-debounce": "10.0.3"
   },

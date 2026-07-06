@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from '@dbykov-ui-kit/styles';
 
 const MonthsYearsRuleContainer = styled('div')`
   display: flex;

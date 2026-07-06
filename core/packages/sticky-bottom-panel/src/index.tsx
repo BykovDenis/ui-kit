@@ -35,9 +35,13 @@ const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: T
     const backgroundColor: string = props?.backgroundColor || theme?.mainBackgroundColor;
     const color: string = props?.color || theme.palette.baseFontColor;
 
+    // custom callbacks are not DOM attributes: keep them out of the spread,
+    // is-prop-valid lets any on* prop through to the element
+    const { onDialogVisibleChange: _onDialogVisibleChange, ...restProps } = props;
+
     return isOpen ? (
       <StickyBottomPanelStyled
-        {...props}
+        {...restProps}
         backgroundColor={backgroundColor}
         color={color}
         panelAlign={panelAlign}

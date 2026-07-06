@@ -1,5 +1,5 @@
 ﻿import CSS from 'csstype';
-import { styled } from 'styled-components';
+import { styled } from '@dbykov-ui-kit/styles';
 
 type TRadioStylish = {
   backgroundColor: string;
