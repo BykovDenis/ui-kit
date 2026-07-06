@@ -293,7 +293,10 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
       width = clientRectPosition.width;
     }
 
-    const SelectListContainerPortal = () => (
+    // plain JSX value, not a nested component: a component type created
+    // inside render is new on every pass, so React unmounted and remounted
+    // the whole list on each parent state update (unstable DOM under cursor)
+    const selectListContainerPortal = (
       <Portal>
         <ToggleContainer
           data-name="toggle-container"
@@ -498,7 +501,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
             {isExpanded ? <ChevronUpIcon color={color} /> : <ChevronDownIcon color={color} />}
           </ButtonExpandStyled>
         </FormControl>
-        {isExpanded && <SelectListContainerPortal />}
+        {isExpanded && selectListContainerPortal}
       </MultiSelectContainerStyled>
     );
   };
