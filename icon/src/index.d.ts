@@ -3,8 +3,8 @@ import Pathname from './types/pathname';
 import React from 'react';
 
 declare const Icon: React.FunctionComponent<IconProps>;
-declare const IconContext: React.Context<IconProps | null>;
-declare const IconProvider: React.Provider<IconProps | null>;
+declare const IconContext: React.Context<IconProps>;
+declare const IconProvider: React.Provider<IconProps>;
 declare function useIconContext(): IconProps | null;
 declare function setFallbackIconConfig(config: IconProps): void;
 declare function IconContextConsumer(props: {

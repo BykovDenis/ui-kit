@@ -4,8 +4,8 @@ import IThemes from '../types/ithemes';
 import ITheme from '../types/itheme';
 
 declare const themes: IThemes;
-declare const ThemeContext: React.Context<ITheme | null>;
-declare const ThemeProvider: React.Provider<ITheme | null>;
+declare const ThemeContext: React.Context<ITheme>;
+declare const ThemeProvider: React.Provider<ITheme>;
 declare function useTheme(): ITheme;
 declare function setFallbackTheme(theme: ITheme): void;
 declare function ThemeConsumer(props: { children: (theme: ITheme) => React.ReactNode }): React.ReactElement;
