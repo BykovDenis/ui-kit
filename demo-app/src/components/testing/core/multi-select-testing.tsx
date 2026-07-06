@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import MultiSelect from "../../../../../core/packages/multi-select/src";
 // components from package library
-// import MultiSelect from "@dbykov-ui-kit/core/multi-select";
-import { TMultiSelectOption } from "@dbykov-ui-kit/core/multi-select";
+import MultiSelect, { TMultiSelectOption } from "@dbykov-ui-kit/core/multi-select";
 import GridContainer from "@dbykov-ui-kit/core/grid-container";
 import Button from "@dbykov-ui-kit/core/button";
 import FormControl from "@dbykov-ui-kit/core/form-control";

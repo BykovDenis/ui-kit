@@ -1,7 +1,7 @@
 import "./popup-testing.css";
 import Button from "@dbykov-ui-kit/core/button";
 import FlexContainer from "@dbykov-ui-kit/core/flex-container";
-import Popup from "../../../../../core/packages/popup/src";
+import Popup from "@dbykov-ui-kit/core/popup";
 import React, { useState } from "react";
 import Icon from "@dbykov-ui-kit/icon";
 
