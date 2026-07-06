@@ -1,4 +1,4 @@
-import { forwardRef, ForwardRefExoticComponent, RefAttributes, useContext, useEffect, useRef, useState } from 'react';
+import { forwardRef, ForwardRefExoticComponent, RefAttributes, useEffect, useRef, useState } from 'react';
 
 import { DEFAULT_HEIGHT, DELAY_DEBOUNCE, FONT_WEIGHT_REGULAR, TEXT_ALIGN_RIGHT, TYPE_TEXT } from '../../constants';
 import ITheme from '../../styles/types/itheme';
@@ -13,8 +13,9 @@ import isNotEmptyString from '../../helpers/is-not-empty-string';
 import parseValue from './helpers/parse-value';
 import ButtonDelete from '../../customs-styled-components/button-delete.styled';
 import calculationPaddingByTextAlign from './helpers/calculation-padding-by-text-align';
-import FormControl from '../../form-control/src';
+import FormControl from '@dbykov-ui-kit/form-control';
 import { useDebouncedCallback } from 'use-debounce';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Input: ForwardRefExoticComponent<IInput & RefAttributes<HTMLInputElement>> = forwardRef<HTMLInputElement, IInput>(
   (props, ref) => {
@@ -23,9 +24,8 @@ const Input: ForwardRefExoticComponent<IInput & RefAttributes<HTMLInputElement>>
     const [isFocus, setIsFocus] = useState(false);
     const [isChanging, setIsChanging] = useState(false);
     const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
-    const [context, setContext] = useState(props?.ReactThemeContext || globalThis.ReactThemeContext);
 
-    const theme: ITheme = useContext(context);
+    const theme: ITheme = useTheme();
 
     const cb = (evt: any) => {
       const value = props.inputRef ? props.inputRef?.current?.value : inputRef?.current?.value;
@@ -65,9 +65,6 @@ const Input: ForwardRefExoticComponent<IInput & RefAttributes<HTMLInputElement>>
       // setIsRunDebounce(false);
     };
 
-    useEffect(() => {
-      setContext(props.ReactThemeContext || globalThis.ReactThemeContext);
-    }, [props.ReactThemeContext, globalThis.ReactThemeContext]);
 
     useEffect(() => {
       let valueParsed: number | string = parseValue(props.type, props.value, props.regExp, props.mask);
@@ -197,11 +194,6 @@ const Input: ForwardRefExoticComponent<IInput & RefAttributes<HTMLInputElement>>
       : props?.borderColor || theme?.mainOutlinedColor;
 
     const paddingCalculated = calculationPaddingByTextAlign(props.textAlign, props.isNotClearable);
-
-    if (!context) {
-      console.error('You need an initialization provider');
-      return null;
-    }
 
     const refCombined = props?.inputRef || ref || inputRef;
 

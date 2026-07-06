@@ -1,11 +1,8 @@
 import FlexContainer from "@dbykov-ui-kit/core/flex-container";
 import React, { useState } from "react";
 import { warning, success } from "../../../utils/dev-utils-theme";
-// local components
-import Datepicker from "../../../../../core/packages/datepicker/src";
-// import GridContainer from "../../../../../core/packages/grid-container/src";
 // components from package library
-// import Datepicker from "@dbykov-ui-kit/core/datepicker";
+import Datepicker from "@dbykov-ui-kit/core/datepicker";
 import Typography from "@dbykov-ui-kit/core/typography";
 import { toast } from "react-toastify";
 import DatepickerMask from "@dbykov-ui-kit/core/datepicker/enums/datepicker-mask";

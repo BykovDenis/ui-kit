@@ -33,16 +33,8 @@ it('triggers onChange when selecting radio by label', () => {
   expect(onChange).toHaveBeenCalled();
 });
 
-it('renders null and logs error without provider', () => {
-  const previousConsumer = globalThis.ReactThemeContextConsumer;
-  const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
-  globalThis.ReactThemeContextConsumer = undefined;
-
+it('renders with the fallback theme when no provider is mounted', () => {
   const { container } = render(<Radio id="radio-no-provider" name="group-1" onChange={jest.fn()} checked={false} />);
 
-  expect(container.firstChild).toBeNull();
-  expect(consoleErrorSpy).toHaveBeenCalledWith('The Radio component. You need an initialization provider');
-
-  globalThis.ReactThemeContextConsumer = previousConsumer;
-  consoleErrorSpy.mockRestore();
+  expect(container.firstChild).not.toBeNull();
 });

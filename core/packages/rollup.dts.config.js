@@ -22,7 +22,13 @@ export default {
     dts({
       compilerOptions: {
         declaration: true,
-        declarationMap: false
+        declarationMap: false,
+        // resolve @dbykov-ui-kit/<name> to sibling package sources so their
+        // types get inlined into the generated dist/index.d.ts
+        baseUrl: '..',
+        paths: {
+          '@dbykov-ui-kit/*': ['./*/src'],
+        },
       }
     })
   ]

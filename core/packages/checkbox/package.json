@@ -1,12 +1,12 @@
 {
   "name": "@dbykov-ui-kit/checkbox",
   "description": "Checkbox component of the @dbykov-ui-kit library",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "exports": {
-    "require": "./dist/index.js",
+    "require": "./dist/cjs/index.js",
     "import": "./dist/esm/index.js"
   },
   "scripts": {
@@ -15,4 +15,3 @@
     "clean-node-modules": "rm -rf node_modules"
   }
 }
-

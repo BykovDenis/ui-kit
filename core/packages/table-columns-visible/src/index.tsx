@@ -2,23 +2,24 @@ import React, { PropsWithChildren, useEffect, useState } from 'react';
 import TTableColumnsVisible from '../types/ttable-columns-visible';
 import ITheme from '../../styles/types/itheme';
 import TableColumnsVisibleStyled from './table-columns-visible-styled';
-import Label from '../../label/src';
-import FormControl from '../../form-control/src';
-import IconButton from '../../icon-button/src';
+import Label from '@dbykov-ui-kit/label';
+import FormControl from '@dbykov-ui-kit/form-control';
+import IconButton from '@dbykov-ui-kit/icon-button';
 import CrossIcon from '../../icons-components/24x24/circle-cross-icon';
-import Button from '../../button/src';
+import Button from '@dbykov-ui-kit/button';
 import ChevronUpIcon from '../../icons-components/24x24/chevron-up-icon';
 import ChevronDownIcon from '../../icons-components/24x24/chevron-down-icon';
-import List from '../../list/src';
-import ListItem from '../../list-item/src';
+import List from '@dbykov-ui-kit/list';
+import ListItem from '@dbykov-ui-kit/list-item';
 import AddIcon from '../../icons-components/36x36/add-icon';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import getElementsFromLocalStorage from '../../helpers/get-elements-from-localstorage';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColumnsVisible>> = (
   props: TTableColumnsVisible
 ) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
   const [isExpanded, setExpanded] = useState<boolean>(false);
   const [columnNames, setColumnNames] = useState<Array<string>>(props.columnNames);
   const [columnNamesSelected, setColumnNamesSelected] = useState<Set<string>>(null);
@@ -130,12 +131,8 @@ const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColum
     );
   };
 
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 TableColumnsVisible.defaultProps = {

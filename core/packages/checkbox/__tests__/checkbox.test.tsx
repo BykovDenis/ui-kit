@@ -51,18 +51,8 @@ it('triggers onChange when clicked by label', () => {
   expect(onChange).toHaveBeenCalled();
 });
 
-it('renders null and logs error without provider', () => {
-  const previousConsumer = globalThis.ReactThemeContextConsumer;
-  const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
-  globalThis.ReactThemeContextConsumer = undefined;
+it('renders with the fallback theme when no provider is mounted', () => {
+  const { container } = render(<Checkbox id="checkbox-missing-provider" label="Checkbox label" checked={false} onChange={jest.fn()} />);
 
-  const { container } = render(
-    <Checkbox id="checkbox-missing-provider" label="Checkbox label" checked={false} onChange={jest.fn()} />
-  );
-
-  expect(container.firstChild).toBeNull();
-  expect(consoleErrorSpy).toHaveBeenCalledWith('The Checkbox component. You need an initialization provider');
-
-  globalThis.ReactThemeContextConsumer = previousConsumer;
-  consoleErrorSpy.mockRestore();
+  expect(container.firstChild).not.toBeNull();
 });

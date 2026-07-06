@@ -5,9 +5,10 @@ import ITheme from '../../styles/types/itheme';
 import IconButtonStyled from './icon-button.styled';
 import TButton from '../../button/types/tbutton';
 import ColorTheme from '../../enums/color-theme';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const IconButton: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TButton) => {
-  const Consumer = globalThis?.ReactThemeContextConsumer;
+  const theme = useTheme();
   const [colorTheme] = useState<string>(props?.colorTheme || ColorTheme.Normal);
   const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
 
@@ -51,12 +52,8 @@ const IconButton: React.FunctionComponent<PropsWithChildren<TButton>> = (props: 
     );
   };
 
-  if (!Consumer) {
-    console.error('The IconButton component. You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default IconButton;

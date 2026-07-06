@@ -31,9 +31,11 @@ export default defineConfig({
   }) as PluginOption],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.d.ts', '.jsx', '.scss', '.css', '.json', '.svg', '.png'],
-    alias: {
-      'storybook/internal/theming': '@storybook/theming',
-    },
+    alias: [
+      { find: 'storybook/internal/theming', replacement: '@storybook/theming' },
+      // resolve cross-package imports to workspace sources
+      { find: /^@dbykov-ui-kit\/([^/]+)$/, replacement: path.resolve(dirname, 'packages') + '/$1/src' },
+    ],
   },
   define: {
     __dirname: JSON.stringify('/'),

@@ -3,9 +3,10 @@ import React from 'react';
 import ITheme from '../../styles/types/itheme';
 import TTab from '../types/ttab';
 import TabStyled from './tab.styled';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
 
   const componentThemed: any = (theme: ITheme) => {
     const color: string = props.disabled ? theme?.inactiveColor : props.color ?? theme?.palette?.baseFontColor;
@@ -45,12 +46,8 @@ const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
     );
   };
 
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default Tab;

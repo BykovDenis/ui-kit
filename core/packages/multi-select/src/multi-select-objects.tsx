@@ -1,21 +1,21 @@
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import ITheme from '../../styles/types/itheme';
 import MultiSelectStyled from './multi-select-styled';
-import Label from '../../label/src';
-import FormControl from '../../form-control/src';
+import Label from '@dbykov-ui-kit/label';
+import FormControl from '@dbykov-ui-kit/form-control';
 import CrossIcon from '../../icons-components/24x24/circle-cross-icon';
 import CircleCrossIcon from '../../icons-components/24x24/circle-cross-icon';
-import Button from '../../button/src';
+import Button from '@dbykov-ui-kit/button';
 import ChevronUpIcon from '../../icons-components/24x24/chevron-up-icon';
 import ChevronDownIcon from '../../icons-components/24x24/chevron-down-icon';
-import List from '../../list/src';
-import ListItem from '../../list-item/src';
+import List from '@dbykov-ui-kit/list';
+import ListItem from '@dbykov-ui-kit/list-item';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import ListContainerStyled from './list-container.styled';
 import CirclePlusIcon from '../../icons-components/24x24/circle-plus-icon';
 import ButtonStyled from './button.styled';
 import pixelsMeasureToNumber from '../../helpers/pixels-measure-to-number';
-import Input from '../../input/src';
+import Input from '@dbykov-ui-kit/input';
 import ButtonExpandStyled from './button-expand.styled';
 import ToggleContainer from './toggle-container';
 import LabelContainer from './label-container.styled';
@@ -40,11 +40,12 @@ import {
 import { BUTTON_MULTI_SELECT_CONTAINER, BUTTON_TOGGLE_NAME } from './constants';
 import { getIsClient } from '../../utilities/ssr/get-is-client';
 import { Portal } from '../../portal';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelectObjects>> = (
   props: TMultiSelectObjects
 ) => {
-  const [Consumer, setConsumer] = useState(globalThis.ReactThemeContextConsumer);
+  const theme = useTheme();
   const [isExpanded, setExpanded] = useState<boolean>(false);
   const [variant] = useState<string | null>(props.variant || MultiSelectVariant.Normal);
 
@@ -144,11 +145,6 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       document.removeEventListener('keyup', onKeyUp);
     };
   }, []);
-
-  useEffect(() => {
-    // console.log('elementNamesSelected =', elementNamesSelected);
-    setConsumer(globalThis.ReactThemeContextConsumer);
-  }, [globalThis.ReactThemeContextConsumer]);
 
   useEffect(() => {
     const elementNamesSorted: Array<TMultiSelectOption> = props?.sortDirection
@@ -520,12 +516,8 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
     );
   };
 
-  if (!Consumer) {
-    console.error('MultiSelect. You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default MultiSelectObjects;

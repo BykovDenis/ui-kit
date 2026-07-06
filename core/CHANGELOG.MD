@@ -49,3 +49,22 @@
 ## v 0.2.7
 ### Features
 - Refactoring set context
+
+## v 0.3.0
+### Features
+- Theming migrated from `globalThis` to a shared React Context: new exports
+  `ThemeProvider`, `useTheme`, `ThemeConsumer`, `setFallbackTheme` in `styles`
+- `getNewReactThemeContext` kept as a backwards-compatible shim: existing
+  bootstrap code and previously published bundles keep working unchanged
+- Components without a provider now render with the fallback (light) theme
+  instead of returning `null` and logging an error
+- Shared packages (`styles` etc.) are no longer bundled into every component:
+  cross-package imports are external and resolve to a single module instance
+
+### Bugfix
+- CJS entry points in all component manifests pointed to non-existent
+  `dist/index.js` (actual output is `dist/cjs/index.js`) — `require()` of any
+  component was broken
+- `label-interactive` and `warning-panel` were published without `dist` —
+  their subpath imports were broken in 0.2.7
+- Storybook build: broken CamelCase story imports in List and Popup

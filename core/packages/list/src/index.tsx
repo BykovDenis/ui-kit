@@ -6,9 +6,10 @@ import ListType from '../enum/list-type';
 import IList from '../types/ilist';
 import ListStyled from './list.styled';
 import ListDivStyled from './list-div.styled';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const List: React.FunctionComponent<IList> = (props: IList) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
 
   const listRef = useRef();
   const componentThemed: any = (theme: ITheme) => {
@@ -63,12 +64,8 @@ const List: React.FunctionComponent<IList> = (props: IList) => {
     );
   };
 
-  if (!Consumer) {
-    console.error('The List component. You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default List;

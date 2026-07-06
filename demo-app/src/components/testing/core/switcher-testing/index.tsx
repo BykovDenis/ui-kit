@@ -4,17 +4,11 @@ import CertainDecision from "../../../../enums/certain-decision";
 import ListItemWrapped from "./list-item-wrapped";
 import ListItemContainer from "./list-item-container";
 import SppiQuestion from "../../../../enums/sppi-question";
-// local components
-// import FlexContainer from '../../../../packages/flex-container/src';
-// import List from '../../../../packages/list/src';
-// import ListItem from '../../../../packages/list-item/src';
-import Switcher from '../../../../../../core/packages/switcher/src';
-
 // components from package library
 import FlexContainer from "@dbykov-ui-kit/core/flex-container";
 import List from "@dbykov-ui-kit/core/list";
 import ListItem from "@dbykov-ui-kit/core/list-item";
-// import Switcher from "@dbykov-ui-kit/core/switcher";
+import Switcher from "@dbykov-ui-kit/core/switcher";
 
 const checklistSppiTestQuestions: { [key: string]: CertainDecision } = {
   q1: CertainDecision.Unknown,

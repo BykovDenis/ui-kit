@@ -8,11 +8,12 @@ import ListItemContainer from './list-item-container.styled';
 import ITheme from '../../styles/types/itheme';
 import calculationJustifyContent from './helpers/calculation-justify-content';
 import { TEXT_ALIGN_CENTER } from '../../constants';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const HEIGHT: number = 30;
 
 const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
   const [isVisibleTextUnderline] = useState<boolean>(props?.isVisibleTextUnderline !== undefined ? props.isVisibleTextUnderline : true);
 
   const componentThemed: any = (theme: ITheme) => {
@@ -95,7 +96,7 @@ const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) =>
     );
   };
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default ListItem;

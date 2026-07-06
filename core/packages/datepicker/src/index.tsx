@@ -4,9 +4,9 @@ import { FONT_WEIGHT_REGULAR, INPUT_TAG, TAG_NAME_PATH, TAG_NAME_SVG, TEXT_ALIGN
 import Divider from '../../divider/src/divider.styled';
 import Locale from '../../enums/locale';
 import searchDomChildElement from '../../helpers/search-dom-child-element';
-import Input from '../../input/src';
-import Label from '../../label/src';
-import Select from '../../select/src';
+import Input from '@dbykov-ui-kit/input';
+import Label from '@dbykov-ui-kit/label';
+import Select from '@dbykov-ui-kit/select';
 import ITheme from '../../styles/types/itheme';
 import monthsElementEn from '../dictionaries/months-en';
 import monthsElementRu from '../dictionaries/months-ru';
@@ -29,10 +29,10 @@ import DatepickerMask from '../enums/datepicker-mask';
 import checkMinMaxDate from '../helpers/check-min-max-date';
 import { onKeyUpEnterEventHandler, onKeyUpEscapeEventHandler } from '../../helpers/on-key-up-event-handler';
 import CalendarIcon from '../../icons-components/24x24/calendar-icon';
-import FormControl from '../../form-control/src';
+import FormControl from '@dbykov-ui-kit/form-control';
 import CrossIcon from '../../icons-components/24x24/cross-icon';
 import TPatritionDate from '../types/tpatrition-date';
-import Button from '../../button/src';
+import Button from '@dbykov-ui-kit/button';
 import ChevronBtnLeftIcon from './icons/chevron-btn-left-icon';
 import ChevronBtnRightIcon from './icons/chevron-btn-right-icon';
 import ButtonDelete from '../../customs-styled-components/button-delete.styled';
@@ -41,6 +41,7 @@ import parseStringInsteadDate from '../helpers/parse-string-instead-date';
 import UiKitComponent from '../../enums/ui-kit-component';
 import { getIsClient } from '../../utilities/ssr/get-is-client';
 import { Portal } from '../../portal';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) => {
   const dateRef = useRef();
@@ -50,7 +51,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   // >>> initial values
   const [months, setMonths] = useState<Array<IOption>>(locale === Locale.Ru ? monthsElementRu : monthsElementEn);
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState<string>(props.value);
@@ -761,12 +762,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     );
   };
 
-  if (!Consumer) {
-    console.error('The Datepicker component. You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default Datepicker;

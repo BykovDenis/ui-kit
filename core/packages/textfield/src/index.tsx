@@ -1,18 +1,19 @@
 import React, { ForwardedRef, forwardRef, useEffect, useState } from 'react';
 
-import Input from '../../input/src';
-import Label from '../../label/src';
+import Input from '@dbykov-ui-kit/input';
+import Label from '@dbykov-ui-kit/label';
 import ITheme from '../../styles/types/itheme';
 import ITextField from '../types/itext-field';
 import LabelContainer from './label-container.styled';
 import TextFieldContainer from './text-field-container.styled';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const TextField = forwardRef<HTMLInputElement, ITextField>((props: ITextField, ref: ForwardedRef<HTMLInputElement>) => {
   const [value, setValue] = useState<string | number>(props.value);
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
 
   useEffect(() => {
     setValue(props.value);
@@ -102,12 +103,8 @@ const TextField = forwardRef<HTMLInputElement, ITextField>((props: ITextField, r
     );
   };
 
-  if (!Consumer) {
-    console.error('The Textfield component. You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 });
 
 export default TextField;

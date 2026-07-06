@@ -5,9 +5,10 @@ import ProgressBarFillContainerStyled from './progress-bar-fill-container.styled
 import ProgressValueStyled from './progress-value.styled';
 import ITheme from '../../styles/types/itheme';
 import MiddleEllipseContainer from './middle-ellipse-container';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const ProgressBar: React.FunctionComponent<TProgressBar> = (props: TProgressBar) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
 
   const componentThemed: any = (theme: ITheme) => {
     const isDisabled: boolean = props.disabled || false;
@@ -63,12 +64,8 @@ const ProgressBar: React.FunctionComponent<TProgressBar> = (props: TProgressBar)
     );
   };
 
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 ProgressBar.defaultProps = {

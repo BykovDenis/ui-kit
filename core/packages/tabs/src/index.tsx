@@ -4,10 +4,11 @@ import ITheme from '../../styles/types/itheme';
 import TTabs from '../types/ttabs';
 import TabsStyled from './tabs.styled';
 import renderChildren from '../helpers/render-children-with-props';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Tabs: React.FunctionComponent<TTabs> = (props: TTabs) => {
   if (props?.children) {
-    const Consumer = globalThis.ReactThemeContextConsumer;
+    const theme = useTheme();
 
     const componentThemed: any = (theme: ITheme) => {
       const color: string = props.disabled
@@ -39,12 +40,8 @@ const Tabs: React.FunctionComponent<TTabs> = (props: TTabs) => {
       );
     };
 
-    if (!Consumer) {
-      console.error('You need an initialization provider');
-      return null;
-    }
 
-    return <Consumer>{componentThemed}</Consumer>;
+    return componentThemed(theme);
   } else {
     return null;
   }

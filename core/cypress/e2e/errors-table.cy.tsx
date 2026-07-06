@@ -20,17 +20,12 @@ describe('The TextField component', () => {
       .then((bgColor: string) => {
         expect(bgColor).to.eq(themes.dark.palette.primary.main);
       });
+    cy.get('#select').focus().type('seco');
+    // pick the option by text: the list re-renders while the debounced
+    // filter settles, so a positional selector may hit the wrong item
+    cy.get('#select-list').contains('button', 'second').click();
     cy.get('#select')
-      .focus()
-      .type('seco')
-      .then(() => {
-        cy.get('#select-list div:first button')
-          .as('btn')
-          .click()
-          .then(() => {
-            cy.get('#select').should('value', 'second');
-          });
-      })
+      .should('value', 'second')
       .invoke('css', 'color')
       .then((color: string) => {
         expect(color).to.eq(themes.dark.palette.baseFontColor);
@@ -271,17 +266,10 @@ describe('The TextField component', () => {
       });
   });
   it('Test4. Select component', () => {
+    cy.get('#select').click().type('thi');
+    cy.get('#select-list').contains('button', 'third').click();
     cy.get('#select')
-      .click()
-      .type('thi')
-      .then(() => {
-        cy.get('#select-list div:first button')
-          .as('btn')
-          .click()
-          .then(() => {
-            cy.get('#select').should('value', 'third');
-          });
-      })
+      .should('value', 'third')
       .invoke('css', 'color')
       .then((color: string) => {
         expect(color).to.eq(themes.dark.palette.secondary.main);
@@ -291,17 +279,10 @@ describe('The TextField component', () => {
       .then(() => {
         cy.get('#select').should('value', '');
       });
+    cy.get('#select').focus().type('seco');
+    cy.get('#select-list').contains('button', 'second').click();
     cy.get('#select')
-      .focus()
-      .type('seco')
-      .then(() => {
-        cy.get('#select-list div:first button')
-          .as('btn')
-          .click()
-          .then(() => {
-            cy.get('#select').should('value', 'second');
-          });
-      })
+      .should('value', 'second')
       .invoke('css', 'color')
       .then((color: string) => {
         expect(color).to.eq(themes.dark.palette.baseFontColor);

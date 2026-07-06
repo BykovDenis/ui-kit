@@ -5,9 +5,10 @@ import H2Styled from './h2.styled';
 import H3Styled from './h3.styled';
 import ITheme from '../../styles/types/itheme';
 import PhraseStyled from './phrase.styled';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Typography: React.FunctionComponent<TTypography> = (props: TTypography) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
 
   const componentThemed: any = (theme: ITheme) => {
     const color: string = !props?.error ? theme?.palette?.baseFontColor : theme?.palette?.secondary?.main;
@@ -128,12 +129,8 @@ const Typography: React.FunctionComponent<TTypography> = (props: TTypography) =>
     }
   };
 
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default Typography;

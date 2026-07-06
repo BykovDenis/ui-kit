@@ -3,9 +3,10 @@ import React from 'react';
 import ITheme from '../../styles/types/itheme';
 import TLabel from '../types/tlabel';
 import LabelStyled from './label.styled';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Label: React.FunctionComponent<TLabel> = (props: TLabel) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
 
   const componentThemed: any = (theme: ITheme) => {
     const color: string = props?.error
@@ -49,12 +50,8 @@ const Label: React.FunctionComponent<TLabel> = (props: TLabel) => {
     );
   };
 
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default Label;

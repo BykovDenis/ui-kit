@@ -80,16 +80,8 @@ it('forwards value change to onChange callback', async () => {
   });
 });
 
-it('renders null and logs error when provider is not initialized', () => {
-  const previousConsumer = globalThis.ReactThemeContextConsumer;
-  const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
-  globalThis.ReactThemeContextConsumer = undefined;
-
+it('renders with the fallback theme when no provider is mounted', () => {
   const { container } = render(<TextField {...getProps()} />);
 
-  expect(container.firstChild).toBeNull();
-  expect(consoleErrorSpy).toHaveBeenCalledWith('The Textfield component. You need an initialization provider');
-
-  globalThis.ReactThemeContextConsumer = previousConsumer;
-  consoleErrorSpy.mockRestore();
+  expect(container.firstChild).not.toBeNull();
 });

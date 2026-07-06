@@ -1,5 +1,5 @@
-import Button from '@dbykov-ui-kit/Button/src';
-import FlexContainer from '@dbykov-ui-kit/FlexContainer/src';
+import Button from '../button/src';
+import FlexContainer from '../flex-container/src';
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 

@@ -6,9 +6,10 @@ import ColorTheme from '../../enums/color-theme';
 import ITheme from '../../styles/types/itheme';
 import TButton from '../types/tbutton';
 import ButtonStyled from './button.styled';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Button = React.forwardRef<HTMLButtonElement, PropsWithChildren<TButton>>((props: TButton, ref) => {
-  const Consumer = globalThis?.ReactThemeContextConsumer;
+  const theme = useTheme();
   const [colorTheme] = useState<string>(props?.colorTheme || ColorTheme.Normal);
   const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
 
@@ -51,12 +52,8 @@ const Button = React.forwardRef<HTMLButtonElement, PropsWithChildren<TButton>>((
     );
   };
 
-  if (!Consumer) {
-    console.error('The Button component. You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 });
 
 export default Button;

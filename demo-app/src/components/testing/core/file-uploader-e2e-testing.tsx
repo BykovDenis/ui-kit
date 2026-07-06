@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Typography from '@dbykov-ui-kit/core/typography';
 import FlexContainer from '@dbykov-ui-kit/core/flex-container';
-import FileUploader from '../../../../../core/packages/file-uploader/src';
+import FileUploader from '@dbykov-ui-kit/core/file-uploader';
 
 const FileUploaderE2ETesting: React.FunctionComponent = () => {
   const [uploadedNames, setUploadedNames] = useState<string[]>([]);

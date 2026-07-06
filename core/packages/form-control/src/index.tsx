@@ -4,9 +4,10 @@ import CSS from 'csstype';
 import FormControlStyled from './form-control.styled';
 import IFormControl from '../types/iform-control';
 import ITheme from '../../styles/types/itheme';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const FormControl: React.FunctionComponent<IFormControl> = (props: IFormControl) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
 
   const flexDirection: CSS.Property.FlexDirection = props.flexDirection || 'row';
   const alignItems: string = props.alignItems || 'center';
@@ -26,12 +27,8 @@ const FormControl: React.FunctionComponent<IFormControl> = (props: IFormControl)
     );
   };
 
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default FormControl;

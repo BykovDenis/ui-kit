@@ -7,9 +7,10 @@ import InputSwitcher from './input-switcher';
 import LabelSwitcher from './label-switcher';
 import TSwitcher from '../types/tswitcher';
 import ColorTheme from '../../enums/color-theme';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
   const [disabled, setDisabled] = useState<boolean>(props?.disabled !== undefined ? props.disabled : false);
   const [colorTheme] = useState<string>(props?.colorTheme || ColorTheme.Normal);
   const [id1] = useState<string>(`${props.id}-${uuidv4()}`);
@@ -116,12 +117,8 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
     );
   };
 
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default Switcher;

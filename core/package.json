@@ -89,6 +89,7 @@
     "inspectpack": "^4.0.1",
     "jest": "27.5.1",
     "jest-styled-components": "^7.0.8",
+    "jest-util": "27.5.1",
     "p-locate": "6.0.0",
     "patch-package": "8.0.1",
     "playwright": "^1.56.1",

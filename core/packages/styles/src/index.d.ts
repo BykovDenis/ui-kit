@@ -1,12 +1,15 @@
-import IThemes from '../types/ithemes'
+import React from 'react';
+
+import IThemes from '../types/ithemes';
 import ITheme from '../types/itheme';
-import getNewReactThemeContext from './index';
-import rgbToRgba from '../../helpers/rgb-to-rgba';
-import hexToRgba from '../../helpers/hex-to-rgba';
 
 declare const themes: IThemes;
-declare const ReactThemeContextConsumer
+declare const ThemeContext: React.Context<ITheme>;
+declare const ThemeProvider: React.Provider<ITheme>;
+declare function useTheme(): ITheme;
+declare function setFallbackTheme(theme: ITheme): void;
+declare function ThemeConsumer(props: { children: (theme: ITheme) => React.ReactNode }): React.ReactElement;
+declare function getNewReactThemeContext(theme?: ITheme): typeof ThemeContext;
 
-export { themes, ITheme, IThemes, ReactThemeContextConsumer, rgbToRgba, hexToRgba }
+export { themes, ITheme, IThemes, ThemeContext, ThemeProvider, ThemeConsumer, useTheme, setFallbackTheme };
 export default getNewReactThemeContext;
-

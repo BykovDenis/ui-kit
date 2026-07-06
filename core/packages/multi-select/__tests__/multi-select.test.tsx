@@ -300,19 +300,9 @@ describe('MultiSelect', () => {
     });
   });
 
-  test('renders null and logs error when provider is not initialized for string mode', () => {
-    const previousConsumer = globalThis.ReactThemeContextConsumer;
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
-    globalThis.ReactThemeContextConsumer = undefined;
+  test('renders with the fallback theme when no provider is mounted', () => {
+    const { container } = render(<MultiSelect id="ms-no-provider" name="ms-no-provider" elementNames={['Name', 'Status']} />);
 
-    const { container } = render(
-      <MultiSelect id="ms-no-provider" name="ms-no-provider" elementNames={['Name', 'Status']} />
-    );
-
-    expect(container.firstChild).toBeNull();
-    expect(consoleErrorSpy).toHaveBeenCalledWith('MultiSelect. You need an initialization provider');
-
-    globalThis.ReactThemeContextConsumer = previousConsumer;
-    consoleErrorSpy.mockRestore();
+    expect(container.firstChild).not.toBeNull();
   });
 });

@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import searchDomChildElement from '../../helpers/search-dom-child-element';
-import Input from '../../input/src';
-import Label from '../../label/src';
-import List from '../../list/src';
-import ListItem from '../../list-item/src';
+import Input from '@dbykov-ui-kit/input';
+import Label from '@dbykov-ui-kit/label';
+import List from '@dbykov-ui-kit/list';
+import ListItem from '@dbykov-ui-kit/list-item';
 import ITheme from '../../styles/types/itheme';
 import IOption from '../types/ioption';
 import ISelect from '../types/iselect';
@@ -29,6 +29,7 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import { getIsClient } from '../../utilities/ssr/get-is-client';
 import { Portal } from '../../portal';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 function getElementsParsed(elements: Array<IOption | string | number>, name: string): Array<IOption> {
   return elements?.map((element: string | number | IOption) => {
@@ -102,7 +103,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [activeElement, setActiveElement] = useState<IOption>(activeElementParsed);
   const [isEdited, setIsEdited] = useState<boolean>(false);
   const [activeIndexElement, setActiveIndexElement] = useState<number>(null);
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
 
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
   const selectListContainerRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -449,12 +450,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     );
   };
 
-  if (!Consumer) {
-    console.error('The Select component. You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default Select;

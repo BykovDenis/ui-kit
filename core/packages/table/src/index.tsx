@@ -3,9 +3,10 @@ import React from 'react';
 import ITheme from '../../styles/types/itheme';
 import TTable from '../types/ttable';
 import TableStyled from './table.styled';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Table: React.FunctionComponent<TTable> = (props: TTable) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
 
   const componentThemed: any = (theme: ITheme) => {
     const color: string = props.color ?? theme.palette.baseFontColor;
@@ -27,12 +28,8 @@ const Table: React.FunctionComponent<TTable> = (props: TTable) => {
     );
   };
 
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default Table;
