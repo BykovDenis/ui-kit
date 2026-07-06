@@ -1,4 +1,4 @@
-import FormControl from '../../form-control/src';
+import FormControl from '@dbykov-ui-kit/form-control';
 import TFlexContainer from "../types/tflex-container";
 
 const FlexContainer: React.FunctionComponent<TFlexContainer> = FormControl;

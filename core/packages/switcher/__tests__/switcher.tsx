@@ -67,16 +67,8 @@ it('does not call onSwitcherChange when disabled', () => {
   expect(onSwitcherChange).not.toHaveBeenCalled();
 });
 
-it('renders null and logs error when provider is not initialized', () => {
-  const previousConsumer = globalThis.ReactThemeContextConsumer;
-  const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
-  globalThis.ReactThemeContextConsumer = undefined;
-
+it('renders with the fallback theme when no provider is mounted', () => {
   const { container } = render(<Switcher {...getProps()} />);
 
-  expect(container.firstChild).toBeNull();
-  expect(consoleErrorSpy).toHaveBeenCalledWith('You need an initialization provider');
-
-  globalThis.ReactThemeContextConsumer = previousConsumer;
-  consoleErrorSpy.mockRestore();
+  expect(container.firstChild).not.toBeNull();
 });

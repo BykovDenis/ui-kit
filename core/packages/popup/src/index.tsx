@@ -6,13 +6,14 @@ import type ITheme from '../../styles/types/itheme';
 import type PopupProps from '../types/popup-props';
 import getMeasureValue from '../../helpers/get-measure-value';
 import { Portal } from '../../portal';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
   const [top, setTop] = useState<number>(0);
   const [left, setLeft] = useState<number>(0);
   const [width, setWidth] = useState<number>(0);
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
 
   const refPortal = useRef<HTMLDivElement | null>(null);
 
@@ -64,12 +65,8 @@ const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
     );
   };
 
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default Popup;

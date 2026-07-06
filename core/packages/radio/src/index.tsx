@@ -1,13 +1,14 @@
 ﻿import React, { useEffect, useState } from 'react';
 
-import Label from '../../label/src';
+import Label from '@dbykov-ui-kit/label';
 import ITheme from '../../styles/types/itheme';
 import FormControl from './form-control.styled';
 import RadioStyled from './radio.styled';
 import RadioProps from '../types/radio-props';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Radio: React.FunctionComponent<RadioProps> = (props: RadioProps) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
   const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
 
   useEffect(() => {
@@ -54,12 +55,8 @@ const Radio: React.FunctionComponent<RadioProps> = (props: RadioProps) => {
     );
   };
 
-  if (!Consumer) {
-    console.error('The Radio component. You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default Radio;

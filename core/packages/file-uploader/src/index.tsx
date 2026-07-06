@@ -4,9 +4,10 @@ import ITheme from '../../styles/types/itheme';
 import FileUploaderProps from '../types/file-uploader-props';
 import LabelStyled from './label.styled';
 import InputStyled from './input.styled';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const FileUploader: React.FunctionComponent<FileUploaderProps> = (props: FileUploaderProps) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
 
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string = props.disabled
@@ -49,12 +50,8 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = (props: FileUpl
     );
   };
 
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default FileUploader;

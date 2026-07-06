@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-import Label from '../../label/src';
+import Label from '@dbykov-ui-kit/label';
 import ITheme from '../../styles/types/itheme';
 import CheckboxStyled from './checkbox.styled';
 import FormControl from './form-control.styled';
 import CheckboxProps from '../types/icheckbox';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Checkbox: React.FunctionComponent<CheckboxProps> = (props: CheckboxProps) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
   const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
 
   useEffect(() => {
@@ -55,12 +56,8 @@ const Checkbox: React.FunctionComponent<CheckboxProps> = (props: CheckboxProps) 
     );
   };
 
-  if (!Consumer) {
-    console.error('The Checkbox component. You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default Checkbox;

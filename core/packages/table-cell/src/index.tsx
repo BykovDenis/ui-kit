@@ -4,9 +4,10 @@ import ChevronDownIcon from '../../icons-components/24x24/chevron-down-icon';
 import ITheme from '../../styles/types/itheme';
 import TTableCell from '../types/ttable-cell';
 import TableCellStyled from './table-cell.styled';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const TableCell: React.FunctionComponent<TTableCell> = (props: TTableCell) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
 
   const componentThemed: any = (theme: ITheme) => {
     const borderColor: string = theme.mainOutlinedColor;
@@ -22,12 +23,8 @@ const TableCell: React.FunctionComponent<TTableCell> = (props: TTableCell) => {
     );
   };
 
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default TableCell;

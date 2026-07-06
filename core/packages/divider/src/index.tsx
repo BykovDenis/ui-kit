@@ -3,9 +3,10 @@ import React from 'react';
 import ITheme from '../../styles/types/itheme';
 import DividerStyled from './divider.styled';
 import TDivider from '../types/tdivider';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Divider: React.FunctionComponent<TDivider> = (props: TDivider) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
 
   const componentThemed: any = (theme: ITheme) => {
     const color: string = props?.color || theme.mainOutlinedColor;
@@ -13,12 +14,8 @@ const Divider: React.FunctionComponent<TDivider> = (props: TDivider) => {
     return <DividerStyled className={props?.className} color={color} width={props?.width} />;
   };
 
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default Divider;

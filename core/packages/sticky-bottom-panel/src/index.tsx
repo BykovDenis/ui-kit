@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react';
 import ITheme from '../../styles/types/itheme';
 import TStickyBottomPanel from '../types/tsticky-bottom-panel';
 import StickyBottomPanelStyled from './sticky-bottom-panel.styled';
-import FormControl from '../../form-control/src';
-import IconButton from '../../icon-button/src';
+import FormControl from '@dbykov-ui-kit/form-control';
+import IconButton from '@dbykov-ui-kit/icon-button';
 import CircleCrossIcon from '../../icons-components/24x24/circle-cross-icon';
 import { onKeyUpEscapeEventHandler } from '../../helpers/on-key-up-event-handler';
+import { useTheme } from '@dbykov-ui-kit/styles';
 
 const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: TStickyBottomPanel) => {
-  const Consumer = globalThis.ReactThemeContextConsumer;
+  const theme = useTheme();
   const [isOpen, setIsOpen] = useState<boolean>(props.isOpen);
   const [panelAlign] = useState<'left' | 'right' | 'center'>(props.panelAlign || 'center');
 
@@ -54,12 +55,8 @@ const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: T
     ) : null;
   };
 
-  if (!Consumer) {
-    console.error('You need an initialization provider');
-    return null;
-  }
 
-  return <Consumer>{componentThemed}</Consumer>;
+  return componentThemed(theme);
 };
 
 export default StickyBottomPanel;

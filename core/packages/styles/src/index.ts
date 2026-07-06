@@ -1,13 +1,26 @@
-import React from 'react';
-
 import ITheme from '../types/itheme';
-import { themes } from './themes';
+import ThemeContext, { setFallbackTheme, ThemeConsumer } from './theme-context';
 
-function getNewReactThemeContext(theme?: ITheme): { Consumer: any; Provider: any } {
-  const ReactThemeContext: any = React.createContext(theme || themes.light);
-  globalThis.ReactThemeContextConsumer = ReactThemeContext.Consumer;
-  globalThis.ReactThemeContext = ReactThemeContext;
-  return ReactThemeContext;
+declare global {
+  // eslint-disable-next-line no-var
+  var ReactThemeContextConsumer: typeof ThemeConsumer | undefined;
+  // eslint-disable-next-line no-var
+  var ReactThemeContext: typeof ThemeContext | undefined;
 }
 
+// Backwards-compatible bootstrap: older apps call this once at startup and
+// mount <ReturnedContext.Provider value={theme}>. The returned context is the
+// shared ThemeContext, so both the old globalThis path and the new useTheme()
+// path see the same theme.
+function getNewReactThemeContext(theme?: ITheme): typeof ThemeContext {
+  if (theme) {
+    setFallbackTheme(theme);
+  }
+  globalThis.ReactThemeContextConsumer = ThemeConsumer;
+  globalThis.ReactThemeContext = ThemeContext;
+  return ThemeContext;
+}
+
+export { themes } from './themes';
+export { default as ThemeContext, ThemeProvider, ThemeConsumer, useTheme, setFallbackTheme } from './theme-context';
 export default getNewReactThemeContext;

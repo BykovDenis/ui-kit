@@ -3,7 +3,7 @@ import './days-of-week.css';
 import React from 'react';
 
 import Locale from '../../enums/locale';
-import List from '../../list/src';
+import List from '@dbykov-ui-kit/list';
 import daysOfWeekEn from '../dictionaries/days-of-week-en';
 import daysOfWeekRu from '../dictionaries/days-of-week-ru';
 import IDayOfWeek from '../types/iday-of-week';
