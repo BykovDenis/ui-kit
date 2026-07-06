@@ -21,12 +21,15 @@ Proxy над styled-components с `shouldForwardProp` на базе `@emotion/is
 **Готово, когда:** `npm test` не печатает ни одного warning «does not recognize the prop».
 Факт: 189 warning-строк → 0; Jest 49/49 (208); SSR-смоук без утечек; e2e 15/15 (113/113).
 
-### 1.2. [ ] Булев `private` в манифестах
+### 1.2. [x] Булев `private` в манифестах
 **Проблема:** `"private": "false"` строкой — truthy для npm (EPRIVATE при публикации
 из неправильной папки, споткнулись при релизе 0.3.0).
 **Решение:** `core/package.json` и все `core/packages/*/package.json` — привести к
 булеву типу (`true` для непубликуемых, убрать поле у публикуемого).
 **Готово, когда:** `grep -r '"private": "false"'` пуст.
+Факт: нарушитель был один — core/package.json (компонентные уже были булевы);
+заодно добавлен `private: true` в checkbox и styles, где поля не было.
+Публикуемые (core/packages, icon) — корректно без поля. Коммит e4167bc.
 
 ### 1.3. [ ] Гигиена репозитория
 - удалить `core/packages/tsconfig.json--old`, `core/packages/_tmp-configs/`;
