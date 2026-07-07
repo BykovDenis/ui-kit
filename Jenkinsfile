@@ -138,8 +138,10 @@ pipeline {
                   sh "npm ci ${npmFlags}"
                   sh 'npm run build'
                 }
+                // no install here on purpose: styles has no deps of its own
+                // and builds with the icon toolchain via module resolution;
+                // a local node_modules with a second rollup breaks the build
                 dir("${iconStylesPath}") {
-                  sh "npm i ${npmFlags}"
                   sh 'npm run build'
                 }
                 dir("${iconPath}") {
