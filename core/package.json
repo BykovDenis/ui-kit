@@ -13,7 +13,7 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run --e2e",
     "cypress:run:component": "cypress run --component",
-    "build-packages": "time sh ./build.sh",
+    "build-packages": "sh ./build.sh",
     "install-packages": "npm i && cd packages && npm i && cd .. && ./build.sh",
     "clean": "rm -rf node_modules && rm -rf packages/node_modules && rm -rf packages/*/node_modules && rm -rf packages/dist && rm -rf packages/*/dist",
     "lint-package": "node validate-packages.js"
