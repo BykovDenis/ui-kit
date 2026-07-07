@@ -51,7 +51,7 @@ exports[`Button matches snapshot 1`] = `
 <button
   class="c0"
   color="rgb(227, 227, 227)"
-  font-family="\\"SBSansInterface\\", \\"Open Sans\\", \\"Arial\\", sans-serif"
+  font-family=""SBSansInterface", "Open Sans", "Arial", sans-serif"
   font-size="14"
   type="button"
 >

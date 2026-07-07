@@ -12,8 +12,7 @@
   },
   "moduleNameMapper": {
     "\\.(css|less|scss|sass)$": "<rootDir>/__mocks__/styleMock.js",
-    "^@dbykov-ui-kit/([^/]+)$": "<rootDir>/packages/$1/src",
-    "^uuid$": "<rootDir>/__mocks__/uuidMock.js"
+    "^@dbykov-ui-kit/([^/]+)$": "<rootDir>/packages/$1/src"
   },
   "testPathIgnorePatterns": ["<rootDir>/node_modules/", "<rootDir>/packages/dist/"],
   "moduleDirectories": ["<rootDir>", "node_modules"],
