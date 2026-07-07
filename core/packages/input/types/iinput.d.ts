@@ -1,7 +1,9 @@
 import React from 'react';
 import TBaseStyles from '../../types/tbase-styles';
 
-interface IInput extends TBaseStyles {
+interface IInput extends TBaseStyles, React.AriaAttributes {
+  role?: React.AriaRole;
+  onKeyDown?: (evt: React.KeyboardEvent<HTMLInputElement>) => void;
   ReactThemeContext?: any;
   backgroundImage?: string;
   baseFontSize?: number;

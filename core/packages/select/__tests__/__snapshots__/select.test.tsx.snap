@@ -34,6 +34,9 @@ exports[`Select renders correctly 1`] = `
         className="sc-dlnkDq jiXPWh"
       >
         <input
+          aria-autocomplete="list"
+          aria-controls="select-list"
+          aria-expanded={false}
           autoComplete="off"
           className="sc-bdnAzI odNPp"
           color="#ffffff"
@@ -51,6 +54,8 @@ exports[`Select renders correctly 1`] = `
           onClick={[Function]}
           onFocus={[Function]}
           onInput={[Function]}
+          onKeyDown={[Function]}
+          role="combobox"
           type="list-buttons"
           value="List item 1"
         />

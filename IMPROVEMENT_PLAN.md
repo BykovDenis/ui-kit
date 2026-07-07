@@ -125,11 +125,19 @@ devDeps — собирается инструментами icon (свой node_
 
 ## Этап 4. Стратегическое
 
-### 4.1. [ ] Доступность (a11y)
+### 4.1. [~] Доступность (a11y)
 Select/MultiSelect: роли `combobox`/`listbox`/`option`, `aria-expanded`,
 `aria-activedescendant`, клавиатурная навигация (стрелки, Enter, Esc, Home/End);
 Datepicker: роль `dialog`+grid для календаря; фокус-трап в Popup.
 Начать с Select как самого используемого.
+
+Сделано (ветка feature/select-a11y): **Select** реализует APG combobox —
+input `role=combobox` + `aria-expanded/controls/autocomplete/activedescendant`,
+список `role=listbox`, опции `role=option` + `aria-selected`; клавиатура
+ArrowUp/Down (с wrap), Home/End, Enter, Esc; подсветка highlightedIndex
+синхронна фильтру (Enter берёт лучший матч). `IInput`/`IList` расширены
+`React.AriaAttributes`. 4 unit-теста + 3 e2e (Test 12-14). Осталось:
+MultiSelect, Datepicker, Popup focus-trap.
 
 ### 4.2. [ ] Новый API как основной
 - JSDoc `@deprecated` на `getNewReactThemeContext`/`getNewReactIconContext`;

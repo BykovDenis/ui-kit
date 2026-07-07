@@ -132,27 +132,87 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const selectListContainerRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
   const [uuid] = useState<string>(uuidv4());
 
+  // aria-activedescendant target while navigating with the keyboard;
+  // clamped so a shrinking filter can never leave it out of range
+  const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
+  const highlighted: number =
+    highlightedIndex >= 0 && highlightedIndex < (elements?.length ?? 0) ? highlightedIndex : -1;
+
+  const listboxId: string = `${props.id}-list`;
+  const getOptionId = (index: number): string => `${props.id}-option-${index}`;
+
+  // single selection path shared by mouse clicks and the Enter key
+  const applySelection = (option: IOption, index: number | null) => {
+    if (props?.onChange) {
+      props.onChange({ name: props.name, index, label: option?.label, value: option?.value });
+    }
+    if (option?.label) {
+      setActiveElement({ name: props.name, index, label: option.label, value: option.value });
+    }
+    setLabel(props?.regExp ? option?.label?.replaceAll(props.regExp, '') : option?.label);
+    setIsEdited(false);
+    setIsVisibleList(false);
+    setHighlightedIndex(-1);
+  };
+
   const onSelectChange = (evt: React.ChangeEvent<HTMLElement> | React.MouseEvent<HTMLElement, MouseEvent>) => {
     const element: any = evt.target;
-    const isTypeOfValueNumber: boolean = typeof activeElement?.value === 'number';
-    const activeElementState: IOption = {
-      label: element?.dataset?.label,
-      value: isTypeOfValueNumber ? Number(element?.dataset?.value) : element?.dataset?.value,
-    };
-
     if (element.tagName !== BUTTON_TAG) {
       return;
     }
+    const isTypeOfValueNumber: boolean = typeof activeElement?.value === 'number';
+    const option: IOption = {
+      label: element?.dataset?.label,
+      value: isTypeOfValueNumber ? Number(element?.dataset?.value) : element?.dataset?.value,
+    };
     const index: number = element?.dataset?.index ? parseInt(element?.dataset?.index, 10) : null;
-    if (props?.onChange) {
-      props.onChange({ name: props.name, index, ...activeElementState });
+    applySelection(option, index);
+  };
+
+  const onInputKeyDown = (evt: React.KeyboardEvent<HTMLInputElement>) => {
+    if (props?.readOnly || props?.disabled) {
+      return;
     }
-    if (activeElementState?.label) {
-      setActiveElement({ name: props.name, index, ...activeElementState });
+    const count: number = elements?.length ?? 0;
+    const moveTo = (index: number) => {
+      setHighlightedIndex(index);
+      document.getElementById(getOptionId(index))?.scrollIntoView?.({ block: 'nearest' });
+    };
+    switch (evt.key) {
+      case 'ArrowDown':
+      case 'ArrowUp': {
+        evt.preventDefault();
+        if (!isVisibleList) {
+          setIsVisibleList(true);
+        }
+        if (count === 0) {
+          return;
+        }
+        if (highlighted < 0) {
+          moveTo(activeIndexElement >= 0 ? activeIndexElement : 0);
+          return;
+        }
+        moveTo(evt.key === 'ArrowDown' ? (highlighted + 1) % count : (highlighted - 1 + count) % count);
+        return;
+      }
+      case 'Home':
+      case 'End': {
+        if (isVisibleList && count > 0) {
+          evt.preventDefault();
+          moveTo(evt.key === 'Home' ? 0 : count - 1);
+        }
+        return;
+      }
+      case 'Enter': {
+        if (isVisibleList && highlighted >= 0 && elements?.[highlighted]) {
+          evt.preventDefault();
+          applySelection(elements[highlighted], highlighted);
+        }
+        return;
+      }
+      default:
+        return;
     }
-    setLabel(props?.regExp ? activeElementState?.label?.replaceAll(props.regExp, '') : activeElementState?.label);
-    setIsEdited(false);
-    setIsVisibleList((isVisibleList: boolean) => !isVisibleList);
   };
 
   const onListItemsClose = (isSearchResult: boolean, evt?: any) => {
@@ -168,6 +228,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const onListItemsCloseByKey = () => {
     setIsFocus(false);
     setIsVisibleList(false);
+    setHighlightedIndex(-1);
   };
 
   const onMouseSelectUp = (evt: any) => {
@@ -270,6 +331,9 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       const element: any = evt.target;
       setLabel(props?.regExp ? element?.value?.replaceAll(props.regExp, '') : element?.value);
       setActiveElement({ label: null, value: null });
+      // typing re-filters the list: highlight its first option so Enter
+      // immediately picks the best match
+      setHighlightedIndex(0);
     };
 
     const onInputBlur = () => {
@@ -277,6 +341,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       setIsEdited(false);
       setActiveElement(isFoundValue ? activeElementParsed : null);
       setIsVisibleList(false);
+      setHighlightedIndex(-1);
     };
 
     const indicatorColor: string = !props?.readOnly
@@ -329,8 +394,10 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
           id={`${props.id}-list-items`}
         >
           <List
-            id={`${props.id}-list`}
+            id={listboxId}
             type="list-buttons"
+            role="listbox"
+            aria-label={typeof props?.label === 'string' ? props.label : undefined}
             onMouseDown={onMouseDown}
             onKeyUp={onKeyUp}
             fontSize={props?.fontSize}
@@ -342,6 +409,9 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                   <ListItem
                     type="button"
                     key={`${props.id}-list-item-${index}`}
+                    id={getOptionId(index)}
+                    role="option"
+                    aria-selected={isSelectedElement}
                     data-index={element.index}
                     data-value={element.value}
                     data-label={element.label}
@@ -358,6 +428,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
                       isNotEmptyString(activeElement?.label) &&
                       element.label === activeElement.label
                         ? theme.palette.primary.main
+                        : index === highlighted
+                        ? theme.palette.primary.lighter
                         : theme.mainBackgroundColor
                     }
                   >
@@ -411,6 +483,12 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             {...props}
             id={`${props.id}`}
             name={props.name}
+            role="combobox"
+            aria-expanded={isVisibleList}
+            aria-controls={listboxId}
+            aria-autocomplete="list"
+            aria-activedescendant={isVisibleList && highlighted >= 0 ? getOptionId(highlighted) : undefined}
+            onKeyDown={onInputKeyDown}
             height={props?.height}
             width={props?.width}
             onChange={onInputChange}

@@ -4,7 +4,8 @@ import IListElement from '../../list-item/types/ilist-element';
 import TBaseStyles from '../../types/tbase-styles';
 import ListItemType from '../enum/list-type';
 
-interface IList extends TBaseStyles {
+interface IList extends TBaseStyles, React.AriaAttributes {
+  role?: React.AriaRole;
   id?: string;
   backgroundColor?: string;
   colorTheme?: string;
