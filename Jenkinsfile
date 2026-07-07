@@ -1,578 +1,164 @@
-def rootPath = './core'
-def uiKitPath = './core/packages/'
-def buttonPath = './core/packages/button'
-def iconButtonPath = './core/packages/icon-button'
-def checkboxPath = './core/packages/checkbox'
-def datepickerPath = './core/packages/datepicker'
-def dividerPath = './core/packages/divider'
-def inputPath = './core/packages/input'
-def labelPath = './core/packages/label'
-def labelInteractivePath = './core/packages/label-interactive'
-def listPath = './core/packages/list'
-def listItemPath = './core/packages/list-item'
-def radioPath = './core/packages/radio'
-def selectPath = './core/packages/select'
-def popupPath = './core/packages/popup'
-def fileUploaderPath = './core/packages/file-uploader'
-def textFieldPath = './core/packages/textfield'
-def warningPath = './core/packages/warning-panel'
-def switcherPath = './core/packages/switcher';
-def stylesPath = './core/packages/styles';
-def typographyPath = './core/packages/typography';
-def formControlPath = './core/packages/form-control';
-def tablePath = './core/packages/table';
-def tableHeadPath = './core/packages/table-head';
-def tableBodyPath = './core/packages/table-body';
-def tableRowPath = './core/packages/table-row';
-def tableCellPath = './core/packages/table-cell';
-def tableColumnsVisiblePath = './core/packages/table-columns-visible';
-def progressBarPath = './core/packages/progress-bar';
-def multiSelectPath = './core/packages/multi-select';
-def stickyBottomPanelPath = './core/packages/sticky-bottom-panel';
-def tabsPath = './core/packages/tabs';
-def tabPath = './core/packages/tab';
-def flexContainerPath = './core/packages/flex-container';
-def gridContainerPath = './core/packages/grid-container'
+def corePath = './core'
+def uiKitPath = './core/packages'
 def demoAppPath = './demo-app'
-def npmrc_name = '.npmrc'
-def npmrc_content = ''
+def iconPath = './icon'
+def iconStylesPath = './icon/styles'
+// --prefer-offline reuses the agent's npm cache, --no-audit/--no-fund cut
+// pointless network round-trips on every build
+def npmFlags = '--legacy-peer-deps --prefer-offline --no-audit --no-fund'
 
 pipeline {
   agent any
   tools {
-    nodejs 'NodeJS 24.14.1' // имя, которое ты задал в Manage Jenkins → Tools → NodeJS installations
+    nodejs 'NodeJS 24.14.1'
   }
 
   environment {
-      PROJECT_NAME = 'UI Kit'
-      OWNER_NAME = 'Denis Bykov'
+    PROJECT_NAME = 'UI Kit'
+    OWNER_NAME = 'Denis Bykov'
   }
   options { timeout(time: 60, unit: 'MINUTES') }
+
   stages {
-        stage('Core packages installing') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${uiKitPath}") {
-                        script {
-                            echo 'Core packages installing'
-                            sh 'npm i --legacy-peer-deps'
-                        }
-                    }
-                }
-            }
-        }
-        stage('Root packages installing') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${rootPath}") {
-                        script {
-                            echo 'Root packages installing'
-                            sh 'npm ci --legacy-peer-deps'
-                        }
-                    }
-                }
-            }
-        }
-        stage('Demo app packages installing') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${demoAppPath}") {
-                        script {
-                            echo 'Demo app packages installing'
-                            sh 'npm ci --legacy-peer-deps'
-                        }
-                    }
-                }
-            }
-        }
-        stage('Unit tests running') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${rootPath}") {
-                        script {
-                          echo 'Unit tests running'
-                          sh 'npm test'
-                       }
-                    }
-                }
-            }
-        }
-        stage('E2E tests (Cypress)') {
-          steps {
-            ansiColor('xterm') {
-              dir("${rootPath}") {
-                sh '''
-                  set -e
-                  cd ../demo-app
-                  npm run start -- --host 0.0.0.0 --port 3030 > /tmp/demo-app.log 2>&1 &
-                  DEMO_PID=$!
-                  cd ../core
-
-                  cleanup() {
-                    kill "$DEMO_PID" 2>/dev/null || true
-                    wait "$DEMO_PID" 2>/dev/null || true
-                  }
-                  trap cleanup EXIT
-
-                  i=0
-                  until curl -sf http://localhost:3030 >/dev/null; do
-                    i=$((i + 1))
-                    if [ "$i" -ge 60 ]; then
-                      echo "Demo app did not start on http://localhost:3030"
-                      cat /tmp/demo-app.log || true
-                      exit 1
-                    fi
-                    sleep 2
-                  done
-
-                  npx cypress run --browser chromium --headless
-                '''
-              }
-            }
-          }
-        }
-        stage('Styles theme deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${stylesPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('Typography deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${typographyPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('Popup deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${popupPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('Datepicker deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${datepickerPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('Checkbox deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${checkboxPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('FileUploader deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${fileUploaderPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('Radio deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${radioPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('Button deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${buttonPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('IconButton deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${iconButtonPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('Input deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${inputPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                    dir("${textFieldPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('Select deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${selectPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('Switcher deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${switcherPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('Label deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${labelPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('FormControl deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${formControlPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('FlexContainer deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${flexContainerPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('GridContainer deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${gridContainerPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('List deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${listPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('ListItem deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${listItemPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('TableColumnsVisible deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${tableColumnsVisiblePath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('ProgressBar deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${progressBarPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('MultiSelect deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${multiSelectPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('StickyBottomPanel deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${stickyBottomPanelPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('Tabs deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${tabsPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                    dir("${tabPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('Divider deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${dividerPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage('Table deploy') {
-            steps {
-                ansiColor('xterm') {
-                    dir("${tablePath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                    dir("${tableHeadPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                    dir("${tableBodyPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                    dir("${tableRowPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                    dir("${tableCellPath}") {
-                        script {
-                          echo 'Building'
-                          sh 'npm run build'
-                          echo 'Clean'
-                          sh 'npm run clean-node-modules'
-                       }
-                    }
-                }
-            }
-        }
-        stage("UI Kit PUBLISH") {
-            steps {
-               ansiColor('xterm') {
-                    script {
-                        def IS_PUBLISH = input(
-                        message: 'Publish library UI KIt?',
-                        ok: 'Yes',
-                        no: 'No',
-                        parameters: [
-                          string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Publish library UI KIt?')
-                        ]
-                        )
-                        if (IS_PUBLISH == 'Yes' || IS_PUBLISH == 'yes' || IS_PUBLISH == 'YES') {
-                            withCredentials([string(credentialsId: 'NPM_TOKEN', variable: 'NPM_TOKEN')]) {
-                                dir("${uiKitPath}") {
-                                sh 'npm -v'
-                                sh 'node -v'
-                                writeFile file: '.npmrc', text: "//registry.npmjs.org/:_authToken=${NPM_TOKEN}"
-                                sh 'npm whoami || echo "Not logged in"'
-                                sh 'npm publish --access public'
-                                }
-                            }
-                        }
-                    }
-                 }
-            }
-        }
-    /*
-    stage('🚀 Publish npm package') {
+    stage('Install') {
       steps {
         ansiColor('xterm') {
-          script {
-            // Write .npmrc file for authentication
-            writeFile file: '.npmrc', text: '''
-            //registry.npmjs.org/:_authToken=${NPM_TOKEN}
-            '''
-            // Login to npm (if needed)
-            sh 'npm whoami || npm login --token=$NPM_TOKEN'
-            // Publish the package
-            sh 'npm publish'
+          dir("${uiKitPath}") {
+            sh "npm i ${npmFlags}"
+          }
+          dir("${corePath}") {
+            sh "npm ci ${npmFlags}"
+          }
+          dir("${demoAppPath}") {
+            sh "npm ci ${npmFlags}"
           }
         }
       }
     }
-    */
+
+    stage('Unit tests') {
+      steps {
+        ansiColor('xterm') {
+          dir("${corePath}") {
+            sh 'npm test'
+          }
+        }
+      }
+    }
+
+    stage('Build packages') {
+      // one stage instead of ~30 sequential per-component copies: build.sh
+      // already builds every package in order, and the publish stage needs
+      // the freshly built dist anyway
+      steps {
+        ansiColor('xterm') {
+          dir("${corePath}") {
+            sh 'npm run build-packages'
+          }
+        }
+      }
+    }
+
+    stage('E2E tests (Cypress)') {
+      steps {
+        ansiColor('xterm') {
+          dir("${corePath}") {
+            sh '''
+              set -e
+              cd ../demo-app
+              npm run start -- --host 0.0.0.0 --port 3030 > /tmp/demo-app.log 2>&1 &
+              DEMO_PID=$!
+              cd ../core
+
+              cleanup() {
+                kill "$DEMO_PID" 2>/dev/null || true
+                wait "$DEMO_PID" 2>/dev/null || true
+              }
+              trap cleanup EXIT
+
+              i=0
+              until curl -sf http://localhost:3030 >/dev/null; do
+                i=$((i + 1))
+                if [ "$i" -ge 60 ]; then
+                  echo "Demo app did not start on http://localhost:3030"
+                  cat /tmp/demo-app.log || true
+                  exit 1
+                fi
+                sleep 2
+              done
+
+              npx cypress run --browser chromium --headless
+            '''
+          }
+        }
+      }
+    }
+
+    stage('Publish') {
+      steps {
+        ansiColor('xterm') {
+          script {
+            def isPublish = false
+            try {
+              // do not hold the executor forever waiting for a human
+              timeout(time: 15, unit: 'MINUTES') {
+                def answer = input(
+                  message: 'Publish @dbykov-ui-kit/core and @dbykov-ui-kit/icon to npm?',
+                  ok: 'Yes',
+                  parameters: [
+                    string(name: 'IS_PUBLISH', defaultValue: 'No', description: 'Type Yes to publish')
+                  ]
+                )
+                isPublish = answer?.toLowerCase() == 'yes'
+              }
+            } catch (err) {
+              echo 'Publish skipped (no confirmation within 15 minutes)'
+            }
+            if (isPublish) {
+              withCredentials([string(credentialsId: 'NPM_TOKEN', variable: 'NPM_TOKEN')]) {
+                dir("${uiKitPath}") {
+                  sh 'npm -v && node -v'
+                  writeFile file: '.npmrc', text: "//registry.npmjs.org/:_authToken=${NPM_TOKEN}"
+                  sh 'npm whoami'
+                  // idempotent: a version that is already in the registry is
+                  // skipped instead of failing the stage
+                  sh '''
+                    VERSION=$(node -p "require('./package.json').version")
+                    if npm view "@dbykov-ui-kit/core@$VERSION" version >/dev/null 2>&1; then
+                      echo "core@$VERSION already published, skipping"
+                    else
+                      npm publish --access public
+                    fi
+                  '''
+                  // a stale token file here later shadows the developer's
+                  // own auth and breaks manual publishes with a 404
+                  sh 'rm -f .npmrc'
+                }
+                dir("${iconPath}") {
+                  sh "npm ci ${npmFlags}"
+                  sh 'npm run build'
+                }
+                dir("${iconStylesPath}") {
+                  sh "npm i ${npmFlags}"
+                  sh 'npm run build'
+                }
+                dir("${iconPath}") {
+                  writeFile file: '.npmrc', text: "//registry.npmjs.org/:_authToken=${NPM_TOKEN}"
+                  sh '''
+                    VERSION=$(node -p "require('./package.json').version")
+                    if npm view "@dbykov-ui-kit/icon@$VERSION" version >/dev/null 2>&1; then
+                      echo "icon@$VERSION already published, skipping"
+                    else
+                      npm publish --access public
+                    fi
+                  '''
+                  sh 'rm -f .npmrc'
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
