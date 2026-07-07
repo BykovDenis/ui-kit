@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { PropsWithChildren } from 'react';
 
 import ITheme from '../../styles/types/itheme';
@@ -9,12 +9,10 @@ import { useTheme } from '@dbykov-ui-kit/styles';
 
 const IconButton: React.FunctionComponent<PropsWithChildren<TButton>> = (props: TButton) => {
   const theme = useTheme();
-  const [colorTheme] = useState<string>(props?.colorTheme || ColorTheme.Normal);
-  const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
-
-  useEffect(() => {
-    setError(props?.error !== undefined ? props.error : false);
-  }, [props.error]);
+  // plain derived values: the useState copies froze the initial prop and
+  // needed a sync effect (or silently ignored prop updates) to stay current
+  const colorTheme: string = props?.colorTheme || ColorTheme.Normal;
+  const error: boolean = props?.error !== undefined ? props.error : false;
 
   const children: any = props?.children;
 

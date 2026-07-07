@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import { TButtonType } from '../../enums/button-type';
 import ButtonType from '../../enums/button-type';
@@ -10,12 +10,10 @@ import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Button = React.forwardRef<HTMLButtonElement, PropsWithChildren<TButton>>((props: TButton, ref) => {
   const theme = useTheme();
-  const [colorTheme] = useState<string>(props?.colorTheme || ColorTheme.Normal);
-  const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
-
-  useEffect(() => {
-    setError(props?.error !== undefined ? props.error : false);
-  }, [props.error]);
+  // plain derived values: the useState copies froze the initial prop and
+  // needed a sync effect (or silently ignored prop updates) to stay current
+  const colorTheme: string = props?.colorTheme || ColorTheme.Normal;
+  const error: boolean = props?.error !== undefined ? props.error : false;
 
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string = props.disabled

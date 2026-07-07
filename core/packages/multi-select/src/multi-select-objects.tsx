@@ -47,7 +47,8 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
 ) => {
   const theme = useTheme();
   const [isExpanded, setExpanded] = useState<boolean>(false);
-  const [variant] = useState<string | null>(props.variant || MultiSelectVariant.Normal);
+  // plain derived value: the useState copy silently ignored prop updates
+  const variant: string | null = props.variant || MultiSelectVariant.Normal;
 
   const elementNamesSorted: Array<TMultiSelectOption> = React.useMemo(
     () =>

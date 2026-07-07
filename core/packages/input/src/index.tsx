@@ -20,7 +20,9 @@ import { useTheme } from '@dbykov-ui-kit/styles';
 const Input: ForwardRefExoticComponent<IInput & RefAttributes<HTMLInputElement>> = forwardRef<HTMLInputElement, IInput>(
   (props, ref) => {
     const [inputValue, setInputValue] = useState(isNotEmptyString(props.value?.toString()) ? props.value : '');
-    const [isNotRunDebounce] = useState(props?.isNotRunDebounce !== undefined ? props.isNotRunDebounce : false);
+    // derived, not state: the useState copy froze the first value, but Select
+    // passes this prop dynamically (it depends on the filtered list length)
+    const isNotRunDebounce: boolean = props?.isNotRunDebounce !== undefined ? props.isNotRunDebounce : false;
     const [isFocus, setIsFocus] = useState(false);
     const [isChanging, setIsChanging] = useState(false);
     const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;

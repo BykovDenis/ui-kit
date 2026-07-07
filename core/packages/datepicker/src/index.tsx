@@ -47,10 +47,10 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const dateRef = useRef();
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
   const [dateParsed, setDateParsed] = useState<DateParser | null>(null);
-  const [locale, setLocale] = useState<string>(props.locale ?? Locale.Ru);
-
-  // >>> initial values
-  const [months, setMonths] = useState<Array<IOption>>(locale === Locale.Ru ? monthsElementRu : monthsElementEn);
+  // plain derived values: the useState copies froze the initial props and
+  // needed a chain of sync effects (props.locale -> locale -> months)
+  const locale: string = props.locale ?? Locale.Ru;
+  const months: Array<IOption> = locale === Locale.Ru ? monthsElementRu : monthsElementEn;
   const theme = useTheme();
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
@@ -357,10 +357,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   }, [props.error]);
 
   useEffect(() => {
-    setLocale(props.locale);
-  }, [props.locale]);
-
-  useEffect(() => {
     if (props.value !== value) {
       setValue(props.value);
       inputRef.current.value = props.value;
@@ -419,10 +415,6 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       }
     }
   }, [value]);
-
-  useEffect(() => {
-    setMonths(locale === Locale.Ru ? monthsElementRu : monthsElementEn);
-  }, [locale]);
 
   useEffect(() => {
     if (months && months?.length > 0) {

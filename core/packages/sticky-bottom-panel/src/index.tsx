@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import ITheme from '../../styles/types/itheme';
 import TStickyBottomPanel from '../types/tsticky-bottom-panel';
@@ -11,8 +11,10 @@ import { useTheme } from '@dbykov-ui-kit/styles';
 
 const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: TStickyBottomPanel) => {
   const theme = useTheme();
-  const [isOpen, setIsOpen] = useState<boolean>(props.isOpen);
-  const [panelAlign] = useState<'left' | 'right' | 'center'>(props.panelAlign || 'center');
+  // plain derived values: the useState copies froze the initial prop and
+  // needed a sync effect (or silently ignored prop updates) to stay current
+  const isOpen: boolean = props.isOpen;
+  const panelAlign: 'left' | 'right' | 'center' = props.panelAlign || 'center';
 
   const onKeyUp = (evt: any) => {
     if (isOpen) {
@@ -26,10 +28,6 @@ const StickyBottomPanel: React.FunctionComponent<TStickyBottomPanel> = (props: T
       document.removeEventListener('keyup', onKeyUp);
     };
   }, []);
-
-  useEffect(() => {
-    setIsOpen(props.isOpen);
-  }, [props.isOpen]);
 
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string = props?.backgroundColor || theme?.mainBackgroundColor;
