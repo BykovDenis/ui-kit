@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import searchDomChildElement from '../../helpers/search-dom-child-element';
@@ -96,14 +96,37 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   const [label, setLabel] = useState<string>(
     props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label
   );
-  const [elements, setElements] = useState<Array<IOption>>(getElementsParsed(props.elements, props.name));
   const [isVisibleList, setIsVisibleList] = useState<boolean>(false);
-  const [isFoundValue, setIsFoundValue] = useState<boolean>(true);
-  const [isNewElement, setIsNewElement] = useState<boolean>(false);
   const [activeElement, setActiveElement] = useState<IOption>(activeElementParsed);
   const [isEdited, setIsEdited] = useState<boolean>(false);
-  const [activeIndexElement, setActiveIndexElement] = useState<number>(null);
   const theme = useTheme();
+
+  // The filtered list is derived in the same render as the label, not
+  // synchronized into state by a passive effect: the effect ran after paint,
+  // so every keystroke committed one frame whose first list item still
+  // belonged to the previous filter — clicks landed on the wrong option.
+  const elementsParsed: Array<IOption> = useMemo(
+    () => getElementsParsed(props.elements, props.name),
+    [props.elements, props.name]
+  );
+  // typing clears activeElement, selection/reset restores it — that is what
+  // separates "user is filtering" from "label just mirrors the chosen value"
+  const isFiltering: boolean = isNotEmptyString(label) && activeElement?.value == null;
+  const elements: Array<IOption> = useMemo(
+    () => (isFiltering ? getElementsFiltered(elementsParsed, label) : elementsParsed),
+    [elementsParsed, isFiltering, label]
+  );
+  const isFoundValue: boolean = !isFiltering || elements?.length > 0;
+  const isNewElement: boolean =
+    isFiltering &&
+    ((elements?.length > 0 && getElementsExactFiltered(elementsParsed, label)?.length === 0) ||
+      elements?.length === 0);
+
+  // derived, not state: setting it from inside the list render caused
+  // an update-during-render loop
+  const activeIndexElement: number = elements?.findIndex(
+    (element: IOption) => element?.value === activeElement?.value
+  );
 
   const inputRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
   const selectListContainerRef: any = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -187,7 +210,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       document.removeEventListener('keyup', onKeyUp);
       setIsVisibleList(false);
       setIsFocus(false);
-      setIsFoundValue(true);
     };
   }, []);
 
@@ -198,30 +220,8 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
   }, [props.activeElement]);
 
   useEffect(() => {
-    const elementsFiltered: Array<IOption> = getElementsParsed(props.elements, props.name);
-    setElements(elementsFiltered);
     setActiveElement(activeElementParsed);
   }, [props.elements]);
-
-  useEffect(() => {
-    if (isEdited) {
-      const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
-      const elementsFiltered: Array<IOption> = isNotEmptyString(labelUpperCase)
-        ? getElementsFiltered(getElementsParsed(props.elements, props.name), labelUpperCase)
-        : getElementsParsed(props.elements, props.name);
-      const elementsExactFiltered: Array<IOption> = isNotEmptyString(labelUpperCase)
-        ? getElementsExactFiltered(getElementsParsed(props.elements, props.name), labelUpperCase)
-        : getElementsParsed(props.elements, props.name);
-      setElements(elementsFiltered);
-      setIsFoundValue(elementsFiltered?.length > 0);
-      setIsNewElement(
-        (elementsFiltered?.length > 0 && isNotEmptyString(label) && elementsExactFiltered?.length === 0) ||
-          elementsFiltered?.length === 0
-      );
-    } else {
-      setElements(getElementsParsed(props.elements, props.name));
-    }
-  }, [label]);
 
   const onInputDelete = (name: string) => {
     props?.onRemove(name, null);
@@ -230,8 +230,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setIsEdited(false);
     setActiveElement({ label: null, value: null });
     props.onChange({ name: name, label: null, value: null, index: null });
-    setElements(getElementsParsed(props.elements, props.name));
-    setIsFoundValue(true);
   };
 
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -311,10 +309,17 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       width = clientRectPosition.width;
     }
 
-    const SelectListContainerPortal = () => (
+    // custom callbacks are not DOM attributes: keep them out of the spread,
+    // is-prop-valid lets any on* prop through to the element
+    const { onRemove: _onRemove, ...listContainerProps } = props;
+
+    // plain JSX value, not a nested component: a component type created
+    // inside render is new on every pass, so React unmounted and remounted
+    // the whole list on each parent state update (unstable DOM under cursor)
+    const selectListContainerPortal = (
       <Portal>
         <SelectListContainer
-          {...props}
+          {...listContainerProps}
           backgroundColor={backgroundColor}
           outlinedColor={theme.palette.primary.moreLighter}
           ref={selectListContainerRef}
@@ -333,9 +338,6 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             {isFoundValue &&
               elements?.map((element: IOption, index: number) => {
                 const isSelectedElement: boolean = element?.value === activeElement?.value;
-                if (isSelectedElement) {
-                  setActiveIndexElement(index);
-                }
                 return (
                   <ListItem
                     type="button"
@@ -445,7 +447,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
             error={props.error}
           />
         </SelectHeader>
-        {isVisibleList && <SelectListContainerPortal />}
+        {isVisibleList && selectListContainerPortal}
       </SelectContainer>
     );
   };

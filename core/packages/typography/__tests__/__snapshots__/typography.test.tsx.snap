@@ -6,7 +6,6 @@ exports[`Typography renders correctly 1`] = `
   color="#333333"
   fontFamily="Roboto, Arial, sans-serif"
   fontSize={28}
-  variant="H1"
 >
   Some text
 </h1>

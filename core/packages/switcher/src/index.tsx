@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import ITheme from '../../styles/types/itheme';
@@ -11,21 +11,13 @@ import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
   const theme = useTheme();
-  const [disabled, setDisabled] = useState<boolean>(props?.disabled !== undefined ? props.disabled : false);
-  const [colorTheme] = useState<string>(props?.colorTheme || ColorTheme.Normal);
+  // plain derived values: the useState copies froze the initial prop and
+  // needed sync effects (or silently ignored prop updates) to stay current
+  const disabled: boolean = props?.disabled !== undefined ? props.disabled : false;
+  const colorTheme: string = props?.colorTheme || ColorTheme.Normal;
+  const error: boolean = props?.error !== undefined ? props.error : false;
   const [id1] = useState<string>(`${props.id}-${uuidv4()}`);
   const [id2] = useState<string>(`${props.id}-${uuidv4()}`);
-  const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
-
-  useEffect(() => {
-    if (props?.disabled !== undefined) {
-      setDisabled(props.disabled);
-    }
-  }, [props.disabled]);
-
-  useEffect(() => {
-    setError(props?.error !== undefined ? props.error : false);
-  }, [props.error]);
 
   const { element1, element2, activeElement } = props;
   const isActiveFirstElement = element1 === activeElement;

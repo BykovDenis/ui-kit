@@ -4,8 +4,6 @@ exports[`Input renders correctly 1`] = `
 <label
   className="sc-bdnAzI drmVIo"
   color="#333333"
-  error={false}
-  focusColor="#333333"
   fontFamily="Roboto, Arial, sans-serif"
   fontSize={14}
   onClick={[Function]}

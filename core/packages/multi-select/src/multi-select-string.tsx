@@ -46,15 +46,17 @@ type TMultiSelectString = TMultiSelect & {
 const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelectString) => {
   const theme = useTheme();
   const [isExpanded, setExpanded] = useState<boolean>(false);
-  const [elementNames, setElementNames] = useState<Array<string>>(
-    props?.sortDirection ? sortArray(props.elementNames, props.sortDirection) : props.elementNames
+  // derived like in multi-select-objects: the useState copy needed a sync
+  // effect to follow props.elementNames
+  const elementNames: Array<string> = React.useMemo(
+    () => (props?.sortDirection ? sortArray(props.elementNames, props.sortDirection) : props.elementNames),
+    [props.elementNames, props.sortDirection]
   );
   const [elementNamesSelected, setElementNamesSelected] = useState<Set<string>>(null);
   const [searchText, setSearchText] = useState<string>(null);
-  const [isUseLocaleStorage] = useState<boolean>(
-    props?.isUseLocaleStorage !== undefined ? props.isUseLocaleStorage : false
-  );
-  const [variant] = useState<string | null>(props.variant || MultiSelectVariant.Normal);
+  // plain derived values: the useState copies silently ignored prop updates
+  const isUseLocaleStorage: boolean = props?.isUseLocaleStorage !== undefined ? props.isUseLocaleStorage : false;
+  const variant: string | null = props.variant || MultiSelectVariant.Normal;
 
   const btnMultiSelect: any = useRef();
   const btnToggleContainer: any = useRef();
@@ -145,10 +147,6 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
     };
   }, []);
 
-
-  useEffect(() => {
-    setElementNames(props?.sortDirection ? sortArray(props.elementNames, props.sortDirection) : props.elementNames);
-  }, [props.elementNames]);
 
   useEffect(() => {
     if (props.elementNamesDefaultSelected?.length === 0) {
@@ -293,7 +291,10 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
       width = clientRectPosition.width;
     }
 
-    const SelectListContainerPortal = () => (
+    // plain JSX value, not a nested component: a component type created
+    // inside render is new on every pass, so React unmounted and remounted
+    // the whole list on each parent state update (unstable DOM under cursor)
+    const selectListContainerPortal = (
       <Portal>
         <ToggleContainer
           data-name="toggle-container"
@@ -498,7 +499,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
             {isExpanded ? <ChevronUpIcon color={color} /> : <ChevronDownIcon color={color} />}
           </ButtonExpandStyled>
         </FormControl>
-        {isExpanded && <SelectListContainerPortal />}
+        {isExpanded && selectListContainerPortal}
       </MultiSelectContainerStyled>
     );
   };

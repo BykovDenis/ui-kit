@@ -59,20 +59,33 @@ Directory layout per component:
   package.json           # private, references shared rollup config
 ```
 
-### Theme system (React Context via `globalThis`)
+### Theme system (shared React Context)
 
-Components do **not** accept a theme prop directly. Instead, they read from `globalThis.ReactThemeContextConsumer`, which is set by calling `getNewReactThemeContext(theme)` once at application startup. This registers the context globally so every component can consume it without an import chain.
+A single `ThemeContext` lives in `core/packages/styles/src/theme-context.tsx`. The styles package is **external** in every component bundle (see Build below), so this module is evaluated once per application and every component gets the same context identity. Components read the theme with `useTheme()`; the recommended app setup is a provider:
 
-```ts
-// Application bootstrap (required before rendering any component)
-import { getNewReactThemeContext, getNewReactIconContext } from '@dbykov-ui-kit/core';
-const ReactThemeContext = getNewReactThemeContext(myTheme);
-const ReactIconContext = getNewReactIconContext(iconConfig);
+```tsx
+import { ThemeProvider, themes } from '@dbykov-ui-kit/core/styles';
+
+<ThemeProvider value={themes.dark}>
+  <App />
+</ThemeProvider>
 ```
 
-Both contexts must be initialized before rendering components — components return `null` and log an error if the consumer is missing. Built-in light/dark themes live in `core/packages/styles/src/themes.ts`; the `ITheme` interface in `core/packages/styles/types/` is the contract.
+Backwards compatibility (kept intentionally, do not remove without a major release):
 
-Per-component behavior can be customized through the `components` key of the theme object (e.g. `theme.components.Input.delayDebounce`), avoiding the need to override components directly.
+- `getNewReactThemeContext(theme)` / `getNewReactIconContext(config)` are compat shims: they set the fallback theme/config, assign the render-prop consumer to `globalThis` (previously published bundles read it there), and return the shared context.
+- Old apps call `useContext(getNewReactThemeContext(theme))` **without mounting a Provider** — that worked because the old API created the context with the theme as its default value. The context default is therefore a Proxy forwarding property reads to the mutable fallback theme (`theme-context.tsx`); `useTheme()` detects it by identity.
+- Components without any provider render with the fallback (light) theme; they do **not** return `null`.
+
+Built-in light/dark themes live in `core/packages/styles/src/themes.ts`; the `ITheme` interface in `core/packages/styles/types/` is the contract. Per-component behavior can be customized through the `components` key of the theme object (e.g. `theme.components.Input.delayDebounce`).
+
+### Styled-components wrapper
+
+Components import `styled` from `@dbykov-ui-kit/styles`, **not** from styled-components directly. The wrapper (`core/packages/styles/src/styled.ts`) is a Proxy that applies `shouldForwardProp` based on `@emotion/is-prop-valid`, so style props (`backgroundColor`, `isOpen`, …) are not rendered into DOM attributes. Custom `on*` callback props pass the filter — keep them out of prop spreads onto styled elements. The wrapper uses the *named* `styled` import: the default export is not callable under native node ESM (SSR).
+
+### Build (rollup externals and relative dist paths)
+
+`core/packages/rollup.config.prod.js` treats `react`, `react-dom`, `styled-components` and all `@dbykov-ui-kit/*` imports as external, rewriting the latter to relative sibling-dist paths (`../../../styles/dist/esm/index.js`). That is what makes the shared context a true singleton, and the paths resolve both in the workspace and inside the published tarball. Shared dirs without a package.json (`helpers/`, `enums/`, `constants/`, `types/`, `portal/`, `icons-components/`, `customs-styled-components/`) are intentionally bundled into each component (pure, stateless code only — no module state there).
 
 ### Icon package (`icon/`)
 
@@ -80,4 +93,6 @@ Renders SVGs via an `<image>` element inside an inline `<svg>` with a color filt
 
 ### Publishing
 
-The `core/packages/` workspace is managed with Lerna (`core/lerna.json`). Each component package publishes to npm as `@dbykov-ui-kit/<name>`. The top-level `@dbykov-ui-kit/core` (in `core/packages/package.json`) re-exports the full library via workspaces. The `demo-app` consumes the published npm packages (not local paths).
+Individual `@dbykov-ui-kit/<component>` packages are **not** published to npm. Everything ships inside the single `@dbykov-ui-kit/core` tarball and is consumed via subpaths (`@dbykov-ui-kit/core/button`); `.npmignore` keeps only `dist/` and `package.json` per component. `@dbykov-ui-kit/icon` is published separately (two bundles: `.` and `./styles`, the latter importing the shared IconContext from the former via relative dist paths).
+
+Publish with `npm publish --access public` from `core/packages/` and `icon/` — **not** from `core/` (that manifest is the private dev root). Watch out for a stale `core/packages/.npmrc`: the Jenkins publish stage writes a token file there, and an expired one causes a confusing 404 on PUT. After publishing, bump `demo-app/package.json` + lockfile to the new versions, otherwise the CI e2e stage installs the old pinned versions and fails.

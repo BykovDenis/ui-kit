@@ -8,6 +8,7 @@
   "author": "Denis Bykov",
   "license": "MIT",
   "type": "module",
+  "private": true,
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && rollup -c ./rollup.config.prod.js && rollup -c ./rollup.dts.config.js",

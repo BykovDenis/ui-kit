@@ -1,11 +1,5 @@
-// import GridContainer from "../../../../../core/packages/grid-container/src";
-// import Datepicker from "../../../../../core/packages/datepicker/src";
-// import Select from "../../../../../core/packages/select/src";
-// import MultiSelect from "../../../../../core/packages/multi-select/src";
 import {toast} from 'react-toastify';
 import React, {useState} from 'react';
-// import Input from "../../../../../core/packages/input/src";
-// import TextField from "../../../../../core/packages/textfield/src";
 import {success} from '../../../utils/dev-utils-theme';
 
 // components from package library

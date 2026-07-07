@@ -5,8 +5,6 @@ import Table from "@dbykov-ui-kit/core/table";
 import TableBody from "@dbykov-ui-kit/core/table-body";
 import { IOption } from "@dbykov-ui-kit/core/select";
 import { useState } from "react";
-// local components
-// import Select from "../../../../../core/packages/select/src";
 // components from package library
 import Select from "@dbykov-ui-kit/core/select";
 

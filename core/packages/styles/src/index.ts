@@ -23,4 +23,5 @@ function getNewReactThemeContext(theme?: ITheme): typeof ThemeContext {
 
 export { themes } from './themes';
 export { default as ThemeContext, ThemeProvider, ThemeConsumer, useTheme, setFallbackTheme } from './theme-context';
+export { default as styled } from './styled';
 export default getNewReactThemeContext;

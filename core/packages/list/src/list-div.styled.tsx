@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from '@dbykov-ui-kit/styles';
 
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import Ilist from '../types/ilist';

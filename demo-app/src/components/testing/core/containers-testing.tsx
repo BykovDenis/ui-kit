@@ -1,12 +1,6 @@
 import React, { useContext } from "react";
 import { ReactThemeContext } from "../../app";
 import styled from "styled-components";
-
-// local components
-// import FlexContainer from '../../../packages/flex-container/src';
-// import FormControl from '../../../packages/form-control/src';
-// import Typography from '../../../packages/typography/src';
-
 // components from package library
 import FlexContainer from "@dbykov-ui-kit/core/flex-container";
 import Typography from "@dbykov-ui-kit/core/typography";

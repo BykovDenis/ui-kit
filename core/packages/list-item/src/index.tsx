@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { ListItemType } from '../enums/list-item-type';
 import IListElement from '../types/ilist-element';
@@ -14,7 +14,9 @@ const HEIGHT: number = 30;
 
 const ListItem: React.FunctionComponent<IListElement> = (props: IListElement) => {
   const theme = useTheme();
-  const [isVisibleTextUnderline] = useState<boolean>(props?.isVisibleTextUnderline !== undefined ? props.isVisibleTextUnderline : true);
+  // plain derived value: the useState copy silently ignored prop updates
+  const isVisibleTextUnderline: boolean =
+    props?.isVisibleTextUnderline !== undefined ? props.isVisibleTextUnderline : true;
 
   const componentThemed: any = (theme: ITheme) => {
     const backgroundColor: string = props.isSelected

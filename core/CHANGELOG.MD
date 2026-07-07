@@ -68,3 +68,26 @@
 - `label-interactive` and `warning-panel` were published without `dist` —
   their subpath imports were broken in 0.2.7
 - Storybook build: broken CamelCase story imports in List and Popup
+
+## v 0.4.0
+### Features
+- Style props (`backgroundColor`, `isOpen`, `focusColor`, …) are no longer
+  rendered into DOM attributes: `styled` is wrapped with a `shouldForwardProp`
+  filter based on `@emotion/is-prop-valid` (new runtime dependency)
+- `styles` exports the wrapped `styled` for building custom components that
+  follow the same prop-filtering rules
+
+### Bugfix
+- Select: the option list no longer unmounts/remounts on every state update
+  and the filtered list is derived in the same render as the typed text —
+  clicks landed on the wrong option while the debounced filter settled;
+  the same remount fix applied to both MultiSelect variants
+- Select: removed a setState call inside the render of the option list
+  (update-during-render)
+- Prop updates after mount now apply in Button, IconButton, Switcher,
+  Checkbox, Radio, ListItem, StickyBottomPanel, MultiSelect, Datepicker,
+  TableColumnsVisible and Input — these components froze the initial value
+  of several props in state (`colorTheme`, `variant`, `disabled`, `isOpen`,
+  `panelAlign`, `isVisibleTextUnderline`, `isNotRunDebounce`, `locale`, …)
+- styled-components is a single copy again for consumers who install the
+  library next to styled-components 6.4.x

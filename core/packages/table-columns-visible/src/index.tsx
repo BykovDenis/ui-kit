@@ -21,7 +21,9 @@ const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColum
 ) => {
   const theme = useTheme();
   const [isExpanded, setExpanded] = useState<boolean>(false);
-  const [columnNames, setColumnNames] = useState<Array<string>>(props.columnNames);
+  // plain derived value: the useState copy froze the initial prop and
+  // needed a sync effect to stay current
+  const columnNames: Array<string> = props.columnNames;
   const [columnNamesSelected, setColumnNamesSelected] = useState<Set<string>>(null);
 
   useEffect(() => {
@@ -36,10 +38,6 @@ const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColum
       setColumnNamesSelected(new Set(columns));
     }
   }, []);
-
-  useEffect(() => {
-    setColumnNames(props.columnNames);
-  }, [props.columnNames]);
 
   const componentThemed: any = (theme: ITheme) => {
     const color: string = props.disabled ? theme?.palette?.baseFontColorOpacity05 : theme?.palette?.baseFontColor;

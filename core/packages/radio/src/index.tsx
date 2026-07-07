@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+﻿import React from 'react';
 
 import Label from '@dbykov-ui-kit/label';
 import ITheme from '../../styles/types/itheme';
@@ -9,11 +9,9 @@ import { useTheme } from '@dbykov-ui-kit/styles';
 
 const Radio: React.FunctionComponent<RadioProps> = (props: RadioProps) => {
   const theme = useTheme();
-  const [error, setError] = useState<boolean>(props?.error !== undefined ? props.error : false);
-
-  useEffect(() => {
-    setError(props?.error !== undefined ? props.error : false);
-  }, [props.error]);
+  // plain derived value: the useState copy froze the initial prop and
+  // needed a sync effect to stay current
+  const error: boolean = props?.error !== undefined ? props.error : false;
 
   const componentThemed = (theme: ITheme) => {
     const backgroundColor: string = props.disabled

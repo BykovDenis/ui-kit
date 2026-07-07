@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from '@dbykov-ui-kit/styles';
 
 import hexToRgb from '../../helpers/hex-to-rgba';
 import getMeasureValue from "../../helpers/get-measure-value";

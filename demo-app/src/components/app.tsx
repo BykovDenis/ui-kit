@@ -6,11 +6,6 @@ import Sidebar from './sidebar';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../css/create-window-notification.css';
-// local components
-// import getNewReactIconContext from "../../../icon/styles/src";
-// import GridContainer from "../../../core/packages/grid-container/src";
-// import getNewReactThemeContext from "../../../core/packages/styles/src";
-// import ITheme from "../../../core/packages/styles/types/itheme";
 // components from package library
 import getNewReactIconContext from '@dbykov-ui-kit/icon/styles';
 import GridContainer from '@dbykov-ui-kit/core/grid-container';

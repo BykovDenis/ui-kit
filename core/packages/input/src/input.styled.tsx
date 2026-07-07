@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from '@dbykov-ui-kit/styles';
 
 import { Variant } from '../../enums/variant';
 import rgbToRgba from '../../helpers/rgb-to-rgba';
