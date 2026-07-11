@@ -16,6 +16,8 @@ const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
   const theme = useTheme();
 
   const refPortal = useRef<HTMLDivElement | null>(null);
+  const refPopup = useRef<HTMLDivElement | null>(null);
+  const refPreviouslyFocused = useRef<HTMLElement | null>(null);
 
   const initialCoordinated = () => {
     if (typeof window === 'undefined' || !refPortal.current) {
@@ -40,17 +42,48 @@ const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
     }
   }, [props.isOpen]);
 
+  const isPopupVisible: boolean = isInitialized && props.isOpen;
+
+  // focus moves into the dialog while it is open and returns to the opener
+  // when it closes; Escape asks the owner to close via onClose
+  useEffect(() => {
+    if (!isPopupVisible) {
+      return undefined;
+    }
+    refPreviouslyFocused.current = (document.activeElement as HTMLElement) ?? null;
+    refPopup.current?.focus?.();
+    const onKeyUp = (evt: KeyboardEvent) => {
+      if (evt.key === 'Escape' && props.onClose) {
+        props.onClose();
+      }
+    };
+    document.addEventListener('keyup', onKeyUp);
+    return () => {
+      document.removeEventListener('keyup', onKeyUp);
+      refPreviouslyFocused.current?.focus?.();
+    };
+  }, [isPopupVisible]);
+
   const componentThemed: any = (theme: ITheme) => {
-    const PopupPortal = () => (
+    // plain JSX value, not a nested component: a component type created
+    // inside render is new on every pass, so React unmounted and remounted
+    // the popup content on each parent state update
+    const popupPortal = (
       <Portal>
         <div
           className={styles.popup}
+          role="dialog"
+          aria-label={props['aria-label']}
+          aria-labelledby={props['aria-labelledby']}
+          ref={refPopup}
+          tabIndex={-1}
           style={{
             top,
             left,
             width: props?.width ? getMeasureValue(props?.width) : width,
             backgroundColor: theme.mainBackgroundColor,
             zIndex: props?.zIndex || 2147483647,
+            outline: 'none',
           }}
         >
           {props.children}
@@ -60,7 +93,7 @@ const Popup: React.FunctionComponent<PopupProps> = (props: PopupProps) => {
 
     return (
       <div ref={refPortal} className={styles['popup-container']}>
-        {isInitialized && props.isOpen ? <PopupPortal /> : null}
+        {isPopupVisible ? popupPortal : null}
       </div>
     );
   };

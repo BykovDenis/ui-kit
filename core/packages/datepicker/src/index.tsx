@@ -117,6 +117,13 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
 
   const setTodayTitle: string = locale === Locale.Ru ? 'Установить сегодня' : 'Set today';
 
+  const isRuLocale: boolean = locale === Locale.Ru;
+  const dialogTitle: string = isRuLocale ? 'Выбор даты' : 'Choose date';
+  const previousMonthTitle: string = isRuLocale ? 'Предыдущий месяц' : 'Previous month';
+  const nextMonthTitle: string = isRuLocale ? 'Следующий месяц' : 'Next month';
+  const previousYearTitle: string = isRuLocale ? 'Предыдущий год' : 'Previous year';
+  const nextYearTitle: string = isRuLocale ? 'Следующий год' : 'Next year';
+
   // << titles
 
   // >>> events handlers
@@ -478,9 +485,15 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       width = clientRectPosition.width;
     }
 
-    const DatepickerDatesContainerPortal = () => (
+    // plain JSX value, not a nested component: a component type created
+    // inside render is new on every pass, so React unmounted and remounted
+    // the whole calendar on each parent state update
+    const datepickerDatesContainerPortal = (
       <Portal>
         <DatepickerDatesContainer
+          role="dialog"
+          aria-modal="false"
+          aria-label={dialogTitle}
           outlineColor={theme.mainOutlinedColor}
           backgroundColor={theme.mainBackgroundColor}
           onMouseUp={onMouseOutUp}
@@ -516,6 +529,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             <DatepickerNavigateContainerStyled data-ui-kit-component={UiKitComponent.Datepicker}>
               <DatepickerButtonNavigate
                 id={`get-previous-month-${props.id}`}
+                aria-label={previousMonthTitle}
                 data-ui-kit-component={UiKitComponent.Datepicker}
                 fontSize={18}
                 fontFamily={props?.fontFamily || theme?.fontFamily}
@@ -548,6 +562,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
               />
               <DatepickerButtonNavigate
                 id={`get-next-month-${props.id}`}
+                aria-label={nextMonthTitle}
                 data-ui-kit-component={UiKitComponent.Datepicker}
                 fontSize={18}
                 fontFamily={props?.fontFamily || theme?.fontFamily}
@@ -563,6 +578,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             <DatepickerNavigateContainerStyled data-ui-kit-component={UiKitComponent.Datepicker}>
               <DatepickerButtonNavigate
                 id={`get-previous-year-${props.id}`}
+                aria-label={previousYearTitle}
                 data-ui-kit-component={UiKitComponent.Datepicker}
                 fontSize={18}
                 fontFamily={props?.fontFamily || theme?.fontFamily}
@@ -595,6 +611,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
               />
               <DatepickerButtonNavigate
                 id={`get-next-year-${props.id}`}
+                aria-label={nextYearTitle}
                 data-ui-kit-component={UiKitComponent.Datepicker}
                 fontSize={18}
                 fontFamily={props?.fontFamily || theme?.fontFamily}
@@ -749,7 +766,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             )}
           </FormControl>
         </DatepickerHeader>
-        {isVisibleList && (dateParsed.checkIsValidDate() || !value) && <DatepickerDatesContainerPortal />}
+        {isVisibleList && (dateParsed.checkIsValidDate() || !value) && datepickerDatesContainerPortal}
       </DatepickerContainerStyled>
     );
   };

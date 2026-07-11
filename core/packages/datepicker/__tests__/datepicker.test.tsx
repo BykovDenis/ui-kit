@@ -62,6 +62,26 @@ describe('Datepicker', () => {
     });
   });
 
+  test('exposes the calendar as a labelled dialog with accessible days and navigation', async () => {
+    const user = userEvent.setup();
+    renderDatepicker({ value: '2024-01-15' });
+
+    await user.click(screen.getByRole('textbox'));
+
+    const dialog = screen.getByRole('dialog', { name: 'Choose date' });
+    expect(dialog).toBeInTheDocument();
+
+    // icon-only month/year navigation has accessible names
+    expect(screen.getByRole('button', { name: 'Previous month' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Next month' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Previous year' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Next year' })).toBeInTheDocument();
+
+    // days carry the full date and the selected day is pressed
+    const selectedDay = screen.getByRole('button', { name: '2024-1-15' });
+    expect(selectedDay).toHaveAttribute('aria-pressed', 'true');
+  });
+
   test('shows min date error and notifies with invalid state', async () => {
     const user = userEvent.setup();
     const onChange = jest.fn();

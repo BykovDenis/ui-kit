@@ -309,6 +309,9 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
         <ToggleContainer
           data-name="toggle-container"
           data-cy={`${props.id}-toggle-container`}
+          id={`${props.id}-panel`}
+          role="dialog"
+          aria-label={typeof props?.label === 'string' ? props.label : 'Options'}
           ref={btnToggleContainer}
           backgroundColor={theme.mainBackgroundColor}
           top={top}
@@ -346,6 +349,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
             onChange={onSearchStringChange}
             onRemove={onSearchStringClean}
             placeholder="Search elements"
+            aria-label="Search elements"
             variant="outlined"
             isNotClearable={props.disabled}
             disabled={props.disabled}
@@ -490,6 +494,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                     onClick={onColumnNameRemove}
                     data-label={columnNameElement.label}
                     data-id={props.id}
+                    aria-label={`Remove ${columnNameElement.label}`}
                     disabled={props.disabled}
                   >
                     <CrossIcon color={theme.palette.baseFontColor} />
@@ -506,6 +511,10 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
             data-name="button-toggle"
             data-id={props.id}
             data-cy={`${props.id}-btn-expand`}
+            aria-expanded={isExpanded}
+            aria-haspopup="dialog"
+            aria-controls={`${props.id}-panel`}
+            aria-label={typeof props?.label === 'string' ? `${props.label}: toggle options` : 'Toggle options'}
             onClick={onListExpanded}
             fontSize={pixelsMeasureToNumber(fontSize)}
             borderColor={outlinedColor}

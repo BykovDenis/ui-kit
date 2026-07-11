@@ -154,4 +154,41 @@ describe('Testing Select component', () => {
 
     cy.get('#select-text').should('value', '');
   });
+
+  it('Test 12. Exposes the combobox/listbox ARIA contract', () => {
+    cy.get('#select-text')
+      .should('have.attr', 'role', 'combobox')
+      .and('have.attr', 'aria-expanded', 'false')
+      .and('have.attr', 'aria-controls', 'select-text-list')
+      .and('have.attr', 'aria-autocomplete', 'list');
+
+    cy.get('#select-text').click();
+    cy.get('#select-text').should('have.attr', 'aria-expanded', 'true');
+    cy.get('#select-text-list').should('have.attr', 'role', 'listbox');
+    cy.get('#select-text-list [role="option"]').should('have.length.greaterThan', 0);
+  });
+
+  it('Test 13. Selects an option with keyboard arrows and Enter', () => {
+    cy.get('#select-text').click();
+    cy.get('#select-text-list [role="option"]').should('have.length.greaterThan', 1);
+
+    // ArrowDown highlights an option and points aria-activedescendant at it
+    cy.get('#select-text').type('{downarrow}');
+    cy.get('#select-text')
+      .invoke('attr', 'aria-activedescendant')
+      .should('match', /^select-text-option-\d+$/);
+
+    // Enter commits the highlighted option and closes the list
+    cy.get('#select-text').type('{downarrow}{enter}');
+    cy.get('#select-text').should('have.attr', 'aria-expanded', 'false');
+    cy.get('#select-text').invoke('val').should('not.be.empty');
+  });
+
+  it('Test 14. Closes the list with Escape after keyboard navigation', () => {
+    cy.get('#select-text').click();
+    cy.get('#select-text').type('{downarrow}');
+    cy.get('#select-text-list').should('exist');
+    cy.get('#select-text').type('{esc}');
+    cy.get('#select-text').should('have.attr', 'aria-expanded', 'false');
+  });
 });
