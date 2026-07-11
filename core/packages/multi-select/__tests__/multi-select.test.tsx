@@ -300,6 +300,33 @@ describe('MultiSelect', () => {
     });
   });
 
+  test('exposes the disclosure ARIA contract on the toggle button and panel', async () => {
+    const user = userEvent.setup();
+    renderWithTheme(
+      <MultiSelect
+        id="ms-aria"
+        name="multi-select-aria"
+        label="Columns"
+        elementNames={['Name', 'Status', 'Amount']}
+        elementNamesDefaultSelected={['Name']}
+      />
+    );
+
+    const toggle = screen.getByRole('button', { name: 'Columns: toggle options' });
+    expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    expect(toggle).toHaveAttribute('aria-haspopup', 'dialog');
+    expect(toggle).toHaveAttribute('aria-controls', 'ms-aria-panel');
+
+    await user.click(toggle);
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+
+    const panel = screen.getByRole('dialog', { name: 'Columns' });
+    expect(panel).toHaveAttribute('id', 'ms-aria-panel');
+    expect(screen.getByRole('textbox', { name: 'Search elements' })).toBeInTheDocument();
+    // the selected chip's remove button has an accessible name now
+    expect(screen.getByRole('button', { name: 'Remove Name' })).toBeInTheDocument();
+  });
+
   test('renders with the fallback theme when no provider is mounted', () => {
     const { container } = render(<MultiSelect id="ms-no-provider" name="ms-no-provider" elementNames={['Name', 'Status']} />);
 

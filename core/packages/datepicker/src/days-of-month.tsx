@@ -82,6 +82,9 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
         return (
           <DayOfMonth
             name={dayValueParsed}
+            aria-label={actualDateValue}
+            aria-pressed={isSameDate}
+            aria-current={isToday ? 'date' : undefined}
             data-ui-kit-component={UiKitComponent.Datepicker}
             fontFamily={props.fontFamily}
             hoverBackgroundColor={props.hoverBackgroundColor}

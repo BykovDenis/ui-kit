@@ -125,19 +125,33 @@ devDeps — собирается инструментами icon (свой node_
 
 ## Этап 4. Стратегическое
 
-### 4.1. [~] Доступность (a11y)
+### 4.1. [x] Доступность (a11y)
 Select/MultiSelect: роли `combobox`/`listbox`/`option`, `aria-expanded`,
 `aria-activedescendant`, клавиатурная навигация (стрелки, Enter, Esc, Home/End);
 Datepicker: роль `dialog`+grid для календаря; фокус-трап в Popup.
 Начать с Select как самого используемого.
 
-Сделано (ветка feature/select-a11y): **Select** реализует APG combobox —
-input `role=combobox` + `aria-expanded/controls/autocomplete/activedescendant`,
-список `role=listbox`, опции `role=option` + `aria-selected`; клавиатура
-ArrowUp/Down (с wrap), Home/End, Enter, Esc; подсветка highlightedIndex
-синхронна фильтру (Enter берёт лучший матч). `IInput`/`IList` расширены
-`React.AriaAttributes`. 4 unit-теста + 3 e2e (Test 12-14). Осталось:
-MultiSelect, Datepicker, Popup focus-trap.
+Сделано (ветка feature/select-a11y):
+- **Select** — APG combobox: input `role=combobox` +
+  `aria-expanded/controls/autocomplete/activedescendant`, список `role=listbox`,
+  опции `role=option` + `aria-selected`; клавиатура ArrowUp/Down (wrap),
+  Home/End, Enter, Esc; подсветка синхронна фильтру. 4 unit + 3 e2e.
+- **MultiSelect** — это не combobox, а кнопка-раскрывашка с панелью
+  (поиск + кнопки), поэтому честная модель: триггер `aria-expanded` +
+  `aria-haspopup=dialog` + `aria-controls` + `aria-label`, панель
+  `role=dialog`; доступные имена у поиска и кнопок-крестиков удаления
+  (были безымянные). Tab-навигация нативная (опции — настоящие кнопки).
+- **Datepicker** — календарь `role=dialog` + локализованный `aria-label`;
+  кнопки дней: `aria-label` с полной датой, `aria-current=date` (сегодня),
+  `aria-pressed` (выбранный); 4 иконочные кнопки навигации получили имена.
+  Формальный `role=grid` не ставился: разметка плоская, без строк-недель —
+  grid без row был бы ложью для скринридера. Попутно исправлен вложенный
+  компонент-портал (ремаунт-баг из 2.1, тот же паттерн).
+- **Popup** — `role=dialog` + `aria-label(ledby)`, фокус входит в попап при
+  открытии и возвращается к оперу при закрытии, Esc → новый опциональный
+  `onClose`; попутно тот же фикс вложенного портала. Полный focus-trap не
+  ставился: Popup немодальный (без оверлея), trap корректен только с
+  `aria-modal=true`.
 
 ### 4.2. [ ] Новый API как основной
 - JSDoc `@deprecated` на `getNewReactThemeContext`/`getNewReactIconContext`;

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 
 import getNewReactThemeContext from '../../styles/src';
@@ -37,5 +37,40 @@ describe('Popup', () => {
 
     expect(popup).toHaveStyle({ width: '320px' });
     expect(popup).toHaveStyle({ zIndex: '1234' });
+  });
+
+  test('is a labelled dialog, moves focus in on open and back on close, closes on Escape', async () => {
+    const onClose = jest.fn();
+    const outsideButton = document.createElement('button');
+    outsideButton.textContent = 'opener';
+    document.body.appendChild(outsideButton);
+    outsideButton.focus();
+
+    const view = render(
+      <ReactThemeContext.Provider value={themes.light}>
+        <Popup isOpen={true} onClose={onClose} aria-label="Notifications">
+          <div>Popup content</div>
+        </Popup>
+      </ReactThemeContext.Provider>
+    );
+
+    const dialog = await screen.findByRole('dialog', { name: 'Notifications' });
+    expect(dialog).toHaveFocus();
+
+    fireEvent.keyUp(document, { key: 'Escape' });
+    expect(onClose).toHaveBeenCalledTimes(1);
+
+    view.rerender(
+      <ReactThemeContext.Provider value={themes.light}>
+        <Popup isOpen={false} onClose={onClose} aria-label="Notifications">
+          <div>Popup content</div>
+        </Popup>
+      </ReactThemeContext.Provider>
+    );
+
+    await waitFor(() => {
+      expect(outsideButton).toHaveFocus();
+    });
+    outsideButton.remove();
   });
 });
