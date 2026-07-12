@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { ReactThemeContext } from "../../app";
+import React from "react";
+import { useTheme } from "@dbykov-ui-kit/core/styles";
 import styled from "styled-components";
 // components from package library
 import FlexContainer from "@dbykov-ui-kit/core/flex-container";
@@ -66,7 +66,7 @@ const TableCellHeader = styled.td<TableProps>`
 `;
 
 const ContainersTesting: React.FunctionComponent = () => {
-  const themes: any = useContext(ReactThemeContext);
+  const themes: any = useTheme();
 
   return (
     <FlexContainer

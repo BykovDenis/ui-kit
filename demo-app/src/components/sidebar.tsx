@@ -2,9 +2,7 @@ import List from "@dbykov-ui-kit/core/list";
 import ListItem from "@dbykov-ui-kit/core/list-item";
 import Typography from "@dbykov-ui-kit/core/typography";
 import FlexContainer from "@dbykov-ui-kit/core/flex-container";
-import { useContext } from "react";
-import { ReactThemeContext } from "./app";
-import { ITheme } from "@dbykov-ui-kit/core/styles";
+import { ITheme, useTheme } from "@dbykov-ui-kit/core/styles";
 import ListItemLinkStyled from "./common/list-item-link.styled";
 
 const SideBar: React.FunctionComponent = () => {
@@ -32,7 +30,7 @@ const SideBar: React.FunctionComponent = () => {
     pathname?.indexOf("select") > -1 && pathname?.indexOf("multi") === -1;
   const isIconActive: boolean = pathname?.indexOf("/icon") > -1;
 
-  const theme: ITheme = useContext(ReactThemeContext);
+  const theme: ITheme = useTheme();
 
   return (
     <>

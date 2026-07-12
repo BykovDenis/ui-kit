@@ -1,87 +1,87 @@
-<h1>Library React UI Kit components</h1>
+# @dbykov-ui-kit/core
 
-<h2>GET Starting</h2>
+React UI Kit components. Each component is consumed via a subpath import:
 
+```tsx
+import Button from '@dbykov-ui-kit/core/button';
+import Select from '@dbykov-ui-kit/core/select';
+```
 
-<ol>
-    <li>npm i @dbykov-ui-kit/core</li>
-    <li>
-    <h3>
-        Create theme
-    </h3>
-<pre><code>
+## Getting started
+
+```
+npm i @dbykov-ui-kit/core
+```
+
+### 1. Pick a theme
+
+Use a built-in theme or define your own (`ITheme` is the contract):
+
+```tsx
+import { themes } from '@dbykov-ui-kit/core/styles';
 import type { ITheme } from '@dbykov-ui-kit/core/styles';
-</code></pre>
-<pre><code>
-const default defaultTheme: ITheme = {
-    palette: {
+
+// built-in: themes.light / themes.dark
+const myTheme: ITheme = {
+  ...themes.light,
+  palette: {
+    ...themes.light.palette,
     primary: {
-      main: 'rgb(139, 88, 203)', 
+      main: 'rgb(139, 88, 203)',
       light: '#A47BE0',
       lighter: '#C8A9F0',
       moreLighter: '#E7D9FA',
       bestLighter: '#F4EEFD',
     },
-    secondary: {
-      main: '#E5484D', 
-      light: '#F87171',
-      lighter: '#FECACA', 
-      moreLighter: '#FEE2E2', 
-      bestLighter: '#FEF2F2', 
-    },
-      baseButtonFontColor: '#ffffff',
-      baseFontColor: '#333333',
-      baseFontColorOpacity05: 'rgba(51, 51, 51, 0.5)',
-      baseFontColorInverted: '#333333',
-    },
-    fontFamily: 'Roboto, Arial, sans-serif',
-    baseFontSize: 14,
-    baseFontWeight: 400,
-    mainBlackColor: 'rgba(0,0,0,0.85)',
-    mainGrayColor: '#e3e3e3',
-    mainWhiteColor: '#ffffff',
-    mainBackgroundColor: '#ffffff',
-    inactiveBackgroundColor: '#e3e3e3',
-    inactiveColor: '#b3b3b3',
-    mainOutlinedColor: 'rgba(0, 0, 0, 0.6)',
-    mainOutlinedHoverColor: 'rgba(0, 0, 0, 0.4)',
-    h1FontSize: 28,
-    h2FontSize: 24,
-    h3FontSize: 20,
-    h4FontSize: 18,
-    h5FontSize: 16,
-    h6FontSize: 14,
-    components: {
-      Select: {
-        textAlign: 'center',
-      },
-      Datepicker: {
-        isIconCanBeTodaySelected: false,
-      },
-    },
-  };
+  },
+};
+```
 
-export default defaultTheme;
-</code></pre>
-</li>
-<li>
-    <h3>
-        Import theme and create context
-    </h3>
-<pre><code>
-import defaultTheme from './themes/defaultTheme';
+Per-component behavior is customized through the `components` key of the
+theme object, e.g. `theme.components.Input.delayDebounce` or
+`theme.components.Select.textAlign`.
 
-export const ReactThemeContext: { Consumer: any, Provider: any } = getNewReactThemeContext(defaultTheme);
-</code></pre>
-</li>
-    <li>
-        <h3>To wrap your root component by context provider</h3>
-<pre><code>
-&lt;ReactThemeContext.Provider value={actualTheme}&gt;
-    &lt;SomeComponent /&gt;
-&lt;/ReactThemeContext.Provider&gt;
-</code></pre>
-    </li>
-</ol>
+### 2. Mount the provider at the application root
 
+```tsx
+import { ThemeProvider, themes } from '@dbykov-ui-kit/core/styles';
 
+<ThemeProvider value={themes.dark}>
+  <App />
+</ThemeProvider>
+```
+
+Components read the theme with the `useTheme()` hook — your own components
+can too:
+
+```tsx
+import { useTheme } from '@dbykov-ui-kit/core/styles';
+
+const Badge = () => {
+  const theme = useTheme();
+  return <span style={{ color: theme.palette.primary.main }}>new</span>;
+};
+```
+
+Without a provider components render with the built-in light theme.
+
+## Legacy bootstrap (deprecated)
+
+Older applications call `getNewReactThemeContext(theme)` once at startup and
+mount the returned context's Provider:
+
+```tsx
+// deprecated — use <ThemeProvider> instead
+import getNewReactThemeContext from '@dbykov-ui-kit/core/styles';
+
+export const ReactThemeContext = getNewReactThemeContext(defaultTheme);
+
+<ReactThemeContext.Provider value={actualTheme}>
+  <App />
+</ReactThemeContext.Provider>;
+```
+
+This keeps working (the returned context **is** the shared `ThemeContext`),
+but the shim is deprecated and will be removed in `@dbykov-ui-kit/core` 1.0.0.
+Migrate by replacing the bootstrap call with `<ThemeProvider>` and any direct
+`useContext(ReactThemeContext)` reads with `useTheme()`.

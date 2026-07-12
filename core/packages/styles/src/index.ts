@@ -12,6 +12,11 @@ declare global {
 // mount <ReturnedContext.Provider value={theme}>. The returned context is the
 // shared ThemeContext, so both the old globalThis path and the new useTheme()
 // path see the same theme.
+/**
+ * @deprecated Mount `<ThemeProvider value={theme}>` at the application root
+ * and read the theme with `useTheme()` instead. This shim (and the globalThis
+ * registry it maintains) will be removed in @dbykov-ui-kit/core 1.0.0.
+ */
 function getNewReactThemeContext(theme?: ITheme): typeof ThemeContext {
   if (theme) {
     setFallbackTheme(theme);
