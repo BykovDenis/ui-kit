@@ -55,6 +55,16 @@ pipeline {
           dir("${corePath}") {
             sh 'npm run build-packages'
           }
+          dir("${iconPath}") {
+            sh "npm ci ${npmFlags}"
+            sh 'npm run build'
+          }
+          // no install here on purpose: styles has no deps of its own
+          // and builds with the icon toolchain via module resolution;
+          // a local node_modules with a second rollup breaks the build
+          dir("${iconStylesPath}") {
+            sh 'npm run build'
+          }
         }
       }
     }
@@ -65,7 +75,17 @@ pipeline {
           dir("${corePath}") {
             sh '''
               set -e
+              # e2e must test the code from this build, not the registry:
+              # otherwise a release that changes component behavior can never
+              # pass e2e before it is published. Pack both tarballs and
+              # overlay them into demo-app (--no-save keeps the lockfile).
+              TARBALL_DIR=$(mktemp -d)
+              cd ../core/packages
+              npm pack --pack-destination "$TARBALL_DIR"
+              cd ../../icon
+              npm pack --pack-destination "$TARBALL_DIR"
               cd ../demo-app
+              npm i --no-save --legacy-peer-deps "$TARBALL_DIR"/dbykov-ui-kit-*.tgz
               npm run start -- --host 0.0.0.0 --port 3030 > /tmp/demo-app.log 2>&1 &
               DEMO_PID=$!
               cd ../core
@@ -134,16 +154,7 @@ pipeline {
                   // own auth and breaks manual publishes with a 404
                   sh 'rm -f .npmrc'
                 }
-                dir("${iconPath}") {
-                  sh "npm ci ${npmFlags}"
-                  sh 'npm run build'
-                }
-                // no install here on purpose: styles has no deps of its own
-                // and builds with the icon toolchain via module resolution;
-                // a local node_modules with a second rollup breaks the build
-                dir("${iconStylesPath}") {
-                  sh 'npm run build'
-                }
+                // icon dist is already built by the Build packages stage
                 dir("${iconPath}") {
                   writeFile file: '.npmrc', text: "//registry.npmjs.org/:_authToken=${NPM_TOKEN}"
                   sh '''
