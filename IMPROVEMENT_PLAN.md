@@ -171,10 +171,21 @@ demo-app полностью на провайдерах: `app.tsx` — `<ThemePr
 Проверено против опубликованных 0.4.0/1.1.0: Jest 214/214, Cypress e2e
 116/116 (15 спеков).
 
-### 4.3. [ ] TypeScript strict
+### 4.3. [~] TypeScript strict
 Включать `strict: true` попакетно (начать с shared: styles, helpers, types),
 убирать `any`, генерировать d.ts из исходников вместо ручных `index.d.ts`
 (ручные уже расходились с реальностью при миграции).
+
+Срез 1 (shared): `tsconfig.strict.json` с include-списком мигрированных
+пакетов + `npm run type-check` в core + вызов в Jenkinsfile перед юнитами.
+Strict-чистые: constants, enums, helpers, styles, types, utilities (7 ошибок,
+все в helpers; мёртвый render-children-with-props удалён — tabs держит свою
+копию). Причина расхождения ручных d.ts найдена: rollup-plugin-dts предпочитает
+соседний `src/index.d.ts` исходнику — ручной файл молча затенял реальные типы.
+styles переведён на генерацию из `index.ts` (ручной d.ts удалён, добавлены
+`export type ITheme/IThemes`, паритет проверен диффом, @deprecated теперь
+в dist). Осталось: компонентные пакеты (33 ручных src/index.d.ts) + icon.
+Проверено: type-check 0 ошибок, Jest 214/214, e2e 116/116 (tarball).
 
 ---
 

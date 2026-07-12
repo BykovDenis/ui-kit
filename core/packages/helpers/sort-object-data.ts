@@ -1,15 +1,18 @@
 import sortArray from './sort-array';
 
 function sortObjectData<T>(data: Array<T>, sortByField: string, sortDirection: 'asc' | 'desc'): Array<T> {
-  const elementsBySortMapped: Array<any> = data?.map((element: T) => element?.[sortByField]);
-  const elementsBySorted: Array<any> = sortArray(elementsBySortMapped, sortDirection);
+  const fieldOf = (element: T): unknown => (element as Record<string, unknown> | null | undefined)?.[sortByField];
+  const elementsBySortMapped: Array<unknown> = data?.map(fieldOf);
+  const elementsBySorted: Array<unknown> = sortArray(elementsBySortMapped, sortDirection);
 
   const elementsSorted: Array<T> = [];
   let dataParsed: Array<T> = [...data];
   let i: number = 0;
   while (dataParsed?.length > 0) {
-    const elementParsed: T = elementsBySorted[i];
-    const elementFound = dataParsed.find((element: T) => element?.[sortByField] === elementParsed);
+    const elementParsed: unknown = elementsBySorted[i];
+    // find() can return undefined, but every value in elementsBySorted comes
+    // from mapping data itself, so a match always exists
+    const elementFound = dataParsed.find((element: T) => fieldOf(element) === elementParsed) as T;
     if (sortDirection === 'asc') {
       elementsSorted.push(elementFound);
     } else {

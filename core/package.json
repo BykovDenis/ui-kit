@@ -10,6 +10,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "jest ./packages --coverage",
+    "type-check": "tsc -p packages/tsconfig.strict.json",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run --e2e",
     "cypress:run:component": "cypress run --component",
