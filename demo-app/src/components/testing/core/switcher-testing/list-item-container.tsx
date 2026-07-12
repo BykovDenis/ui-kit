@@ -1,7 +1,5 @@
 import FlexContainer from '@dbykov-ui-kit/core/flex-container';
-import {ITheme} from '@dbykov-ui-kit/core/styles';
-import {useContext} from 'react';
-import {ReactThemeContext} from '../../../app';
+import {ITheme, useTheme} from '@dbykov-ui-kit/core/styles';
 import NumberContainer from './number-container';
 
 type TypographyWrappedProps = {
@@ -13,7 +11,7 @@ type TypographyWrappedProps = {
 const ListItemContainer: React.FunctionComponent<TypographyWrappedProps> = (
   props: TypographyWrappedProps
 ) => {
-  const theme: ITheme = useContext(ReactThemeContext);
+  const theme: ITheme = useTheme();
   return (
     <FlexContainer
       justifyContent="flex-start"

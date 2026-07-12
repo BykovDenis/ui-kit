@@ -7,6 +7,11 @@ import initialState from '../data';
 // mount <ReturnedContext.Provider value={config}>. The returned context is the
 // shared IconContext from the main bundle, so the old globalThis path and the
 // new useIconContext() path see the same config.
+/**
+ * @deprecated Mount `<IconProvider value={config}>` (exported from
+ * `@dbykov-ui-kit/icon`) at the application root instead. This shim (and the
+ * globalThis registry it maintains) will be removed in @dbykov-ui-kit/icon 2.0.0.
+ */
 function getNewReactIconContext(iconProps?: IconProps): typeof IconContext {
   setFallbackIconConfig(iconProps || initialState);
   // keep previously published Icon builds working

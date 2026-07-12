@@ -1,17 +1,16 @@
 import Typography from "@dbykov-ui-kit/core/typography";
-import React, { useContext } from "react";
+import React from "react";
 import GridContainer from "@dbykov-ui-kit/core/grid-container";
-import { ITheme } from "@dbykov-ui-kit/core/styles";
-import { ReactIconContext, ReactThemeContext } from "../../app";
+import { ITheme, useTheme } from "@dbykov-ui-kit/core/styles";
 // local component
 // components from package library
-import Icon from "@dbykov-ui-kit/icon";
+import Icon, { useIconContext } from "@dbykov-ui-kit/icon";
 import Button from "@dbykov-ui-kit/core/button";
 import IconButton from "@dbykov-ui-kit/core/icon-button";
 
 const IconTesting: React.FunctionComponent = () => {
-  const theme: ITheme = useContext(ReactThemeContext);
-  const contextIcon: any = useContext(ReactIconContext);
+  const theme: ITheme = useTheme();
+  const contextIcon: any = useIconContext();
   return (
     <GridContainer justifyContent="center" alignItems="center">
       <Typography variant="H1">Icon Testing</Typography>

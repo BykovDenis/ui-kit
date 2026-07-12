@@ -26,32 +26,50 @@ Import components
 import Button from "@dbykov-ui-kit/core/button";
 import Select from "@dbykov-ui-kit/core/select";
 
-## 🎨 Theme setup (REQUIRED)
+## 🎨 Theme setup
 
-UI Kit uses React Context for theme and icons.
+UI Kit uses React Context for theme and icons. Mount the providers at the
+application root:
 
-```
-import {
-  getNewReactThemeContext,
-  getNewReactIconContext,
-} from "@dbykov-ui-kit/core";
+```tsx
+import { ThemeProvider, themes } from "@dbykov-ui-kit/core/styles";
+import { IconProvider } from "@dbykov-ui-kit/icon";
 
-import { themeDark } from "./theme";
+import { themeDark } from "./theme"; // or use the built-in themes.light / themes.dark
 import { iconConfig } from "./icon-config";
+
+<ThemeProvider value={themeDark}>
+  <IconProvider value={iconConfig}>
+    <App />
+  </IconProvider>
+</ThemeProvider>;
+```
+
+Components read the theme with the `useTheme()` hook (available for your own
+components too). Without a provider components fall back to the built-in
+light theme.
+
+<details>
+<summary>Legacy bootstrap (deprecated, removed in core 1.0.0 / icon 2.0.0)</summary>
+
+```tsx
+import getNewReactThemeContext from "@dbykov-ui-kit/core/styles";
+import getNewReactIconContext from "@dbykov-ui-kit/icon/styles";
 
 export const ReactThemeContext = getNewReactThemeContext(themeDark);
 export const ReactIconContext = getNewReactIconContext(iconConfig);
-```
 
-### Wrap your app
-
-```
-<ReactThemeContext.Provider>
-  <ReactIconContext.Provider>
+<ReactThemeContext.Provider value={themeDark}>
+  <ReactIconContext.Provider value={iconConfig}>
     <App />
   </ReactIconContext.Provider>
-</ReactThemeContext.Provider>
+</ReactThemeContext.Provider>;
 ```
+
+Still works — the returned contexts are the same shared contexts the
+providers use — but migrate to `<ThemeProvider>` / `<IconProvider>`.
+
+</details>
 
 ### 🎨 Theme example
 

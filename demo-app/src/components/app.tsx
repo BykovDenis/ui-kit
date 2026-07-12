@@ -1,4 +1,3 @@
-import {useContext} from 'react';
 import themeDark from '../themes/theme-dark';
 import iconConfig from '../themes/icon-config';
 import Sidebar from './sidebar';
@@ -7,57 +6,48 @@ import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../css/create-window-notification.css';
 // components from package library
-import getNewReactIconContext from '@dbykov-ui-kit/icon/styles';
+import {IconProvider} from '@dbykov-ui-kit/icon';
 import GridContainer from '@dbykov-ui-kit/core/grid-container';
-import getNewReactThemeContext, {ITheme} from '@dbykov-ui-kit/core/styles';
+import {ThemeProvider, useTheme} from '@dbykov-ui-kit/core/styles';
 
 type AppProps = {
   children: React.ReactNode;
 };
 
-export const ReactThemeContext = getNewReactThemeContext(themeDark);
-export const ReactIconContext = getNewReactIconContext(iconConfig);
-
-const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
-  const theme: ITheme = useContext(ReactThemeContext);
-
-  const contextClass = {
-    success: theme.palette.primary.main,
-    error: theme.palette.secondary.main,
-    info: theme.palette.baseFontColor,
-    warning: theme.palette.secondary.main,
-    default: theme.palette.baseFontColor,
-    dark: ` '${theme.palette.baseFontColor} font-gray-300'`,
-  };
-
-  const context: any = useContext(ReactThemeContext);
+// reads the theme below the provider — the recommended consumer pattern
+const AppLayout: React.FunctionComponent<AppProps> = (props: AppProps) => {
+  const theme = useTheme();
 
   return (
     <>
-      <ReactThemeContext.Provider value={themeDark}>
-        <ReactIconContext.Provider value={iconConfig}>
-          <ToastContainer
-            theme="dark"
-            draggable={true}
-            autoClose={10000000}
-            position="top-right"
-          />
-          <GridContainer gridTemplateColumns="250px auto" gap={20}>
-            <Sidebar/>
-            <div
-              style={{
-                background: context.mainBackgroundColor,
-                height: '100vh',
-                margin: 0,
-              }}
-            >
-              {props.children}
-            </div>
-          </GridContainer>
-        </ReactIconContext.Provider>
-      </ReactThemeContext.Provider>
+      <ToastContainer
+        theme="dark"
+        draggable={true}
+        autoClose={10000000}
+        position="top-right"
+      />
+      <GridContainer gridTemplateColumns="250px auto" gap={20}>
+        <Sidebar/>
+        <div
+          style={{
+            background: theme.mainBackgroundColor,
+            height: '100vh',
+            margin: 0,
+          }}
+        >
+          {props.children}
+        </div>
+      </GridContainer>
     </>
   );
 };
+
+const App: React.FunctionComponent<AppProps> = (props: AppProps) => (
+  <ThemeProvider value={themeDark}>
+    <IconProvider value={iconConfig}>
+      <AppLayout>{props.children}</AppLayout>
+    </IconProvider>
+  </ThemeProvider>
+);
 
 export default App;
