@@ -26,3 +26,11 @@
   bootstrap code and previously published bundles keep working unchanged
 - The `./styles` bundle imports the shared `IconContext` from the main bundle,
   so both entry points see a single context instance
+
+## v 1.2.0
+### Features
+- `getNewReactIconContext` is deprecated (JSDoc): mount
+  `<IconProvider value={config}>` from the main bundle at the application
+  root instead; the shim will be removed in 2.0.0
+- README documents the provider-first setup (`IconProvider`,
+  `useIconContext`, icon config shape) with migration guidance

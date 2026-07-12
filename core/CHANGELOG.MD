@@ -91,3 +91,29 @@
   `panelAlign`, `isVisibleTextUnderline`, `isNotRunDebounce`, `locale`, …)
 - styled-components is a single copy again for consumers who install the
   library next to styled-components 6.4.x
+
+## v 0.5.0
+### Features
+- Select implements the ARIA combobox pattern: the input exposes
+  `role="combobox"` with `aria-expanded` / `aria-controls` /
+  `aria-autocomplete` / `aria-activedescendant`, the dropdown is a
+  `listbox` of `option`s with `aria-selected`; keyboard navigation with
+  ArrowUp/ArrowDown (wrapping), Home/End, Enter and Esc
+- MultiSelect: the toggle exposes `aria-expanded`, `aria-haspopup="dialog"`,
+  `aria-controls` and an accessible name; the panel is `role="dialog"`;
+  the search input and the selected-value remove buttons have accessible
+  names
+- Datepicker: the calendar popup is `role="dialog"` with a localized
+  `aria-label`; day cells expose full-date accessible labels
+- Popup: `role="dialog"` with `aria-label`/`aria-labelledby`, focus moves
+  into the popup on open and returns to the opener on close; new optional
+  `onClose` prop fired on Esc
+- `getNewReactThemeContext` is deprecated (JSDoc): mount `<ThemeProvider>`
+  at the application root and read the theme with `useTheme()` instead;
+  the shim will be removed in 1.0.0. README rewritten around the provider
+  API with migration guidance
+
+### Bugfix
+- Datepicker and Popup: portal content no longer unmounts/remounts on every
+  render (nested component definition) — the same fix Select and MultiSelect
+  received in 0.4.0
