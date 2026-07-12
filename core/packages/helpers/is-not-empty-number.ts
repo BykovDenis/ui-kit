@@ -1,4 +1,4 @@
-﻿function isNotEmptyNumber(value: number): boolean {
+function isNotEmptyNumber(value?: number | null): value is number {
   return value !== null && value !== undefined;
 }
 

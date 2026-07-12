@@ -187,6 +187,16 @@ styles переведён на генерацию из `index.ts` (ручной 
 в dist). Осталось: компонентные пакеты (33 ручных src/index.d.ts) + icon.
 Проверено: type-check 0 ошибок, Jest 214/214, e2e 116/116 (tarball).
 
+Срез 2: strict-include расширен с 6 до 36 директорий. Аудит показал 193
+ошибки, но у 17 пакетов — ноль; ещё ~40 погасли фиксами сигнатур хелперов
+(isNotEmptyNumber/isNotEmptyString — type predicates, rgbToRgba принимает
+undefined, key-up хендлеры с опциональным колбэком). Точечно починены
+checkbox, radio, file-uploader, tab, switcher, sticky-bottom-panel,
+icons-components (add-icon). +@types/uuid в core devDeps (uuid 10 без
+типов). Вне strict: datepicker (83), multi-select (24), select (16),
+table-columns-visible (12), input (9), textfield (7) — и тестовые файлы.
+Проверено: type-check 0, Jest 214/214, e2e 116/116 (tarball).
+
 ---
 
 ## Договорённости

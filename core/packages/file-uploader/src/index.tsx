@@ -20,7 +20,7 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = (props: FileUpl
 
     const onFileUpload = (evt: any) => {
       const files: Array<File> = evt?.currentTarget?.files;
-      props.onFileUpload(files, evt);
+      props.onFileUpload?.(files, evt);
     };
 
     return (

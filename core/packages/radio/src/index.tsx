@@ -23,7 +23,7 @@ const Radio: React.FunctionComponent<RadioProps> = (props: RadioProps) => {
       ? theme?.inactiveBackgroundColor
       : props?.borderColor || theme?.mainOutlinedColor;
     return (
-      <FormControl isExistLabel={props?.label > '' && props?.label !== null}>
+      <FormControl isExistLabel={props?.label != null && (props.label as string) > ''}>
         <RadioStyled
           {...props}
           name={props.name}
