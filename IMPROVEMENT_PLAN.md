@@ -197,6 +197,15 @@ icons-components (add-icon). +@types/uuid в core devDeps (uuid 10 без
 table-columns-visible (12), input (9), textfield (7) — и тестовые файлы.
 Проверено: type-check 0, Jest 214/214, e2e 116/116 (tarball).
 
+Срез 3: input, textfield, table-columns-visible strict-чистые (39/42
+директорий). Честные сигнатуры parseValue/calculationPaddingByTextAlign,
+в IInput.onChange/onRemove параметр name опционален (name — опциональный
+проп). Найден реальный баг: fontWeight={props?.fontWeight |
+FONT_WEIGHT_REGULAR} — ПОБИТОВОЕ или, искажавшее нестандартные значения
+(300|400=444), заменён на ??. Осталось: select (16), multi-select (24),
+datepicker (83), тестовые файлы, icon-пакет.
+Проверено: type-check 0, Jest 214/214, e2e 116/116 (tarball).
+
 ---
 
 ## Договорённости

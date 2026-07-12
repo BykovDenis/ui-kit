@@ -24,17 +24,19 @@ const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColum
   // plain derived value: the useState copy froze the initial prop and
   // needed a sync effect to stay current
   const columnNames: Array<string> = props.columnNames;
-  const [columnNamesSelected, setColumnNamesSelected] = useState<Set<string>>(null);
+  const [columnNamesSelected, setColumnNamesSelected] = useState<Set<string>>(new Set());
+  // defaultProps guarantees a name, the prop is just declared optional
+  const storageKey: string = props.name as string;
 
   useEffect(() => {
-    const elementsFromLocaleStorage: Set<string> = getElementsFromLocalStorage(props.name, ',');
+    const elementsFromLocaleStorage: Set<string> = getElementsFromLocalStorage(storageKey, ',');
     if (elementsFromLocaleStorage.size > 0) {
       setColumnNamesSelected(elementsFromLocaleStorage);
     } else {
-      const columns: Array<string> =
-        props?.columnNamesDefaultSelected?.length > 0 ? props.columnNamesDefaultSelected : props.columnNames;
+      const defaultSelected = props?.columnNamesDefaultSelected;
+      const columns: Array<string> = defaultSelected && defaultSelected.length > 0 ? defaultSelected : props.columnNames;
       const columnNamesSelectedText: string = columns?.join(',');
-      localStorage.setItem(props.name, columnNamesSelectedText);
+      localStorage.setItem(storageKey, columnNamesSelectedText);
       setColumnNamesSelected(new Set(columns));
     }
   }, []);
@@ -48,12 +50,12 @@ const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColum
 
     const onColumnNameSelect = (evt: React.MouseEvent<HTMLButtonElement>) => {
       const element = evt.currentTarget;
-      const columnName: string = element?.dataset?.name;
+      const columnName: string | undefined = element?.dataset?.name;
       if (isNotEmptyString(columnName)) {
         const columnNamesEdited: Set<string> = columnNamesSelected.add(columnName);
         const columnNamesSelectedText: string = Array.from(columnNamesEdited).join(',');
-        localStorage.setItem(props.name, columnNamesSelectedText);
-        const columnNamesEditedNew: Set<string> = getElementsFromLocalStorage(props.name, ',');
+        localStorage.setItem(storageKey, columnNamesSelectedText);
+        const columnNamesEditedNew: Set<string> = getElementsFromLocalStorage(storageKey, ',');
         setColumnNamesSelected(columnNamesEditedNew);
         if (props?.onChange) {
           props.onChange(Array.from(columnNamesEditedNew));
@@ -63,13 +65,13 @@ const TableColumnsVisible: React.FunctionComponent<PropsWithChildren<TTableColum
 
     const onColumnNameRemove = (evt: React.MouseEvent<HTMLButtonElement>) => {
       const element = evt.currentTarget;
-      const columnName: string = element?.dataset?.name;
+      const columnName: string | undefined = element?.dataset?.name;
       if (columnName) {
-        const columnNamesEdited: Set<string> = getElementsFromLocalStorage(props.name, ',');
+        const columnNamesEdited: Set<string> = getElementsFromLocalStorage(storageKey, ',');
         columnNamesEdited.delete(columnName);
         const columnNamesSelectedText: string = Array.from(columnNamesEdited).join(',');
-        localStorage.setItem(props.name, columnNamesSelectedText);
-        const columnNamesEditedNew: Set<string> = getElementsFromLocalStorage(props.name, ',');
+        localStorage.setItem(storageKey, columnNamesSelectedText);
+        const columnNamesEditedNew: Set<string> = getElementsFromLocalStorage(storageKey, ',');
         setColumnNamesSelected(columnNamesEditedNew);
         if (props?.onChange) {
           props.onChange(Array.from(columnNamesEditedNew));

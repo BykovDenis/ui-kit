@@ -230,7 +230,7 @@ const Input: ForwardRefExoticComponent<IInput & RefAttributes<HTMLInputElement>>
             borderColor={props?.isFocused ? props.focusColor || focusColor : borderColor}
             inputComponent={ReactInput}
             type={props?.type || TYPE_TEXT}
-            fontWeight={props?.fontWeight | FONT_WEIGHT_REGULAR}
+            fontWeight={props?.fontWeight ?? FONT_WEIGHT_REGULAR}
             data-focused={isFocus}
             data-error={!!props.error}
             ref={refCombined}
