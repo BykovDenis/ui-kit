@@ -40,8 +40,7 @@ pipeline {
       steps {
         ansiColor('xterm') {
           dir("${corePath}") {
-            // strict type-check covers the packages migrated so far
-            // (tsconfig.strict.json include list, IMPROVEMENT_PLAN.md 4.3)
+            // strict: true across the whole workspace (IMPROVEMENT_PLAN.md 4.3)
             sh 'npm run type-check'
             sh 'npm test'
           }

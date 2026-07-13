@@ -12,7 +12,7 @@ import monthsElementEn from '../dictionaries/months-en';
 import monthsElementRu from '../dictionaries/months-ru';
 import DateParser from '../helpers/date-parser';
 import IDatepicker from '../types/idatepicker';
-import IOption from '../types/ioption';
+import IOption from '../../select/types/ioption';
 import DatepickerButtonNavigate from './datepicker-button-navigate';
 import DatepickerContainerStyled from './datepicker-container.styled';
 import DatepickerDatesContainer from './datepicker-dates-container.styled';
@@ -54,7 +54,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const theme = useTheme();
   const [isExistValue, setIsExistValue] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
-  const [value, setValue] = useState<string>(props.value);
+  // null/undefined and '' are NOT interchangeable here: the value flows
+  // into Input's value prop, where null/undefined leaves the DOM input
+  // uncontrolled while '' actively clears it — coalescing broke fast
+  // typing right after the delete button (keystrokes eaten by the rewrite)
+  const [value, setValue] = useState<string | null | undefined>(props.value);
   const [isVisibleList, setIsVisibleList] = useState(false);
   const [actualMonthNumber, setActualMonthNumber] = useState<number | null>(null);
   const [actualYearNumber, setActualYearNumber] = useState<number | null>(null);
@@ -73,15 +77,15 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   const [mask] = useState<DatepickerMask>((props.mask as DatepickerMask) || DatepickerMask.DottedDDMMYYYY);
 
   const minDate: DateParser = isNotEmptyString(props.minDate)
-    ? new DateParser(props.minDate, mask)
+    ? new DateParser(props.minDate ?? undefined, mask)
     : new DateParser((mask as DatepickerMask) === DatepickerMask.DashedYYYYMMDD ? '1900-01-01' : '01.01.1900', mask);
-  const maxDate: DateParser = isNotEmptyString(props.maxDate) ? new DateParser(props.maxDate, mask) : null;
+  const maxDate: DateParser | null = isNotEmptyString(props.maxDate) ? new DateParser(props.maxDate ?? undefined, mask) : null;
 
   const today: Dayjs = dayjs();
   const todayParsed: string = today.format('YYYY-MM-DD');
 
   const isValidByMinDate: boolean = props.minDate ? todayParsed >= minDate.getDate().format('YYYY-MM-DD') : true;
-  const isValidByMaxDate: boolean = props.maxDate ? todayParsed <= maxDate.getDate().format('YYYY-MM-DD') : true;
+  const isValidByMaxDate: boolean = props.maxDate ? todayParsed <= maxDate!.getDate().format('YYYY-MM-DD') : true;
 
   const dataCyTodayContainer: string = `${UiKitComponent.Datepicker}-${props.id}-today-container`;
 
@@ -189,8 +193,8 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
           isValid: boolean;
           isErrorMinDate: boolean;
           isErrorMaxDate: boolean;
-        } = checkMinMaxDate(dateParsed, props.minDate ? minDate : null, props.maxDate ? maxDate : null);
-        props.onBlur(props.name, value, validationDate.isValid && !isError);
+        } = checkMinMaxDate(dateParsed!, props.minDate ? minDate : null, props.maxDate ? maxDate : null);
+        props.onBlur(props.name, value as string, validationDate.isValid && !isError);
       }
       evt.target.blur();
 
@@ -245,9 +249,9 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       isValid: boolean;
       isErrorMinDate: boolean;
       isErrorMaxDate: boolean;
-    } = checkMinMaxDate(dateParsed, props.minDate ? minDate : null, props.maxDate ? maxDate : null);
+    } = checkMinMaxDate(dateParsed!, props.minDate ? minDate : null, props.maxDate ? maxDate : null);
     if (props?.onBlur && props?.value !== value) {
-      props.onBlur(props.name, value, validationDate.isValid && !isError);
+      props.onBlur(props.name, value as string, validationDate.isValid && !isError);
     }
     if (!isVisibleList) {
       setIsFocus(false);
@@ -255,7 +259,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   };
 
   const onDatesContainerClose = (isSearchResult: boolean, evt?: React.ChangeEvent<HTMLElement>) => {
-    const element = evt.target;
+    const element = evt?.target;
     if (
       element?.tagName !== INPUT_TAG &&
       element?.dataset?.name !== 'datepicker-calendar-btn-close' &&
@@ -270,11 +274,14 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     }
   };
 
+  // month/year options always carry a numeric value: months/years are
+  // built locally (monthsElementRu/En, the sorted years array), never
+  // user-clearable, unlike a general Select's activeElement
   const onMonthNameChange = (option: IOption): void => {
-    dateParsed.changeParsedDate(value);
-    dateParsed.changeMonth(parseInt(option.value, 10) - 1);
-    setActualMonthNumber(parseInt(option.value, 10));
-    const valueParsed: string = dateParsed.formatToString();
+    dateParsed!.changeParsedDate(value ?? undefined);
+    dateParsed!.changeMonth(parseInt(option.value as string, 10) - 1);
+    setActualMonthNumber(parseInt(option.value as string, 10));
+    const valueParsed: string | null = dateParsed!.formatToString();
     if (valueParsed !== value) {
       setValue(valueParsed);
     }
@@ -282,24 +289,27 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   };
 
   const onYearNameChange = (option: IOption): void => {
-    dateParsed.changeParsedDate(value);
-    dateParsed.changeYear(option.value !== null ? parseInt(option.value, 10) : null);
-    setActualYearNumber(dateParsed.getNumberYear());
-    const valueParsed: string = dateParsed.formatToString();
+    dateParsed!.changeParsedDate(value ?? undefined);
+    dateParsed!.changeYear(option.value !== null ? parseInt(option.value as string, 10) : null);
+    setActualYearNumber(dateParsed!.getNumberYear());
+    const valueParsed: string | null = dateParsed!.formatToString();
     if (valueParsed !== value) {
       setValue(valueParsed);
     }
   };
 
   const onDayChange = (day: number): void => {
+    // only reachable via a rendered day button, which requires the
+    // calendar (and therefore actualMonthNumber/actualYearNumber) to
+    // already be populated
     const dateParsed: DateParser = new DateParser(
       mask === DatepickerMask.DashedYYYYMMDD
-        ? `${actualYearNumber}-${actualMonthNumber + 1}-${day}`
-        : `${day}.${actualMonthNumber + 1}.${actualYearNumber}`,
+        ? `${actualYearNumber}-${actualMonthNumber! + 1}-${day}`
+        : `${day}.${actualMonthNumber! + 1}.${actualYearNumber}`,
       mask
     );
 
-    const valueParsed: string = dateParsed.formatToString();
+    const valueParsed: string | null = dateParsed.formatToString();
     if (valueParsed !== value) {
       setValue(valueParsed);
     }
@@ -308,38 +318,38 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     setIsFocus(false);
   };
 
-  const onMonthRemove = (name: string, value: string) => {
-    setActualMonthNumber(parseInt(value, 10));
+  const onMonthRemove = (name?: string, value?: string | null) => {
+    setActualMonthNumber(value ? parseInt(value, 10) : null);
   };
 
-  const onYearRemove = (name: string, value: string) => {
-    setActualYearNumber(parseInt(value));
+  const onYearRemove = (name?: string, value?: string | null) => {
+    setActualYearNumber(value ? parseInt(value, 10) : null);
   };
 
   const onGetPreviousMonth = () => {
-    dateParsed.changeToThePreviousMonth();
-    setActualMonthNumber(dateParsed.getNumberMonth());
+    dateParsed!.changeToThePreviousMonth();
+    setActualMonthNumber(dateParsed!.getNumberMonth());
   };
   const onGetNextMonth = () => {
-    dateParsed.changeToTheNextMonth();
-    setActualMonthNumber(dateParsed.getNumberMonth());
+    dateParsed!.changeToTheNextMonth();
+    setActualMonthNumber(dateParsed!.getNumberMonth());
   };
   const onGetPreviousYear = () => {
-    dateParsed.changeToThePreviousYear();
-    setActualYearNumber(dateParsed.getNumberYear());
+    dateParsed!.changeToThePreviousYear();
+    setActualYearNumber(dateParsed!.getNumberYear());
   };
   const onGetNextYear = () => {
-    dateParsed.changeToTheNextYear();
-    setActualYearNumber(dateParsed.getNumberYear());
+    dateParsed!.changeToTheNextYear();
+    setActualYearNumber(dateParsed!.getNumberYear());
   };
 
   const onBtnCurrentDateSetClick = (evt: any) => {
     const element = evt.target;
     const idComponent: string = element?.dataset?.id ?? '';
     dateParsed?.setToday();
-    const valueParsed: string = dateParsed?.formatToString();
+    const valueParsed: string | null | undefined = dateParsed?.formatToString();
     if (valueParsed && idComponent === props.id) {
-      syncDataParaemters(dateParsed);
+      syncDataParaemters(dateParsed!);
       setValue(valueParsed);
     }
   };
@@ -349,7 +359,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   // >>> useEffects
 
   useEffect(() => {
-    const dateParsed: DateParser = new DateParser(props.value, mask as DatepickerMask);
+    const dateParsed: DateParser = new DateParser(props.value ?? undefined, mask as DatepickerMask);
     syncDataParaemters(dateParsed);
     document.addEventListener('mouseup', onMouseOutUp);
     document.addEventListener('keyup', onKeyUp);
@@ -366,7 +376,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
   useEffect(() => {
     if (props.value !== value) {
       setValue(props.value);
-      inputRef.current.value = props.value;
+      inputRef.current.value = props.value as string;
     }
   }, [props.value]);
 
@@ -418,33 +428,33 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
       setIsMinDateError(false);
       setIsMaxDateError(false);
       if (props?.onChange) {
-        props.onChange(props.name, value, props.error !== undefined ? props.error : true);
+        props.onChange(props.name, value as string, props.error !== undefined ? props.error : true);
       }
     }
   }, [value]);
 
   useEffect(() => {
     if (months && months?.length > 0) {
-      setMonthName(months[actualMonthNumber]);
+      setMonthName(months[actualMonthNumber as number]);
     }
   }, [months]);
 
   useEffect(() => {
     if (actualMonthNumber !== null && actualMonthNumber !== undefined) {
-      setMonthName(months[dateParsed.getNumberMonth()]);
-      setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
-      setActualYearNumber(dateParsed.getNumberYear());
-      setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
-      setCountDaysIsMonth(dateParsed?.getCountDaysInMonth());
+      setMonthName(months[dateParsed!.getNumberMonth()]);
+      setNumberDayInWeek(dateParsed!.getNumberDayInWeek());
+      setActualYearNumber(dateParsed!.getNumberYear());
+      setNumberDayInWeek(dateParsed!.getNumberDayInWeek());
+      setCountDaysIsMonth(dateParsed!.getCountDaysInMonth());
     }
   }, [actualMonthNumber]);
 
   useEffect(() => {
     if (actualYearNumber !== null && actualYearNumber !== undefined) {
-      setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
-      setActualMonthNumber(dateParsed.getNumberMonth());
-      setNumberDayInWeek(dateParsed?.getNumberDayInWeek());
-      setCountDaysIsMonth(dateParsed?.getCountDaysInMonth());
+      setNumberDayInWeek(dateParsed!.getNumberDayInWeek());
+      setActualMonthNumber(dateParsed!.getNumberMonth());
+      setNumberDayInWeek(dateParsed!.getNumberDayInWeek());
+      setCountDaysIsMonth(dateParsed!.getCountDaysInMonth());
     }
   }, [actualYearNumber]);
 
@@ -461,8 +471,11 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;
     const labelFontSize: number = isExistValue || isFocus ? fontSize - 2 : fontSize;
 
-    const actualYearNumberString: string = actualYearNumber?.toString();
-    const todayPartitioned: TPatritionDate = dateParsed?.getTodayPartitionedDate();
+    const actualYearNumberString: string = actualYearNumber?.toString() ?? '';
+    // dateParsed is still null on the very first render (before the mount
+    // effect runs); the resulting undefined value only reaches DaysOfMonth
+    // as an unmounted JSX value — isVisibleList is false until then
+    const todayPartitioned: TPatritionDate | undefined = dateParsed?.getTodayPartitionedDate();
 
     const hoverColor: string = props.disabled
       ? theme.inactiveColor
@@ -702,7 +715,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             fontSize={fontSize}
             baseFontSize={props?.baseFontSize}
             fontFamily={props?.fontFamily || theme?.fontFamily}
-            textMessage={props.textMessage || (isErrorMessageDisplayed && errorMessage)}
+            textMessage={props.textMessage || (isErrorMessageDisplayed ? errorMessage : undefined)}
             onFocus={onInputFocus}
             onBlur={onInputBlur}
             onClick={onInputClick}
@@ -766,7 +779,7 @@ const Datepicker: React.FunctionComponent<IDatepicker> = (props: IDatepicker) =>
             )}
           </FormControl>
         </DatepickerHeader>
-        {isVisibleList && (dateParsed.checkIsValidDate() || !value) && datepickerDatesContainerPortal}
+        {isVisibleList && (dateParsed!.checkIsValidDate() || !value) && datepickerDatesContainerPortal}
       </DatepickerContainerStyled>
     );
   };

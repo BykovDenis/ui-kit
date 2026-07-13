@@ -3,9 +3,9 @@ import TPatritionDate from '../types/tpatrition-date';
 
 interface IDateParser {
   changeDay: (day: number) => void;
-  changeMonth: (month: number) => void;
-  changeYear: (month: number) => void;
-  formatToString: () => string;
+  changeMonth: (month: number | null) => void;
+  changeYear: (month: number | null) => void;
+  formatToString: () => string | null;
   getCountDaysInMonth: () => number;
   getDate: () => Dayjs;
   getNumberCurrentDateOfMonth: () => number;
@@ -14,11 +14,11 @@ interface IDateParser {
   getNumberMonth: () => number;
   getNumberYear: () => number;
   getParsedDate: () => string;
-  getSplittedParamsByDate?: (date: string) => Array<number>;
+  getSplittedParamsByDate?: () => Array<number> | undefined;
   getTimestamp: () => number;
   checkIsValidDate: () => boolean;
   locale?: string;
-  changeParsedDate: (date: string) => void;
+  changeParsedDate: (date?: string) => void;
   setToday: () => boolean;
   getTodayPartitionedDate: () => TPatritionDate;
 }

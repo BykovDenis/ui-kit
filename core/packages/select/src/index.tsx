@@ -45,7 +45,7 @@ function getElementsParsed(elements: Array<IOption | string | number> | undefine
   });
 }
 
-function getActiveElementParsed(activeElement: string | number | IOption): IOption {
+function getActiveElementParsed(activeElement: string | number | IOption | null): IOption {
   const activeElementType: string = typeof activeElement;
   switch (activeElementType) {
     case 'object': {

@@ -1,4 +1,4 @@
-import IOption from '../types/ioption';
+import IOption from '../../select/types/ioption';
 
 const monthsElementEn: Array<IOption> = [
   { label: 'January', value: '0' },

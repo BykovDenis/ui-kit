@@ -71,7 +71,9 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
 
   const [elementNames, setElementNames] = useState<Array<TMultiSelectOption>>(elementNamesMapped);
   const [elementNamesSelected, setElementNamesSelected] = useState<TMapMultiSelectObjects>(mapElementsSelected);
-  const [searchText, setSearchText] = useState<string>('');
+  // null (not '') on clear: Input treats null/undefined as uncontrolled,
+  // '' as an active clear — same distinction that broke datepicker typing
+  const [searchText, setSearchText] = useState<string | null>(null);
   const [isUseLocaleStorage] = useState<boolean>(
     props?.isUseLocaleStorage !== undefined ? props.isUseLocaleStorage : false
   );
@@ -233,7 +235,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
     };
 
     const onSearchStringClean = () => {
-      setSearchText('');
+      setSearchText(null);
     };
 
     const onBtnElementsClickExpand = (evt: React.MouseEvent<HTMLButtonElement>) => {
@@ -281,7 +283,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       elementNames?.filter(
         (columnName: TMultiSelectOption) =>
           !elementNamesSelected?.has(columnName.label) &&
-          (searchText?.length >= 1 ? columnName?.label?.toUpperCase()?.indexOf(searchText?.toUpperCase()) > -1 : true)
+          ((searchText?.length ?? 0) >= 1 ? columnName?.label?.toUpperCase()?.indexOf(searchText!.toUpperCase()) > -1 : true)
       ) ?? [];
 
     const fontSize: number | string = props.fontSize ?? theme.baseFontSize;

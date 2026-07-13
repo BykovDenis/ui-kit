@@ -9,7 +9,7 @@
     "jsx": "react-jsx",
     "target": "es5",
     "module": "esnext",
-    "noImplicitAny": false,
+    "strict": true,
     "sourceMap": true,
     "allowJs": true,
     "checkJs": false,

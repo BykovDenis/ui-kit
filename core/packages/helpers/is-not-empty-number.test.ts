@@ -6,11 +6,11 @@ describe('test function of isNotEmptyString', () => {
     expect(isNotEmptyNumber(someNumber)).toBeTruthy();
   });
   it('Test 2. Number is empty', () => {
-    const someNumber: number = undefined;
+    const someNumber: number | undefined = undefined;
     expect(isNotEmptyNumber(someNumber)).toBeFalsy();
   });
   it('Test 3. Number is null', () => {
-    const someNumber: number = null;
+    const someNumber: number | null = null;
     expect(isNotEmptyNumber(someNumber)).toBeFalsy();
   });
 });

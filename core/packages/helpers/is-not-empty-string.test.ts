@@ -10,7 +10,7 @@ describe('test function of isNotEmptyString', () => {
     expect(isNotEmptyString(someText)).toBeFalsy();
   });
   it('Test 3. String is null', () => {
-    const someText: string = null;
+    const someText: string | null = null;
     expect(isNotEmptyString(someText)).toBeFalsy();
   });
 });

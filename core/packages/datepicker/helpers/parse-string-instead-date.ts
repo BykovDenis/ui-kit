@@ -1,6 +1,6 @@
 import DatepickerMask from '../enums/datepicker-mask';
 
-function parseStringInsteadDate(dateValue: string, mask: DatepickerMask): string {
+function parseStringInsteadDate(dateValue: string | null | undefined, mask: DatepickerMask): string {
   if (dateValue) {
     return mask === DatepickerMask.DottedDDMMYYYY
       ? parseStringInsteadDateDDMMYYYY(dateValue)

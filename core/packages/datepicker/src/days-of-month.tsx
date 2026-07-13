@@ -13,20 +13,22 @@ import UiKitComponent from '../../enums/ui-kit-component';
 
 interface IDaysOfMonth {
   id: string;
-  activeDayNumber: number;
-  activeMonthNumber: number;
-  activeYearNumber: number;
+  activeDayNumber: number | null;
+  activeMonthNumber: number | null;
+  activeYearNumber: number | null;
   backgroundColor: string;
   color: string;
-  countDaysIsMonth: number;
-  actualMonthNumber: number;
-  actualYearNumber: number;
-  todayPartitioned: TPatritionDate;
+  countDaysIsMonth: number | null;
+  actualMonthNumber: number | null;
+  actualYearNumber: number | null;
+  // undefined only before the parent's mount effect has run; by then
+  // isVisibleList is still false so this component isn't mounted yet
+  todayPartitioned: TPatritionDate | undefined;
   fontFamily: CSS.Property.FontFamily;
   fontSize: number;
-  maxDate?: IDateParser;
-  minDate?: IDateParser;
-  numberDayInWeek: number;
+  maxDate?: IDateParser | null;
+  minDate: IDateParser;
+  numberDayInWeek: number | null;
   onDayChange: (day: number) => void;
   mask: DatepickerMask;
   primaryColor: string;
@@ -41,11 +43,14 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
     props.onDayChange(parseInt(element.name, 10));
   };
 
-  const numberDayInWeek: number = props.numberDayInWeek === 0 ? 7 : props.numberDayInWeek;
+  const numberDayInWeek: number = props.numberDayInWeek === 0 ? 7 : (props.numberDayInWeek as number);
 
-  const daysElements: Array<number> =
+  // every field this derives from is only null before the parent's mount
+  // effect has populated it, at which point isVisibleList is still false
+  // and DaysOfMonth isn't actually mounted
+  const daysElements: Array<number> | null =
     props.countDaysIsMonth && props.numberDayInWeek !== null && !isNaN(props.numberDayInWeek)
-      ? new Array(props?.countDaysIsMonth + numberDayInWeek)?.fill(null)
+      ? new Array(props.countDaysIsMonth + numberDayInWeek)?.fill(null)
       : null;
 
   return (
@@ -54,20 +59,20 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
         const actualNumberDayOfWeek: number = index + 1;
         const dayValue: number = actualNumberDayOfWeek - numberDayInWeek + (numberDayInWeek > 0 ? 1 : 0);
         const dayValueParsed: string = dayValue?.toString();
-        if (numberDayInWeek > actualNumberDayOfWeek || dayValue > props.countDaysIsMonth) {
+        if (numberDayInWeek > actualNumberDayOfWeek || dayValue > (props.countDaysIsMonth as number)) {
           return <DayEmptyOfMonth key={getUniqueIndex()} data-ui-kit-component={UiKitComponent.Datepicker} />;
         }
 
         const actualDateValue =
           props.mask === DatepickerMask.DashedYYYYMMDD
-            ? `${props.actualYearNumber}-${props.actualMonthNumber + 1}-${dayValueParsed}`
-            : `${dayValueParsed}.${props.actualMonthNumber + 1}.${props.actualYearNumber}`;
+            ? `${props.actualYearNumber}-${(props.actualMonthNumber as number) + 1}-${dayValueParsed}`
+            : `${dayValueParsed}.${(props.actualMonthNumber as number) + 1}.${props.actualYearNumber}`;
 
         const actualDateParsed: IDateParser = new DateParser(actualDateValue, props.mask);
 
         const disabled: boolean =
-          (props?.minDate !== null && actualDateParsed?.getDate() < props.minDate.getDate()) ||
-          (props?.maxDate !== null && actualDateParsed?.getDate() > props.maxDate.getDate());
+          actualDateParsed?.getDate() < props.minDate.getDate() ||
+          (props?.maxDate != null && actualDateParsed?.getDate() > props.maxDate.getDate());
 
         const isSameDate: boolean =
           dayValue === props.activeDayNumber &&
@@ -75,9 +80,9 @@ const DaysOfMonth: React.FunctionComponent<IDaysOfMonth> = (props: IDaysOfMonth)
           props.activeYearNumber === props.actualYearNumber;
 
         const isToday: boolean =
-          dayValue === props.todayPartitioned.day &&
-          props.actualMonthNumber === props.todayPartitioned.month &&
-          props.actualYearNumber === props.todayPartitioned.year;
+          dayValue === props.todayPartitioned?.day &&
+          props.actualMonthNumber === props.todayPartitioned?.month &&
+          props.actualYearNumber === props.todayPartitioned?.year;
 
         return (
           <DayOfMonth

@@ -5,7 +5,7 @@ import ILabel from '../../label/types/tlabel';
 import IOption from './ioption';
 
 interface ISelect extends IInput, ILabel {
-  activeElement: string | number | IOption;
+  activeElement: string | number | IOption | null;
   baseFontSize?: number;
   children?: any;
   elements?: Array<string> | Array<number> | Array<IOption>;
