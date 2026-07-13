@@ -31,6 +31,7 @@
     "portal/**/*",
     "progress-bar/**/*",
     "radio/**/*",
+    "select/**/*",
     "src/**/*",
     "sticky-bottom-panel/**/*",
     "styles/**/*",

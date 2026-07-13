@@ -1,8 +1,8 @@
 import { TEXT_ALIGN_LEFT, TEXT_ALIGN_RIGHT } from '../../../constants';
 
 function calculationPaddingByTextAlign(
-  textAlign: string,
-  isNotVisibleIndicator: boolean,
+  textAlign?: string,
+  isNotVisibleIndicator?: boolean,
   isNotClearable: boolean = false
 ): string {
   switch (textAlign) {

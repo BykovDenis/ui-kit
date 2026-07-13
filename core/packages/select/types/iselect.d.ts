@@ -5,10 +5,10 @@ import ILabel from '../../label/types/tlabel';
 import IOption from './ioption';
 
 interface ISelect extends IInput, ILabel {
-  activeElement: string | number | IElement;
+  activeElement: string | number | IOption;
   baseFontSize?: number;
   children?: any;
-  elements?: Array<string> | Array<number> | Array<IElement>;
+  elements?: Array<string> | Array<number> | Array<IOption>;
   error?: boolean;
   fontFamily?: string;
   fontSize?: number;
