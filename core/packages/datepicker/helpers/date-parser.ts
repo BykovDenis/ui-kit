@@ -12,16 +12,20 @@ dayjs.extend(utc);
 dayjs.extend(customParseFormat);
 
 class DateParser implements IDateParser {
-  private dateParsed: Dayjs;
-  private dateParamsSeparate: Array<number>;
-  private isValid: boolean;
+  // null only after changeMonth(null)/changeYear(null); every other method
+  // assumes a caller never reads the date again until it's reset via
+  // changeParsedDate — same invariant the code always relied on, now made
+  // explicit with non-null assertions instead of an implicit Dayjs type
+  private dateParsed: Dayjs | null = null;
+  private dateParamsSeparate: Array<number> | undefined;
+  private isValid: boolean = false;
   private mask: string;
-  private firstDayOnMonth: Dayjs;
+  private firstDayOnMonth: Dayjs = dayjs();
   constructor(date?: string, mask?: DatepickerMask) {
     this.mask = mask === DatepickerMask.DashedYYYYMMDD ? 'YYYY-MM-DD' : 'DD.MM.YYYY';
     this.changeParsedDate(date);
   }
-  changeParsedDate(date: string) {
+  changeParsedDate(date?: string) {
     if (!date) {
       this.dateParsed = dayjs();
       this.isValid = true;
@@ -47,76 +51,76 @@ class DateParser implements IDateParser {
     this.firstDayOnMonth = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-01`, 'YYYY-MM-DD');
   }
   getParsedDate() {
-    return this.dateParsed.format(this.mask);
+    return this.dateParsed!.format(this.mask);
   }
   getNumberCurrentDateOfMonth() {
-    return this.dateParsed.get('date');
+    return this.dateParsed!.get('date');
   }
   getCountDaysInMonth() {
-    return this.dateParsed.daysInMonth();
+    return this.dateParsed!.daysInMonth();
   }
   getNumberDayInWeek() {
     return this.firstDayOnMonth.day();
   }
   changeDay(day: number) {
-    const month: number = this.dateParsed.get('month') + 1;
+    const month: number = this.dateParsed!.get('month') + 1;
     this.dateParsed = dayjs(
-      `${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day ?? 7}`,
+      `${this.dateParsed!.get('year')}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day ?? 7}`,
       'YYYY-MM-DD'
     );
   }
-  changeMonth(month: number) {
+  changeMonth(month: number | null) {
     if (month === null) {
       this.dateParsed = null;
     } else {
-      this.dateParsed = this.dateParsed.month(month + 1);
+      this.dateParsed = this.dateParsed!.month(month + 1);
     }
   }
-  changeYear(year: number) {
+  changeYear(year: number | null) {
     if (year === null) {
       this.dateParsed = null;
     } else {
-      this.dateParsed = this.dateParsed.year(year);
+      this.dateParsed = this.dateParsed!.year(year);
     }
   }
-  getDate() {
-    return this.dateParsed;
+  getDate(): Dayjs {
+    return this.dateParsed!;
   }
-  formatToString(): string {
-    return this.dateParsed.isValid() ? this.dateParsed.format(this.mask) : null;
+  formatToString(): string | null {
+    return this.dateParsed!.isValid() ? this.dateParsed!.format(this.mask) : null;
   }
   getNumberDay() {
-    return this.dateParsed.date();
+    return this.dateParsed!.date();
   }
   getNumberMonth() {
-    return this.dateParsed.month();
+    return this.dateParsed!.month();
   }
   getNumberYear() {
-    return this.dateParsed.year();
+    return this.dateParsed!.year();
   }
   getSplittedParamsByDate() {
     return this.dateParamsSeparate;
   }
   getTimestamp() {
-    return this.dateParsed.unix();
+    return this.dateParsed!.unix();
   }
   changeToTheNextMonth() {
-    this.dateParsed = this.dateParsed.add(1, 'month');
+    this.dateParsed = this.dateParsed!.add(1, 'month');
     const month: number = this.dateParsed.get('month') + 1;
     this.firstDayOnMonth = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-01`, 'YYYY-MM-DD');
   }
   changeToThePreviousMonth() {
-    this.dateParsed = this.dateParsed.subtract(1, 'month');
+    this.dateParsed = this.dateParsed!.subtract(1, 'month');
     const month: number = this.dateParsed.get('month') + 1;
     this.firstDayOnMonth = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-01`, 'YYYY-MM-DD');
   }
   changeToTheNextYear() {
-    this.dateParsed = this.dateParsed.add(1, 'year');
+    this.dateParsed = this.dateParsed!.add(1, 'year');
     const month: number = this.dateParsed.get('month') + 1;
     this.firstDayOnMonth = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-01`, 'YYYY-MM-DD');
   }
   changeToThePreviousYear() {
-    this.dateParsed = this.dateParsed.subtract(1, 'year');
+    this.dateParsed = this.dateParsed!.subtract(1, 'year');
     const month: number = this.dateParsed.get('month') + 1;
     this.firstDayOnMonth = dayjs(`${this.dateParsed.get('year')}-${month < 10 ? `0${month}` : month}-01`, 'YYYY-MM-DD');
   }

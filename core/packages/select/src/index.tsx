@@ -31,8 +31,8 @@ import { getIsClient } from '../../utilities/ssr/get-is-client';
 import { Portal } from '../../portal';
 import { useTheme } from '@dbykov-ui-kit/styles';
 
-function getElementsParsed(elements: Array<IOption | string | number>, name: string): Array<IOption> {
-  return elements?.map((element: string | number | IOption) => {
+function getElementsParsed(elements: Array<IOption | string | number> | undefined, name: string): Array<IOption> {
+  return (elements ?? []).map((element: string | number | IOption) => {
     if (typeof element === 'object') {
       return element;
     }
@@ -45,7 +45,7 @@ function getElementsParsed(elements: Array<IOption | string | number>, name: str
   });
 }
 
-function getActiveElementParsed(activeElement: string | number | IOption): IOption {
+function getActiveElementParsed(activeElement: string | number | IOption | null): IOption {
   const activeElementType: string = typeof activeElement;
   switch (activeElementType) {
     case 'object': {
@@ -63,23 +63,23 @@ function getActiveElementParsed(activeElement: string | number | IOption): IOpti
   }
 }
 
-function getElementsFiltered(elements: Array<IOption>, label: string) {
-  const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
+function getElementsFiltered(elements: Array<IOption>, label?: string | null) {
+  const labelUpperCase: string | undefined = label?.toString()?.toLocaleUpperCase();
   return elements?.filter((element: IOption) => {
-    const labelParsed: string = element?.label?.toString();
-    const labelParsedUppercase: string = labelParsed?.toLocaleUpperCase();
+    const labelParsed: string | undefined = element?.label?.toString();
+    const labelParsedUppercase: string | undefined = labelParsed?.toLocaleUpperCase();
     if (labelParsed && label) {
-      return labelParsedUppercase?.indexOf(labelUpperCase) > -1;
+      return (labelParsedUppercase?.indexOf(labelUpperCase as string) ?? -1) > -1;
     }
     return true;
   });
 }
 
-function getElementsExactFiltered(elements: Array<IOption>, label: string) {
-  const labelUpperCase: string = label?.toString()?.toLocaleUpperCase();
+function getElementsExactFiltered(elements: Array<IOption>, label?: string | null) {
+  const labelUpperCase: string | undefined = label?.toString()?.toLocaleUpperCase();
   return elements?.filter((element: IOption) => {
-    const labelParsed: string = element?.label?.toString();
-    const labelParsedUppercase: string = labelParsed?.toLocaleUpperCase();
+    const labelParsed: string | undefined = element?.label?.toString();
+    const labelParsedUppercase: string | undefined = labelParsed?.toLocaleUpperCase();
     if (labelParsed && label) {
       return labelParsedUppercase === labelUpperCase;
     }
@@ -93,11 +93,11 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     props?.isScrollingToSelected !== undefined ? props.isScrollingToSelected : false;
 
   const [isFocus, setIsFocus] = useState<boolean>(false);
-  const [label, setLabel] = useState<string>(
+  const [label, setLabel] = useState<string | null | undefined>(
     props?.regExp ? activeElementParsed?.label?.replaceAll(props.regExp, '') : activeElementParsed?.label
   );
   const [isVisibleList, setIsVisibleList] = useState<boolean>(false);
-  const [activeElement, setActiveElement] = useState<IOption>(activeElementParsed);
+  const [activeElement, setActiveElement] = useState<IOption | null>(activeElementParsed);
   const [isEdited, setIsEdited] = useState<boolean>(false);
   const theme = useTheme();
 
@@ -165,7 +165,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
       label: element?.dataset?.label,
       value: isTypeOfValueNumber ? Number(element?.dataset?.value) : element?.dataset?.value,
     };
-    const index: number = element?.dataset?.index ? parseInt(element?.dataset?.index, 10) : null;
+    const index: number | null = element?.dataset?.index ? parseInt(element?.dataset?.index, 10) : null;
     applySelection(option, index);
   };
 
@@ -246,7 +246,12 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     }
   };
 
-  const onMouseDown = (evt: React.MouseEvent<HTMLElement, MouseEvent>, listRef: any) => {
+  const onMouseDown = (evt?: React.MouseEvent<HTMLElement, MouseEvent>, listRef?: any) => {
+    // the List always passes the event; the signature is optional only to
+    // match the TList callback contract
+    if (!evt) {
+      return;
+    }
     const element: any = evt.target;
     if (listRef && listRef?.current) {
       const listElement: any = listRef?.current;
@@ -284,13 +289,13 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     setActiveElement(activeElementParsed);
   }, [props.elements]);
 
-  const onInputDelete = (name: string) => {
-    props?.onRemove(name, null);
+  const onInputDelete = (name?: string) => {
+    props?.onRemove?.(name, null);
     setIsVisibleList(false);
     setLabel('');
     setIsEdited(false);
     setActiveElement({ label: null, value: null });
-    props.onChange({ name: name, label: null, value: null, index: null });
+    props.onChange?.({ name: name, label: null, value: null, index: null });
   };
 
   const onInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -321,7 +326,7 @@ const Select: React.FunctionComponent<ISelect> = (props: ISelect) => {
     }
   };
 
-  const isExistValue: boolean = label > '';
+  const isExistValue: boolean = (label ?? '') > '';
 
   const componentThemed: any = (theme: ITheme) => {
     const fontSize: number = props?.fontSize ?? theme?.baseFontSize;

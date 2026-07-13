@@ -39,11 +39,14 @@ import { getIsClient } from '../../utilities/ssr/get-is-client';
 import { Portal } from '../../portal';
 import { useTheme } from '@dbykov-ui-kit/styles';
 
-type TMultiSelectString = TMultiSelect & {
+type TMultiSelectString = Omit<TMultiSelect, 'elementNames'> & {
   elementNames: Array<string>;
 };
 
-const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (props: TMultiSelectString) => {
+const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>> = (rawProps: TMultiSelect) => {
+  // index.tsx only renders this component when elementNames[0] is a string —
+  // an invariant the type system can't see through that runtime typeof check
+  const props = rawProps as TMultiSelectString;
   const theme = useTheme();
   const [isExpanded, setExpanded] = useState<boolean>(false);
   // derived like in multi-select-objects: the useState copy needed a sync
@@ -52,8 +55,10 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
     () => (props?.sortDirection ? sortArray(props.elementNames, props.sortDirection) : props.elementNames),
     [props.elementNames, props.sortDirection]
   );
-  const [elementNamesSelected, setElementNamesSelected] = useState<Set<string>>(null);
-  const [searchText, setSearchText] = useState<string>(null);
+  const [elementNamesSelected, setElementNamesSelected] = useState<Set<string>>(new Set());
+  // null (not '') on clear: Input treats null/undefined as uncontrolled,
+  // '' as an active clear — same distinction that broke datepicker typing
+  const [searchText, setSearchText] = useState<string | null>(null);
   // plain derived values: the useState copies silently ignored prop updates
   const isUseLocaleStorage: boolean = props?.isUseLocaleStorage !== undefined ? props.isUseLocaleStorage : false;
   const variant: string | null = props.variant || MultiSelectVariant.Normal;
@@ -121,15 +126,15 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
   useEffect(() => {
     const elementsFromLocaleStorage: Set<string> = isUseLocaleStorage
       ? getElementsFromLocalStorage(props.name, ',')
-      : props?.elementNamesDefaultSelected?.length > 0
+      : (props?.elementNamesDefaultSelected?.length ?? 0) > 0
       ? new Set(props.elementNamesDefaultSelected)
       : new Set();
     if (elementsFromLocaleStorage.size > 0) {
       setElementNamesSelected(elementsFromLocaleStorage);
     } else {
       const columns: Array<string> =
-        props?.elementNamesDefaultSelected?.length > 0
-          ? props.elementNamesDefaultSelected
+        (props?.elementNamesDefaultSelected?.length ?? 0) > 0
+          ? (props.elementNamesDefaultSelected as Array<string>)
           : props?.isSelectAll
           ? props.elementNames
           : [];
@@ -159,12 +164,12 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
       setExpanded((isExpanded: boolean) => !isExpanded);
     };
 
-    const onColumnNameRemove = (evt: React.MouseEvent<HTMLButtonElement>) => {
+    const onColumnNameRemove = (evt: React.MouseEvent<HTMLElement, MouseEvent>) => {
       evt.stopPropagation();
       const element = evt.currentTarget;
-      const id: string = element?.dataset?.id;
+      const id: string | undefined = element?.dataset?.id;
       if (id === props.id) {
-        const columnName: string = element?.dataset?.name;
+        const columnName: string | undefined = element?.dataset?.name;
         if (columnName) {
           const elementNamesEdited: Set<string> = isUseLocaleStorage
             ? getElementsFromLocalStorage(props.name, ',')
@@ -216,9 +221,9 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
     const arrElementNames: Array<string> =
       elementNamesSelected && elementNamesSelected.size > 0 ? Array.from(elementNamesSelected) : [];
 
-    const onSearchStringChange = (evt: React.ChangeEvent<HTMLInputElement>, name: string, value: string) => {
-      if (value !== undefined) {
-        setSearchText(value);
+    const onSearchStringChange = (evt: React.ChangeEvent<HTMLInputElement>, name?: string, value?: string | number | null) => {
+      if (value !== undefined && value !== null) {
+        setSearchText(value.toString());
       }
     };
 
@@ -270,7 +275,7 @@ const MultiSelectString: React.FunctionComponent<PropsWithChildren<TMultiSelect>
       elementNames?.filter(
         (columnName: string) =>
           !elementNamesSelected?.has(columnName) &&
-          (searchText?.length >= 1 ? columnName?.toUpperCase()?.indexOf(searchText?.toUpperCase()) > -1 : true)
+          ((searchText?.length ?? 0) >= 1 ? columnName?.toUpperCase()?.indexOf(searchText!.toUpperCase()) > -1 : true)
       ) ?? [];
 
     const fontSize: number | string = props.fontSize ?? theme.baseFontSize;

@@ -26,13 +26,13 @@ interface IInput extends TBaseStyles, React.AriaAttributes {
   onBlur?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onChange?: (
     evt: React.ChangeEvent<HTMLInputElement>,
-    name: string,
+    name?: string,
     value?: number | string | null | undefined
   ) => void;
   onClick?: (evt: any) => void;
   onFocus?: (evt: any) => void;
   onInput?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  onRemove?: (name: string, value?: string | null | undefined, evt?: any) => void;
+  onRemove?: (name?: string, value?: string | null | undefined, evt?: any) => void;
   ref?: any;
   required?: boolean;
   step?: number;

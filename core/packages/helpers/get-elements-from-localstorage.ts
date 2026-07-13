@@ -2,7 +2,7 @@ import isNotEmptyString from './is-not-empty-string';
 
 function getElementsFromLocalStorage(keyName: string, delimiter: string = ','): Set<string> {
   if (keyName && typeof localStorage !== 'undefined') {
-    const columnNamesSelectedText: string = localStorage.getItem(keyName);
+    const columnNamesSelectedText: string | null = localStorage.getItem(keyName);
     if (isNotEmptyString(columnNamesSelectedText)) {
       return new Set(columnNamesSelectedText.split(delimiter));
     }

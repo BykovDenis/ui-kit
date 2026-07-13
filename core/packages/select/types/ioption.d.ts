@@ -1,6 +1,6 @@
 interface IOption {
   index?: number | string | null;
-  label?: string;
+  label?: string | null;
   name?: string;
   value?: string | number | null;
 }

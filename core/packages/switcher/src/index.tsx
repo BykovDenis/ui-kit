@@ -26,12 +26,12 @@ const Switcher: React.FunctionComponent<TSwitcher> = (props: TSwitcher) => {
   const checkboxChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
     evt.stopPropagation();
     const element = evt.target;
-    const id: string = element?.dataset?.id;
+    const id: string | undefined = element?.dataset?.id;
     if (props.id === id) {
       const { dataset, checked } = element;
       const datasetName = dataset.name;
-      if (checked) {
-        props.onSwitcherChange(datasetName, props.name, evt);
+      if (checked && datasetName !== undefined) {
+        props.onSwitcherChange?.(datasetName, props.name, evt);
       }
     }
   };

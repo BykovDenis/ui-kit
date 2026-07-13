@@ -5,7 +5,7 @@ import convertArrayToMap from "../../helpers/convert-array-to-map";
 
 function getObjectsElementsFromLocalStorage(keyName: string): TMapMultiSelectObjects {
   if (keyName && typeof localStorage !== 'undefined') {
-    const columnNamesSelectedText: string = localStorage.getItem(keyName);
+    const columnNamesSelectedText: string | null = localStorage.getItem(keyName);
     if (isNotEmptyString(columnNamesSelectedText) && isJson(columnNamesSelectedText)) {
       return convertArrayToMap(JSON.parse(columnNamesSelectedText));
     }

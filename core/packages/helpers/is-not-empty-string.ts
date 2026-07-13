@@ -1,5 +1,5 @@
-function isNotEmptyString(text?: string): boolean {
-  return text !== undefined && text > '' && text !== null;
+function isNotEmptyString(text?: string | null): text is string {
+  return text !== undefined && text !== null && text > '';
 }
 
 export default isNotEmptyString;

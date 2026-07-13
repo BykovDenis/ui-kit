@@ -1,8 +1,8 @@
 import React from 'react';
 
-function renderChildren(children, props: any) {
+function renderChildren(children: Array<React.ReactNode> | null | undefined, props: any) {
   const propsParsed: any = { ...props };
-  const childrenFiltered: any = children?.filter(element => element);
+  const childrenFiltered: any = children?.filter((element: React.ReactNode) => element);
   const childrenCount: number = childrenFiltered?.length;
   if (childrenCount > 0) {
     delete propsParsed?.children;

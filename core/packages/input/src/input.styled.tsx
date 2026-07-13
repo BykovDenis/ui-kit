@@ -10,7 +10,7 @@ const Input = styled.input<IInput>`
       box-sizing: border-box;
       font-size: ${props.fontSize}px;
       width: ${getMeasureValue(props.width, '100%')};
-      height: ${props?.variant === Variant.Outlined ? props.height : props.height - 1}px;
+      height: ${props?.variant === Variant.Outlined ? props.height : (props.height as number) - 1}px;
       text-align: ${props?.textAlign};   
       border-width: 1px;
       border-style: solid;

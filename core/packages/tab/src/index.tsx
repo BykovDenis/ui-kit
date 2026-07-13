@@ -14,10 +14,11 @@ const Tab: React.FunctionComponent<TTab> = (props: TTab) => {
     const borderColor: string = theme.palette.secondary.main;
 
     const onTabClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
-      props.onChange(props.tabActive, evt);
+      // tabActive is always injected by the parent Tabs via renderChildren
+      props.onChange?.(props.tabActive as number | string, evt);
     };
 
-    const backgroundColor: string = props.disabled ? theme.inactiveBackgroundColor : props?.backgroundColor;
+    const backgroundColor: string | undefined = props.disabled ? theme.inactiveBackgroundColor : props?.backgroundColor;
 
     return (
       <TabStyled

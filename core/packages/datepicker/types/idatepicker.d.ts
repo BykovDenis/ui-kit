@@ -16,8 +16,8 @@ export default interface IDatepicker extends IInput, ILabel, TBaseStyles {
   locale?: 'EN' | 'RU' | undefined;
   maxDate?: string | null;
   minDate?: string | null;
-  onChange?: (name: string, value: string, isValid: boolean) => void;
-  onBlur?: (name: string, value: string, isValid: boolean) => void;
+  onChange?: (name: string | undefined, value: string, isValid: boolean) => void;
+  onBlur?: (name: string | undefined, value: string, isValid: boolean) => void;
   textAlign?: string;
   value?: string | null | undefined;
   variant?: 'contained' | 'outlined' | 'text';

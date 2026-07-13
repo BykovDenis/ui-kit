@@ -40,6 +40,8 @@ pipeline {
       steps {
         ansiColor('xterm') {
           dir("${corePath}") {
+            // strict: true across the whole workspace (IMPROVEMENT_PLAN.md 4.3)
+            sh 'npm run type-check'
             sh 'npm test'
           }
         }

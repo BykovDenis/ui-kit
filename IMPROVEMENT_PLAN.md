@@ -171,10 +171,80 @@ demo-app полностью на провайдерах: `app.tsx` — `<ThemePr
 Проверено против опубликованных 0.4.0/1.1.0: Jest 214/214, Cypress e2e
 116/116 (15 спеков).
 
-### 4.3. [ ] TypeScript strict
+### 4.3. [x] TypeScript strict (core; icon-пакет — отдельным заходом)
 Включать `strict: true` попакетно (начать с shared: styles, helpers, types),
 убирать `any`, генерировать d.ts из исходников вместо ручных `index.d.ts`
 (ручные уже расходились с реальностью при миграции).
+
+Срез 1 (shared): `tsconfig.strict.json` с include-списком мигрированных
+пакетов + `npm run type-check` в core + вызов в Jenkinsfile перед юнитами.
+Strict-чистые: constants, enums, helpers, styles, types, utilities (7 ошибок,
+все в helpers; мёртвый render-children-with-props удалён — tabs держит свою
+копию). Причина расхождения ручных d.ts найдена: rollup-plugin-dts предпочитает
+соседний `src/index.d.ts` исходнику — ручной файл молча затенял реальные типы.
+styles переведён на генерацию из `index.ts` (ручной d.ts удалён, добавлены
+`export type ITheme/IThemes`, паритет проверен диффом, @deprecated теперь
+в dist). Осталось: компонентные пакеты (33 ручных src/index.d.ts) + icon.
+Проверено: type-check 0 ошибок, Jest 214/214, e2e 116/116 (tarball).
+
+Срез 2: strict-include расширен с 6 до 36 директорий. Аудит показал 193
+ошибки, но у 17 пакетов — ноль; ещё ~40 погасли фиксами сигнатур хелперов
+(isNotEmptyNumber/isNotEmptyString — type predicates, rgbToRgba принимает
+undefined, key-up хендлеры с опциональным колбэком). Точечно починены
+checkbox, radio, file-uploader, tab, switcher, sticky-bottom-panel,
+icons-components (add-icon). +@types/uuid в core devDeps (uuid 10 без
+типов). Вне strict: datepicker (83), multi-select (24), select (16),
+table-columns-visible (12), input (9), textfield (7) — и тестовые файлы.
+Проверено: type-check 0, Jest 214/214, e2e 116/116 (tarball).
+
+Срез 3: input, textfield, table-columns-visible strict-чистые (39/42
+директорий). Честные сигнатуры parseValue/calculationPaddingByTextAlign,
+в IInput.onChange/onRemove параметр name опционален (name — опциональный
+проп). Найден реальный баг: fontWeight={props?.fontWeight |
+FONT_WEIGHT_REGULAR} — ПОБИТОВОЕ или, искажавшее нестандартные значения
+(300|400=444), заменён на ??. Осталось: select (16), multi-select (24),
+datepicker (83), тестовые файлы, icon-пакет.
+Проверено: type-check 0, Jest 214/214, e2e 116/116 (tarball).
+
+Срез 4: select strict-чистый (40/42). Найден необъявленный тип `IElement`
+в iselect.d.ts — не ловился раньше только из-за noImplicitAny:false в
+базовом конфиге (TS резолвил в any); заменён на IOption. IOption.label
+теперь `string | null` (соответствует рантайму — activeElement может
+быть очищен). onChange/onRemove/onMouseDown — опциональные колбэки.
+datepicker (не в strict-списке) использует ISelect и IOption — под
+базовым (non-strict) конфигом кросс-ошибок нет, они всплывают только
+под --strict, так что сборка/рантайм не затронуты.
+Осталось: multi-select (24), datepicker (83), тестовые файлы, icon.
+Проверено: type-check 0, Jest 214/214, e2e 116/116 (tarball, включая
+select.cy.tsx 14/14 и datepicker).
+
+Срез 5: multi-select strict-чистый (41/42). Найден структурный баг типов:
+TMultiSelectObjects/TMultiSelectString расширяли TMultiSelect через `&`
+(пересечение), а не переопределение — для полей elementNames/onChange,
+переобъявленных с другим типом, пересечение давало невыполнимые типы
+(`string[] & TMultiSelectOption[]`), которые раньше молча проходили
+только из-за некорректной проверки. Исправлено на
+`Omit<TMultiSelect, keys> & {...}`. Остальное — как в прошлых срезах:
+опциональные колбэки, честные типы filter/map, dataset-чтения. Удалён
+мёртвый хелпер get-values-from-elements.ts (нигде не импортировался).
+Осталось: только datepicker (83) + тестовые файлы + icon-пакет.
+Проверено: type-check 0, Jest 214/214, e2e 116/116 (tarball, включая
+multiselect.cy.tsx 8/8).
+
+Срез 6 (финал): datepicker strict-чистый + тестовые файлы → strict: true
+уехал в базовый packages/tsconfig.json, tsconfig.strict.json удалён,
+`npm run type-check` = tsc по всему workspace (включая __tests__;
++@types/react-test-renderer@18.3.1). Датапикеровский дубль IOption удалён
+(типы месяцев/годов — select-овский IOption); IDateParser приведён к
+реальности (nullable dateParsed — инвариант задокументирован).
+ВАЖНЫЙ УРОК про null vs '': в datepicker/multi-select `setValue(null)`
+нельзя «чинить» на `setValue('')` — value уходит в Input, где
+null/undefined = неконтролируемый DOM-инпут, а '' = активная очистка;
+коэрция ломала быстрый набор после кнопки удаления (2 полных e2e-прогона
+из 3 падали, baseline registry 2/2 зелёный — так и поймали). Возвращены
+null-семантика и честные широкие типы состояния.
+Проверено: type-check 0 (весь workspace strict), Jest 214/214, полная
+сборка, Cypress 116/116 два полных прогона подряд.
 
 ---
 

@@ -21,10 +21,7 @@ const DatepickerButtonNavigate: React.FunctionComponent<IDatepickerButtonNavigat
     <Button
       id={props.id}
       type="button"
-      fontSize={props.fontSize}
-      fontFamily={props.fontFamily}
       className="button"
-      color={props.color}
       width={17}
       height={20}
       onClick={props?.onClick}
