@@ -56,7 +56,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
     [props.elementNames, props.sortDirection]
   );
 
-  const elementNamesMapped: Array<{ label: string; value: string }> = React.useMemo(
+  const elementNamesMapped: Array<TMultiSelectOption> = React.useMemo(
     () =>
       elementNamesSorted?.map((element: TMultiSelectOption) => ({
         label: element?.label,
@@ -71,7 +71,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
 
   const [elementNames, setElementNames] = useState<Array<TMultiSelectOption>>(elementNamesMapped);
   const [elementNamesSelected, setElementNamesSelected] = useState<TMapMultiSelectObjects>(mapElementsSelected);
-  const [searchText, setSearchText] = useState<string>(null);
+  const [searchText, setSearchText] = useState<string>('');
   const [isUseLocaleStorage] = useState<boolean>(
     props?.isUseLocaleStorage !== undefined ? props.isUseLocaleStorage : false
   );
@@ -173,12 +173,12 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       setExpanded((isExpanded: boolean) => !isExpanded);
     };
 
-    const onColumnNameRemove = (evt: React.MouseEvent<HTMLButtonElement>) => {
+    const onColumnNameRemove = (evt: React.MouseEvent<HTMLElement, MouseEvent>) => {
       evt.stopPropagation();
       const element = evt.currentTarget;
-      const id: string = element?.dataset?.id;
+      const id: string | undefined = element?.dataset?.id;
       if (id === props.id) {
-        const columnName: string = element?.dataset?.label;
+        const columnName: string | undefined = element?.dataset?.label;
         if (columnName) {
           const elementNamesEdited: TMapMultiSelectObjects = isUseLocaleStorage
             ? getObjectsElementsFromLocalStorage(props.name)
@@ -226,14 +226,14 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
       setExpanded(false);
     };
 
-    const onSearchStringChange = (evt: React.ChangeEvent<HTMLInputElement>, name: string, value: string) => {
-      if (value !== undefined) {
-        setSearchText(value);
+    const onSearchStringChange = (evt: React.ChangeEvent<HTMLInputElement>, name?: string, value?: string | number | null) => {
+      if (value !== undefined && value !== null) {
+        setSearchText(value.toString());
       }
     };
 
     const onSearchStringClean = () => {
-      setSearchText(null);
+      setSearchText('');
     };
 
     const onBtnElementsClickExpand = (evt: React.MouseEvent<HTMLButtonElement>) => {
@@ -279,7 +279,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
 
     const elementNamesFiltered: Array<TMultiSelectOption> =
       elementNames?.filter(
-        (columnName: { label: string; value: string }) =>
+        (columnName: TMultiSelectOption) =>
           !elementNamesSelected?.has(columnName.label) &&
           (searchText?.length >= 1 ? columnName?.label?.toUpperCase()?.indexOf(searchText?.toUpperCase()) > -1 : true)
       ) ?? [];
@@ -397,7 +397,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
                   </ListItem>
                 ))}
               {!props.disabled &&
-                elementNamesFiltered?.map((columnElement: { label: string; value: string }, index: number) => (
+                elementNamesFiltered?.map((columnElement: TMultiSelectOption, index: number) => (
                   <ListItem
                     type="button"
                     key={`${index}-list-item`}
@@ -465,7 +465,7 @@ const MultiSelectObjects: React.FunctionComponent<PropsWithChildren<TMultiSelect
             borderColor={theme.palette.baseFontColorOpacity05}
           >
             {variant === MultiSelectVariant.Normal ? (
-              elementLabelsFiltered?.map((columnNameElement: { label: string; value: string }, index: number) => (
+              elementLabelsFiltered?.map((columnNameElement: TMultiSelectOption, index: number) => (
                 <FormControl
                   key={`${index}-button`}
                   width="initial"

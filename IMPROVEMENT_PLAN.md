@@ -218,6 +218,19 @@ datepicker (не в strict-списке) использует ISelect и IOption
 Проверено: type-check 0, Jest 214/214, e2e 116/116 (tarball, включая
 select.cy.tsx 14/14 и datepicker).
 
+Срез 5: multi-select strict-чистый (41/42). Найден структурный баг типов:
+TMultiSelectObjects/TMultiSelectString расширяли TMultiSelect через `&`
+(пересечение), а не переопределение — для полей elementNames/onChange,
+переобъявленных с другим типом, пересечение давало невыполнимые типы
+(`string[] & TMultiSelectOption[]`), которые раньше молча проходили
+только из-за некорректной проверки. Исправлено на
+`Omit<TMultiSelect, keys> & {...}`. Остальное — как в прошлых срезах:
+опциональные колбэки, честные типы filter/map, dataset-чтения. Удалён
+мёртвый хелпер get-values-from-elements.ts (нигде не импортировался).
+Осталось: только datepicker (83) + тестовые файлы + icon-пакет.
+Проверено: type-check 0, Jest 214/214, e2e 116/116 (tarball, включая
+multiselect.cy.tsx 8/8).
+
 ---
 
 ## Договорённости

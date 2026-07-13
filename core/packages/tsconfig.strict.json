@@ -27,6 +27,7 @@
     "label-interactive/**/*",
     "list/**/*",
     "list-item/**/*",
+    "multi-select/**/*",
     "popup/**/*",
     "portal/**/*",
     "progress-bar/**/*",
