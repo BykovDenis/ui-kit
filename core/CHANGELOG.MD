@@ -117,3 +117,26 @@
 - Datepicker and Popup: portal content no longer unmounts/remounts on every
   render (nested component definition) — the same fix Select and MultiSelect
   received in 0.4.0
+
+## v 0.6.0
+### Features
+- The whole workspace compiles with TypeScript `strict: true`; the shipped
+  declaration files describe the real API: nullable values are typed as
+  nullable (`IOption.label`, `ISelect.activeElement` accept `null`),
+  optional callbacks and their optional parameters are marked as such
+  (`IInput.onChange`/`onRemove` name argument), and helper signatures
+  match their runtime behavior
+- `styles` declarations are generated from the sources instead of a
+  hand-written `index.d.ts` (which had silently drifted); the
+  `@deprecated` tag on `getNewReactThemeContext` now ships in dist
+- Select and Datepicker share one `IOption` type — the datepicker
+  duplicate with an incompatible `value` type is gone
+
+### Bugfix
+- Input: `fontWeight` was combined with the default via *bitwise* OR
+  (`props.fontWeight | 400`), corrupting any non-default weight
+  (e.g. 300 rendered as font-weight 444); replaced with `??`
+- ISelect referenced an undeclared `IElement` type that resolved to `any`;
+  MultiSelect's object/string prop types redeclared `elementNames` and
+  `onChange` through an intersection, producing unsatisfiable types —
+  both fixed, consumers get accurate autocomplete for these props
