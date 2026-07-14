@@ -11,6 +11,7 @@
     ]
   },
   "moduleNameMapper": {
+    "\\.module\\.css$": "<rootDir>/__mocks__/cssModuleMock.js",
     "\\.(css|less|scss|sass)$": "<rootDir>/__mocks__/styleMock.js",
     "^@dbykov-ui-kit/([^/]+)$": "<rootDir>/packages/$1/src"
   },

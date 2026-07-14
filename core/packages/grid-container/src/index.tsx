@@ -1,67 +1,147 @@
 ﻿import React from 'react';
 
 import TGridContainer from '../types/tgrid-container';
-import ITheme from '../../styles/types/itheme';
 import { useTheme } from '@dbykov-ui-kit/styles';
-import GridContainerStyled from "./grid-container.styled";
-import isNotEmptyString from "../../helpers/is-not-empty-string";
-import isNotEmptyNumber from "../../helpers/is-not-empty-number";
-import getMeasureValue from "../../helpers/get-measure-value";
+import styles from './grid-container.module.css';
+import isNotEmptyString from '../../helpers/is-not-empty-string';
+import getMeasureValue from '../../helpers/get-measure-value';
+
+// number → px, string as is; undefined stays undefined (React drops it)
+const px = (value?: number | string): string | undefined =>
+  value == null || value === '' ? undefined : getMeasureValue(value);
 
 const GridContainer: React.FunctionComponent<TGridContainer> = (props: TGridContainer) => {
   const theme = useTheme();
 
-  const columns: number = props?.columns ?? 1;
-  const rows: number = props?.columns ?? 1;
+  const {
+    children,
+    className,
+    // applied through the style object below
+    color,
+    backgroundColor,
+    fontSize,
+    fontWeight,
+    position,
+    width,
+    maxWidth,
+    height,
+    minHeight,
+    whiteSpace,
+    textAlign,
+    outline,
+    borderRadius,
+    right,
+    left,
+    top,
+    bottom,
+    zIndex,
+    justifyContent,
+    alignItems,
+    lineHeight,
+    wordBreak,
+    margin,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    padding,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft,
+    border,
+    borderBottom,
+    overflow,
+    overflowY,
+    // grid-specific inputs consumed below
+    columns,
+    rows: _rows,
+    gap,
+    columnWidth,
+    rowHeight,
+    gridTemplateColumns,
+    gridTemplateRows,
+    gridColumnGap,
+    gridRowGap,
+    // the styled version never rendered these; is-prop-valid dropped them
+    display: _display,
+    flexDirection: _flexDirection,
+    alignSelf: _alignSelf,
+    fontFamily: _fontFamily,
+    fontStyle: _fontStyle,
+    flexGrow: _flexGrow,
+    flexWrap: _flexWrap,
+    maxHeight: _maxHeight,
+    minWidth: _minWidth,
+    opacity: _opacity,
+    transform: _transform,
+    overflowX: _overflowX,
+    regExp: _regExp,
+    error: _error,
+    colorTheme: _colorTheme,
+    ref: _ref,
+    ...domProps
+  } = props;
 
-  let gridTemplateColumns: string = props?.gridTemplateColumns ?? '';
-  let gridTemplateRows: string = props?.gridTemplateRows ?? '';
-  let gridColumnGap: number | string = props?.gridColumnGap ?? '';
-  let gridRowGap: number | string = props?.gridRowGap ?? '';
-  let gridGap: number | string = getMeasureValue(props?.gap, '');
+  // the styled version sized rows by the columns count too — kept as is
+  const columnsCount: number = columns ?? 1;
+  const repeatTrack = (size?: number | string): string =>
+    new Array(columnsCount).fill(getMeasureValue(size, 'auto')).join(' ');
 
-  if (!isNotEmptyString(gridTemplateColumns)) {
-    if (!isNotEmptyNumber(columns)) {
-      gridTemplateColumns = 'auto';
-    } else {
-      for (let i: number = 0; i < columns; i++) {
-        gridTemplateColumns = `${gridTemplateColumns} ${getMeasureValue(props?.columnWidth, 'auto')}`;
-      }
-    }
-  }
-  if (!isNotEmptyString(gridTemplateRows)) {
-    if (!isNotEmptyNumber(rows)) {
-      gridTemplateRows = 'auto';
-    } else {
-      for (let i: number = 0; i < columns; i++) {
-        gridTemplateRows = `${gridTemplateRows} ${getMeasureValue(props?.rowHeight, 'auto')}`;
-      }
-    }
-  }
-
-  gridTemplateColumns = gridTemplateColumns.trim();
-  gridTemplateRows = gridTemplateRows.trim();
-
-  const componentThemed: any = (theme: ITheme) => {
-    return (
-      <GridContainerStyled
-        {...props}
-        fontSize={props?.fontSize ?? theme.baseFontSize}
-        backgroundColor={props?.backgroundColor || theme.mainBackgroundColor}
-        color={props?.color || theme?.palette?.baseFontColor}
-        gridTemplateColumns={gridTemplateColumns}
-        gridTemplateRows={gridTemplateRows}
-        gridGap={gridGap}
-        gridColumnGap={gridColumnGap}
-        gridRowGap={gridRowGap}
-      >
-        {props.children}
-      </GridContainerStyled>
-    );
+  const style: React.CSSProperties = {
+    color: color || theme?.palette?.baseFontColor,
+    backgroundColor: backgroundColor || theme.mainBackgroundColor,
+    fontSize: px(fontSize ?? theme.baseFontSize),
+    gridTemplateColumns: isNotEmptyString(gridTemplateColumns) ? gridTemplateColumns : repeatTrack(columnWidth),
+    gridTemplateRows: isNotEmptyString(gridTemplateRows) ? gridTemplateRows : repeatTrack(rowHeight),
+    gap: px(gap),
+    rowGap: px(gridRowGap),
+    columnGap: px(gridColumnGap),
+    position,
+    width: px(width),
+    maxWidth: px(maxWidth) ?? px(width),
+    height: px(height),
+    minHeight: px(minHeight),
+    whiteSpace,
+    textAlign,
+    outline,
+    borderRadius: px(borderRadius),
+    right: px(right),
+    left: px(left),
+    top: px(top),
+    bottom: px(bottom),
+    zIndex,
+    justifyContent,
+    alignItems,
+    lineHeight,
+    wordBreak: wordBreak as React.CSSProperties['wordBreak'],
+    margin,
+    marginTop: px(marginTop),
+    marginRight: px(marginRight),
+    marginBottom: px(marginBottom),
+    marginLeft: px(marginLeft),
+    padding,
+    paddingTop: px(paddingTop),
+    paddingRight: px(paddingRight),
+    paddingBottom: px(paddingBottom),
+    paddingLeft: px(paddingLeft),
+    border,
+    borderBottom,
+    overflow,
+    overflowY,
+    fontWeight,
+    ...(props as { style?: React.CSSProperties }).style,
   };
 
-
-  return componentThemed(theme);
+  return (
+    <div
+      {...domProps}
+      className={className ? `${styles.gridContainer} ${className}` : styles.gridContainer}
+      style={style}
+    >
+      {children}
+    </div>
+  );
 };
 
 export default GridContainer;

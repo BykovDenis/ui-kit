@@ -1,0 +1,13 @@
+/*
+ * Static skeleton + defaults only. Every value the consumer passes as a
+ * prop is applied through the inline style attribute (inline wins over
+ * this class, so props override these defaults) — for a layout container
+ * the props ARE css properties, no var() indirection needed.
+ */
+.gridContainer {
+  display: grid;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  font-weight: 400;
+}
