@@ -2,18 +2,18 @@
 
 exports[`Datepicker renders correctly 1`] = `
 <div
-  class="sc-bkbknG hKlCzK"
+  class="sc-fFSRQT fHaJwn"
   data-test="datepicker-unit"
   data-ui-kit-component="datepicker"
 >
   <div
-    class="sc-dIvsxA hyoXQM"
+    class="sc-ienaaN bsyLYR"
   >
     <div
-      class="sc-iwaiTi kOxstF"
+      class="sc-bCwgXz fMIfmd"
     >
       <label
-        class="sc-fujBio lfZSHZ"
+        class="sc-iCoKjR SYCfi"
         color="#333333"
         font-family="Roboto, Arial, sans-serif"
         font-size="12"
@@ -53,11 +53,8 @@ exports[`Datepicker renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="sc-iCoKjR bVVMKw"
-      font-size="14"
-      height="20"
-      transform="translateY(-50%)"
-      width="20"
+      class="formControl"
+      style="font-size: 14px; position: absolute; width: 20px; height: 20px; right: 3px; top: 50%; transform: translateY(-50%);"
     >
       <button
         class="sc-gKzYWW bKqwsi delete-button"

@@ -2,19 +2,19 @@
 
 exports[`Select renders correctly 1`] = `
 <div
-  className="sc-dIrNh glHIjP"
+  className="sc-crzogQ lecBNA"
   data-test="select"
   id="uuid-select-1"
 >
   <div
-    className="sc-bqGEVu dcbVfX"
+    className="sc-dIrNh cOTxMM"
     height={40}
   >
     <div
-      className="sc-crzogQ cFtJQk"
+      className="sc-iqAcFz hzjlfc"
     >
       <label
-        className="sc-iCoKjR SYCfi"
+        className="sc-gKzYWW lVcGv"
         color="#333333"
         fontFamily="Roboto, Arial, sans-serif"
         fontSize={12}
@@ -25,7 +25,7 @@ exports[`Select renders correctly 1`] = `
       </label>
     </div>
     <div
-      className="sc-kslsaH cfzvOx"
+      className="sc-bqGEVu hnHGzN"
     />
     <div
       className="sc-gtstET jXlMKC"
@@ -65,11 +65,18 @@ exports[`Select renders correctly 1`] = `
           name="select-custom"
         />
         <div
-          className="sc-gKzYWW jUwWmm"
-          fontSize={14}
-          height={20}
-          transform="translateY(-50%)"
-          width={20}
+          className="formControl"
+          style={
+            {
+              "fontSize": "14px",
+              "height": "20px",
+              "position": "absolute",
+              "right": "0px",
+              "top": "50%",
+              "transform": "translateY(-50%)",
+              "width": "20px",
+            }
+          }
         >
           <button
             className="sc-jSFhYz exGjdF delete-button"

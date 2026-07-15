@@ -5,10 +5,7 @@ import { useTheme } from '@dbykov-ui-kit/styles';
 import styles from './grid-container.module.css';
 import isNotEmptyString from '../../helpers/is-not-empty-string';
 import getMeasureValue from '../../helpers/get-measure-value';
-
-// number → px, string as is; undefined stays undefined (React drops it)
-const px = (value?: number | string): string | undefined =>
-  value == null || value === '' ? undefined : getMeasureValue(value);
+import { px, compactStyles } from '../../helpers/inline-style';
 
 const GridContainer: React.FunctionComponent<TGridContainer> = (props: TGridContainer) => {
   const theme = useTheme();
@@ -88,7 +85,7 @@ const GridContainer: React.FunctionComponent<TGridContainer> = (props: TGridCont
   const repeatTrack = (size?: number | string): string =>
     new Array(columnsCount).fill(getMeasureValue(size, 'auto')).join(' ');
 
-  const style: React.CSSProperties = {
+  const style: React.CSSProperties = compactStyles({
     color: color || theme?.palette?.baseFontColor,
     backgroundColor: backgroundColor || theme.mainBackgroundColor,
     fontSize: px(fontSize ?? theme.baseFontSize),
@@ -131,7 +128,7 @@ const GridContainer: React.FunctionComponent<TGridContainer> = (props: TGridCont
     overflowY,
     fontWeight,
     ...(props as { style?: React.CSSProperties }).style,
-  };
+  });
 
   return (
     <div

@@ -1,0 +1,15 @@
+/*
+ * Static skeleton + defaults; props arrive through the inline style
+ * attribute and override these (same pattern as grid-container).
+ * The styled version also declared `white-space: no-wrap` as a default —
+ * that value is invalid CSS and was silently dropped by browsers, so
+ * there is intentionally no white-space default here.
+ */
+.formControl {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
