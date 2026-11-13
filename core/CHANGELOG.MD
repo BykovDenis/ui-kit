@@ -140,3 +140,18 @@
   MultiSelect's object/string prop types redeclared `elementNames` and
   `onChange` through an intersection, producing unsatisfiable types —
   both fixed, consumers get accurate autocomplete for these props
+
+## v 0.7.0
+### Bugfix
+- CommonJS entry points were unusable in Node: every package manifest has
+  `"type": "module"`, so `require('@dbykov-ui-kit/core/<component>')` parsed
+  `dist/cjs/index.js` as an ES module and failed with
+  `ReferenceError: exports is not defined in ES module scope` (seen in
+  Vitest/Jest and SSR). The build now emits `dist/cjs/package.json` with
+  `{"type":"commonjs"}` for all components and `styles`
+- Datepicker: under native Node ESM the bundle failed with
+  `Cannot find module 'dayjs/plugin/customParseFormat'` — dayjs has no
+  `exports` map, so plugin imports now carry the explicit `.js` extension
+- `dayjs` and `uuid` are imported by the bundles at runtime (Datepicker,
+  Select, Switcher) but were declared as `devDependencies`, so consumers
+  had to install them by hand; they are now regular `dependencies`
