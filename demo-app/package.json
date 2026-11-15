@@ -14,7 +14,7 @@
   "dependencies": {
     "@dbykov-ui-kit/core": "0.5.0",
     "@dbykov-ui-kit/icon": "1.2.0",
-    "@tanstack/react-router": "1.56.5",
+    "@tanstack/react-router": "1.170.46",
     "dayjs": "1.11.11",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@tanstack/router-devtools": "1.47.1",
-    "@tanstack/router-plugin": "1.56.4",
+    "@tanstack/router-plugin": "1.169.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "@vitejs/plugin-react": "6.0.2",
