@@ -4,6 +4,7 @@ import typescript from 'rollup-plugin-typescript2';
 import terser from '@rollup/plugin-terser';
 import path from 'path';
 import pkg from './package.json' with { type: 'json' };
+import { cjsPackageJson } from '../rollup.config.prod.js';
 
 export default [
   {
@@ -39,6 +40,7 @@ export default [
         },
       }),
       terser(),
+      cjsPackageJson(),
     ],
     external: ['react', 'react-dom','styled-components'],
   }

@@ -21,6 +21,18 @@ const toSiblingDist = (outFile) => {
   return (id) => (id.startsWith(UI_KIT_SCOPE) ? `${upToPackagesRoot}${id.slice(UI_KIT_SCOPE.length)}/${outFile}` : id);
 };
 
+// Every package.json here has "type": "module", so node would parse
+// dist/cjs/index.js as ESM and require() would die with "exports is not defined".
+// A nested package.json scopes the cjs folder back to CommonJS.
+export const cjsPackageJson = () => ({
+  name: 'cjs-package-json',
+  generateBundle(options) {
+    if (options.format === 'cjs') {
+      this.emitFile({ type: 'asset', fileName: 'package.json', source: '{"type":"commonjs"}\n' });
+    }
+  },
+});
+
 export default [
   {
     input: path.resolve(process.cwd(), 'src/index.tsx'),
@@ -57,6 +69,7 @@ export default [
         },
       }),
       terser(),
+      cjsPackageJson(),
     ],
     external: isExternal,
   }

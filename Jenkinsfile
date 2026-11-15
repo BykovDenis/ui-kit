@@ -88,7 +88,14 @@ pipeline {
               npm pack --pack-destination "$TARBALL_DIR"
               cd ../demo-app
               npm i --no-save --legacy-peer-deps "$TARBALL_DIR"/dbykov-ui-kit-*.tgz
-              npm run start -- --host 0.0.0.0 --port 3030 > /tmp/demo-app.log 2>&1 &
+              # all builds share one agent: a fixed port would let concurrent
+              # builds run Cypress against each other's demo-app (vite silently
+              # moves to the next port when 3030 is taken). Take a free port
+              # per build and fail loudly if it gets grabbed in between.
+              DEMO_PORT=$(node -e "const s=require('net').createServer().listen(0,()=>{console.log(s.address().port);s.close()})")
+              DEMO_URL="http://localhost:$DEMO_PORT"
+              DEMO_LOG="$TARBALL_DIR/demo-app.log"
+              npm run start -- --host 0.0.0.0 --port "$DEMO_PORT" --strictPort > "$DEMO_LOG" 2>&1 &
               DEMO_PID=$!
               cd ../core
 
@@ -99,17 +106,17 @@ pipeline {
               trap cleanup EXIT
 
               i=0
-              until curl -sf http://localhost:3030 >/dev/null; do
+              until curl -sf "$DEMO_URL" >/dev/null; do
                 i=$((i + 1))
-                if [ "$i" -ge 60 ]; then
-                  echo "Demo app did not start on http://localhost:3030"
-                  cat /tmp/demo-app.log || true
+                if [ "$i" -ge 60 ] || ! kill -0 "$DEMO_PID" 2>/dev/null; then
+                  echo "Demo app did not start on $DEMO_URL"
+                  cat "$DEMO_LOG" || true
                   exit 1
                 fi
                 sleep 2
               done
 
-              npx cypress run --browser chromium --headless
+              CYPRESS_BASE_URL="$DEMO_URL" npx cypress run --browser chromium --headless
             '''
           }
         }

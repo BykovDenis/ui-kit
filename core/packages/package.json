@@ -1,6 +1,6 @@
 {
   "name": "@dbykov-ui-kit/core",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "UI Kit",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -31,7 +31,6 @@
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
     "csstype": "3.0.11",
-    "dayjs": "1.11.19",
     "eslint-config-prettier": "8.6.0",
     "html-webpack-plugin": "^5.5.0",
     "postcss": "8.5.6",
@@ -48,13 +47,14 @@
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-typescript2": "0.36.0",
     "rollup-pluginutils": "^2.8.2",
-    "uuid": "10.0.0",
     "jest-styled-components": "7.2.0"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "1.4.0",
+    "dayjs": "1.11.19",
     "styled-components": "6.4.0",
-    "use-debounce": "10.0.3"
+    "use-debounce": "10.0.3",
+    "uuid": "10.0.0"
   },
   "peerDependencies": {
     "react": ">=16.8.6",
